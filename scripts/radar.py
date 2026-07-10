@@ -42,6 +42,58 @@ def gh_search(query: str, since: str, page: int = 1):
     with urllib.request.urlopen(req) as r:
         return json.load(r)
 
+README_FETCH_CAP = 100  # 每次运行最多抓多少个README，控制API用量和运行时长
+
+def gh_readme(name: str) -> str:
+    """抓仓库README原文（GitHub直接返回raw格式）"""
+    req = urllib.request.Request(
+        f"https://api.github.com/repos/{name}/readme",
+        headers={"Accept": "application/vnd.github.raw+json",
+                 **({"Authorization": f"Bearer {TOKEN}"} if TOKEN else {})})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return r.read().decode("utf-8", "replace")
+
+def clean_readme(md: str, limit: int = 1400) -> str:
+    """把README的markdown清洗成纯文本摘要：去徽章/图片/HTML/代码块，保留正文段落"""
+    import re
+    md = re.sub(r"<!--.*?-->", "", md, flags=re.S)
+    md = re.sub(r"```.*?```", "", md, flags=re.S)          # 代码块
+    md = re.sub(r"<[^>]+>", "", md)                          # HTML标签
+    md = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", md)           # 图片/徽章
+    md = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", md)       # 链接→纯文字
+    md = re.sub(r"^#{1,6}\s*", "", md, flags=re.M)           # 标题井号
+    md = re.sub(r"[*_`>|#]+", "", md)                         # 残余markdown符号
+    paras, size = [], 0
+    for p in re.split(r"\n\s*\n", md):
+        p = " ".join(p.split())
+        if len(p) < 40:      # 跳过太短的碎片（目录行、徽章残渣）
+            continue
+        paras.append(p)
+        size += len(p)
+        if size >= limit:
+            break
+    return "\n\n".join(paras)[:limit + 200]
+
+def enrich_readmes(catalog: dict) -> int:
+    """给还没有readme摘要的服务器抓README（每次最多README_FETCH_CAP个）。
+    单个失败不影响整体；无token时跳过（限额太低不值得烧）。"""
+    if not TOKEN:
+        return 0
+    done = 0
+    for name, entry in catalog.items():
+        if done >= README_FETCH_CAP:
+            break
+        if entry.get("readme_excerpt") is not None:
+            continue
+        try:
+            entry["readme_excerpt"] = clean_readme(gh_readme(name))
+        except Exception as e:
+            print(f"[warn] readme failed: {name}: {e}")
+            entry["readme_excerpt"] = ""   # 记空值，避免每天重试死仓库
+        done += 1
+        time.sleep(0.5)
+    return done
+
 def score(repo: dict) -> float:
     """简单热度分：star权重最高，fork次之，越新越加分"""
     created = datetime.fromisoformat(repo["created_at"].replace("Z", "+00:00"))
@@ -64,7 +116,12 @@ def update_catalog(items):
         if not hist or hist[-1]["s"] != it["stars"]:
             hist = hist + [{"d": today, "s": it["stars"]}]
         entry["stars_history"] = hist[-60:]  # 最多留60个变化点，防文件膨胀
+        if prev is not None and "readme_excerpt" in prev:
+            entry["readme_excerpt"] = prev["readme_excerpt"]
         catalog[it["name"]] = entry
+    fetched = enrich_readmes(catalog)
+    if fetched:
+        print(f"fetched {fetched} readme excerpts")
     servers = sorted(catalog.values(), key=lambda s: s["stars"], reverse=True)
     with open(CATALOG, "w", encoding="utf-8") as f:
         json.dump({"updated_at": today, "count": len(servers), "servers": servers},

@@ -158,6 +158,14 @@ def mini_card(s):
   <span class="meta"><span>⭐ {s['stars']}</span><span>{esc(s.get('language') or '')}</span></span>
 </a>"""
 
+def about_section(s, repo):
+    """README摘要 → 'About' 段落。没抓到摘要的服务器优雅降级为不显示。"""
+    excerpt = s.get("readme_excerpt")
+    if not excerpt:
+        return ""
+    paras = "".join(f'<p class="sub">{esc(p)}</p>' for p in excerpt.split("\n\n") if p.strip())
+    return f'<h2>About {esc(repo)}</h2>{paras}<p class="sub"><i>From the project README.</i></p>'
+
 def detail_page(s, servers, lang_hubs, topic_hubs):
     owner, repo = s["name"].split("/", 1)
     desc = s.get("description") or f"{s['name']} is an MCP (Model Context Protocol) server."
@@ -208,6 +216,7 @@ def detail_page(s, servers, lang_hubs, topic_hubs):
 </div>
 {f'<div class="topics">{topics}</div>' if topics else ''}
 <a class="btn" href="{esc(s['url'])}" rel="noopener">View on GitHub ↗</a>{homepage}
+{about_section(s, repo)}
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">{esc(badge_md)}</pre>
@@ -272,10 +281,20 @@ document.getElementById("q").addEventListener("input", function() {{
 }});
 </script>
 """
+    itemlist = json.dumps({
+        "@context": "https://schema.org", "@type": "ItemList",
+        "name": "All MCP servers tracked by MCP Radar",
+        "numberOfItems": len(servers),
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1,
+             "url": f"{BASE}/s/{slug(s['name'])}.html", "name": s["name"]}
+            for i, s in enumerate(servers[:50])],
+    }, ensure_ascii=False)
     return shell(f"All MCP Servers — Complete Directory ({len(servers)}) | MCP Radar",
                  f"Browse all {len(servers)} MCP (Model Context Protocol) servers tracked by MCP Radar. "
                  "Auto-discovered from GitHub, updated daily.",
-                 f"{BASE}/all.html", body)
+                 f"{BASE}/all.html", body,
+                 f'<script type="application/ld+json">{itemlist}</script>')
 
 def about_page(server_count, week_count):
     body = f"""
@@ -439,6 +458,12 @@ def main():
     (SITE / "feed.xml").write_text(rss_feed(servers), encoding="utf-8")
     (SITE / "badge.svg").write_text(BADGE_SVG, encoding="utf-8")
     (SITE / "about.html").write_text(about_page(len(servers), len(weeks)), encoding="utf-8")
+    (SITE / "404.html").write_text(shell(
+        "Not found | MCP Radar", "This page fell off the radar.", f"{BASE}/404.html",
+        """<h1>404 — off the radar</h1>
+<p class="sub">This page doesn't exist (or the server it described was removed).
+Try <a href="/">this week's trending</a> or the <a href="/all.html">full directory</a>.</p>"""),
+        encoding="utf-8")
 
     # sitemap + robots
     urls = ([f"{BASE}/", f"{BASE}/all.html", f"{BASE}/about.html"]
