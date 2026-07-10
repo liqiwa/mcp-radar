@@ -1,6 +1,6 @@
 # MCP Radar Weekly — 2026-07-10
 
-本周GitHub新增 **2645** 个MCP相关仓库，过滤后值得关注的 **65** 个：
+本周GitHub新增 **2648** 个MCP相关仓库，过滤后值得关注的 **66** 个：
 
 1. **[shlokkhemani/rabbithole](https://github.com/shlokkhemani/rabbithole)** ⭐209 (JavaScript) — An infinite canvas for learning — select text, ask, and answers branch out as documents. MCP server for Claude Code, Codex, and any agent.
 2. **[bolivestilo/Homekit](https://github.com/bolivestilo/Homekit)** ⭐66 (TypeScript) — Homekit gives any AI agent direct, physical control over Apple Home. Flip lights. Lock doors. Read sensors. Through a single open interface.
