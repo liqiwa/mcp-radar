@@ -89,6 +89,10 @@
     border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600;
     white-space: nowrap;
   }
+  .new-badge {
+    background: var(--accent); color: #08130c; border-radius: 4px;
+    padding: 1px 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .5px;
+  }
   .desc { color: var(--text-dim); font-size: 14px; margin: 6px 0 10px; padding-left: 36px; }
   .meta { display: flex; gap: 14px; flex-wrap: wrap; padding-left: 36px; font-size: 12.5px; color: var(--text-dim); }
   .meta .lang::before {
@@ -173,6 +177,7 @@ const LANG_COLORS = {
 };
 
 let items = [];
+let scanDate = "";
 
 async function load() {
   for (const src of DATA_SOURCES) {
@@ -223,6 +228,7 @@ function render() {
       <div class="card-top">
         <span class="rank">${i + 1}</span>
         <span class="name"><span class="owner">${esc(owner)}/</span>${esc(repo)}</span>
+        ${it.first_seen === scanDate ? '<span class="new-badge">NEW</span>' : ""}
         <span class="score">▲ ${it.score}</span>
       </div>
       ${it.description ? `<p class="desc">${esc(it.description)}</p>` : ""}
@@ -239,6 +245,7 @@ function render() {
 
 load().then(d => {
   items = d.items;
+  scanDate = (d.generated_at || "").slice(0, 10);
   renderStats(d);
   const langs = [...new Set(items.map(i => i.language).filter(Boolean))].sort();
   document.getElementById("lang").innerHTML +=

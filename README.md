@@ -2,6 +2,8 @@
 
 **A directory of new and trending MCP (Model Context Protocol) servers, updated automatically every day.**
 
+**🌐 Live site: [mcp.liqiwa.com](https://mcp.liqiwa.com)** · [Full directory](https://mcp.liqiwa.com/all.html) · [Weekly archive](https://mcp.liqiwa.com/weekly/) · [RSS](https://mcp.liqiwa.com/feed.xml)
+
 MCP Radar scans GitHub for newly created MCP server repositories, filters out the noise, ranks them by momentum (stars, forks, freshness), and publishes the results as structured JSON plus a human-readable weekly digest — all powered by GitHub Actions, with zero servers and zero cost.
 
 ## What you get

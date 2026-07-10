@@ -69,7 +69,7 @@ def update_catalog(items):
     with open(CATALOG, "w", encoding="utf-8") as f:
         json.dump({"updated_at": today, "count": len(servers), "servers": servers},
                   f, ensure_ascii=False, indent=1)
-    return len(servers)
+    return len(servers), {name: e["first_seen"] for name, e in catalog.items()}
 
 def main():
     since = (datetime.now(timezone.utc) - timedelta(days=DAYS)).strftime("%Y-%m-%d")
@@ -118,6 +118,11 @@ def main():
 
     DATA_DIR.mkdir(exist_ok=True)
 
+    # 先并入累积总目录 data/all.json，拿到每个服务器的首次上榜日期
+    catalog_size, first_seen = update_catalog(items)
+    for it in items:
+        it["first_seen"] = first_seen.get(it["name"])
+
     # 输出1：结构化数据（未来网站的数据源，commit回仓库即可）
     out = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -128,9 +133,6 @@ def main():
     }
     with open(DATA_DIR / "data.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
-
-    # 输出1.5：并入累积总目录 data/all.json（详情页和全量目录的数据源）
-    catalog_size = update_catalog(items)
 
     # 输出1.6：本周快照（data/weekly/YYYY-Www.json）。本周内每天覆盖更新，
     # 跨周后自动冻结成历史存档——周报归档页的数据源。

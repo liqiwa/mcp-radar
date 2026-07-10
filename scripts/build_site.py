@@ -127,6 +127,7 @@ def shell(title, desc, canonical, body, jsonld=""):
 {body}
 <footer>
   Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
   · <a href="/feed.xml">RSS</a>
   · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
 </footer>
@@ -276,6 +277,44 @@ document.getElementById("q").addEventListener("input", function() {{
                  "Auto-discovered from GitHub, updated daily.",
                  f"{BASE}/all.html", body)
 
+def about_page(server_count, week_count):
+    body = f"""
+<h1>How MCP Radar works</h1>
+<p class="sub">Full transparency: every number on this site is reproducible from the
+<a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>.</p>
+
+<h2>Discovery</h2>
+<p class="sub">Every day, a GitHub Actions job searches GitHub for repositories created in the last 7 days
+matching MCP-related queries (<i>topic:mcp-server</i>, <i>topic:model-context-protocol</i>,
+"mcp server" in name/description). No submissions, no human curation — if you publish an MCP server
+and it earns a few stars, the radar picks it up automatically.</p>
+
+<h2>Filtering</h2>
+<p class="sub">Forks, archived repositories and repos below a minimum star threshold are dropped.
+This removes the vast majority of noise: of the ~2,500 MCP-related repos created in a typical week,
+roughly 2% survive the filter.</p>
+
+<h2>Ranking — the momentum score</h2>
+<p class="sub"><b>score = stars ÷ age_in_days × 10 + forks × 2</b></p>
+<p class="sub">Stars-per-day rewards velocity over accumulation: a 3-day-old server gaining 20 stars a day
+outranks a famous one coasting on history. Forks add a smaller signal of real developer adoption.
+The formula is deliberately simple and public — if you think it can be gamed or improved,
+<a href="https://github.com/liqiwa/mcp-radar/issues" rel="noopener">open an issue</a>.</p>
+
+<h2>The data</h2>
+<p class="sub">Currently tracking <b>{server_count}</b> servers across <b>{week_count}</b> weekly snapshot(s).
+Everything is committed to the repo as JSON — <a href="https://github.com/liqiwa/mcp-radar/tree/main/data"
+rel="noopener">download it</a>, build on it, no API key required. The git history is the full time series.</p>
+
+<h2>Updates</h2>
+<p class="sub">Daily at 02:17 UTC. The website redeploys automatically when data changes,
+and the <a href="/feed.xml">RSS feed</a> carries the newest arrivals.</p>
+"""
+    return shell("How MCP Radar Works — Methodology | MCP Radar",
+                 "How MCP Radar discovers, filters and ranks new MCP (Model Context Protocol) servers: "
+                 "open data, public momentum formula, daily updates.",
+                 f"{BASE}/about.html", body)
+
 def weekly_page(w, prev_id, next_id):
     """一周的雷达存档页。w: data/weekly/<id>.json 的内容"""
     cards = "".join(mini_card(s) for s in w["items"])
@@ -395,13 +434,14 @@ def main():
     if weeks_desc:
         (weekly_dir / "index.html").write_text(weekly_index(weeks_desc), encoding="utf-8")
 
-    # 目录页、RSS、徽章
+    # 目录页、RSS、徽章、methodology
     (SITE / "all.html").write_text(all_page(servers, lang_hubs, topic_hubs), encoding="utf-8")
     (SITE / "feed.xml").write_text(rss_feed(servers), encoding="utf-8")
     (SITE / "badge.svg").write_text(BADGE_SVG, encoding="utf-8")
+    (SITE / "about.html").write_text(about_page(len(servers), len(weeks)), encoding="utf-8")
 
     # sitemap + robots
-    urls = ([f"{BASE}/", f"{BASE}/all.html"]
+    urls = ([f"{BASE}/", f"{BASE}/all.html", f"{BASE}/about.html"]
             + ([f"{BASE}/weekly/"] if weeks else [])
             + [f"{BASE}/weekly/{w['week']}.html" for w in weeks]
             + [f"{BASE}/lang/{lang_slug(l)}.html" for l in lang_hubs]
@@ -415,6 +455,21 @@ def main():
         encoding="utf-8")
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
+    (SITE / "llms.txt").write_text(f"""# MCP Radar
+
+> Directory of new and trending MCP (Model Context Protocol) servers,
+> auto-discovered from GitHub and updated daily. {len(servers)} servers tracked.
+
+## Pages
+- [This week's trending]({BASE}/): top new MCP servers ranked by momentum
+- [Full directory]({BASE}/all.html): all tracked servers
+- [Weekly archive]({BASE}/weekly/): frozen weekly snapshots
+- [Methodology]({BASE}/about.html): how discovery, filtering and ranking work
+
+## Data (JSON, no API key)
+- Weekly window: https://raw.githubusercontent.com/liqiwa/mcp-radar/main/data/data.json
+- Full catalog: https://raw.githubusercontent.com/liqiwa/mcp-radar/main/data/all.json
+""", encoding="utf-8")
 
     print(f"generated {len(servers)} detail pages, {len(lang_hubs)} language hubs, "
           f"{len(topic_hubs)} topic hubs, {len(weeks)} weekly pages, "
