@@ -106,6 +106,23 @@
   }
   .empty { text-align: center; color: var(--text-dim); padding: 60px 0; }
 
+  .subscribe {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; margin-top: 44px;
+  }
+  .subscribe h2 { margin: 0 0 4px; font-size: 16px; }
+  .subscribe p { color: var(--text-dim); font-size: 13.5px; margin-bottom: 12px; }
+  .subscribe form { display: flex; gap: 8px; flex-wrap: wrap; }
+  .subscribe input[type=email] {
+    flex: 1; min-width: 220px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); padding: 9px 12px; font-size: 14px; outline: none;
+  }
+  .subscribe input[type=email]:focus { border-color: var(--accent); }
+  .subscribe button {
+    background: var(--accent); color: #08130c; font-weight: 600; border: none;
+    border-radius: 8px; padding: 9px 18px; font-size: 14px; cursor: pointer;
+  }
+
   .faq { margin-top: 44px; }
   .faq h2 { font-size: 17px; margin: 22px 0 8px; }
   .faq p { color: var(--text-dim); font-size: 14.5px; max-width: 720px; }
@@ -146,6 +163,15 @@
   </div>
 
   <main id="list"><p class="empty">Loading radar data…</p></main>
+
+  <section class="subscribe">
+    <h2>📬 Get the weekly radar in your inbox</h2>
+    <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar" method="post" target="_blank">
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
 
   <section class="faq">
     <h2>What is an MCP server?</h2>

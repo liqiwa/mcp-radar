@@ -1,0 +1,27 @@
+name: Weekly Newsletter
+
+on:
+  schedule:
+    # 每周一 03:07 UTC（北京时间周一 11:07），在每日雷达(02:17)跑完之后
+    - cron: "7 3 * * 1"
+  workflow_dispatch: {}  # 手动触发用于测试
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Send newsletter
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: python scripts/send_newsletter.py

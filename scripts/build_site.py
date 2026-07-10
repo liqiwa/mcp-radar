@@ -24,6 +24,7 @@ DATA_DIR = ROOT / "data"
 SITE = ROOT / "site"
 BASE = "https://mcp.liqiwa.com"
 
+BUTTONDOWN_USER = "mcp-radar"  # Buttondown用户名（订阅表单提交地址用）
 MIN_TOPIC_SERVERS = 3   # topic聚合页的最低服务器数
 MIN_LANG_SERVERS = 2    # 语言聚合页的最低服务器数
 FEED_SIZE = 30
@@ -84,6 +85,28 @@ padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
 .hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
 footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
 footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+"""
+
+SUBSCRIBE_BOX = f"""
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/{BUTTONDOWN_USER}"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
 """
 
 def esc(s):
@@ -125,6 +148,7 @@ def shell(title, desc, canonical, body, jsonld=""):
   <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
 </header>
 {body}
+{SUBSCRIBE_BOX}
 <footer>
   Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
   · <a href="/about.html">methodology</a>
