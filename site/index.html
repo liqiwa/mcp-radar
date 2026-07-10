@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Radar — New &amp; Trending MCP Servers, Updated Daily</title>
+<meta name="description" content="Discover new and trending MCP (Model Context Protocol) servers. Auto-curated from GitHub daily: filtered for quality, ranked by momentum. The radar for the MCP ecosystem.">
+<meta name="keywords" content="MCP, MCP servers, Model Context Protocol, MCP directory, Claude MCP, AI agents, MCP registry, trending MCP">
+<meta property="og:title" content="MCP Radar — New &amp; Trending MCP Servers">
+<meta property="og:description" content="Auto-curated directory of new MCP servers, updated daily from GitHub.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+  :root {
+    --bg: #0b0f14;
+    --bg-card: #121820;
+    --bg-card-hover: #182130;
+    --border: #1e2936;
+    --text: #dbe4ee;
+    --text-dim: #7d8fa3;
+    --accent: #3ddc84;
+    --accent-dim: rgba(61, 220, 132, 0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+  /* header */
+  header { padding: 48px 0 28px; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo .dish { font-size: 34px; line-height: 1; }
+  .logo h1 { font-size: 28px; letter-spacing: -0.5px; }
+  .logo h1 .radar { color: var(--accent); }
+  .tagline { color: var(--text-dim); margin-top: 8px; font-size: 15px; }
+  .tagline b { color: var(--text); font-weight: 600; }
+
+  /* stats */
+  .stats { display: flex; gap: 12px; margin: 22px 0 0; flex-wrap: wrap; }
+  .stat {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 16px; font-size: 13px; color: var(--text-dim);
+  }
+  .stat b { display: block; font-size: 20px; color: var(--text); font-variant-numeric: tabular-nums; }
+  .stat.live b { color: var(--accent); }
+
+  /* controls */
+  .controls { display: flex; gap: 10px; margin: 26px 0 18px; flex-wrap: wrap; }
+  .controls input, .controls select {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 9px 12px; font-size: 14px; outline: none;
+  }
+  .controls input { flex: 1; min-width: 200px; }
+  .controls input:focus, .controls select:focus { border-color: var(--accent); }
+  .controls select { cursor: pointer; }
+
+  /* list */
+  .card {
+    display: block; text-decoration: none;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px; margin-bottom: 10px;
+    transition: background .12s, border-color .12s;
+  }
+  .card:hover { background: var(--bg-card-hover); border-color: #2b3b4f; }
+  .card-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .rank { color: var(--text-dim); font-size: 13px; font-variant-numeric: tabular-nums; min-width: 26px; }
+  .name { font-weight: 600; font-size: 16px; word-break: break-all; }
+  .name .owner { color: var(--text-dim); font-weight: 400; }
+  .score {
+    margin-left: auto; background: var(--accent-dim); color: var(--accent);
+    border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .desc { color: var(--text-dim); font-size: 14px; margin: 6px 0 10px; padding-left: 36px; }
+  .meta { display: flex; gap: 14px; flex-wrap: wrap; padding-left: 36px; font-size: 12.5px; color: var(--text-dim); }
+  .meta .lang::before {
+    content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--lang-color, #8b949e); margin-right: 5px;
+  }
+  .topics { display: flex; gap: 6px; flex-wrap: wrap; padding-left: 36px; margin-top: 8px; }
+  .topic {
+    background: rgba(125, 143, 163, 0.1); border-radius: 999px;
+    padding: 1px 9px; font-size: 11.5px; color: var(--text-dim);
+  }
+  .empty { text-align: center; color: var(--text-dim); padding: 60px 0; }
+
+  footer {
+    margin: 48px 0 40px; padding-top: 24px; border-top: 1px solid var(--border);
+    color: var(--text-dim); font-size: 13px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    .desc, .meta, .topics { padding-left: 0; }
+    .score { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <span class="dish">📡</span>
+      <h1>MCP <span class="radar">Radar</span></h1>
+    </div>
+    <p class="tagline">New &amp; trending <b>Model Context Protocol servers</b>, auto-curated from GitHub. Updated daily — no submissions, no spam, just momentum.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search servers, descriptions, topics…">
+    <select id="lang"><option value="">All languages</option></select>
+    <select id="sort">
+      <option value="score">Sort: Momentum</option>
+      <option value="stars">Sort: Stars</option>
+      <option value="created_at">Sort: Newest</option>
+    </select>
+  </div>
+
+  <main id="list"><p class="empty">Loading radar data…</p></main>
+
+  <footer>
+    Data refreshed daily by <a href="https://github.com/liqiwa/mcp-radar/actions" target="_blank" rel="noopener">GitHub Actions</a>
+    · Pipeline &amp; data are <a href="https://github.com/liqiwa/mcp-radar" target="_blank" rel="noopener">open source</a>
+    · Momentum score = stars/age·10 + forks·2
+  </footer>
+</div>
+
+<script>
+const DATA_SOURCES = [
+  "../data/data.json",                                                   // local dev / repo-root hosting
+  "https://raw.githubusercontent.com/liqiwa/mcp-radar/main/data/data.json", // always-fresh fallback
+];
+const LANG_COLORS = {
+  TypeScript: "#3178c6", JavaScript: "#f1e05a", Python: "#3572A5", Go: "#00ADD8",
+  Rust: "#dea584", Java: "#b07219", Kotlin: "#A97BFF", Swift: "#F05138",
+  "C#": "#178600", "C++": "#f34b7d", Ruby: "#701516", PHP: "#4F5D95", HTML: "#e34c26",
+};
+
+let items = [];
+
+async function load() {
+  for (const src of DATA_SOURCES) {
+    try {
+      const r = await fetch(src, { cache: "no-store" });
+      if (!r.ok) continue;
+      return await r.json();
+    } catch (e) { /* try next source */ }
+  }
+  throw new Error("no data source reachable");
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function renderStats(d) {
+  const date = new Date(d.generated_at);
+  document.getElementById("stats").innerHTML = `
+    <div class="stat live"><b>${d.curated_count}</b>curated this week</div>
+    <div class="stat"><b>${d.raw_matches_this_week.toLocaleString()}</b>new MCP repos scanned</div>
+    <div class="stat"><b>${date.toISOString().slice(0, 10)}</b>last scan</div>`;
+}
+
+function render() {
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  const lang = document.getElementById("lang").value;
+  const sort = document.getElementById("sort").value;
+
+  let rows = items.filter(it => {
+    if (lang && (it.language || "") !== lang) return false;
+    if (!q) return true;
+    return (it.name + " " + it.description + " " + it.topics.join(" ")).toLowerCase().includes(q);
+  });
+  rows.sort((a, b) => sort === "created_at"
+    ? b.created_at.localeCompare(a.created_at)
+    : b[sort] - a[sort]);
+
+  const list = document.getElementById("list");
+  if (!rows.length) { list.innerHTML = '<p class="empty">Nothing on the radar for that filter.</p>'; return; }
+
+  list.innerHTML = rows.map((it, i) => {
+    const [owner, repo] = it.name.split("/");
+    const color = LANG_COLORS[it.language] || "#8b949e";
+    return `
+    <a class="card" href="${esc(it.url)}" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="rank">${i + 1}</span>
+        <span class="name"><span class="owner">${esc(owner)}/</span>${esc(repo)}</span>
+        <span class="score">▲ ${it.score}</span>
+      </div>
+      ${it.description ? `<p class="desc">${esc(it.description)}</p>` : ""}
+      <div class="meta">
+        <span>⭐ ${it.stars}</span>
+        <span>⑂ ${it.forks}</span>
+        ${it.language ? `<span class="lang" style="--lang-color:${color}">${esc(it.language)}</span>` : ""}
+        <span>created ${it.created_at}</span>
+      </div>
+      ${it.topics.length ? `<div class="topics">${it.topics.slice(0, 6).map(t => `<span class="topic">${esc(t)}</span>`).join("")}</div>` : ""}
+    </a>`;
+  }).join("");
+}
+
+load().then(d => {
+  items = d.items;
+  renderStats(d);
+  const langs = [...new Set(items.map(i => i.language).filter(Boolean))].sort();
+  document.getElementById("lang").innerHTML +=
+    langs.map(l => `<option>${esc(l)}</option>`).join("");
+  render();
+  for (const id of ["q", "lang", "sort"])
+    document.getElementById(id).addEventListener("input", render);
+}).catch(() => {
+  document.getElementById("list").innerHTML =
+    '<p class="empty">Could not load radar data. Try again in a minute.</p>';
+});
+</script>
+</body>
+</html>
