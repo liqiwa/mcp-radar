@@ -1,18 +1,18 @@
 {
  "updated_at": "2026-07-10",
- "count": 60,
+ "count": 65,
  "servers": [
   {
    "name": "shlokkhemani/rabbithole",
    "url": "https://github.com/shlokkhemani/rabbithole",
    "description": "An infinite canvas for learning — select text, ask, and answers branch out as documents. MCP server for Claude Code, Codex, and any agent.",
-   "stars": 207,
-   "forks": 23,
+   "stars": 209,
+   "forks": 24,
    "language": "JavaScript",
    "topics": [],
    "created_at": "2026-07-06",
    "homepage": "https://rabbithole.ing",
-   "score": 563.5,
+   "score": 570.5,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -23,6 +23,10 @@
     {
      "d": "2026-07-10",
      "s": 207
+    },
+    {
+     "d": "2026-07-10",
+     "s": 209
     }
    ],
    "readme_excerpt": "An infinite canvas for learning. Open a document, select any text, ask a question — and the answer opens as a fully-rendered child document. Recurse as deep as you like. Every hole is saved and revisitable.\n\nRabbithole has two ways in: a local MCP server for terminal agents, and a static browser app for humans who want to bring their own model key. In the MCP path, your agent (Claude Code, Codex, or any MCP client) does the answering and Rabbithole gives it a canvas in your browser. Everything in that path runs locally: no account, no API keys, nothing leaves your machine.\n\nOpen rabbithole.ing for the browser app: bring your own key, choose OpenRouter (recommended), Anthropic, OpenAI, or a local OpenAI-compatible endpoint, and start from pasted markdown, PDFs, URLs, or .rabbithole files. Provider keys stay in your browser and are sent only to the provider origin you configure. Holes persist in IndexedDB, so the app keeps working offline-ish after it loads, and .rabbithole export/import keeps your work portable.\n\nSelf-hosting is static: web/dist can be served by any host. The optional workers/fetch-proxy Cloudflare Worker enables URL ingestion for sources that block browser CORS.\n\nRequires Node 18+ and a browser. Pick your agent:\n\nClaude Code's default stdio MCP timeout is already long enough for Rabbithole's blocking wait. If you manage .mcp.json manually, this optional per-server field is also fine:"
@@ -100,7 +104,7 @@
    "name": "bepitulaz/obsidian-multivault-mcp",
    "url": "https://github.com/bepitulaz/obsidian-multivault-mcp",
    "description": "Multi-vault and multiuser Obsidian MCP",
-   "stars": 32,
+   "stars": 33,
    "forks": 5,
    "language": "TypeScript",
    "topics": [
@@ -115,7 +119,7 @@
    ],
    "created_at": "2026-07-05",
    "homepage": "",
-   "score": 90.0,
+   "score": 92.5,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -126,9 +130,50 @@
     {
      "d": "2026-07-10",
      "s": 32
+    },
+    {
+     "d": "2026-07-10",
+     "s": 33
     }
    ],
    "readme_excerpt": "An MCP server that gives Claude read/write access to Obsidian vaults that live on a VPS — built for multiple vaults and multiple users from a single deployment. Everyone shares one server; each person is routed to their own private vault by the passphrase they log in with (HTTP mode) or by the vault path Claude Desktop launches with (stdio mode). The server runs on the VPS with direct filesystem access to the vaults.\n\n- Multi-vault, multi-user — one server serves many people, each mapped to their own vault. In HTTP mode everyone adds the same connector URL and their distinct login passphrase decides which vault they get; in stdio mode each Claude Desktop passes its own vault path. - Two transports from one codebase — stdio over ssh (Claude Desktop) and an OAuth-protected Streamable HTTP endpoint (Claude mobile/web/desktop remote connectors). - Read/write tools with strict path safety — vault-relative paths only; .., absolute paths, symlink escapes, and null bytes are rejected; writes limited to an extension allowlist. Optional --read-only and per-user readOnly. - Self-hosted OAuth 2.1 — passphrase login, PKCE, JWT access tokens, and Dynamic Client Registration, so no third-party auth service is needed. - Single-file deploy — esbuild bundles everything to one dist/index.js; deploy is a one-file copy.\n\nThere is no SSH library inside the server — SSH is only the transport Claude Desktop uses to start it and exchange JSON-RPC. Part of a \"centralise the vaults on the VPS\" setup:"
+  },
+  {
+   "name": "mixelpixx/Konnect",
+   "url": "https://github.com/mixelpixx/Konnect",
+   "description": "AI-assisted PCB design for KiCAD 10. Native KiCAD plugin — a single Rust binary exposing 171 schematic, layout, routing, design-review, and manufacturing tools to Claude, or the LLM of your choosing",
+   "stars": 22,
+   "forks": 5,
+   "language": "Rust",
+   "topics": [
+    "agent-skills",
+    "claude",
+    "kicad-pcb",
+    "kicad-schematics",
+    "llm",
+    "mcp-server",
+    "mcp-tools"
+   ],
+   "created_at": "2026-07-05",
+   "homepage": "",
+   "score": 65.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 18
+    },
+    {
+     "d": "2026-07-10",
+     "s": 20
+    },
+    {
+     "d": "2026-07-10",
+     "s": 22
+    }
+   ],
+   "readme_excerpt": "AI-assisted PCB design for KiCAD 10. Konnect is a native KiCAD plugin — a single Rust binary — that lets Claude and other AI assistants design schematics and PCBs through the Model Context Protocol (MCP).\n\n171 tools across 17 on-demand toolsets. Schematic capture, PCB layout and routing, ERC/DRC, design-review audits, JLCPCB part search, Freerouting, reference circuits, and a full manufacturing export pipeline — with bundled skills and agents that teach Claude KiCAD conventions out of the box.\n\nStatus: beta. The core toolchain is tested and working, but this is a young release and it wants real-world mileage and review. Issues and PRs are welcome — see CONTRIBUTING.md.\n\nKonnect is the successor to KiCAD-MCP-Server, a Python/TypeScript project that proved AI-driven PCB design works — and, in the process, showed exactly where that architecture runs out of road. Konnect was built to fix those specific problems:\n\nThe call path was too long. In the original server, a single tool call travels through TypeScript, schema validation, a spawned Python subprocess, JSON over stdin/stdout, a command router, and finally SWIG-generated C++ proxy objects before anything touches your board. That's four language and serialization boundaries, each with its own failure modes — subprocess lifecycle management, stdout parsing that filters out warnings KiCAD leaks into the stream, chunked-JSON reassembly. In Konnect, a tool call is a function call. One process, one language, no plumbing."
   },
   {
    "name": "Chester-2026/Gov-Stat-MCP-Server",
@@ -185,39 +230,6 @@
     }
    ],
    "readme_excerpt": "MCP server + browser sidecar extension that lets AI agents run Google AI Mode searches using your own logged-in browser session, then return the synthesized answer and citations as an MCP tool result.\n\nNo headless browser, no stealth tricks, no CAPTCHA fighting. Your real browser profile does the work.\n\nYou need three things: the MCP server, the native-messaging host, and either the Firefox or Chromium extension. Then wire the server into your agent.\n\nThe stable npm release is 0.1.6. Pin it in agent configs if you want the same server every time instead of whatever npm's latest tag points at later.\n\nIf you prefer installing straight from GitHub, pin the stable commit:\n\nThat commit is the same stable 0.1.6 release. GitHub installs run the package's prepare script, so the TypeScript server is built from source before npm runs the anima-use-google bin.\n\nThe MCP server talks to the sidecar over localhost; it does not bundle a browser.\n\n2. Set up a browser sidecar (one-time, non-npm)\n\nThe npm tarball ships everything you need. After the first npx anima-use-google@0.1.6, the files live in ~/.npm/npx//nodemodules/anima-use-google/. For setup, cloning is usually easier:\n\nThis writes the Firefox native-host registration for your OS:\n\n- Linux: ~/.mozilla/native-messaging-hosts/com.google.ai.search.json - macOS: ~/Library/Application Support/Mozilla/NativeMessagingHosts/com.google.ai.search.json - Windows: HKCU\\Software\\Mozilla\\NativeMessagingHosts\\com.google.ai.search, pointing at %USERPROFILE%\\.anima-use-google\\com.google.ai.search.json"
-  },
-  {
-   "name": "mixelpixx/Konnect",
-   "url": "https://github.com/mixelpixx/Konnect",
-   "description": "AI-assisted PCB design for KiCAD 10. Native KiCAD plugin — a single Rust binary exposing 171 schematic, layout, routing, design-review, and manufacturing tools to Claude, or the LLM of your choosing",
-   "stars": 20,
-   "forks": 5,
-   "language": "Rust",
-   "topics": [
-    "agent-skills",
-    "claude",
-    "kicad-pcb",
-    "kicad-schematics",
-    "llm",
-    "mcp-server",
-    "mcp-tools"
-   ],
-   "created_at": "2026-07-05",
-   "homepage": "",
-   "score": 60.0,
-   "first_seen": "2026-07-10",
-   "last_seen": "2026-07-10",
-   "stars_history": [
-    {
-     "d": "2026-07-10",
-     "s": 18
-    },
-    {
-     "d": "2026-07-10",
-     "s": 20
-    }
-   ],
-   "readme_excerpt": "AI-assisted PCB design for KiCAD 10. Konnect is a native KiCAD plugin — a single Rust binary — that lets Claude and other AI assistants design schematics and PCBs through the Model Context Protocol (MCP).\n\n171 tools across 17 on-demand toolsets. Schematic capture, PCB layout and routing, ERC/DRC, design-review audits, JLCPCB part search, Freerouting, reference circuits, and a full manufacturing export pipeline — with bundled skills and agents that teach Claude KiCAD conventions out of the box.\n\nStatus: beta. The core toolchain is tested and working, but this is a young release and it wants real-world mileage and review. Issues and PRs are welcome — see CONTRIBUTING.md.\n\nKonnect is the successor to KiCAD-MCP-Server, a Python/TypeScript project that proved AI-driven PCB design works — and, in the process, showed exactly where that architecture runs out of road. Konnect was built to fix those specific problems:\n\nThe call path was too long. In the original server, a single tool call travels through TypeScript, schema validation, a spawned Python subprocess, JSON over stdin/stdout, a command router, and finally SWIG-generated C++ proxy objects before anything touches your board. That's four language and serialization boundaries, each with its own failure modes — subprocess lifecycle management, stdout parsing that filters out warnings KiCAD leaks into the stream, chunked-JSON reassembly. In Konnect, a tool call is a function call. One process, one language, no plumbing."
   },
   {
    "name": "MentionNetwork/awesome-agentic-commerce",
@@ -297,8 +309,8 @@
    "name": "axisrobo/mneme-open",
    "url": "https://github.com/axisrobo/mneme-open",
    "description": "Open-source client SDKs (Python, TypeScript, Go), CLI, API docs, and prebuilt binaries for the Mneme agent cognition runtime (memory, context, ontology, knowledge). Apache-2.0.",
-   "stars": 10,
-   "forks": 8,
+   "stars": 11,
+   "forks": 9,
    "language": "Python",
    "topics": [
     "agent-context",
@@ -320,7 +332,7 @@
    ],
    "created_at": "2026-07-07",
    "homepage": "",
-   "score": 66.0,
+   "score": 73.0,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -331,6 +343,10 @@
     {
      "d": "2026-07-10",
      "s": 10
+    },
+    {
+     "d": "2026-07-10",
+     "s": 11
     }
    ],
    "readme_excerpt": "Open (Apache-2.0) client SDKs, examples, API reference, and prebuilt binaries for Mneme.\n\nMneme is a cognition runtime that gives software agents long-term memory, context assembly, and knowledge representation. Think of it as a memory subsystem that sits alongside your LLM: every observation, fact, decision, and plan is stored as a typed, temporal, branchable record, and you retrieve it with a hybrid search (lexical + semantic + relation + time) plus context assembly.\n\nMneme's data model combines Git-like branching with cognitive memory types:\n\nMemory type Example ---------------------- episode raw events (user said X, server returned Y) fact asserted truths (subject-predicate-object, with validity windows) knowledge structured belief (entity relationships, classifications) experience reflection after an action (\"what went well / poorly\") simulation hypothetical scenarios run to reason about outcomes emotion, intention, procedure, belief, mission, preference internal agent state\n\nEvery record is immutable and append-only, tagged with branch, timestamp, retention tier, and identity scope (tenant/project). The engine owns the semantics; storage backends are replaceable.\n\nMneme-open is the public, open-source window into Mneme. It contains everything you need to integrate with a running Mneme server — client libraries, CLI tools, protocol schemas, and API documentation —?under the Apache-2.0 license. The Mneme engine source is not included here; this repository ships only the client-facing layer."
@@ -387,7 +403,7 @@
    "topics": [],
    "created_at": "2026-07-05",
    "homepage": "",
-   "score": 19.5,
+   "score": 16.0,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -633,7 +649,7 @@
    ],
    "created_at": "2026-07-07",
    "homepage": "https://dali.getlulu.dev",
-   "score": 25.0,
+   "score": 16.7,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -696,7 +712,7 @@
    ],
    "created_at": "2026-07-06",
    "homepage": "",
-   "score": 16.7,
+   "score": 12.5,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -732,7 +748,7 @@
    ],
    "created_at": "2026-07-04",
    "homepage": "",
-   "score": 10.0,
+   "score": 8.3,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -918,7 +934,7 @@
    "topics": [],
    "created_at": "2026-07-04",
    "homepage": "",
-   "score": 8.0,
+   "score": 6.7,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -985,6 +1001,71 @@
    "readme_excerpt": "Control your Windows PC directly from OpenCode. Uses the windows-mcp MCP server under the hood.\n\n- Desktop UI Automation — click, type, scroll, drag, switch apps, resize windows - File System — read, write, copy, move, delete files and directories - PowerShell — execute any PowerShell commands - Screenshots — capture and analyze desktop screenshots - Registry — read, write, delete registry keys - Process — list and kill running processes - Clipboard — get and set clipboard content - Notifications — send Windows toast notifications - Web Scraping — fetch and extract web page content - Snapshot — inspect UI elements on screen with coordinates - Multi-actions — batch select and edit multiple UI elements\n\nIn your OpenCode config directory (typically %USERPROFILE%\\.config\\opencode):\n\n2. Install the MCP server (Python package)\n\nAdd \"open-controller\" to the \"plugin\" array in %USERPROFILE%\\.config\\opencode\\opencode.jsonc if not already present:\n\nTry these commands: - \"list files on desktop\" - \"take a screenshot\" - \"open chrome\" - \"run notepad\"\n\nThe plugin registers 19 MCP tools via the windows-mcp server:\n\nApp Control - App — launch, switch, or resize application windows - Shortcut — execute keyboard shortcuts (ctrl+c, win+r, etc.)\n\nDesktop & UI - Snapshot — capture desktop state with UI tree, interactive elements, and coordinates - Screenshot — fast screenshot with optional annotation overlay - Click — single, double, right-click at coordinates or on UI element labels - Type — type text at coordinates or into UI elements - Scroll — scroll vertically/horizontally at a location - Mo"
   },
   {
+   "name": "vinodborole/okf-kit",
+   "url": "https://github.com/vinodborole/okf-kit",
+   "description": "Turn any website into a portable, agent-ready Open Knowledge Format (OKF) bundle — no LLM required. Crawl, sync, chat offline, and serve docs to coding agents over MCP.",
+   "stars": 4,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "ai-agents",
+    "claude",
+    "cli",
+    "documentation",
+    "knowledge-base",
+    "llm",
+    "markdown",
+    "mcp",
+    "model-context-protocol",
+    "ollama",
+    "open-knowledge-format",
+    "python",
+    "rag",
+    "web-crawler"
+   ],
+   "created_at": "2026-07-06",
+   "homepage": "https://vinodborole.github.io/okf-kit/",
+   "score": 10.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    },
+    {
+     "d": "2026-07-10",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Turn any website into a portable, agent-ready knowledge bundle — no LLM required to start.\n\nokf-kit crawls a site into a Google Open Knowledge Format (OKF) bundle: a directory of markdown concept files with YAML frontmatter and per-directory index.md listings that any agent can navigate with plain file reads. Build it, keep it in sync as the site changes, publish it, and chat with it — locally, with your own key, or fully offline via Ollama.\n\nPart of the calknowledge ecosystem — okf-kit is the lightweight, open library; calknowledge is the full platform (LLM enrichment, RAG export, retrieval evals, GUI) built on top of it.\n\nEveryone re-crawls and re-indexes the same docs privately and badly. okf-kit makes a website's knowledge a portable artifact:\n\n- Agents can read an OKF bundle; they can't read your website. The bundle is navigable markdown — no scraping, no SDK, no runtime. - Faithful markdown, not text soup. Real extraction (headings, code, tables), boilerplate filtered, JS-rendered when needed. - Self-maintaining. okf sync updates only what changed, so a published bundle in git produces small delta commits and never goes stale. - Works with any LLM, or none. Chat via OpenAI, Ollama, vLLM, OpenRouter, or Claude — or get a zero-key retrieval answer with citations.\n\nThe default install has no browser and no LLM SDK — it installs in seconds.\n\nTip: install into a dedicated virtualenv so okf-kit's dependencies don't mix with your other projects:"
+  },
+  {
+   "name": "Kondux/seraph-mcp-public",
+   "url": "https://github.com/Kondux/seraph-mcp-public",
+   "description": "Public registry metadata and installation examples for the Seraph hosted MCP server",
+   "stars": 4,
+   "forks": 0,
+   "language": null,
+   "topics": [],
+   "created_at": "2026-07-09",
+   "homepage": "https://seraph.kondx.io",
+   "score": 40.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    },
+    {
+     "d": "2026-07-10",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Seraph is a hosted remote Model Context Protocol (MCP) server operated by Kondux. It gives AI agents access to crypto transaction firewall and risk tools through a managed, OAuth-protected MCP endpoint.\n\n- Public name: Seraph - Registry ID: io.kondux/seraph - MCP endpoint: https://seraph.kondux.io/mcp - Transport: Streamable HTTP - Authentication: OAuth 2.1 through Seraph/Privy. API-key access remains available for existing integrations. - Operator: Kondux, https://kondux.io\n\nThis repository contains public registry metadata and installation examples only. The production service implementation is proprietary and is not included here.\n\n1. Create or sign in to a Seraph account at https://seraph.kondux.io. 2. Complete onboarding in the Seraph console. 3. Add the hosted MCP endpoint to your MCP client or registry submission:\n\nClients that support MCP OAuth discovery should start authentication automatically from the Seraph MCP endpoint.\n\nThe official MCP Registry manifest is in server.json. It uses the branded DNS-owned namespace:\n\n- Claude - Smithery - Glama - PulseMCP - mcp.so\n\nUse this public repository URL when a registry asks for a GitHub repository:\n\nUse this URL when a registry asks for the hosted MCP server endpoint:\n\nSeraph is a remote hosted MCP server. There is no local package to install from this repository.\n\nThe documentation, examples, and registry metadata in this repository are MIT licensed. The hosted Seraph service and its private implementation are separate proprietary Kondux software."
+  },
+  {
    "name": "LING71671/grok2web",
    "url": "https://github.com/LING71671/grok2web",
    "description": "Cloudflare Workers MCP server for Grok — arbitrary HTTP requests with cookie/session persistence for web and CTF workflows",
@@ -994,7 +1075,7 @@
    "topics": [],
    "created_at": "2026-07-08",
    "homepage": "",
-   "score": 32.0,
+   "score": 17.0,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -1057,7 +1138,7 @@
    "topics": [],
    "created_at": "2026-07-07",
    "homepage": "",
-   "score": 17.0,
+   "score": 12.0,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -1177,7 +1258,7 @@
    ],
    "created_at": "2026-07-07",
    "homepage": "",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -1232,7 +1313,7 @@
    ],
    "created_at": "2026-07-06",
    "homepage": "https://chawdamrunal.github.io/assay/",
-   "score": 12.0,
+   "score": 9.5,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -1340,42 +1421,6 @@
     }
    ],
    "readme_excerpt": "MCP server — Compressed Knowledge Graph (CKG) for the full NVIDIA AI developer stack.\n\n4× F1 · 11× fewer tokens · 998 nodes · deterministic traversal.\n\nRead-only. This MCP server never writes, mutates, or executes. Every response is a declared graph traversal — not inference, not retrieval, not generation.\n\nMore agents. More retrieval. More context. And accuracy drops.\n\nThis is the intelligence paradox: the more AI you add, the more tokens you burn re-discovering structure your system already knows — or could know. Research finds 73% of enterprise tokens are redundant context. In multi-agent pipelines, context efficiency collapses from 18.2 in Q1 to 1.6 by Q4 — 91% degradation with no model change.\n\nThe model is not the bottleneck. The context is.\n\nEvery time your agent calls out to ask what TensorRT-LLM requires to run on Hopper, it spends ~2,982 tokens re-inferring a relationship that could be declared once and traversed in 269. That difference compounds across every query, every agent, every boundary crossing.\n\nThe fix is not a better model. It is structured context.\n\nA CKG is a layer — a fast, inexpensive way to convert a large volume of domain documentation into structured, agent-traversable knowledge. Instead of retrieval, the agent traverses. Instead of inference, it reads declared relationships.\n\nThis package gives your agent the NVIDIA AI developer stack as its first layer: 20 domains, 998 nodes, every prerequisite chain declared and typed."
-  },
-  {
-   "name": "vinodborole/okf-kit",
-   "url": "https://github.com/vinodborole/okf-kit",
-   "description": "Turn any website into a portable, agent-ready Open Knowledge Format (OKF) bundle — no LLM required. Crawl, sync, chat offline, and serve docs to coding agents over MCP.",
-   "stars": 3,
-   "forks": 0,
-   "language": "Python",
-   "topics": [
-    "ai-agents",
-    "claude",
-    "cli",
-    "documentation",
-    "knowledge-base",
-    "llm",
-    "markdown",
-    "mcp",
-    "model-context-protocol",
-    "ollama",
-    "open-knowledge-format",
-    "python",
-    "rag",
-    "web-crawler"
-   ],
-   "created_at": "2026-07-06",
-   "homepage": "https://vinodborole.github.io/okf-kit/",
-   "score": 7.5,
-   "first_seen": "2026-07-10",
-   "last_seen": "2026-07-10",
-   "stars_history": [
-    {
-     "d": "2026-07-10",
-     "s": 3
-    }
-   ],
-   "readme_excerpt": "Turn any website into a portable, agent-ready knowledge bundle — no LLM required to start.\n\nokf-kit crawls a site into a Google Open Knowledge Format (OKF) bundle: a directory of markdown concept files with YAML frontmatter and per-directory index.md listings that any agent can navigate with plain file reads. Build it, keep it in sync as the site changes, publish it, and chat with it — locally, with your own key, or fully offline via Ollama.\n\nPart of the calknowledge ecosystem — okf-kit is the lightweight, open library; calknowledge is the full platform (LLM enrichment, RAG export, retrieval evals, GUI) built on top of it.\n\nEveryone re-crawls and re-indexes the same docs privately and badly. okf-kit makes a website's knowledge a portable artifact:\n\n- Agents can read an OKF bundle; they can't read your website. The bundle is navigable markdown — no scraping, no SDK, no runtime. - Faithful markdown, not text soup. Real extraction (headings, code, tables), boilerplate filtered, JS-rendered when needed. - Self-maintaining. okf sync updates only what changed, so a published bundle in git produces small delta commits and never goes stale. - Works with any LLM, or none. Chat via OpenAI, Ollama, vLLM, OpenRouter, or Claude — or get a zero-key retrieval answer with citations.\n\nThe default install has no browser and no LLM SDK — it installs in seconds.\n\nTip: install into a dedicated virtualenv so okf-kit's dependencies don't mix with your other projects:"
   },
   {
    "name": "wooooci/academic-archive-gateway",
@@ -1504,7 +1549,7 @@
    ],
    "created_at": "2026-07-05",
    "homepage": "https://trynimbus.dev",
-   "score": 7.5,
+   "score": 6.0,
    "first_seen": "2026-07-10",
    "last_seen": "2026-07-10",
    "stars_history": [
@@ -1646,27 +1691,6 @@
    "readme_excerpt": "Custom grids × Rive. A tiny always-on-top panel that authors snappable grid guides directly in the Rive editor by talking to its MCP server — fully deterministic, no agent, no AI.\n\nhttps://github.com/user-attachments/assets/d84c0d76-1ec3-4a02-b21a-2ad90464b854\n\nScript-rendered grids (node scripts, path effects) are computed at render time, so the Rive editor's vertex snapping never sees them. Griddle instead authors real PointsPath geometry through the editor's own MCP tooling: every grid line endpoint and lattice point is a genuine, snappable vertex.\n\nThe Rive editor exposes an MCP server over HTTP at http://127.0.0.1:9791/mcp (streamable HTTP, stateless — a bare JSON-RPC tools/call works with no session handshake). Griddle:\n\n1. Lets you pick a grid type and its properties (progressive disclosure — only the selected grid's parameters are shown). 2. Generates the grid geometry in plain JavaScript. 3. Assembles one patheditor createShapes tool call and POSTs it via a ~20-line Rust command.\n\n- Cartesian: Rectangular (+subdivisions, +cell gutters), Dot (snap crosses — the lattice point is a path vertex), Baseline (leading +subdivisions), Brick (offset running bond) - Angular: Isometric (angle + optional verticals), Triangular, Diamond, Hexagonal (pointy-top honeycomb — shared row boundaries authored as single zigzag polylines, every hex corner snappable), Polar (concentric rings + spokes, movable center) - Perspective: One-point (VP + horizon + receding floor lines), Two-point (two VPs, off-canvas positions allowed) - Composition: Golden ratio (phi lines + spiral), Rule of thi"
   },
   {
-   "name": "Kondux/seraph-mcp-public",
-   "url": "https://github.com/Kondux/seraph-mcp-public",
-   "description": "Public registry metadata and installation examples for the Seraph hosted MCP server",
-   "stars": 3,
-   "forks": 0,
-   "language": null,
-   "topics": [],
-   "created_at": "2026-07-09",
-   "homepage": "https://seraph.kondx.io",
-   "score": 30.0,
-   "first_seen": "2026-07-10",
-   "last_seen": "2026-07-10",
-   "stars_history": [
-    {
-     "d": "2026-07-10",
-     "s": 3
-    }
-   ],
-   "readme_excerpt": "Seraph is a hosted remote Model Context Protocol (MCP) server operated by Kondux. It gives AI agents access to crypto transaction firewall and risk tools through a managed, OAuth-protected MCP endpoint.\n\n- Public name: Seraph - Registry ID: io.kondux/seraph - MCP endpoint: https://seraph.kondux.io/mcp - Transport: Streamable HTTP - Authentication: OAuth 2.1 through Seraph/Privy. API-key access remains available for existing integrations. - Operator: Kondux, https://kondux.io\n\nThis repository contains public registry metadata and installation examples only. The production service implementation is proprietary and is not included here.\n\n1. Create or sign in to a Seraph account at https://seraph.kondux.io. 2. Complete onboarding in the Seraph console. 3. Add the hosted MCP endpoint to your MCP client or registry submission:\n\nClients that support MCP OAuth discovery should start authentication automatically from the Seraph MCP endpoint.\n\nThe official MCP Registry manifest is in server.json. It uses the branded DNS-owned namespace:\n\n- Claude - Smithery - Glama - PulseMCP - mcp.so\n\nUse this public repository URL when a registry asks for a GitHub repository:\n\nUse this URL when a registry asks for the hosted MCP server endpoint:\n\nSeraph is a remote hosted MCP server. There is no local package to install from this repository.\n\nThe documentation, examples, and registry metadata in this repository are MIT licensed. The hosted Seraph service and its private implementation are separate proprietary Kondux software."
-  },
-  {
    "name": "lnguyen503/backlot",
    "url": "https://github.com/lnguyen503/backlot",
    "description": "Backlot — local AI render engine: ComfyUI workflow registry, MCP server, web studio, Blender bridge, and QC suite. Engine half of the ai-director two-session pattern.",
@@ -1724,6 +1748,157 @@
     }
    ],
    "readme_excerpt": "Replen Smarter AI Development Workflows A local intelligence layer for AI coding agents.\n\nWebsite · Docs · Install · Workflow · MCP · Skill · Self-host · Research · app.replen.dev\n\nClaude Code, Codex and Cursor already help inside the repo you are working on. Replen gives them a local intelligence layer across every repo you build.\n\nIt maps each project to what it actually does, building an ontology and knowledge graph of your portfolio: computer vision, geospatial analysis, market-making, scraping, workflow automation, or whatever else you build. It then watches the OSS frontier and continuously scores relevant projects against your real capabilities, using semantic matching and a self-tuning learning loop shaped by what you adopt, skip and review.\n\nThe result is not a trending list, a keyword search, or a static repo graph. Replen autonomously surfaces a small number of high-signal suggestions your AI coding tools can actually use.\n\nSometimes that means adopting a library as-is. Sometimes it means porting a function or algorithm from a larger project. Sometimes it means cherry-picking a technique, or clean-room building an idea from scratch to stay licence-compliant.\n\nThe judgement happens locally, inside your session, against your real code. Your code never leaves your machine.\n\nReplen aims for a few useful suggestions a month. Most days it says nothing. When something real lands, your AI tool can mention it the next time you open the repo, as a short note at the end of its first reply:"
+  },
+  {
+   "name": "BerkKilicoglu/google-health-fitbit-mcp",
+   "url": "https://github.com/BerkKilicoglu/google-health-fitbit-mcp",
+   "description": "Connect your Fitbit / Pixel Watch data to any AI assistant via MCP. Read-only MCP server for the Google Health API. Your health data → any AI assistant, tokens never leave your machine.",
+   "stars": 3,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [],
+   "created_at": "2026-07-07",
+   "homepage": "",
+   "score": 15.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Query your own Google Health API data &mdash; Fitbit, Pixel Watch and connected partner sources &mdash; over local OAuth. Beta. Everything runs on your own machine &mdash; your credentials never leave your device.\n\nAn MCP server that runs locally and hands your AI agent your own Google Health API data — from Fitbit trackers, Pixel Watch and supported partner sources — through OAuth.\n\n- Install in one command — npx -y google-health-fitbit-mcp setup - Run it in Claude Desktop · Claude Code · Cursor · Windsurf · Hermes · OpenClaw — see client examples. - On your machine — OAuth tokens are stored locally with 0600 permissions and are never returned by any tool (privacy). - Read-only by default — every shipped data tool is a read. Writes are a gated, opt-in, dry-run-first design that is not enabled.\n\nBeta status: Google Health API is available to developers but the surface is still moving. Because Google's release notes keep listing scope and data-type changes after launch, this connector remains in beta and steers testers toward safe read-only validation before any production use.\n\nIndependent, community-built connector — no affiliation with, endorsement from or support by Google, Fitbit or Alphabet. Not a medical device or medical advice; treat the data as trend context only.\n\nPrerequisite: a Google Cloud OAuth client (type: Desktop) with the Google Health API enabled and the redirect http://127.0.0.1:3000/callback registered — details in Install."
+  },
+  {
+   "name": "johnhalloran321/mcp_safety_training",
+   "url": "https://github.com/johnhalloran321/mcp_safety_training",
+   "description": "DPO/SafeDPO/OPAD training + eval for teaching tool-using LLMs to refuse falsely-benign MCP exploits",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "alignment",
+    "dpo",
+    "jailbreak-defense",
+    "llm-safety",
+    "mcp",
+    "model-context-protocol",
+    "preference-optimization",
+    "red-teaming",
+    "rlhf",
+    "trl"
+   ],
+   "created_at": "2026-07-07",
+   "homepage": "https://arxiv.org/abs/2605.11217",
+   "score": 15.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "- Halloran, John. \"MCP Safety Training: Learning to Refuse Falsely Benign MCP Exploits using Improved Preference Alignment.\" arXiv:2505.23634 (2025). - Halloran, John T. \"Leveraging RAG for Training-Free Alignment of LLMs.\" arXiv:2605.11217 (2026).\n\nDPO / SafeDPO training and evaluation code for aligning tool-using LLMs against falsely-benign MCP exploits (FBAs) — CVE-derived Model Context Protocol tool-use attacks phrased as ordinary, harmless-sounding requests.\n\nNo safety-tuned model (1B–14B params) refused more than 35% of FBAs out of the box. Standard DPO/SafeDPO alignment only pushed that to 48% at best. RAG-Pref, the training-free retrieval-based method proposed alongside this code, gets ~3x refusal-rate improvement alone and ~3.7x combined with DPO/SafeDPO — see arXiv:2505.23634 and arXiv:2605.11217 for full numbers.\n\nFigure from arXiv:2605.11217. All bars shown are implemented in this repo: Base/DPO/SafeDPO via dpo.py/safedpo.py/mcptestcache.py, Vanilla RAG/RAG-Pref via makeragdbs.py/ragpref.py (see Safety Alignment Methods).\n\n- [x] DPO / SafeDPO training + evaluation - [x] OPAD (on-the-fly, training-free principle-guided decoding) - [x] RAG-Pref (training-free retrieval-based alignment) - [x] Vanilla RAG baseline (ragpref.py --vanilla-rag)\n\nFile Purpose ------ dpo.py Standard DPO training entry point (TRL's DPOTrainer), 4-bit QLoRA. safedpo.py SafeDPO training entry point; swaps in SafeDPOTrainer for TRL's DPOTrainer. safedpotrainer.py SafeDPOTrainer, a DPOTrainer subclass adding a safety-penalty term for preference pairs flagged betterisunsafe/worseisunsafe, and a"
+  },
+  {
+   "name": "BUKOWSKIREAL/trace",
+   "url": "https://github.com/BUKOWSKIREAL/trace",
+   "description": "Trace — a local, background version tracker for multi-CLI-agent coding workflows (Claude Code, Codex, Cursor, ...). Content-addressed snapshots in SQLite, per-agent attribution, diff/restore/revert vi",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "ai-agents",
+    "electron",
+    "mcp",
+    "python",
+    "sqlite",
+    "version-control",
+    "watchdog"
+   ],
+   "created_at": "2026-07-05",
+   "homepage": "",
+   "score": 6.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Trace 是一个面向 AI 编程协作场景的本地版本追踪工具。它不替代 Git，而是补充 Git：当你同时使用 Claude Code、Codex CLI、Cursor、OpenCode 等工具修改同一个项目时，Trace 会在本地记录“哪个 agent 在什么时候改了哪些文件”，并把每次变化保存成可以查看 diff、恢复文件、撤销某个 agent 修改的快照。\n\nTrace 现在是一个纯 Python + Textual TUI 产品：一个命令同时启动后台 watcher 和终端界面，退出 TUI 即停止追踪。\n\n- 看得清来源：区分人类手动修改、Claude、Codex、Cursor 等不同来源的文件变化。 - 找得到过程：把短时间内连续发生的文件变化合并成一次版本记录，方便回看每一步。 - 能安全恢复：在 Textual TUI 中查看 diff，并把单个文件或某个 agent 的修改恢复到之前状态。\n\n捕获文件变化 → 过滤噪声 → 等待文件稳定 → 通过 MCP/活动/transcript/进程证据归因 → 按 agent 防抖批量提交 → 持久化到 SQLite 与内容寻址 blob → Textual TUI 进程内读取展示。\n\n如果不传 --workspace，Trace 会优先使用上次记录的工作区；没有记录时会打开 Textual 内置目录选择器。\n\n- Commits：查看时间线、每次提交的文件 diff、恢复单个文件、修正低置信归因。 - Agents：查看 agent 活动统计，预览并撤销某个 agent 的文件级贡献。 - Workspace：查看当前工作区、数据库路径、commit/snapshot/agent 计数。 - MCP：检查 Codex、Claude Code、OpenCode 等配置状态，并执行一键安装。\n\nTrace 支持文本、Office 文档、PDF、图片和未知二进制文件的版本记录；常见文本和文档格式会显示更友好的 diff 摘要。\n\nTrace 提供一个本地 stdio MCP server，供 Codex、Claude Code、Cursor、OpenCode 等 agent 主动申报自己改过的文件。Codex 还可以配套安装 Trace hooks，在 PreToolUse / PostToolUse 阶段自动记录 applypatch、Write、Edit 和 Bash 产生的文件变化，避免多个 agent 同时运行时只能被动猜测归属。\n\n申报记录会写入 workspace 的 .trace/traceactivity.jsonl，归因器会优先使用这些记录；没有申报时才回退到 transcript / 进程扫描。\n\nClaude Code CLI：项目根目录的 .mcp.json 会被自动读取，无需额外配置。\n\n或手动配置，在全局 MCP 配置文件中添加；Windows 可把 command 改成 py：\n\n也可以在 TUI 的 MCP 视图中使用一键安装，它会替换旧的 trace section，避免 workspace 指向旧路径。详细配置和故障排除请参考 MCPSETUP.md。\n\n- tracerecordfiles(agent, files, operation=\"write\", confidence=1.0)\n\nagent 每次写文件前后调用一次即可，例如把 agent 设为 codex、claude、cursor，files 传 workspace 相对路径或绝对路径列表。"
+  },
+  {
+   "name": "MuhittinYilmazer/akana",
+   "url": "https://github.com/MuhittinYilmazer/akana",
+   "description": "Self-hosted, local-first AI assistant server: swappable LLM providers, review-gated memory, an encrypted vault, and wake-word voice. No accounts, no telemetry.",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "ai-agent",
+    "ai-assistant",
+    "chatbot",
+    "claude",
+    "fastapi",
+    "llm",
+    "local-first",
+    "mcp",
+    "memory",
+    "model-context-protocol",
+    "ollama",
+    "personal-assistant",
+    "privacy",
+    "python",
+    "self-hosted",
+    "voice-assistant",
+    "wake-word"
+   ],
+   "created_at": "2026-07-05",
+   "homepage": "",
+   "score": 6.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "A self-hosted assistant that runs on your machine with the model you choose. Memory is approved by you; keys stay encrypted.\n\nA self-hosted AI assistant server: one web UI, five swappable LLM providers, review-gated persistent memory, an encrypted credential vault, custom wake-word voice, plus capability packs for browser and desktop automation. Packs are a plain-directory format, so writing your own is the intended path. Your vault, memory and files stay on your machine; no accounts, no telemetry, no cloud tenancy.\n\nRecorded from the live app — memory recalled across three tool calls, a real briefing written back.\n\nWhere your data lives. Your vault, memory database and pack storage stay on your machine. Model traffic does not: unless you run Ollama, prompts go to the cloud provider you pick. The default voice path is cloud too. edge-tts sends synthesized text to Microsoft; browser speech-to-text sends audio to Google. A fully local pipeline is possible (Ollama for inference plus local voice), but it is the least-tested path: small local models call tools unreliably. Akana's memory/vault tool-calling is unit-tested but not validated end-to-end against a real local model. Treat local inference as experimental. See Security and privacy.\n\n- Quick start - Why Akana - Screenshots - How it works - Providers - Memory - Voice - Capability Packs - Remote access & Telegram - Security and privacy - Configuration - CLI reference - Known limitations - Development - Contributing, license and attribution"
+  },
+  {
+   "name": "valtors/relay",
+   "url": "https://github.com/valtors/relay",
+   "description": "All-in-one MCP server. Agents get memory, tools, and coordination in one binary.",
+   "stars": 3,
+   "forks": 0,
+   "language": "Go",
+   "topics": [
+    "ai-agents",
+    "developer-tools",
+    "golang",
+    "mcp",
+    "mcp-server",
+    "multi-agent",
+    "open-source",
+    "orchestration"
+   ],
+   "created_at": "2026-07-04",
+   "homepage": "https://valtors.github.io/relay",
+   "score": 5.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-10",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Local MCP server for files, images, PDFs, web, and workflows.\n\nRuns locally. Your files stay on your machine.\n\n- Runs one MCP server with 40 tools across 7 categories. - Reads and writes local files. - Resizes, crops, converts, rotates, grayscales, and flips images. - Extracts text from PDFs, counts pages, merges files, splits files, and extracts pages. - Fetches web pages and checks status codes. - Converts CSV, JSON, markdown, base64, and regex output. - Works with Claude Desktop, Cursor, VS Code, and other MCP clients. - Supports stdio by default and HTTP with --http. - Enables built-in workflow tools when ANTHROPICAPIKEY is present.\n\nNo pile of single-purpose servers. One binary.\n\nUse status first if you want a one-shot command instead of starting the stdio server.\n\nIf your editor is listed, write the config:\n\nIf you installed Relay from source or a release, relay status prints the same shape:\n\nResize ./screenshots/hero.png to 1200px wide and save it as ./screenshots/hero-large.png.\n\nFetch https://github.com/pdfcpu/pdfcpu, summarize what it does, list 3 commands worth trying, and save the notes to ./notes/pdfcpu-summary.md.\n\n- webfetch - filewrite - text formatting tools as needed\n\nA local markdown summary your agent can reuse later.\n\nRead every PDF in ./invoices, extract the text, pull out all dollar amounts, and save one JSON file at ./invoices/amounts.json.\n\n- filelist - pdfextracttext - datajsonformat - filewrite"
   }
  ]
 }

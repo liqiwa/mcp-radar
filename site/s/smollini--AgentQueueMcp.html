@@ -91,12 +91,12 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>3</b> stars</div>
   <div class="chip">⑂ <b>0</b> forks</div>
   <div class="chip"><span class="lang-dot" style="--lang:#178600"></span><b>C#</b></div>
-  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
   <div class="chip">created <b>2026-07-07</b></div>
   <div class="chip">on radar since <b>2026-07-10</b></div>
   
 </div>
-<div class="topics"><span class="topic">agent-communication</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">azure</span><span class="topic">azure-storage</span><a class="topic" href="/topic/claude.html">claude</a><span class="topic">csharp</span><span class="topic">dotnet</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">multi-agent</span></div>
+<div class="topics"><span class="topic">agent-communication</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">azure</span><span class="topic">azure-storage</span><a class="topic" href="/topic/claude.html">claude</a><span class="topic">csharp</span><span class="topic">dotnet</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a></div>
 <a class="btn" href="https://github.com/smollini/AgentQueueMcp" rel="noopener">View on GitHub ↗</a>
 <h2>About AgentQueueMcp</h2><p class="sub">Firewall-friendly messaging for AI agents. One Azure Storage account becomes an addressed, multi-agent message bus — pull-only, zero inbound ports, zero servers to host, costs pennies.</p><p class="sub">You have AI agents on machines you cannot open ports on — dev boxes at different customers, VMs in different networks, laptops behind NAT. They need to delegate work to each other and talk back. Web hooks, tunnels and hosted brokers are all non-starters in locked-down environments. The move: don&#x27;t connect the machines at all. Every agent polls its own inbox queue over outbound HTTPS; an envelope contract gives you addressing, replies and multi-turn conversations. This repo is that idea as a production-ready MCP (Model Context Protocol) server in C / .NET 8 — usable from Claude Code or any MCP client.</p><p class="sub">Every agent has a name and its own inbox queue (inbox-, created automatically). Messages are addressed envelopes, so N agents can talk to each other and replies always know where to go:</p><p class="sub">Multi-turn conversations are supported: a worker can send a question back mid-task, the orchestrator answers with info in the same conversationId, then the result arrives — all through the same two tools.</p><p class="sub">Built on the official ModelContextProtocol C SDK and Azure.Storage.Queues.</p><p class="sub">Then, in Claude Code on the orchestrator machine:</p><p class="sub">&quot;Send a task to worker-a: analyse X and report back.&quot; → sendtask</p><p class="sub">&quot;Check the inbox.&quot; → getmessages → work → sendresult → ackmessage</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -114,7 +114,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/vinodborole--okf-kit.html">
   <span class="name"><span class="owner">vinodborole/</span>okf-kit</span>
   <p>Turn any website into a portable, agent-ready Open Knowledge Format (OKF) bundle — no LLM required. Crawl, sync, chat offline, and serve docs to coding agents over MCP.</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
 </a><a class="card" href="/s/bolivestilo--Homekit.html">
   <span class="name"><span class="owner">bolivestilo/</span>Homekit</span>
   <p>Homekit gives any AI agent direct, physical control over Apple Home. Flip lights. Lock doors. Read sensors. Through a single open interface.</p>
