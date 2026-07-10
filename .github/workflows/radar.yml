@@ -5,6 +5,11 @@ on:
     # 每天 02:17 UTC 跑一次（避开整点高峰，Actions整点排队严重）
     - cron: "17 2 * * *"
   workflow_dispatch: {}  # 允许在Actions页面手动触发，方便调试
+  push:
+    branches: [main]
+    paths:  # 管道代码变动时立即跑一次验证（bot的数据commit不会触发，无递归风险）
+      - "scripts/**"
+      - ".github/workflows/radar.yml"
 
 permissions:
   contents: write  # 需要把 data/ 的更新 commit 回仓库
