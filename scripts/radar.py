@@ -29,10 +29,12 @@ QUERIES = [
     'topic:model-context-protocol',
 ]
 
-def gh_search(query: str, since: str):
+MAX_PAGES = 3 if TOKEN else 1  # 有token时每个查询翻3页，扩大进货量
+
+def gh_search(query: str, since: str, page: int = 1):
     url = ("https://api.github.com/search/repositories"
            f"?q={urllib.parse.quote(query + f' created:>{since}')}"
-           f"&sort=stars&order=desc&per_page={PER_PAGE}")
+           f"&sort=stars&order=desc&per_page={PER_PAGE}&page={page}")
     req = urllib.request.Request(url, headers={
         "Accept": "application/vnd.github+json",
         **({"Authorization": f"Bearer {TOKEN}"} if TOKEN else {}),
@@ -75,13 +77,15 @@ def main():
     total_raw = 0
 
     for q in QUERIES:
+      for page in range(1, MAX_PAGES + 1):
         try:
-            data = gh_search(q, since)
+            data = gh_search(q, since, page)
         except Exception as e:
-            print(f"[warn] query failed: {q}: {e}")
-            continue
+            print(f"[warn] query failed: {q} (page {page}): {e}")
+            break
         total_raw = max(total_raw, data.get("total_count", 0))
-        for repo in data.get("items", []):
+        page_items = data.get("items", [])
+        for repo in page_items:
             if repo["full_name"] in seen:
                 continue
             seen.add(repo["full_name"])
@@ -102,6 +106,8 @@ def main():
                 "score": round(score(repo), 1),
             })
         time.sleep(2)  # 无token时search API限额 10次/分钟，礼貌间隔
+        if len(page_items) < PER_PAGE:  # 结果不满一页，后面没有了
+            break
 
     items.sort(key=lambda x: x["score"], reverse=True)
 
@@ -123,6 +129,9 @@ def main():
     with open(DATA_DIR / "data.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
 
+    # 输出1.5：并入累积总目录 data/all.json（详情页和全量目录的数据源）
+    catalog_size = update_catalog(items)
+
     # 输出2：人类可读的周报digest（未来newsletter的底稿）
     lines = [f"# MCP Radar Weekly — {datetime.now():%Y-%m-%d}",
              f"\n本周GitHub新增 **{total_raw}** 个MCP相关仓库，过滤后值得关注的 **{len(items)}** 个：\n"]
@@ -132,7 +141,8 @@ def main():
     with open(DATA_DIR / "digest.md", "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
-    print(f"raw={total_raw}, curated={len(items)}, top1={items[0]['name'] if items else 'none'}")
+    print(f"raw={total_raw}, curated={len(items)}, catalog={catalog_size}, "
+          f"top1={items[0]['name'] if items else 'none'}")
 
 if __name__ == "__main__":
     main()

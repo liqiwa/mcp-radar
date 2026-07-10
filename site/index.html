@@ -10,6 +10,15 @@
 <meta property="og:description" content="Auto-curated directory of new MCP servers, updated daily from GitHub.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="/feed.xml">
+<link rel="canonical" href="https://mcp.liqiwa.com/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is an MCP server?","acceptedAnswer":{"@type":"Answer","text":"An MCP (Model Context Protocol) server gives AI assistants like Claude, ChatGPT and Cursor access to external tools and data — databases, browsers, APIs, local files and more. MCP is an open standard adopted across the AI industry."}},
+{"@type":"Question","name":"How are servers ranked on MCP Radar?","acceptedAnswer":{"@type":"Answer","text":"By momentum: stars per day of age plus forks. A brand-new server gaining stars fast ranks above an older one with more total stars, so the list surfaces what is rising right now."}},
+{"@type":"Question","name":"How do I get my MCP server listed?","acceptedAnswer":{"@type":"Answer","text":"You don't submit anything. MCP Radar scans GitHub daily; any public MCP server repository that earns a few stars is picked up automatically."}}
+]}
+</script>
 <style>
   :root {
     --bg: #0b0f14;
@@ -90,6 +99,11 @@
   }
   .empty { text-align: center; color: var(--text-dim); padding: 60px 0; }
 
+  .faq { margin-top: 44px; }
+  .faq h2 { font-size: 17px; margin: 22px 0 8px; }
+  .faq p { color: var(--text-dim); font-size: 14.5px; max-width: 720px; }
+  .faq b, .faq i { color: var(--text); }
+
   footer {
     margin: 48px 0 40px; padding-top: 24px; border-top: 1px solid var(--border);
     color: var(--text-dim); font-size: 13px;
@@ -126,8 +140,18 @@
 
   <main id="list"><p class="empty">Loading radar data…</p></main>
 
+  <section class="faq">
+    <h2>What is an MCP server?</h2>
+    <p>An <b>MCP (Model Context Protocol) server</b> gives AI assistants like Claude, ChatGPT and Cursor access to external tools and data — databases, browsers, APIs, local files and more. MCP is an open standard adopted across the AI industry, and its ecosystem is growing by thousands of new repositories every week.</p>
+    <h2>How are servers ranked?</h2>
+    <p>By <b>momentum</b>: stars per day of age, plus forks. A three-day-old server gaining stars fast ranks above an older one with more total stars — the list surfaces what's rising <i>right now</i>, not what was popular last year.</p>
+    <h2>How do I get my server listed?</h2>
+    <p>You don't submit anything. MCP Radar scans GitHub daily; any public MCP server repo that earns a few stars is picked up automatically. Maintainers can add the <a href="/all.html" style="color:var(--accent)">radar badge</a> from their server's detail page.</p>
+  </section>
+
   <footer>
     <a href="/all.html">Full directory</a>
+    · <a href="/feed.xml">RSS</a>
     · Data refreshed daily by <a href="https://github.com/liqiwa/mcp-radar/actions" target="_blank" rel="noopener">GitHub Actions</a>
     · Pipeline &amp; data are <a href="https://github.com/liqiwa/mcp-radar" target="_blank" rel="noopener">open source</a>
     · Momentum score = stars/age·10 + forks·2
