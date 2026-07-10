@@ -152,6 +152,7 @@ def shell(title, desc, canonical, body, jsonld=""):
 <footer>
   Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
   · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
   · <a href="/feed.xml">RSS</a>
   · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
 </footer>
@@ -352,6 +353,11 @@ rel="noopener">download it</a>, build on it, no API key required. The git histor
 <h2>Updates</h2>
 <p class="sub">Daily at 02:17 UTC. The website redeploys automatically when data changes,
 and the <a href="/feed.xml">RSS feed</a> carries the newest arrivals.</p>
+
+<h2 id="contact">Contact</h2>
+<p class="sub">Found a bug, want a feature, or think your server was ranked unfairly?
+<a href="https://github.com/liqiwa/mcp-radar/issues" rel="noopener">Open a GitHub issue</a> (fastest),
+or simply reply to any issue of the <a href="/">weekly newsletter</a> — replies land directly in my inbox.</p>
 """
     return shell("How MCP Radar Works — Methodology | MCP Radar",
                  "How MCP Radar discovers, filters and ranks new MCP (Model Context Protocol) servers: "
