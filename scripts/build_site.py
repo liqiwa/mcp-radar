@@ -108,6 +108,9 @@ def shell(title, desc, canonical, body, jsonld=""):
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="website">
+<meta property="og:image" content="{BASE}/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{BASE}/og.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
 <style>{CSS}</style>
 {jsonld}
@@ -117,6 +120,7 @@ def shell(title, desc, canonical, body, jsonld=""):
 <header class="top">
   <a href="/">📡 MCP <span class="radar">Radar</span></a>
   <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
   <a href="/feed.xml">RSS</a>
   <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
 </header>
@@ -272,6 +276,39 @@ document.getElementById("q").addEventListener("input", function() {{
                  "Auto-discovered from GitHub, updated daily.",
                  f"{BASE}/all.html", body)
 
+def weekly_page(w, prev_id, next_id):
+    """一周的雷达存档页。w: data/weekly/<id>.json 的内容"""
+    cards = "".join(mini_card(s) for s in w["items"])
+    nav_prev = f'<a class="chip" href="/weekly/{prev_id}.html">← {prev_id}</a>' if prev_id else ""
+    nav_next = f'<a class="chip" href="/weekly/{next_id}.html">{next_id} →</a>' if next_id else ""
+    body = f"""
+<h1>MCP Radar Weekly — {esc(w['week'])}</h1>
+<p class="sub">GitHub saw <b>{w['raw_matches']:,}</b> new MCP-related repositories this week.
+These are the <b>{len(w['items'])}</b> that mattered, ranked by momentum.
+<a href="/weekly/">All weeks →</a></p>
+<main>{cards}</main>
+<div class="chips">{nav_prev}{nav_next}</div>
+"""
+    return shell(f"MCP Radar Weekly {w['week']} — Top New MCP Servers | MCP Radar",
+                 f"The top {len(w['items'])} new MCP (Model Context Protocol) servers of week {w['week']}, "
+                 f"out of {w['raw_matches']:,} new repos scanned on GitHub.",
+                 f"{BASE}/weekly/{w['week']}.html", body)
+
+def weekly_index(weeks):
+    rows = "".join(
+        f"""<a class="card" href="/weekly/{esc(w['week'])}.html">
+  <span class="name">MCP Radar Weekly — {esc(w['week'])}</span>
+  <p>{w['raw_matches']:,} new repos scanned · top pick: {esc(w['items'][0]['name']) if w['items'] else 'n/a'}</p>
+</a>""" for w in weeks)
+    body = f"""
+<h1>Weekly archive</h1>
+<p class="sub">Every week's radar snapshot, frozen in time. The history of the MCP ecosystem, week by week.</p>
+<main>{rows}</main>
+"""
+    return shell("MCP Radar Weekly — Archive of Top New MCP Servers",
+                 "Weekly snapshots of the fastest-rising MCP (Model Context Protocol) servers, archived since launch.",
+                 f"{BASE}/weekly/", body)
+
 def rss_feed(servers):
     """最新上榜的服务器（按first_seen倒序），给订阅者的'今天有什么新东西'"""
     newest = sorted(servers, key=lambda s: (s["first_seen"], s["stars"]), reverse=True)[:FEED_SIZE]
@@ -344,6 +381,20 @@ def main():
                      f"MCP servers for {topic} — {n} tracked | MCP Radar",
                      f"{BASE}/topic/{topic}.html"), encoding="utf-8")
 
+    # 周报归档
+    weekly_dir = SITE / "weekly"
+    weekly_dir.mkdir(exist_ok=True)
+    week_files = sorted((DATA_DIR / "weekly").glob("*.json")) if (DATA_DIR / "weekly").exists() else []
+    weeks = [json.loads(f.read_text()) for f in week_files]
+    for i, w in enumerate(weeks):
+        prev_id = weeks[i - 1]["week"] if i > 0 else None
+        next_id = weeks[i + 1]["week"] if i < len(weeks) - 1 else None
+        (weekly_dir / f"{w['week']}.html").write_text(
+            weekly_page(w, prev_id, next_id), encoding="utf-8")
+    weeks_desc = list(reversed(weeks))
+    if weeks_desc:
+        (weekly_dir / "index.html").write_text(weekly_index(weeks_desc), encoding="utf-8")
+
     # 目录页、RSS、徽章
     (SITE / "all.html").write_text(all_page(servers, lang_hubs, topic_hubs), encoding="utf-8")
     (SITE / "feed.xml").write_text(rss_feed(servers), encoding="utf-8")
@@ -351,6 +402,8 @@ def main():
 
     # sitemap + robots
     urls = ([f"{BASE}/", f"{BASE}/all.html"]
+            + ([f"{BASE}/weekly/"] if weeks else [])
+            + [f"{BASE}/weekly/{w['week']}.html" for w in weeks]
             + [f"{BASE}/lang/{lang_slug(l)}.html" for l in lang_hubs]
             + [f"{BASE}/topic/{t}.html" for t in topic_hubs]
             + [f"{BASE}/s/{slug(s['name'])}.html" for s in servers])
@@ -364,7 +417,8 @@ def main():
         f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
 
     print(f"generated {len(servers)} detail pages, {len(lang_hubs)} language hubs, "
-          f"{len(topic_hubs)} topic hubs, all.html, feed.xml, badge.svg, sitemap ({len(urls)} urls)")
+          f"{len(topic_hubs)} topic hubs, {len(weeks)} weekly pages, "
+          f"all.html, feed.xml, badge.svg, sitemap ({len(urls)} urls)")
 
 if __name__ == "__main__":
     main()

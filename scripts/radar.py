@@ -132,6 +132,18 @@ def main():
     # 输出1.5：并入累积总目录 data/all.json（详情页和全量目录的数据源）
     catalog_size = update_catalog(items)
 
+    # 输出1.6：本周快照（data/weekly/YYYY-Www.json）。本周内每天覆盖更新，
+    # 跨周后自动冻结成历史存档——周报归档页的数据源。
+    iso = datetime.now(timezone.utc).isocalendar()
+    week_id = f"{iso[0]}-W{iso[1]:02d}"
+    weekly_dir = DATA_DIR / "weekly"
+    weekly_dir.mkdir(exist_ok=True)
+    with open(weekly_dir / f"{week_id}.json", "w", encoding="utf-8") as f:
+        json.dump({"week": week_id,
+                   "generated_at": datetime.now(timezone.utc).isoformat(),
+                   "raw_matches": total_raw,
+                   "items": items[:20]}, f, ensure_ascii=False, indent=2)
+
     # 输出2：人类可读的周报digest（未来newsletter的底稿）
     lines = [f"# MCP Radar Weekly — {datetime.now():%Y-%m-%d}",
              f"\n本周GitHub新增 **{total_raw}** 个MCP相关仓库，过滤后值得关注的 **{len(items)}** 个：\n"]
