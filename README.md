@@ -37,9 +37,9 @@ Works without a token (rate-limited); set `GITHUB_TOKEN` for higher API limits.
 ## Repository layout
 
 ```
-scripts/   data pipeline (radar.py)
-data/      generated data — data.json + digest.md, updated daily
-site/      frontend (coming soon)
+scripts/   data pipeline (radar.py) + static site generator (build_site.py)
+data/      generated data — data.json (weekly window), all.json (cumulative), digest.md
+site/      the website: index, full directory, per-server pages, sitemap
 ```
 
 ## One-time setup (for forks)
@@ -50,9 +50,10 @@ For the workflow to push data back to the repo, enable write access for Actions:
 ## Roadmap
 
 - [x] Daily automated data pipeline
-- [ ] Website (`site/`) — browsable directory of MCP servers, auto-deployed on every data update
+- [x] Website — live at [mcp.liqiwa.com](https://mcp.liqiwa.com), auto-deployed on every data update
+- [x] Cumulative catalog + per-server detail pages + sitemap
 - [ ] Weekly newsletter from the digest
-- [ ] Historical trend tracking per server
+- [ ] Historical trend charts per server
 
 ## License
 

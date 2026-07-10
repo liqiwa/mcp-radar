@@ -21,6 +21,7 @@ TOKEN = os.environ.get("GITHUB_TOKEN", "")  # Actions里自动注入，本地可
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
+CATALOG = DATA_DIR / "all.json"
 
 QUERIES = [
     'mcp server in:name,description,topics',
@@ -44,6 +45,29 @@ def score(repo: dict) -> float:
     created = datetime.fromisoformat(repo["created_at"].replace("Z", "+00:00"))
     age_days = max((datetime.now(timezone.utc) - created).days, 1)
     return repo["stargazers_count"] / age_days * 10 + repo["forks_count"] * 2
+
+def update_catalog(items):
+    """把本次扫描结果并入累积总目录 data/all.json（只增不减）。
+    每个服务器记录首次/最近上榜日期和star变化历史，是详情页和SEO的数据源。"""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    catalog = {}
+    if CATALOG.exists():
+        catalog = {s["name"]: s for s in json.loads(CATALOG.read_text())["servers"]}
+    for it in items:
+        prev = catalog.get(it["name"])
+        entry = dict(it)
+        entry["first_seen"] = prev["first_seen"] if prev else today
+        entry["last_seen"] = today
+        hist = prev.get("stars_history", []) if prev else []
+        if not hist or hist[-1]["s"] != it["stars"]:
+            hist = hist + [{"d": today, "s": it["stars"]}]
+        entry["stars_history"] = hist[-60:]  # 最多留60个变化点，防文件膨胀
+        catalog[it["name"]] = entry
+    servers = sorted(catalog.values(), key=lambda s: s["stars"], reverse=True)
+    with open(CATALOG, "w", encoding="utf-8") as f:
+        json.dump({"updated_at": today, "count": len(servers), "servers": servers},
+                  f, ensure_ascii=False, indent=1)
+    return len(servers)
 
 def main():
     since = (datetime.now(timezone.utc) - timedelta(days=DAYS)).strftime("%Y-%m-%d")

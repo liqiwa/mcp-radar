@@ -110,7 +110,7 @@
       <span class="dish">📡</span>
       <h1>MCP <span class="radar">Radar</span></h1>
     </div>
-    <p class="tagline">New &amp; trending <b>Model Context Protocol servers</b>, auto-curated from GitHub. Updated daily — no submissions, no spam, just momentum.</p>
+    <p class="tagline">New &amp; trending <b>Model Context Protocol servers</b>, auto-curated from GitHub. Updated daily — no submissions, no spam, just momentum. <a href="/all.html" style="color:var(--accent);text-decoration:none">Browse the full directory →</a></p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -127,7 +127,8 @@
   <main id="list"><p class="empty">Loading radar data…</p></main>
 
   <footer>
-    Data refreshed daily by <a href="https://github.com/liqiwa/mcp-radar/actions" target="_blank" rel="noopener">GitHub Actions</a>
+    <a href="/all.html">Full directory</a>
+    · Data refreshed daily by <a href="https://github.com/liqiwa/mcp-radar/actions" target="_blank" rel="noopener">GitHub Actions</a>
     · Pipeline &amp; data are <a href="https://github.com/liqiwa/mcp-radar" target="_blank" rel="noopener">open source</a>
     · Momentum score = stars/age·10 + forks·2
   </footer>
@@ -189,8 +190,9 @@ function render() {
   list.innerHTML = rows.map((it, i) => {
     const [owner, repo] = it.name.split("/");
     const color = LANG_COLORS[it.language] || "#8b949e";
+    const slug = it.name.replace("/", "--").replace(/[^A-Za-z0-9_.-]/g, "-");
     return `
-    <a class="card" href="${esc(it.url)}" target="_blank" rel="noopener">
+    <a class="card" href="/s/${slug}.html">
       <div class="card-top">
         <span class="rank">${i + 1}</span>
         <span class="name"><span class="owner">${esc(owner)}/</span>${esc(repo)}</span>
