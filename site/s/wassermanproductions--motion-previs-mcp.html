@@ -88,7 +88,7 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
 </div>
 
 <a class="btn" href="https://github.com/wassermanproductions/motion-previs-mcp" rel="noopener">View on GitHub ↗</a>
-
+<h2>About motion-previs-mcp</h2><p class="sub">MCP (Model Context Protocol) stdio bridge for Motion Previs Studio — the open-source desktop app that turns real reference footage into AI-generator control packs. With this server connected, an AI agent can import a shot (local file or URL), trim the range, pick what to preserve (camera move, actor performance, object motion, or the full scene), run the analysis pipeline, watch its progress, export the bundle (depth passes, OpenPose skeleton video + keypoints, camera path, prompts), and send layers straight to the Blockout previs app.</p><p class="sub">1. Motion Previs Studio v4.1+ must be running. Get it from the app repo (build from source or use a release DMG). 2. On launch, the app starts a localhost-only control server on a random port and writes a discovery file to ~/.config/motion-previs/control.json (random bearer token, mode 0600, removed on quit). This bridge reads that file automatically — nothing to configure, no credentials to enter.</p><p class="sub">Add to ~/.hermes/config.yaml (or install from the Hermes MCP catalog once listed):</p><p class="sub">getstate · importfile · importurl · setrange · setmode · setsettings · runanalysis · exportpack · listbundle · sendtoblockout · screenshot</p><p class="sub">The agent workflow: importfile/importurl → setrange + setmode (cameraonly actormotion objectmotion fullscene) → runanalysis → poll getstate until analysis.status is done → exportpack → optionally sendtoblockout (reference / depth / aidepth / pose / openpose).</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/wassermanproductions--motion-previs-mcp.html)</pre>
@@ -96,7 +96,7 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
 <h2>Related MCP servers</h2><a class="card" href="/s/shlokkhemani--rabbithole.html">
   <span class="name"><span class="owner">shlokkhemani/</span>rabbithole</span>
   <p>An infinite canvas for learning — select text, ask, and answers branch out as documents. MCP server for Claude Code, Codex, and any agent.</p>
-  <span class="meta"><span>⭐ 206</span><span>JavaScript</span></span>
+  <span class="meta"><span>⭐ 207</span><span>JavaScript</span></span>
 </a><a class="card" href="/s/animaios--anima-use-google.html">
   <span class="name"><span class="owner">animaios/</span>anima-use-google</span>
   <p>MCP server + browser sidecar extension that lets AI agents run Google AI Mode searches using your own logged-in browser session</p>

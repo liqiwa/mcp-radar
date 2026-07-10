@@ -88,7 +88,7 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
 </div>
 
 <a class="btn" href="https://github.com/LING71671/grok2web" rel="noopener">View on GitHub ↗</a>
-
+<h2>About grok2web</h2><p class="sub">基于 Cloudflare Workers 的 MCP 服务器，为 Grok 提供底层 HTTP 能力，适用于 Web/CTF 场景：任意请求、Cookie 会话持久化、重定向追踪与结构化响应。</p><p class="sub">- httprequest — 发送任意 HTTP 方法，完全控制 URL、Header、Body、Cookie - httpsession — 管理命名 Cookie 容器（default、victim、attacker 等） - 会话持久化 — 通过 Durable Objects 跨多次 tool call 保持 Cookie - 双传输协议 — Streamable HTTP（/mcp）与旧版 SSE（/sse） - 默认无鉴权 — 便于 CTF/测试快速接入（见下方安全说明）</p><p class="sub">部署完成后会显示 Worker 地址（例如 https://grok2web..workers.dev）。</p><p class="sub">1. 打开 grok.com/connectors 2. 点击 New Connector → Custom（新建连接器 → 自定义） 3. 填入以下 URL 之一： - 推荐： https://.workers.dev/mcp - SSE 兼容： https://.workers.dev/sse 4. 填写名称（如 Grok HTTP MCP）并保存</p><p class="sub">Grok 会自动发现 httprequest 和 httpsession 两个工具。</p><p class="sub">返回字段包括：status、headers、cookiesset、cookiesjar、body、redirectchain、timingms。</p><p class="sub">action 说明 -------------- list 列出所有会话及 Cookie 数量 create 创建命名空 Cookie 容器 reset 清空指定会话的 Cookie getcookies 读取全部 Cookie（含 domain/path 元数据） setcookies 手动注入 Cookie delete 删除命名会话（不可删除 default）</p><p class="sub">之后在 httprequest 中使用 &quot;httpsessionid&quot;: &quot;victim&quot;。</p><p class="sub">连接 http://127.0.0.1:8787/mcp，在 UI 中调用工具。</p><p class="sub">当前部署无鉴权。任何知道 URL 的人均可通过 Worker 发送 HTTP 请求。仅建议用于 CTF 实验和测试环境；生产使用前请添加 API Key 或 OAuth。</p><p class="sub">本项目采用 GNU General Public License v3.0 或更高版本 授权。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/LING71671--grok2web.html)</pre>
@@ -104,7 +104,7 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
 </a><a class="card" href="/s/bepitulaz--obsidian-multivault-mcp.html">
   <span class="name"><span class="owner">bepitulaz/</span>obsidian-multivault-mcp</span>
   <p>Multi-vault and multiuser Obsidian MCP</p>
-  <span class="meta"><span>⭐ 31</span><span>TypeScript</span></span>
+  <span class="meta"><span>⭐ 32</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/sgateway--s-gw.html">
   <span class="name"><span class="owner">sgateway/</span>s-gw</span>
   <p>Local credential control for AI coding agents.</p>

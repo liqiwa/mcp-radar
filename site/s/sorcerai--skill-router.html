@@ -88,7 +88,7 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
 </div>
 
 <a class="btn" href="https://github.com/sorcerai/skill-router" rel="noopener">View on GitHub ↗</a>
-
+<h2>About skill-router</h2><p class="sub">A lazy router for Claude Code skills: instead of every installed skill costing context every turn, expose the whole library through three small MCP tools — search, load, reindex. Weak/cheap models navigate it fine; that&#x27;s the point.</p><p class="sub">Single-file Node MCP server (stdio). One dependency (@modelcontextprotocol/sdk). No database, no embeddings, no background services. Indexing ~185 skills takes ~25ms at startup.</p><p class="sub">On startup (and on skillreindex) the server walks three roots for SKILL.md files:</p><p class="sub">Root Label Notes --------- ~/.claude/skills/ active symlinks followed (with cycle guard) ~/.claude/plugins/ plugin plugins/cache/ and plugins/marketplaces/ excluded ~/.claude/skill-vault/ vault see below</p><p class="sub">Frontmatter name:/description: are parsed (including YAML block scalars like description: -); duplicates dedupe with precedence active plugin vault.</p><p class="sub">- skillsearch {query, limit?} — ranked {id, name, description, source, path, score}. Token-overlap scoring with query-side stopword filtering (so &quot;make my website load faster&quot; still finds web-perf), whole-query substring boost, and partial name-fragment credit (&quot;website&quot; matches the name web-perf). - skillload {id} — full SKILL.md content plus sibling files (references/, scripts/, …). Accepts ids or names case-insensitively; unknown ids return the 5 closest matches instead of an error. - skillreindex — rescan, returns counts per source.</p><p class="sub">The real context win: move rarely-used skills from ~/.claude/skills/ into ~/.claude/skill-vault/. The harness stops listing them every turn, but they stay fully discoverable and loadable through the router</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/sorcerai--skill-router.html)</pre>
@@ -96,7 +96,7 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
 <h2>Related MCP servers</h2><a class="card" href="/s/shlokkhemani--rabbithole.html">
   <span class="name"><span class="owner">shlokkhemani/</span>rabbithole</span>
   <p>An infinite canvas for learning — select text, ask, and answers branch out as documents. MCP server for Claude Code, Codex, and any agent.</p>
-  <span class="meta"><span>⭐ 206</span><span>JavaScript</span></span>
+  <span class="meta"><span>⭐ 207</span><span>JavaScript</span></span>
 </a><a class="card" href="/s/animaios--anima-use-google.html">
   <span class="name"><span class="owner">animaios/</span>anima-use-google</span>
   <p>MCP server + browser sidecar extension that lets AI agents run Google AI Mode searches using your own logged-in browser session</p>

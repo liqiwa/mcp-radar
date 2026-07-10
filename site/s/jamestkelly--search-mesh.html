@@ -81,14 +81,14 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
   <div class="chip">⭐ <b>3</b> stars</div>
   <div class="chip">⑂ <b>1</b> forks</div>
   <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
-  <div class="chip">momentum <b>▲ 17.0</b></div>
+  <div class="chip">momentum <b>▲ 12.0</b></div>
   <div class="chip">created <b>2026-07-07</b></div>
   <div class="chip">on radar since <b>2026-07-10</b></div>
   
 </div>
 <div class="topics"><span class="topic">aho-corasick</span><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">claude-skills</span><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">opencode</span><a class="topic" href="/topic/rust.html">rust</a><span class="topic">skills</span></div>
 <a class="btn" href="https://github.com/jamestkelly/search-mesh" rel="noopener">View on GitHub ↗</a>
-
+<h2>About search-mesh</h2><p class="sub">Search-Mesh is a Rust-native codebase intelligence service for autonomous coding agents.</p><p class="sub">The goal is to reduce agent latency and token waste by moving repository search, syntax-aware filtering, context extraction, and precise patching into a local MCP-compatible process.</p><p class="sub">This repository is in early setup. The current focus is a small, correct MVP:</p><p class="sub">- A Rust workspace with separate core and MCP crates. - A JSON-RPC over stdio server implementing the MCP initialize lifecycle handshake, suitable for Claude Code, OpenCode, and other MCP-compatible agents. - A first search tool, scan, backed by multi-keyword scanning. - A syntax probe tool, astprobe, backed by tree-sitter for Rust, Python, JavaScript, and TypeScript. - A context extraction tool, squeeze, that returns AST-bounded source blocks. - A patch tool, patch, that applies precise line/column edits and reports syntax validity.</p><p class="sub">SIMD acceleration, tree-sitter verification, semantic squeezing, and atomic patching are planned phases, not current guarantees.</p><p class="sub">- scan: scan target directories for multiple keywords in one pass. - astprobe: validate raw hits against syntax tree node types. - squeeze: return the smallest useful AST-bounded code block around a hit. - patch: apply byte-offset edits and verify syntax after mutation.</p><p class="sub">See docs/usage.md for local examples and docs/mcp-protocol.md for the draft protocol.</p><p class="sub">This repository is a self-hosted Claude Code plugin marketplace. It bundles the search-mesh MCP server registration and the agent skill together, so /plugin install wires up both in one step:</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/jamestkelly--search-mesh.html)</pre>
@@ -97,6 +97,10 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
   <span class="name"><span class="owner">sgateway/</span>s-gw</span>
   <p>Local credential control for AI coding agents.</p>
   <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/replenhq--replen.html">
+  <span class="name"><span class="owner">replenhq/</span>replen</span>
+  <p>Smarter AI Development Workflows</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/max-ramas--rms-memory-mcp.html">
   <span class="name"><span class="owner">max-ramas/</span>rms-memory-mcp</span>
   <p>Persistent, local, cross-IDE memory for AI agents — markdown source of truth, LanceDB-powered semantic search, zero cloud dependency</p>
@@ -113,10 +117,6 @@ footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration
   <span class="name"><span class="owner">continuewith-ai/</span>mcp</span>
   <p>ContinueWith MCP server for coding agents</p>
   <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
-</a><a class="card" href="/s/vorobjewsen30-max--ansys-mcp-server.html">
-  <span class="name"><span class="owner">vorobjewsen30-max/</span>ansys-mcp-server</span>
-  <p>MCP server giving Claude Code CLI direct control over Ansys engineering simulations — CFD, FEA, meshing, and post-processing via PyAnsys. 24 tools. Multi-language docs.</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
 </a>
 
 <footer>
