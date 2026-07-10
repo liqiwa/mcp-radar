@@ -1,0 +1,39 @@
+name: MCP Radar
+
+on:
+  schedule:
+    # 每天 02:17 UTC 跑一次（避开整点高峰，Actions整点排队严重）
+    - cron: "17 2 * * *"
+  workflow_dispatch: {}  # 允许在Actions页面手动触发，方便调试
+
+permissions:
+  contents: write  # 需要把 data/ 的更新 commit 回仓库
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run radar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/radar.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes, skipping commit."
+          else
+            git commit -m "data: radar update $(date -u +%F)"
+            git push
+          fi
