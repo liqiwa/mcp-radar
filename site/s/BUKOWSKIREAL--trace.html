@@ -97,16 +97,28 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-10</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">electron</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/python.html">python</a><span class="topic">sqlite</span><span class="topic">version-control</span><span class="topic">watchdog</span></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">electron</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/sqlite.html">sqlite</a><span class="topic">version-control</span><span class="topic">watchdog</span></div>
 <a class="btn" href="https://github.com/BUKOWSKIREAL/trace" rel="noopener">View on GitHub ↗</a>
 <h2>About trace</h2><p class="sub">Trace 是一个面向 AI 编程协作场景的本地版本追踪工具。它不替代 Git，而是补充 Git：当你同时使用 Claude Code、Codex CLI、Cursor、OpenCode 等工具修改同一个项目时，Trace 会在本地记录“哪个 agent 在什么时候改了哪些文件”，并把每次变化保存成可以查看 diff、恢复文件、撤销某个 agent 修改的快照。</p><p class="sub">Trace 现在是一个纯 Python + Textual TUI 产品：一个命令同时启动后台 watcher 和终端界面，退出 TUI 即停止追踪。</p><p class="sub">- 看得清来源：区分人类手动修改、Claude、Codex、Cursor 等不同来源的文件变化。 - 找得到过程：把短时间内连续发生的文件变化合并成一次版本记录，方便回看每一步。 - 能安全恢复：在 Textual TUI 中查看 diff，并把单个文件或某个 agent 的修改恢复到之前状态。</p><p class="sub">捕获文件变化 → 过滤噪声 → 等待文件稳定 → 通过 MCP/活动/transcript/进程证据归因 → 按 agent 防抖批量提交 → 持久化到 SQLite 与内容寻址 blob → Textual TUI 进程内读取展示。</p><p class="sub">如果不传 --workspace，Trace 会优先使用上次记录的工作区；没有记录时会打开 Textual 内置目录选择器。</p><p class="sub">- Commits：查看时间线、每次提交的文件 diff、恢复单个文件、修正低置信归因。 - Agents：查看 agent 活动统计，预览并撤销某个 agent 的文件级贡献。 - Workspace：查看当前工作区、数据库路径、commit/snapshot/agent 计数。 - MCP：检查 Codex、Claude Code、OpenCode 等配置状态，并执行一键安装。</p><p class="sub">Trace 支持文本、Office 文档、PDF、图片和未知二进制文件的版本记录；常见文本和文档格式会显示更友好的 diff 摘要。</p><p class="sub">Trace 提供一个本地 stdio MCP server，供 Codex、Claude Code、Cursor、OpenCode 等 agent 主动申报自己改过的文件。Codex 还可以配套安装 Trace hooks，在 PreToolUse / PostToolUse 阶段自动记录 applypatch、Write、Edit 和 Bash 产生的文件变化，避免多个 agent 同时运行时只能被动猜测归属。</p><p class="sub">申报记录会写入 workspace 的 .trace/traceactivity.jsonl，归因器会优先使用这些记录；没有申报时才回退到 transcript / 进程扫描。</p><p class="sub">Claude Code CLI：项目根目录的 .mcp.json 会被自动读取，无需额外配置。</p><p class="sub">或手动配置，在全局 MCP 配置文件中添加；Windows 可把 command 改成 py：</p><p class="sub">也可以在 TUI 的 MCP 视图中使用一键安装，它会替换旧的 trace section，避免 workspace 指向旧路径。详细配置和故障排除请参考 MCPSETUP.md。</p><p class="sub">- tracerecordfiles(agent, files, operation=&quot;write&quot;, confidence=1.0)</p><p class="sub">agent 每次写文件前后调用一次即可，例如把 agent 设为 codex、claude、cursor，files 传 workspace 相对路径或绝对路径列表。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/BUKOWSKIREAL--trace.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/KernelLord--pickysteve.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/yung13yubabie--line-summary.html">
+  <span class="name"><span class="owner">yung13yubabie/</span>line-summary</span>
+  <p>在 Windows 上用 Claude Code 讀本機 LINE 電腦版聊天記錄、產生每日摘要的 MCP server（wxSQLite3/aes128cbc 解密）</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
+  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
+  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/KernelLord--pickysteve.html">
   <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
   <p>Skill router and context picker for Claude Code, Cursor, and Aider. Auto-picks the right skill for every prompt, with prompt-injection filtering for MCP.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/ozankasikci--global-agent-memory.html">
+  <span class="name"><span class="owner">ozankasikci/</span>global-agent-memory</span>
+  <p>Local-first, project-aware memory MCP server for Claude Code, Codex, and other AI agents, with Obsidian and an owner dashboard.</p>
   <span class="meta"><span>⭐ 6</span><span>Python</span></span>
 </a><a class="card" href="/s/vinodborole--okf-kit.html">
   <span class="name"><span class="owner">vinodborole/</span>okf-kit</span>
@@ -116,18 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">farhankhwaja/</span>codesherpa</span>
   <p>Git-native structural memory for AI coding agents. Index once — stays fresh on every pull, merge, and branch switch. MCP server for Claude Code, Cursor &amp; any agent.</p>
   <span class="meta"><span>⭐ 4</span><span>Python</span></span>
-</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
-  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
-  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
-  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
-</a><a class="card" href="/s/Azure-Samples--foundry-hosted-agents-workshop.html">
-  <span class="name"><span class="owner">Azure-Samples/</span>foundry-hosted-agents-workshop</span>
-  <p>A hands-on, step-by-step workshop for building a Travel Assistant agent on Microsoft Foundry hosted agents with the Agent Framework - growing from a single agent to a multi-agent planner with function</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/axisrobo--mneme-open.html">
-  <span class="name"><span class="owner">axisrobo/</span>mneme-open</span>
-  <p>Open-source client SDKs (Python, TypeScript, Go), CLI, API docs, and prebuilt binaries for the Mneme agent cognition runtime (memory, context, ontology, knowledge). Apache-2.0.</p>
-  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
 </a>
 
 
