@@ -97,16 +97,28 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-10</b></div>
   
 </div>
-<div class="topics"><span class="topic">ai-tools</span><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">continuewith</span><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a></div>
+<div class="topics"><a class="topic" href="/topic/ai-tools.html">ai-tools</a><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">continuewith</span><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a></div>
 <a class="btn" href="https://github.com/continuewith-ai/mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://continuewith.ai/docs" rel="noopener nofollow">Homepage ↗</a>
 <h2>About mcp</h2><p class="sub">MCP server so coding agents (Cursor, Claude Code, Codex, …) can install and configure the ContinueWith AI handoff widget without guessing URLs or snippets.</p><p class="sub">Runs locally over stdio — no hosted OAuth required for the open-source npm package.</p><p class="sub">Tool Description ------------------- getagentinstallrule Default rule for agents to auto-install on marketing pages getinstallsnippet Widget snippet for html, nextjs, or astro getcontinuewithdocs Official doc URLs + default snippet installcontinuewithwidget Runs npx continuewith add in a project directory searchreadydirectory Search the AI Ready Index (public JSON API)</p><p class="sub">1. Agent calls getagentinstallrule → paste rule into project context 2. Agent calls installcontinuewithwidget with projectPath → patches layout/HTML 3. User replaces cwdemopublickey with their dashboard key</p><p class="sub">- Agents &amp; MCP setup - MCP tools reference - Install guide - Skills catalog - Agent index (llms.txt)</p><p class="sub">Package Purpose ------------------ continuewith CLI — npx continuewith add @continuewith/sdk Snippet &amp; prompt helpers</p><p class="sub">Runs locally: The MCP server uses stdio only. It does not phone home with your project source.</p><p class="sub">Network access (explicit, read-only public APIs):</p><p class="sub">- searchreadydirectory → https://ready.continuewith.ai/api/ready/directory (public directory JSON) - installcontinuewithwidget → spawns npx continuewith@latest add on your machine in the path you provide</p><p class="sub">No secrets in this package: No Stripe, Resend, Clerk, or database credentials. The default site key cwdemopublickey is a public demo identifier — replace it for production.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/continuewith-ai--mcp.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/replenhq--replen.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/stanislawherjan1--gdocs-comments-mcp.html">
+  <span class="name"><span class="owner">stanislawherjan1/</span>gdocs-comments-mcp</span>
+  <p>MCP server for adding inline, range-anchored comments to Google Docs — the one comment operation the Google Docs &amp; Drive APIs can&#x27;t do. For AI agents (Claude, Cursor, Copilot) that review documents.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/replenhq--replen.html">
   <span class="name"><span class="owner">replenhq/</span>replen</span>
   <p>Smarter AI Development Workflows</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/aoreshkov--kotlin-lib-mcp.html">
+  <span class="name"><span class="owner">aoreshkov/</span>kotlin-lib-mcp</span>
+  <p>MCP server exposing the sources, public API and KDoc of Maven-published Kotlin/Java libraries</p>
+  <span class="meta"><span>⭐ 3</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/rwnalds--engram.html">
+  <span class="name"><span class="owner">rwnalds/</span>engram</span>
+  <p>Self-hosted MCP server + dashboard giving Claude Code, Cursor &amp; Hermes agents shared long-term memory over a git-backed markdown vault. Agent-native, Obsidian-compatible second brain — markdown RAG, n</p>
   <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/KernelLord--pickysteve.html">
   <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
@@ -116,18 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Naveen-chava/</span>metabase-mcp</span>
   <p>Metabase MCP server for AI Agents. Authenticate with a browser session cookie, no API key required.</p>
   <span class="meta"><span>⭐ 5</span><span>Go</span></span>
-</a><a class="card" href="/s/LuiggiVal08--toon-memory.html">
-  <span class="name"><span class="owner">LuiggiVal08/</span>toon-memory</span>
-  <p>Persistent memory for AI coding agents using TOON format (40% fewer tokens than JSON)</p>
-  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/vorobjewsen30-max--ansys-mcp-server.html">
-  <span class="name"><span class="owner">vorobjewsen30-max/</span>ansys-mcp-server</span>
-  <p>MCP server giving Claude Code CLI direct control over Ansys engineering simulations — CFD, FEA, meshing, and post-processing via PyAnsys. 24 tools. Multi-language docs.</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/djtelicloud--grok-mcp-server.html">
-  <span class="name"><span class="owner">djtelicloud/</span>grok-mcp-server</span>
-  <p>Local-first Grok MCP server &amp; gateway. One shared Grok agent for Cursor, Claude Code, VS Code, Codex &amp; Desktop. xAI API + CLI planes, Control Center.</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
 </a>
 
 
