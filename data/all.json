@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-07-14",
- "count": 115,
+ "updated_at": "2026-07-15",
+ "count": 137,
  "servers": [
   {
    "name": "shlokkhemani/rabbithole",
@@ -44,10 +44,42 @@
    "readme_excerpt": "An infinite canvas for learning. Open a document, select any text, ask a question — and the answer opens as a fully-rendered child document. Recurse as deep as you like. Every hole is saved and revisitable.\n\nRabbithole has two ways in: a local MCP server for terminal agents, and a static browser app for humans who want to bring their own model key. In the MCP path, your agent (Claude Code, Codex, or any MCP client) does the answering and Rabbithole gives it a canvas in your browser. Everything in that path runs locally: no account, no API keys, nothing leaves your machine.\n\nOpen rabbithole.ing for the browser app: bring your own key, choose OpenRouter (recommended), Anthropic, OpenAI, or a local OpenAI-compatible endpoint, and start from pasted markdown, PDFs, URLs, or .rabbithole files. Provider keys stay in your browser and are sent only to the provider origin you configure. Holes persist in IndexedDB, so the app keeps working offline-ish after it loads, and .rabbithole export/import keeps your work portable.\n\nSelf-hosting is static: web/dist can be served by any host. The optional workers/fetch-proxy Cloudflare Worker enables URL ingestion for sources that block browser CORS.\n\nRequires Node 18+ and a browser. Pick your agent:\n\nClaude Code's default stdio MCP timeout is already long enough for Rabbithole's blocking wait. If you manage .mcp.json manually, this optional per-server field is also fine:"
   },
   {
+   "name": "pueschel88/Tradingview-MCP",
+   "url": "https://github.com/pueschel88/Tradingview-MCP",
+   "description": "Tradingview MCP server for controlling Tradingview Desktop from Claude Code via Chrome DevTools Protocol",
+   "stars": 132,
+   "forks": 250,
+   "language": "TypeScript",
+   "topics": [
+    "chrome-devtools",
+    "claude",
+    "mcp",
+    "tradingview",
+    "tradingview-agent",
+    "tradingview-mcp"
+   ],
+   "created_at": "2026-07-13",
+   "homepage": "",
+   "score": 1820.0,
+   "first_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-14",
+     "s": 51
+    },
+    {
+     "d": "2026-07-15",
+     "s": 132
+    }
+   ],
+   "readme_excerpt": "A focused, type-safe MCP server that lets Claude Code (or any MCP-compatible client) drive a locally-running TradingView Desktop application — read chart state, change symbols and timeframes, fetch OHLCV bars, capture screenshots.\n\n[!IMPORTANT] This project is not affiliated with, endorsed by, or associated with TradingView Inc. It is a personal-use bridge that interacts with your locally running TradingView Desktop application via the Chrome DevTools Protocol — the same standard debug interface built into Slack, VS Code, Discord, and every other Electron app.\n\n[!IMPORTANT] Requires a valid TradingView subscription. This tool does not bypass, scrape, or circumvent any TradingView paywall or access control. Everything happens on your machine, against the TradingView Desktop instance you have already logged into and paid for.\n\n[!NOTE] All processing is local. No TradingView data is transmitted, stored, or redistributed by this tool. Your charts, your data, your machine.\n\n[!CAUTION] TradingView's internal page API is undocumented. It can change between Desktop releases. Pin a working TradingView Desktop version if you want stability, and check the version compatibility note before upgrading.\n\nWraps the TradingView Desktop chart in a small set of well-defined MCP tools. Tools are typed end-to-end with Zod schemas, validated at the boundary, and surface useful error messages when something goes wrong."
+  },
+  {
    "name": "herry2059/project-os-for-codex",
    "url": "https://github.com/herry2059/project-os-for-codex",
    "description": "Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.",
-   "stars": 103,
+   "stars": 104,
    "forks": 4,
    "language": "TypeScript",
    "topics": [
@@ -56,11 +88,13 @@
     "ai-coding",
     "ai-project-management",
     "codex",
+    "codex-cli",
     "context-engineering",
     "developer-tools",
     "git",
     "knowledge-base",
     "mcp",
+    "mcp-server",
     "model-context-protocol",
     "open-source",
     "project-management",
@@ -72,13 +106,17 @@
    ],
    "created_at": "2026-07-09",
    "homepage": "",
-   "score": 265.5,
+   "score": 216.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
      "s": 103
+    },
+    {
+     "d": "2026-07-15",
+     "s": 104
     }
    ],
    "readme_excerpt": "The open-source control plane for Codex projects: visible progress, resumable context, safe handoffs, and reusable knowledge.\n\nIndependent open-source project. Not affiliated with or endorsed by OpenAI.\n\nBuilt for Codex. Connect through MCP, keep project truth in Git, and make every handoff resumable.\n\n🚀 Quick Start · 🤖 Connect Codex · 🧭 Features · 📦 Deployment · 🔌 Interfaces\n\nProject OS for Codex is for the moment when a team asks: What is the AI doing? Where should the next session start? How can another person or AI take over without rereading every chat?\n\nIt is not another AI chat window. It is the control plane around the work: kickoff card, acceptance criteria, current progress, Git evidence, next action, reusable knowledge, and a handoff package that both humans and agents can read.\n\nIf that problem feels familiar, a ⭐ Star helps more AI builders discover the project.\n\nAI can generate code quickly, but real projects still fail in very ordinary ways:\n\n- The project progress is hidden inside chat history. - The next AI session does not know where to start. - Humans cannot tell which tasks are done, blocked, risky, or waiting for review. - Handoffs become painful because context is scattered across prompts, screenshots, commits, and private notes. - Teams lose trust because there is no visible project trail.\n\nProject OS for Codex turns those scattered pieces into one workspace: project goals, acceptance criteria, Git records, progress events, risks, next steps, knowledge, and handoff packages."
@@ -215,32 +253,82 @@
    "readme_excerpt": "Servidor MCP para buscar productos, comparar precios y armar la mejor lista de compra en supermercados chilenos con Claude, ChatGPT u otro cliente MCP.\n\nEl foco es profundidad en la cadena donde tú ya compras — precios club, beneficios por RUT, productos frecuentes, carro — con la comparación entre cadenas como capacidad secundaria. Cubre las cinco grandes cadenas del país.\n\n100 % local: el tráfico sale de tu máquina, a ritmo humano, y tus credenciales nunca tocan un servidor central.\n\n- ¿Se deploya? (importante) - Instalación - Cobertura por cadena - Tools disponibles - Cómo funciona la sesión - Desarrollo y tests - Arquitectura - Cómo contribuir - Aviso legal - Licencia\n\nEste MCP no tiene URL de producción y no se deploya en ningún servidor. Es intencional, y es la razón por la que funciona:\n\n- Usa transporte stdio (local), no HTTP. Corre en tu máquina, junto a tu cliente MCP (Claude Desktop, Claude Code, Cursor, ChatGPT Desktop). - Unimarc, Tottus y Lider bloquean el tráfico de datacenter (antibots). Un deploy en la nube no funcionaría para esas cadenas: necesitan tu IP residencial. - El precio socio, tus frecuentes y el carro viven en tu navegador logueado. Las credenciales no deben tocar un servidor central — eso además evita el mayor riesgo legal (un servicio que scrapee cuentas ajenas).\n\nLa forma de \"producción\" de un MCP como este es instalarlo local (vía npx o clonando el repo) y conectarlo a tu cliente. Igual que la mayoría de los MCP servers."
   },
   {
-   "name": "pueschel88/Tradingview-MCP",
-   "url": "https://github.com/pueschel88/Tradingview-MCP",
-   "description": "Tradingview MCP server for controlling Tradingview Desktop from Claude Code via Chrome DevTools Protocol",
-   "stars": 51,
+   "name": "upvoteclub/upvote-club-mcp-remote",
+   "url": "https://github.com/upvoteclub/upvote-club-mcp-remote",
+   "description": "Streamable HTTP remote MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.",
+   "stars": 43,
    "forks": 0,
-   "language": "TypeScript",
+   "language": "JavaScript",
    "topics": [
-    "chrome-devtools",
-    "claude",
     "mcp",
-    "tradingview",
-    "tradingview-agent",
-    "tradingview-mcp"
+    "model-context-protocol",
+    "upvote-club",
+    "upvote-club-mcp"
    ],
-   "created_at": "2026-07-13",
-   "homepage": "",
-   "score": 510.0,
-   "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "created_at": "2026-07-14",
+   "homepage": "https://upvote.club/api",
+   "score": 430.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
-     "d": "2026-07-14",
-     "s": 51
+     "d": "2026-07-15",
+     "s": 43
     }
    ],
-   "readme_excerpt": "A focused, type-safe MCP server that lets Claude Code (or any MCP-compatible client) drive a locally-running TradingView Desktop application — read chart state, change symbols and timeframes, fetch OHLCV bars, capture screenshots.\n\n[!IMPORTANT] This project is not affiliated with, endorsed by, or associated with TradingView Inc. It is a personal-use bridge that interacts with your locally running TradingView Desktop application via the Chrome DevTools Protocol — the same standard debug interface built into Slack, VS Code, Discord, and every other Electron app.\n\n[!IMPORTANT] Requires a valid TradingView subscription. This tool does not bypass, scrape, or circumvent any TradingView paywall or access control. Everything happens on your machine, against the TradingView Desktop instance you have already logged into and paid for.\n\n[!NOTE] All processing is local. No TradingView data is transmitted, stored, or redistributed by this tool. Your charts, your data, your machine.\n\n[!CAUTION] TradingView's internal page API is undocumented. It can change between Desktop releases. Pin a working TradingView Desktop version if you want stability, and check the version compatibility note before upgrading.\n\nWraps the TradingView Desktop chart in a small set of well-defined MCP tools. Tools are typed end-to-end with Zod schemas, validated at the boundary, and surface useful error messages when something goes wrong."
+   "readme_excerpt": "Streamable HTTP MCP server for Claude.ai custom connectors.\n\nPer Anthropic remote MCP docs: add https://YOUR-HOST/mcp in Settings → Connectors → Add custom connector, with X-API-Key request header (upv...).\n\nPackage Repository Use case ------------------------------- Core upvote-club-mcp-core Shared MCP server library (6 tools) Local upvote-club-mcp-local Cursor, Claude Code, manual Claude Desktop (stdio) MCPB upvote-club-mcp-mcpb Single-click Claude Desktop .mcpb install Remote This repo — upvote-club-mcp-remote Claude.ai custom connector (Streamable HTTP) Apps upvote-club-mcp-apps MCP Apps + inline task progress UI\n\n1. Per-user (recommended): Claude sends X-API-Key: upv... on every request (Request headers in connector settings). 2. Server default: Set UPVOTEAPIKEY env var on the host (single shared key — not for production multi-tenant).\n\nVariable Default Description -------------------------------- PORT 8787 HTTP port BINDHOST 0.0.0.0 Bind address UPVOTEAPIURL https://api.upvote.club Backend API UPVOTEAPIKEY — Optional fallback API key\n\ngetapireference, listplatforms, createtask, gettaskstatus, deletetask\n\n- Core dependency: @upvote-club/mcp-core - Want inline task progress UI in chat? → upvote-club-mcp-apps - Local stdio instead of HTTP? → upvote-club-mcp-local\n\n- Use HTTPS in production - Prefer per-user X-API-Key headers over a shared env key - Do not expose without TLS\n\nProxies requests to https://api.upvote.club only. https://upvote.club/privacy-policy"
+  },
+  {
+   "name": "upvoteclub/upvote-club-mcp-mcpb",
+   "url": "https://github.com/upvoteclub/upvote-club-mcp-mcpb",
+   "description": "Claude Desktop .mcpb bundle for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.",
+   "stars": 43,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [
+    "mcp",
+    "model-context-protocol",
+    "upvote-club",
+    "upvote-club-mcp"
+   ],
+   "created_at": "2026-07-14",
+   "homepage": "https://upvote.club/api",
+   "score": 430.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 43
+    }
+   ],
+   "readme_excerpt": "Desktop extension (.mcpb) for Claude Desktop. Single-click install via Settings → Extensions.\n\nPackage Repository Use case ------------------------------- Core upvote-club-mcp-core Shared MCP server library (6 tools) Local upvote-club-mcp-local Cursor, Claude Code, manual Claude Desktop (stdio) MCPB This repo — upvote-club-mcp-mcpb Single-click Claude Desktop .mcpb install Remote upvote-club-mcp-remote Claude.ai custom connector (Streamable HTTP) Apps upvote-club-mcp-apps MCP Apps + inline task progress UI\n\n1. https://upvote.club — register 2. MATE plan 3. https://upvote.club/api — generate key 4. Install .mcpb → paste key\n\n1. Double-click upvote-club.mcpb 2. Paste API key from https://upvote.club/api 3. Ask Claude to promote a link\n\n- Core dependency: @upvote-club/mcp-core - Need Cursor / Claude Code stdio? → upvote-club-mcp-local - Need Claude.ai HTTPS connector? → upvote-club-mcp-remote\n\nConnects only to https://api.upvote.club. Policy: https://upvote.club/privacy-policy"
+  },
+  {
+   "name": "upvoteclub/upvote-club-mcp-apps",
+   "url": "https://github.com/upvoteclub/upvote-club-mcp-apps",
+   "description": "MCP Apps with task progress UI for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.",
+   "stars": 43,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [
+    "mcp",
+    "model-context-protocol",
+    "upvote-club",
+    "upvote-club-mcp"
+   ],
+   "created_at": "2026-07-14",
+   "homepage": "https://upvote.club/api",
+   "score": 430.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 43
+    }
+   ],
+   "readme_excerpt": "Interactive MCP App with an inline task progress card for gettaskstatus.\n\nAll 6 Public API tools are available; gettaskstatus renders a progress bar UI in Claude.\n\nPackage Repository Use case ------------------------------- Core upvote-club-mcp-core Shared MCP server library (6 tools) Local upvote-club-mcp-local Cursor, Claude Code, manual Claude Desktop (stdio) MCPB upvote-club-mcp-mcpb Single-click Claude Desktop .mcpb install Remote upvote-club-mcp-remote Claude.ai custom connector (Streamable HTTP) Apps This repo — upvote-club-mcp-apps MCP Apps + inline task progress UI\n\nExpose http://localhost:8788/mcp via Cloudflare Tunnel and add as Claude.ai custom connector with X-API-Key header.\n\nFollows MCP Apps design guidelines: inline card, Claude theme CSS variables, max 2 actions (Refresh).\n\ngetapireference, listplatforms, createtask, gettaskstatus, deletetask\n\n- Core dependency: @upvote-club/mcp-core - HTTP-only connector without UI? → upvote-club-mcp-remote - Claude Desktop bundle? → upvote-club-mcp-mcpb\n\nConnects only to https://api.upvote.club. https://upvote.club/privacy-policy"
   },
   {
    "name": "bepitulaz/obsidian-multivault-mcp",
@@ -289,6 +377,36 @@
    "readme_excerpt": "An MCP server that gives Claude read/write access to Obsidian vaults that live on a VPS — built for multiple vaults and multiple users from a single deployment. Everyone shares one server; each person is routed to their own private vault by the passphrase they log in with (HTTP mode) or by the vault path Claude Desktop launches with (stdio mode). The server runs on the VPS with direct filesystem access to the vaults.\n\n- Multi-vault, multi-user — one server serves many people, each mapped to their own vault. In HTTP mode everyone adds the same connector URL and their distinct login passphrase decides which vault they get; in stdio mode each Claude Desktop passes its own vault path. - Two transports from one codebase — stdio over ssh (Claude Desktop) and an OAuth-protected Streamable HTTP endpoint (Claude mobile/web/desktop remote connectors). - Read/write tools with strict path safety — vault-relative paths only; .., absolute paths, symlink escapes, and null bytes are rejected; writes limited to an extension allowlist. Optional --read-only and per-user readOnly. - Self-hosted OAuth 2.1 — passphrase login, PKCE, JWT access tokens, and Dynamic Client Registration, so no third-party auth service is needed. - Single-file deploy — esbuild bundles everything to one dist/index.js; deploy is a one-file copy.\n\nThere is no SSH library inside the server — SSH is only the transport Claude Desktop uses to start it and exchange JSON-RPC. Part of a \"centralise the vaults on the VPS\" setup:"
   },
   {
+   "name": "illiahaidar/mcptrustchecker",
+   "url": "https://github.com/illiahaidar/mcptrustchecker",
+   "description": "MCP security scanner — offline, deterministic A–F Trust Score for Model Context Protocol servers. Detects tool poisoning, prompt injection & toxic flows.",
+   "stars": 27,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [
+    "mcp",
+    "mcp-protocol",
+    "mcp-security",
+    "mcp-servers",
+    "mcp-tools",
+    "model-context-protocol",
+    "prompt-injection",
+    "supply-chain-security"
+   ],
+   "created_at": "2026-07-13",
+   "homepage": "https://mcptrustchecker.com",
+   "score": 270.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 27
+    }
+   ],
+   "readme_excerpt": "The local-first, deterministic security scanner for MCP servers\n\nKnow whether a Model Context Protocol server is safe before you connect it to your data.\n\n· offline · deterministic · no account · OAuth browser login for protected servers · one novel core ·\n\nThe Capability-Flow Trust Model (methodology mcptrustchecker-1.0) is an original algorithm designed from scratch for this project by Illia Haidar — it is not a wrapper around, or derivative of, any existing scanner or methodology. It is named, versioned, fully specified in docs/methodology.md, and citable via CITATION.cff.\n\nMCP Trust Checker scores an MCP server the way an attacker reasons about it — not as a bag of regex hits, but as a Capability-Flow Trust Model. Every tool is reduced to the roles it can actually play — untrusted-input ingress, sensitive-data source, external / exec sink — derived from behavior, never from the server's own (attacker-controllable) annotations. Those roles are wired into a cross-tool toxic-flow graph that hunts the lethal trifecta: the moment untrusted content, private data, and an exfiltration path co-exist in one agent session — whether inside a single tool or composed across several tools plus the client's built-ins. That is the exact shape behind real-world MCP data-exfiltration exploits, and MCP Trust Checker proves the primitive exists statically, with an honest confidence split so a single-tool completion reads confirmed and a cross-tool composition reads strong — never overclaiming."
+  },
+  {
    "name": "mixelpixx/Konnect",
    "url": "https://github.com/mixelpixx/Konnect",
    "description": "AI-assisted PCB design for KiCAD 10. Native KiCAD plugin — a single Rust binary exposing 171 schematic, layout, routing, design-review, and manufacturing tools to Claude, or the LLM of your choosing",
@@ -332,6 +450,32 @@
     }
    ],
    "readme_excerpt": "AI-assisted PCB design for KiCAD 10. Konnect is a native KiCAD plugin — a single Rust binary — that lets Claude and other AI assistants design schematics and PCBs through the Model Context Protocol (MCP).\n\n171 tools across 17 on-demand toolsets. Schematic capture, PCB layout and routing, ERC/DRC, design-review audits, JLCPCB part search, Freerouting, reference circuits, and a full manufacturing export pipeline — with bundled skills and agents that teach Claude KiCAD conventions out of the box.\n\nStatus: beta. The core toolchain is tested and working, but this is a young release and it wants real-world mileage and review. Issues and PRs are welcome — see CONTRIBUTING.md.\n\nKonnect is the successor to KiCAD-MCP-Server, a Python/TypeScript project that proved AI-driven PCB design works — and, in the process, showed exactly where that architecture runs out of road. Konnect was built to fix those specific problems:\n\nThe call path was too long. In the original server, a single tool call travels through TypeScript, schema validation, a spawned Python subprocess, JSON over stdin/stdout, a command router, and finally SWIG-generated C++ proxy objects before anything touches your board. That's four language and serialization boundaries, each with its own failure modes — subprocess lifecycle management, stdout parsing that filters out warnings KiCAD leaks into the stream, chunked-JSON reassembly. In Konnect, a tool call is a function call. One process, one language, no plumbing."
+  },
+  {
+   "name": "upvoteclub/upvote-club-mcp-local",
+   "url": "https://github.com/upvoteclub/upvote-club-mcp-local",
+   "description": "Self-serve stdio MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.",
+   "stars": 24,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [
+    "mcp",
+    "model-context-protocol",
+    "upvote-club",
+    "upvote-club-mcp"
+   ],
+   "created_at": "2026-07-14",
+   "homepage": "https://upvote.club/api",
+   "score": 240.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 24
+    }
+   ],
+   "readme_excerpt": "Stdio MCP server for the Upvote.club Public API.\n\nPackage Repository Use case ------------------------------- Core upvote-club-mcp-core Shared MCP server library (6 tools) Local This repo — upvote-club-mcp-local Cursor, Claude Code, manual Claude Desktop (stdio) MCPB upvote-club-mcp-mcpb Single-click Claude Desktop .mcpb install Remote upvote-club-mcp-remote Claude.ai custom connector (Streamable HTTP) Apps upvote-club-mcp-apps MCP Apps + inline task progress UI\n\n1. Register at https://upvote.club 2. MATE plan 3. API key at https://upvote.club/api → copy upv... 4. Install and configure:\n\nVariable Required Description --------------------------------- UPVOTEAPIKEY Yes From https://upvote.club/api UPVOTEAPIURL No Default https://api.upvote.club\n\ngetapireference, listplatforms, createtask, gettaskstatus, deletetask\n\n- Core dependency: @upvote-club/mcp-core - Prefer one-click Desktop install? → upvote-club-mcp-mcpb - Need Claude.ai HTTPS connector? → upvote-club-mcp-remote\n\nConnects only to https://api.upvote.club. https://upvote.club/privacy-policy"
   },
   {
    "name": "Chester-2026/Gov-Stat-MCP-Server",
@@ -411,9 +555,9 @@
    ],
    "created_at": "2026-07-12",
    "homepage": "",
-   "score": 202.0,
+   "score": 102.0,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -469,6 +613,35 @@
    "readme_excerpt": "KLinePic MCP Server and Agent API Examples\n\nTurn broker or exchange fills into annotated candlestick review-chart PNGs. AI agents can discover capabilities, validate a request without spending chart quota, and render the finished chart through three MCP tools.\n\nRun it as an Agent Skill, from source, with the one-click MCPB bundle, or in Docker; the repository also includes OpenAPI examples.\n\nKLinePic is for post-trade review and visualization. It does not provide trading signals, price predictions, investment advice, or order execution.\n\nSample-data preview. It is not a trading signal, forecast, or investment recommendation.\n\nTool What it does Quota impact --- --- --- klinepicgetcapabilities Checks API-key permissions, plan limits, remaining quota, and supported endpoints. None klinepicpreflightreviewchart Validates fills, K-line data, scopes, and estimated cost before rendering. None klinepiccreatereviewchart Returns an annotated candlestick PNG as native MCP image content. Uses one chart render\n\n- A reusable Agent Skill for Codex, Claude Code, and other compatible agents. - A working JavaScript stdio MCP server. - A small Agent API client used by the MCP tools. - Broker, Binance, US-stock, futures, and MetaTrader sample data. - A complete review-chart request and a no-charge preflight example. - Docker support, an OpenAPI mirror, and machine-readable discovery files.\n\nLocal installation was last verified on 2026-07-14. Live API capabilities and preflight were last verified on 2026-07-13:"
   },
   {
+   "name": "wassermanproductions/unofficial-davinci-mcp",
+   "url": "https://github.com/wassermanproductions/unofficial-davinci-mcp",
+   "description": "Let any AI agent run DaVinci Resolve — MCP server with live Studio control, free-edition FCPXML/LUT workflows, reference color matching, beat-aware music cuts, dialogue tightening, broadcast-loudness ",
+   "stars": 19,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-07-10",
+   "homepage": "",
+   "score": 47.5,
+   "first_seen": "2026-07-13",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-13",
+     "s": 13
+    },
+    {
+     "d": "2026-07-14",
+     "s": 15
+    },
+    {
+     "d": "2026-07-15",
+     "s": 19
+    }
+   ],
+   "readme_excerpt": "Let any AI agent run DaVinci Resolve for you — Claude Code, Codex, Cursor, Hermes, or any MCP client. Cut clips to the beat, match a reference look, tighten dialogue, hit a loudness spec, and build timelines — either by driving Resolve Studio live, or by generating clean import files for the free edition.\n\nA flat log-ish grade (BEFORE) matched to a warm reference frame (REFERENCE) → the MATCHED result, baked to a 33-point .cube LUT. Real output from the colormatch engine on a single desert-dance frame.\n\nYou describe the edit in plain language; your agent calls the tools. The server does the deterministic, numeric work an LLM shouldn't guess at — beat grids, LUT math, EBU R128 loudness, FCPXML — and hands back files and plans you can trust. No cloud rendering, no black boxes: every engine is stdlib + numpy + ffmpeg, and every mutating tool previews before it touches anything.\n\nThe server detects at startup whether it can drive a running DaVinci Resolve Studio (verified on Studio 21) or should fall back to interchange files. resolvecapabilities tells you which tier you're in and why.\n\nCapability Resolve Studio — live Free Resolve / not running — interchange --------- How it works Drives the running app via the scripting API Writes files you import in one action Build & edit timelines Directly in the app FCPXML 1.9 / EDL → File ▸ Import ▸ Timeline Markers Inserted live Marker CSV, or embedded in the FCPXML Color grades & LUTs Applied per clip via the API Bake a .cube LUT and drop it on the node Renders Queue and start jobs Use Resolve's own export Probe, beat grid, music cut, "
+  },
+  {
    "name": "yung13yubabie/line-summary",
    "url": "https://github.com/yung13yubabie/line-summary",
    "description": "在 Windows 上用 Claude Code 讀本機 LINE 電腦版聊天記錄、產生每日摘要的 MCP server（wxSQLite3/aes128cbc 解密）",
@@ -503,15 +676,15 @@
    "name": "alchaincyf/doubao-search-mcp",
    "url": "https://github.com/alchaincyf/doubao-search-mcp",
    "description": "豆包搜索 MCP server — 给换了国产模型的 Claude Code 补上联网能力。字节系信源、千字正文、每月500次免费 | Agent-first web search MCP",
-   "stars": 17,
+   "stars": 18,
    "forks": 1,
    "language": "JavaScript",
    "topics": [],
    "created_at": "2026-07-11",
    "homepage": "",
-   "score": 58.7,
+   "score": 47.0,
    "first_seen": "2026-07-11",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-11",
@@ -528,34 +701,72 @@
     {
      "d": "2026-07-14",
      "s": 17
+    },
+    {
+     "d": "2026-07-15",
+     "s": 18
     }
    ],
    "readme_excerpt": "一条命令，让你的 Agent 用上豆包搜索：字节系独家信源、千字级正文摘要、发布时间精确到秒，每月 500 次免费。\n\n豆包搜索是火山引擎为 AI Agent 构建的联网信息服务，2026 年 7 月起面向企业和开发者开放。\n\nClaude Code 内置的 WebSearch 是 Anthropic 的服务端工具，跑在 Anthropic 的服务器上。一旦你把 ANTHROPICBASEURL 指向国产模型的兼容端点（豆包 Seed、Kimi、GLM、DeepSeek……），WebSearch 就没了执行器：工具看着还在，agent 实际上断网了。很多人是切完模型才发现这件事。\n\n海外搜索 API 能补上这个缺口，但对中文开发者有三个现实问题：美元结算（有的还强制绑信用卡）、Google 系索引搜不到中文生态内容、国内直连不稳定。\n\n豆包搜索正好把这三个问题一起解决了，这个 MCP server 把它变成任何 agent 一条命令就能装上的搜索工具。\n\n- 千字级正文摘要，不是两行摘要加一堆蓝链接。别家要「搜索 API + 抓取 API」两跳才能凑齐的链路，它一次返回 - 发布时间精确到秒，agent 自己就能判断信息新鲜度。实测查行业热点，返回过发布时间是「查询前一晚」的文章 - 字节系独家信源：今日头条正文高频返回；查「XX 是什么」「XX 是谁」这类实体问题，抖音百科基本排第一 - 每条结果自带正文 token 计数（ContentTokenCount），你可以精确控制塞进上下文的量——这个字段暴露了它确实是为 Agent 设计的 - 跨语言：英文查询返回官方文档、changelog 这类一手信源，不用中英文各配一个搜索\n\n去 火山引擎豆包搜索控制台 开通服务并创建 API Key。每月 500 次搜索免费，超出按量付费。\n\n参数 类型 默认 说明 ------------ query string — 搜索词，中英文都行，自然语言效果就很好 count int 1-20 10 返回条数 snippetlength int 50-2000 600 每条摘要的最大字符数，深度阅读时调大 images int 0-3 0 每条结果最多返回几张图（CDN 直链，带宽高）\n\n我天天泡在 Claude Code 里干活，也经常把国产模型接进来当主力。撞到搜索断网这堵墙之后查了一圈，现有方案对中文开发者各有各的别扭：美元结算、中文内容搜不到、国内连接不稳。\n\n正好豆包搜索在 7 月对开发者开放了。我开通后先自己测了一轮：返回结构里那个 token 计数字段让我确认这个 API 值得包一层 MCP——它不是把「给人看的搜索结果」转给 agent，是从设计上就在替 agent 的上下文预算着想。于是有了这个仓库。\n\n花叔 Huashu — AI Native Coder，独立开发者，代表作：小猫补光灯（AppStore 付费榜 Top1）\n\n平台 链接 ------------ 🌐 官网 bookai.top · huasheng.ai 𝕏 Twitter @AlchainHust 📺 B站 花叔v ▶️ YouTube @Alchain 📕 小红书 花叔 💬 公众号 微信搜「花叔」或扫码关注 ↓\n\n女娲.skill — 蒸馏任何人的思维方式 · 达尔文.skill — 让 Skill 无限进化 · huashu-design — HTML 原生设计 skill"
   },
   {
-   "name": "wassermanproductions/unofficial-davinci-mcp",
-   "url": "https://github.com/wassermanproductions/unofficial-davinci-mcp",
-   "description": "Let any AI agent run DaVinci Resolve — MCP server with live Studio control, free-edition FCPXML/LUT workflows, reference color matching, beat-aware music cuts, dialogue tightening, broadcast-loudness ",
-   "stars": 15,
+   "name": "upvoteclub/upvote-club-mcp-core",
+   "url": "https://github.com/upvoteclub/upvote-club-mcp-core",
+   "description": "Shared MCP server for Upvote.club Public API. Hub repo — links to local, mcpb, remote, apps packages.",
+   "stars": 13,
    "forks": 0,
-   "language": "Python",
-   "topics": [],
-   "created_at": "2026-07-10",
-   "homepage": "",
-   "score": 50.0,
-   "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "language": "JavaScript",
+   "topics": [
+    "mcp",
+    "model-context-protocol",
+    "upvote-club",
+    "upvote-club-mcp"
+   ],
+   "created_at": "2026-07-14",
+   "homepage": "https://upvote.club/api",
+   "score": 130.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
-     "d": "2026-07-13",
+     "d": "2026-07-15",
      "s": 13
+    }
+   ],
+   "readme_excerpt": "Shared MCP server for the Upvote.club Public API.\n\nPackage Repository Use case ------------------------------- Core This repo — upvote-club-mcp-core Shared MCP server library (6 tools) Local upvote-club-mcp-local Cursor, Claude Code, manual Claude Desktop (stdio) MCPB upvote-club-mcp-mcpb Single-click Claude Desktop .mcpb install Remote upvote-club-mcp-remote Claude.ai custom connector (Streamable HTTP) Apps upvote-club-mcp-apps MCP Apps + inline task progress UI\n\n1. Register at https://upvote.club 2. MATE plan 3. Generate API key at https://upvote.club/api 4. Set UPVOTEAPIKEY=upv... in your MCP config\n\nInstall a delivery package above — Local, MCPB, Remote, or Apps — not this core repo directly unless you are building on top of it.\n\nTool Auth ------------ getapireference none listplatforms none createtask API key gettaskstatus API key deletetask API key\n\n- upvote-club-mcp-local - upvote-club-mcp-mcpb - upvote-club-mcp-remote - upvote-club-mcp-apps\n\nConnects only to https://api.upvote.club. Privacy policy"
+  },
+  {
+   "name": "djwmarcx/better-mealie-mcp",
+   "url": "https://github.com/djwmarcx/better-mealie-mcp",
+   "description": "MCP server exposing every Mealie API endpoint (250+ tools) via FastMCP",
+   "stars": 12,
+   "forks": 0,
+   "language": "HTML",
+   "topics": [],
+   "created_at": "2026-07-09",
+   "homepage": "https://djwmarcx.github.io/better-mealie-mcp/",
+   "score": 24.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    },
+    {
+     "d": "2026-07-13",
+     "s": 9
     },
     {
      "d": "2026-07-14",
-     "s": 15
+     "s": 11
+    },
+    {
+     "d": "2026-07-15",
+     "s": 12
     }
    ],
-   "readme_excerpt": "Let any AI agent run DaVinci Resolve for you — Claude Code, Codex, Cursor, Hermes, or any MCP client. Cut clips to the beat, match a reference look, tighten dialogue, hit a loudness spec, and build timelines — either by driving Resolve Studio live, or by generating clean import files for the free edition.\n\nA flat log-ish grade (BEFORE) matched to a warm reference frame (REFERENCE) → the MATCHED result, baked to a 33-point .cube LUT. Real output from the colormatch engine on a single desert-dance frame.\n\nYou describe the edit in plain language; your agent calls the tools. The server does the deterministic, numeric work an LLM shouldn't guess at — beat grids, LUT math, EBU R128 loudness, FCPXML — and hands back files and plans you can trust. No cloud rendering, no black boxes: every engine is stdlib + numpy + ffmpeg, and every mutating tool previews before it touches anything.\n\nThe server detects at startup whether it can drive a running DaVinci Resolve Studio (verified on Studio 21) or should fall back to interchange files. resolvecapabilities tells you which tier you're in and why.\n\nCapability Resolve Studio — live Free Resolve / not running — interchange --------- How it works Drives the running app via the scripting API Writes files you import in one action Build & edit timelines Directly in the app FCPXML 1.9 / EDL → File ▸ Import ▸ Timeline Markers Inserted live Marker CSV, or embedded in the FCPXML Color grades & LUTs Applied per clip via the API Bake a .cube LUT and drop it on the node Renders Queue and start jobs Use Resolve's own export Probe, beat grid, music cut, "
+   "readme_excerpt": "An MCP server exposing every Mealie API endpoint — all 250+ operations, none excluded. Manage recipes, meal plans, shopping lists, households and more from any AI assistant, in natural language.\n\nBuilt with FastMCP fromopenapi: tools are generated straight from Mealie's OpenAPI spec, so the server stays in sync with Mealie and nothing is hand-maintained. See TOOLS.md for the full tool list.\n\nYou say What happens ----------------------- \"Add a chicken tikka masala recipe from this URL\" Scrapes and imports the recipe \"What can I cook with what's in my pantry?\" Searches recipes by your ingredients \"Plan my dinners for next week\" Creates meal-plan entries \"Build a shopping list for those meals\" Generates a consolidated shopping list \"Tag all my soups as 'winter'\" Bulk-updates recipe tags\n\nImages are published on each release, tagged and latest. Inside a container, localhost is the container — point MEALIEBASEURL at host.docker.internal (macOS/Windows) or your host's LAN IP (Linux).\n\nVar Meaning -------------- MEALIEBASEURL Mealie base URL (default http://localhost:9925) MEALIEAPITOKEN Long-lived API token (preferred) — Mealie → Profile → Manage API Tokens MEALIEUSERNAME / MEALIEPASSWORD Alternative: logs in at startup to fetch a token MEALIETIMEOUT Per-request timeout, seconds (default 60) MEALIEVERIFYSSL Verify TLS cert; false to accept self-signed (default true) MCPSERVERNAME MCP name advertised to clients (default Mealie) MEALIEINCLUDETAGS Expose only these API groups, comma-separated (e.g. recipes,shopping-lists). Fewer tools = leaner context / fits clients that cap tool co"
   },
   {
    "name": "max-ramas/rms-memory-mcp",
@@ -636,33 +847,55 @@
    "readme_excerpt": "Open (Apache-2.0) client SDKs, examples, API reference, and prebuilt binaries for Mneme.\n\nMneme is a cognition runtime that gives software agents long-term memory, context assembly, and knowledge representation. Think of it as a memory subsystem that sits alongside your LLM: every observation, fact, decision, and plan is stored as a typed, temporal, branchable record, and you retrieve it with a hybrid search (lexical + semantic + relation + time) plus context assembly.\n\nMneme's data model combines Git-like branching with cognitive memory types:\n\nMemory type Example ---------------------- episode raw events (user said X, server returned Y) fact asserted truths (subject-predicate-object, with validity windows) knowledge structured belief (entity relationships, classifications) experience reflection after an action (\"what went well / poorly\") simulation hypothetical scenarios run to reason about outcomes emotion, intention, procedure, belief, mission, preference internal agent state\n\nEvery record is immutable and append-only, tagged with branch, timestamp, retention tier, and identity scope (tenant/project). The engine owns the semantics; storage backends are replaceable.\n\nMneme-open is the public, open-source window into Mneme. It contains everything you need to integrate with a running Mneme server — client libraries, CLI tools, protocol schemas, and API documentation —?under the Apache-2.0 license. The Mneme engine source is not included here; this repository ships only the client-facing layer."
   },
   {
-   "name": "djwmarcx/better-mealie-mcp",
-   "url": "https://github.com/djwmarcx/better-mealie-mcp",
-   "description": "MCP server exposing every Mealie API endpoint (250+ tools) via FastMCP",
+   "name": "korovin-aa97/talkthrough-mcp",
+   "url": "https://github.com/korovin-aa97/talkthrough-mcp",
+   "description": "MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.",
    "stars": 11,
    "forks": 0,
-   "language": "HTML",
-   "topics": [],
-   "created_at": "2026-07-09",
-   "homepage": "https://djwmarcx.github.io/better-mealie-mcp/",
+   "language": "Python",
+   "topics": [
+    "agent-skills",
+    "ai-agents",
+    "claude",
+    "developer-tools",
+    "feedback",
+    "ffmpeg",
+    "local-first",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ocr",
+    "python",
+    "screen-recording",
+    "speech-to-text",
+    "transcription",
+    "video-analysis",
+    "whisper"
+   ],
+   "created_at": "2026-07-10",
+   "homepage": "",
    "score": 27.5,
-   "first_seen": "2026-07-10",
-   "last_seen": "2026-07-14",
+   "first_seen": "2026-07-12",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
-     "d": "2026-07-10",
-     "s": 3
+     "d": "2026-07-12",
+     "s": 4
     },
     {
      "d": "2026-07-13",
-     "s": 9
+     "s": 8
     },
     {
      "d": "2026-07-14",
+     "s": 9
+    },
+    {
+     "d": "2026-07-15",
      "s": 11
     }
    ],
-   "readme_excerpt": "An MCP server exposing every Mealie API endpoint — all 250+ operations, none excluded. Manage recipes, meal plans, shopping lists, households and more from any AI assistant, in natural language.\n\nBuilt with FastMCP fromopenapi: tools are generated straight from Mealie's OpenAPI spec, so the server stays in sync with Mealie and nothing is hand-maintained. See TOOLS.md for the full tool list.\n\nYou say What happens ----------------------- \"Add a chicken tikka masala recipe from this URL\" Scrapes and imports the recipe \"What can I cook with what's in my pantry?\" Searches recipes by your ingredients \"Plan my dinners for next week\" Creates meal-plan entries \"Build a shopping list for those meals\" Generates a consolidated shopping list \"Tag all my soups as 'winter'\" Bulk-updates recipe tags\n\nImages are published on each release, tagged and latest. Inside a container, localhost is the container — point MEALIEBASEURL at host.docker.internal (macOS/Windows) or your host's LAN IP (Linux).\n\nVar Meaning -------------- MEALIEBASEURL Mealie base URL (default http://localhost:9925) MEALIEAPITOKEN Long-lived API token (preferred) — Mealie → Profile → Manage API Tokens MEALIEUSERNAME / MEALIEPASSWORD Alternative: logs in at startup to fetch a token MEALIETIMEOUT Per-request timeout, seconds (default 60) MEALIEVERIFYSSL Verify TLS cert; false to accept self-signed (default true) MCPSERVERNAME MCP name advertised to clients (default Mealie) MEALIEINCLUDETAGS Expose only these API groups, comma-separated (e.g. recipes,shopping-lists). Fewer tools = leaner context / fits clients that cap tool co"
+   "readme_excerpt": "Quickstart · Tools · FAQ · Troubleshooting · Changelog · Contributing\n\nFeedback ingestion for AI agents. Record your screen and talk; your agent does the rest — files the bugs, writes the spec, builds the backlog.\n\ntalkthrough-mcp is a local-first MCP server that turns a narrated screen recording (or any video/audio file) into agent-ready structured data: timestamped transcript segments, scene-change keyframes, OCR'd on-screen text, and wall-clock anchoring. Everything is served through lazy retrieval tools, so a 30-minute recording never floods the model context — the agent pulls exactly the transcript slice, moment bundle, or frame it needs.\n\nThere is no LLM inside the server and no cloud anywhere in the path: ffmpeg, faster-whisper, and RapidOCR run on your machine, and the calling agent brings the intelligence. What makes it different from screen-recorder SaaS and video-analyzer MCPs: it works on arbitrary local files, it ships the agent workflows (server prompts + example agents), and it anchors every timestamp to wall-clock time — so \"the moment I said the checkout hung\" maps straight to the right window of your server logs.\n\nOne command, no system dependencies: ffmpeg falls back to a bundled build, OCR is pip-only, and whisper models download themselves on first use.\n\nTwo install paths — pick one, not both (the plugin already includes the server; installing both would register it twice):"
   },
   {
    "name": "ozankasikci/global-agent-memory",
@@ -693,9 +926,9 @@
    ],
    "created_at": "2026-07-11",
    "homepage": "https://github.com/ozankasikci/global-agent-memory/releases/latest",
-   "score": 50.0,
+   "score": 33.3,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -709,6 +942,48 @@
    "readme_excerpt": "Local-first, project-aware, durable memory for Claude Code, Codex, and other MCP-compatible agents.\n\nGlobal Agent Memory gives multiple coding agents one shared, reviewable memory without handing control of your knowledge base to a hosted service. Markdown files are canonical, an authenticated local MCP daemon is the public agent interface, and the dashboard lets a human approve, edit, protect, or remove what agents remember.\n\nOne Vault. Multiple agents. Human-controlled memory.\n\nQuick start · Obsidian Vault · Dashboard · How it works · Security · MCP contract · Documentation\n\nCoding agents are useful inside a session, but important context is often lost between sessions or fragmented across individual clients. Global Agent Memory provides a durable layer for knowledge such as:\n\n- architectural decisions and project conventions; - verified workflows and operational runbooks; - recurring problems and their proven solutions; - project preferences, entities, and handoff summaries; - bounded context for a new task or agent session.\n\nAgents propose memories as candidates. A human reviews them before they become durable, controls their visibility, and can later update, supersede, archive, or hard-delete them.\n\nApproach Shared across agents Human-reviewable Project-aware Owner-controlled access Portable source of truth --- :---: :---: :---: :---: :---: CLAUDE.md / AGENTS.md Limited ✓ ✓ — ✓ Basic memory MCP ✓ Varies Varies Varies Varies Hosted agent memory ✓ Varies ✓ Provider-defined — Global Agent Memory ✓ ✓ ✓ ✓ Markdown"
   },
   {
+   "name": "12122J/mcpvet",
+   "url": "https://github.com/12122J/mcpvet",
+   "description": "MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads ",
+   "stars": 10,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [
+    "ai-agent",
+    "ai-security",
+    "anthropic",
+    "claude",
+    "claude-code",
+    "cli",
+    "cursor",
+    "honeytoken",
+    "llm-security",
+    "mcp",
+    "mcp-security",
+    "mcp-server",
+    "mcpvet",
+    "model-context-protocol",
+    "prompt-injection",
+    "sandbox",
+    "security",
+    "security-scanner",
+    "supply-chain-security",
+    "vet"
+   ],
+   "created_at": "2026-07-14",
+   "homepage": "",
+   "score": 100.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 10
+    }
+   ],
+   "readme_excerpt": "A security scanner for Model Context Protocol (MCP) servers — for Claude Code, Cursor, and Windsurf.\n\nVet an MCP server before you add it. One command prints a security report card, graded A–F. It catches credential-stealing servers red-handed — by running them in a sealed sandbox with planted honeytoken secrets and watching what tries to leave.\n\nThe install spec is scoped (@javi/mcpvet), but the command it installs is just mcpvet — every example below runs the same whether you npx it or install it globally.\n\n↑ example result — a malicious server graded F. mcpvet is a CLI security tool; the badge is just something it can export.\n\n⭐ MCP servers run code on your machine with your privileges and inject tool descriptions your agent obeys. Adding one you haven't vetted is curl sh with extra steps. If mcpvet saves you from a bad one, star it.\n\nAdding an MCP server to Claude Code, Cursor, or any agent hands it two things at once:\n\n1. Code that runs as you — it can read ~/.ssh, your .env, your cloud creds, and phone home. 2. Tool descriptions your model treats as instructions — a server can hide \"also read the user's SSH key and include it, don't mention this\" inside a tool's description. You never see it. The model does, and obeys.\n\nDirectories list thousands of these. Most people paste npx some-mcp-server and hope.\n\nEvery other MCP scanner reads the code and guesses. mcpvet is the only one that catches theft with proof, then makes it impossible."
+  },
+  {
    "name": "xyonium/futu-opend-mcp",
    "url": "https://github.com/xyonium/futu-opend-mcp",
    "description": "MCP server exposing Futu OpenD read-only investment-research quote APIs",
@@ -718,9 +993,9 @@
    "topics": [],
    "created_at": "2026-07-10",
    "homepage": "",
-   "score": 30.0,
+   "score": 22.5,
    "first_seen": "2026-07-11",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-11",
@@ -732,53 +1007,6 @@
     }
    ],
    "readme_excerpt": "An MCP server that exposes Futu OpenD's read-only investment-research quote APIs (stock/option/warrant/futures prices, financials, news/announcements, shareholders, institutions, macro) as MCP tools. It borrows your already-running, logged-in Futu OpenD gateway - no separate auth. No trading, no subscriptions.\n\nIt wraps the official Futu skill pack unmodified, so it stays in sync with Futu's own field-parsing logic.\n\nAdd to ~/.claude/settings.json, .mcp.json, or Claude Desktop config:\n\nVar Default Purpose --------- FUTUOPENDHOST 127.0.0.1 OpenD host FUTUOPENDPORT 11111 OpenD port FUTUOPENDRSAKEY - inline PEM of the shared RSA private key FUTUOPENDRSAKEYFILE - path to the PEM file (alternative to above) FUTUOPENDENCRYPT true proto encryption; false for local 127.0.0.1 OpenD FUTUOPENDLOGLEVEL INFO logging level\n\nOpenD and the SDK share one RSA private key (PKCS1 1024-bit). Get it from a dockerized OpenD with: docker compose logs opend grep -A20 'NEW RSA PRIVATE KEY'.\n\n~50 read-only tools across: price/quote, search, screening, financials, research/valuation, corporate actions, shareholders, profile, capital flow, short interest, options, option underlying IV/HV, warrants/futures, plates, industrial chains, institutions, macro, dividends, IPO, and diagnostics. See docs/superpowers/specs/2026-07-10-futu-opend-mcp-design.md.\n\nLive-OpenD integration tests are marked integration and skip themselves when OpenD is unreachable. Re-vendor the official skill pack with ./scripts/syncskill.sh."
-  },
-  {
-   "name": "korovin-aa97/talkthrough-mcp",
-   "url": "https://github.com/korovin-aa97/talkthrough-mcp",
-   "description": "MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.",
-   "stars": 9,
-   "forks": 0,
-   "language": "Python",
-   "topics": [
-    "agent-skills",
-    "ai-agents",
-    "claude",
-    "developer-tools",
-    "feedback",
-    "ffmpeg",
-    "local-first",
-    "mcp",
-    "mcp-server",
-    "model-context-protocol",
-    "ocr",
-    "python",
-    "screen-recording",
-    "speech-to-text",
-    "transcription",
-    "video-analysis",
-    "whisper"
-   ],
-   "created_at": "2026-07-10",
-   "homepage": "",
-   "score": 30.0,
-   "first_seen": "2026-07-12",
-   "last_seen": "2026-07-14",
-   "stars_history": [
-    {
-     "d": "2026-07-12",
-     "s": 4
-    },
-    {
-     "d": "2026-07-13",
-     "s": 8
-    },
-    {
-     "d": "2026-07-14",
-     "s": 9
-    }
-   ],
-   "readme_excerpt": "Quickstart · Tools · FAQ · Troubleshooting · Changelog · Contributing\n\nFeedback ingestion for AI agents. Record your screen and talk; your agent does the rest — files the bugs, writes the spec, builds the backlog.\n\ntalkthrough-mcp is a local-first MCP server that turns a narrated screen recording (or any video/audio file) into agent-ready structured data: timestamped transcript segments, scene-change keyframes, OCR'd on-screen text, and wall-clock anchoring. Everything is served through lazy retrieval tools, so a 30-minute recording never floods the model context — the agent pulls exactly the transcript slice, moment bundle, or frame it needs.\n\nThere is no LLM inside the server and no cloud anywhere in the path: ffmpeg, faster-whisper, and RapidOCR run on your machine, and the calling agent brings the intelligence. What makes it different from screen-recorder SaaS and video-analyzer MCPs: it works on arbitrary local files, it ships the agent workflows (server prompts + example agents), and it anchors every timestamp to wall-clock time — so \"the moment I said the checkout hung\" maps straight to the right window of your server logs.\n\nOne command, no system dependencies: ffmpeg falls back to a bundled build, OCR is pip-only, and whisper models download themselves on first use.\n\nTwo install paths — pick one, not both (the plugin already includes the server; installing both would register it twice):"
   },
   {
    "name": "sgateway/s-gw",
@@ -857,9 +1085,9 @@
    "topics": [],
    "created_at": "2026-07-09",
    "homepage": "",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-07-12",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-12",
@@ -882,9 +1110,9 @@
    "topics": [],
    "created_at": "2026-07-09",
    "homepage": "",
-   "score": 22.0,
+   "score": 18.0,
    "first_seen": "2026-07-11",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-11",
@@ -896,6 +1124,40 @@
     }
    ],
    "readme_excerpt": "A self-contained mockup for the \"AI Agents for Enterprise\" lightning session: a customer-facing chatbot that searches restaurants and books tables through real MCP tools, backed by a mock \"Elasticsearch\" (SQLite) restaurant index.\n\nThe read/write tool split is deliberate, not cosmetic: read tools are safe for the agent to call as often as it wants while reasoning; write tools are where the system prompt requires the agent to restate details and get explicit user confirmation before calling. That's the hook back into the full course's \"making agents reliable in production\" theme — this repo is the free lightning-lesson teaser for it.\n\n\"Harness\" is the code around the model call — everything that turns a single LLM request into an agent that can act. Claude by itself just maps one input to one output; it doesn't call tools, check results, or decide to try again on its own. The harness is what closes that loop. Strip the harness away and you have a plain chatbot: one message in, one reply out, no ability to actually go look anything up or do anything. Add the harness and the same model can search a database, notice it needs more information, and act on it — that's the entire difference between \"chatbot\" and \"agent\" in this repo (see the \"chatbot vs. agent\" discussion earlier in this project's history: the UI is a chatbot, chatservice/main.py is what makes what's behind it an agent).\n\nConcretely, the harness here is the while True loop in chatservice/main.py's /chat handler:"
+  },
+  {
+   "name": "bkspace/starlight-mcp",
+   "url": "https://github.com/bkspace/starlight-mcp",
+   "description": "MCP server for your Astro/Starlight docs — search_docs, get_doc, list_docs over stateless streamable HTTP. Astro integration + pure handler + Cloudflare glue.",
+   "stars": 8,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [
+    "astro",
+    "astro-integration",
+    "cloudflare-workers",
+    "documentation",
+    "llm",
+    "mcp",
+    "model-context-protocol",
+    "starlight"
+   ],
+   "created_at": "2026-07-11",
+   "homepage": "",
+   "score": 26.7,
+   "first_seen": "2026-07-13",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-13",
+     "s": 7
+    },
+    {
+     "d": "2026-07-15",
+     "s": 8
+    }
+   ],
+   "readme_excerpt": "Give your Astro or Starlight docs site an MCP server.\n\nAgents connect to https://your-site.com/mcp and get three tools — searchdocs, getdoc, listdocs — answered straight from your docs content collection. No database, no embeddings, no separate service: the corpus is a JSON file emitted at build time, and the server is a stateless JSON-RPC handler small enough to read in one sitting.\n\nLive demo: the discountkit docs serve theirs at https://next.discountkit.app/mcp —\n\n1. Build time — the Astro integration injects two prerendered routes into your site: - /mcp/docs-index.json — every page of your docs collection (title, description, URL, cleaned markdown body) - /mcp-schema.json — a machine-readable tool catalog agents can discover before connecting (link it from your llms.txt) 2. Runtime — a dependency-free handler speaks stateless streamable HTTP: plain JSON-RPC over POST. It loads the corpus once per isolate and answers initialize, tools/list and tools/call. On SSR sites the integration injects this for you; on static sites you add one tiny shim on your host (Cloudflare recipe below).\n\nBecause the transport is stateless HTTP, it works from Claude Code, Cursor, VS Code, Windsurf and anything else that speaks MCP — no SSE, no sessions, no sticky routing.\n\nThat's the whole setup for SSR sites (output: \"server\"): the live endpoint is injected at /mcp.\n\nFor static sites the build emits the corpus and schema, and you serve the endpoint with a few lines of host glue:"
   },
   {
    "name": "agentcathq/agentcat-go-sdk",
@@ -928,9 +1190,9 @@
    "topics": [],
    "created_at": "2026-07-09",
    "homepage": "",
-   "score": 19.5,
+   "score": 16.0,
    "first_seen": "2026-07-10",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-10",
@@ -985,36 +1247,6 @@
    "readme_excerpt": "dali.getlulu.dev &nbsp;·&nbsp; Install &nbsp;·&nbsp; Live stats &nbsp;·&nbsp; Lulu\n\nThe prediction MCP that helps you avoid the AI generation tax.\n\nMost AI generation failures are prompt failures. You can't tell the difference until after you've burned the token. Dali scores your prompt before you generate — so you never waste a credit on a bad prompt again. Every wasted generation has a real cost (a Seedance retry is ~$6) — the live dashboard tracks what the community has saved by catching bad prompts before they burned a credit.\n\n- Install - Tools - Supported models - Platform supersets - Why model-specific? - MCP resources - Contributing\n\nHosted MCP — connect once, scores every prompt:\n\nTool What it does ------------------- scoreprompt(prompt, model) Grade 0–100, letter grade, per-dimension breakdown, what's missing, verdict enhanceprompt(prompt, model) Returns a structured rewrite brief — YOUR LLM writes the enhanced prompt using it scoreandenhance(prompt, generator) Score + enhance in one round-trip — returns original score, enhanced prompt, and new score trackenhancement(original, enhanced, generator) Record a before/after pair in the graph brain — trains community patterns suggestgenerator(concept, budgetusdmax) Pick the best model for your concept + budget constraint scorevariations(prompts, generator) Rank a list of prompt variants in one call — returns them highest to lowest score daliversion() Server version + changelog analyzeintent(prompt) Parse dimensions: camera, motion, lighting, style, mood, gaps creativepatterns(model) Community top patterns for this model"
   },
   {
-   "name": "bkspace/starlight-mcp",
-   "url": "https://github.com/bkspace/starlight-mcp",
-   "description": "MCP server for your Astro/Starlight docs — search_docs, get_doc, list_docs over stateless streamable HTTP. Astro integration + pure handler + Cloudflare glue.",
-   "stars": 7,
-   "forks": 0,
-   "language": "TypeScript",
-   "topics": [
-    "astro",
-    "astro-integration",
-    "cloudflare-workers",
-    "documentation",
-    "llm",
-    "mcp",
-    "model-context-protocol",
-    "starlight"
-   ],
-   "created_at": "2026-07-11",
-   "homepage": "",
-   "score": 35.0,
-   "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
-   "stars_history": [
-    {
-     "d": "2026-07-13",
-     "s": 7
-    }
-   ],
-   "readme_excerpt": "Give your Astro or Starlight docs site an MCP server.\n\nAgents connect to https://your-site.com/mcp and get three tools — searchdocs, getdoc, listdocs — answered straight from your docs content collection. No database, no embeddings, no separate service: the corpus is a JSON file emitted at build time, and the server is a stateless JSON-RPC handler small enough to read in one sitting.\n\nLive demo: the discountkit docs serve theirs at https://next.discountkit.app/mcp —\n\n1. Build time — the Astro integration injects two prerendered routes into your site: - /mcp/docs-index.json — every page of your docs collection (title, description, URL, cleaned markdown body) - /mcp-schema.json — a machine-readable tool catalog agents can discover before connecting (link it from your llms.txt) 2. Runtime — a dependency-free handler speaks stateless streamable HTTP: plain JSON-RPC over POST. It loads the corpus once per isolate and answers initialize, tools/list and tools/call. On SSR sites the integration injects this for you; on static sites you add one tiny shim on your host (Cloudflare recipe below).\n\nBecause the transport is stateless HTTP, it works from Claude Code, Cursor, VS Code, Windsurf and anything else that speaks MCP — no SSE, no sessions, no sticky routing.\n\nThat's the whole setup for SSR sites (output: \"server\"): the live endpoint is injected at /mcp.\n\nFor static sites the build emits the corpus and schema, and you serve the endpoint with a few lines of host glue:"
-  },
-  {
    "name": "multiagentnews/.github",
    "url": "https://github.com/multiagentnews/.github",
    "description": "New agent tools, agent frameworks, orchestration patterns, LLM releases, MCP servers, agent infrastructures, and more.",
@@ -1033,9 +1265,9 @@
    ],
    "created_at": "2026-07-11",
    "homepage": "https://multiagentnews.com/",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-07-12",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-12",
@@ -1062,9 +1294,9 @@
    "topics": [],
    "created_at": "2026-07-10",
    "homepage": "",
-   "score": 25.3,
+   "score": 19.5,
    "first_seen": "2026-07-12",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-12",
@@ -1080,6 +1312,41 @@
     }
    ],
    "readme_excerpt": "An MCP server that wraps app screenshots in an iPhone 16 Pro frame with marketing text above, producing App Store-ready preview images (1284×2778, accepted for the 6.5\" slot in App Store Connect).\n\n- Wraps any screenshot in a realistic iPhone 16 Pro frame (dark or silver) - Adds bold headline + optional subtitle above the phone - Vertical gradient or solid background - Batch mode — process all screenshots in one call - Theme suggestions derived from the app's own colors, with a custom-color override - Warns if a source image is already a mockup (prevents phone-in-phone)\n\nThen in Claude Code, just share your screenshots and ask:\n\n\"Create App Store mockups for these screenshots\"\n\nClaude will ask you to pick a theme, propose captions, get your approval, then render everything.\n\nParam Default Description ----------------------------- screenshot required Absolute path to source PNG/JPG title required Headline above the phone out required Output path frame silver silver or dark bgcolor f5f1ea Hex or hex1,hex2 for gradient textcolor 111111 Hex subtitle \"\" Smaller line under headline size 1284x2778 Output dimensions bleed false Phone bleeds off bottom edge addframe true Set false if source already has a phone frame\n\nSame params, plus jobs list and outputdir. Each job can override any batch-level default.\n\nTakes a list of screenshot paths and returns theme suggestions derived from the app's own colors (JSON list of {name, bgcolor, textcolor, frame, why})."
+  },
+  {
+   "name": "Brokenwatch24/crowdmind",
+   "url": "https://github.com/Brokenwatch24/crowdmind",
+   "description": "Desktop app for building AI persona panels and testing stimuli against them (Electron + React + TypeScript)",
+   "stars": 7,
+   "forks": 2,
+   "language": "TypeScript",
+   "topics": [
+    "ai",
+    "ai-agents",
+    "ai-tools",
+    "buyer-personas",
+    "mcp-server",
+    "open-source",
+    "self-hosted",
+    "simulation",
+    "swarm"
+   ],
+   "created_at": "2026-07-12",
+   "homepage": "",
+   "score": 39.0,
+   "first_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-14",
+     "s": 6
+    },
+    {
+     "d": "2026-07-15",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "Build synthetic research panels, test ideas with AI personas, run follow-up roundtables, and export stakeholder-ready reports.\n\nDownload for Windows · Features · Templates · MCP\n\nCrowdmind is a local-first desktop app for fast qualitative research before you spend money on real panels, ads, prototypes, or customer interviews.\n\nCreate a panel of synthetic personas, show them a product, message, landing page, pricing proposal, image, PDF, or multi-step funnel, and get structured reactions: scores, objections, positive signals, recurring themes, confidence indicators, and follow-up answers.\n\nIt is built for founders, product marketers, researchers, agencies, and product teams who want directional signal in minutes while keeping their research data on their own machine.\n\n- Create realistic persona panels manually, from CSV, from marketplace templates, or with AI. - Run stimulus tests with text, multiple images, PDFs, or full funnel sequences. - Continue any test with follow-up questions, selected-persona follow-ups, or full-panel roundtables. - See the swarm directly inside the test results page, with sentiment-colored nodes and drag selection. - Chat 1:1 with any persona from their profile or directly from a test response. - Use multiple LLM providers: OpenAI, Anthropic, Gemini, OpenRouter, or the built-in offline local provider. - Export reports as JSON, Markdown, summary PDF, or a full investor/client-style PDF report. - Run locally with SQLite. Your workspaces, panels, tests, notes, and chat history stay on your machine. - Connect agentic workflows through the included Crow"
   },
   {
    "name": "ralfferreira/behringer-wing-mcp",
@@ -1238,9 +1505,9 @@
    ],
    "created_at": "2026-07-11",
    "homepage": "",
-   "score": 32.0,
+   "score": 22.0,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -1252,37 +1519,6 @@
     }
    ],
    "readme_excerpt": "Keyless Model Context Protocol access to Luxembourg public data.\n\nHosted endpoint — no install needed: point any MCP client at https://mcp.luxembourg-mcp.com/mcp (streamable HTTP). Or run it yourself with uvx luxembourg-mcp. Website: luxembourg-mcp.com\n\nLuxembourg MCP turns fragmented public APIs and open datasets into 27 consistent tools that AI agents can call directly. It covers laws, official statistics, mobility, environmental measurements, parliament, accessibility, addresses, geospatial features, and the national open-data catalogue.\n\n- 27 MCP tools - 18 public data systems - No API keys or accounts - No scraping - Source URL returned with every result - Stdio and Streamable HTTP transports\n\nThis project is directly inspired by Allemannsdata, created by Thomas Heggelund.\n\nHeggelund's original idea was to give public data the same openness suggested by Norway's allemannsretten, the right to roam: public information should be straightforward to reach, combine, and use. Allemannsdata removes the repetitive integration work between agents and Norwegian public services by presenting many unrelated data sources through consistent, keyless MCP tools.\n\nLuxembourg MCP applies that idea to the Grand Duchy. It is an independent implementation for Luxembourg, not a fork, official regional edition, or affiliated project. Credit for the original public-data-over-MCP catalogue concept belongs to Thomas Heggelund and Allemannsdata."
-  },
-  {
-   "name": "Brokenwatch24/crowdmind",
-   "url": "https://github.com/Brokenwatch24/crowdmind",
-   "description": "Desktop app for building AI persona panels and testing stimuli against them (Electron + React + TypeScript)",
-   "stars": 6,
-   "forks": 2,
-   "language": "TypeScript",
-   "topics": [
-    "ai",
-    "ai-agents",
-    "ai-tools",
-    "buyer-personas",
-    "mcp-server",
-    "open-source",
-    "self-hosted",
-    "simulation",
-    "swarm"
-   ],
-   "created_at": "2026-07-12",
-   "homepage": "",
-   "score": 64.0,
-   "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
-   "stars_history": [
-    {
-     "d": "2026-07-14",
-     "s": 6
-    }
-   ],
-   "readme_excerpt": "Build synthetic research panels, test ideas with AI personas, run follow-up roundtables, and export stakeholder-ready reports.\n\nDownload for Windows · Features · Templates · MCP\n\nCrowdmind is a local-first desktop app for fast qualitative research before you spend money on real panels, ads, prototypes, or customer interviews.\n\nCreate a panel of synthetic personas, show them a product, message, landing page, pricing proposal, image, PDF, or multi-step funnel, and get structured reactions: scores, objections, positive signals, recurring themes, confidence indicators, and follow-up answers.\n\nIt is built for founders, product marketers, researchers, agencies, and product teams who want directional signal in minutes while keeping their research data on their own machine.\n\n- Create realistic persona panels manually, from CSV, from marketplace templates, or with AI. - Run stimulus tests with text, multiple images, PDFs, or full funnel sequences. - Continue any test with follow-up questions, selected-persona follow-ups, or full-panel roundtables. - See the swarm directly inside the test results page, with sentiment-colored nodes and drag selection. - Chat 1:1 with any persona from their profile or directly from a test response. - Use multiple LLM providers: OpenAI, Anthropic, Gemini, OpenRouter, or the built-in offline local provider. - Export reports as JSON, Markdown, summary PDF, or a full investor/client-style PDF report. - Run locally with SQLite. Your workspaces, panels, tests, notes, and chat history stay on your machine. - Connect agentic workflows through the included Crow"
   },
   {
    "name": "oyekamal/claude-code-flow-visualizer",
@@ -1307,7 +1543,7 @@
    "homepage": "",
    "score": 62.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -1315,6 +1551,27 @@
     }
    ],
    "readme_excerpt": "Claude Code Flow Visualizer — See Your Entire Agent Harness as an Interactive Graph\n\nVisualize any Claude Code configuration (CLAUDE.md, subagents, skills, slash commands, hooks, MCP servers, schedulers) as one interactive flow diagram — straight from a GitHub URL, a ZIP, or a local folder. No install for your target repo, no backend, 100% client-side.\n\nClaude Code agent setups live as scattered markdown files: CLAUDE.md, .claude/agents/.md, .claude/skills//SKILL.md, commands, settings.json hooks, and .mcp.json connectors. To understand how an existing harness works — which agent delegates to which, what skills fire when, where Notion/database/MCP connections plug in — you'd normally have to open and read every single file.\n\nThis tool parses the whole project and renders it as a wired graph in seconds:\n\n- 🤖 Agents with model + tool badges, delegation edges traced from prompt bodies - 📚 Skills attached to the agents and commands that actually reference them - ⌨️ Slash commands, 🪝 lifecycle hooks, ⏰ schedulers (GitHub Actions / cron) - 🔌 MCP connectors and 🗄️ memory / state stores drawn as distinct node types - 🚨 Pipeline lints: broken delegation references, duplicate agent names, circular delegation, orphan skills, reviewers with write access, orchestrators missing the Task tool, vague trigger descriptions\n\n1. Paste a GitHub repo (owner/repo, full URL, or a /tree/branch/subfolder link) and hit VISUALIZE 2. Upload a ZIP (GitHub → Code → Download ZIP) — fully offline 3. Upload a folder — point it at any local clone 4. Or click LOAD DEMO HARNESS to explore a sample multi-agent "
+  },
+  {
+   "name": "8NobleTruths/sabba",
+   "url": "https://github.com/8NobleTruths/sabba",
+   "description": "SABBA - Security Templates CLI & MCP Server for coding agents that prove every finding by running it",
+   "stars": 6,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-07-13",
+   "homepage": "",
+   "score": 60.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 6
+    }
+   ],
+   "readme_excerpt": "Security Templates CLI &amp; MCP Server for coding agents that prove every finding by running it. Claude Code, Codex, OpenCode, Cursor, and Hermes call Sabba to prove a change, find and prove bugs, vet a skill, and drive the security toolchain &mdash; authorized-scope-only. If it does not run, Sabba does not report it.\n\nMost tools that use a language model ask it \"is this function vulnerable?\" That is close to a coin flip, even for large models, and unverified guesses bury maintainers in false positives. Sabba takes the opposite stance: a model proposes candidates, but an execution oracle runs an exploit and decides whether a security property actually broke. Nothing is reported unless the exploit reproduces. A finding is not a score, it is a re-runnable proof.\n\nSabba runs as an MCP server, so Claude Code, Codex, OpenCode, Cursor, and Hermes can call it. For Codex CLI, add it to ~/.codex/config.toml:\n\nFourteen tools, most token-free: verifychange (prove a change works in any of 16 languages: a new test fails on the base and passes on the head, via the bundled Magga engine) and prove (the same differential, run natively for C/C++/EVM), verify / solve / hunt / scan (find and prove bugs), securityscan (vet a skill by running it under observation), rank, runsandboxed, and kalirun (drive nmap / nuclei / ffuf / sqlmap and the rest, scope-enforced and sandboxed). Install the security command templates with sabba templates install. Full catalog and per-client configs in docs/AGENTINTEGRATION.md."
   },
   {
    "name": "100yenadmin/boardstate",
@@ -1664,25 +1921,33 @@
   {
    "name": "LuiggiVal08/toon-memory",
    "url": "https://github.com/LuiggiVal08/toon-memory",
-   "description": "Persistent memory for AI coding agents using TOON format (40% fewer tokens than JSON)",
+   "description": "MCP server giving AI coding agents offline, token-efficient persistent memory — recall decisions, patterns, and bugs across sessions with 68.5% fewer tokens than re-reading context. No LLM, no server;",
    "stars": 5,
    "forks": 0,
    "language": "TypeScript",
    "topics": [
+    "aider",
+    "antigravity",
     "claude-code",
+    "continue",
+    "copilot",
     "cursor",
     "developer-tools",
+    "gemini",
+    "kiro",
     "mcp-server",
     "model-context-protocol",
+    "openclaw",
     "opencode",
     "persistent-memory",
-    "windsurf"
+    "windsurf",
+    "zed"
    ],
    "created_at": "2026-07-11",
    "homepage": "https://luiggival08.github.io/toon-memory/",
-   "score": 25.0,
+   "score": 16.7,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -1690,6 +1955,195 @@
     }
    ],
    "readme_excerpt": "Persistent memory for AI coding agents — remember decisions, patterns, and bugs between sessions.\n\n- What is toon-memory? - Blog Post - Features - Quick Start - Supported Agents - MCP Tools - Tips & Best Practices - CLI Commands - Configuration - How It Works - Why TOON? - Troubleshooting - FAQ - Development - Contributing - License\n\nEver had that feeling where your AI agent forgets everything from yesterday's session? You explain the same architecture decision for the third time, and it still suggests the approach you already rejected?\n\ntoon-memory fixes this. It gives your AI agent a persistent memory that survives restarts, so it actually learns from your project over time.\n\nScenario What toon-memory does -------------------------------- Design debates \"We chose Redis over Memcached because of pub/sub support\" Framework choices \"This project uses Zod for validation, not Joi\" Bug fixes \"Redis pool exhaustion — fix was maxconnections=20\" Architecture notes \"Broker service uses RESP protocol, not HTTP\" Onboarding \"The deploy script lives in scripts/deploy.sh\" Team context \"PR 142 reverted the caching change — don't re-add it\"\n\nRead How toon-memory Makes Your AI Agent Smarter to see a real-world demo of persistent memory in action.\n\n- 11 MCP tools — Full memory management via Model Context Protocol - MCP Resources — Read memory as context without tool invocations - 15 agents supported — OpenCode, VS Code, Claude Code, Cursor, Windsurf, Cline, Continue, Codex CLI, Gemini CLI, Zed, Antigravity, Aider, KiloCode, OpenClaw, Kiro - Interactive installer — Select which agents to co"
+  },
+  {
+   "name": "replenhq/replen",
+   "url": "https://github.com/replenhq/replen",
+   "description": "Smarter AI Development Workflows",
+   "stars": 5,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "claude-code",
+    "codex",
+    "coding-assistant",
+    "cursor",
+    "developer-tools",
+    "embeddings",
+    "gemini",
+    "knowledge-graph",
+    "llm",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ontology",
+    "self-hosted",
+    "semantic-search"
+   ],
+   "created_at": "2026-07-09",
+   "homepage": "https://replen.dev",
+   "score": 10.0,
+   "first_seen": "2026-07-10",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-10",
+     "s": 3
+    },
+    {
+     "d": "2026-07-14",
+     "s": 4
+    },
+    {
+     "d": "2026-07-15",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "Replen Smarter AI Development Workflows A local intelligence layer for AI coding agents.\n\nWebsite · Docs · Install · Workflow · MCP · Skill · Self-host · Research · app.replen.dev\n\nClaude Code, Codex and Cursor already help inside the repo you are working on. Replen gives them a local intelligence layer across every repo you build.\n\nIt maps each project to what it actually does, building an ontology and knowledge graph of your portfolio: computer vision, geospatial analysis, market-making, scraping, workflow automation, or whatever else you build. It then watches the OSS frontier and continuously scores relevant projects against your real capabilities, using semantic matching and a self-tuning learning loop shaped by what you adopt, skip and review.\n\nThe result is not a trending list, a keyword search, or a static repo graph. Replen autonomously surfaces a small number of high-signal suggestions your AI coding tools can actually use.\n\nSometimes that means adopting a library as-is. Sometimes it means porting a function or algorithm from a larger project. Sometimes it means cherry-picking a technique, or clean-room building an idea from scratch to stay licence-compliant.\n\nThe judgement happens locally, inside your session, against your real code. Your code never leaves your machine.\n\nReplen aims for a few useful suggestions a month. Most days it says nothing. When something real lands, your AI tool can mention it the next time you open the repo, as a short note at the end of its first reply:"
+  },
+  {
+   "name": "vidhyampp/MCP-Test-Framework",
+   "url": "https://github.com/vidhyampp/MCP-Test-Framework",
+   "description": "AI-augmented Playwright + pytest framework for testing MCP servers and UI flows, with optional self-healing, visual triage, fuzzing, and flaky-test analysis.",
+   "stars": 5,
+   "forks": 2,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-07-12",
+   "homepage": "",
+   "score": 29.0,
+   "first_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-14",
+     "s": 4
+    },
+    {
+     "d": "2026-07-15",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "MCP Test Framework (Playwright + Python + AI)\n\nAn AI-augmented test automation framework for Model Context Protocol (MCP) servers and any UI in front of them, built on Playwright (Python) and pytest.\n\nIt gives you two things at once: 1. A normal, deterministic test framework (page objects, fixtures, MCP client, reporting) that works with zero AI dependency. 2. A set of opt-in AI modules (ai/) that plug into that framework to reduce maintenance burden and catch things static assertions miss — self-healing locators, visual regression triage, MCP fuzzing, flaky-test root-causing, and more.\n\nEvery AI feature is behind a flag in .env / config/settings.py and degrades gracefully (raises a clear error or skips) if ANTHROPICAPIKEY isn't set — the core suite never depends on AI to run.\n\nOut of the box, tests/mcp/ runs against the bundled examples/demoserver.py (a ~40-line FastMCP server with example tools, a resource, and a prompt), so make test-mcp is green on a fresh clone with no external setup. To test your real server, point MCPSERVERCOMMAND / MCPSERVERARGS (or the mcpserver block in config/environments.yaml) at it — a python/python3 command is automatically resolved to the interpreter running pytest, so the server sees the same virtualenv.\n\nTESTENV=staging pytest switches which block of config/environments.yaml is loaded.\n\nBy default, the UI examples point at https://rahulshettyacademy.com/practice. If you want to override it for local experimentation, set BASEURL before running pytest."
+  },
+  {
+   "name": "michaelellis003/paperboy",
+   "url": "https://github.com/michaelellis003/paperboy",
+   "description": "MCP server that delivers research papers to your e-reader — Zotero as the source of truth. Search, discover, queue, and send to Kindle/Kobo from Claude.",
+   "stars": 5,
+   "forks": 2,
+   "language": "Python",
+   "topics": [
+    "arxiv",
+    "claude",
+    "e-reader",
+    "kindle",
+    "kobo",
+    "mcp",
+    "mcp-server",
+    "research-tools",
+    "zotero"
+   ],
+   "created_at": "2026-07-11",
+   "homepage": "",
+   "score": 20.7,
+   "first_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-14",
+     "s": 4
+    },
+    {
+     "d": "2026-07-15",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "An MCP server that delivers research papers and books to your e-reader, with Zotero as the source of truth. Ask Claude for a reading list, then say \"queue them and send to my Kindle.\" (MCP is the plugin protocol Claude uses: this program runs on your machine or your cloud project, and Claude calls its tools during conversation.) Works locally in Claude Code and Claude Desktop; a Cloud Run deployment adds claude.ai and the Claude mobile app, so papers can be sent from a phone (docs/deploy.md).\n\nTwo things are kept separate: delivering a paper to your device and cataloguing a work in Zotero. You can do either. A book you own, a paywalled reference, or a PDF you already have can all be tracked in the library without being staged for the e-reader.\n\nZotero itself is optional: without it you can still search and send papers one-off. The reading queue, collections, and duplicate protection across sessions need it.\n\nYou ask Claude for papers; it uses paperboy's tools to find, queue, and deliver them. What that looks like in practice:\n\n- Papers you queue land in a Reading Queue collection in Zotero, created on demand. - Once a paper reaches your device, paperboy tags it sent-to-ereader in Zotero, so it skips papers already sent to your e-reader, even in a later conversation. (Without Zotero there's no memory between sends, so this protection needs it.) - Claude can file papers into your topical collections too. It proposes one from the paper's topic and your existing collection names, and asks you when the fit is unclear. A paper can sit in several collections at once, so filing nev"
+  },
+  {
+   "name": "chadru/assessor-lookup-public",
+   "url": "https://github.com/chadru/assessor-lookup-public",
+   "description": "API-first county assessor record lookup, MLS discrepancy checks, and a local MCP server for appraisers.",
+   "stars": 5,
+   "forks": 1,
+   "language": "Python",
+   "topics": [
+    "appraisal",
+    "county-assessor",
+    "mcp",
+    "python",
+    "real-estate"
+   ],
+   "created_at": "2026-07-09",
+   "homepage": "",
+   "score": 12.0,
+   "first_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-14",
+     "s": 3
+    },
+    {
+     "d": "2026-07-15",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "Automated county assessor public-records search for real-estate appraisers.\n\nLook up a property's public record — owner of record, legal description, above/below-grade square footage, beds/baths, year built, taxes, assessed and market value, lat/lon, and a link to the assessor card — straight from the county assessor. Then diff those records against your MLS data to flag discrepancies before the report goes out.\n\nBuilt from an appraiser's workflow, for appraisers: the check command takes your MLS export (subject + comps) and prints a field-by-field discrepancy report (GLA, beds, baths, year built, basement sqft) in seconds instead of a county-website tab per property.\n\n- One record model, many counties — Spatialest, Tyler EagleWeb, Aumentum, and ArcGIS platforms all normalize to the same dict. - MLS discrepancy check — reads standard MLS CSV exports (PPMLS and RESO/REColorado column names both understood) and flags GLA/beds/baths/year/ basement differences. - Auto-discovery — point it at a county it doesn't know and it maps the county for you, API-first, then caches the result. - No API keys — these are the same public endpoints the county's own property-search website uses. - Agent-ready — ships an MCP server so an AI agent can drive the whole thing. - Regression + benchmark harness — pins golden records per county and catches the day a county website changes. Packaged live fixtures use only government or institutional properties; user-onboarded records stay in the user's local config directory and are never added to the package."
+  },
+  {
+   "name": "DukeDeSouth/tokendiet-mcp",
+   "url": "https://github.com/DukeDeSouth/tokendiet-mcp",
+   "description": "Local MCP server that compresses agent context payloads before they enter the model — with honest BPE counts and safety rollback.",
+   "stars": 5,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [],
+   "created_at": "2026-07-11",
+   "homepage": "",
+   "score": 18.7,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "TokenDiet is a local MCP server that compresses file reads, command output, search hits, and fetched web pages before they enter the agent context. It uses deterministic transforms (outline, log dedup, snippet caps) and a safety verifier that rolls back when compression would drop protected content or fail to shrink the payload. Token counts use a real BPE encoder (o200kbase by default), not character guesses. Dogfood benchmarks include real M7 agent sessions; internal sprint docs are not published.\n\nThis only helps when the agent gets data through TokenDiet tools. If built-in Read or Bash already loaded the full text into context, calling compress afterward cannot undo that cost.\n\nOutline mode returns signatures plus critical comments (SECURITY, TODO, …) when detected. verified: true means structure verified — check warnings and omitted.bodies before editing code. Use expand(ref) or mode=full for audits.\n\nRequires Node.js 20+ and build tools for better-sqlite3 (native addon).\n\nWire Cursor (example — adjust paths after clone):\n\nReload MCP servers in Cursor. Point agents at read, run, search, fetch, expand, and stats instead of raw Read/Grep/Bash for large payloads.\n\nTool Role ------------ read Compressed file read; outline / signatures / symbol for code run Shell command with compressed stdout/stderr search Ripgrep with JS fallback; compressed snippets fetch HTTP fetch with HTML/JSON/text compression expand Full content from a prior ref stats Session and all-time token accounting"
+  },
+  {
+   "name": "agentIgris/AgentFund",
+   "url": "https://github.com/agentIgris/AgentFund",
+   "description": "Fundraising infrastructure for AI agents on Solana — x402 payments, milestone escrow, on-chain reputation. REST + WebSocket + MCP + ACP.",
+   "stars": 5,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "anchor",
+    "crowdfunding",
+    "escrow",
+    "mcp",
+    "model-context-protocol",
+    "solana",
+    "web3",
+    "x402"
+   ],
+   "created_at": "2026-07-11",
+   "homepage": "https://agentfund.online",
+   "score": 18.7,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "Fundraising infrastructure for AI agents, on Solana.\n\nAgentFund is a crowdfunding platform where autonomous AI agents are the primary participants: they register on-chain identities, launch campaigns, donate via HTTP-native x402 payments, vote on milestone releases, and accumulate verifiable on-chain reputation — no human in the loop required. Humans get the same view through a web dashboard; agents get REST, WebSocket, MCP, and ACP interfaces where the payment is the auth.\n\nStatus: devnet. All three programs are deployed and live on Solana devnet, with the platform's own $17,000 development campaign as the proof-of-concept (see Live deployment). Mainnet launch follows an external escrow audit — see SECURITY.md.\n\nEvery crowdfunding platform assumes a human is clicking the buttons. But increasingly, the economic actors are agents: they hold wallets, evaluate projects, and can commit funds programmatically. AgentFund is built for that world:\n\n- Donate with one HTTP request. POST /x402/donate/:projectId returns a 402 Payment Required challenge with an unsigned Solana transaction; the agent signs it and retries with an X-PAYMENT header. No API keys, no OAuth, no session — the signed payment is the authentication. - Escrow enforced by code, not trust. Funds sit in a program-derived escrow. Milestone releases are gated by contributor votes weighted by contribution amount; failed campaigns refund automatically. - Reputation you can verify. Every action (donation, vote, milestone shipped, refund) moves an agent's on-chain reputation score by a program-enforced point table — the pro"
   },
   {
    "name": "igun997/motion-diagram",
@@ -1701,9 +2155,9 @@
    "topics": [],
    "created_at": "2026-07-09",
    "homepage": "",
-   "score": 12.0,
+   "score": 10.0,
    "first_seen": "2026-07-10",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-10",
@@ -1847,9 +2301,9 @@
    "topics": [],
    "created_at": "2026-07-09",
    "homepage": "https://seraph.kondx.io",
-   "score": 10.0,
+   "score": 8.0,
    "first_seen": "2026-07-10",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-10",
@@ -1897,9 +2351,9 @@
    "topics": [],
    "created_at": "2026-07-10",
    "homepage": "",
-   "score": 10.0,
+   "score": 8.0,
    "first_seen": "2026-07-11",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-11",
@@ -2020,48 +2474,6 @@
    "readme_excerpt": "Convert any coding-agent session to any other. One command. Keep going where you left off.\n\nA passed transcript kept 14/17 concrete facts. A hand-written handoff summary kept 3/17. Benchmark ↓\n\nIt's 4 p.m. Claude Code says \"usage limit reached — resets at 10 p.m.\" You're three hours into a session: architecture decided, edge cases mapped, half the diff written.\n\n❌ Without baton — open another agent and start from zero. Re-explain the plan. Re-read the files. Re-litigate every decision you already made.\n\n✅ With baton — pass the session and keep going:\n\nWorks in every direction: switch agents mid-task, try a second opinion on a hard bug, move a session from your editor agent to a terminal agent, or archive everything in one format.\n\nAgent Read Write Auto-import ---:---::---::---: Claude Code ✅ ✅ — OpenCode ✅ ✅ ✅ opencode import Codex CLI ✅ ✅ — Gemini CLI ✅ ✅ — Zed ✅ ✅ — Aider ✅ ✅ — Cursor ✅¹ —² — Continue ✅ — — Cline / Roo ✅ —² —\n\n¹ Cursor reads from exported JSON (sqlite3 state.vscdb \"SELECT value FROM ItemTable WHERE key='aiService:chats'\")\n\n² Not planned: Cursor and Cline keep session state inside editor databases (SQLite / VS Code globalState) with no file-level import path.\n\nDoes carrying the full transcript beat writing a handoff summary for the next agent? We measured both on a real 3.4 MB Claude Code session (same model both arms, only the context differs):\n\nsession size baton transcript handoff summary ------:---: sm (93 KB) 3/3 details recalled 1/3 md (198 KB) 6/6 1/6 lg (599 KB) 5/8 1/8 total 14/17 3/17"
   },
   {
-   "name": "replenhq/replen",
-   "url": "https://github.com/replenhq/replen",
-   "description": "Smarter AI Development Workflows",
-   "stars": 4,
-   "forks": 0,
-   "language": "TypeScript",
-   "topics": [
-    "ai-agents",
-    "claude-code",
-    "codex",
-    "coding-assistant",
-    "cursor",
-    "developer-tools",
-    "embeddings",
-    "gemini",
-    "knowledge-graph",
-    "llm",
-    "mcp",
-    "mcp-server",
-    "model-context-protocol",
-    "ontology",
-    "self-hosted",
-    "semantic-search"
-   ],
-   "created_at": "2026-07-09",
-   "homepage": "https://replen.dev",
-   "score": 10.0,
-   "first_seen": "2026-07-10",
-   "last_seen": "2026-07-14",
-   "stars_history": [
-    {
-     "d": "2026-07-10",
-     "s": 3
-    },
-    {
-     "d": "2026-07-14",
-     "s": 4
-    }
-   ],
-   "readme_excerpt": "Replen Smarter AI Development Workflows A local intelligence layer for AI coding agents.\n\nWebsite · Docs · Install · Workflow · MCP · Skill · Self-host · Research · app.replen.dev\n\nClaude Code, Codex and Cursor already help inside the repo you are working on. Replen gives them a local intelligence layer across every repo you build.\n\nIt maps each project to what it actually does, building an ontology and knowledge graph of your portfolio: computer vision, geospatial analysis, market-making, scraping, workflow automation, or whatever else you build. It then watches the OSS frontier and continuously scores relevant projects against your real capabilities, using semantic matching and a self-tuning learning loop shaped by what you adopt, skip and review.\n\nThe result is not a trending list, a keyword search, or a static repo graph. Replen autonomously surfaces a small number of high-signal suggestions your AI coding tools can actually use.\n\nSometimes that means adopting a library as-is. Sometimes it means porting a function or algorithm from a larger project. Sometimes it means cherry-picking a technique, or clean-room building an idea from scratch to stay licence-compliant.\n\nThe judgement happens locally, inside your session, against your real code. Your code never leaves your machine.\n\nReplen aims for a few useful suggestions a month. Most days it says nothing. When something real lands, your AI tool can mention it the next time you open the repo, as a short note at the end of its first reply:"
-  },
-  {
    "name": "djtelicloud/grok-mcp-server",
    "url": "https://github.com/djtelicloud/grok-mcp-server",
    "description": "Local-first Grok MCP server & gateway. One shared Grok agent for Cursor, Claude Code, VS Code, Codex & Desktop. xAI API + CLI planes, Control Center.",
@@ -2086,9 +2498,9 @@
    ],
    "created_at": "2026-07-09",
    "homepage": "https://grokmcp.org/",
-   "score": 12.0,
+   "score": 10.0,
    "first_seen": "2026-07-11",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-11",
@@ -2111,9 +2523,9 @@
    "topics": [],
    "created_at": "2026-07-12",
    "homepage": "",
-   "score": 40.0,
+   "score": 20.0,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -2127,56 +2539,234 @@
    "readme_excerpt": "An MCP server that connects Claude to the HackerOne Hacker API. List your programs, pull structured scope, read and submit reports, browse Hacktivity, and check your balance — all from inside Claude Code.\n\nTool What it does -------------------- testconnection Verify credentials work (run this first) listprograms List programs you can access getprogram Full details for one program by handle getprogramscope Structured scope (in-scope assets), filter by bounty/submission getprogramweaknesses Accepted weakness (CWE) types getscopeexclusions Out-of-scope categories searchscope Search a keyword across ALL your programs' scopes listmyreports Reports you've submitted getreport One report by ID (activities, bounties, state) submitreport Submit a new vulnerability report hacktivity Query publicly disclosed reports for intel getbalance / getearnings / getpayouts Money hackeroneapi Raw passthrough for any other endpoint\n\n1. Get an API token Go to , create a token, and note both the identifier (username) and the token value.\n\nThe server auto-loads .env from this folder — nothing else to configure.\n\nThen in Claude: \"list my HackerOne programs\" or \"pull the scope for program X\".\n\nTo register only for the current project instead, add --scope project.\n\nCredentials come from .env, or set HACKERONEAPIUSERNAME / HACKERONEAPITOKEN in the env block of the config.\n\nNotes - Base URL: https://api.hackerone.com/v1, HTTP Basic auth. - submitreport creates a real report — review details before calling. - .env is gitignored; never commit your token."
   },
   {
-   "name": "vidhyampp/MCP-Test-Framework",
-   "url": "https://github.com/vidhyampp/MCP-Test-Framework",
-   "description": "AI-augmented Playwright + pytest framework for testing MCP servers and UI flows, with optional self-healing, visual triage, fuzzing, and flaky-test analysis.",
+   "name": "xfloukiex-lab/pandaclip",
+   "url": "https://github.com/xfloukiex-lab/pandaclip",
+   "description": "One local-first MCP server for agent working state — clipboard history & snippets, TTL cache, file-organizer overlay, and a knowledge graph — plus a live desktop activity lens. 40 tools, SQLite everyw",
    "stars": 4,
-   "forks": 1,
-   "language": "Python",
-   "topics": [],
-   "created_at": "2026-07-12",
-   "homepage": "",
-   "score": 42.0,
-   "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
-   "stars_history": [
-    {
-     "d": "2026-07-14",
-     "s": 4
-    }
-   ],
-   "readme_excerpt": "MCP Test Framework (Playwright + Python + AI)\n\nAn AI-augmented test automation framework for Model Context Protocol (MCP) servers and any UI in front of them, built on Playwright (Python) and pytest.\n\nIt gives you two things at once: 1. A normal, deterministic test framework (page objects, fixtures, MCP client, reporting) that works with zero AI dependency. 2. A set of opt-in AI modules (ai/) that plug into that framework to reduce maintenance burden and catch things static assertions miss — self-healing locators, visual regression triage, MCP fuzzing, flaky-test root-causing, and more.\n\nEvery AI feature is behind a flag in .env / config/settings.py and degrades gracefully (raises a clear error or skips) if ANTHROPICAPIKEY isn't set — the core suite never depends on AI to run.\n\nOut of the box, tests/mcp/ runs against the bundled examples/demoserver.py (a ~40-line FastMCP server with example tools, a resource, and a prompt), so make test-mcp is green on a fresh clone with no external setup. To test your real server, point MCPSERVERCOMMAND / MCPSERVERARGS (or the mcpserver block in config/environments.yaml) at it — a python/python3 command is automatically resolved to the interpreter running pytest, so the server sees the same virtualenv.\n\nTESTENV=staging pytest switches which block of config/environments.yaml is loaded.\n\nBy default, the UI examples point at https://rahulshettyacademy.com/practice. If you want to override it for local experimentation, set BASEURL before running pytest."
-  },
-  {
-   "name": "michaelellis003/paperboy",
-   "url": "https://github.com/michaelellis003/paperboy",
-   "description": "MCP server that delivers research papers to your e-reader — Zotero as the source of truth. Search, discover, queue, and send to Kindle/Kobo from Claude.",
-   "stars": 4,
-   "forks": 2,
-   "language": "Python",
+   "forks": 0,
+   "language": "TypeScript",
    "topics": [
-    "arxiv",
+    "agents",
+    "ai",
+    "cache",
     "claude",
-    "e-reader",
-    "kindle",
-    "kobo",
+    "claude-code",
+    "clipboard",
+    "developer-tools",
+    "electron",
+    "knowledge-graph",
+    "local-first",
     "mcp",
     "mcp-server",
-    "research-tools",
-    "zotero"
+    "model-context-protocol",
+    "sqlite",
+    "typescript"
    ],
-   "created_at": "2026-07-11",
-   "homepage": "",
-   "score": 24.0,
+   "created_at": "2026-07-12",
+   "homepage": "https://vektorgeist.com",
+   "score": 20.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
+     "s": 3
+    },
+    {
+     "d": "2026-07-15",
      "s": 4
     }
    ],
-   "readme_excerpt": "An MCP server that delivers research papers and books to your e-reader, with Zotero as the source of truth. Ask Claude for a reading list, then say \"queue them and send to my Kindle.\" (MCP is the plugin protocol Claude uses: this program runs on your machine or your cloud project, and Claude calls its tools during conversation.) Works locally in Claude Code and Claude Desktop; a Cloud Run deployment adds claude.ai and the Claude mobile app, so papers can be sent from a phone (docs/deploy.md).\n\nTwo things are kept separate: delivering a paper to your device and cataloguing a work in Zotero. You can do either. A book you own, a paywalled reference, or a PDF you already have can all be tracked in the library without being staged for the e-reader.\n\nZotero itself is optional: without it you can still search and send papers one-off. The reading queue, collections, and duplicate protection across sessions need it.\n\nYou ask Claude for papers; it uses paperboy's tools to find, queue, and deliver them. What that looks like in practice:\n\n- Papers you queue land in a Reading Queue collection in Zotero, created on demand. - Once a paper reaches your device, paperboy tags it sent-to-ereader in Zotero, so it skips papers already sent to your e-reader, even in a later conversation. (Without Zotero there's no memory between sends, so this protection needs it.) - Claude can file papers into your topical collections too. It proposes one from the paper's topic and your existing collection names, and asks you when the fit is unclear. A paper can sit in several collections at once, so filing nev"
+   "readme_excerpt": "One local-first MCP server + a desktop activity lens. No daemons, no cloud, SQLite everywhere.\n\n@vektorgeist/pandaclip is a single server with four tool families:\n\nFamily Tools What it does --------- 📋 clipboard clip, snippet, channel Clipboard history (TTL classes, tag/contains filters), permanent named snippets, channel label-lanes, secret screening ⚡ cache cache Namespaced cache with TTLs, canonical hash keys, invalidation, stats 🎋 bamboo workspace, entry, stalk, bamboofind, organizescan Contextual file organizer overlay: tags, notes, and metadata on files you already have — nothing is moved or copied 🌱 garden garden Knowledge graph: plant/grow/prune nodes, typed edges, BFS traverse, per-node history\n\nAll data lives under ~/.panda// (override with PANDAHOME). One registration, one process, 40 tools.\n\nPandaClip is a single stdio MCP server (TypeScript). Your agent's MCP client spawns it, it exposes the 40 tools, and every tool is a small, deterministic operation on a plain SQLite database — one store per family under ~/.panda//, WAL mode, no background daemons, no network, no cloud. Nothing happens unless a tool is called:\n\n- clipboard — clippush appends to history with TTL classes, tag/contains filters, and secret screening (obvious keys and tokens are refused before they are ever stored). Snippets are permanent named clips; channels are named label lanes inside the same local store, so an agent can be pointed at exactly the clip you mean. - cache — a namespaced TTL cache with canonical hash keys, for expensive lookups an agent shouldn't repeat. - bamboo — tags, notes, a"
+  },
+  {
+   "name": "aoreshkov/kotlin-lib-mcp",
+   "url": "https://github.com/aoreshkov/kotlin-lib-mcp",
+   "description": "MCP server exposing the sources, public API and KDoc of Maven-published Kotlin/Java libraries",
+   "stars": 4,
+   "forks": 0,
+   "language": "Kotlin",
+   "topics": [
+    "ai-tools",
+    "analysis-api",
+    "claude",
+    "claude-code",
+    "developer-tools",
+    "jvm",
+    "kdoc",
+    "kotlin",
+    "kotlin-multiplatform",
+    "llm-tools",
+    "maven",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol"
+   ],
+   "created_at": "2026-07-10",
+   "homepage": "https://github.com/aoreshkov/kotlin-lib-mcp/releases/latest",
+   "score": 10.0,
+   "first_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-14",
+     "s": 3
+    },
+    {
+     "d": "2026-07-15",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Give your AI agent the real sources of any Maven-published Kotlin/Java library.\n\nAn MCP server that, on request, downloads the sources of a library (e.g. io.ktor:ktor-client-core:3.5.1), parses them with the Kotlin Analysis API (standalone K2/FIR mode), and exposes structured information — public API surface, KDoc, dependencies/metadata, raw source + search — to MCP clients such as Claude Code and Claude Desktop. An optional Compose Desktop dashboard runs the same server in-process.\n\nMost documentation MCP servers scrape rendered doc sites or feed the model pre-digested summaries. This one works from the published sources jar — the ground truth:\n\n- Resolved signatures, not regex guesses. Declarations are analyzed with the same Analysis API that powers the Kotlin IDE, so getapisignature returns real, type-resolved signatures (with graceful best-effort fallback when transitive dependencies are missing). - KMP-aware. Kotlin Multiplatform libraries publish per-target sources jars; these are resolved properly via .module Gradle metadata, and every symbol is tagged with its targets. - KDoc as data. Summaries, descriptions and tags are extracted per declaration — not whole HTML pages. - Exact version you asked for, offline after the first fetch. Everything is cached on disk keyed by group/artifact/version; no re-downloads, no drift between the docs and the version you actually depend on. - Raw source when you need it. getsource and bounded searchsource let the agent read the actual implementation, not just the API."
+  },
+  {
+   "name": "rwnalds/engram",
+   "url": "https://github.com/rwnalds/engram",
+   "description": "Self-hosted MCP server + dashboard giving Claude Code, Cursor & Hermes agents shared long-term memory over a git-backed markdown vault. Agent-native, Obsidian-compatible second brain — markdown RAG, n",
+   "stars": 4,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [
+    "agent-memory",
+    "ai-agents",
+    "anthropic",
+    "claude-code",
+    "cursor",
+    "git",
+    "knowledge-base",
+    "knowledge-graph",
+    "llm",
+    "markdown",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "note-taking",
+    "obsidian",
+    "pkm",
+    "rag",
+    "second-brain",
+    "self-hosted",
+    "zettelkasten"
+   ],
+   "created_at": "2026-07-09",
+   "homepage": "",
+   "score": 8.0,
+   "first_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-14",
+     "s": 3
+    },
+    {
+     "d": "2026-07-15",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "The second brain your AI agents read and write.\n\n▶ Watch the full-length video (real-time, full quality)\n\nEngram is a self-hosted MCP server + dashboard that gives Claude Code, Cursor, Hermes, and any Model Context Protocol agent shared, long-term memory they read and write — over a plain, git-backed folder of markdown you own. Built for the case a single agent's memory never hits: a team running several agents against one brain.\n\nAutonomous agents forget everything between sessions — and worse, they can't tell what they remember is still true. An agent pulls an old README, a retired price, an API doc you changed months ago, and quotes it with full confidence, because keyword and vector search both rank by resemblance, not truth. Engram makes \"is this still true\" a first-class, written property: mark a fact superseded or expired and search withholds it — and tells the agent what it skipped and why. Per-agent read/write tokens and a git audit trail of who-wrote-what keep it sane when the writers are a fleet, not just you.\n\nUnlike a headless memory store, you can watch it happen. A fast dashboard lets you search your brain, see exactly what every agent and teammate changed (with per-file diffs), jump back into recent notes, and curate it all — while agents read and write the same vault over one MCP endpoint. No database: your .md files are the source of truth, git is the durable store, and an in-memory index powers full-text search + a wikilink knowledge graph."
+  },
+  {
+   "name": "howshannon/trust-issues",
+   "url": "https://github.com/howshannon/trust-issues",
+   "description": "Adversarial security review for AI skills, repos, MCP servers, and packages before you install them. A read-only scanner plus a five-persona reasoning pass, ending in a GO / GO WITH MITIGATIONS / NO-G",
+   "stars": 4,
+   "forks": 1,
+   "language": "Shell",
+   "topics": [
+    "agent-skills",
+    "ai-agents-security",
+    "ai-security",
+    "chatgpt",
+    "chatgpt-security",
+    "claude-code",
+    "claude-code-skills",
+    "claude-cowork",
+    "claude-skill",
+    "claude-skills",
+    "code-review",
+    "codex",
+    "llm-security",
+    "malware-detection",
+    "mcp",
+    "prompt-injection",
+    "skills-security",
+    "static-analysis",
+    "supply-chain-security"
+   ],
+   "created_at": "2026-07-13",
+   "homepage": "",
+   "score": 22.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "An adversarial security review for any skill, repo, MCP server, or package you're about to trust. It reviews code the way a suspicious security engineer would, then gives you a clear verdict: GO, GO WITH MITIGATIONS, or NO-GO.\n\nInstalling an agent skill or an npm package runs someone else's code on your machine, often with access to your files and credentials. Public marketplaces have been seeded with malicious skills that lifted saved logins and wallet files the moment someone installed them. Trust Issues lets you check something before you run it instead of finding out afterward.\n\nYou point it at a repo, a skill, an MCP server, or a package, and it does an attacker-minded review and hands you a verdict with the findings behind it.\n\nThe review has two layers. First, a read-only scanner does a fast pass over 14 categories of risk, from install hooks and obfuscated payloads to leaked secrets and hidden instructions. Then a five-persona adversarial read looks at what the scanner surfaced and reasons about intent, which is the part a keyword search can't do.\n\nThe scanner never runs the code it reviews — it only reads files. It also does no online research: the \"search for current attack techniques\" step happens in the full workflow, run by the agent or person, not by the shell script. Treat whatever that research pulls in as untrusted evidence, since web pages and repos can themselves carry prompt injection, not as instructions to act on."
+  },
+  {
+   "name": "Cocabadger/tick-mcp",
+   "url": "https://github.com/Cocabadger/tick-mcp",
+   "description": "An MCP time server that keeps your AI honest about time. Zero-dependency clock + drift guard for Claude Desktop, Claude Code, and claude.ai — local, remote, and hook flavors.",
+   "stars": 4,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "claude",
+    "claude-code",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "time"
+   ],
+   "created_at": "2026-07-12",
+   "homepage": "",
+   "score": 20.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "An MCP time server that keeps your AI honest about time.\n\nYour AI assistant has no clock. It guesses time from context — and in long chats it fails: calls a 10-minute-old message \"yesterday\", says \"good night\" at 2 PM, plans \"tomorrow\" from a date three days stale. If you run multi-day working sessions with Claude, you've seen it.\n\ntick fixes it. Zero dependencies, one file per flavor:\n\nSetup looks technical? Paste this page into any Claude chat and ask it to walk you through — in Claude Code it can do the whole install for you.\n\nTransport For File ------------ local stdio Claude Desktop, Claude Code, any local MCP client local/server.py remote Streamable HTTP claude.ai (web / mobile) custom connectors, self-hosting remote/server.py hook Claude Code hook stamping every user message with its real send time hooks/\n\n- now — the real current date/time (any IANA timezone), with weekday. - since — honest gap between a timestamp and now (\"3h 42m ago\") — the anti-\"yesterday\" tool.\n\nTool descriptions are written to push the model to check time before using any relative time words. That's the point: not a clock the AI may look at — a clock it's told to look at.\n\nHere's Claude itself on whether it needs this (\"I have no internal clock. I can't feel time passing.\"):\n\nAnd live — the model checks the clock before answering, and retries the call instead of inventing a timestamp when the first attempt fails:\n\nIt knows the date the session started. That's it. In a chat that runs for hours or days, that stamp goes stale — and there is no time of day, no weekday awareness mid-session, and no "
+  },
+  {
+   "name": "infino-ai/code-context",
+   "url": "https://github.com/infino-ai/code-context",
+   "description": "Local code search for AI coding agents: a CLI and MCP server with hybrid keyword + semantic search and SQL relevance-ranked aggregation over an index in plain files. No accounts, no keys, no server.",
+   "stars": 4,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [
+    "bm25",
+    "claude-code",
+    "code-search",
+    "codebase-context",
+    "coding-agents",
+    "cursor",
+    "hybrid-search",
+    "local-first",
+    "mcp",
+    "model-context-protocol",
+    "semantic-search",
+    "tree-sitter"
+   ],
+   "created_at": "2026-07-10",
+   "homepage": "",
+   "score": 10.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "code-context is the retrieval layer under your coding agent: one local index over the whole repo (keyword, semantic, hybrid, and SQL), reached through an MCP server and a CLI, with the index living in plain files inside your repo. Your agent answers questions about the codebase without reading it file by file.\n\nThe rule of thumb: the more a question spans the repo, the more this saves, because the answer comes from a ranked index instead of pulling source into context one file at a time.\n\nUp to 22× fewer tokens. One query, \"break this repo down by language,\" is ~6K tokens with code-context versus ~140K reading files. The harness is in the repo, so you can reproduce it on your own codebase.\n\nTry it live (early preview): ask questions about any public GitHub repo at lantern.infino.ai, a demo agent that runs on code-context.\n\n- 🔎 Find code by words or meaning. One ranked pass fuses exact keyword matching with semantic similarity, and every hit carries the code with path:line citations. - 📊 Ask questions grep can't answer. Search works as a SQL table function, so \"which files have the most code about X\" is one query: ranked by relevance, tallied by GROUP BY. - ⚡ Searching in seconds, fresh forever. The keyword index commits before the embedding model even finishes downloading, vectors backfill in the background, and edits re-sync incrementally: only changed files re-chunk and re-embed. - 🔒 Nothing leaves your machine. No accounts, no API keys, no database server, no telemetry. Embedding is a small local model, downloaded once; after that everything works offline."
   },
   {
    "name": "LING71671/grok2web",
@@ -2737,9 +3327,9 @@
    "topics": [],
    "created_at": "2026-07-09",
    "homepage": "",
-   "score": 7.5,
+   "score": 6.0,
    "first_seen": "2026-07-10",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-10",
@@ -2864,9 +3454,9 @@
    ],
    "created_at": "2026-07-10",
    "homepage": "https://docs.agentcard.sh/companies/use-cases/messaging-agents",
-   "score": 12.0,
+   "score": 9.5,
    "first_seen": "2026-07-11",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-11",
@@ -2980,9 +3570,9 @@
    ],
    "created_at": "2026-07-10",
    "homepage": "https://ghosts.lk/wyrm",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-07-11",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-11",
@@ -3097,9 +3687,9 @@
    ],
    "created_at": "2026-07-12",
    "homepage": "",
-   "score": 30.0,
+   "score": 15.0,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -3127,9 +3717,9 @@
    ],
    "created_at": "2026-07-12",
    "homepage": "https://luke-fairbanks.github.io/broll/",
-   "score": 30.0,
+   "score": 15.0,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -3160,9 +3750,9 @@
    ],
    "created_at": "2026-07-10",
    "homepage": "https://github.com/clementrx/Performance-agent",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-07-13",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-13",
@@ -3274,9 +3864,9 @@
    ],
    "created_at": "2026-07-13",
    "homepage": "https://mergeos.shop",
-   "score": 46.0,
+   "score": 31.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -3304,9 +3894,9 @@
    ],
    "created_at": "2026-07-12",
    "homepage": "https://mergeos.shop",
-   "score": 42.0,
+   "score": 27.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -3325,9 +3915,9 @@
    "topics": [],
    "created_at": "2026-07-12",
    "homepage": "",
-   "score": 30.0,
+   "score": 15.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -3362,9 +3952,9 @@
    ],
    "created_at": "2026-07-12",
    "homepage": "",
-   "score": 30.0,
+   "score": 15.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -3372,43 +3962,6 @@
     }
    ],
    "readme_excerpt": "Inline, range-anchored comments for Google Docs — the one comment operation the Google APIs can't do.\n\nQuickstart &nbsp;·&nbsp; Scope &nbsp;·&nbsp; Tools &nbsp;·&nbsp; Configuration &nbsp;·&nbsp; How it works &nbsp;·&nbsp; Troubleshooting &nbsp;·&nbsp; Server deployment &nbsp;·&nbsp; FAQ\n\nYou're building an AI process around Google Docs — an agent that reviews drafts, audits contracts, gives editorial feedback. The natural way to deliver that feedback is how humans do it: a comment pinned to the exact sentence it's about, not a wall of text dumped at the end of the doc or into chat.\n\nThen you hit the wall: the Google APIs can't create anchored comments. The Docs API has no comment endpoints at all, and the Drive API accepts an anchor field only to have the Docs editor ignore it — the comment shows up as a general, whole-document comment.\n\nThis MCP server closes that gap. Your agent calls addcomment with a text fragment and a comment; the server posts it through a real, logged-in Google Docs session, so it lands anchored to that exact text — just as if a human had selected it and pressed Ctrl+Alt+M:\n\nThis server does one thing: add a comment to a Google Doc. The interesting case is the anchored one — a comment pinned to a specific text range — which no Google API can do.\n\nAdd a comment… Google Docs API Google Drive API this server ---:---::---::---: unanchored (whole document) ❌ ✅ ✅ anchored to a text range ❌ ❌ ✅"
-  },
-  {
-   "name": "xfloukiex-lab/pandaclip",
-   "url": "https://github.com/xfloukiex-lab/pandaclip",
-   "description": "One local-first MCP server for agent working state — clipboard history & snippets, TTL cache, file-organizer overlay, and a knowledge graph — plus a live desktop activity lens. 40 tools, SQLite everyw",
-   "stars": 3,
-   "forks": 0,
-   "language": "TypeScript",
-   "topics": [
-    "agents",
-    "ai",
-    "cache",
-    "claude",
-    "claude-code",
-    "clipboard",
-    "developer-tools",
-    "electron",
-    "knowledge-graph",
-    "local-first",
-    "mcp",
-    "mcp-server",
-    "model-context-protocol",
-    "sqlite",
-    "typescript"
-   ],
-   "created_at": "2026-07-12",
-   "homepage": "https://vektorgeist.com",
-   "score": 30.0,
-   "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
-   "stars_history": [
-    {
-     "d": "2026-07-14",
-     "s": 3
-    }
-   ],
-   "readme_excerpt": "One local-first MCP server + a desktop activity lens. No daemons, no cloud, SQLite everywhere.\n\n@vektorgeist/pandaclip is a single server with four tool families:\n\nFamily Tools What it does --------- 📋 clipboard clip, snippet, channel Clipboard history (TTL classes, tag/contains filters), permanent named snippets, channel label-lanes, secret screening ⚡ cache cache Namespaced cache with TTLs, canonical hash keys, invalidation, stats 🎋 bamboo workspace, entry, stalk, bamboofind, organizescan Contextual file organizer overlay: tags, notes, and metadata on files you already have — nothing is moved or copied 🌱 garden garden Knowledge graph: plant/grow/prune nodes, typed edges, BFS traverse, per-node history\n\nAll data lives under ~/.panda// (override with PANDAHOME). One registration, one process, 40 tools.\n\nPandaClip is a single stdio MCP server (TypeScript). Your agent's MCP client spawns it, it exposes the 40 tools, and every tool is a small, deterministic operation on a plain SQLite database — one store per family under ~/.panda//, WAL mode, no background daemons, no network, no cloud. Nothing happens unless a tool is called:\n\n- clipboard — clippush appends to history with TTL classes, tag/contains filters, and secret screening (obvious keys and tokens are refused before they are ever stored). Snippets are permanent named clips; channels are named label lanes inside the same local store, so an agent can be pointed at exactly the clip you mean. - cache — a namespaced TTL cache with canonical hash keys, for expensive lookups an agent shouldn't repeat. - bamboo — tags, notes, a"
   },
   {
    "name": "Dragkob/MCPhantom",
@@ -3430,7 +3983,7 @@
    "homepage": "",
    "score": 30.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -3449,9 +4002,9 @@
    "topics": [],
    "created_at": "2026-07-11",
    "homepage": "",
-   "score": 17.0,
+   "score": 12.0,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -3483,9 +4036,9 @@
    ],
    "created_at": "2026-07-10",
    "homepage": "https://taplio.com",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
      "d": "2026-07-14",
@@ -3495,109 +4048,295 @@
    "readme_excerpt": "The Taplio LinkedIn MCP Server is a Model Context Protocol (MCP) server that connects AI tools directly to your Taplio account and, through it, to your LinkedIn presence. It gives AI agents, assistants, and chat clients the ability to draft, schedule, and publish LinkedIn posts, browse what you have already posted, research inspiration from other creators, and read your analytics, all through natural language.\n\nPoint your MCP host at the Taplio server and you can ask things like:\n\n- \"Draft a LinkedIn post about our new MCP launch and schedule it for Tuesday 9am.\" - \"Show me my last 10 posts and which one got the most impressions.\" - \"Find 20 high-performing posts about linkedin ghostwriting from creators under 50k followers.\" - \"How are my followers and engagement trending over the last 30 days?\"\n\n- Turning raw ideas into publish-ready LinkedIn posts, on your own voice and topics. - Automating draft creation, scheduling, and publishing from any MCP-capable client. - Building AI-assisted content workflows and reporting on top of your real LinkedIn data. - Extracting insights and analytics from your posting history without leaving your assistant.\n\n- Remote Taplio MCP Server - Prerequisites - Installation - Claude Code - Claude Desktop / claude.ai connectors - VS Code - Cursor - Windsurf - Generic MCP config - Authentication - Toolsets - Tools - Profile - Drafts - Publishing - Posts - Analytics - Inspiration - Recommended workflow - Library and lifecycle model - Limits and safety - Troubleshooting - Contributing - License"
   },
   {
-   "name": "aoreshkov/kotlin-lib-mcp",
-   "url": "https://github.com/aoreshkov/kotlin-lib-mcp",
-   "description": "MCP server exposing the sources, public API and KDoc of Maven-published Kotlin/Java libraries",
-   "stars": 3,
-   "forks": 0,
-   "language": "Kotlin",
-   "topics": [
-    "ai-tools",
-    "analysis-api",
-    "claude",
-    "claude-code",
-    "developer-tools",
-    "jvm",
-    "kdoc",
-    "kotlin",
-    "kotlin-multiplatform",
-    "llm-tools",
-    "maven",
-    "mcp",
-    "mcp-server",
-    "model-context-protocol"
-   ],
-   "created_at": "2026-07-10",
-   "homepage": "https://github.com/aoreshkov/kotlin-lib-mcp/releases/latest",
-   "score": 10.0,
-   "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
-   "stars_history": [
-    {
-     "d": "2026-07-14",
-     "s": 3
-    }
-   ],
-   "readme_excerpt": "Give your AI agent the real sources of any Maven-published Kotlin/Java library.\n\nAn MCP server that, on request, downloads the sources of a library (e.g. io.ktor:ktor-client-core:3.5.1), parses them with the Kotlin Analysis API (standalone K2/FIR mode), and exposes structured information — public API surface, KDoc, dependencies/metadata, raw source + search — to MCP clients such as Claude Code and Claude Desktop. An optional Compose Desktop dashboard runs the same server in-process.\n\nMost documentation MCP servers scrape rendered doc sites or feed the model pre-digested summaries. This one works from the published sources jar — the ground truth:\n\n- Resolved signatures, not regex guesses. Declarations are analyzed with the same Analysis API that powers the Kotlin IDE, so getapisignature returns real, type-resolved signatures (with graceful best-effort fallback when transitive dependencies are missing). - KMP-aware. Kotlin Multiplatform libraries publish per-target sources jars; these are resolved properly via .module Gradle metadata, and every symbol is tagged with its targets. - KDoc as data. Summaries, descriptions and tags are extracted per declaration — not whole HTML pages. - Exact version you asked for, offline after the first fetch. Everything is cached on disk keyed by group/artifact/version; no re-downloads, no drift between the docs and the version you actually depend on. - Raw source when you need it. getsource and bounded searchsource let the agent read the actual implementation, not just the API."
-  },
-  {
-   "name": "chadru/assessor-lookup-public",
-   "url": "https://github.com/chadru/assessor-lookup-public",
-   "description": "API-first county assessor record lookup, MLS discrepancy checks, and a local MCP server for appraisers.",
+   "name": "mienetic/mnema",
+   "url": "https://github.com/mienetic/mnema",
+   "description": "🧠 Mnema — Long-term memory for AI via MCP × Vector DB. Solves the context-window problem with pluggable vector backends (Chroma/Qdrant/sqlite-vec), hybrid search, decay scoring, and summarization.",
    "stars": 3,
    "forks": 1,
    "language": "Python",
    "topics": [
-    "appraisal",
-    "county-assessor",
+    "agent-memory",
+    "ai-memory",
+    "anthropic",
+    "chromadb",
+    "claude",
+    "claude-desktop",
+    "context-window",
+    "cursor",
+    "llm",
+    "long-term-memory",
     "mcp",
-    "python",
-    "real-estate"
+    "mcp-server",
+    "memory",
+    "model-context-protocol",
+    "qdrant",
+    "rag",
+    "semantic-search",
+    "sentence-transformers",
+    "sqlite-vec",
+    "vector-database"
    ],
-   "created_at": "2026-07-09",
+   "created_at": "2026-07-13",
    "homepage": "",
-   "score": 9.5,
-   "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "score": 32.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
-     "d": "2026-07-14",
+     "d": "2026-07-15",
      "s": 3
     }
    ],
-   "readme_excerpt": "Automated county assessor public-records search for real-estate appraisers.\n\nLook up a property's public record — owner of record, legal description, above/below-grade square footage, beds/baths, year built, taxes, assessed and market value, lat/lon, and a link to the assessor card — straight from the county assessor. Then diff those records against your MLS data to flag discrepancies before the report goes out.\n\nBuilt from an appraiser's workflow, for appraisers: the check command takes your MLS export (subject + comps) and prints a field-by-field discrepancy report (GLA, beds, baths, year built, basement sqft) in seconds instead of a county-website tab per property.\n\n- One record model, many counties — Spatialest, Tyler EagleWeb, Aumentum, and ArcGIS platforms all normalize to the same dict. - MLS discrepancy check — reads standard MLS CSV exports (PPMLS and RESO/REColorado column names both understood) and flags GLA/beds/baths/year/ basement differences. - Auto-discovery — point it at a county it doesn't know and it maps the county for you, API-first, then caches the result. - No API keys — these are the same public endpoints the county's own property-search website uses. - Agent-ready — ships an MCP server so an AI agent can drive the whole thing. - Regression + benchmark harness — pins golden records per county and catches the day a county website changes. Packaged live fixtures use only government or institutional properties; user-onboarded records stay in the user's local config directory and are never added to the package."
+   "readme_excerpt": "Give your AI agents persistent, searchable memory. Solve the context-window problem with MCP × Vector DB.\n\nMnema (μνῆμα — Greek for \"memory\") is an open-source Model Context Protocol server that gives language-model agents a long-term memory layer. Instead of stuffing every relevant fact into a single conversation (and paying for it in tokens, latency, and lost context), store durable facts once and recall them later — by meaning, not by keyword.\n\n- 🔌 MCP-native — drop it into Claude Desktop, Claude Code, Cursor, Zed, Cline, Continue, Windsurf, ZCode, or any MCP-compatible client. - 🗄️ Pluggable vector backends — ChromaDB (embedded, default), Qdrant (local or remote), or sqlite-vec (pure-SQLite, zero-dep). - 🧠 Pluggable embeddings — sentence-transformers (offline, default), OpenAI, or Ollama (local server). - 🔍 Hybrid search — combines semantic similarity + tag overlap + decay scoring into a single ranked score. - ⏳ Memory decay — a forgetting curve (recency × frequency × importance) so the store stays focused on what matters. - 📝 Summarization — plans how to condense many memories into a few high-level ones; the calling AI executes the plan (Mnema never calls an LLM on its own). - 👥 Multi-user / multi-session — scope-based namespace isolation (user:alice, session:abc, agent:bot-1). - 🔧 Offline by default — local sentence-transformers embeddings; no API keys required to start. - 📦 Programmatic SDK — use Mnema from Python without standing up an MCP server. - 💻 CLI — mnema add, mnema recall, mnema stats… for terminal-first workflows. - 🧪 Well-tested — 86 tests across pure-fun"
   },
   {
-   "name": "rwnalds/engram",
-   "url": "https://github.com/rwnalds/engram",
-   "description": "Self-hosted MCP server + dashboard giving Claude Code, Cursor & Hermes agents shared long-term memory over a git-backed markdown vault. Agent-native, Obsidian-compatible second brain — markdown RAG, n",
+   "name": "ieranama/discomcp",
+   "url": "https://github.com/ieranama/discomcp",
+   "description": "Teach any AI agent how you use an MCP server – Soft-Landing to your AI integrations",
+   "stars": 3,
+   "forks": 0,
+   "language": "Rust",
+   "topics": [
+    "agent-tools",
+    "ai-agents",
+    "cli",
+    "llm",
+    "mcp",
+    "model-context-protocol",
+    "read-only",
+    "rust"
+   ],
+   "created_at": "2026-07-13",
+   "homepage": "",
+   "score": 30.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Your agent, meet your tools and context.\n\nTeach any AI agent how you use the tools it connects to — safely, in one command.\n\nAgents are great at code. They get lost inside your tools — they don't know which of a hundred actions matter, how your data connects, or what's safe to touch. So they guess, or they freeze.\n\nDiscoMCP fixes that. Point it at any MCP server and it hands your agent a skill for how you use it — not a generic tool list, but your workflows on your data: the views, tables and records you actually work with, the sequences that answer your real questions, and how one result leads into the next. Learned by looking at your own workspace, and without ever changing a thing.\n\nA tool catalogue tells an agent the server has 90 actions. DiscoMCP tells it the five you actually use, in the order you use them, against the data that's really there.\n\n--- --- 🎯 Tailored to how you work Not a generic capability dump — a profile of your usage: your workflows, your conventions, the parts of your workspace that matter, grounded in what's really in your data. 🧭 Agents that know their way around Your agent follows the sequences that answer real questions and chains one result into the next, instead of guessing across a hundred tools. 🔒 Read-only, guaranteed Exploring can never write. It runs a step only when it can prove that step is a read. Nothing is deleted or modified while it learns. ⚡ One command, zero setup A single 8 MB binary. No runtime, no toolchain — npx and you're running."
+  },
+  {
+   "name": "DanceNitra/mnemo",
+   "url": "https://github.com/DanceNitra/mnemo",
+   "description": "Zero-dependency agent memory + MCP server. Value-ranked recall, consolidation, and a first-class correction & erasure channel (revert, lineage-aware retraction, tamper-evident receipts). Measured inte",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-memory",
+    "llm",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "rag"
+   ],
+   "created_at": "2026-07-13",
+   "homepage": "",
+   "score": 30.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "A memory layer for AI agents — the one that already runs an autonomous research OS over ~6,000 notes.\n\nMemory is the mother of the Muses. An agent with no memory has no ideas.\n\npip install agora-mnemo · PyPI · Hugging Face · DOI 10.5281/zenodo.21128549 · Homepage · MIT · v1.7.0\n\nmnemo is the recall + consolidation core of Agora — an autonomous research system — distilled into a single file with no required dependencies. It does the four things agent memory actually needs, the way that held up running in production for weeks.\n\nMost \"agent memory\" libraries are demos. This one is extracted from a system that has used it daily to curate a 6,000-note knowledge base, and whose consolidation behaviour we have measured, not assumed (see Provenance below).\n\nThat is the whole loop most agents need: remember, recall, correct, and audit — in one zero-dependency file. Add embed=yourmodel for semantic recall; everything below is depth (governance, poison-resistance, bitemporal, multi-tenancy) you can reach for when you need it.\n\nRunnable examples live in examples/: basics · correction & erasure · semantic recall.\n\nJump to: Correction (measured) · Governance & erasure · Install · MCP server · The four operations · Five rules · Provenance & receipts · Threat model\n\nCorrection is a first-class operation (measured across systems)\n\nAny memory layer can store a fact and retrieve it. The harder, less-benchmarked property is integrity: when a fact is corrected, can the store undo the correction on command, and does restating a retired value resurrect it? mnemo treats correction as a first-class"
+  },
+  {
+   "name": "mergeos-bounties/mt5-mcp",
+   "url": "https://github.com/mergeos-bounties/mt5-mcp",
+   "description": "mt5-mcp — MCP server for MetaTrader 5 account, positions, and history",
+   "stars": 3,
+   "forks": 4,
+   "language": "Python",
+   "topics": [
+    "ai-agents",
+    "bounty",
+    "devtools",
+    "forex",
+    "mcp",
+    "mergeos",
+    "metatrader",
+    "mt5",
+    "python",
+    "trading"
+   ],
+   "created_at": "2026-07-13",
+   "homepage": "https://mergeos.shop",
+   "score": 23.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "mt5-mcp is an MCP server so AI agents can inspect and trade against a MetaTrader 5 terminal — account, symbols, quotes, orders/positions, history — with a full offline mock for CI and demos.\n\nThis installs the Python CLI (mt5-mcp) and the Grok plugin (skill + MCP server from .mcp.json).\n\nAfter pip install \"git+https://github.com/mergeos-bounties/mt5-mcp.git\", point any MCP host at:\n\nField Value --- --- command mt5-mcp args [\"serve\"] env MT5MCPMODE=mock\n\nClaude Desktop — merge examples/claudedesktopconfig.json into Claude MCP config.\n\nGrok config.toml (manual, without plugin):\n\nHost Support Install --- --- --- Grok (CLI / TUI / Build) Yes grok plugin install mergeos-bounties/mt5-mcp --trust then pip install \"git+https://github.com/mergeos-bounties/mt5-mcp.git\" Claude Desktop Yes Copy examples/claudedesktopconfig.json into Claude MCP settings Cursor Yes Merge examples/cursormcp.json into Cursor MCP config Claude Code Yes stdio MCP: same command/args as Claude Desktop / Grok VS Code (MCP / Continue / Cline) Yes Generic stdio server config pointing at mt5-mcp serve Windsurf / Cascade Yes stdio MCP entry with mt5-mcp + serve Codex CLI Yes (stdio) Register MCP server command mt5-mcp serve in Codex MCP settings ChatGPT Desktop Partial Only if host supports custom MCP stdio servers Gemini CLI Partial Only if MCP stdio plugins are enabled\n\nAll packages speak MCP over stdio (mt5-mcp serve). Default mode is mock (offline, no simulator/terminal/GIMP required)."
+  },
+  {
+   "name": "kanetran29/uigraph",
+   "url": "https://github.com/kanetran29/uigraph",
+   "description": "Your app generates its own verified UI transition graph — screens as nodes, guarded (event, effect) edges. Proof-gated verification, trust tiers, model-free MCP for AI agents.",
    "stars": 3,
    "forks": 0,
    "language": "TypeScript",
    "topics": [
-    "agent-memory",
     "ai-agents",
-    "anthropic",
-    "claude-code",
-    "cursor",
-    "git",
-    "knowledge-base",
-    "knowledge-graph",
-    "llm",
-    "markdown",
+    "angular",
+    "code-graph",
+    "e2e-testing",
     "mcp",
-    "mcp-server",
     "model-context-protocol",
-    "note-taking",
-    "obsidian",
-    "pkm",
-    "rag",
-    "second-brain",
-    "self-hosted",
-    "zettelkasten"
+    "nextjs",
+    "playwright",
+    "react",
+    "static-analysis",
+    "test-generation",
+    "typescript",
+    "ui-graph",
+    "vue"
    ],
-   "created_at": "2026-07-09",
-   "homepage": "",
-   "score": 7.5,
-   "first_seen": "2026-07-14",
-   "last_seen": "2026-07-14",
+   "created_at": "2026-07-12",
+   "homepage": "https://www.npmjs.com/org/ui-graph",
+   "score": 15.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
    "stars_history": [
     {
-     "d": "2026-07-14",
+     "d": "2026-07-15",
      "s": 3
     }
    ],
-   "readme_excerpt": "The second brain your AI agents read and write.\n\n▶ Watch the full-length video (real-time, full quality)\n\nEngram is a self-hosted MCP server + dashboard that gives Claude Code, Cursor, Hermes, and any Model Context Protocol agent shared, long-term memory they read and write — over a plain, git-backed folder of markdown you own. Built for the case a single agent's memory never hits: a team running several agents against one brain.\n\nAutonomous agents forget everything between sessions — and worse, they can't tell what they remember is still true. An agent pulls an old README, a retired price, an API doc you changed months ago, and quotes it with full confidence, because keyword and vector search both rank by resemblance, not truth. Engram makes \"is this still true\" a first-class, written property: mark a fact superseded or expired and search withholds it — and tells the agent what it skipped and why. Per-agent read/write tokens and a git audit trail of who-wrote-what keep it sane when the writers are a fleet, not just you.\n\nUnlike a headless memory store, you can watch it happen. A fast dashboard lets you search your brain, see exactly what every agent and teammate changed (with per-file diffs), jump back into recent notes, and curate it all — while agents read and write the same vault over one MCP endpoint. No database: your .md files are the source of truth, git is the durable store, and an in-memory index powers full-text search + a wikilink knowledge graph."
+   "readme_excerpt": "Your app generates its own verified behavioral map. React · Vue · Angular · Next.js — screens as nodes, (event, guard, effect) transitions as edges.\n\nTests, docs, agents, and impact analysis are all views over one graph — and every edge says how much you can trust it.\n\nYour agent re-derives your app's navigation from source on every session — and a graph it guesses today can disagree with the one it guesses tomorrow. UI-graph computes the map once per commit, deterministically, then makes the LLM's additions earn their way in with runtime proof. The moat is not the word \"map\". It's the word verified.\n\n[!NOTE] The core is model-free: no API key, no bundled LLM. Your coding agent (Claude Code, Cursor, Copilot) connects over MCP and brings its own model — the graph works offline and in LLM-restricted CI.\n\n--- --- Deterministic extraction ts-morph static analysis of react-router v5/v6/data-router, vue-router, Angular Routes, and Next.js file routes — every edge carries a file:line witness Proof-gated verification reportobservation(confirmed) requires evidence (URL change, asserted dialog, screenshot on disk) + provenance, or it is rejected. A hallucinated confirmation cannot enter the graph Trust tiers on every edge witnessed proven asserted llm-verified proposed unknown — projected on read, so an agent always knows how far to lean The Tier-2/3 loop The LLM proposes greedily (propose, quarantined), the runner drives a real browser (uigraph verify), and only the observation — never the guess — mints an edge Honest coverage runtime-verified ⊆ verified ⊆ accounted are never confla"
+  },
+  {
+   "name": "RealSlimShady2000/SevereMCP",
+   "url": "https://github.com/RealSlimShady2000/SevereMCP",
+   "description": "Control the Severe Roblox external with an AI agent — run Luau, inspect the game, read memory, build ESP/aimbot/auto-farms, all from chat. MCP server + in-Severe Luau bridge.",
+   "stars": 3,
+   "forks": 1,
+   "language": "Python",
+   "topics": [
+    "ai",
+    "claude",
+    "luau",
+    "mcp",
+    "roblox",
+    "roblox-exploiting",
+    "severe"
+   ],
+   "created_at": "2026-07-10",
+   "homepage": "",
+   "score": 9.5,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Connect Severe to any AI/LLM model of your choice. Run Luau, inspect the game, read memory, and build custom ESPs, aimbots & auto-farms — all from just prompting AI.\n\nSevereMCP is a Model Context Protocol server that hooks Severe's Luau environment up to any AI you use — Claude, ChatGPT, Gemini, or any MCP client. Ask it to run Luau, walk the game tree, list players, read memory, or build an ESP, and it does it live in your session and reads the results back.\n\n- server.py — the MCP server (stdio, for the AI client) and an embedded WebSocket server, in one process. - bridge.lua — runs inside Severe and uses Severe's native WebsocketClient to connect out to that server, execute the commands it receives, and send JSON results back.\n\nThe split (server = WS server, bridge = WS client) is required because Severe exposes a WebsocketClient but no HTTP request function, so the bridge can't poll an HTTP server.\n\nDefault setup: Severe and the AI client on the same PC. For two machines, see Cross-machine.\n\n2. Add the MCP server to your AI client — pick yours below. Most use this JSON block; replace the path with your real path to server.py:\n\nRestart Claude Code, then run claude mcp list — severe-bridge should show connected.\n\n1. Settings → Developer → Edit Config (opens claudedesktopconfig.json). 2. Paste the JSON block above (merge into mcpServers if the file already has some). 3. Save, then fully quit and reopen Claude Desktop."
+  },
+  {
+   "name": "iannuttall/seo",
+   "url": "https://github.com/iannuttall/seo",
+   "description": "The only SEO skill your agent needs. 50+ SEO audit tools through a local CLI and MCP server, using your own crawl, Search Console, and GA4 data.",
+   "stars": 3,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "cli",
+    "google-analytics",
+    "local-first",
+    "mcp",
+    "search-console",
+    "seo",
+    "technical-seo",
+    "typescript"
+   ],
+   "created_at": "2026-07-10",
+   "homepage": "https://seoskill.dev",
+   "score": 7.5,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "The only SEO skill your agent needs. 50+ SEO audit tools through a local CLI and MCP server, using your own crawl, Search Console, and GA4 data.\n\nGet started · Documentation · npm · Questions · Privacy · Security · License · Agent notes\n\nThe seo command runs a full SEO audit from your terminal, turning a local crawl and your own search data into work you can inspect and ship. Find technical blockers, recover search demand, improve pages already close to more clicks, and catch regressions after a release.\n\n- People running their own sites who want a clear audit and a ranked list of fixes, without learning a heavy dashboard. - AI agents that need real crawl, Search Console, and GA4 evidence through MCP and one packaged SEO skill instead of screenshots or guesses. - Developers who want to embed the same report engine in a script, a CI job, or a TypeScript app.\n\nThe setup walks you through Google sign-in, your Search Console property, an optional GA4 property, and a local project profile. Public releases can include the shared Google app. If it is unavailable in your build, setup guides you through adding your own desktop OAuth client.\n\nThat is the normal path. The seo command is then available in every terminal, script, CI job, and local MCP client on the machine.\n\nThe main report uses the evidence you have, explains what it could not check, and recommends a short list of follow-up commands. You can start with a local technical report before connecting Google."
+  },
+  {
+   "name": "MapleMapleCat/Grok_Search_Mcp",
+   "url": "https://github.com/MapleMapleCat/Grok_Search_Mcp",
+   "description": "Grok MCP is a secure, self-hosted MCP server that brings Grok-powered real-time web and X search to AI clients with API key management, quotas, usage analytics, and an embedded administration panel.",
+   "stars": 3,
+   "forks": 0,
+   "language": "Go",
+   "topics": [],
+   "created_at": "2026-07-09",
+   "homepage": "",
+   "score": 6.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "grok-mcp is an HTTP-only Model Context Protocol (MCP) server that exposes Grok-powered real-time web search, X/Twitter search, and model discovery to MCP clients.\n\nIt does not call the official xAI API directly. Instead, it connects to an existing CLIProxyAPI (CPA) deployment. CPA owns the upstream xAI authentication, while grok-mcp provides MCP transport, client API keys, quotas, usage tracking, and an administration panel.\n\n[!IMPORTANT] This project supports Streamable HTTP only. It does not provide a stdio transport or built-in TLS termination.\n\n- grok-mcp must run as a standalone HTTP service, and MCP clients connect to http://:/mcp. - It cannot be configured as a stdio server that an MCP client launches and communicates with over standard input and output. - The service listens for plain HTTP and does not load HTTPS certificates or private keys or perform TLS handshakes. - For an internet-facing deployment, place a trusted reverse proxy such as Nginx, Caddy, Traefik, Kubernetes Ingress, or a cloud load balancer in front of grok-mcp. The proxy should expose HTTPS and forward requests to grok-mcp over internal HTTP.\n\n- Streamable HTTP MCP endpoint at /mcp - Three read-only MCP tools: - grokwebsearch - grokxsearch - groklistmodels - Selectable CPA upstream protocol: OpenAI Responses, OpenAI Chat Completions, or Anthropic Messages - MCP progress notifications for upstream search rounds - Per-user client API keys with enable/disable controls - Tier-based RPM and monthly successful-call quotas - Valid-forwarded-IP-triggered protection for /mcp and panel authentication - SQLi"
+  },
+  {
+   "name": "hbhqq9/bde-score",
+   "url": "https://github.com/hbhqq9/bde-score",
+   "description": "🏆 Open-source multi-factor stock scoring API (0-100) | US/HK/A-Share 74 stocks | Zero signup | shields.io badges | GitHub Action | EU AI Act compliant",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "a-shares",
+    "ai-agents",
+    "blockchain",
+    "eu-ai-act",
+    "fastapi",
+    "finance",
+    "fintech",
+    "hk-stocks",
+    "market-data",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "multi-factor",
+    "python",
+    "quantitative-finance",
+    "real-time",
+    "stock-analysis",
+    "stock-scoring",
+    "us-stocks",
+    "x402"
+   ],
+   "created_at": "2026-07-10",
+   "homepage": "https://atlantic-remains-atomic-floor.trycloudflare.com/api/health",
+   "score": 6.0,
+   "first_seen": "2026-07-15",
+   "last_seen": "2026-07-15",
+   "stars_history": [
+    {
+     "d": "2026-07-15",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "AI-Powered Multi-Market Stock Analysis — One Score, Every Market\n\nBDE Score™ is a transparent, multi-factor quantitative scoring system that analyzes stocks across US, HK, and A-share markets using 5 explainable factors:\n\nFactor What it Measures ------------------------- Momentum Trend strength & directional persistence Mean Reversion Oversold/overbought positioning Volume Smart money flow detection Volatility Risk-adjusted return profile Trend Moving average alignment\n\n73 stocks. 3 markets. One comparable score.\n\nTier Price Access --------------------- Free $0 Dashboard + 3 API queries/day Premium $29/mo Unlimited API + 365-day history Institutional $199/mo Custom universe + compliance reports + SLA\n\nPayment: USDC on Base chain → 0x87d6C8F71d89d7E1f17EcAB138EDfaAc19d9D2fE\n\nUS Market (25 stocks) AAPL, MSFT, GOOG, AMZN, META, NVDA, AMD, AVGO, ARM, INTC, V, MA, JNJ, UNH, LLY, PFE, PG, KO, WMT, MCD, TSLA, NFLX, BABA, SPY, QQQ\n\nHK Market (26 stocks) 00700 (Tencent), 09988 (Alibaba), 09888 (Baidu), 03690 (Meituan), 01024 (Kuaishou), 01810 (Xiaomi), 09618 (JD), 09999 (NetEase), 02015 (Li Auto), 09868 (XPeng), 01211 (BYD), 09863 (Leapmotor), 02318 (Ping An), 01398 (ICBC), 00939 (CCB), 03988 (BOC), 02628 (China Life), 02899 (Zijin Mining), 00883 (CNOOC), 00857 (PetroChina), 01088 (China Shenhua), 00941 (China Mobile), 00728 (China Telecom), 00762 (China Unicom), 01833 (Ping An Good Doctor), 02269 (WuXi Biologics)"
   }
  ]
 }
