@@ -77,6 +77,9 @@ def main() -> int:
     req = urllib.request.Request(API, data=payload, method="POST", headers={
         "Authorization": f"Token {key}",
         "Content-Type": "application/json",
+        # Buttondown要求群发(status=about_to_send)必须带这个确认头，
+        # 否则返回400 sending_requires_confirmation。
+        "X-Buttondown-Live-Dangerously": "true",
     })
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
