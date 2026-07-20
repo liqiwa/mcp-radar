@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enoch666/suanming-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="玄机阁算命 MCP Server — 八字排盘、六爻起卦、灵签抽签、姓名打分、起名、程序员黄历。传统中国风水墨    HTML 命理报告。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Enoch666--suanming-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Enoch666/suanming-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="玄机阁算命 MCP Server — 八字排盘、六爻起卦、灵签抽签、姓名打分、起名、程序员黄历。传统中国风水墨    HTML 命理报告。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Enoch666/suanming-mcp", "description": "玄机阁算命 MCP Server — 八字排盘、六爻起卦、灵签抽签、姓名打分、起名、程序员黄历。传统中国风水墨    HTML 命理报告。", "codeRepository": "https://github.com/Enoch666/suanming-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/Enoch666--suanming-mcp.html", "dateCreated": "2026-07-20"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Enoch666/</span>suanming-mcp</h1>
+<p class="sub">玄机阁算命 MCP Server — 八字排盘、六爻起卦、灵签抽签、姓名打分、起名、程序员黄历。传统中国风水墨    HTML 命理报告。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-07-20</b></div>
+  <div class="chip">on radar since <b>2026-07-20</b></div>
+  
+</div>
+<div class="topics"><span class="topic">bazi</span><span class="topic">chinese-metaphysics</span><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">divination</span><span class="topic">fortune-telling</span><span class="topic">i-ching</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">naming</span><span class="topic">programmer-humor</span><span class="topic">suanming</span><span class="topic">traditional-chinese</span><a class="topic" href="/topic/typescript.html">typescript</a></div>
+<a class="btn" href="https://github.com/Enoch666/suanming-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About suanming-mcp</h2><p class="sub">传统中国风 × 程序员整活风 &amp;nbsp;&amp;nbsp; 水墨 HTML 命理报告 &amp;nbsp;&amp;nbsp; 八字 · 六爻 · 抽签 · 起名 · 程序员黄历</p><p class="sub">提示：项目目前还在持续迭代中，欢迎 Star + Watch 关注更新，也欢迎提 Issue 和 PR 一起整活。</p><p class="sub">一个基于 MCP (Model Context Protocol) 的算命 Server，零外部依赖（仅 MCP SDK），生成墨韵宣纸质感的 HTML 命理报告。支持 Claude Code、Codex、OpenCode、Cursor、Windsurf 及所有 MCP 兼容工具。</p><p class="sub">Tool 功能 输入 输出 风格 ------------------------------ fortunebazi 八字排盘 出生年月日时 + 性别 四柱八字、五行分布、日主分析、今日运势 🏮 传统 fortuneliuyao 六爻起卦 心中问题（可选） 本卦变卦、变爻位置、卦象解读 🏮 传统 fortuneqian 灵签抽签 心中问题（可选） 签号签文、七言签诗、解签白话 🏮 传统 fortunename 姓名打分 姓名（2-4字） 五格剖象、81数理、三才配置、综合评分 🏮 传统 fortunemingming 起名 姓氏 + 生辰（可选） 5个候选名字、五行分析、寓意解读 🏮 传统 fortunecoder 程序员黄历 编程语言 今日宜忌、Bug率/效率/摸鱼指数、幸运语言 💻 整活</p><p class="sub">每次算命结果都会生成一个水墨风格 HTML 页面，自动在浏览器中打开，宣纸纹理 + 毛笔字体 + 朱砂印章。</p><p class="sub">视觉元素 实现 --------------- 宣纸纹理背景 CSS 多层噪点叠加模拟 毛笔书法标题 Google Fonts Ma Shan Zheng（马山正） 正文宋体 Noto Serif SC / SimSun 朱砂印章 CSS 圆角方形 + 旋转 15°，刻&quot;玄机阁印&quot; 八卦符号 Unicode 原生 ☰☱☲☳☴☵☶☷ 淡入动画 页面加载时内容从墨色渐显 竖排签文 CSS writing-mode: vertical-rl</p><p class="sub">配色：宣纸底 f5f0e8，浓墨字 2c2416，朱砂红 c41e1e，淡墨线 8b7355。</p><p class="sub">注意：args 里要写你电脑上的绝对路径，比如 D:/workspace/study/算命/dist/index.js。Windows 用正斜杠 /，不要用反斜杠 \。</p><p class="sub">创建项目根目录的 .mcp.json（当前项目生效）或 ~/.claude/.mcp.json（全局生效）：</p><p class="sub">输入参数：year, month, day, hour（24小时制）, gender（male/female）</p><p class="sub">8字排盘页展示年柱、月柱、日柱、时柱，五行分布统计，日主性格分析，今日运势预测。</p><p class="sub">签文页展示签号、吉凶等级标签（上上/上/中/下等，带颜色区分）、竖排七言签诗、白话解签。</p><p class="sub">评分页展示天格/人格/地格/外格/总格的笔画数、81数理吉凶、三才配置分析、综合评分与星级。</p><p class="sub">输入参数：surname（必填）, year/month/day/hour（可选）, gender（可选）</p><p class="sub">起名页展示候选名字列表，每个名字附带五格评分、五行属性、寓意解读，推荐最优选项。</p><p class="sub">输入参数：language（必填，如 Python / JavaScript / Rust / Go 等）</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Enoch666--suanming-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/luckeyfaraday--frontier-orchestrator.html">
+  <span class="name"><span class="owner">luckeyfaraday/</span>frontier-orchestrator</span>
+  <p>Multi-agent orchestration for Claude Code: MCP server + skill that keeps Claude as lead engineer while delegating backend work to OpenAI Codex and frontend/design work to Kimi</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/xfloukiex-lab--pandaclip.html">
+  <span class="name"><span class="owner">xfloukiex-lab/</span>pandaclip</span>
+  <p>One local-first MCP server for agent working state — clipboard history &amp; snippets, TTL cache, file-organizer overlay, and a knowledge graph — plus a live desktop activity lens. 40 tools, SQLite everyw</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/sgateway--s-gw.html">
+  <span class="name"><span class="owner">sgateway/</span>s-gw</span>
+  <p>Local credential control for AI coding agents.</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/LuiggiVal08--toon-memory.html">
+  <span class="name"><span class="owner">LuiggiVal08/</span>toon-memory</span>
+  <p>MCP server giving AI coding agents offline, token-efficient persistent memory — recall decisions, patterns, and bugs across sessions with 68.5% fewer tokens than re-reading context. No LLM, no server;</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

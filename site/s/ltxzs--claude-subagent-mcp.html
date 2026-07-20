@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ltxzs/claude-subagent-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="通过mcp的形式在Codex中调用claude code CLI实现claude负责实现代码,Codex负责审查代码.Local stdio MCP server that delegates implementation tasks to Claude Code for Codex review  — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/ltxzs--claude-subagent-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="ltxzs/claude-subagent-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="通过mcp的形式在Codex中调用claude code CLI实现claude负责实现代码,Codex负责审查代码.Local stdio MCP server that delegates implementation tasks to Claude Code for Codex review  — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "ltxzs/claude-subagent-mcp", "description": "通过mcp的形式在Codex中调用claude code CLI实现claude负责实现代码,Codex负责审查代码.Local stdio MCP server that delegates implementation tasks to Claude Code for Codex review workflows.", "codeRepository": "https://github.com/ltxzs/claude-subagent-mcp", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/ltxzs--claude-subagent-mcp.html", "dateCreated": "2026-07-18"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">ltxzs/</span>claude-subagent-mcp</h1>
+<p class="sub">通过mcp的形式在Codex中调用claude code CLI实现claude负责实现代码,Codex负责审查代码.Local stdio MCP server that delegates implementation tasks to Claude Code for Codex review workflows.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-07-18</b></div>
+  <div class="chip">on radar since <b>2026-07-20</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">subagent</span></div>
+<a class="btn" href="https://github.com/ltxzs/claude-subagent-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About claude-subagent-mcp</h2><p class="sub">Claude Code Subagent MCP 是一个用户级 stdio MCP server，让 Codex Desktop 或 Codex CLI 可以调用 Claude Code CLI 作为实现者。Codex 负责协调任务、展示 Claude 的回复，并审核目标仓库的变更。 server 将经解析、目录验证且确认为 Git 仓库的 workspacePath 用作 Git 和 Claude Code 子进程的 cwd；这只是工作目录设置，不是操作系统级文件系统沙箱。</p><p class="sub">1. 先使用状态工具检查目标工作区。 2. 通过显式的 workspacePath 将实现任务委派给 Claude Code。 3. 审核 server 返回的 Git 状态和未暂存差异摘要，再自行检查 git diff、git diff --cached，并逐个 打开 git status --short 列出的未跟踪文件，确认完整变更后再决定是否接受结果。</p><p class="sub">- Node.js 18 或更高版本 - Git - Claude Code CLI - Codex Desktop 或 Codex CLI</p><p class="sub">将相应配置添加到全局 Codex 配置文件。Windows 的配置文件是 %USERPROFILE%\.codex\config.toml；macOS 和 Linux 的配置文件是 ~/.codex/config.toml。</p><p class="sub">可参考 examples/config.example.toml 中的完整配置模板。模板中的 REPLACEWITHABSOLUTEPATHTOSRCSERVERMJS 必须替换为当前电脑上的实际路径。</p><p class="sub">args 必须写入 src/server.mjs 的实际绝对路径。不要指望 TOML 中的 %USERPROFILE% 或 ~ 被展开。</p><p class="sub">也可独立于 Codex，在项目目录向 server 进程发送 initialize JSON-RPC 请求，以验证进程本身。 这不能替代重启 Codex 和检查工具注册。响应必须包含 claude-code-subagent。</p><p class="sub">先调用 claudesubagent.getclaudesubagentstatus：</p><p class="sub">再调用 claudesubagent.delegatetoclaude，传入具体实现要求：</p><p class="sub">Claude 返回后，server 在结构化结果的 Git 部分包含审核相关字段 statusShort、diffStat 和 diffNameOnly，分别来自 git status --short、git diff --stat 和 git diff --name-only；结果还包含 changedFiles 和 errors（可能为空），但不提供完整 diff。后两个 命令与 git diff 一样，默认只覆盖未暂存变更；暂存变更需另行检查 git diff --cached。Codex 或用户 还必须逐个打开 git status --short 列出的未跟踪文件检查其内容，确认未暂存、暂存和未跟踪变更后再决定 是否接受实现结果。</p><p class="sub">参数 要求 --- --- task 必填，非空字符串。 workspacePath 必填，非空目录路径，且必须是 Git 仓库。 allowDirty 可选布尔值，默认 false。 resumeSessionId 可选的非空 Claude Code 会话 ID。 timeoutMs 可选整数，单位为毫秒；默认 1200000，且不得小于 1000。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/ltxzs--claude-subagent-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/vshulcz--deja-vu.html">
+  <span class="name"><span class="owner">vshulcz/</span>deja-vu</span>
+  <p>Your agents already solved this. deja finds it — retroactive search and MCP recall over the session logs your coding agents already wrote. Cross-agent, SSH-portable, one zero-dep binary, fully local.</p>
+  <span class="meta"><span>⭐ 391</span><span>Go</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Get-Concord-AI--concord-mcp.html">
+  <span class="name"><span class="owner">Get-Concord-AI/</span>concord-mcp</span>
+  <p>Shared work-state for coding agents: claim work, leave handoffs, and generate review packets before PRs, over MCP.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/tough-tongue--toughtongue-skills.html">
+  <span class="name"><span class="owner">tough-tongue/</span>toughtongue-skills</span>
+  <p>Agent skills and MCP server for Tough Tongue AI. Create voice-agent scenarios, refine them from real transcripts, and analyze session performance from Claude Code, Codex, or Cursor.</p>
+  <span class="meta"><span>⭐ 5</span><span></span></span>
+</a><a class="card" href="/s/replenhq--replen.html">
+  <span class="name"><span class="owner">replenhq/</span>replen</span>
+  <p>Smarter AI Development Workflows</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/howshannon--trust-issues.html">
+  <span class="name"><span class="owner">howshannon/</span>trust-issues</span>
+  <p>Adversarial security review for AI skills, repos, MCP servers, and packages before you install them. A read-only scanner plus a five-persona reasoning pass, ending in a GO / GO WITH MITIGATIONS / NO-G</p>
+  <span class="meta"><span>⭐ 5</span><span>Shell</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
