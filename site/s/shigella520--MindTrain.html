@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>shigella520/MindTrain — MCP Server | MCP Radar</title>
+<meta name="description" content="AI-driven knowledge training platform with pluggable schedulers, Codex Skill integration, and optional Anki/FSRS support. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/shigella520--MindTrain.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="shigella520/MindTrain — MCP Server | MCP Radar">
+<meta property="og:description" content="AI-driven knowledge training platform with pluggable schedulers, Codex Skill integration, and optional Anki/FSRS support. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "shigella520/MindTrain", "description": "AI-driven knowledge training platform with pluggable schedulers, Codex Skill integration, and optional Anki/FSRS support.", "codeRepository": "https://github.com/shigella520/MindTrain", "programmingLanguage": "Java", "url": "https://mcp.liqiwa.com/s/shigella520--MindTrain.html", "dateCreated": "2026-07-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">shigella520/</span>MindTrain</h1>
+<p class="sub">AI-driven knowledge training platform with pluggable schedulers, Codex Skill integration, and optional Anki/FSRS support.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/java.html"><span class="lang-dot" style="--lang:#b07219"></span><b>Java</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-07-17</b></div>
+  <div class="chip">on radar since <b>2026-07-21</b></div>
+  
+</div>
+<div class="topics"><span class="topic">ai-learning</span><span class="topic">codex-plugin</span><span class="topic">edtech</span><span class="topic">knowledge-training</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/openai-codex.html">openai-codex</a></div>
+<a class="btn" href="https://github.com/shigella520/MindTrain" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://mindtrain.jianyutan.com/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About MindTrain</h2><p class="sub">MindTrain 是一个面向 Codex 和其他 AI 客户端的开源知识训练平台。你可以像普通聊天一样随时追问、质疑和索要提示；MindTrain 在后台负责题库、精确判分、学习记录和抗遗忘调度。</p><p class="sub">- 对话不中断：遇到不懂的概念直接问，当前题目不会被误判为已作答。 - 数据归自己：单用户私有部署，题库和学习历史保存在自己的 PostgreSQL 中。 - 真正形成闭环：复习旧题、按需生成新题、记录错误，并控制每天的新题与到期积压。</p><p class="sub">MindTrain 核心不绑定具体知识领域；每个私有实例可以独立管理自己的领域、知识点和题库。</p><p class="sub">- Training Core 是题目、会话、作答、复习状态和配置的权威数据源。 - Trainer MCP 只调用 Core API，不直接访问数据库。 - Skill 负责教学和工具编排，不保存业务数据。 - AI 临时题会先校验并入库再展示；作答前可拒绝并物理删除，作答后转为普通复习题。</p><p class="sub">一次训练并不是简单的“显示答案”：调度器先根据到期状态和新题额度选题；用户可以在提交前无限追问；只有明确提交选项后，Core 才会精确判分并追加学习记录。题库不足时，Core 会返回结构化生成要求，由 Codex 生成、Core 校验入库后再展示。</p><p class="sub">每轮题量、复习与新题配额、积压暂停规则和 AI 临时题有效期均由数据库配置控制，可在 Web 管理页调整。</p><p class="sub">在线演示：https://mindtrain.jianyutan.com/（可公开查看示例统计；训练需要连接自己的私有实例）</p><p class="sub">能力 你得到什么 --- --- 对话式 AI 教练 在同一题中追问概念、索要提示、质疑答案，再继续作答 确定性判分 单选和多选按选项集合精确判分，不让模型“凭感觉”决定分数 抗遗忘调度 默认平衡复习题和新题；积压过高时自动暂停新题 AI 补题 题库不足时由 Codex 按指定知识点、题型和难度生成并校验新题 私有数据 Core 是唯一权威数据源；Skill 无状态，仓库不承载运行数据 Web + Codex Web 用于看板、旧题复习和配置；Codex 用于完整的 AI 教练体验</p><p class="sub">当前可用：Training Core、Trainer MCP、MindTrain Web、Codex Plugin 和加权调度。Anki / FSRS Provider 尚在规划中。</p><p class="sub">- Git - Docker 与 Docker Compose - Codex CLI 或 Codex App（使用 AI 教练时需要）</p><p class="sub">可以使用 openssl rand -hex 32 生成随机值。MINDTRAINBOOTSTRAPTOKEN 同时保护 Codex → Trainer MCP 和 Trainer MCP → Core，请勿提交或公开。</p><p class="sub">- Web：http://127.0.0.1:4173 - Core 健康检查：http://127.0.0.1:8080/actuator/health - MCP 健康检查：http://127.0.0.1:8787/actuator/health</p><p class="sub">PostgreSQL 不对宿主机开放；Core、MCP 和 Web 默认只监听 127.0.0.1。</p><p class="sub">1. MCP 地址。本机部署使用 http://127.0.0.1:8787/mcp；云端部署使用自己的 HTTPS 地址。 2. .env 中的 MINDTRAINBOOTSTRAPTOKEN。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/shigella520--MindTrain.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/ozankasikci--global-agent-memory.html">
+  <span class="name"><span class="owner">ozankasikci/</span>global-agent-memory</span>
+  <p>Local-first, project-aware memory MCP server for Claude Code, Codex, and other AI agents, with Obsidian and an owner dashboard.</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a><a class="card" href="/s/twz007--java-obs-agent.html">
+  <span class="name"><span class="owner">twz007/</span>java-obs-agent</span>
+  <p>Framework-agnostic Java observability sidecar agent: chat with a live JVM via MCP/web UI (metrics, slow calls, errors, logs, thread dumps, method traces). Self-hosted, attachable (Arthas-style). Apach</p>
+  <span class="meta"><span>⭐ 3</span><span>Java</span></span>
+</a><a class="card" href="/s/vshulcz--deja-vu.html">
+  <span class="name"><span class="owner">vshulcz/</span>deja-vu</span>
+  <p>Your agents already solved this. deja finds it — retroactive search and MCP recall over the session logs your coding agents already wrote. Cross-agent, SSH-portable, one zero-dep binary, fully local.</p>
+  <span class="meta"><span>⭐ 391</span><span>Go</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/JesusRS1--stock-trade-finance-api.html">
+  <span class="name"><span class="owner">JesusRS1/</span>stock-trade-finance-api</span>
+  <p>Stock Trade MCP server in Tiingo with stock prices, news, forex, and fundamentals programmatically via the MCP</p>
+  <span class="meta"><span>⭐ 91</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/EndymionLee--PilotBrowseMCP.html">
+  <span class="name"><span class="owner">EndymionLee/</span>PilotBrowseMCP</span>
+  <p>A browser runtime that lets AI agents control your real Chrome browser via MCP. Agents can explore websites, generate operation manuals, and reuse them to save tokens.  AI操控你的真实浏览器。</p>
+  <span class="meta"><span>⭐ 50</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

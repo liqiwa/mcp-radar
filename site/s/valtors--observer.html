@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-16</b></div>
   
 </div>
-<div class="topics"><span class="topic">agent-observability</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><span class="topic">go</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">observability</span><span class="topic">proxy</span><a class="topic" href="/topic/sqlite.html">sqlite</a><span class="topic">tracing</span></div>
+<div class="topics"><span class="topic">agent-observability</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/go.html">go</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">observability</span><span class="topic">proxy</span><a class="topic" href="/topic/sqlite.html">sqlite</a><span class="topic">tracing</span></div>
 <a class="btn" href="https://github.com/valtors/observer" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/valtors/observer" rel="noopener nofollow">Homepage ↗</a>
 <h2>About observer</h2><p class="sub">Transparent MCP proxy for agent observability.</p><p class="sub">Observer sits between your MCP client (Claude Desktop, Cline, Goose, Codex, etc.) and the actual MCP server. It logs every tool call to SQLite and exposes trace history through additional MCP tools, so you can see exactly what your agent is doing.</p><p class="sub">Across 1665 discussions in 8 major AI agent communities (MCP, Codex, Cline, Goose, Anthropic SDK, OpenAI Python), the 1 recurring problem is agent observability. Nobody can see what their agent is actually doing. There is no standard way to trace agent actions, tool calls, or decisions.</p><p class="sub">- Transparent proxy - Drop-in replacement for any MCP server. Your client does not know it is talking to a proxy. - Tool call logging - Every tool call is logged with input, output, duration, error status, and token estimate. - Trace tools - Exposes 4 additional MCP tools for querying history: - trace.history - List recent tool calls - trace.stats - Usage statistics with per-tool breakdown - trace.search - Search through tool call history - trace.replay - Replay a previous tool call by ID - Tool filtering - Hide tools from the client to reduce token overhead (addresses tool bloat, the 2 problem found in the same research). - SQLite storage - All data stored locally in SQLite. No external dependencies. - Zero config - One binary, one env var to point at your upstream server.</p><p class="sub">Or with Cline / Goose / any MCP client - just replace the server command with observer and set OBSERVERTARGET to the original command.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/valtors--observer.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/herry2059--project-os-for-codex.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/Kota-Karthik--secure-actions.html">
+  <span class="name"><span class="owner">Kota-Karthik/</span>secure-actions</span>
+  <p>MCP server for secure AI agent authentication — lets Claude, Claude Code, and other LLM agents call APIs without exposing raw tokens or credentials to the model</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
   <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
   <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
   <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
@@ -123,10 +127,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/Gowthaman90--mcp-bastion.html">
   <span class="name"><span class="owner">Gowthaman90/</span>mcp-bastion</span>
   <p>Reliability + security proxy for the Model Context Protocol (MCP): self-healing connections, runtime tool-security (rug-pull/poisoning detection), and a compliance-mapped audit trail.</p>
-  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/Get-Concord-AI--concord-mcp.html">
-  <span class="name"><span class="owner">Get-Concord-AI/</span>concord-mcp</span>
-  <p>Shared work-state for coding agents: claim work, leave handoffs, and generate review packets before PRs, over MCP.</p>
   <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
 </a>
 

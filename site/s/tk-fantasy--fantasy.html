@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tk-fantasy/fantasy — MCP Server | MCP Radar</title>
+<meta name="description" content="AI smart home assistant for Home Assistant: LangGraph agent + MCP tools + RAG knowledge graph + vision perception — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/tk-fantasy--fantasy.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="tk-fantasy/fantasy — MCP Server | MCP Radar">
+<meta property="og:description" content="AI smart home assistant for Home Assistant: LangGraph agent + MCP tools + RAG knowledge graph + vision perception — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "tk-fantasy/fantasy", "description": "AI smart home assistant for Home Assistant: LangGraph agent + MCP tools + RAG knowledge graph + vision perception", "codeRepository": "https://github.com/tk-fantasy/fantasy", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/tk-fantasy--fantasy.html", "dateCreated": "2026-07-18"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">tk-fantasy/</span>fantasy</h1>
+<p class="sub">AI smart home assistant for Home Assistant: LangGraph agent + MCP tools + RAG knowledge graph + vision perception</p>
+<div class="chips">
+  <div class="chip">⭐ <b>11</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 55.0</b></div>
+  <div class="chip">created <b>2026-07-18</b></div>
+  <div class="chip">on radar since <b>2026-07-21</b></div>
+  
+</div>
+<div class="topics"><span class="topic">home-assistant</span><span class="topic">langgraph</span><span class="topic">llm-agent</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">smart-home-ai</span></div>
+<a class="btn" href="https://github.com/tk-fantasy/fantasy" rel="noopener">View on GitHub ↗</a>
+<h2>About fantasy</h2><p class="sub">Aether 的核心交互界面。输入自然语言即可控制家中设备——&quot;把客厅灯关掉&quot;、&quot;空调调到 26 度&quot;，AI 会理解你的意图并执行操作。左侧聊天区域支持多轮对话，快捷斜杠命令帮你快速跳转到设备管理、定时任务等功能。</p><p class="sub">配置家庭名称、主人称呼、所在地区等信息。Aether 会根据这些信息提供更贴合你生活的服务。同时可以在这里切换深色/浅色主题，让界面随你喜好变化。</p><p class="sub">集中管理所有底层配置：天气 API 密钥、Exa 搜索引擎、摄像头视觉参数、Home Assistant 连接信息、助手角色设定。每个配置项以卡片形式呈现，点击即可弹出编辑面板。还支持 Emoji 索引重建和文档向量重建。</p><p class="sub">可视化管理所有 LLM 模型配置。分别设置对话模型、视觉模型、嵌入模型和摘要模型，支持切换不同供应商（OpenAI、Claude、DeepSeek 等）。每个账号可独立配置自己的 API Key，互不影响；另有一套全局 key（vision/embed 全局共享，chat/summary/stt 可选全局兜底），用二级密码保护，忘记密码可一键重置。</p><p class="sub">展示所有接入 Home Assistant 的智能设备及其实时状态。灯光的亮度色温、空调的温度模式、窗帘的开关进度——所有状态可视化呈现。也可以直接从面板操控设备，无需打开聊天。</p><p class="sub">用自然语言描述你想定时执行的事情，Aether 自动解析并生成 cron 表达式。&quot;每天早上 7 点开窗帘&quot;、&quot;工作日晚上 10 点关掉所有灯&quot;——说一句话就帮你建好定时任务，任务名也会自动生成。</p><p class="sub">创建基于条件的自动化规则：温度高于 30 度自动开空调、检测到运动时打开玄关灯。支持多条件组合和多重动作，让家真正&quot;活&quot;起来。规则纯文本条件评估时按创建者解析对应 LLM Key。</p><p class="sub">接入 RTSP 网络摄像头或 USB 摄像头，AI 实时分析画面内容。支持运动检测自动触发视觉推理，当画面出现异常时主动通知你。可以在聊天中直接询问摄像头&quot;看到了什么&quot;。</p><p class="sub">自定义视觉系统关注的对象和区域。可以指定特定区域（如门口、窗户）或特定物体（如人、宠物、包裹）。只有关注项出现时才触发通知，避免无意义的频繁报警。</p><p class="sub">基于 RAG 技术构建的语义知识图谱。将文档和设备信息向量化后进行实体抽取和关系分析，生成可交互的 3D 图谱。通过 faiss 向量检索快速定位相关信息，支持一键重建索引。</p><p class="sub">AI 回复采用流式输出，逐字显示如同真人打字。支持 Markdown 格式渲染，代码块高亮，让对话既智能又美观。设备控制结果以结构化卡片呈现，操作结果一目了然。</p><p class="sub">- 🧠 AI 对话控制设备 —— 对接 Home Assistant，自然语言开灯 / 调空调 / 拉窗帘，调用前先走 verifyaction 只读校验 - 👁️ 摄像头视觉感知 —— RTSP / USB 接入，运动检测触发视觉推理，关注项可配置 - ⏰ 定时任务与自动化规则 —— 自然语言生成 cron 触发时间，任务名自动生成，规则引擎按条件联动设备 - 📊 语义知识图谱（RAG） —— 文档向量化 + faiss 检索 + 实体共现构图，3D 可视化，embed 模型变更后自动检测 + 一键重建 - 🔌 MCP 工具生态 —— 内置天气 / 网页搜索 / 设备控制工具，可接外部 MCP Server - 🔐 JWT 鉴权 + 独立配置 —— 登录态走 JWT，LLM Key 独立管理、会话独立，支持一键清空历史会话</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/tk-fantasy--fantasy.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 28</span><span>Python</span></span>
+</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
+  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
+  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
+  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a><a class="card" href="/s/axisrobo--mneme-open.html">
+  <span class="name"><span class="owner">axisrobo/</span>mneme-open</span>
+  <p>Open-source client SDKs (Python, TypeScript, Go), CLI, API docs, and prebuilt binaries for the Mneme agent cognition runtime (memory, context, ontology, knowledge). Apache-2.0.</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a><a class="card" href="/s/ozankasikci--global-agent-memory.html">
+  <span class="name"><span class="owner">ozankasikci/</span>global-agent-memory</span>
+  <p>Local-first, project-aware memory MCP server for Claude Code, Codex, and other AI agents, with Obsidian and an owner dashboard.</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a><a class="card" href="/s/Lulu-The-Narwhal--dali-mcp.html">
+  <span class="name"><span class="owner">Lulu-The-Narwhal/</span>dali-mcp</span>
+  <p>Creative intelligence MCP — score your prompt before you spend the credit</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/KernelLord--pickysteve.html">
+  <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
+  <p>Skill router and context picker for Claude Code, Cursor, and Aider. Auto-picks the right skill for every prompt, with prompt-injection filtering for MCP.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
