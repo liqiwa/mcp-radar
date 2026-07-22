@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaskrokodile/parallax — MCP Server | MCP Radar</title>
+<meta name="description" content="Blackboard MCP server for coordinating parallel subagents across Claude Code and Codex — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Vaskrokodile--parallax.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Vaskrokodile/parallax — MCP Server | MCP Radar">
+<meta property="og:description" content="Blackboard MCP server for coordinating parallel subagents across Claude Code and Codex — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Vaskrokodile/parallax", "description": "Blackboard MCP server for coordinating parallel subagents across Claude Code and Codex", "codeRepository": "https://github.com/Vaskrokodile/parallax", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Vaskrokodile--parallax.html", "dateCreated": "2026-07-18"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Vaskrokodile/</span>parallax</h1>
+<p class="sub">Blackboard MCP server for coordinating parallel subagents across Claude Code and Codex</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 7.5</b></div>
+  <div class="chip">created <b>2026-07-18</b></div>
+  <div class="chip">on radar since <b>2026-07-22</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/Vaskrokodile/parallax" rel="noopener">View on GitHub ↗</a>
+<h2>About parallax</h2><p class="sub">A portable blackboard MCP server + skill/agent packs that make Claude Code and OpenAI Codex launch parallel subagents that actually coordinate — instead of fanning out into isolated workers that duplicate work and clobber each other&#x27;s files.</p><p class="sub">The orchestrator decomposes the task into research and implement tasks with disjoint file scopes and explicit dependencies, publishes them to the blackboard, spawns one subagent per task in parallel, and synthesizes the results. Subagents claim tasks atomically, post findings, consume upstream findings, register artifacts, and report done — all through MCP tools.</p><p class="sub">Why this works when naive parallelism doesn&#x27;t</p><p class="sub">- Shared state. Subagents don&#x27;t share conversation history. The blackboard is the only place they meet: researchers post findings, implementers read them before coding. - Atomic ownership. claimtask uses a cross-process file lock, so exactly one agent owns a task — even when each Codex subagent runs its own MCP server process. - Disjoint scopes. The orchestrator assigns non-overlapping file globs to implementers, so parallel edits never conflict. - Dependencies. An implement task lists its research task as a dependency; the blackboard blocks claiming it until the research is done.</p><p class="sub">Three options, from easiest to most control.</p><p class="sub">Option A — One-command install script (recommended)</p><p class="sub">Detects Claude Code and/or Codex, copies the skill + agent files, and registers the MCP server. Uses the published npm package — no clone or build needed.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Vaskrokodile--parallax.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 249</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/shlokkhemani--rabbithole.html">
+  <span class="name"><span class="owner">shlokkhemani/</span>rabbithole</span>
+  <p>An infinite canvas for learning — select text, ask, and answers branch out as documents. MCP server for Claude Code, Codex, and any agent.</p>
+  <span class="meta"><span>⭐ 222</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-mcpb.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-mcpb</span>
+  <p>Claude Desktop .mcpb bundle for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 44</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-local.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-local</span>
+  <p>Self-serve stdio MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 44</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-remote.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-remote</span>
+  <p>Streamable HTTP remote MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 43</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-apps.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-apps</span>
+  <p>MCP Apps with task progress UI for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 43</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
