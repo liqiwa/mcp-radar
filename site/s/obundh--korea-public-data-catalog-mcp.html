@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>obundh/korea-public-data-catalog-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="대한민국 공공데이터를 조합해 서비스 아이디어를 설계하는 정적 메타데이터 MCP 공개 베타 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/obundh--korea-public-data-catalog-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="obundh/korea-public-data-catalog-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="대한민국 공공데이터를 조합해 서비스 아이디어를 설계하는 정적 메타데이터 MCP 공개 베타 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "obundh/korea-public-data-catalog-mcp", "description": "대한민국 공공데이터를 조합해 서비스 아이디어를 설계하는 정적 메타데이터 MCP 공개 베타", "codeRepository": "https://github.com/obundh/korea-public-data-catalog-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/obundh--korea-public-data-catalog-mcp.html", "dateCreated": "2026-07-19"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">obundh/</span>korea-public-data-catalog-mcp</h1>
+<p class="sub">대한민국 공공데이터를 조합해 서비스 아이디어를 설계하는 정적 메타데이터 MCP 공개 베타</p>
+<div class="chips">
+  <div class="chip">⭐ <b>13</b> stars</div>
+  <div class="chip">⑂ <b>2</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 47.3</b></div>
+  <div class="chip">created <b>2026-07-19</b></div>
+  <div class="chip">on radar since <b>2026-07-23</b></div>
+  
+</div>
+<div class="topics"><span class="topic">korea</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">metadata</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">public-data</span><a class="topic" href="/topic/typescript.html">typescript</a></div>
+<a class="btn" href="https://github.com/obundh/korea-public-data-catalog-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About korea-public-data-catalog-mcp</h2><p class="sub">공개 원격 서버 기준: v0.4.0-beta.1 · 기본 런타임 모드: catalog</p><p class="sub">“무엇을 만들고 싶은지” 말하면 대한민국 공공데이터포털의 정적 목록에서 관련 데이터 이름·제공기관·형식·공식 링크를 찾고, 함께 검토할 후보를 제안하는 읽기 전용 MCP 서버입니다. Claude Custom Connector용 공개 HTTPS 서버와 직접 실행하는 로컬 서버를 함께 제공합니다.</p><p class="sub">이 프로젝트는 데이터 실행기가 아니라 메타데이터 라우터입니다. 질문할 때 공공 API를 호출하거나 파일을 내려받지 않으며, 실제 데이터 값과 실시간 정보도 제공하지 않습니다.</p><p class="sub">위 그림은 이 흐름을 설명하기 위해 만든 생성형 이미지입니다. 실제 정부 시스템 화면, 공식 인증물 또는 실시간 조회 결과가 아닙니다. 이미지 생성 조건과 주의점은 이미지 자산 안내에 공개합니다.</p><p class="sub">항목 현재 값 ------: 출처 공공데이터포털 공공데이터포털 목록개방현황 출처 스냅샷 기준일 2026-06-30 CSV에서 엄격하게 파싱한 고유 목록 96,056건 출처 상세 페이지가 표시한 전체 행 87,581건 두 수치의 차이 8,475건 질의 중 네트워크/API 호출 없음</p><p class="sub">96,056건은 공식 CSV에서 (목록유형, 목록키)가 고유한 행을 엄격한 CSV 파서로 검증해 수록한 수입니다. 출처 상세 페이지는 87,581행이라고 표시합니다. 이 프로젝트는 차이 8,475건을 숨기거나 임의로 버리지 않고 두 수치를 함께 공개합니다. 어느 숫자도 대한민국 전체 공공데이터의 국가 총량이라고 주장하지 않습니다. 집계 시점이나 포털의 집계 기준 차이는 출처에서 다시 확인해야 합니다.</p><p class="sub">96,056건의 목록유형 코드는 FILE 83,695건, API 12,061건, STD 300건입니다. 이는 실제 파일 행이나 API 호출 횟수가 아니라 카탈로그 목록 건수입니다.</p><p class="sub">- 목록키와 목록유형 - 데이터명, 제공기관, 분류체계 - 제공 형식, 업데이트 주기와 검색용 키워드 - 공식 data.go.kr URL과 출처에 표시된 이용허락범위 문구</p><p class="sub">원자료 행, 파일 내용, API 응답, 상세 설명, 담당자 연락처, 인증키는 포함하지 않습니다.</p><p class="sub">환경변수를 생략하면 catalog 모드가 실행됩니다. beta 모드는 이전 14건 fixture의 회귀 테스트를 위한 유지보수용 호환 모드이며 일반 사용자 기본값이 아닙니다.</p><p class="sub">설치나 Node.js가 필요 없습니다. Claude에 로그인한 브라우저에서 아래 링크를 열고 표시된 이름과 주소를 확인한 뒤 Add 또는 추가를 누르세요.</p><p class="sub">직접 입력할 때는 Settings/Customize → Connectors → Add custom connector에서 다음 값을 사용합니다. 화면 이름은 Claude 버전에 따라 조금 다를 수 있습니다.</p><p class="sub">/mcp까지 포함해야 합니다. GitHub 주소, 서버 루트 주소, /health, localhost는 Connector URL이 아닙니다. 저장소에서 사전입력 링크를 다시 만들려면 다음 명령을 사용합니다. 이 명령은 scripts/print-claude-install-link.mjs를 실행해 위 링크와 같은 주소를 출력합니다.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/obundh--korea-public-data-catalog-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/bolivestilo--Homekit.html">
+  <span class="name"><span class="owner">bolivestilo/</span>Homekit</span>
+  <p>Homekit gives any AI agent direct, physical control over Apple Home. Flip lights. Lock doors. Read sensors. Through a single open interface.</p>
+  <span class="meta"><span>⭐ 68</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/NLACE-COM--mcp-supermercados-cl.html">
+  <span class="name"><span class="owner">NLACE-COM/</span>mcp-supermercados-cl</span>
+  <p>Servidor MCP para buscar productos, comparar precios y armar la mejor lista de compra en supermercados chilenos (Jumbo, Santa Isabel, Unimarc, Tottus, Lider) desde Claude o ChatGPT. 100% local.</p>
+  <span class="meta"><span>⭐ 51</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/AIPAYagent--aipay-protocol.html">
+  <span class="name"><span class="owner">AIPAYagent/</span>aipay-protocol</span>
+  <p>Verifier-backed USDC escrow for AI agents: signed orders, evidence hashes, Polygon deposits, and deterministic settlement.</p>
+  <span class="meta"><span>⭐ 31</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/KaichenCurry--TabNexus.html">
+  <span class="name"><span class="owner">KaichenCurry/</span>TabNexus</span>
+  <p>Turn tab overload into a local-first workspace with intent-first AI organization and Agent collaboration through MCP.</p>
+  <span class="meta"><span>⭐ 28</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

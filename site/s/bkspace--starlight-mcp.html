@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-13</b></div>
   <div class="chip">star trend <b>7 → 8</b> since 2026-07-13</div>
 </div>
-<div class="topics"><span class="topic">astro</span><span class="topic">astro-integration</span><span class="topic">cloudflare-workers</span><a class="topic" href="/topic/documentation.html">documentation</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">starlight</span></div>
+<div class="topics"><span class="topic">astro</span><span class="topic">astro-integration</span><a class="topic" href="/topic/cloudflare-workers.html">cloudflare-workers</a><a class="topic" href="/topic/documentation.html">documentation</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">starlight</span></div>
 <a class="btn" href="https://github.com/bkspace/starlight-mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About starlight-mcp</h2><p class="sub">Give your Astro or Starlight docs site an MCP server.</p><p class="sub">Agents connect to https://your-site.com/mcp and get three tools — searchdocs, getdoc, listdocs — answered straight from your docs content collection. No database, no embeddings, no separate service: the corpus is a JSON file emitted at build time, and the server is a stateless JSON-RPC handler small enough to read in one sitting.</p><p class="sub">Live demo: the discountkit docs serve theirs at https://next.discountkit.app/mcp —</p><p class="sub">1. Build time — the Astro integration injects two prerendered routes into your site: - /mcp/docs-index.json — every page of your docs collection (title, description, URL, cleaned markdown body) - /mcp-schema.json — a machine-readable tool catalog agents can discover before connecting (link it from your llms.txt) 2. Runtime — a dependency-free handler speaks stateless streamable HTTP: plain JSON-RPC over POST. It loads the corpus once per isolate and answers initialize, tools/list and tools/call. On SSR sites the integration injects this for you; on static sites you add one tiny shim on your host (Cloudflare recipe below).</p><p class="sub">Because the transport is stateless HTTP, it works from Claude Code, Cursor, VS Code, Windsurf and anything else that speaks MCP — no SSE, no sessions, no sticky routing.</p><p class="sub">That&#x27;s the whole setup for SSR sites (output: &quot;server&quot;): the live endpoint is injected at /mcp.</p><p class="sub">For static sites the build emits the corpus and schema, and you serve the endpoint with a few lines of host glue:</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -120,14 +120,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Gowthaman90/</span>mcp-bastion</span>
   <p>Reliability + security proxy for the Model Context Protocol (MCP): self-healing connections, runtime tool-security (rug-pull/poisoning detection), and a compliance-mapped audit trail.</p>
   <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/do-md--homekb.html">
+  <span class="name"><span class="owner">do-md/</span>homekb</span>
+  <p>Local-first personal Markdown knowledge base with semantic search, AI Q&amp;A, MCP, desktop/web clients, and a self-hostable zero-data-at-rest relay.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/replenhq--replen.html">
   <span class="name"><span class="owner">replenhq/</span>replen</span>
   <p>Smarter AI Development Workflows</p>
   <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/rwnalds--engram.html">
-  <span class="name"><span class="owner">rwnalds/</span>engram</span>
-  <p>Self-hosted MCP server + dashboard giving Claude Code, Cursor &amp; Hermes agents shared long-term memory over a git-backed markdown vault. Agent-native, Obsidian-compatible second brain — markdown RAG, n</p>
-  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
 </a>
 
 

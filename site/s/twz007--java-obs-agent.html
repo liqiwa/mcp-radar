@@ -92,12 +92,12 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>3</b> stars</div>
   <div class="chip">⑂ <b>0</b> forks</div>
   <a class="chip" href="/lang/java.html"><span class="lang-dot" style="--lang:#b07219"></span><b>Java</b></a>
-  <div class="chip">momentum <b>▲ 7.5</b></div>
+  <div class="chip">momentum <b>▲ 6.0</b></div>
   <div class="chip">created <b>2026-07-17</b></div>
   <div class="chip">on radar since <b>2026-07-19</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">apm</span><span class="topic">arthas</span><span class="topic">bytebuddy</span><span class="topic">java</span><span class="topic">javaagent</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">observability</span></div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">apm</span><span class="topic">arthas</span><span class="topic">bytebuddy</span><a class="topic" href="/topic/java.html">java</a><span class="topic">javaagent</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">observability</span></div>
 <a class="btn" href="https://github.com/twz007/java-obs-agent" rel="noopener">View on GitHub ↗</a>
 <h2>About java-obs-agent</h2><p class="sub">A framework-agnostic Java observability sidecar agent — drop a single -javaagent jar onto any Java (Servlet) service, then chat with it (via a built-in web UI, an MCP client like Claude Code, or curl) to understand the service&#x27;s live state: request volume, latency, slow calls, errors, logs, thread dumps, method-level traces.</p><p class="sub">It&#x27;s the thing between Arthas (in-JVM diagnostics, no AI/aggregation) and SkyWalking (APM with distributed traces, no conversational agent) — plus the Datadog Bits AI pattern (chat-with-your-service), but self-hosted and attachable to a single JVM.</p><p class="sub">Built and validated end-to-end on a real Spring Boot service (the interview-guide project): attach → chat → &quot;which route is slowest?&quot; → agent calls its tools → answers with real metrics, then tracerequest to pin the slow method in the call tree.</p><p class="sub">Attach the agent to a running Java service (no restart needed — dynamic attach like Arthas). The agent runs inside the target JVM:</p><p class="sub">- Captures per-route request metrics (count, p50/p95/p99, error rate), slow calls, errors — into in-JVM ring buffers (zero external storage). - Captures recent logs (Logback appender) + thread snapshots (JMX). - Exposes a MCP server (JSON-RPC over HTTP) — any MCP client (Claude Code, Cursor) can chat with the service. - Exposes a built-in chat web UI (/chat) — an OpenAI-compatible LLM (BYO API key) orchestrates the tools to answer your questions in natural language. - On-demand method-level diagnostics: watchmethod (capture a method&#x27;s invocations) and tracerequest (full method call-tree, Arthas-trace style). - Leaves a Source SPI seam </p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -107,11 +107,19 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 <h2>Related MCP servers</h2><a class="card" href="/s/frangelbarrera--code-review-agent-mcp.html">
   <span class="name"><span class="owner">frangelbarrera/</span>code-review-agent-mcp</span>
   <p>AI code review agent MCP server. Reviews code like a kernel maintainer: blunt, technical, no sugarcoating. Detects bugs + OWASP Top 10 security vulnerabilities. 4 harshness levels. Anti-RLHF.</p>
-  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/pioner92--symbolpeek-mcp.html">
+  <span class="name"><span class="owner">pioner92/</span>symbolpeek-mcp</span>
+  <p>Ask for the symbol, not the file. Token-efficient MCP server giving AI coding   agents symbol-level reads of TS/JS, Rust, Python, Java, Go, JSON, and Markdown</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
 </a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
   <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
   <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
-  <span class="meta"><span>⭐ 249</span><span>JavaScript</span></span>
+  <span class="meta"><span>⭐ 271</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/anshupriyan--cli-bridge.html">
+  <span class="name"><span class="owner">anshupriyan/</span>cli-bridge</span>
+  <p>MCP server for Claude Desktop and other Model Context Protocol clients — sandboxed filesystem access (read/write/edit/search) plus Dev Mode-gated shell command execution, scoped to a single workspace </p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/12122J--mcpvet.html">
   <span class="name"><span class="owner">12122J/</span>mcpvet</span>
   <p>MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads </p>
@@ -119,15 +127,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/hoangann2000--figma-mcp-console.html">
   <span class="name"><span class="owner">hoangann2000/</span>figma-mcp-console</span>
   <p>MCP server that lets your AI assistant read and write Figma in real time — no API token, no rate limits. Works with Claude, Cursor, Copilot, Codex and any MCP client.</p>
-  <span class="meta"><span>⭐ 8</span><span>Go</span></span>
-</a><a class="card" href="/s/KernelLord--pickysteve.html">
-  <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
-  <p>Skill router and context picker for Claude Code, Cursor, and Aider. Auto-picks the right skill for every prompt, with prompt-injection filtering for MCP.</p>
-  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
-</a><a class="card" href="/s/Naveen-chava--metabase-mcp.html">
-  <span class="name"><span class="owner">Naveen-chava/</span>metabase-mcp</span>
-  <p>Metabase MCP server for AI Agents. Authenticate with a browser session cookie, no API key required.</p>
-  <span class="meta"><span>⭐ 5</span><span>Go</span></span>
+  <span class="meta"><span>⭐ 9</span><span>Go</span></span>
 </a>
 
 

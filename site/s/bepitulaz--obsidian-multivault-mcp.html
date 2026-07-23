@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-10</b></div>
   <div class="chip">star trend <b>31 → 37</b> since 2026-07-10</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">mcpserver</span><a class="topic" href="/topic/obsidian.html">obsidian</a><span class="topic">obsidian-vault</span><span class="topic">openai</span><span class="topic">second-brain</span></div>
+<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">mcpserver</span><a class="topic" href="/topic/obsidian.html">obsidian</a><span class="topic">obsidian-vault</span><span class="topic">openai</span><a class="topic" href="/topic/second-brain.html">second-brain</a></div>
 <a class="btn" href="https://github.com/bepitulaz/obsidian-multivault-mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About obsidian-multivault-mcp</h2><p class="sub">An MCP server that gives Claude read/write access to Obsidian vaults that live on a VPS — built for multiple vaults and multiple users from a single deployment. Everyone shares one server; each person is routed to their own private vault by the passphrase they log in with (HTTP mode) or by the vault path Claude Desktop launches with (stdio mode). The server runs on the VPS with direct filesystem access to the vaults.</p><p class="sub">- Multi-vault, multi-user — one server serves many people, each mapped to their own vault. In HTTP mode everyone adds the same connector URL and their distinct login passphrase decides which vault they get; in stdio mode each Claude Desktop passes its own vault path. - Two transports from one codebase — stdio over ssh (Claude Desktop) and an OAuth-protected Streamable HTTP endpoint (Claude mobile/web/desktop remote connectors). - Read/write tools with strict path safety — vault-relative paths only; .., absolute paths, symlink escapes, and null bytes are rejected; writes limited to an extension allowlist. Optional --read-only and per-user readOnly. - Self-hosted OAuth 2.1 — passphrase login, PKCE, JWT access tokens, and Dynamic Client Registration, so no third-party auth service is needed. - Single-file deploy — esbuild bundles everything to one dist/index.js; deploy is a one-file copy.</p><p class="sub">There is no SSH library inside the server — SSH is only the transport Claude Desktop uses to start it and exchange JSON-RPC. Part of a &quot;centralise the vaults on the VPS&quot; setup:</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -108,10 +108,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">rwnalds/</span>engram</span>
   <p>Self-hosted MCP server + dashboard giving Claude Code, Cursor &amp; Hermes agents shared long-term memory over a git-backed markdown vault. Agent-native, Obsidian-compatible second brain — markdown RAG, n</p>
   <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/anshupriyan--cli-bridge.html">
+  <span class="name"><span class="owner">anshupriyan/</span>cli-bridge</span>
+  <p>MCP server for Claude Desktop and other Model Context Protocol clients — sandboxed filesystem access (read/write/edit/search) plus Dev Mode-gated shell command execution, scoped to a single workspace </p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/luckeyfaraday--frontier-orchestrator.html">
   <span class="name"><span class="owner">luckeyfaraday/</span>frontier-orchestrator</span>
   <p>Multi-agent orchestration for Claude Code: MCP server + skill that keeps Claude as lead engineer while delegating backend work to OpenAI Codex and frontend/design work to Kimi</p>
-  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/do-md--homekb.html">
+  <span class="name"><span class="owner">do-md/</span>homekb</span>
+  <p>Local-first personal Markdown knowledge base with semantic search, AI Q&amp;A, MCP, desktop/web clients, and a self-hostable zero-data-at-rest relay.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/xfloukiex-lab--pandaclip.html">
   <span class="name"><span class="owner">xfloukiex-lab/</span>pandaclip</span>
   <p>One local-first MCP server for agent working state — clipboard history &amp; snippets, TTL cache, file-organizer overlay, and a knowledge graph — plus a live desktop activity lens. 40 tools, SQLite everyw</p>
@@ -120,14 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">mtbun/</span>storeshots-mcp</span>
   <p>Store-ready App Store &amp; Google Play screenshots from any MCP client. Device frames, benefit-driven headlines, exact store dimensions. No API keys.</p>
   <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/vshulcz--deja-vu.html">
-  <span class="name"><span class="owner">vshulcz/</span>deja-vu</span>
-  <p>Your agents already solved this. deja finds it — retroactive search and MCP recall over the session logs your coding agents already wrote. Cross-agent, SSH-portable, one zero-dep binary, fully local.</p>
-  <span class="meta"><span>⭐ 391</span><span>Go</span></span>
-</a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
-  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
-  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
-  <span class="meta"><span>⭐ 249</span><span>JavaScript</span></span>
 </a>
 
 
