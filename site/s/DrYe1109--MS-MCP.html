@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrYe1109/MS-MCP — MCP Server | MCP Radar</title>
+<meta name="description" content="External MCP server for BIOVIA Materials Studio with guided Windows setup, GUI Dashboard, Forcite, DMol3 and CASTEP workflows. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/DrYe1109--MS-MCP.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="DrYe1109/MS-MCP — MCP Server | MCP Radar">
+<meta property="og:description" content="External MCP server for BIOVIA Materials Studio with guided Windows setup, GUI Dashboard, Forcite, DMol3 and CASTEP workflows. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "DrYe1109/MS-MCP", "description": "External MCP server for BIOVIA Materials Studio with guided Windows setup, GUI Dashboard, Forcite, DMol3 and CASTEP workflows.", "codeRepository": "https://github.com/DrYe1109/MS-MCP", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/DrYe1109--MS-MCP.html", "dateCreated": "2026-07-18"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">DrYe1109/</span>MS-MCP</h1>
+<p class="sub">External MCP server for BIOVIA Materials Studio with guided Windows setup, GUI Dashboard, Forcite, DMol3 and CASTEP workflows.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 8.0</b></div>
+  <div class="chip">created <b>2026-07-18</b></div>
+  <div class="chip">on radar since <b>2026-07-24</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/DrYe1109/MS-MCP" rel="noopener">View on GitHub ↗</a>
+<h2>About MS-MCP</h2><p class="sub">面向 Windows 与 BIOVIA Materials Studio 的外部 Model Context Protocol（MCP）服务器。它让 Codex 或其他 MCP 客户端通过官方 MaterialsScript 运行时执行建模、Forcite、DMol3、CASTEP、GUI 队列和结果读取，并提供本地 Dashboard。</p><p class="sub">当前版本：0.2.0。项目不是 BIOVIA/Dassault Systèmes 官方产品；使用前请确认 Materials Studio 许可证及 MaterialsScript 组件可用。</p><p class="sub">- 检查 Materials Studio、RunMatScript.bat、工作区和会话状态。 - 创建/导入结构，维护当前 GUI 文档，并执行常用结构编辑。 - 执行 Forcite、DMol3、CASTEP 任务与预设工作流。 - 通过可选的 Materials Studio GUI 循环把脚本送入当前打开的项目。 - 从受限 HTTPS 白名单下载 CIF，并限制响应大小。 - 准备远程 CASTEP 任务，Dashboard 可通过 SSH 只读监控 Gateway 作业目录。 - 所有生成文件默认限制在独立工作区；任意 MaterialsScript 和外部输入默认关闭。</p><p class="sub">- Windows 10/11（64 位）。 - BIOVIA Materials Studio，且已安装 MaterialsScript；必须能找到： MSINSTALLROOT\etc\Scripting\bin\RunMatScript.bat。 - Node.js 20 或更高版本，包含 npm.cmd。 - Codex 或其他支持 stdio MCP 的客户端。 - 可选：Windows OpenSSH Client（只在远程 Dashboard 监控时使用）。</p><p class="sub">下载 Release 压缩包或克隆仓库后，不要把项目放入随后会删除或改名的临时目录。推荐路径如 C:\Tools\MS-MCP。</p><p class="sub">1. 双击 Configure-MS-MCP.bat，逐项确认 Node、Materials Studio、工作区等路径。 2. 双击 Install-MS-MCP.bat，以 npm ci 安装锁定依赖并检查发布文件。 3. 双击 Test-MS-MCP.bat，验证路径、安全默认值和 MCP stdio 通信。 4. 打开生成的 config\codex-ms-mcp.local.toml，把完整内容合并到 %USERPROFILE%\.codex\config.toml。 5. 完全退出并重启 Codex，在 MCP 列表中确认 MS-MCP 可用。</p><p class="sub">Configure-MS-MCP.bat 是唯一推荐的本机配置入口，内部调用 PowerShell 完成验证和安全写入：</p><p class="sub">- config\ms-mcp.local.bat：供启动、测试、Dashboard、GUI 循环和 SSH 脚本统一读取。 - config\codex-ms-mcp.local.toml：供复制到 Codex 的 MCP 配置块。</p><p class="sub">这两个文件包含本机绝对路径，已由 .gitignore 排除，不能上传 GitHub。仓库只保留不含真实机器信息的 config\ms-mcp.example.bat、.mcp.example.json 和 codex-ms-mcp.toml.example。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/DrYe1109--MS-MCP.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/shlokkhemani--rabbithole.html">
+  <span class="name"><span class="owner">shlokkhemani/</span>rabbithole</span>
+  <p>An infinite canvas for learning — select text, ask, and answers branch out as documents. MCP server for Claude Code, Codex, and any agent.</p>
+  <span class="meta"><span>⭐ 222</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-mcpb.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-mcpb</span>
+  <p>Claude Desktop .mcpb bundle for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 44</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-local.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-local</span>
+  <p>Self-serve stdio MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 44</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-remote.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-remote</span>
+  <p>Streamable HTTP remote MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 43</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-apps.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-apps</span>
+  <p>MCP Apps with task progress UI for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 43</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
