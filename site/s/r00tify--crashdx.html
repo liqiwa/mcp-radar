@@ -89,25 +89,45 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 <h1><span class="owner">r00tify/</span>crashdx</h1>
 <p class="sub">A deterministic crash diagnosis engine for .ips reports (CLI + MCP server)</p>
 <div class="chips">
-  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⭐ <b>6</b> stars</div>
   <div class="chip">⑂ <b>0</b> forks</div>
   <a class="chip" href="/lang/swift.html"><span class="lang-dot" style="--lang:#F05138"></span><b>Swift</b></a>
-  <div class="chip">momentum <b>▲ 50.0</b></div>
+  <div class="chip">momentum <b>▲ 60.0</b></div>
   <div class="chip">created <b>2026-07-23</b></div>
   <div class="chip">on radar since <b>2026-07-24</b></div>
-  
+  <div class="chip">star trend <b>5 → 6</b> since 2026-07-24</div>
 </div>
-
+<div class="topics"><a class="topic" href="/topic/cli.html">cli</a><span class="topic">crash-reporting</span><span class="topic">debugger</span><a class="topic" href="/topic/debugging.html">debugging</a><span class="topic">debugging-tool</span><span class="topic">ips</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><span class="topic">swift</span><span class="topic">swift-package</span><span class="topic">symbolicatecrash</span><span class="topic">symbolication</span></div>
 <a class="btn" href="https://github.com/r00tify/crashdx" rel="noopener">View on GitHub ↗</a>
 <h2>About crashdx</h2><p class="sub">A crash diagnosis engine for Apple platforms: parses .ips crash reports, symbolicates them against dSYMs, and produces an evidence-cited, ranked diagnosis, not just a symbolicated stack trace.</p><p class="sub">Ships as a dependency-free Swift library (CrashDXCore imports only Foundation), a CLI (crashdx), and an MCP server (crashdx-mcp), so agents and humans use the same engine.</p><p class="sub">A symbolicated stack trace tells you where a process died, not why. crashdx adds a second stage on top of symbolication: deterministic, rule-based evidence extraction (watchdog budgets, jetsam tables, register and memory state, lastExceptionBacktrace/asi) feeding a ranked set of competing hypotheses, each citing the specific facts that support it and pointing back into the raw report.</p><p class="sub">Two properties it holds onto deliberately:</p><p class="sub">- Every claim is traceable. Facts carry a JSON path into the original report, so any verdict can be checked rather than trusted. - It says &quot;inconclusive&quot; when it is. A verdict requires the leading hypothesis to be strongly supported and clearly ahead of the runner-up; otherwise you get the ranked candidates and what would settle it.</p><p class="sub">There are no LLM calls in the engine: it produces verifiable facts and ranked interpretations, and leaves the narrative to whatever consumes them. See docs/DESIGN.md for the full architecture.</p><p class="sub">- macOS 14+ - Swift 6.2+ toolchain. The manifest itself is swift-tools-version:6.0, but the MCP server&#x27;s pinned dependencies declare up to 6.2, and SwiftPM resolves the whole package graph, so 6.2 is the real floor for every target, including CrashDXCore. - Xcode (not j</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/r00tify--crashdx.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/sanghun0724--configdeck.html">
-  <span class="name"><span class="owner">sanghun0724/</span>configdeck</span>
-  <p>Native macOS SwiftUI dashboard for inspecting your ~/.claude config — skills, agents, settings, hooks, MCP servers, slash commands.</p>
-  <span class="meta"><span>⭐ 3</span><span>Swift</span></span>
+<h2>Related MCP servers</h2><a class="card" href="/s/vshulcz--deja-vu.html">
+  <span class="name"><span class="owner">vshulcz/</span>deja-vu</span>
+  <p>Your agents already solved this. deja finds it — retroactive search and MCP recall over the session logs your coding agents already wrote. Cross-agent, SSH-portable, one zero-dep binary, fully local.</p>
+  <span class="meta"><span>⭐ 391</span><span>Go</span></span>
+</a><a class="card" href="/s/anshupriyan--cli-bridge.html">
+  <span class="name"><span class="owner">anshupriyan/</span>cli-bridge</span>
+  <p>MCP server for Claude Desktop and other Model Context Protocol clients — sandboxed filesystem access (read/write/edit/search) plus Dev Mode-gated shell command execution, scoped to a single workspace </p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/12122J--mcpvet.html">
+  <span class="name"><span class="owner">12122J/</span>mcpvet</span>
+  <p>MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads </p>
+  <span class="meta"><span>⭐ 10</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Dragkob--MCPhantom.html">
+  <span class="name"><span class="owner">Dragkob/</span>MCPhantom</span>
+  <p>MCPhantom is a local web dashboard for MCP endpoint recon. Discover resources, templates, tools, and prompts, then interact with them from a security console.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/Techthos--gadget.html">
+  <span class="name"><span class="owner">Techthos/</span>gadget</span>
+  <p>Prebuilt, interactive HTML widgets for MCP Apps in Go — data tables and forms, self-contained in a single binary, host-themed, spec-compliant.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/flyingsquirrel0419--unlimited-search.html">
+  <span class="name"><span class="owner">flyingsquirrel0419/</span>unlimited-search</span>
+  <p>MCP server and CLI for reading public web pages through resilient public routes.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
 </a>
 
 
