@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-19</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">apm</span><span class="topic">arthas</span><span class="topic">bytebuddy</span><a class="topic" href="/topic/java.html">java</a><span class="topic">javaagent</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">observability</span></div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">apm</span><span class="topic">arthas</span><span class="topic">bytebuddy</span><a class="topic" href="/topic/java.html">java</a><span class="topic">javaagent</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/observability.html">observability</a></div>
 <a class="btn" href="https://github.com/twz007/java-obs-agent" rel="noopener">View on GitHub ↗</a>
 <h2>About java-obs-agent</h2><p class="sub">A framework-agnostic Java observability sidecar agent — drop a single -javaagent jar onto any Java (Servlet) service, then chat with it (via a built-in web UI, an MCP client like Claude Code, or curl) to understand the service&#x27;s live state: request volume, latency, slow calls, errors, logs, thread dumps, method-level traces.</p><p class="sub">It&#x27;s the thing between Arthas (in-JVM diagnostics, no AI/aggregation) and SkyWalking (APM with distributed traces, no conversational agent) — plus the Datadog Bits AI pattern (chat-with-your-service), but self-hosted and attachable to a single JVM.</p><p class="sub">Built and validated end-to-end on a real Spring Boot service (the interview-guide project): attach → chat → &quot;which route is slowest?&quot; → agent calls its tools → answers with real metrics, then tracerequest to pin the slow method in the call tree.</p><p class="sub">Attach the agent to a running Java service (no restart needed — dynamic attach like Arthas). The agent runs inside the target JVM:</p><p class="sub">- Captures per-route request metrics (count, p50/p95/p99, error rate), slow calls, errors — into in-JVM ring buffers (zero external storage). - Captures recent logs (Logback appender) + thread snapshots (JMX). - Exposes a MCP server (JSON-RPC over HTTP) — any MCP client (Claude Code, Cursor) can chat with the service. - Exposes a built-in chat web UI (/chat) — an OpenAI-compatible LLM (BYO API key) orchestrates the tools to answer your questions in natural language. - On-demand method-level diagnostics: watchmethod (capture a method&#x27;s invocations) and tracerequest (full method call-tree, Arthas-trace style). - Leaves a Source SPI seam </p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -112,6 +112,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">frangelbarrera/</span>code-review-agent-mcp</span>
   <p>AI code review agent MCP server. Reviews code like a kernel maintainer: blunt, technical, no sugarcoating. Detects bugs + OWASP Top 10 security vulnerabilities. 4 harshness levels. Anti-RLHF.</p>
   <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/SujalXplores--Agent-K.html">
+  <span class="name"><span class="owner">SujalXplores/</span>Agent-K</span>
+  <p>Code-enforced incident-response agent that investigates SigNoz alerts, publishes evidence-backed root-cause claims, and gates every action behind a safety policy. Built for Agents of SigNoz hackathon.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
 </a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
   <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
   <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">12122J/</span>mcpvet</span>
   <p>MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads </p>
   <span class="meta"><span>⭐ 10</span><span>JavaScript</span></span>
-</a><a class="card" href="/s/hoangann2000--figma-mcp-console.html">
-  <span class="name"><span class="owner">hoangann2000/</span>figma-mcp-console</span>
-  <p>MCP server that lets your AI assistant read and write Figma in real time — no API token, no rate limits. Works with Claude, Cursor, Copilot, Codex and any MCP client.</p>
-  <span class="meta"><span>⭐ 9</span><span>Go</span></span>
 </a>
 
 

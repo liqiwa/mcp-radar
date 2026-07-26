@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>realchendahuang/pi-config — MCP Server | MCP Radar</title>
+<meta name="description" content="My Pi coding agent setup: 17 plugins + 18 global skills + 2 MCP servers, with a one-line installer and tutorial README. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/realchendahuang--pi-config.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="realchendahuang/pi-config — MCP Server | MCP Radar">
+<meta property="og:description" content="My Pi coding agent setup: 17 plugins + 18 global skills + 2 MCP servers, with a one-line installer and tutorial README. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "realchendahuang/pi-config", "description": "My Pi coding agent setup: 17 plugins + 18 global skills + 2 MCP servers, with a one-line installer and tutorial README.", "codeRepository": "https://github.com/realchendahuang/pi-config", "programmingLanguage": "Shell", "url": "https://mcp.liqiwa.com/s/realchendahuang--pi-config.html", "dateCreated": "2026-07-25"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">realchendahuang/</span>pi-config</h1>
+<p class="sub">My Pi coding agent setup: 17 plugins + 18 global skills + 2 MCP servers, with a one-line installer and tutorial README.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>70</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/shell.html"><span class="lang-dot" style="--lang:#8b949e"></span><b>Shell</b></a>
+  <div class="chip">momentum <b>▲ 700.0</b></div>
+  <div class="chip">created <b>2026-07-25</b></div>
+  <div class="chip">on radar since <b>2026-07-26</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/realchendahuang/pi-config" rel="noopener">View on GitHub ↗</a>
+<h2>About pi-config</h2><p class="sub">一份可直接复刻的 Pi 配置，整理成教程形式分享。包含 17 个插件、18 个全局 Skill、2 个 MCP server，配一键安装脚本。</p><p class="sub">仓库里的每样东西都经过实际使用筛选，目标是把 Pi 打造成一个能多代理协作、能省 token、能跑浏览器的全能终端编码代理。</p><p class="sub">Pi（npm 包 @earendil-works/pi-coding-agent）是一个开源的终端 AI 编码代理。你给它一个任务，它在你本地的项目里读写文件、跑命令、调用工具来完成任务。</p><p class="sub">然后跑 pi 进入交互界面。本仓库的所有插件都假设你已经有一个能正常工作的 Pi。</p><p class="sub">- Extension（扩展）：TypeScript 模块，最强力的改造方式。能订阅生命周期事件（如 toolcall 可以拦截/修改/阻止工具调用）、注册自定义工具、注册命令、改系统提示词、自定义渲染。 - Skill（技能）：一个 SKILL.md 文件，描述「某类任务怎么做」。模型按需加载，跨会话存活。Pi 实现了 Agent Skills 标准，所以 Claude Code / OpenAI Codex 的 skill 也能直接用。 - Prompt（提示模板）：可复用的 .md 模板，用 /template 唤起。 - Theme（主题）：JSON 配色文件。 - Package（包）：把上面这些打包，通过 npm / git / 本地路径分发。pi install 就是装包。</p><p class="sub">1. 用户输入 prompt 2. beforeagentstart 事件（扩展可注入消息 / 改系统提示词） 3. 进入 turn 循环：调模型 → 模型可能调用工具 → toolcall 事件（可拦截）→ 执行工具 → toolresult 事件（可改结果）→ 回传给模型 4. 模型不再调工具 → agentend → agentsettled</p><p class="sub">Pi 有一个官方的 包市场，所有在 package.json 里带 pi-package 关键字的 npm 包都会自动出现在上面。每个包页面会展示版本、下载量、依赖、仓库链接、甚至 demo 视频/截图。</p><p class="sub">来源 格式 说明 --- --- --- npm npm:@scope/pkg@1.2.3 最常见，版本可 pin git git:github.com/user/repo@v1 适合私有 / 未发布的包，SSH/HTTPS 都行 本地路径 /abs/path 或 ./rel/path 开发调试用</p><p class="sub">文件 作用 --- --- ~/.pi/agent/settings.json 全局设置：packages 列表、主题、默认模型等 ~/.pi/agent/tools.json 工具开关：哪些工具 active / inactive ~/.pi/agent/models.json provider 和模型定义 ~/.pi/agent/extensions/.ts 全局自定义扩展（auto-discover，支持 /reload） ~/.agents/skills/ 全局自定义 skill ~/.config/mcp/mcp.json MCP server 配置 .pi/settings.json 项目级设置（可跟团队共享） .pi/extensions/ 项目级扩展</p><p class="sub">最简单的扩展。在 ~/.agents/skills/my-skill/SKILL.md 写一个 markdown，描述某类任务的标准流程。模型会按需加载它。本仓库的 chrome-devtools skill 就是这种形式。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/realchendahuang--pi-config.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/HossamYoussof--opencode-config.html">
+  <span class="name"><span class="owner">HossamYoussof/</span>opencode-config</span>
+  <p>Personal OpenCode configuration with MCP servers, agent presets, and cross-platform installer</p>
+  <span class="meta"><span>⭐ 9</span><span>Shell</span></span>
+</a><a class="card" href="/s/howshannon--trust-issues.html">
+  <span class="name"><span class="owner">howshannon/</span>trust-issues</span>
+  <p>Adversarial security review for AI skills, repos, MCP servers, and packages before you install them. A read-only scanner plus a five-persona reasoning pass, ending in a GO / GO WITH MITIGATIONS / NO-G</p>
+  <span class="meta"><span>⭐ 5</span><span>Shell</span></span>
+</a><a class="card" href="/s/Reanthesis--use-reanthesis.html">
+  <span class="name"><span class="owner">Reanthesis/</span>use-reanthesis</span>
+  <p>Connect your AI to Reanthesis — MCP server, agent skills, and plugins so Claude, ChatGPT, and Copilot can build flashcards from your notes and manage your study data. Your AI, your data, your cards.</p>
+  <span class="meta"><span>⭐ 3</span><span>Shell</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
