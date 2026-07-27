@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-14</b></div>
   <div class="chip">star trend <b>4 → 5</b> since 2026-07-14</div>
 </div>
-<div class="topics"><span class="topic">arxiv</span><a class="topic" href="/topic/claude.html">claude</a><span class="topic">e-reader</span><span class="topic">kindle</span><span class="topic">kobo</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">research-tools</span><span class="topic">zotero</span></div>
+<div class="topics"><span class="topic">arxiv</span><a class="topic" href="/topic/claude.html">claude</a><span class="topic">e-reader</span><span class="topic">kindle</span><span class="topic">kobo</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/research-tools.html">research-tools</a><span class="topic">zotero</span></div>
 <a class="btn" href="https://github.com/michaelellis003/paperboy" rel="noopener">View on GitHub ↗</a>
 <h2>About paperboy</h2><p class="sub">An MCP server that delivers research papers and books to your e-reader, with Zotero as the source of truth. Ask Claude for a reading list, then say &quot;queue them and send to my Kindle.&quot; (MCP is the plugin protocol Claude uses: this program runs on your machine or your cloud project, and Claude calls its tools during conversation.) Works locally in Claude Code and Claude Desktop; a Cloud Run deployment adds claude.ai and the Claude mobile app, so papers can be sent from a phone (docs/deploy.md).</p><p class="sub">Two things are kept separate: delivering a paper to your device and cataloguing a work in Zotero. You can do either. A book you own, a paywalled reference, or a PDF you already have can all be tracked in the library without being staged for the e-reader.</p><p class="sub">Zotero itself is optional: without it you can still search and send papers one-off. The reading queue, collections, and duplicate protection across sessions need it.</p><p class="sub">You ask Claude for papers; it uses paperboy&#x27;s tools to find, queue, and deliver them. What that looks like in practice:</p><p class="sub">- Papers you queue land in a Reading Queue collection in Zotero, created on demand. - Once a paper reaches your device, paperboy tags it sent-to-ereader in Zotero, so it skips papers already sent to your e-reader, even in a later conversation. (Without Zotero there&#x27;s no memory between sends, so this protection needs it.) - Claude can file papers into your topical collections too. It proposes one from the paper&#x27;s topic and your existing collection names, and asks you when the fit is unclear. A paper can sit in several collections at once, so filing nev</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/michaelellis003--paperboy.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/MaxEllis--orcaslicer-mcp.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/ZoeLinUTS--MagicTeX-mcp.html">
+  <span class="name"><span class="owner">ZoeLinUTS/</span>MagicTeX-mcp</span>
+  <p>MagicTeX — a LaTeX editor for AI agents (Claude Code): live PDF preview, PDF comments that drive edits, Visual (WYSIWYG) mode, and git-tracked history. No local TeX install.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/MaxEllis--orcaslicer-mcp.html">
   <span class="name"><span class="owner">MaxEllis/</span>orcaslicer-mcp</span>
   <p>OrcaSlicer MCP — drive OrcaSlicer from Claude or any MCP client: load models, tune settings, slice, analyze</p>
   <span class="meta"><span>⭐ 17</span><span>Python</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">AlexanderBoger/</span>SaveContext</span>
   <p>Git LFS for your LLM context — 20x Context Savings — an MCP server that keeps big documents out of the model and returns byte-exact quotes for a fraction of the tokens.</p>
   <span class="meta"><span>⭐ 5</span><span>Python</span></span>
-</a><a class="card" href="/s/Cocabadger--tick-mcp.html">
-  <span class="name"><span class="owner">Cocabadger/</span>tick-mcp</span>
-  <p>An MCP time server that keeps your AI honest about time. Zero-dependency clock + drift guard for Claude Desktop, Claude Code, and claude.ai — local, remote, and hook flavors.</p>
-  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
 </a>
 
 

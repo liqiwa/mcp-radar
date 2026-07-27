@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rajephon/k-lottery — MCP Server | MCP Radar</title>
+<meta name="description" content="동행복권 로또 6/45 구매·잔액·당첨 확인 CLI + MCP 서버. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/rajephon--k-lottery.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="rajephon/k-lottery — MCP Server | MCP Radar">
+<meta property="og:description" content="동행복권 로또 6/45 구매·잔액·당첨 확인 CLI + MCP 서버. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "rajephon/k-lottery", "description": "동행복권 로또 6/45 구매·잔액·당첨 확인 CLI + MCP 서버.", "codeRepository": "https://github.com/rajephon/k-lottery", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/rajephon--k-lottery.html", "dateCreated": "2026-07-26"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">rajephon/</span>k-lottery</h1>
+<p class="sub">동행복권 로또 6/45 구매·잔액·당첨 확인 CLI + MCP 서버.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-07-26</b></div>
+  <div class="chip">on radar since <b>2026-07-27</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">dhlottery</span><span class="topic">lottery</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a></div>
+<a class="btn" href="https://github.com/rajephon/k-lottery" rel="noopener">View on GitHub ↗</a>
+<h2>About k-lottery</h2><p class="sub">동행복권 로또 6/45를 대신 사고, 잔액도 보고, 당첨됐는지도 확인해주는 도구예요. 터미널에서 명령어로 써도 되고, Claude Code나 Claude Desktop에서 말로 시켜도 돼요. CLI 4개랑 MCP 서버가 같은 코어를 써요.</p><p class="sub">직접 쓰려고 만든 개인용 도구예요. 진짜 돈이 나가니까 쓰기 전에 면책을 꼭 읽어주세요.</p><p class="sub">- 무엇을 할 수 있나 - 요구사항 - 빠른 시작 - MCP 서버 설정 - 안전장치 - CLI 사용법 - 환경변수 - 종료 코드 - 자동화 예시 (cron) - 알아둘 점 - 개발 - 기여 · 면책 · 라이선스</p><p class="sub">CLI 하는 일 --- --- scripts/balance.py 예치금·구매 한도·서약 유효성 scripts/check.py 구매 내역과 당첨 결과 (등수는 서버가 계산) scripts/deposit.py 충전용 가상계좌 발급 (이체는 직접) scripts/buy.py 자동번호 구매 (기본 dry-run)</p><p class="sub">MCP 도구 파라미터 노출 하는 일 --- --- --- --- lottostatus — 항상 잔액·한도·서약 유효성·가상계좌(뒤 4자리만) lottoresults days=14, roundno? 항상 구매 내역 + 당첨 결과 lottodraw roundno 항상 공개 추첨 결과 (로그인 불필요) lottobuyprecheck games=5 항상 구매 전 점검만. 절대 사지 않음 lottobuy games=5 게이트 실제 구매 (승인 필수) lottodeposit amount 게이트 가상계좌 발급 (승인 필수)</p><p class="sub">--- --- uv 필수예요. Python 3.13은 uv가 .python-version을 보고 알아서 받아와요 동행복권 계정 아이디/비밀번호로 로그인하는 계정이요 건전구매 서약 사이트에서 직접 하셔야 해요. 만료됐으면 구매가 막혀요 (종료코드 3) 예치금 충전하려면 은행 이체가 필요해서 완전 무인화는 안 돼요 OS macOS에서 확인했어요. Linux도 될 것 같고, Windows는 안 해봤어요</p><p class="sub">CLI와 같은 코어 위에 FastMCP(stdio) 서버를 올려뒀어요. 잔액이나 당첨 결과를 대화로 물어볼 수 있고, 원하면 구매·충전까지 열 수 있어요. 다만 실제로 사는 건 매번 직접 승인하셔야 해요.</p><p class="sub">게이트는 .env에 적어도 안 열려요. -e 옵션이나 Desktop 설정의 env 블록처럼 서버를 띄우는 프로세스 환경에 넣어야 해요. .env는 모델이 고칠 수 있는 파일이거든요. 거기서 스위치를 읽으면 &quot;모델이 못 건드리는 곳에 스위치를 둔다&quot;는 전제가 무너져요.</p><p class="sub">게이트는 서버가 뜰 때 한 번 읽고 끝이에요. 나중에 켜거나 끄려면 등록을 지우고 다시 만든 뒤 클라이언트를 재시작하세요 (claude mcp remove klottery).</p><p class="sub">- macOS: ~/Library/Application Support/Claude/claudedesktopconfig.json - Windows: %APPDATA%\Claude\claudedesktopconfig.json</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/rajephon--k-lottery.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
+</a><a class="card" href="/s/vorobjewsen30-max--ansys-mcp-server.html">
+  <span class="name"><span class="owner">vorobjewsen30-max/</span>ansys-mcp-server</span>
+  <p>MCP server giving Claude Code CLI direct control over Ansys engineering simulations — CFD, FEA, meshing, and post-processing via PyAnsys. 24 tools. Multi-language docs.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/AndyShaman--telegram-business-bridge.html">
+  <span class="name"><span class="owner">AndyShaman/</span>telegram-business-bridge</span>
+  <p>Connect any AI agent to your personal Telegram via the official Business API — no userbot, no ban risk, no Premium. Agent reads &amp; searches full history, drafts replies; every reply waits for your ✅. M</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/MaxFreedomPollard--engRAM.html">
+  <span class="name"><span class="owner">MaxFreedomPollard/</span>engRAM</span>
+  <p>Automatic one-click install. Encrypted, fully offline vector memory for AI agents; takes over built-in agentic memory.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/nisargpatel1906--Aethos_Memory.html">
+  <span class="name"><span class="owner">nisargpatel1906/</span>Aethos_Memory</span>
+  <p>Universal, cross-tool persistent memory bank for AI assistants (Claude Code, Cursor, Windsurf, OpenCode, Codex) powered by FastMCP, Gemini embeddings &amp; Supabase pgvector.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
+  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
+  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
+  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
