@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>caroliny1031/midea-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="A safety-first MCP server for Midea air conditioners. LAN-preferred, cloud fallback. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/caroliny1031--midea-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="caroliny1031/midea-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="A safety-first MCP server for Midea air conditioners. LAN-preferred, cloud fallback. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "caroliny1031/midea-mcp", "description": "A safety-first MCP server for Midea air conditioners. LAN-preferred, cloud fallback.", "codeRepository": "https://github.com/caroliny1031/midea-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/caroliny1031--midea-mcp.html", "dateCreated": "2026-07-27"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">caroliny1031/</span>midea-mcp</h1>
+<p class="sub">A safety-first MCP server for Midea air conditioners. LAN-preferred, cloud fallback.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-07-27</b></div>
+  <div class="chip">on radar since <b>2026-07-28</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/caroliny1031/midea-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About midea-mcp</h2><p class="sub">面向美的空调的本地单用户 MCP Server。MVP 使用 Python 3.12、MCP Python SDK =1.27,&lt;2 和 stdio，公开六个工具：</p><p class="sub">- listdevices - getdevice - refreshdevice - setdevicestate - discoverlandevices - diagnosedevice</p><p class="sub">- 每台逻辑设备使用 midea-mcp 内部 UUID。 - Cloud ID、LAN ID 和 keyed SN fingerprint 分别保存为 bindings，绝不假设 Cloud ID 与 LAN ID 相同。 - 写入只返回 rejected、notdelivered、deliveryunknown、accepted 或 verified。 - LAN 或 Cloud 写入投递结果不明时，只通过原 Provider 读取实际状态进行核验， 绝不切换 Provider 或重发。 - Token/Key 使用 AES-256-GCM 加密落盘；日志和工具响应不返回明文凭证或原始 SN。 - 路由选择为“可用 LAN 优先；没有可用 LAN binding 时使用 Cloud”。一旦开始写入， 本次请求就锁定 Provider。 - Cloud 支持空调状态读取及开关、模式、目标温度写入，并使用云端状态读回核验。</p><p class="sub">如果系统没有 py 命令，直接使用 Python 3.12 可执行文件创建虚拟环境。</p><p class="sub">默认数据目录是当前目录下的 data/，可通过 MIDEAMCPDATADIR 修改。 首次启动会生成 data/master.key。生产使用时应备份密钥并限制文件访问权限；也可以 使用 MIDEAMCPMASTERKEY 注入一个 URL-safe base64 编码的 32 字节密钥。</p><p class="sub">可导入单个文件、整个 mideaaclan 目录，也可导入 HA .storage/core.configentries：</p><p class="sub">导入器仅接受设备类型 0xAC、协议版本 V3，并将 Token/Key 立即加密后保存。</p><p class="sub">旧 Token API 正在被美的关闭，因此该步骤可能无法取得新凭证。已有 HA 凭证优先且 不会被云端候选覆盖。Cloud/LAN 只有在 SN fingerprint 唯一匹配时才合并为同一设备。</p><p class="sub">sync-cloud 同时会登记 Cloud binding。部署在无法访问家庭局域网的服务器时，应在 启动 MCP Server 前至少执行一次该命令；之后 refreshdevice 和 setdevicestate 会通过 Cloud 路由工作。</p><p class="sub">备份使用独立口令通过 scrypt 派生密钥，再使用 AES-256-GCM 加密。</p><p class="sub">模式为 off / auto / cool / dry / heat / fanonly，目标温度默认限制 为 17–30°C，步长 0.5°C。power=false 不能与模式或温度同时提交。</p><p class="sub">- 热水器、烤箱及其他设备品类 - 场景和 executescene - Home Assistant Provider - 多用户或公网认证</p><p class="sub">测试使用模拟 Provider，不会控制真实设备。实机写入只通过显式调用 setdevicestate 发生。</p><p class="sub">本次 Phase 0 与实机验收结果见 PHASE0.md。项目已发现并登记 一台 V3 空调，通过云端 Token API 候选完成 LAN 认证，并实际验证开关、模式 和温度控制。验收结束后设备已恢复为关机、25°C。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/caroliny1031--midea-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/sm18lr88--STT-MCP.html">
+  <span class="name"><span class="owner">sm18lr88/</span>STT-MCP</span>
+  <p>Fast, local speech-to-text MCP server</p>
+  <span class="meta"><span>⭐ 56</span><span>Python</span></span>
+</a><a class="card" href="/s/sandeepbazar--ocm-mcp-server.html">
+  <span class="name"><span class="owner">sandeepbazar/</span>ocm-mcp-server</span>
+  <p>An MCP server that lets AI agents operate a multi-cluster Kubernetes fleet through an Open Cluster Management hub, with policy, approval, and audit between the model and your clusters.</p>
+  <span class="meta"><span>⭐ 39</span><span>Python</span></span>
+</a><a class="card" href="/s/Vladimir-Human--ru-marketplace-mcp.html">
+  <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
+  <p>MCP-серверы для российских маркетплейсов: Wildberries, Ozon, Яндекс Маркет, Детский мир и сравнение цен по всем сразу. Только чтение, ключи не нужны.</p>
+  <span class="meta"><span>⭐ 37</span><span>Python</span></span>
+</a><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
+</a><a class="card" href="/s/Chester-2026--Gov-Stat-MCP-Server.html">
+  <span class="name"><span class="owner">Chester-2026/</span>Gov-Stat-MCP-Server</span>
+  <p>A Centralized MCP Server for Fetching Data from Many Countries&#x27; Govs</p>
+  <span class="meta"><span>⭐ 21</span><span>Python</span></span>
+</a><a class="card" href="/s/whoisqwerz--pocket_disasm.html">
+  <span class="name"><span class="owner">whoisqwerz/</span>pocket_disasm</span>
+  <p>Multi-session IDALib MCP router for coding agents. Analyze multiple binaries in parallel with IDA-compatible reverse engineering tools.</p>
+  <span class="meta"><span>⭐ 21</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
