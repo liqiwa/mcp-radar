@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>taehyeonglim/korean-elementary-learning-map-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="한국 초등 2022 개정 교육과정 학습 그래프 MCP 서버 — 성취기준 원문 수록 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/taehyeonglim--korean-elementary-learning-map-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="taehyeonglim/korean-elementary-learning-map-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="한국 초등 2022 개정 교육과정 학습 그래프 MCP 서버 — 성취기준 원문 수록 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "taehyeonglim/korean-elementary-learning-map-mcp", "description": "한국 초등 2022 개정 교육과정 학습 그래프 MCP 서버 — 성취기준 원문 수록", "codeRepository": "https://github.com/taehyeonglim/korean-elementary-learning-map-mcp", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/taehyeonglim--korean-elementary-learning-map-mcp.html", "dateCreated": "2026-07-28"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">taehyeonglim/</span>korean-elementary-learning-map-mcp</h1>
+<p class="sub">한국 초등 2022 개정 교육과정 학습 그래프 MCP 서버 — 성취기준 원문 수록</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>4</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 68.0</b></div>
+  <div class="chip">created <b>2026-07-28</b></div>
+  <div class="chip">on radar since <b>2026-07-29</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><span class="topic">curriculum</span><span class="topic">korean-education</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a></div>
+<a class="btn" href="https://github.com/taehyeonglim/korean-elementary-learning-map-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About korean-elementary-learning-map-mcp</h2><p class="sub">한국 초등 2022 개정 교육과정 학습 그래프를 AI가 조회하게 해주는 MCP(Model Context Protocol) 서버입니다. Claude Desktop, Claude Code 등 MCP를 지원하는 AI 클라이언트에 설정 한 줄로 연결하면, AI가 성취기준·학습 주제·선수관계를 직접 검색해서 답합니다.</p><p class="sub">데이터 수량 --- ---: 교육과정(교과) 11 성취기준 — 공식 원문 수록 620 세부 학습 주제 (관찰 증거·평가 문항 포함) 1,956 선수관계 (교과 내 DAG) 1,894 학습 클러스터 (학부모용 요약 포함) 153</p><p class="sub">- 성취기준 공식 원문 수록 — 620개 전부 NCIC 공개 PDF에서 추출·전수 검증. 원문 전문 검색 도구 제공 - 완전 로컬 동작 — 데이터가 패키지에 내장(약 8.6MB)되어 설치 후 네트워크 불필요, stdio 방식 - 무결성 보장 — 데이터 파일별 SHA-256을 서버 기동 시 재검증. 손상된 설치본은 기동 거부 - LLM 친화 설계 — 검색은 요약만, 상세는 조회로 나눈 2단계 패턴(토큰 절약). 오타 입력엔 유사 후보 제안</p><p class="sub">&quot;3-4학년 수학에서 분수 관련 성취기준 찾아줘&quot; &quot;[2수01-01] 원문 보여줘&quot; &quot;초등 1-2학년 수학 한 학기 로드맵 정리해줘&quot;</p><p class="sub">설정 파일에 추가합니다. macOS: ~/Library/Application Support/Claude/claudedesktopconfig.json · Windows: %APPDATA%\Claude\claudedesktopconfig.json</p><p class="sub">저장 후 Claude Desktop을 재시작하면 도구 9종이 로드됩니다.</p><p class="sub">stdio 방식 MCP 서버를 지원하는 모든 클라이언트에서 동일한 형태로 등록됩니다: 실행 명령 npx, 인자 [&quot;-y&quot;, &quot;korean-elementary-learning-map-mcp&quot;].</p><p class="sub">- Node.js ≥ 20.11 (npx 포함) - 첫 실행 시 npm에서 패키지를 내려받으며(약 320KB 압축), 이후에는 캐시로 즉시 실행됩니다</p><p class="sub">&quot;serverInfo&quot;:{&quot;name&quot;:&quot;korean-elementary-learning-map&quot;,&quot;version&quot;:&quot;0.5.0&quot;}이 포함된 응답이 나오면 정상입니다.</p><p class="sub">AI에게 자연어로 물어보면 알아서 적절한 도구를 호출합니다. 대표 시나리오:</p><p class="sub">이렇게 물어보면 호출되는 도구 --- --- &quot;초등 교과 뭐뭐 있어?&quot; listcurricula &quot;3-4학년 수학 분수 성취기준 찾아줘&quot; searchstandards &quot;원문에 &#x27;문제 해결&#x27;이 들어간 성취기준은?&quot; searchstandardtext &quot;[2수01-01] 자세히, 원문도&quot; getstandard &quot;이 성취기준으로 뭘 가르치고 평가하지?&quot; searchtopics → gettopic &quot;이 주제 배우기 전에 뭘 알아야 해?&quot; getprerequisites (depth=all이면 전체 경로) &quot;1-2학년 수학 로드맵 만들어줘&quot; getlearningroadmap &quot;학부모한테 설명할 단원 묶음 보여줘&quot; listclusters</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/taehyeonglim--korean-elementary-learning-map-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/12122J--mcpvet.html">
+  <span class="name"><span class="owner">12122J/</span>mcpvet</span>
+  <p>MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads </p>
+  <span class="meta"><span>⭐ 10</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/stanislawherjan1--gdocs-comments-mcp.html">
+  <span class="name"><span class="owner">stanislawherjan1/</span>gdocs-comments-mcp</span>
+  <p>MCP server for adding inline, range-anchored comments to Google Docs — the one comment operation the Google Docs &amp; Drive APIs can&#x27;t do. For AI agents (Claude, Cursor, Copilot) that review documents.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/OneInterface--stormy-cookbook.html">
+  <span class="name"><span class="owner">OneInterface/</span>stormy-cookbook</span>
+  <p>Open-source cookbook for the Stormy Social Data API and MCP server (Model Context Protocol) — one REST API for the TikTok API, YouTube API, Instagram API, LinkedIn API, X (Twitter) API and Reddit API.</p>
+  <span class="meta"><span>⭐ 72</span><span></span></span>
+</a><a class="card" href="/s/Vladimir-Human--ru-marketplace-mcp.html">
+  <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
+  <p>Девять российских маркетплейсов и китайский Taobao как MCP-серверы: Wildberries, Ozon, Яндекс Маркет, Детский мир, Авито, Мегамаркет, Lamoda, DNS, Ситилинк. Плюс сравнение цен по всем сразу. Только чт</p>
+  <span class="meta"><span>⭐ 40</span><span>Python</span></span>
+</a><a class="card" href="/s/alexpilotto--uxon-ai.html">
+  <span class="name"><span class="owner">alexpilotto/</span>uxon-ai</span>
+  <p>MCP server and Claude skills for PPC landing pages, A/B experiments, and first-party conversion tracking. Build Google Ads and Meta pages, run cross-domain experiments, and pull CRO reports via the UX</p>
+  <span class="meta"><span>⭐ 23</span><span></span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

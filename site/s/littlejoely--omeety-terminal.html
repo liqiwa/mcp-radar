@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>littlejoely/omeety-terminal — MCP Server | MCP Radar</title>
+<meta name="description" content="A real local terminal in Edge/Chrome that gives Codex, Claude Code, Kimi Code, and any MCP CLI 28 browser-control tools. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/littlejoely--omeety-terminal.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="littlejoely/omeety-terminal — MCP Server | MCP Radar">
+<meta property="og:description" content="A real local terminal in Edge/Chrome that gives Codex, Claude Code, Kimi Code, and any MCP CLI 28 browser-control tools. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "littlejoely/omeety-terminal", "description": "A real local terminal in Edge/Chrome that gives Codex, Claude Code, Kimi Code, and any MCP CLI 28 browser-control tools.", "codeRepository": "https://github.com/littlejoely/omeety-terminal", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/littlejoely--omeety-terminal.html", "dateCreated": "2026-07-26"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">littlejoely/</span>omeety-terminal</h1>
+<p class="sub">A real local terminal in Edge/Chrome that gives Codex, Claude Code, Kimi Code, and any MCP CLI 28 browser-control tools.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">created <b>2026-07-26</b></div>
+  <div class="chip">on radar since <b>2026-07-29</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">browser-agent</span><a class="topic" href="/topic/browser-automation.html">browser-automation</a><a class="topic" href="/topic/chrome-extension.html">chrome-extension</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><span class="topic">conpty</span><span class="topic">edge-extension</span><span class="topic">kimi-code</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">native-messaging</span><a class="topic" href="/topic/terminal.html">terminal</a><a class="topic" href="/topic/windows.html">windows</a><span class="topic">xterm</span></div>
+<a class="btn" href="https://github.com/littlejoely/omeety-terminal" rel="noopener">View on GitHub ↗</a>
+<h2>About omeety-terminal</h2><p class="sub">Omeety Terminal 是 CLI Agent 的浏览器外骨骼：把真实本地终端放进 Edge/Chrome 侧栏，让 Codex、Claude Code、Kimi Code 以及任何支持 MCP 的 CLI Agent 共用当前网页的同一双眼睛和手。</p><p class="sub">3 分钟快速开始 · 为什么是 Omeety · 工作原理 · 35 个 MCP 工具 · 安全边界 · 参与开发</p><p class="sub">上面的可复现演示使用确定性的本地 MCP 客户端，实际经过扩展、Native Messaging、ConPTY 和浏览器工具；Codex、Claude Code、Kimi Code 使用同一套 35 个工具。演示不依赖模型账号或预录的模型回答。</p><p class="sub">没有专用聊天模式，也没有模型切换按钮——它就是一个真实 shell。你仍然可以运行 git、npm、claude、codex、kimi 或任意本地命令；区别是里面的 Agent 自动获得了当前浏览器标签页的感知和操作能力。</p><p class="sub">这是一个独立开发的 Windows/macOS Beta 项目，不是 OpenAI、Anthropic、Moonshot AI、 Microsoft 或 xterm.js 的官方产品。</p><p class="sub">能力 Omeety Terminal 常见独立 Browser MCP 集成式桌面 Agent ---:---::---::---: 操作你正在使用、已经登录的浏览器标签页 ✅ 视实现而定 视产品而定 真实本地 PTY / 普通 Shell ✅ — 通常不是 Codex、Claude Code、Kimi Code 共用一套能力 ✅ 部分支持 通常绑定自家 Agent Agent / 模型中立的 MCP 工具契约 ✅ ✅ 通常不是 页面元素选取、截图、Console、真实 CDP 输入 ✅ 视实现而定 视产品而定 持久化下载、断点续传、代理择路与 SHA-256 校验 ✅ 通常没有 视产品而定 本地桥接；MCP 仅监听 127.0.0.1 ✅ 视实现而定 视产品而定 提交、删除、保存等危险操作保留确认 ✅ 视实现而定 视产品而定</p><p class="sub">当前版本已在 Windows 11 + Microsoft Edge 和 macOS + Google Chrome 验证。先安装 Node.js LTS，以及 你准备使用的 codex、claude 或 kimi CLI。</p><p class="sub">1. 打开 chrome://extensions 或 edge://extensions → 开启开发者模式 → 加载已解压的扩展。 2. 选择仓库里的 extension 文件夹。 3. 点击 Omeety 图标打开侧栏，在真实终端里运行 codex、claude 或 kimi。 4. 对 Agent 说：“描述当前网页”；或点侧栏的选取，连续点多个元素， 按 Enter/点「完成选取」，上下文会自动写进当前 Agent 输入框。</p><p class="sub">不想 clone、或网络受限？ 到 Releases 下载 omeety-terminal.zip（已含全部依赖），解压后在项目根目录同样跑 installer\install.ps1（Windows）或 ./installer/install.sh（macOS）即可， 无需 npm install，也无需联网拉依赖。</p><p class="sub">可以把 LLM 理解为操控者，把 Codex、Claude Code、Kimi Code 等 CLI Agent 理解为各有特长的战甲；Omeety 是套在这些 Agent 外面的浏览器外骨骼： 它不替代里面的 Agent，而是为任意“模型 + Agent”组合提供同一双浏览器眼睛、 同一双手和一条真实终端通道。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/littlejoely--omeety-terminal.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/risa-labs-inc--BossConsole.html">
+  <span class="name"><span class="owner">risa-labs-inc/</span>BossConsole</span>
+  <p>Open-source, multi-platform harness for AI agents — a native, multi-threaded operator&#x27;s console (JVM, not Electron) to run Claude Code, Codex, Gemini or OpenCode with a real browser, terminal, editor,</p>
+  <span class="meta"><span>⭐ 199</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/12122J--mcpvet.html">
+  <span class="name"><span class="owner">12122J/</span>mcpvet</span>
+  <p>MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads </p>
+  <span class="meta"><span>⭐ 10</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/viRomulus-gif--browser-integration-mcp.html">
+  <span class="name"><span class="owner">viRomulus-gif/</span>browser-integration-mcp</span>
+  <p>MCP server for Claude Desktop: a shared, isolated browser agent behind a token-guarded local broker. Chrome/Edge/Vivaldi via CDP on a private pipe. Windows.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/stanislawherjan1--gdocs-comments-mcp.html">
+  <span class="name"><span class="owner">stanislawherjan1/</span>gdocs-comments-mcp</span>
+  <p>MCP server for adding inline, range-anchored comments to Google Docs — the one comment operation the Google Docs &amp; Drive APIs can&#x27;t do. For AI agents (Claude, Cursor, Copilot) that review documents.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 584</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
