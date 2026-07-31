@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pickleshell/pickleshell — MCP Server | MCP Radar</title>
+<meta name="description" content="PickleShell ChatGPT Plugin - Interactive sessions with your local AI agent from ChatGPT — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/pickleshell--pickleshell.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="pickleshell/pickleshell — MCP Server | MCP Radar">
+<meta property="og:description" content="PickleShell ChatGPT Plugin - Interactive sessions with your local AI agent from ChatGPT — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pickleshell/pickleshell", "description": "PickleShell ChatGPT Plugin - Interactive sessions with your local AI agent from ChatGPT", "codeRepository": "https://github.com/pickleshell/pickleshell", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/pickleshell--pickleshell.html", "dateCreated": "2026-07-26"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">pickleshell/</span>pickleshell</h1>
+<p class="sub">PickleShell ChatGPT Plugin - Interactive sessions with your local AI agent from ChatGPT</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 7.5</b></div>
+  <div class="chip">created <b>2026-07-26</b></div>
+  <div class="chip">on radar since <b>2026-07-31</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/ai-coding-assistant.html">ai-coding-assistant</a><a class="topic" href="/topic/chatgpt.html">chatgpt</a><a class="topic" href="/topic/coding-agent.html">coding-agent</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/nodejs.html">nodejs</a><a class="topic" href="/topic/openai.html">openai</a><a class="topic" href="/topic/opencode.html">opencode</a><span class="topic">remote-development</span><span class="topic">secure-tunnel</span><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/typescript.html">typescript</a></div>
+<a class="btn" href="https://github.com/pickleshell/pickleshell" rel="noopener">View on GitHub ↗</a>
+<h2>About pickleshell</h2><p class="sub">Give ChatGPT a local machine to work with</p><p class="sub">Want to give your ChatGPT a gift? Give it PickleShell.</p><p class="sub">PickleShell connects ChatGPT to an OpenCode agent running on your machine. ChatGPT can inspect repositories, edit files, run tests, transfer small files, and coordinate long-running tasks. The connection uses an outbound-only OpenAI Secure MCP Tunnel, while execution remains inside your selected workspace.</p><p class="sub">ChatGPT delegates work through four MCP tools—send-chat, session-status, session-output, and cancel-request—and receives structured results with full traces. Continue local coding sessions, delegate to an operator-approved model, and transfer files into a controlled workspace.</p><p class="sub">PickleShell solves a practical problem: ChatGPT can analyze tasks, but it normally cannot work directly with a local repository.</p><p class="sub">Through PickleShell, ChatGPT sends instructions and small files to a local OpenCode agent, follows the execution, reads the result, and can continue in the same session when it passes the session ID.</p><p class="sub">The agent runs on your machine, inside a selected workspace, through a protected outbound-only tunnel. PickleShell removes the human relay between ChatGPT and OpenCode, while you remain the owner and observer.</p><p class="sub">PickleShell is for developers and experienced users. Installation is designed to be guided by Codex: ask it to clone the repository, read AGENTS.md, and walk you through the setup step by step using docs/deployment.md and docs/chatgpt.md. AGENTS.md is the contributor guide for the development workflow, architecture, security invariants, and change boundaries.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/pickleshell--pickleshell.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/anshupriyan--cli-bridge.html">
+  <span class="name"><span class="owner">anshupriyan/</span>cli-bridge</span>
+  <p>MCP server for Claude Desktop and other Model Context Protocol clients — sandboxed filesystem access (read/write/edit/search) plus Dev Mode-gated shell command execution, scoped to a single workspace </p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/charbelkassab--relatio-crm.html">
+  <span class="name"><span class="owner">charbelkassab/</span>relatio-crm</span>
+  <p>Lightweight self-hosted CRM with a built-in MCP connector. Let Claude, ChatGPT, or Gemini run your pipeline.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/appautomaton--pi-arcweld.html">
+  <span class="name"><span class="owner">appautomaton/</span>pi-arcweld</span>
+  <p>An auditable local workspace for Pi: pinned upstream source, curated extensions, bounded MCP tooling, and a reproducible external runtime.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/fengyincheng--ShellBridge.html">
+  <span class="name"><span class="owner">fengyincheng/</span>ShellBridge</span>
+  <p>Give ChatGPT fast, safe, and auditable visibility into your VPS through MCP.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/yagyeshVyas--VibeGuard.html">
+  <span class="name"><span class="owner">yagyeshVyas/</span>VibeGuard</span>
+  <p>Free security &amp; privacy scanner for AI-coded apps. 699 rules, 76 MCP tools, 13-layer defense, zero-trust sandbox, AI firewall. Runs locally, never sends data anywhere. Scan your AI-generated app for l</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

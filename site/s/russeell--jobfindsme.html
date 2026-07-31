@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>russeell/jobfindsme — MCP Server | MCP Radar</title>
+<meta name="description" content="🔥AI求职雷达｜一句话同时搜BOSS直聘、猎聘、前程无忧、智联招聘｜简历匹配·投递直达｜MCP Server — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/russeell--jobfindsme.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="russeell/jobfindsme — MCP Server | MCP Radar">
+<meta property="og:description" content="🔥AI求职雷达｜一句话同时搜BOSS直聘、猎聘、前程无忧、智联招聘｜简历匹配·投递直达｜MCP Server — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "russeell/jobfindsme", "description": "🔥AI求职雷达｜一句话同时搜BOSS直聘、猎聘、前程无忧、智联招聘｜简历匹配·投递直达｜MCP Server", "codeRepository": "https://github.com/russeell/jobfindsme", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/russeell--jobfindsme.html", "dateCreated": "2026-07-28"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">russeell/</span>jobfindsme</h1>
+<p class="sub">🔥AI求职雷达｜一句话同时搜BOSS直聘、猎聘、前程无忧、智联招聘｜简历匹配·投递直达｜MCP Server</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-07-28</b></div>
+  <div class="chip">on radar since <b>2026-07-31</b></div>
+  
+</div>
+<div class="topics"><span class="topic">51job</span><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">ai-job-search</span><span class="topic">boss-zhipin</span><span class="topic">china-jobs</span><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">job-search</span><span class="topic">liepin</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">resume-matching</span><span class="topic">zhaopin</span></div>
+<a class="btn" href="https://github.com/russeell/jobfindsme" rel="noopener">View on GitHub ↗</a>
+<h2>About jobfindsme</h2><p class="sub">一句话同时搜 BOSS直聘、猎聘、前程无忧、智联招聘；按本地简历打分排序；之后只看新增和变化。</p><p class="sub">每天找工作时的重复劳动 jobfindsme 的做法 ------ 在四个 App 之间来回切换 对 Agent 说一句话，四个平台一起搜 反复刷到同一个岗位 跨平台去重，记住已看、收藏、投递和忽略 不知道今天有什么新岗位 只汇报新增、变更、重开和关闭 推荐理由是黑盒 每条都有匹配分、命中证据、技能缺口和投递链接 求职状态散落在各平台 本地 SQLite 统一记录，随时导出、随时删除 不想注册一堆服务、配 API Key 本地 Core 不需要任何模型 API Key</p><p class="sub">- 你想海投 —— 它不做自动投递。帮你找到值得投的岗位，点链接自己投。 - 你要覆盖所有公司 —— 官网直投、内推、受访问限制的岗位仍会漏。 - 你不方便在本机跑 Chrome —— BOSS 需要登录态；猎聘纯 HTTP 直连不需要浏览器， 智联和前程无忧在被反爬挡住时需要浏览器降级。 - 你期待&quot;录用概率预测&quot; —— 匹配分是可解释的确定性排序分，不是录用概率。</p><p class="sub">jobfindsme 是本地 MCP Server，可接入 Claude Code、Codex、Kimi、TRAE、 WorkBuddy、ZCode、Qwen、Qoder 等 MCP Agent。</p><p class="sub">或一行命令装——把 workbuddy 换成你的 Agent（claude / codex / kimi / qwen / trae / zcode / qoder）：</p><p class="sub">[!NOTE] 脚本自动完成：检测 Python 3.11+ → 建独立运行时 → 装预编译包（依赖走清华镜像， GitHub 直连失败自动回退镜像源）→ 写入该 Agent 的 MCP 配置。可重复执行。</p><p class="sub">在打开的专用 Chrome 里扫码登录，保持窗口运行，然后重启 Agent。 （另外三个平台读公开搜索页，不用登录。）</p><p class="sub">每个来源采用三层降级链——先试纯 HTTP 直连（亚秒级），被反爬挡住就降级到浏览器 拦截，再不行就走 DOM 提取：</p><p class="sub">来源 纯 HTTP 直连 浏览器降级 作用 ------------ BOSS直聘 — 本地登录态浏览器（CDP） 主要实时推荐来源 猎聘 ✅ api-c.liepin.com JSON API，~0.9s CDP 拦截 → DOM 亚秒级，无需浏览器 智联招聘 ⚠️ 蜜罐检测中 CDP 被动拦截 JSON → DOM 补充候选 前程无忧 ⚠️ WAF 检测中 CDP 被动拦截 JSON → DOM 补充发现</p><p class="sub">[!NOTE] 猎聘纯 HTTP 已验证可用（42 岗位 / 0.96s）。智联和前程无忧的纯 HTTP 探测会 在 ~0.3s 内检测到反爬（蜜罐响应 / WAF2 挑战），自动降级到浏览器拦截—— 降级对用户透明，只是从亚秒级变成多秒级。</p><p class="sub">拉勾已退出默认发现链路：验证码频繁、字段完整度低、持续拖慢全量搜索。旧数据库中的 历史岗位仍可查看。</p><p class="sub">[!IMPORTANT] 来源采用分层策略：能用公开结构化接口就不用浏览器，必须登录或执行 JavaScript 时 才走本地浏览器；任何新来源都要先通过真实快照、字段完整率、延迟、失败降级和人工 相关性评测。不把逆向签名或绕过验证码当作默认能力。</p><p class="sub">简历、岗位状态和搜索计划全部保存在本地 SQLite。Core 不需要模型 API。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/russeell--jobfindsme.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/AndyShaman--telegram-business-bridge.html">
+  <span class="name"><span class="owner">AndyShaman/</span>telegram-business-bridge</span>
+  <p>Connect any AI agent to your personal Telegram via the official Business API — no userbot, no ban risk, no Premium. Agent reads &amp; searches full history, drafts replies; every reply waits for your ✅. M</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/12122J--mcpvet.html">
+  <span class="name"><span class="owner">12122J/</span>mcpvet</span>
+  <p>MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads </p>
+  <span class="meta"><span>⭐ 10</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/hoangann2000--figma-mcp-console.html">
+  <span class="name"><span class="owner">hoangann2000/</span>figma-mcp-console</span>
+  <p>MCP server that lets your AI assistant read and write Figma in real time — no API token, no rate limits. Works with Claude, Cursor, Copilot, Codex and any MCP client.</p>
+  <span class="meta"><span>⭐ 9</span><span>Go</span></span>
+</a><a class="card" href="/s/ZoeLinUTS--MagicTeX-mcp.html">
+  <span class="name"><span class="owner">ZoeLinUTS/</span>MagicTeX-mcp</span>
+  <p>MagicTeX — a LaTeX editor for AI agents (Claude Code): live PDF preview, PDF comments that drive edits, Visual (WYSIWYG) mode, and git-tracked history. No local TeX install.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/dhavanikgithub--chartbrew-mcp.html">
+  <span class="name"><span class="owner">dhavanikgithub/</span>chartbrew-mcp</span>
+  <p>Chartbrew + AI agents. MCP server exposing Chartbrew&#x27;s documented API: teams, connections, datasets, dashboards, charts, live queries, and secure embedding. TypeScript · stdio · restricted/unrestricte</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
