@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiger3807861189/ds-vision-mcp-skill — MCP Server | MCP Radar</title>
+<meta name="description" content="DeepSeek 网页识图自动化 v2：识图模式+深度思考强制开启，两轮投票+条件第三轮仲裁/合并，坐标级证据提取。MCP stdio server，支持 CLI。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Tiger3807861189--ds-vision-mcp-skill.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Tiger3807861189/ds-vision-mcp-skill — MCP Server | MCP Radar">
+<meta property="og:description" content="DeepSeek 网页识图自动化 v2：识图模式+深度思考强制开启，两轮投票+条件第三轮仲裁/合并，坐标级证据提取。MCP stdio server，支持 CLI。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Tiger3807861189/ds-vision-mcp-skill", "description": "DeepSeek 网页识图自动化 v2：识图模式+深度思考强制开启，两轮投票+条件第三轮仲裁/合并，坐标级证据提取。MCP stdio server，支持 CLI。", "codeRepository": "https://github.com/Tiger3807861189/ds-vision-mcp-skill", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Tiger3807861189--ds-vision-mcp-skill.html", "dateCreated": "2026-08-02"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Tiger3807861189/</span>ds-vision-mcp-skill</h1>
+<p class="sub">DeepSeek 网页识图自动化 v2：识图模式+深度思考强制开启，两轮投票+条件第三轮仲裁/合并，坐标级证据提取。MCP stdio server，支持 CLI。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-02</b></div>
+  <div class="chip">on radar since <b>2026-08-04</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/Tiger3807861189/ds-vision-mcp-skill" rel="noopener">View on GitHub ↗</a>
+<h2>About ds-vision-mcp-skill</h2><p class="sub">DeepSeek 网页端识图自动化：识图模式 + 深度思考强制开启，两轮独立投票 + 条件第三轮（互补则合并验证 / 矛盾则仲裁），坐标级证据提取。 只用 chat.deepseek.com 网页端，不调用任何本地或第三方模型。 理论依据：DeepSeek《Thinking with Visual Primitives》(2026-04-30) —— 视觉原语（bbox/point）作为思维单元，坐标归一化 0-999。</p><p class="sub">- @7067567g — V1 原型与地基：Playwright 浏览器自动化、Vision 模式切换、跨平台（Windows/Linux）适配、CDP 复用机制 - @Tiger3807861189 — V2 架构设计与全面优化：投票引擎、五段式场景提示词、MCP stdio server、校准指纹系统、坐标解析与交叉校验、双图拼接、追问机制、浏览器生命周期管理等</p><p class="sub">项 v1（脚本） v2（本版） --------- 深度思考 不管 强制开启并验证（ensureDeepThink） 「开启新对话」 正则只认「新对话」（已失效） 修正为 开启新对话/新对话/New chat 提示词 一句默认描述 五段式（场景前缀+目标+输出规格+坐标要求+负面约束），S0-S12 场景库 输出 纯文本 txt 结论+思考分离、/裸 [[...]] 坐标解析、计数交叉校验 可靠性 单次 2 轮投票 + 条件第 3 轮（多数制） 形态 CLI CLI + MCP server（6 个工具） 轮询 60s / 稳定2次 300s / 稳定3次（适应深度思考长输出），环境变量可调 退化响应 仅警告 自动换短提示词重试一次 校准系统 无 首次校准向导，三元素指纹持久化，跨分辨率/DPI 自适应 图像拼接 无 浏览器 Canvas 双图拼接（零外部依赖），设计-实现对比 输入通道 仅本地路径 本地路径 + data:image URI + HTTP(S) URL（≤50MB） 追问机制 无 dsvisionfollowup 同会话追加提问，免重传图片 浏览器管理 用完即关，仅前台 CDP 复用 + 空闲自动关闭 + 无头模式（DSVISIONHEADLESS） 截图自检 无 文档化 self-check loop，验证截图意图一致后再发任务</p><p class="sub">首次运行会弹窗，扫码登录 chat.deepseek.com（登录态持久化到 %LOCALAPPDATA%\ds-profile；进程被强杀会导致 cookie 未写盘、需重扫）。</p><p class="sub">定位机制说明：全程文本驱动（「识图模式」「深度思考」「开启新对话」文本匹配 + 运行时 getBoundingClientRect 动态取坐标），不硬编码任何屏幕坐标，天然跨分辨率/DPI/窗口大小。大多数机器不需要校准。</p><p class="sub">但界面语言、页面改版、A/B 测试可能造成文本变体 → 定位失败。此时跑一次校准向导：</p><p class="sub">浏览器打开 DS 官网后，按页面顶部蓝色横幅提示，依次点击三个元素： ①「识图模式」标签 ②「深度思考」按钮 ③「开启新对话」按钮。 指纹（文本/类名/相对位置）写入 %LOCALAPPDATA%\ds-profile\ds-vision-selectors.json，运行时优先使用；页面改版后重跑即可。</p><p class="sub">工具 说明 ------ dsvision 主调用：投票 + 坐标，返回 Markdown dsvisiondetailed 全量 JSON（结论/思考/坐标/逐轮原文/一致性元数据） dsvisioncompare 双图拼接对比 dsvisionfollowup 同会话追问（免重复上传，省时） dsvisionhealth 登录/识图标签/深度思考三检 dsvisioncalibrate 首次校准向导（弹窗引导点</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Tiger3807861189--ds-vision-mcp-skill.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/shlokkhemani--rabbithole.html">
+  <span class="name"><span class="owner">shlokkhemani/</span>rabbithole</span>
+  <p>An infinite canvas for learning — select text, ask, and answers branch out as documents. MCP server for Claude Code, Codex, and any agent.</p>
+  <span class="meta"><span>⭐ 222</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/talivia-group--agent.html">
+  <span class="name"><span class="owner">talivia-group/</span>agent</span>
+  <p>Revenue-first website analytics installed and verified by AI agents through MCP</p>
+  <span class="meta"><span>⭐ 72</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-mcpb.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-mcpb</span>
+  <p>Claude Desktop .mcpb bundle for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 44</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-local.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-local</span>
+  <p>Self-serve stdio MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 44</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/upvoteclub--upvote-club-mcp-remote.html">
+  <span class="name"><span class="owner">upvoteclub/</span>upvote-club-mcp-remote</span>
+  <p>Streamable HTTP remote MCP for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.</p>
+  <span class="meta"><span>⭐ 43</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
