@@ -89,29 +89,25 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 <h1><span class="owner">HalemoGPA/</span>whatsapp-mcp-server</h1>
 <p class="sub">Authenticated, self-hosted WhatsApp MCP server that serves 96 tools for the token cost of 29, with a labeled eval for tool-retrieval accuracy. Go bridge + Python FastMCP.</p>
 <div class="chips">
-  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⭐ <b>5</b> stars</div>
   <div class="chip">⑂ <b>0</b> forks</div>
   <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
-  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">momentum <b>▲ 50.0</b></div>
   <div class="chip">created <b>2026-08-03</b></div>
   <div class="chip">on radar since <b>2026-08-04</b></div>
-  
+  <div class="chip">star trend <b>4 → 5</b> since 2026-08-04</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/fastmcp.html">fastmcp</a><a class="topic" href="/topic/golang.html">golang</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/whatsapp.html">whatsapp</a></div>
+<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/fastmcp.html">fastmcp</a><a class="topic" href="/topic/golang.html">golang</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/whatsapp.html">whatsapp</a></div>
 <a class="btn" href="https://github.com/HalemoGPA/whatsapp-mcp-server" rel="noopener">View on GitHub ↗</a>
 <h2>About whatsapp-mcp-server</h2><p class="sub">A self-hosted, authenticated MCP server for WhatsApp: 96 tools over your own message history, with server-side tool retrieval so the model pays for 29 of them instead of 96, and a labeled eval that measures whether retrieval actually picks the right tool.</p><p class="sub">Runs as two containers on a small VPS. Your messages stay on your box; the only credential is a bearer token you generate.</p><p class="sub">The reference WhatsApp MCP servers are stdio-only, unauthenticated, and expose a flat tool list. That is fine on a laptop and unworkable as an always-on service. Three problems show up immediately, and most of this repo is the answer to them.</p><p class="sub">1. Tool definitions are a fixed tax. MCP injects every tool definition into the model&#x27;s context on every request, whether or not the request touches WhatsApp. At 96 tools that is roughly 20k tokens you pay for asking &quot;what time is it&quot;. Dropping tools to save tokens means losing capability.</p><p class="sub">2. The same person has two identities. WhatsApp hides phone numbers behind LIDs inside groups, so one human appears under their phone number in DMs and under an opaque LID in group history. Any tool that filters on a single sender ID silently returns half their messages, with no error to tell you.</p><p class="sub">3. The app&#x27;s UI is not the protocol. &quot;View once&quot;, &quot;delete for everyone&quot;, poll selection caps: these are conventions the client draws, not guarantees the server enforces. A server that reads the wire will disagree with the app, and when it does, the app is usually the one that is wrong.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/HalemoGPA--whatsapp-mcp-server.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/DJNgoma--whatsapp-mcp.html">
-  <span class="name"><span class="owner">DJNgoma/</span>whatsapp-mcp</span>
-  <p>Cross-platform WhatsApp Model Context Protocol server with multi-account support and optional local Whisper transcription</p>
-  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
-</a><a class="card" href="/s/nisargpatel1906--Aethos_Memory.html">
-  <span class="name"><span class="owner">nisargpatel1906/</span>Aethos_Memory</span>
-  <p>Universal, cross-tool persistent memory bank for AI assistants (Claude Code, Cursor, Windsurf, OpenCode, Codex) powered by FastMCP, Gemini embeddings &amp; Supabase pgvector.</p>
-  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+<h2>Related MCP servers</h2><a class="card" href="/s/AdamRussak--self-doc.html">
+  <span class="name"><span class="owner">AdamRussak/</span>self-doc</span>
+  <p>Self-hosted documentation RAG pipeline that serves semantic search to LLM agents over the Model Context Protocol.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
 </a><a class="card" href="/s/bybit-exchange--kaas.html">
   <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
   <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
@@ -120,14 +116,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
   <p>Девять российских маркетплейсов и китайский Taobao как MCP-серверы: Wildberries, Ozon, Яндекс Маркет, Детский мир, Авито, Мегамаркет, Lamoda, DNS, Ситилинк. Плюс сравнение цен по всем сразу. Только чт</p>
   <span class="meta"><span>⭐ 47</span><span>Python</span></span>
-</a><a class="card" href="/s/aka-kika--hig-mcp.html">
-  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
-  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
-  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
 </a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
   <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
   <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
   <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a><a class="card" href="/s/siemd2--reel-relay.html">
+  <span class="name"><span class="owner">siemd2/</span>reel-relay</span>
+  <p>Share an Instagram reel to Claude and have it watch, research, and build what it shows. Self-hosted MCP connector (yt-dlp + ffmpeg + Groq Whisper).</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/chris-asmussen--warden.html">
+  <span class="name"><span class="owner">chris-asmussen/</span>warden</span>
+  <p>One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent&#x27;s context tiny. Migrate your Claude Code MCPs/skills behind it.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
 </a>
 
 

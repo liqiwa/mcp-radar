@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-30</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/cli.html">cli</a><a class="topic" href="/topic/email.html">email</a><span class="topic">email-archiver</span><span class="topic">email-client</span><span class="topic">gmail</span><a class="topic" href="/topic/golang.html">golang</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/cli.html">cli</a><a class="topic" href="/topic/email.html">email</a><span class="topic">email-archiver</span><span class="topic">email-client</span><a class="topic" href="/topic/gmail.html">gmail</a><a class="topic" href="/topic/golang.html">golang</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a></div>
 <a class="btn" href="https://github.com/craigjmidwinter/mail-muncher" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://craigjmidwinter.github.io/mail-muncher/" rel="noopener nofollow">Homepage ↗</a>
 <h2>About mail-muncher</h2><p class="sub">Give a program its own read-only mailbox, filtered down to exactly the mail it asked for, delivered as files on disk.</p><p class="sub">mail-muncher pulls messages from a mail provider, evaluates each one against ordered rules, and writes the matches to a directory — byte-faithful .eml, and optionally a markdown rendering with the headers as YAML frontmatter, the body as text, and attachments extracted alongside. A rule can take its filter input from a plain text file that some other program owns, which mail-muncher re-reads at the start of every cycle. That other program changes one line in that file, and the very next cycle delivers different mail — no config edit, no restart, no redeploy.</p><p class="sub">It reads from any IMAP mailbox — Gmail, Fastmail, iCloud, Proton Bridge, a work account, your own server — or from Gmail&#x27;s API with a read-only OAuth scope. It runs one-shot for cron, or as a polling daemon, or as a stdio MCP server an agent can query directly. Every mode emits the same machine-readable manifest of what it did, and no mode ever writes to your mailbox.</p><p class="sub">Pick one before you install anything. Both are supported, and everything downstream — rules, formats, filenames, the archive layout, the MCP tools — is identical either way.</p><p class="sub">provider: imap provider: gmail --- --- --- Setup time ~2 min ~10 min in the Google Cloud Console What you register nothing your own Google Cloud project and Desktop-app OAuth client Credential an app password from your provider&#x27;s own settings page an OAuth token, scope gmail.readonly How wide that credential is a full mail credential. An app password can send and de</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/craigjmidwinter--mail-muncher.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/mkpoli--gmail-mcp.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/Smitner-Studio--facet.html">
+  <span class="name"><span class="owner">Smitner-Studio/</span>facet</span>
+  <p>Render agent-written Markdown as a live local page, and send the human&#x27;s click back to the agent as typed data. Human-in-the-loop approval gates for coding agents.</p>
+  <span class="meta"><span>⭐ 4</span><span>Go</span></span>
+</a><a class="card" href="/s/mkpoli--gmail-mcp.html">
   <span class="name"><span class="owner">mkpoli/</span>gmail-mcp</span>
   <p>Multi-account Gmail MCP server on Cloudflare Workers — one deployment, one Google sign-in per connection, any MCP client</p>
   <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Naveen-chava/</span>metabase-mcp</span>
   <p>Metabase MCP server for AI Agents. Authenticate with a browser session cookie, no API key required.</p>
   <span class="meta"><span>⭐ 5</span><span>Go</span></span>
-</a><a class="card" href="/s/valtors--relay.html">
-  <span class="name"><span class="owner">valtors/</span>relay</span>
-  <p>All-in-one MCP server. Agents get memory, tools, and coordination in one binary.</p>
-  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
 </a>
 
 
