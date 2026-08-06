@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>seohuda/entry-vibe-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP server that compiles Entry (playentry.org) projects to .ent files — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/seohuda--entry-vibe-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="seohuda/entry-vibe-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP server that compiles Entry (playentry.org) projects to .ent files — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "seohuda/entry-vibe-mcp", "description": "MCP server that compiles Entry (playentry.org) projects to .ent files", "codeRepository": "https://github.com/seohuda/entry-vibe-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/seohuda--entry-vibe-mcp.html", "dateCreated": "2026-08-04"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">seohuda/</span>entry-vibe-mcp</h1>
+<p class="sub">MCP server that compiles Entry (playentry.org) projects to .ent files</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-08-04</b></div>
+  <div class="chip">on radar since <b>2026-08-06</b></div>
+  
+</div>
+<div class="topics"><span class="topic">entry</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">playentry</span></div>
+<a class="btn" href="https://github.com/seohuda/entry-vibe-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About entry-vibe-mcp</h2><p class="sub">EntryVibe MCP 텍스트 요청으로 Entry 프로젝트를 생성·컴파일하는 MCP 서버</p><p class="sub">Entry 프로젝트를 텍스트 요청으로 작성하고 .ent 파일로 컴파일하는 MCP 서버입니다.</p><p class="sub">MCP 호스트에 연결해서 사용합니다. 서버 자체는 상태를 저장하지 않으며, 블록 검색·IR 검증·컴파일 세 가지만 담당합니다.</p><p class="sub">예를 들어 &quot;엔트리봇이 4번 반복하면서 10칸씩 움직이고 벽에 튕기게 해줘&quot;라고 요청하면 entry-project.ent가 생성됩니다. 이 파일은 엔트리 오프라인이나 playentry.org에서 열 수 있습니다.</p><p class="sub">설치/연결이 복잡하면, 사용하는 MCP 호스트(예: Cursor/Claude Code/OpenCode)에게 아래 한 문장만 그대로 요청하세요.</p><p class="sub">빌드가 끝나면 dist/server/index.js가 서버 진입점이 됩니다. MCP 호스트 설정에 절대 경로가 필요하므로 미리 확인해 둡니다.</p><p class="sub">블록 카탈로그(catalog/blocks.json)와 .ent에 패킹되는 엔트리봇 미디어(assets/media/)는 repo에 포함되어 있습니다. clone 후 별도 다운로드 없이 바로 빌드하고 컴파일할 수 있습니다.</p><p class="sub">호스트마다 설정 방식이 다르므로 사용 중인 항목만 참고하면 됩니다. 아래 예시의 /absolute/path/to/entry-vibe-mcp는 위에서 확인한 절대 경로로 바꿔야 합니다. 상대 경로는 지원하지 않습니다.</p><p class="sub">팀과 공유하려면 --scope project를 사용합니다. 프로젝트 루트에 .mcp.json이 생성됩니다.</p><p class="sub">연결 확인은 claude mcp list를 실행해 entry-vibe ✔ Connected가 뜨는지 보면 됩니다.</p><p class="sub">설정 → Developer → Edit Config에서 열리는 claudedesktopconfig.json을 수정합니다.</p><p class="sub">- macOS: ~/Library/Application Support/Claude/claudedesktopconfig.json - Windows: %APPDATA%\Claude\claudedesktopconfig.json</p><p class="sub">저장한 뒤 Claude Desktop을 완전히 종료했다가 다시 실행해야 적용됩니다. 창만 닫으면 반영되지 않습니다.</p><p class="sub">~/.cursor/mcp.json(전역) 또는 프로젝트 루트의 .cursor/mcp.json에 추가합니다.</p><p class="sub">최상위 키가 mcpServers가 아니라 servers입니다. 프로젝트의 .vscode/mcp.json에 추가합니다.</p><p class="sub">전역으로 설정하려면 명령 팔레트에서 MCP: Open User Configuration을 실행한 뒤 같은 내용을 입력합니다.</p><p class="sub">또는 ~/.codex/config.toml에 직접 작성합니다 (JSON이 아니라 TOML입니다).</p><p class="sub">프로젝트 루트의 opencode.json(또는 opencode.jsonc), 전역은 ~/.config/opencode/opencode.json에 추가합니다. Claude Desktop과 달리 command가 문자열 배열이고 type: &quot;local&quot;이 필요합니다.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/seohuda--entry-vibe-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/pueschel88--Tradingview-MCP.html">
+  <span class="name"><span class="owner">pueschel88/</span>Tradingview-MCP</span>
+  <p>Tradingview MCP server for controlling Tradingview Desktop from Claude Code via Chrome DevTools Protocol</p>
+  <span class="meta"><span>⭐ 133</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/JesusRS1--stock-trade-finance-api.html">
+  <span class="name"><span class="owner">JesusRS1/</span>stock-trade-finance-api</span>
+  <p>Stock Trade MCP server in Tiingo with stock prices, news, forex, and fundamentals programmatically via the MCP</p>
+  <span class="meta"><span>⭐ 91</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/bolivestilo--Homekit.html">
+  <span class="name"><span class="owner">bolivestilo/</span>Homekit</span>
+  <p>Homekit gives any AI agent direct, physical control over Apple Home. Flip lights. Lock doors. Read sensors. Through a single open interface.</p>
+  <span class="meta"><span>⭐ 68</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

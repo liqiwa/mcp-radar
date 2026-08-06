@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnctyEnly453/mc-architect-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Minecraft Java Fabric mod and MCP server for AI-assisted world inspection, building, validation, screenshots, and persistent undo. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/AnctyEnly453--mc-architect-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="AnctyEnly453/mc-architect-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Minecraft Java Fabric mod and MCP server for AI-assisted world inspection, building, validation, screenshots, and persistent undo. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "AnctyEnly453/mc-architect-mcp", "description": "Minecraft Java Fabric mod and MCP server for AI-assisted world inspection, building, validation, screenshots, and persistent undo.", "codeRepository": "https://github.com/AnctyEnly453/mc-architect-mcp", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/AnctyEnly453--mc-architect-mcp.html", "dateCreated": "2026-08-05"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">AnctyEnly453/</span>mc-architect-mcp</h1>
+<p class="sub">Minecraft Java Fabric mod and MCP server for AI-assisted world inspection, building, validation, screenshots, and persistent undo.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>15</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 150.0</b></div>
+  <div class="chip">created <b>2026-08-05</b></div>
+  <div class="chip">on radar since <b>2026-08-06</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><span class="topic">building-tools</span><span class="topic">fabric</span><a class="topic" href="/topic/java.html">java</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">minecraft</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/typescript.html">typescript</a></div>
+<a class="btn" href="https://github.com/AnctyEnly453/mc-architect-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About mc-architect-mcp</h2><p class="sub">MC Architect MCP 是一套面向 AI/MCP 客户端的 Minecraft Java 单人世界建筑系统。它通过本地 Fabric Mod 读取和修改真实世界，再由 TypeScript MCP Bridge 提供地形扫描、蓝图施工、几何生成、路径验证、照明检查、截图验收和持久化撤销等高层工具。</p><p class="sub">English summary: a local Fabric mod and MCP server for inspecting, building, validating, photographing, and undoing changes in Minecraft Java single-player worlds.</p><p class="sub">- 32 个 MCP 工具：覆盖世界控制、调查、施工、验证、摄影和恢复。 - 五种世界扫描：summary、heightmap、collision、lighting、full。 - 蓝图工作流：预览、原子应用、实际世界对比和显式空气校验。 - 参数化建筑：盒体、围墙、立柱、双坡屋顶、圆、弧墙、穹顶和螺旋楼梯。 - 区域编辑：复制、旋转、镜像、阵列和按方块状态替换。 - 可用性验收：基于真实碰撞形状检查普通玩家通行路线。 - 大型施工任务：分 Tick 执行，支持暂停、恢复、取消和重启恢复。 - 持久化撤销：事务日志写入存档，可按事务或连续项目分组撤销。 - 视觉验收：可恢复的旁观相机会话和无 HUD 世界截图。 - 本地通信：只监听回环地址，并使用随机 Bearer Token 鉴权。</p><p class="sub">- bridge/：注册 MCP 工具、验证参数、调用本地 HTTP API，并把高层几何压缩为 cuboid 蓝图。 - mod/：在 Minecraft 进程内执行真实世界读取和修改，处理线程切换、风险检查、事务、后台任务和截图。 - docs/protocol.md：Bridge 与 Mod 之间的本地 HTTP 协议。 - bridge/scripts/：故宫、午门、科研港、托卡马克、雕像和像素画等项目级示例。</p><p class="sub">组件 版本 ------: Minecraft Java Edition 1.21.11 Fabric Loader 0.18.6 或更高 Fabric API 0.141.3+1.21.11 Java 21 Node.js 20 或更高</p><p class="sub">把该 JAR 和对应版本的 Fabric API 放入 Minecraft 实例的 mods 目录。</p><p class="sub">HTTP 服务只绑定 127.0.0.1。除健康检查外，所有请求都需要该 Token。</p><p class="sub">如果使用非默认 Minecraft 目录，设置 MCACONFIG 为完整配置文件路径：</p><p class="sub">1. mchealth 2. mclistworlds 3. mcopenworld 4. 轮询 mcuistate，直到 worldOpen 为 true</p><p class="sub">工具 作用 ------ mchealth 检查 Mod 和单人世界是否可用 mcuistate 获取当前界面和本地世界状态 mclistworlds 列出兼容的单人存档 mcopenworld 从标题界面打开指定存档 mcdisconnect 保存并返回标题界面 mcgetcontext 获取玩家位置、视角、维度和游戏模式</p><p class="sub">工具 作用 ------ mcscanregion 地形、精确方块、碰撞或光照扫描 mcvalidateaccess 检查起点到多个目标的普通玩家路线 mccompareblueprint 比较蓝图最终状态与真实世界</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/AnctyEnly453--mc-architect-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Gowthaman90--mcp-bastion.html">
+  <span class="name"><span class="owner">Gowthaman90/</span>mcp-bastion</span>
+  <p>Reliability + security proxy for the Model Context Protocol (MCP): self-healing connections, runtime tool-security (rug-pull/poisoning detection), and a compliance-mapped audit trail.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/xfloukiex-lab--pandaclip.html">
+  <span class="name"><span class="owner">xfloukiex-lab/</span>pandaclip</span>
+  <p>One local-first MCP server for agent working state — clipboard history &amp; snippets, TTL cache, file-organizer overlay, and a knowledge graph — plus a live desktop activity lens. 40 tools, SQLite everyw</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/NousC--opennous.html">
+  <span class="name"><span class="owner">NousC/</span>opennous</span>
+  <p>The context graph for agentic GTM teams. Unify the data scattered across your GTM tools into one identity-resolved account any agent reads in a single call.</p>
+  <span class="meta"><span>⭐ 8</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
