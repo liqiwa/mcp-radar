@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-30</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">ai-governance</span><span class="topic">audit-logging</span><span class="topic">authorization</span><a class="topic" href="/topic/guardrails.html">guardrails</a><span class="topic">hexagonal-architecture</span><a class="topic" href="/topic/java.html">java</a><a class="topic" href="/topic/llm-security.html">llm-security</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><span class="topic">rate-limiting</span><span class="topic">spring-boot</span><span class="topic">spring-boot-starter</span></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">ai-governance</span><span class="topic">audit-logging</span><span class="topic">authorization</span><a class="topic" href="/topic/guardrails.html">guardrails</a><span class="topic">hexagonal-architecture</span><a class="topic" href="/topic/java.html">java</a><a class="topic" href="/topic/llm-security.html">llm-security</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><span class="topic">rate-limiting</span><a class="topic" href="/topic/spring-boot.html">spring-boot</a><span class="topic">spring-boot-starter</span></div>
 <a class="btn" href="https://github.com/TikyParkinson/mcp-agent-guardrails-spring-boot-starter" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://central.sonatype.com/artifact/io.github.tikyparkinson/mcp-guardrails-spring-boot-starter" rel="noopener nofollow">Homepage ↗</a>
 <h2>About mcp-agent-guardrails-spring-boot-starter</h2><p class="sub">MCP Agent Guardrails helps you put security and governance controls around MCP tool calls in Java / Spring Boot applications with absolute minimum fuss. Every tool invocation runs through a chain of guardrails — audit, authorization, prompt-injection detection and rate limiting — before the tool executes.</p><p class="sub">When you expose MCP tools to LLM agents, the &quot;client&quot; is a model deciding on its own what to invoke and with which arguments. This project closes the four gaps that opens.</p><p class="sub">Work with zero configuration: add one dependency and all four guardrails are active with sensible in-memory defaults. Be opinionated, but get out of the way: every store, policy source and rule set is a port — expose your own bean and the default backs off. Fail closed: a guardrail that throws denies the call rather than passing it. The one deliberate exception is recording the decision trace — a broken audit store degrades observability, never protection, because a store that could block calls would be a single point of failure for the whole server. Never persist tool arguments (PII/secret risk) — audit trails carry metadata only.</p><p class="sub">Module Description ------ guardrails-core Shared model, Guardrail and ResultGuardrail SPIs, inbound and outbound chains, and the MCP tool-call interceptor guardrails-audit Audit trail of every invocation, every guardrail decision, both chains and every human approval guardrails-authz Declarative agent→tool authorization policy (first-match-wins rules) guardrails-injection-guard Rule-based prompt-injection detection over tool arguments guardrails-ratelimit Fixed-window rate </p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/TikyParkinson--mcp-agent-guardrails-spring-boot-starter.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/flankerhqd--cyvisguard.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/ultramancode--spring-ai-privacy-guardrails.html">
+  <span class="name"><span class="owner">ultramancode/</span>spring-ai-privacy-guardrails</span>
+  <p>Privacy guardrails for Spring AI: request-scoped PII tokenization and least-privilege disclosure across model/tool calls, with Presidio and JVM-local OpenNLP.</p>
+  <span class="meta"><span>⭐ 3</span><span>Java</span></span>
+</a><a class="card" href="/s/flankerhqd--cyvisguard.html">
   <span class="name"><span class="owner">flankerhqd/</span>cyvisguard</span>
   <p>Security control plane for AI agents — identity and delegation, capability policy, data-flow taint and a live audit trail, enforced over MCP. Guards a real Claude Code end to end.</p>
   <span class="meta"><span>⭐ 30</span><span>TypeScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">rdtan/</span>architecture-discovery-mcp</span>
   <p>Auto-discover enterprise architecture artifacts (TOGAF AA series) from Java/Maven source code via MCP Server. Scan once, get Excel + PPTX in seconds.</p>
   <span class="meta"><span>⭐ 4</span><span>Python</span></span>
-</a><a class="card" href="/s/Kota-Karthik--secure-actions.html">
-  <span class="name"><span class="owner">Kota-Karthik/</span>secure-actions</span>
-  <p>MCP server for secure AI agent authentication — lets Claude, Claude Code, and other LLM agents call APIs without exposing raw tokens or credentials to the model</p>
-  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
 </a>
 
 

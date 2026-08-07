@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deslord319/coder-mcp-bridge — MCP Server | MCP Radar</title>
+<meta name="description" content="Expose ZCode as an agent to any MCP client (zcode / zcode-reply tools, mirrors codex mcp-server) — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Deslord319--coder-mcp-bridge.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Deslord319/coder-mcp-bridge — MCP Server | MCP Radar">
+<meta property="og:description" content="Expose ZCode as an agent to any MCP client (zcode / zcode-reply tools, mirrors codex mcp-server) — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Deslord319/coder-mcp-bridge", "description": "Expose ZCode as an agent to any MCP client (zcode / zcode-reply tools, mirrors codex mcp-server)", "codeRepository": "https://github.com/Deslord319/coder-mcp-bridge", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/Deslord319--coder-mcp-bridge.html", "dateCreated": "2026-08-03"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Deslord319/</span>coder-mcp-bridge</h1>
+<p class="sub">Expose ZCode as an agent to any MCP client (zcode / zcode-reply tools, mirrors codex mcp-server)</p>
+<div class="chips">
+  <div class="chip">⭐ <b>8</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 28.7</b></div>
+  <div class="chip">created <b>2026-08-03</b></div>
+  <div class="chip">on radar since <b>2026-08-07</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/Deslord319/coder-mcp-bridge" rel="noopener">View on GitHub ↗</a>
+<h2>About coder-mcp-bridge</h2><p class="sub">面向 Codex 等 MCP 客户端的事件驱动多编程代理调度桥。Coder MCP Bridge 将 ZCode、OpenCode 与 Pi 映射为一致的 agent- 工具，使上层调度器可以统一启动、观察、引导、恢复和关闭代理任务，同时保留各后端的原生会话与推理能力。</p><p class="sub">当前版本：0.5.0-dev。0.4.0 是已发布的 ZCode 单后端里程碑。</p><p class="sub">- 统一控制面：一次配置后，通过相同 MCP 工具调度 ZCode、OpenCode 或 Pi。 - 真实并发：Bridge 默认不限制全局并发；Codex 决定任务拆分和并发数。 - 资源互斥：跨进程 SQLite lease 协调 worktree、模拟器和构建目录等共享资源。 - 事件驱动等待：使用 revision 和最长 60 秒的事件等待替代固定时长轮询。 - 会话生命周期：支持恢复、引导、中断、分支、压缩与显式关闭，能力按后端报告。 - 权限投影：把 MCP 工作区和资源声明转换为各代理可执行的权限策略。 - 运行可观测性：统一暴露 reasoning、工具事件、Token、上下文和终态。</p><p class="sub">Codex 负责全局并发数、任务颗粒度与交付边界。Bridge 不替代上层调度，而是确保独立任务可以并发、冲突资源被正确串行化，并把不同代理的事件转换为稳定的 MCP 状态。</p><p class="sub">设置正数 AGENTMCPMAXCONCURRENCY 可增加每个后端的操作员安全上限；默认值 0 表示不由 Bridge 限制并发。</p><p class="sub">能力 ZCode OpenCode Pi ---:---::---::---: Prompt 运行 ✓ ✓ ✓ Durable goal ✓ — — Reasoning / usage 事件 ✓ ✓ ✓ Guide / interrupt / cancel ✓ ✓ ✓ 会话恢复 ✓ ✓ ✓ Branch / compact ✓ ✓ ✓ 后台任务投影 ✓ — — Tool allowlist ✓ 明确拒绝 ✓ Tool denylist ✓ ✓ ✓ 权限通道 Reverse request HTTP event 强制策略扩展</p><p class="sub">使用 agent-config {&quot;action&quot;:&quot;list&quot;} 获取本机实际安装状态和精确能力。调用方不应假定三个后端的原生能力完全一致。</p><p class="sub">测试日期为 2026-08-06。三个代理均通过真实 MCP JSON-RPC over stdio 调用 deepseek-v4-flash，执行同一任务：使用结构化 SVG 绘制一只正在骑自行车、双脚踩在脚踏板上的鹈鹕。结果通过 XML、viewBox、必需分组 ID 和输出文件数量检查，并进行人工视觉评分。</p><p class="sub">为反映当前正确配置，下面的 Pi 数据采用其原生 deepseek/deepseek-v4-flash provider 专项重测，不是第一次错误自定义 provider 的结果。ZCode、OpenCode 与 Pi 重测并非同一轮同时起跑，因此该表适合比较单端运行表现，不应解读为严格的同步竞速实验。</p><p class="sub">后端 耗时 总 Token 流量 模型请求 工具调用 估算费用 视觉评分 ------:---:---:---:---:---: OpenCode 3分13.691秒 87,750 3 6 $0.00733 78/100 Pi（原生 provider 重测） 4分35.062秒 83,923 3 2 $0.00788 85/100 ZCode 8分57.497秒 139,717 4 3 $0.02821 91/100</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Deslord319--coder-mcp-bridge.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a><a class="card" href="/s/alxgntv--substack-api-mcp.html">
+  <span class="name"><span class="owner">alxgntv/</span>substack-api-mcp</span>
+  <p>MCP server for Substack posts (FastMCP + substack-api-client)</p>
+  <span class="meta"><span>⭐ 80</span><span>Python</span></span>
+</a><a class="card" href="/s/sm18lr88--STT-MCP.html">
+  <span class="name"><span class="owner">sm18lr88/</span>STT-MCP</span>
+  <p>Fast, local speech-to-text MCP server</p>
+  <span class="meta"><span>⭐ 56</span><span>Python</span></span>
+</a><a class="card" href="/s/simonw--mcp-explorer.html">
+  <span class="name"><span class="owner">simonw/</span>mcp-explorer</span>
+  <p>CLI tool for exploring an MCP server</p>
+  <span class="meta"><span>⭐ 50</span><span>Python</span></span>
+</a><a class="card" href="/s/sandeepbazar--ocm-mcp-server.html">
+  <span class="name"><span class="owner">sandeepbazar/</span>ocm-mcp-server</span>
+  <p>An MCP server that lets AI agents operate a multi-cluster Kubernetes fleet through an Open Cluster Management hub, with policy, approval, and audit between the model and your clusters.</p>
+  <span class="meta"><span>⭐ 49</span><span>Python</span></span>
+</a><a class="card" href="/s/Vladimir-Human--ru-marketplace-mcp.html">
+  <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
+  <p>Девять российских маркетплейсов и китайский Taobao как MCP-серверы: Wildberries, Ozon, Яндекс Маркет, Детский мир, Авито, Мегамаркет, Lamoda, DNS, Ситилинк. Плюс сравнение цен по всем сразу. Только чт</p>
+  <span class="meta"><span>⭐ 47</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
