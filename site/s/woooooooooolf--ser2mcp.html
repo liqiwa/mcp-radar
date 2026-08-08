@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>woooooooooolf/ser2mcp — MCP Server | MCP Radar</title>
-<meta name="description" content="UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，让 AI 直接读写串口） — stats, momentum and related MCP servers on MCP Radar.">
+<meta name="description" content="UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，以最适合 AI 的方式提供串口读写支持） — stats, momentum and related MCP servers on MCP Radar.">
 <link rel="canonical" href="https://mcp.liqiwa.com/s/woooooooooolf--ser2mcp.html">
 <link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
 <meta property="og:title" content="woooooooooolf/ser2mcp — MCP Server | MCP Radar">
-<meta property="og:description" content="UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，让 AI 直接读写串口） — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:description" content="UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，以最适合 AI 的方式提供串口读写支持） — stats, momentum and related MCP servers on MCP Radar.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://mcp.liqiwa.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -73,7 +73,7 @@ border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none
 .subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
 padding:9px 18px;font-size:14px;cursor:pointer}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "woooooooooolf/ser2mcp", "description": "UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，让 AI 直接读写串口）", "codeRepository": "https://github.com/woooooooooolf/ser2mcp", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/woooooooooolf--ser2mcp.html", "dateCreated": "2026-08-03"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "woooooooooolf/ser2mcp", "description": "UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，以最适合 AI 的方式提供串口读写支持）", "codeRepository": "https://github.com/woooooooooolf/ser2mcp", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/woooooooooolf--ser2mcp.html", "dateCreated": "2026-08-03"}</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -87,17 +87,17 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </header>
 
 <h1><span class="owner">woooooooooolf/</span>ser2mcp</h1>
-<p class="sub">UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，让 AI 直接读写串口）</p>
+<p class="sub">UART serial port MCP server: expose local serial ports to AI assistants as standard MCP tools（串口转 MCP 服务器，以最适合 AI 的方式提供串口读写支持）</p>
 <div class="chips">
   <div class="chip">⭐ <b>4</b> stars</div>
   <div class="chip">⑂ <b>1</b> forks</div>
   <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
-  <div class="chip">momentum <b>▲ 15.3</b></div>
+  <div class="chip">momentum <b>▲ 12.0</b></div>
   <div class="chip">created <b>2026-08-03</b></div>
   <div class="chip">on radar since <b>2026-08-06</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><span class="topic">hardware</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/rust.html">rust</a><span class="topic">serial</span><span class="topic">serial-port</span><span class="topic">uart</span></div>
+<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><span class="topic">hardware</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">reasonix</span><span class="topic">reasonix-skill</span><a class="topic" href="/topic/rust.html">rust</a><span class="topic">serial</span><span class="topic">serial-port</span><span class="topic">uart</span></div>
 <a class="btn" href="https://github.com/woooooooooolf/ser2mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About ser2mcp</h2><p class="sub">UART 串口 MCP 服务器：把本地串口设备封装成标准的 MCP (Model Context Protocol) 工具，让 AI 助手（Claude Desktop、Cursor 及任何 MCP 客户端）直接读写串口。</p><p class="sub">- 9 个 MCP 工具：枚举端口、打开、运行时重配置、写、读、写+读、状态、清缓冲、关闭 - 完善的串口参数配置：波特率 / 数据位(5-8) / 校验位(none/even/odd) / 停止位(1,2) / 流控(none/software/hardware) / 读超时，均可在 uartopen / uartconfigure 中指定 - 内部参数可配置：环形缓冲大小 buffersize（默认 1 MiB）、空闲判定 idlems、单次拉取上限 maxbytes、总超时 timeoutms、读线程超时 readtimeoutms（默认 500ms，仅作读安全上限，不影响延迟） - 事件驱动/非阻塞读线程（平台适配层）：Unix（Linux/macOS）用 poll(2) + 自建管道事件驱动；Windows 用 1ms 轮询 + bytestoread() 门控 + timeBeginPeriod(1)，仅在数据就绪时 read()，读写延迟不再受读超时参数影响 - 上行数据不丢不堵：事件驱动/非阻塞读线程持续把串口数据囤积进环形缓冲；写满后覆盖最旧数据并累计溢出计数，返回值带 overflowdelta / overflowtotal，数据缺口可检测 - 二进制安全：数据以 hex 字符串传递（如 &quot;41 54 0D 0A&quot;），mode=&quot;text&quot; 可切换 UTF-8 文本 - 单二进制交付：cargo build --release 产出单个可执行文件，Windows / Linux / macOS 均无需额外运行时</p><p class="sub">也可以直接从 Releases 下载对应平台的预编译二进制（Windows / Linux / macOS）。</p><p class="sub">验证安装成功：注册后调用 uartlistports 应返回本机串口列表（可能为空数组）；若有 TX-RX 回环硬件，调用 uartexchange 发送的数据应原样返回。</p><p class="sub">Linux 用户注意：serialport 枚举 USB 端口信息依赖 libudev，编译前需先安装 Debian/Ubuntu：sudo apt-get install -y libudev-dev</p><p class="sub">MCP 客户端以 stdio 方式启动 server 子进程。通用配置（.mcp.json / Claude Desktop 等）：</p><p class="sub">Windows 示例：&quot;command&quot;: &quot;C:\\tools\\ser2mcp.exe&quot;。</p><p class="sub">Install the ser2mcp plugin package from https://github.com/woooooooooolf/ser2mcp. Use installsource with kind=&quot;auto&quot; (or &quot;plugin&quot;).</p><p class="sub">仓库根目录的 reasonix-plugin.json 将 ser2mcp 声明为标准 MCP 服务器（bin/ 内含 Windows / Linux / macOS 三平台预编译二进制与跨平台启动脚本）：</p><p class="sub">1. 在 Reasonix 中执行 installsource：源填仓库 URL https://github.com/woooooooooolf/ser2mcp，kind 用 auto（自动识别为插件包）或显式 plugin，scope 默认 global 2. Reasonix 把整个仓库复制到自己的全局插件目录（Windows 为 %APPDATA%\reasonix\plugins\ser2mcp）</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canados00/google-workspace-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Local MCP server for Gmail, Google Calendar and Contacts — runs on your own OAuth credentials, keeps secrets in the OS credential manager — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Canados00--google-workspace-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Canados00/google-workspace-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Local MCP server for Gmail, Google Calendar and Contacts — runs on your own OAuth credentials, keeps secrets in the OS credential manager — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Canados00/google-workspace-mcp", "description": "Local MCP server for Gmail, Google Calendar and Contacts — runs on your own OAuth credentials, keeps secrets in the OS credential manager", "codeRepository": "https://github.com/Canados00/google-workspace-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/Canados00--google-workspace-mcp.html", "dateCreated": "2026-08-06"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Canados00/</span>google-workspace-mcp</h1>
+<p class="sub">Local MCP server for Gmail, Google Calendar and Contacts — runs on your own OAuth credentials, keeps secrets in the OS credential manager</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-08-06</b></div>
+  <div class="chip">on radar since <b>2026-08-08</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/anthropic.html">anthropic</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/gmail.html">gmail</a><span class="topic">gmail-api</span><span class="topic">google-api</span><span class="topic">google-calendar</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/oauth2.html">oauth2</a><a class="topic" href="/topic/python.html">python</a></div>
+<a class="btn" href="https://github.com/Canados00/google-workspace-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About google-workspace-mcp</h2><p class="sub">Почта, календарь и контакты Google для Claude — на ваших собственных креденшелах, без посредников.</p><p class="sub">Локальный MCP-сервер: Claude читает и отправляет вашу почту, работает с календарём и ищет контакты. Запросы идут напрямую в Google — никакой промежуточной инфраструктуры, через которую проходила бы ваша переписка.</p><p class="sub">Никакого посредника. Сервер работает локально и обращается к Google API напрямую. Письма не проходят через чужую инфраструктуру, где могут кэшироваться или логироваться.</p><p class="sub">Секретов нет на диске. Refresh-токен и ключи приложения лежат в системном менеджере учётных данных, зашифрованные ключом вашей учётной записи. В конфигурационных файлах пусто, в репозитории тем более.</p><p class="sub">Права урезаны намеренно. Удаление писем невозможно на уровне токена, а не только на уровне кода: соответствующий скоуп не запрашивается вообще. Скомпрометированный токен не сможет почистить ваш ящик.</p><p class="sub">Четыре слоя. Каждый следующий ничего не знает о предыдущем: обёртки Google API не подозревают о существовании MCP, а MCP-слой не разбирает MIME.</p><p class="sub">Почему так. Предметные модули (gmail, calendar, contacts) содержат всю логику, которая ломается на практике — кодировки, MIME, часовые пояса — и покрыты тестами без единого сетевого вызова. server.py остаётся тонким: он переводит параметры инструмента в вызов и форматирует ответ. Благодаря этому 300 тестов гоняются за девять секунд и не зависят от доступности Google.</p><p class="sub">Показателен тем, что проходит через все слои и через две точки, где операция может прерваться до отправки.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Canados00--google-workspace-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Mrshahidali420--google-search-console-mcp.html">
+  <span class="name"><span class="owner">Mrshahidali420/</span>google-search-console-mcp</span>
+  <p>MCP server for Google Search Console - index status, URL inspection, request indexing, sitemap submission and search analytics for Claude and other AI agents.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/chris-asmussen--warden.html">
+  <span class="name"><span class="owner">chris-asmussen/</span>warden</span>
+  <p>One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent&#x27;s context tiny. Migrate your Claude Code MCPs/skills behind it.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/AlexanderBoger--SaveContext.html">
+  <span class="name"><span class="owner">AlexanderBoger/</span>SaveContext</span>
+  <p>Git LFS for your LLM context — 20x Context Savings — an MCP server that keeps big documents out of the model and returns byte-exact quotes for a fraction of the tokens.</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/xDarkzx--SongForge-MCP.html">
+  <span class="name"><span class="owner">xDarkzx/</span>SongForge-MCP</span>
+  <p>Generate original AI music tracks via Claude Desktop — MCP server powered by ACE-Step 1.5, with vocal/instrumental stem splitting and reference-style matching. No music software or AI/ML knowledge nee</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/BEKO2210--Knowledge-Hub.html">
+  <span class="name"><span class="owner">BEKO2210/</span>Knowledge-Hub</span>
+  <p>Self-hosted MCP server: your codebase as a knowledge graph, your secrets in an encrypted vault — both reachable by your AI assistant, and by nobody else.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Vladimir-Human--ru-marketplace-mcp.html">
+  <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
+  <p>Девять российских маркетплейсов и китайский Taobao как MCP-серверы: Wildberries, Ozon, Яндекс Маркет, Детский мир, Авито, Мегамаркет, Lamoda, DNS, Ситилинк. Плюс сравнение цен по всем сразу. Только чт</p>
+  <span class="meta"><span>⭐ 47</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
