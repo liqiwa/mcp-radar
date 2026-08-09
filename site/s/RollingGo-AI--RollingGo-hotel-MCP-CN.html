@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RollingGo-AI/RollingGo-hotel-MCP-CN — MCP Server | MCP Radar</title>
+<meta name="description" content="道旅RollingGo官方酒店MCP，14年旅游科技数据栈，200万酒店实时库存直连，11万直签，渠道专属价，兼容40+主流大模型代理。企业和个人开发者均可免费申请，无调用上限。可按地点、日期、星级、人数、标签等条件搜索酒店，返回候选酒店及展示价。可查询指定酒店的实时房型列表、价格计划和取消政策。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/RollingGo-AI--RollingGo-hotel-MCP-CN.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="RollingGo-AI/RollingGo-hotel-MCP-CN — MCP Server | MCP Radar">
+<meta property="og:description" content="道旅RollingGo官方酒店MCP，14年旅游科技数据栈，200万酒店实时库存直连，11万直签，渠道专属价，兼容40+主流大模型代理。企业和个人开发者均可免费申请，无调用上限。可按地点、日期、星级、人数、标签等条件搜索酒店，返回候选酒店及展示价。可查询指定酒店的实时房型列表、价格计划和取消政策。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "RollingGo-AI/RollingGo-hotel-MCP-CN", "description": "道旅RollingGo官方酒店MCP，14年旅游科技数据栈，200万酒店实时库存直连，11万直签，渠道专属价，兼容40+主流大模型代理。企业和个人开发者均可免费申请，无调用上限。可按地点、日期、星级、人数、标签等条件搜索酒店，返回候选酒店及展示价。可查询指定酒店的实时房型列表、价格计划和取消政策。", "codeRepository": "https://github.com/RollingGo-AI/RollingGo-hotel-MCP-CN", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/RollingGo-AI--RollingGo-hotel-MCP-CN.html", "dateCreated": "2026-08-05"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">RollingGo-AI/</span>RollingGo-hotel-MCP-CN</h1>
+<p class="sub">道旅RollingGo官方酒店MCP，14年旅游科技数据栈，200万酒店实时库存直连，11万直签，渠道专属价，兼容40+主流大模型代理。企业和个人开发者均可免费申请，无调用上限。可按地点、日期、星级、人数、标签等条件搜索酒店，返回候选酒店及展示价。可查询指定酒店的实时房型列表、价格计划和取消政策。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-08-05</b></div>
+  <div class="chip">on radar since <b>2026-08-09</b></div>
+  
+</div>
+<div class="topics"><span class="topic">client-mcp</span><span class="topic">client-server</span><span class="topic">codex-mcp</span><span class="topic">flight-mcp</span><span class="topic">hotel-api</span><span class="topic">hotel-booking</span><span class="topic">hotel-mcp</span><span class="topic">hotel-reservation</span><span class="topic">hotel-search</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">model-context-protocol-servers</span><span class="topic">travel</span><span class="topic">travel-api</span><span class="topic">travel-mcp</span><span class="topic">travel-planner</span><span class="topic">travel-tech</span></div>
+<a class="btn" href="https://github.com/RollingGo-AI/RollingGo-hotel-MCP-CN" rel="noopener">View on GitHub ↗</a>
+<h2>About RollingGo-hotel-MCP-CN</h2><p class="sub">道旅RollingGo酒店MCP RollingGo— Hotel Search &amp; Booking MCP</p><p class="sub">🏠 官网🚀 快速开始📚 使用示例💬 技术支持📚 接入视频(0基础0代码可实操) 📚 接入文档 · 💰开发者变现</p><p class="sub">项目简介 道旅酒店MCP为 AI Agent 和 MCP 客户端提供酒店预订能力，它适合希望在 AI 产品中接入酒店交易能力的开发者、Agent 构建者、旅游产品团队和企业差旅场景，企业和个人均可完全免费一键接入，无调用量限制。</p><p class="sub">服务 端点 已上线 Tool 认证 ------------------------------ 酒店 MCP https://mcp.rollinggo.cn/mcp searchHotels, getHotelDetail, getHotelSearchTags Authorization: Bearer</p><p class="sub">- 传输协议：streamable-http - 价格：完全免费，无调用量限制 - 接入方式：参考本文档可自助完成，适合需要短时间完成快速原型验证和工具开发</p><p class="sub">道旅MCP还提供OAuth 2.0 授权码模式，提供7个工具，包括：getHotelSearchTags, searchHotels, getHotelDetail, hotelPriceConfirm, searchHotelOrders等。该模式适合企业级生产应用深度集成，需商务对接contact@rollinggo.ai。 如果你是国际用户，或者你的目标用户为中国以外的国际化国家，请参考 Dida-Hotel-MCP-Global。该版本支持信用卡支付，适合非中国大陆地区的业务场景。</p><p class="sub">MCP亮点 - ✅ 实时库存价确 - 库存直连+实时价格确认能力，信息零延迟，查询结果均可直接预订 - ✅ 成熟供应链保障 - 全球第三大酒旅B2B官方数据源，14年旅行产品供应链积累，全链路API直连 - ✅ 海量酒店覆盖 - 坐拥200万+酒店资源，覆盖全球主要目的地 - ✅ 直签酒店资源 - 11万+直签酒店直连，价格库存实时响应，确保查询结果准确可订 - ✅ 多元供应体系 - 整合500+全球供应商，涵盖各类酒店品牌，满足不同用户预订需求 - ✅ 差异化价格优势 - 锚定OTA上游供应，海外酒店及上海、香港、日韩等热门目的地价格优势显著 - ✅ 兼容性 - 支持 Cursor、Claude Code、Codex、Windsurf、Copilot 等 40 多种主流大模型代理，针对ClawHub/扣子/Qclaw等Agent 平台，还提供全能订酒店Skill - ✅ 开发者返佣 - 接入即可按国家设置加价比例，当用户通过你的工具完成预订，对应金额将作为返佣，订单、收益、提现状态实时可查，灵活提现</p><p class="sub">适合用户 - 正在开发 AI Agent 的团队或个人开发者 - 想在 MCP Client 中接入酒店预订能力的开发者 - 正在构建旅行规划、差旅管理、OTA、生活服务类智能体的开发者 - 希望验证 AI Agent 商业交易闭环的产品团队 - 有酒店查询、酒店比价、盯价提醒接入需求的用户</p><p class="sub">应用场景 - 通用Agent：让Agent 直接拥有原生酒店预订能力，用户在自然对话中即可完成从比价筛选到订单创建的全流程 - AI旅行助手：根据用户目的地、日期、预算和个性化偏好精准推荐酒店，支持多维度需求匹配 - MCP / Agent Demo：快速验证 &quot;AI Agent 直接完成酒店交易&quot; 的产品能力，打造可演示的完整闭环</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/RollingGo-AI--RollingGo-hotel-MCP-CN.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Vladimir-Human--ru-marketplace-mcp.html">
+  <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
+  <p>Девять российских маркетплейсов и китайский Taobao как MCP-серверы: Wildberries, Ozon, Яндекс Маркет, Детский мир, Авито, Мегамаркет, Lamoda, DNS, Ситилинк. Плюс сравнение цен по всем сразу. Только чт</p>
+  <span class="meta"><span>⭐ 47</span><span>Python</span></span>
+</a><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
+</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
+  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
+  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
+  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a><a class="card" href="/s/chris-asmussen--warden.html">
+  <span class="name"><span class="owner">chris-asmussen/</span>warden</span>
+  <p>One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent&#x27;s context tiny. Migrate your Claude Code MCPs/skills behind it.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/tygryso--hypotree.html">
+  <span class="name"><span class="owner">tygryso/</span>hypotree</span>
+  <p>Memory that forgets: a persistent, self-revising belief-state MCP server for agentic R&amp;D. Uses a hypothesis DAG to auto-prune dead ends and deduce truth without extra probes.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/Lulu-The-Narwhal--dali-mcp.html">
+  <span class="name"><span class="owner">Lulu-The-Narwhal/</span>dali-mcp</span>
+  <p>Creative intelligence MCP — score your prompt before you spend the credit</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
