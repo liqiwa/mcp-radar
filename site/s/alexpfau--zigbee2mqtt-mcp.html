@@ -89,15 +89,15 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 <h1><span class="owner">alexpfau/</span>zigbee2mqtt-mcp</h1>
 <p class="sub">MCP server for administering a Zigbee2MQTT estate: health reporting, mesh diagnostics, OTA updates, pairing, binding and device options over the MQTT bridge API.</p>
 <div class="chips">
-  <div class="chip">⭐ <b>8</b> stars</div>
+  <div class="chip">⭐ <b>12</b> stars</div>
   <div class="chip">⑂ <b>1</b> forks</div>
   <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
   <div class="chip">momentum <b>▲ 42.0</b></div>
   <div class="chip">created <b>2026-08-06</b></div>
   <div class="chip">on radar since <b>2026-08-09</b></div>
-  
+  <div class="chip">star trend <b>8 → 12</b> since 2026-08-09</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/copilot.html">copilot</a><span class="topic">home-automation</span><span class="topic">iot</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">mqtt</span><span class="topic">smart-home</span><a class="topic" href="/topic/typescript.html">typescript</a><span class="topic">zigbee</span><span class="topic">zigbee2mqtt</span></div>
+<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/copilot.html">copilot</a><span class="topic">home-automation</span><a class="topic" href="/topic/iot.html">iot</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">mqtt</span><span class="topic">smart-home</span><a class="topic" href="/topic/typescript.html">typescript</a><span class="topic">zigbee</span><span class="topic">zigbee2mqtt</span></div>
 <a class="btn" href="https://github.com/alexpfau/zigbee2mqtt-mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About zigbee2mqtt-mcp</h2><p class="sub">A Model Context Protocol server for administering a Zigbee2MQTT estate.</p><p class="sub">Most Zigbee integrations already let an assistant turn a light on. This one is for the layer underneath: mesh health, weak links, devices that keep rejoining, stale batteries, firmware updates, pairing, binding, reporting intervals and device options — the things you normally open the Zigbee2MQTT frontend for.</p><p class="sub">It talks directly to the Zigbee2MQTT MQTT bridge API, so it works regardless of whether you use Home Assistant, Node-RED, openHAB or nothing at all. Tested against Zigbee2MQTT 2.x; several tools depend on bridge endpoints that only exist there, including bridge/health, device/binds/clear and the OTA scheduling topics.</p><p class="sub">If you already run Home Assistant, your Zigbee devices are exposed there and an assistant can control them. What Home Assistant does not expose is the bridge itself: link quality, mesh topology, interview state, OTA availability, permitjoin, device options, bindings and reporting configuration. This server fills exactly that gap.</p><p class="sub">- No database. Zigbee2MQTT publishes its bridge topics as retained messages, so a fresh subscription yields a complete picture in a few hundred milliseconds. The server keeps only the latest payload per topic in memory. - No daemon. Pure stdio. It starts and dies with the MCP session. - Correlated requests. Every bridge/request/ carries a transaction id and is matched to its bridge/response/, so concurrent calls cannot cross wires. - Tiered writes. Destructive operations are gated behind a write mode and an explicit confirm argument.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -108,6 +108,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">bolivestilo/</span>Homekit</span>
   <p>Homekit gives any AI agent direct, physical control over Apple Home. Flip lights. Lock doors. Read sensors. Through a single open interface.</p>
   <span class="meta"><span>⭐ 68</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/zhiningsun--industrial-mcp.html">
+  <span class="name"><span class="owner">zhiningsun/</span>industrial-mcp</span>
+  <p>将工业设备变成 AI 可控工具的 MCP 服务器。支持 Modbus、OPC UA、MQTT 三种协议，内置设备仿真引擎、物理模型和完整的调试工具链。让 Claude 用自然语言监控传感器、启停电机、执行工厂巡检。</p>
+  <span class="meta"><span>⭐ 22</span><span>Python</span></span>
 </a><a class="card" href="/s/NLACE-COM--mcp-supermercados-cl.html">
   <span class="name"><span class="owner">NLACE-COM/</span>mcp-supermercados-cl</span>
   <p>Servidor MCP para buscar productos, comparar precios y armar la mejor lista de compra en supermercados chilenos (Jumbo, Santa Isabel, Unimarc, Tottus, Lider) desde Claude o ChatGPT. 100% local.</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">roshanarnav25-sloth/</span>google-flow-mcp</span>
   <p>MCP server that drives Google Flow (Veo / Nano Banana) through its internal tRPC API, with a hard credit-cost gate</p>
   <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/Gowthaman90--mcp-bastion.html">
-  <span class="name"><span class="owner">Gowthaman90/</span>mcp-bastion</span>
-  <p>Reliability + security proxy for the Model Context Protocol (MCP): self-healing connections, runtime tool-security (rug-pull/poisoning detection), and a compliance-mapped audit trail.</p>
-  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
 </a>
 
 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>trongnguyenbinh/zalo-bot-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP channel server for the Zalo Bot API. Talk to your Claude Code session from Zalo, with pairing, allowlists, and group gating. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/trongnguyenbinh--zalo-bot-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="trongnguyenbinh/zalo-bot-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP channel server for the Zalo Bot API. Talk to your Claude Code session from Zalo, with pairing, allowlists, and group gating. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "trongnguyenbinh/zalo-bot-mcp", "description": "MCP channel server for the Zalo Bot API. Talk to your Claude Code session from Zalo, with pairing, allowlists, and group gating.", "codeRepository": "https://github.com/trongnguyenbinh/zalo-bot-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/trongnguyenbinh--zalo-bot-mcp.html", "dateCreated": "2026-08-07"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">trongnguyenbinh/</span>zalo-bot-mcp</h1>
+<p class="sub">MCP channel server for the Zalo Bot API. Talk to your Claude Code session from Zalo, with pairing, allowlists, and group gating.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">created <b>2026-08-07</b></div>
+  <div class="chip">on radar since <b>2026-08-10</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">chatbot</span><span class="topic">chatops</span><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">messaging</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><span class="topic">vietnam</span><span class="topic">zalo</span><span class="topic">zalo-bot</span></div>
+<a class="btn" href="https://github.com/trongnguyenbinh/zalo-bot-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/trongnguyenbinh/zalo-bot-mcp#readme" rel="noopener nofollow">Homepage ↗</a>
+<h2>About zalo-bot-mcp</h2><p class="sub">Talk to your AI agent from a Zalo group.</p><p class="sub">An MCP channel server for the Zalo Bot API. Messages sent to your Zalo bot arrive in an MCP client session; the session replies through a tool call.</p><p class="sub">Early. The server is on PyPI and has been exercised against a real bot, but the MCP channel it targets is still an experimental Claude Code capability.</p><p class="sub">The server polls Zalo with getUpdates, so it needs no public URL, no webhook endpoint, and no tunnel. It runs on a laptop behind NAT.</p><p class="sub">Every inbound message passes the gate before anything else sees it. The gate is the only door.</p><p class="sub">Direct messages follow one of three policies:</p><p class="sub">Policy Unknown sender gets --- --- pairing A short-lived code you approve out of band allowlist Nothing. The message is dropped silently disabled Nothing. All DMs are dropped</p><p class="sub">Groups must be configured by ID. Adding the bot to a group does not enable it. You can also restrict which members are allowed to trigger it.</p><p class="sub">1. No Zalo message can change the access config. A message asking to be added to the allowlist is exactly what an injection attack looks like, so approvals happen outside the channel. 2. The server refuses to start if the allowlist contains a wildcard. It is easy to widen an allowlist during testing and forget to narrow it again.</p><p class="sub">Being on the allowlist means you can talk to the bot. It does not grant authority to act on anything.</p><p class="sub">These come from the Zalo Bot API itself, and they shape what any Zalo bot can do. Zalo owns these rules and changes them without notice, so treat as the source of truth and this section as a summary that may be out of date</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/trongnguyenbinh--zalo-bot-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/AndyShaman--telegram-business-bridge.html">
+  <span class="name"><span class="owner">AndyShaman/</span>telegram-business-bridge</span>
+  <p>Connect any AI agent to your personal Telegram via the official Business API — no userbot, no ban risk, no Premium. Agent reads &amp; searches full history, drafts replies; every reply waits for your ✅. M</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/chris-asmussen--warden.html">
+  <span class="name"><span class="owner">chris-asmussen/</span>warden</span>
+  <p>One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent&#x27;s context tiny. Migrate your Claude Code MCPs/skills behind it.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/MuhittinYilmazer--akana.html">
+  <span class="name"><span class="owner">MuhittinYilmazer/</span>akana</span>
+  <p>Self-hosted, local-first AI assistant server: swappable LLM providers, review-gated memory, an encrypted vault, and wake-word voice. No accounts, no telemetry.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/MaxFreedomPollard--engRAM.html">
+  <span class="name"><span class="owner">MaxFreedomPollard/</span>engRAM</span>
+  <p>Automatic one-click install. Encrypted, fully offline vector memory for AI agents; takes over built-in agentic memory.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Mrshahidali420--google-search-console-mcp.html">
+  <span class="name"><span class="owner">Mrshahidali420/</span>google-search-console-mcp</span>
+  <p>MCP server for Google Search Console - index status, URL inspection, request indexing, sitemap submission and search analytics for Claude and other AI agents.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/12122J--mcpvet.html">
+  <span class="name"><span class="owner">12122J/</span>mcpvet</span>
+  <p>MCP security scanner — vet a Model Context Protocol server before you add it to Claude Code, Cursor, or Windsurf. Grades it A–F, catching credential theft, tool-poisoning, and install-script payloads </p>
+  <span class="meta"><span>⭐ 10</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
