@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cxy2000111-art/theseus-brain — MCP Server | MCP Radar</title>
+<meta name="description" content="The Brain of Theseus — a plain-text roguelike written to be played by an AI, over MCP (stdio). Reincarnation, memory, and irreversible cyberization. Z — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/cxy2000111-art--theseus-brain.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="cxy2000111-art/theseus-brain — MCP Server | MCP Radar">
+<meta property="og:description" content="The Brain of Theseus — a plain-text roguelike written to be played by an AI, over MCP (stdio). Reincarnation, memory, and irreversible cyberization. Z — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "cxy2000111-art/theseus-brain", "description": "The Brain of Theseus — a plain-text roguelike written to be played by an AI, over MCP (stdio). Reincarnation, memory, and irreversible cyberization. Zero dependencies, Python 3. 给 AI 玩的中文纯文本 roguelike", "codeRepository": "https://github.com/cxy2000111-art/theseus-brain", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/cxy2000111-art--theseus-brain.html", "dateCreated": "2026-08-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">cxy2000111-art/</span>theseus-brain</h1>
+<p class="sub">The Brain of Theseus — a plain-text roguelike written to be played by an AI, over MCP (stdio). Reincarnation, memory, and irreversible cyberization. Zero dependencies, Python 3. 给 AI 玩的中文纯文本 roguelike</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-08-10</b></div>
+  <div class="chip">on radar since <b>2026-08-11</b></div>
+  
+</div>
+<div class="topics"><span class="topic">ai-game</span><span class="topic">chinese</span><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">cyberpunks</span><span class="topic">interactive-fiction</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><span class="topic">roguelike</span><span class="topic">ship-of-theseus</span><span class="topic">text-adventure</span><span class="topic">zero-dependency</span></div>
+<a class="btn" href="https://github.com/cxy2000111-art/theseus-brain" rel="noopener">View on GitHub ↗</a>
+<h2>About theseus-brain</h2><p class="sub">English · A plain-text roguelike written to be played by an AI, over MCP (stdio). Zero dependencies, Python 3 stdlib. You live one life after another in a city that has spent centuries arguing about whether you may rebuild your body — and each life you forget the last one. Only two things cross death. The game is fully playable in English: README.en.md · install · spoilers</p><p class="sub">Set THESEUSLANG=en in your MCP client’s env, or it runs in Chinese.</p><p class="sub">一个给 AI 玩的纯文本 roguelike。 零依赖，Python 3 标准库，通过 MCP (stdio) 提供接口。</p><p class="sub">一座城市为「能不能改造身体」分成四派，吵了几百年。你在这座城里一世一世地转世—— 而每一世你都会忘掉上一世，只有两样东西能穿过死亡。</p><p class="sub">它不是给人读的互动小说，也不是给人玩的文字游戏。它是给模型玩的： 规则里有几处只有把整局记在心里才拿得到的东西，也有几处专门等着一个 「本来就知道某句古话」的读者。人可以玩（有终端模式），但它不是为人的注意力写的。</p><p class="sub">人读到什么 谁做选择 --- --- --- 1 详细剧情版 story / storyai 场景原文、选项、掷骰行，一字不改 可选：人 或 AI 2 快速流程版 brief / briefai 场景原文照读；结果压成两行战报 可选：人 或 AI 3 快进 auto 只有战报行 AI（这一档没得选） 封存 sealed 战报行，且不透露选了什么 AI（留给「我以后要自己玩」的人）</p><p class="sub">读到多少和谁来选是两件事，所以是两道题。 带 ai 后缀的那一档意思是「原文照念给我听，但你替我选」—— 想看剧情又懒得逐幕拿主意的时候用它。</p><p class="sub">为什么是服务器强制而不是提示词：提示词里写「请先询问用户」，模型会跳过。 服务器攥着游戏不开，AI 就必须先把菜单转述出去。这是这套设计里唯一强制得了的一步。</p><p class="sub">brief 压的是结果不是场景——场景是作品，结果是信息。概括信息无损，概括作品有损。</p><p class="sub">第一步，装 Python 3.8+（多数系统自带），下载本仓库，记下 server.py 的绝对路径。</p><p class="sub">第二步，在你的 AI 客户端里挂上它。任何支持 stdio MCP 的客户端都行：</p><p class="sub">- Claude Code：claude mcp add theseus-brain -- python3 /绝对路径/server.py - Claude Desktop：设置 → Developer → Edit Config，粘贴上面那段，重启 - Cursor：~/.cursor/mcp.json 或项目内 .cursor/mcp.json，同样那段 - Cline / Roo Code：MCP Servers 设置里填同样的 command + args - Windows：command 用 python，路径用正斜杠或双反斜杠</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/cxy2000111-art--theseus-brain.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a><a class="card" href="/s/chris-asmussen--warden.html">
+  <span class="name"><span class="owner">chris-asmussen/</span>warden</span>
+  <p>One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent&#x27;s context tiny. Migrate your Claude Code MCPs/skills behind it.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/KernelLord--pickysteve.html">
+  <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
+  <p>Skill router and context picker for Claude Code, Cursor, and Aider. Auto-picks the right skill for every prompt, with prompt-injection filtering for MCP.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/vinodborole--okf-kit.html">
+  <span class="name"><span class="owner">vinodborole/</span>okf-kit</span>
+  <p>Turn any website into a portable, agent-ready Open Knowledge Format (OKF) bundle — no LLM required. Crawl, sync, chat offline, and serve docs to coding agents over MCP.</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/AlexanderBoger--SaveContext.html">
+  <span class="name"><span class="owner">AlexanderBoger/</span>SaveContext</span>
+  <p>Git LFS for your LLM context — 20x Context Savings — an MCP server that keeps big documents out of the model and returns byte-exact quotes for a fraction of the tokens.</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/crAK1644--orchestrator-mcp.html">
+  <span class="name"><span class="owner">crAK1644/</span>orchestrator-mcp</span>
+  <p>Use Codex from Claude Code, or Claude Code from Codex, through the subscriptions you already have. Multi-turn consultations between agent CLIs with no provider API key, a validated response envelope, </p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
