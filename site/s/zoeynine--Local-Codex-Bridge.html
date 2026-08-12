@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zoeynine/Local-Codex-Bridge — MCP Server | MCP Radar</title>
+<meta name="description" content="让 ChatGPT 通过 MCP 调用本机原生 Codex 会话的轻量 Windows 桥接器。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/zoeynine--Local-Codex-Bridge.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="zoeynine/Local-Codex-Bridge — MCP Server | MCP Radar">
+<meta property="og:description" content="让 ChatGPT 通过 MCP 调用本机原生 Codex 会话的轻量 Windows 桥接器。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "zoeynine/Local-Codex-Bridge", "description": "让 ChatGPT 通过 MCP 调用本机原生 Codex 会话的轻量 Windows 桥接器。", "codeRepository": "https://github.com/zoeynine/Local-Codex-Bridge", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/zoeynine--Local-Codex-Bridge.html", "dateCreated": "2026-08-11"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">zoeynine/</span>Local-Codex-Bridge</h1>
+<p class="sub">让 ChatGPT 通过 MCP 调用本机原生 Codex 会话的轻量 Windows 桥接器。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-11</b></div>
+  <div class="chip">on radar since <b>2026-08-12</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/chatgpt.html">chatgpt</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/local-ai.html">local-ai</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/typescript.html">typescript</a><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/zoeynine/Local-Codex-Bridge" rel="noopener">View on GitHub ↗</a>
+<h2>About Local-Codex-Bridge</h2><p class="sub">A thin MCP control bridge from ChatGPT to native Codex sessions.</p><p class="sub">Local Codex Bridge 是一个面向 Windows 的轻量 MCP stdio 桥接器：它让 ChatGPT（或其他 MCP 客户端）能够调用本机原生 Codex 会话，同时把真正的线程、回合、历史记录和执行能力继续交给官方 Codex app-server 管理。</p><p class="sub">它解决的是一个很具体的问题：ChatGPT 适合对话、拆解目标和持续监督，Codex 则能在本机工作区里使用真实的文件、命令和开发工具。Bridge 在两者之间提供 7 个边界清楚的控制工具，不再额外发明一套任务系统。</p><p class="sub">本版本完成监督与控制边界加固，进一步明确超时、重复请求 ID 与待响应请求的安全语义。当前仍仅声明支持 Windows。</p><p class="sub">换句话说，Local Codex Bridge 是提供给 ChatGPT 的 MCP Server；Codex app-server 是 Bridge 在内部驱动原生 Codex 的官方协议进程。它们不是同一个接口，也不是两套并行的任务系统。</p><p class="sub">当工具首次需要原生 Codex 时，Bridge 会懒启动一个官方 app-server 子进程。Bridge 自己不创建 job ID、不维护队列、不保存第二份对话历史，也不会自动重试或自动重启意外退出的 app-server。</p><p class="sub">工具 用途 重要边界 --- --- --- codexthreads 列出、搜索或读取原生 Codex 持久线程 cwd 和搜索词只是筛选条件，不是权限边界；不会重建已经丢失的 Bridge 实时事件 codexturn 新建或恢复线程，并启动一个回合 新线程必须提供绝对 Windows 盘符路径；返回“已接受”不等于任务完成 codexobserve 读取有界的实时事件、待处理请求、终态和游标 waitms 最长 10 秒，只做一次事件驱动等待；安静不代表卡死 codexsteer 向同一个活动回合追加纠正或新意图 必须匹配准确的 threadid 和 expectedturnid；不会新建回合 codexrespond 回答真实的审批、用户输入、权限或 elicitation 请求 必须使用原始 request ID 及准确的线程、方法和回合范围；不能虚构请求 codexinterrupt 中断准确的活动线程与回合 只发送原生 turn/interrupt；不会停止或重启 Bridge / app-server codexcheckpoint 为长任务保存可选、精简且有界的监督锚点 不是转录、日志、任务 ID 或 Codex 历史；原始目标、约束和验收条件初始化后不可变</p><p class="sub">所有工具都公开对象输入 schema，以及 MCP 的只读、破坏性、幂等和 open-world 提示。完整字段和限制以 src/tools.ts 为准。</p><p class="sub">- Windows - Node.js 24 或更高版本 - 官方 Codex 可执行文件：可以直接通过 codex 命令找到，也可以用 CODEXEXE 指定</p><p class="sub">如果你把仓库交给 Codex、Claude Code、Kimi 或其他本地 AI Agent，请让它先阅读本页和 AGENTS.md，检查目标机器上真实的 Node.js、Codex、路径及可选 Tunnel 环境，再按实际情况适配；不要照抄示例路径、profile、端口或配置。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/zoeynine--Local-Codex-Bridge.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/NotNull92--workforge-mcp.html">
+  <span class="name"><span class="owner">NotNull92/</span>workforge-mcp</span>
+  <p>WorkForge is a Windows MCP gateway that lets ChatGPT inspect files, resume Git work, make SHA-guarded edits, read images, and run supervised PowerShell jobs.</p>
+  <span class="meta"><span>⭐ 6</span><span>PowerShell</span></span>
+</a><a class="card" href="/s/sgateway--s-gw.html">
+  <span class="name"><span class="owner">sgateway/</span>s-gw</span>
+  <p>Local credential control for AI coding agents.</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/calesthio--Resonant.html">
+  <span class="name"><span class="owner">calesthio/</span>Resonant</span>
+  <p>Free, local AI music studio for Windows—generate songs, play instruments, arrange, mix, export WAV, and connect Codex or Claude through MCP.</p>
+  <span class="meta"><span>⭐ 83</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/alijancb--bubble-agent-mcp.html">
+  <span class="name"><span class="owner">alijancb/</span>bubble-agent-mcp</span>
+  <p>Open-source MCP server for discovering fast-growing internet conversations with Bubble Agent</p>
+  <span class="meta"><span>⭐ 34</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

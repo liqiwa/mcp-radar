@@ -97,14 +97,22 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-15</b></div>
   
 </div>
-<div class="topics"><span class="topic">bm25</span><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">code-search</span><span class="topic">codebase-context</span><a class="topic" href="/topic/coding-agents.html">coding-agents</a><a class="topic" href="/topic/cursor.html">cursor</a><span class="topic">hybrid-search</span><a class="topic" href="/topic/local-first.html">local-first</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/semantic-search.html">semantic-search</a><a class="topic" href="/topic/tree-sitter.html">tree-sitter</a></div>
+<div class="topics"><span class="topic">bm25</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/code-search.html">code-search</a><span class="topic">codebase-context</span><a class="topic" href="/topic/coding-agents.html">coding-agents</a><a class="topic" href="/topic/cursor.html">cursor</a><span class="topic">hybrid-search</span><a class="topic" href="/topic/local-first.html">local-first</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/semantic-search.html">semantic-search</a><a class="topic" href="/topic/tree-sitter.html">tree-sitter</a></div>
 <a class="btn" href="https://github.com/infino-ai/code-context" rel="noopener">View on GitHub ↗</a>
 <h2>About code-context</h2><p class="sub">code-context is the retrieval layer under your coding agent: one local index over the whole repo (keyword, semantic, hybrid, and SQL), reached through an MCP server and a CLI, with the index living in plain files inside your repo. Your agent answers questions about the codebase without reading it file by file.</p><p class="sub">The rule of thumb: the more a question spans the repo, the more this saves, because the answer comes from a ranked index instead of pulling source into context one file at a time.</p><p class="sub">Up to 22× fewer tokens. One query, &quot;break this repo down by language,&quot; is ~6K tokens with code-context versus ~140K reading files. The harness is in the repo, so you can reproduce it on your own codebase.</p><p class="sub">Try it live (early preview): ask questions about any public GitHub repo at lantern.infino.ai, a demo agent that runs on code-context.</p><p class="sub">- 🔎 Find code by words or meaning. One ranked pass fuses exact keyword matching with semantic similarity, and every hit carries the code with path:line citations. - 📊 Ask questions grep can&#x27;t answer. Search works as a SQL table function, so &quot;which files have the most code about X&quot; is one query: ranked by relevance, tallied by GROUP BY. - ⚡ Searching in seconds, fresh forever. The keyword index commits before the embedding model even finishes downloading, vectors backfill in the background, and edits re-sync incrementally: only changed files re-chunk and re-embed. - 🔒 Nothing leaves your machine. No accounts, no API keys, no database server, no telemetry. Embedding is a small local model, downloaded once; after that everything works offline.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/infino-ai--code-context.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/pranee54--AgentDoctor.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/tinhien11--tdai-memory-mcp.html">
+  <span class="name"><span class="owner">tinhien11/</span>tdai-memory-mcp</span>
+  <p>Local-first MCP memory server — Memory + CodeGraph + Wiki in one SQLite file. Tree-sitter code indexing, markdown wiki, lifecycle hooks, auto-capture. No API key, no cloud.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/jarvis-intelligence--jarvis-index.html">
+  <span class="name"><span class="owner">jarvis-intelligence/</span>jarvis-index</span>
+  <p>Public distribution surface for jarvis — local-first code intelligence MCP server (SCIP navigation + Zoekt search). Installer, Claude Code / Codex / Cursor plugins, and prebuilt binaries.</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/pranee54--AgentDoctor.html">
   <span class="name"><span class="owner">pranee54/</span>AgentDoctor</span>
   <p>Local CLI that audits coding-agent configuration for security, instructions, context, and MCP — no API key or code upload by default.</p>
   <span class="meta"><span>⭐ 10</span><span>TypeScript</span></span>
@@ -120,14 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Smitner-Studio/</span>facet</span>
   <p>Render agent-written Markdown as a live local page, and send the human&#x27;s click back to the agent as typed data. Human-in-the-loop approval gates for coding agents.</p>
   <span class="meta"><span>⭐ 4</span><span>Go</span></span>
-</a><a class="card" href="/s/0xsline--OpenChatCut.html">
-  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
-  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
-  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/LilithGames--a2wave.html">
-  <span class="name"><span class="owner">LilithGames/</span>a2wave</span>
-  <p>Turn the agent CLIs you already use into shared services your whole team can call. Natural-language-driven agent orchestration for Claude Code, Cursor Agent, and OpenAI Codex.</p>
-  <span class="meta"><span>⭐ 17</span><span>TypeScript</span></span>
 </a>
 
 

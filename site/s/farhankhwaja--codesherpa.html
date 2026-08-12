@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-10</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">code-search</span><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/rag.html">rag</a><span class="topic">retrieval</span><a class="topic" href="/topic/sqlite.html">sqlite</a><a class="topic" href="/topic/tree-sitter.html">tree-sitter</a></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/code-search.html">code-search</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/rag.html">rag</a><span class="topic">retrieval</span><a class="topic" href="/topic/sqlite.html">sqlite</a><a class="topic" href="/topic/tree-sitter.html">tree-sitter</a></div>
 <a class="btn" href="https://github.com/farhankhwaja/codesherpa" rel="noopener">View on GitHub ↗</a>
 <h2>About codesherpa</h2><p class="sub">A git-native, self-updating structural memory for your codebase. Index once, stay fresh forever, and let any LLM agent retrieve exactly the code context it needs over MCP — function-level chunks under a token budget instead of grep-and-read-the-whole-file.</p><p class="sub">Benchmarks with receipts: see EVALLOG.md — including the target we missed.</p><p class="sub">- Package &amp; imports: codesherpa (PyPI release imminent — until then, install from GitHub) - Command line &amp; MCP server: sherpa · index lives in .sherpa/</p><p class="sub">That&#x27;s it. init installs post-commit/post-checkout/post-merge/ post-rewrite hooks that run sherpa sync --quiet, so the index follows your HEAD automatically. First run downloads the embedding model (~0.5 GB, one-time) to ~/.cache/sherpa/ and prints progress; after that everything is fully local and offline. Try it from the shell with sherpa search &quot;where is the retry logic for http requests&quot;.</p><p class="sub">Agents burn most of their context window navigating: grepping, opening whole files, re-reading. sherpa gives them seven MCP tools that answer structurally:</p><p class="sub">tool what it answers ------ searchcode(query, budgettokens) hybrid lexical+semantic+symbol search, packed to a token budget getdefinition(symbol) jump to a definition with signature + breadcrumb getcallers(symbol) / getreferences(symbol) ranked callers / references (same-package first) getrecentchanges(since) commits + symbol-level diffs since a ref or ISO date expand(expandid) full body of any compact result, on demand indexstatus() freshness, counts, warming state</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -120,14 +120,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">yiaany/</span>Mekka</span>
   <p>The agent-native Supabase killer: SQLite speed today, distributed cloud next, without the PostgreSQL tax.</p>
   <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/valtors--observer.html">
-  <span class="name"><span class="owner">valtors/</span>observer</span>
-  <p>Transparent MCP proxy for agent observability. Logs every tool call, exposes trace history, reduces token overhead.</p>
-  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
-</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
-  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
-  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
-  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a><a class="card" href="/s/tinhien11--tdai-memory-mcp.html">
+  <span class="name"><span class="owner">tinhien11/</span>tdai-memory-mcp</span>
+  <p>Local-first MCP memory server — Memory + CodeGraph + Wiki in one SQLite file. Tree-sitter code indexing, markdown wiki, lifecycle hooks, auto-capture. No API key, no cloud.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/jarvis-intelligence--jarvis-index.html">
+  <span class="name"><span class="owner">jarvis-intelligence/</span>jarvis-index</span>
+  <p>Public distribution surface for jarvis — local-first code intelligence MCP server (SCIP navigation + Zoekt search). Installer, Claude Code / Codex / Cursor plugins, and prebuilt binaries.</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
 </a>
 
 

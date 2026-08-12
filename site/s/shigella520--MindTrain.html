@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-21</b></div>
   <div class="chip">star trend <b>3 → 73</b> since 2026-07-21</div>
 </div>
-<div class="topics"><span class="topic">ai-learning</span><span class="topic">codex-plugin</span><span class="topic">edtech</span><span class="topic">knowledge-training</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/openai-codex.html">openai-codex</a></div>
+<div class="topics"><span class="topic">ai-learning</span><a class="topic" href="/topic/codex-plugin.html">codex-plugin</a><span class="topic">edtech</span><span class="topic">knowledge-training</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/openai-codex.html">openai-codex</a></div>
 <a class="btn" href="https://github.com/shigella520/MindTrain" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://mindtrain.jianyutan.com/" rel="noopener nofollow">Homepage ↗</a>
 <h2>About MindTrain</h2><p class="sub">MindTrain 是一个面向 Codex 和其他 AI 客户端的开源知识训练平台。你可以像普通聊天一样随时追问、质疑和索要提示；MindTrain 在后台负责题库、精确判分、学习记录和抗遗忘调度。</p><p class="sub">- 对话不中断：遇到不懂的概念直接问，当前题目不会被误判为已作答。 - 数据归自己：单用户私有部署，题库和学习历史保存在自己的 PostgreSQL 中。 - 真正形成闭环：复习旧题、按需生成新题、记录错误，并控制每天的新题与到期积压。</p><p class="sub">MindTrain 核心不绑定具体知识领域；每个私有实例可以独立管理自己的领域、知识点和题库。</p><p class="sub">- Training Core 是题目、会话、作答、复习状态和配置的权威数据源。 - Trainer MCP 只调用 Core API，不直接访问数据库。 - Skill 负责教学和工具编排，不保存业务数据。 - AI 临时题会先校验并入库再展示；作答前可拒绝并物理删除，作答后转为普通复习题。</p><p class="sub">一次训练并不是简单的“显示答案”：调度器先根据到期状态和新题额度选题；用户可以在提交前无限追问；只有明确提交选项后，Core 才会精确判分并追加学习记录。题库不足时，Core 会返回结构化生成要求，由 Codex 生成、Core 校验入库后再展示。</p><p class="sub">每轮题量、复习与新题配额、积压暂停规则和 AI 临时题有效期均由数据库配置控制，可在 Web 管理页调整。</p><p class="sub">在线演示：https://mindtrain.jianyutan.com/（可公开查看示例统计；训练需要连接自己的私有实例）</p><p class="sub">能力 你得到什么 --- --- 对话式 AI 教练 在同一题中追问概念、索要提示、质疑答案，再继续作答 确定性判分 单选和多选按选项集合精确判分，不让模型“凭感觉”决定分数 抗遗忘调度 默认平衡复习题和新题；积压过高时自动暂停新题 AI 补题 题库不足时由 Codex 按指定知识点、题型和难度生成并校验新题 私有数据 Core 是唯一权威数据源；Skill 无状态，仓库不承载运行数据 Web + Codex Web 用于看板、旧题复习和配置；Codex 用于完整的 AI 教练体验</p><p class="sub">当前可用：Training Core、Trainer MCP、MindTrain Web、Codex Plugin 和加权调度。Anki / FSRS Provider 尚在规划中。</p><p class="sub">- Git - Docker 与 Docker Compose - Codex CLI 或 Codex App（使用 AI 教练时需要）</p><p class="sub">可以使用 openssl rand -hex 32 生成随机值。MINDTRAINBOOTSTRAPTOKEN 同时保护 Codex → Trainer MCP 和 Trainer MCP → Core，请勿提交或公开。</p><p class="sub">- Web：http://127.0.0.1:4173 - Core 健康检查：http://127.0.0.1:8080/actuator/health - MCP 健康检查：http://127.0.0.1:8787/actuator/health</p><p class="sub">PostgreSQL 不对宿主机开放；Core、MCP 和 Web 默认只监听 127.0.0.1。</p><p class="sub">1. MCP 地址。本机部署使用 http://127.0.0.1:8787/mcp；云端部署使用自己的 HTTPS 地址。 2. .env 中的 MINDTRAINBOOTSTRAPTOKEN。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/shigella520--MindTrain.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/ozankasikci--global-agent-memory.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/shixinnt--codex-image-context-runtime.html">
+  <span class="name"><span class="owner">shixinnt/</span>codex-image-context-runtime</span>
+  <p>A Codex plugin and local MCP runtime for context-bounded image generation and inspection.</p>
+  <span class="meta"><span>⭐ 25</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/ozankasikci--global-agent-memory.html">
   <span class="name"><span class="owner">ozankasikci/</span>global-agent-memory</span>
   <p>Local-first, project-aware memory MCP server for Claude Code, Codex, and other AI agents, with Obsidian and an owner dashboard.</p>
   <span class="meta"><span>⭐ 11</span><span>Python</span></span>
@@ -115,7 +119,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/sv-number--mcp-server.html">
   <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
   <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
-  <span class="meta"><span>⭐ 563</span><span>JavaScript</span></span>
+  <span class="meta"><span>⭐ 622</span><span>JavaScript</span></span>
 </a><a class="card" href="/s/vshulcz--deja-vu.html">
   <span class="name"><span class="owner">vshulcz/</span>deja-vu</span>
   <p>Your agents already solved this. deja finds it — retroactive search and MCP recall over the session logs your coding agents already wrote. Cross-agent, SSH-portable, one zero-dep binary, fully local.</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
   <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
   <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
-</a><a class="card" href="/s/mrpulor-gh--nuphus-mcp.html">
-  <span class="name"><span class="owner">mrpulor-gh/</span>nuphus-mcp</span>
-  <p>Desktop automation MCP server — computer use for any AI agent: control screen, windows, mouse/keyboard, and Chrome via Model Context Protocol (stdio)</p>
-  <span class="meta"><span>⭐ 152</span><span>Rust</span></span>
 </a>
 
 
