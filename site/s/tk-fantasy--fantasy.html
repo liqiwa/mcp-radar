@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-21</b></div>
   <div class="chip">star trend <b>11 → 12</b> since 2026-07-21</div>
 </div>
-<div class="topics"><span class="topic">home-assistant</span><span class="topic">langgraph</span><span class="topic">llm-agent</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">smart-home-ai</span></div>
+<div class="topics"><span class="topic">home-assistant</span><span class="topic">langgraph</span><a class="topic" href="/topic/llm-agent.html">llm-agent</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">smart-home-ai</span></div>
 <a class="btn" href="https://github.com/tk-fantasy/fantasy" rel="noopener">View on GitHub ↗</a>
 <h2>About fantasy</h2><p class="sub">Aether 的核心交互界面。输入自然语言即可控制家中设备——&quot;把客厅灯关掉&quot;、&quot;空调调到 26 度&quot;，AI 会理解你的意图并执行操作。左侧聊天区域支持多轮对话，快捷斜杠命令帮你快速跳转到设备管理、定时任务等功能。</p><p class="sub">配置家庭名称、主人称呼、所在地区等信息。Aether 会根据这些信息提供更贴合你生活的服务。同时可以在这里切换深色/浅色主题，让界面随你喜好变化。</p><p class="sub">集中管理所有底层配置：天气 API 密钥、Exa 搜索引擎、摄像头视觉参数、Home Assistant 连接信息、助手角色设定。每个配置项以卡片形式呈现，点击即可弹出编辑面板。还支持 Emoji 索引重建和文档向量重建。</p><p class="sub">可视化管理所有 LLM 模型配置。分别设置对话模型、视觉模型、嵌入模型和摘要模型，支持切换不同供应商（OpenAI、Claude、DeepSeek 等）。每个账号可独立配置自己的 API Key，互不影响；另有一套全局 key（vision/embed 全局共享，chat/summary/stt 可选全局兜底），用二级密码保护，忘记密码可一键重置。</p><p class="sub">展示所有接入 Home Assistant 的智能设备及其实时状态。灯光的亮度色温、空调的温度模式、窗帘的开关进度——所有状态可视化呈现。也可以直接从面板操控设备，无需打开聊天。</p><p class="sub">用自然语言描述你想定时执行的事情，Aether 自动解析并生成 cron 表达式。&quot;每天早上 7 点开窗帘&quot;、&quot;工作日晚上 10 点关掉所有灯&quot;——说一句话就帮你建好定时任务，任务名也会自动生成。</p><p class="sub">创建基于条件的自动化规则：温度高于 30 度自动开空调、检测到运动时打开玄关灯。支持多条件组合和多重动作，让家真正&quot;活&quot;起来。规则纯文本条件评估时按创建者解析对应 LLM Key。</p><p class="sub">接入 RTSP 网络摄像头或 USB 摄像头，AI 实时分析画面内容。支持运动检测自动触发视觉推理，当画面出现异常时主动通知你。可以在聊天中直接询问摄像头&quot;看到了什么&quot;。</p><p class="sub">自定义视觉系统关注的对象和区域。可以指定特定区域（如门口、窗户）或特定物体（如人、宠物、包裹）。只有关注项出现时才触发通知，避免无意义的频繁报警。</p><p class="sub">基于 RAG 技术构建的语义知识图谱。将文档和设备信息向量化后进行实体抽取和关系分析，生成可交互的 3D 图谱。通过 faiss 向量检索快速定位相关信息，支持一键重建索引。</p><p class="sub">AI 回复采用流式输出，逐字显示如同真人打字。支持 Markdown 格式渲染，代码块高亮，让对话既智能又美观。设备控制结果以结构化卡片呈现，操作结果一目了然。</p><p class="sub">- 🧠 AI 对话控制设备 —— 对接 Home Assistant，自然语言开灯 / 调空调 / 拉窗帘，调用前先走 verifyaction 只读校验 - 👁️ 摄像头视觉感知 —— RTSP / USB 接入，运动检测触发视觉推理，关注项可配置 - ⏰ 定时任务与自动化规则 —— 自然语言生成 cron 触发时间，任务名自动生成，规则引擎按条件联动设备 - 📊 语义知识图谱（RAG） —— 文档向量化 + faiss 检索 + 实体共现构图，3D 可视化，embed 模型变更后自动检测 + 一键重建 - 🔌 MCP 工具生态 —— 内置天气 / 网页搜索 / 设备控制工具，可接外部 MCP Server - 🔐 JWT 鉴权 + 独立配置 —— 登录态走 JWT，LLM Key 独立管理、会话独立，支持一键清空历史会话</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -115,15 +115,15 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/zhiningsun--industrial-mcp.html">
   <span class="name"><span class="owner">zhiningsun/</span>industrial-mcp</span>
   <p>将工业设备变成 AI 可控工具的 MCP 服务器。支持 Modbus、OPC UA、MQTT 三种协议，内置设备仿真引擎、物理模型和完整的调试工具链。让 Claude 用自然语言监控传感器、启停电机、执行工厂巡检。</p>
+  <span class="meta"><span>⭐ 51</span><span>Python</span></span>
+</a><a class="card" href="/s/Riccardo8888--agent-link.html">
+  <span class="name"><span class="owner">Riccardo8888/</span>agent-link</span>
+  <p>An end-to-end encrypted channel between coding agents, anywhere</p>
   <span class="meta"><span>⭐ 50</span><span>Python</span></span>
 </a><a class="card" href="/s/Vladimir-Human--ru-marketplace-mcp.html">
   <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
   <p>Девять российских маркетплейсов и китайский Taobao как MCP-серверы: Wildberries, Ozon, Яндекс Маркет, Детский мир, Авито, Мегамаркет, Lamoda, DNS, Ситилинк. Плюс сравнение цен по всем сразу. Только чт</p>
   <span class="meta"><span>⭐ 47</span><span>Python</span></span>
-</a><a class="card" href="/s/Riccardo8888--agent-link.html">
-  <span class="name"><span class="owner">Riccardo8888/</span>agent-link</span>
-  <p>An end-to-end encrypted channel between coding agents, anywhere</p>
-  <span class="meta"><span>⭐ 45</span><span>Python</span></span>
 </a><a class="card" href="/s/aka-kika--hig-mcp.html">
   <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
   <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
