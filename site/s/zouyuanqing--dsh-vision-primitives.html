@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zouyuanqing/dsh-vision-primitives — MCP Server | MCP Radar</title>
+<meta name="description" content="Native interactive visual-reasoning plugin for DeepSeek Harness: precise pixel grounding (SOM grid / zoom / annotate / measure / diff / color / OCR) + — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/zouyuanqing--dsh-vision-primitives.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="zouyuanqing/dsh-vision-primitives — MCP Server | MCP Radar">
+<meta property="og:description" content="Native interactive visual-reasoning plugin for DeepSeek Harness: precise pixel grounding (SOM grid / zoom / annotate / measure / diff / color / OCR) + — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "zouyuanqing/dsh-vision-primitives", "description": "Native interactive visual-reasoning plugin for DeepSeek Harness: precise pixel grounding (SOM grid / zoom / annotate / measure / diff / color / OCR) + MiMo V2.5 multimodal backend, zero external MCP s", "codeRepository": "https://github.com/zouyuanqing/dsh-vision-primitives", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/zouyuanqing--dsh-vision-primitives.html", "dateCreated": "2026-08-14"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">zouyuanqing/</span>dsh-vision-primitives</h1>
+<p class="sub">Native interactive visual-reasoning plugin for DeepSeek Harness: precise pixel grounding (SOM grid / zoom / annotate / measure / diff / color / OCR) + MiMo V2.5 multimodal backend, zero external MCP s</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-14</b></div>
+  <div class="chip">on radar since <b>2026-08-15</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/computer-vision.html">computer-vision</a><a class="topic" href="/topic/cordis.html">cordis</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/ocr.html">ocr</a><a class="topic" href="/topic/vision.html">vision</a></div>
+<a class="btn" href="https://github.com/zouyuanqing/dsh-vision-primitives" rel="noopener">View on GitHub ↗</a>
+<h2>About dsh-vision-primitives</h2><p class="sub">Native interactive visual-reasoning plugin for DeepSeek Harness (DSH).</p><p class="sub">给纯文本智能体装上&quot;精确的眼睛&quot;:以 Set-of-Mark 编号网格 + 确定性像素坐标数学 为核心,让 Harness 智能体对屏幕/图片做精确到像素的视觉交互推理 —— 全程零外部 MCP 服务器,视觉推理内核 100% 在 DSH Host 运行时内以纯 JS 执行。</p><p class="sub">Design inspired by vision-primitives-mcp, re-implemented as a native DSH plugin (dynamic Cordis plugin, Host-only package).</p><p class="sub">------ 🧠 智能体即视觉模型 插件产出图片路径 + 确定性坐标数学;Harness 多模态智能体(或内置 MiMo 后端)看图决策,插件把&quot;模糊感知&quot;换算成&quot;精确像素&quot; 🎯 SOM 编号网格 visiongrid 叠加编号网格 → visionresolve(cell) 得格子中心精确坐标,消除视觉模型坐标误差 🔍 局部无损放大 visionzoom 最近邻放大(像素级保真),保留到原帧的坐标映射链 📐 几何验证 visionannotate / visionmeasure / visiondiff / visionfindcolor / visionocr 确定性验证 🖥️ MiMo V2.5 后端 visiondescribe / visionlocate(多模态理解 + 视觉定位),并注册 mimo 模型路由(LlmAdapter,流式/函数调用/图像输入全支持) 🧱 最小 OS 边界 仅截屏 / OCR / 二进制落盘 3 类走 Host 原生 subprocess 服务调用 Windows PowerShell 系统脚本;不含桌面键鼠控制 🔒 零硬编码密钥 MiMo API key 从 DSH credentials 惰性读取,不写入源码</p><p class="sub">纯 JS 包,无 build 脚本,无需 pnpm allowBuilds 许可:</p><p class="sub">也支持 github:zouyuanqing/dsh-vision-primitives 固定版本安装。 该包同时是一个 npm 包(dsh-vision-primitives),dsh plugin add dsh-vision-primitives 也可。</p><p class="sub">visiondescribe / visionlocate 与 mimo 模型路由需要 MiMo API key:</p><p class="sub">模型:mimo-v2.5(Xiaomi 官方 API,OpenAI 兼容,1M 上下文,全模态理解)。未配置 key 时,相关工具会给出明确报错提示;纯本地视觉原语(网格/缩放/标注/测量/差分/颜色/OCR)不需要任何 key。</p><p class="sub">工具 功能 ------ visioncapture 截屏(全屏/区域,多显示器合并)或读取工作区 PNG → 会话帧 visiongrid Set-of-Mark 编号网格叠加,返回带编号图片 + 每格精确 box/center visionresolve 格子/框/点 → 帧内精确像素坐标 + 绝对屏幕坐标,记为定位锚点 visionzoom 局部无损放大(最近邻,像素级保真),保留到原帧的坐标映射链 visionannotate box/point/cross/line/text 标注绘制(视觉验证) visionmeasure 两点距离/位移/夹角,或框面积 visiondiff 帧差分(确定性变化检测):变化像素 bbox/比例 + 高亮图 visionfindcolor 颜色分割 + 连通域(CV 像素级定位,零视觉模型) vi</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/zouyuanqing--dsh-vision-primitives.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/hyqhyq3--dsh-mcp-manager.html">
+  <span class="name"><span class="owner">hyqhyq3/</span>dsh-mcp-manager</span>
+  <p>MCP server manager plugin for DeepSeek Harness: Settings → MCP page, OAuth (PKCE + dynamic client registration) or static-token auth, tools registered as mcp__&lt;name&gt;__*</p>
+  <span class="meta"><span>⭐ 6</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Relistencode--dsh-extension-hub.html">
+  <span class="name"><span class="owner">Relistencode/</span>dsh-extension-hub</span>
+  <p>Manage DSH skills and MCP servers: CLI + settings-page UI with zh/en i18n, Claude/Codex import, and update checks.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 34</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/labmimors--dsh-mcp-lens.html">
+  <span class="name"><span class="owner">labmimors/</span>dsh-mcp-lens</span>
+  <p>Shrink MCP schema overhead in DeepSeek Harness: 1,000 remote tools behind 2 exact-schema interfaces, plus a local calculator and CI budget Action.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/chushixixin--dsh-harness-mcp-server.html">
+  <span class="name"><span class="owner">chushixixin/</span>dsh-harness-mcp-server</span>
+  <p>Expose DeepSeek Harness agent capabilities as an MCP server (brain=Hermes, arms=Harness)</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/vibeinging--dsh-work.html">
+  <span class="name"><span class="owner">vibeinging/</span>dsh-work</span>
+  <p>Local-first AI workbench for DSH Plugins, combining Agent sessions, project files, data analysis, web research, MCP, and Office artifacts in an Electron desktop app.</p>
+  <span class="meta"><span>⭐ 26</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

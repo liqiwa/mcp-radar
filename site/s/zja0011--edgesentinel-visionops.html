@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zja0011/edgesentinel-visionops — MCP Server | MCP Radar</title>
+<meta name="description" content="Jetson Nano edge AI vision Agent Harness: real-time video analytics, MCP tools, event evidence, DeepSeek online/offline, secure recovery — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/zja0011--edgesentinel-visionops.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="zja0011/edgesentinel-visionops — MCP Server | MCP Radar">
+<meta property="og:description" content="Jetson Nano edge AI vision Agent Harness: real-time video analytics, MCP tools, event evidence, DeepSeek online/offline, secure recovery — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "zja0011/edgesentinel-visionops", "description": "Jetson Nano edge AI vision Agent Harness: real-time video analytics, MCP tools, event evidence, DeepSeek online/offline, secure recovery", "codeRepository": "https://github.com/zja0011/edgesentinel-visionops", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/zja0011--edgesentinel-visionops.html", "dateCreated": "2026-08-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">zja0011/</span>edgesentinel-visionops</h1>
+<p class="sub">Jetson Nano edge AI vision Agent Harness: real-time video analytics, MCP tools, event evidence, DeepSeek online/offline, secure recovery</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 14.5</b></div>
+  <div class="chip">created <b>2026-08-10</b></div>
+  <div class="chip">on radar since <b>2026-08-15</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-harness.html">agent-harness</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/computer-vision.html">computer-vision</a><a class="topic" href="/topic/deepseek.html">deepseek</a><span class="topic">disaster-recovery</span><a class="topic" href="/topic/docker.html">docker</a><span class="topic">edge-ai</span><span class="topic">event-driven</span><a class="topic" href="/topic/fastapi.html">fastapi</a><a class="topic" href="/topic/iot.html">iot</a><span class="topic">jetson-nano</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">object-detection</span><span class="topic">object-tracking</span><span class="topic">people-counting</span><a class="topic" href="/topic/python.html">python</a><span class="topic">systemd</span><span class="topic">video-analytics</span><span class="topic">zone-monitoring</span></div>
+<a class="btn" href="https://github.com/zja0011/edgesentinel-visionops" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://zja0011.github.io/edgesentinel-visionops/video-gallery.html" rel="noopener nofollow">Homepage ↗</a>
+<h2>About edgesentinel-visionops</h2><p class="sub">🌐 中英双语项目主页 · ▶ 在线播放 8 段原始演示 · ⚡ 5 分钟快速验证 · 📦 Release 与 SBOM · 📚 文档导航</p><p class="sub">EdgeSentinel VisionOps 不是“摄像头接一个大模型”的一次性脚本。它把实时视觉、结构化事件、证据链、Agent 工具调用、MCP、权限策略、模型降级、可观测性与灾难恢复组织成一套可验证的边缘智能体工程。</p><p class="sub">项目在真实 Jetson Nano、USB 摄像头、Docker 与 systemd 环境中持续验收；在线模式连接 DeepSeek，网络或模型不可用时可明确降级到确定性离线规则，同时继续读取本地实时视觉结果。</p><p class="sub">[!NOTE] 本页媒体均采集自真实 Jetson Nano 实验环境。为完整呈现实验过程，演示素材保留原始画面、分辨率与音轨；生产部署应另行执行人物授权、标识脱敏和最小披露审查。</p><p class="sub">看得见 会行动 可治理 能恢复 --- --- --- --- Jetson 实时检测、跟踪、区域与库存 Agent 按需选择 Tool / Skill / MCP L0–L3、RBAC、确认门与脱敏 Trace systemd、熔断降级、加密备份与恢复演练</p><p class="sub">自研代码 核心应用 自动化测试 Agent / MCP 实机证明 ---: ---: ---: ---: ---: 约 86,800 行 / 365 文件 40,911 行 663 项通过 33 Tools · 25 MCP Tools · 6 Hooks 8 段原始视频</p><p class="sub">统计仅包含 Git 跟踪的自研源文件，排除 vendor、媒体、运行数据和发布产物；测试、运维代码与 13,347 行文档分别列示。详见工程规模与统计边界。</p><p class="sub">EdgeSentinel VisionOps is a self-hosted Jetson Nano edge AI video analytics and Agent Harness platform. It combines real-time object detection and tracking, people counting, zone events, inventory monitoring, tamper-evident event evidence, MCP tools, DeepSeek online/offline switching, policy-gated tool calling, observability, encrypted backup and disaster recovery in one verifiable computer-vision system.</p><p class="sub">- 为什么是 EdgeSentinel - English overview - 第一版工程规模 - 核心能力 - 硬件与器材 - 系统架构 - 安全与治理 - 实机证据与演示素材 - 快速验证 - 部署到 Jetson Nano - 可以怎样提问 - 项目结构 - 质量与可验证发布 - 文档导航 - 路线图 - 参与贡献</p><p class="sub">多数边缘视觉示例止步于“模型识别到了什么”。EdgeSentinel 继续回答四个工程问题：</p><p class="sub">1. 识别结果怎样成为可查询、可追溯的事件？ 2. Agent 调用设备工具时，怎样限制权限与副作用？ 3. 网络、模型、摄像头或服务异常时，系统怎样降级与恢复？ 4. 怎样证明一次回答、一次动作和一份发布包确实可信？</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/zja0011--edgesentinel-visionops.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/fxd0h--Axelera-Voyager-Local-Assistant.html">
+  <span class="name"><span class="owner">fxd0h/</span>Axelera-Voyager-Local-Assistant</span>
+  <p>Local AI assistant for the Axelera Voyager SDK and Metis AIPU — semantic RAG over the public Axelera sources + workflow skills, via MCP. No account, no cloud.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/MuhittinYilmazer--akana.html">
+  <span class="name"><span class="owner">MuhittinYilmazer/</span>akana</span>
+  <p>Self-hosted, local-first AI assistant server: swappable LLM providers, review-gated memory, an encrypted vault, and wake-word voice. No accounts, no telemetry.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/AdamRussak--self-doc.html">
+  <span class="name"><span class="owner">AdamRussak/</span>self-doc</span>
+  <p>Self-hosted documentation RAG pipeline that serves semantic search to LLM agents over the Model Context Protocol.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/SujalXplores--Agent-K.html">
+  <span class="name"><span class="owner">SujalXplores/</span>Agent-K</span>
+  <p>Code-enforced incident-response agent that investigates SigNoz alerts, publishes evidence-backed root-cause claims, and gates every action behind a safety policy. Built for Agents of SigNoz hackathon.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/zhiningsun--industrial-mcp.html">
+  <span class="name"><span class="owner">zhiningsun/</span>industrial-mcp</span>
+  <p>将工业设备变成 AI 可控工具的 MCP 服务器。支持 Modbus、OPC UA、MQTT 三种协议，内置设备仿真引擎、物理模型和完整的调试工具链。让 Claude 用自然语言监控传感器、启停电机、执行工厂巡检。</p>
+  <span class="meta"><span>⭐ 25</span><span>Python</span></span>
+</a><a class="card" href="/s/vericle--heyclaw.html">
+  <span class="name"><span class="owner">vericle/</span>heyclaw</span>
+  <p>🦞 Headless real-time Python voice assistant powered by ElevenLabs, Gemini, Mem0, MCP tools, and local wake-word detection.</p>
+  <span class="meta"><span>⭐ 16</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

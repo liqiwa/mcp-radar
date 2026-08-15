@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YaleDevUni/yt-sub-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP server for reading YouTube subtitles via the transcript panel endpoint — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/YaleDevUni--yt-sub-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="YaleDevUni/yt-sub-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP server for reading YouTube subtitles via the transcript panel endpoint — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "YaleDevUni/yt-sub-mcp", "description": "MCP server for reading YouTube subtitles via the transcript panel endpoint", "codeRepository": "https://github.com/YaleDevUni/yt-sub-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/YaleDevUni--yt-sub-mcp.html", "dateCreated": "2026-08-13"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">YaleDevUni/</span>yt-sub-mcp</h1>
+<p class="sub">MCP server for reading YouTube subtitles via the transcript panel endpoint</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 42.0</b></div>
+  <div class="chip">created <b>2026-08-13</b></div>
+  <div class="chip">on radar since <b>2026-08-15</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/YaleDevUni/yt-sub-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About yt-sub-mcp</h2><p class="sub">YouTube 웹 UI의 &quot;스크립트 표시&quot; 패널이 쓰는 내부 엔드포인트(youtubei/v1/getpanel)를 사용합니다. 흔히 쓰이는 /api/timedtext 경로와 달리 레이트리밋에 걸리지 않고, 4시간짜리 영상도 요청 한 번에 전체 자막이 옵니다. 왜 이 경로를 쓰게 됐는지는 문제 해결 과정에 적어뒀습니다.</p><p class="sub">- 인증 불필요 — 쿠키도, API 키 발급도, 로그인도 없음 - 외부 바이너리 없음 — yt-dlp도 ffmpeg도 안 씁니다 - 영상당 요청 2회, 응답은 SQLite에 영속 캐싱</p><p class="sub">Claude Desktop이라면 claudedesktopconfig.json에:</p><p class="sub">사용 가능한 자막 언어 목록. 수동 제작인지 자동 생성인지 구분해서 보여줍니다.</p><p class="sub">getsubtitles(video, lang, timestamps, starttime, endtime, maxchars, refresh)</p><p class="sub">인자 기본값 설명 --------- video — URL 또는 11자 ID lang &quot;en&quot; 우선순위 순 콤마 구분 (&quot;ko,en&quot;) timestamps false 블록마다 시작 시각 표시 starttime / endtime — 초 단위 구간 maxchars 20000 문자 예산 refresh false 캐시 우회</p><p class="sub">searchsubtitles(video, query, lang, context, maxhits)</p><p class="sub">특정 표현이 나오는 지점을 타임스탬프·딥링크와 함께 반환합니다. 전체를 읽는 것보다 훨씬 쌉니다.</p><p class="sub">video는 watch?v=, youtu.be, shorts, embed, live, 그리고 맨 ID를 모두 받습니다.</p><p class="sub">- 출력은 maxchars에서 잘리고 이어볼 타임스탬프를 함께 반환합니다. 그 값을 starttime으로 넣으면 이어집니다. - 평문은 ~90단어 문단, 타임스탬프 모드는 ~30초 구간으로 병합해 렌더링합니다. 큐마다 타임스탬프를 붙이면 토큰이 3배가 됩니다. - timestamps는 기본 꺼짐. 인용이나 링크가 필요할 때만 켜세요. - 권장 흐름: searchsubtitles로 위치를 찾고 → 그 구간만 getsubtitles로 읽기.</p><p class="sub">메모리 LRU(32) 앞단 + SQLite 영속 계층(500) 2단 구조입니다.</p><p class="sub">실측: 19분 영상 첫 요청 1,301ms → 이후 프로세스에서 0.7ms.</p><p class="sub">자막은 [text, start, duration] 삼중항 JSON을 zlib 압축해 저장합니다(427큐 25KB → 11KB, 43%).</p><p class="sub">환경변수 기본값 용도 --------- YTSUBMCPCACHE 1 0이면 디스크 계층 끔 YTSUBMCPCACHEDIR 아래 캐시 위치 YTSUBMCPCACHETTLDAYS 30 만료. 0이면 무기한</p><p class="sub">기본 경로는 macOS ~/Library/Caches/yt-sub-mcp/, 그 외 $XDGCACHEHOME/yt-sub-mcp/.</p><p class="sub">캐시는 기능을 죽이지 않습니다. 디스크가 차거나 DB를 열 수 없으면 로그만 남기고 메모리 전용으로 degrade합니다.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/YaleDevUni--yt-sub-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/fellowgeek--mcp-memory.html">
+  <span class="name"><span class="owner">fellowgeek/</span>mcp-memory</span>
+  <p>An OKF-backed Model Context Protocol (MCP) server delivering persistent long-term memory and SQLite FTS5 search for AI agents.</p>
+  <span class="meta"><span>⭐ 146</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a><a class="card" href="/s/alxgntv--substack-api-mcp.html">
+  <span class="name"><span class="owner">alxgntv/</span>substack-api-mcp</span>
+  <p>MCP server for Substack posts (FastMCP + substack-api-client)</p>
+  <span class="meta"><span>⭐ 80</span><span>Python</span></span>
+</a><a class="card" href="/s/hike-lab--public-data-lens.html">
+  <span class="name"><span class="owner">hike-lab/</span>public-data-lens</span>
+  <p>MCP-based discovery and judgment layer for Korea’s open data portal—helping AI agents find, compare, and assess datasets with explicit evidence, JSON-LD/DCAT metadata, and versioned deterministic rule</p>
+  <span class="meta"><span>⭐ 75</span><span>Python</span></span>
+</a><a class="card" href="/s/sm18lr88--STT-MCP.html">
+  <span class="name"><span class="owner">sm18lr88/</span>STT-MCP</span>
+  <p>Fast, local speech-to-text MCP server</p>
+  <span class="meta"><span>⭐ 56</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

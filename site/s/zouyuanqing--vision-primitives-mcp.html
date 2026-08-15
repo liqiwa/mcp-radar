@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-04</b></div>
   <div class="chip">star trend <b>3 → 6</b> since 2026-08-04</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/computer-use.html">computer-use</a><a class="topic" href="/topic/deepseek.html">deepseek</a><span class="topic">gui-agent</span><span class="topic">image-understanding</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/multimodal.html">multimodal</a><a class="topic" href="/topic/ocr.html">ocr</a><a class="topic" href="/topic/python.html">python</a><span class="topic">qwen</span><span class="topic">screenshot</span><span class="topic">ui-automation</span><span class="topic">vision</span><span class="topic">vision-language-model</span><span class="topic">yolo</span></div>
+<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/computer-use.html">computer-use</a><a class="topic" href="/topic/deepseek.html">deepseek</a><span class="topic">gui-agent</span><span class="topic">image-understanding</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/multimodal.html">multimodal</a><a class="topic" href="/topic/ocr.html">ocr</a><a class="topic" href="/topic/python.html">python</a><span class="topic">qwen</span><span class="topic">screenshot</span><span class="topic">ui-automation</span><a class="topic" href="/topic/vision.html">vision</a><span class="topic">vision-language-model</span><span class="topic">yolo</span></div>
 <a class="btn" href="https://github.com/zouyuanqing/vision-primitives-mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About vision-primitives-mcp</h2><p class="sub">Vision Primitives MCP — 给纯文本 LLM 装上眼睛的视觉原语 MCP 服务器</p><p class="sub">让纯文本模型（DeepSeek / Codex / 任意 MCP 客户端）通过 28 个 MCP 工具获得完整视觉能力：描述 → 定位（坐标）→ OCR → 标注 → 裁切/放大 → 异常扫描 → 电脑操控。</p><p class="sub">项目定位：通用视觉推理桥接层——文本模型 + 任意 VLM 的通用视觉工作流，本地隐私 + 单文件轻量。不与 UI-TARS / CogAgent 等端到端 GUI 模型竞争（它们有专门训练）；核心能力是无 grounding 模型的兜底定位：somlocate（编号递归）+ cvlocate（颜色/模板）让 MiMo 这类无 grounding 训练的模型达到像素级定位（实测 0-4px，接近甚至超过 grounding 模型）。视觉后端可切换（小米 MiMo V2.5 云端 / LM Studio 本地 Qwen3-VL 等），单文件 Python，核心仅依赖 Pillow；numpy 可选（模板匹配 285x 加速）；YOLO 检测器可选（models/icondetect.pt 放置后自动启用）。</p><p class="sub">测试图（900×600，元素位置为已知真值）：红圆中心 (150,140)、绿三角中心 (740,417)：</p><p class="sub">整图定位对比（MiMo V2.5 vs 本地 Qwen3-VL-8B，各模式偏差）</p><p class="sub">模型 locate 红圆 locate 绿三角 som 红圆 som 绿三角 单次调用 uiparse 全流程 uirefine 全流程 ------------------------ MiMo V2.5（云端） 10-64px（波动） 79-97px（波动） 33-82px（波动） 13-123px（波动） 15-25s 21.5s — MiMo + som-cv（兜底管线） 0px 4px — — 10-12s — — Qwen3-VL-8B（本地） 90px 164px 77px 123px 10-30s 29.4s 357s（超时） Qwen2.5-VL-7B（本地） 28px 27px 15px 123px 1.3-1.7s 12.4s 12.6s</p><p class="sub">要点：Qwen2.5-VL-7B 的 grounding 专才（RefCOCO 93.7%）+ 非思考型架构，定位精度 3-6 倍、速度 10-20 倍于 Qwen3-VL-8B；绿三角 som 两种模型都锁死（123px，首轮选偏），用 final=&quot;cv&quot; 或裁切定位可解。</p><p class="sub">模型 describe OCR（prompt 修复后） som-cv（颜色目标） uilocate 文本锚定 scratch 论文推理 ------------------ MiMo V2.5（云端） 4.7s ✓ 8.9s，4/4 块 0px（3.2s） 8.6s ✓ 45.7s 3轮（图趋势漏答） Qwen2.5-VL-7B（本地） 1.1s ✓ 3.5-4.6s，4/4 块 0px 12.8s ✓ 9.6s 1轮全对 Qwen3-VL-8B（本地） ~10s 23s，4/4 块 0px — —</p><p class="sub">要点：OCR 对 prompt 长度敏感（简化指令后 Qwen2.5-VL 召回 1→4 块、链路 10 倍加速）；scratch 多轮推理依赖模型的&quot;自主细看&quot;决策（Qwen2.5-VL 一轮全对，MiMo 漏答图趋势）；som-cv 的颜色分割部分为纯本地确定性，模型只需选对格子。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -112,22 +112,22 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">FFZackFair92/</span>unreal-engine-mcp</span>
   <p>Drive Unreal Engine 5 from an AI agent — MCP server over the Remote Control API and in-editor Python. No C++ plugin to compile.</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/kasumaputu6633--visbridge-mcp.html">
+  <span class="name"><span class="owner">kasumaputu6633/</span>visbridge-mcp</span>
+  <p>A token-efficient, provider-agnostic vision layer for reasoning models via MCP.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/russeell--jobfindsme.html">
   <span class="name"><span class="owner">russeell/</span>jobfindsme</span>
   <p>🔥 AI 求职雷达｜一句话同时搜 BOSS直聘 + 猎聘，找到匹配你简历的岗位。</p>
   <span class="meta"><span>⭐ 5</span><span>Python</span></span>
-</a><a class="card" href="/s/MuhittinYilmazer--akana.html">
-  <span class="name"><span class="owner">MuhittinYilmazer/</span>akana</span>
-  <p>Self-hosted, local-first AI assistant server: swappable LLM providers, review-gated memory, an encrypted vault, and wake-word voice. No accounts, no telemetry.</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/clementrx--Performance-agent.html">
-  <span class="name"><span class="owner">clementrx/</span>Performance-agent</span>
-  <p>Open-source AI Strength &amp; Conditioning coach for your terminal. Runs in Claude Code / Gemini CLI / Codex — the LLM narrates, a deterministic engine calculates, and it won&#x27;t lie about unrealistic goals</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/sai-chaithanya-navuluri--content-core.html">
-  <span class="name"><span class="owner">sai-chaithanya-navuluri/</span>content-core</span>
-  <p>production AI platform kernel: LLM abstraction, workflow engine, RAG, MCP server, FastAPI, evaluation framework, closed-loop feedback</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/zja0011--edgesentinel-visionops.html">
+  <span class="name"><span class="owner">zja0011/</span>edgesentinel-visionops</span>
+  <p>Jetson Nano edge AI vision Agent Harness: real-time video analytics, MCP tools, event evidence, DeepSeek online/offline, secure recovery</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/NitcanKen--Codex-native-long-video-memory.html">
+  <span class="name"><span class="owner">NitcanKen/</span>Codex-native-long-video-memory</span>
+  <p>Local-first Codex plugin that indexes long videos with OCR/ASR and answers with timestamped, SHA-verified visual evidence.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
 </a>
 
 
