@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HuanLinOTO/dsh-plugin-mcp-manager — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP 服务器管理面板：GUI 增删改 MCP 服务器配置（写入 cordis.patch.yml + HMR 实时挂载）+ 工具浏览 + agent 面 mcp_* 管理工具 | MCP server management panel: GUI add/edit/delete MCP server — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/HuanLinOTO--dsh-plugin-mcp-manager.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="HuanLinOTO/dsh-plugin-mcp-manager — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP 服务器管理面板：GUI 增删改 MCP 服务器配置（写入 cordis.patch.yml + HMR 实时挂载）+ 工具浏览 + agent 面 mcp_* 管理工具 | MCP server management panel: GUI add/edit/delete MCP server — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "HuanLinOTO/dsh-plugin-mcp-manager", "description": "MCP 服务器管理面板：GUI 增删改 MCP 服务器配置（写入 cordis.patch.yml + HMR 实时挂载）+ 工具浏览 + agent 面 mcp_* 管理工具 | MCP server management panel: GUI add/edit/delete MCP server configs (writes cordis.patch.yml + HMR hot-mount)", "codeRepository": "https://github.com/HuanLinOTO/dsh-plugin-mcp-manager", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/HuanLinOTO--dsh-plugin-mcp-manager.html", "dateCreated": "2026-08-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">HuanLinOTO/</span>dsh-plugin-mcp-manager</h1>
+<p class="sub">MCP 服务器管理面板：GUI 增删改 MCP 服务器配置（写入 cordis.patch.yml + HMR 实时挂载）+ 工具浏览 + agent 面 mcp_* 管理工具 | MCP server management panel: GUI add/edit/delete MCP server configs (writes cordis.patch.yml + HMR hot-mount)</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-16</b></div>
+  <div class="chip">on radar since <b>2026-08-17</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a></div>
+<a class="btn" href="https://github.com/HuanLinOTO/dsh-plugin-mcp-manager" rel="noopener">View on GitHub ↗</a>
+<h2>About dsh-plugin-mcp-manager</h2><p class="sub">DSH MCP 服务器管理插件 — GUI 增删改 MCP 服务器配置 + 工具浏览 + agent 面 mcp 管理工具。</p><p class="sub">服务器连接管理 + 工具浏览。连接生命周期完全委托官方 @deepseek-ai/dsh-mcp-client—— 本插件是注册表的「写配置层」+「状态/工具浏览层」，不自己拉连接。</p><p class="sub">每台 MCP 服务器 = profile cordis.patch.yml 中一条 name: &#x27;@deepseek-ai/dsh-mcp-client&#x27; 的 insert 行。配置 HMR 实时挂载/卸载/热替换，无需重启 web。</p><p class="sub">@deepseek-ai/ peer deps 从公共 npm registry 解析（已发布）。yaml（eemeli）是唯一运行时依赖。</p><p class="sub">文件 职责 ------------ src/registry.ts 服务器注册表：eemeli yaml Document API 读写 insert 行 + loadOverlayPatches 校验 + serverName 唯一 src/tools.ts agent 面 mcp ×4 工具（defineTool，规范 JSON 输出） src/index.ts Node half：/api/mcp-manager 路由 + ctx.tools.schemas() 过滤 + mcp 工具注册 src/client/index.ts client half：settings.section 注册「MCP」面板 src/client/Panel.tsx 面板 UI：服务器列表 + 增删改表单 + 工具浏览</p><p class="sub">存储 = profile cordis.patch.yml 的 mcp-client insert 行（单一事实来源）：</p><p class="sub">- 支持 stdio（command/args/env/cwd）与 streamable-http（url/headers）。 - 编辑 = 整块替换 config（不深合并，与 loader patch 语义一致）。 - 写前用 eemeli yaml 解析 + 可选 loadOverlayPatches（app-boot）校验；写后失败自动回滚。 - 保留其他行的 !!js 表达式与注释（eemeli Document API 往返保留）。</p><p class="sub">安装后重启 dsh web（bundle 层在 boot 时加载），浏览器硬刷新（Ctrl+Shift+R）。</p><p class="sub">- GUI：设置页 → 「MCP」面板。新增/编辑/删除服务器；点击「工具」展开该服务器的 mcp 工具列表。 - Agent：模型可调用 mcpserverlist / mcpserveradd / mcpserverupdate / mcpserverremove。</p><p class="sub">路由 方法 说明 ------------------ /api/mcp-manager/servers GET 列出服务器 + 工具数 + 状态 /api/mcp-manager/servers POST 新增（body: {config}）→ HMR 挂载 /api/mcp-manager/servers/ PUT 编辑（整块替换 config） /api/mcp-manager/servers/ DELETE 删除 /api/mcp-manager/tools GET 工具浏览（mcp 前缀按 serverName 分组） /api/mcp-manager/status GET 运行态状态</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/HuanLinOTO--dsh-plugin-mcp-manager.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 97</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/huey1in--reef.html">
+  <span class="name"><span class="owner">huey1in/</span>reef</span>
+  <p>DSH 插件全家桶:浏览器自动化 + MCP Server + GitHub/GitLab 自动评审 + 原生嵌入面板 | One install, five modules for DeepSeek Harness: browser automation, MCP server, GitHub &amp; GitLab automation, native in-app panel</p>
+  <span class="meta"><span>⭐ 9</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/chushixixin--dsh-harness-mcp-server.html">
+  <span class="name"><span class="owner">chushixixin/</span>dsh-harness-mcp-server</span>
+  <p>Expose DeepSeek Harness agent capabilities as an MCP server (brain=Hermes, arms=Harness)</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/PerryLink--dsh-mcp-panel.html">
+  <span class="name"><span class="owner">PerryLink/</span>dsh-mcp-panel</span>
+  <p>MCP management console for the official DeepSeek Harness MCP client: /mcp command with health diagnostics and pipeline trial calls, a Settings MCP tab with server CRUD (approval-gated writes, automati</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/kairoz9--dsh-mcp-admin.html">
+  <span class="name"><span class="owner">kairoz9/</span>dsh-mcp-admin</span>
+  <p>dsh plugin for MCP status inspection and server management | dsh 的 MCP状态查看与服务管理插件</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/labmimors--dsh-mcp-lens.html">
+  <span class="name"><span class="owner">labmimors/</span>dsh-mcp-lens</span>
+  <p>Shrink MCP schema overhead in DeepSeek Harness: 1,000 remote tools behind 2 exact-schema interfaces, plus a local calculator and CI budget Action.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

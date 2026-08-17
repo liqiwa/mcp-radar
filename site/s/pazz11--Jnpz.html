@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pazz11/Jnpz — MCP Server | MCP Radar</title>
+<meta name="description" content="Jnpz（技能配置）: DeepSeek Harness (DSH) web plugin for MCP server management &amp; skill management — JSON-to-MCP hot reload (no restart), zip/.skill upload wi — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/pazz11--Jnpz.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="pazz11/Jnpz — MCP Server | MCP Radar">
+<meta property="og:description" content="Jnpz（技能配置）: DeepSeek Harness (DSH) web plugin for MCP server management &amp; skill management — JSON-to-MCP hot reload (no restart), zip/.skill upload wi — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pazz11/Jnpz", "description": "Jnpz（技能配置）: DeepSeek Harness (DSH) web plugin for MCP server management & skill management — JSON-to-MCP hot reload (no restart), zip/.skill upload with SKILL.md auto parsing, bilingual UI.", "codeRepository": "https://github.com/pazz11/Jnpz", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/pazz11--Jnpz.html", "dateCreated": "2026-08-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">pazz11/</span>Jnpz</h1>
+<p class="sub">Jnpz（技能配置）: DeepSeek Harness (DSH) web plugin for MCP server management &amp; skill management — JSON-to-MCP hot reload (no restart), zip/.skill upload with SKILL.md auto parsing, bilingual UI.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-16</b></div>
+  <div class="chip">on radar since <b>2026-08-17</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-tools.html">ai-tools</a><a class="topic" href="/topic/deepseek.html">deepseek</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><span class="topic">hot-reload</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">plugin</span><span class="topic">skill-management</span><a class="topic" href="/topic/skills.html">skills</a></div>
+<a class="btn" href="https://github.com/pazz11/Jnpz" rel="noopener">View on GitHub ↗</a>
+<h2>About Jnpz</h2><p class="sub">🛠 Jnpz · 技能配置（Skills &amp; MCP）—— DeepSeek Harness 插件</p><p class="sub">一个 DeepSeek Harness (DSH) 的 Web 插件： 在设置页新增「技能配置」分类 —— MCP 服务器管理（JSON 粘贴、后台自动转换、热加载）+ 技能（Skill）管理（zip/.skill 上传智能解析、创建、编辑、启停）。</p><p class="sub">🏷️ DSH plugin · DeepSeek Harness 插件 · MCP 管理器 · MCP server manager · Skill manager · 技能管理 · AI Agent 工具 · Model Context Protocol · no-restart hot reload · 热加载</p><p class="sub">Jnpz（技能配置） 是 DeepSeek Harness Web 界面的一个纯插件（不修改 DSH 源码）。它把 MCP（Model Context Protocol）服务器和技能（Skill）的日常管理搬进了设置页：</p><p class="sub">- 在 设置 → 左侧导航「Agent 预设」下方新增 「技能配置」 分类； - MCP 管理：粘贴 JSON 即可添加 MCP 服务器（支持 mcpServers 标准格式、单个对象、stdio/local/streamable-http/sse、command 数组写法、timeout），后台自动转换并立即连接——无需重启 DSH，即加即用； - 技能管理：上传 zip / .skill / .md 自动识别 SKILL.md 的 YAML 元数据并回填表单，或手动创建；支持改名、编辑指令、启停、删除，写入 ~/.dsh/skills 后 DSH 自动发现、即时生效。</p><p class="sub">适合所有用 DSH + MCP 工具（IDA Pro、JADX、Yakit、x64dbg、Kali、AnythingLLM……）和自定义技能做 AI Agent 工作流的开发者。</p><p class="sub">上方「生效说明」卡片可折叠；MCP 列表每行有彩色图标、连接状态（✓ 已连接 / Ø 已禁用）、编辑 ✏️、启停开关、删除 🗑。</p><p class="sub">支持标准 { &quot;mcpServers&quot;: {...} } 格式与单个服务器对象；示例覆盖 yakit（stdio）、x64dbg（local + command 数组 + timeout）、kali-mcp（HTTP url）。</p><p class="sub">拖拽/点击上传 zip 或 .skill（根目录含 SKILL.md），自动识别 YAML 中的技能名称与描述并回填「技能名称 / 描述 / 指令」三个必填项。</p><p class="sub">模块 能力 --- --- MCP 管理 ✅ 粘贴 JSON 一键添加（批量 mcpServers 或单个对象）✅ 后台自动转换：stdio / local / streamable-http / sse，command 支持字符串或数组，timeout 自动映射✅ 热加载：添加/删除/启停即时生效，无需重启✅ 实时连接状态（✓/Ø/⏳），断开自动重试✅ 行内编辑 ✏️（JSON 预填）、删除 🗑（自定义确认弹窗）✅ 读取 cordis.patch.yml 中的 MCP 并支持运行时启停 技能管理 ✅ 上传 zip / .skill / .md 自动解析 SKILL.md（YAML frontmatter）✅ 手动创建：技能名称 / 描述 / 指令（Markdown）✅ 编辑：改名（自动规范化）、改描述、改指令✅ 启停开关（disable-model-invocation / user-invocable）✅ 删除（自定义确认弹窗）✅ 写入 ~/.dsh/skills//SKILL.md，DSH 自动发现 体验 ✅ 深色/浅色主题自适应✅ 中英双语界面✅ 「生效说明」可折叠提示卡✅ 全部操作走</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/pazz11--Jnpz.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/sandbaseai--deepseek-harness-handbook.html">
+  <span class="name"><span class="owner">sandbaseai/</span>deepseek-harness-handbook</span>
+  <p>Agent-first, multilingual handbook for DeepSeek Harness: quickstarts, architecture, safety, troubleshooting, and production recipes.</p>
+  <span class="meta"><span>⭐ 12</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/jarvis-intelligence--jarvis-index.html">
+  <span class="name"><span class="owner">jarvis-intelligence/</span>jarvis-index</span>
+  <p>Public distribution surface for jarvis — local-first code intelligence MCP server (SCIP navigation + Zoekt search). Installer, Claude Code / Codex / Cursor plugins, and prebuilt binaries.</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/labmimors--dsh-mcp-lens.html">
+  <span class="name"><span class="owner">labmimors/</span>dsh-mcp-lens</span>
+  <p>Shrink MCP schema overhead in DeepSeek Harness: 1,000 remote tools behind 2 exact-schema interfaces, plus a local calculator and CI budget Action.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/jiezeng2004-design--dsh-chatgpt-bridge.html">
+  <span class="name"><span class="owner">jiezeng2004-design/</span>dsh-chatgpt-bridge</span>
+  <p>MCP bridge that lets ChatGPT create, view, continue, and control DeepSeek Harness (DSH) agent sessions.</p>
+  <span class="meta"><span>⭐ 9</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 97</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/kairoz9--dsh-mcp-admin.html">
+  <span class="name"><span class="owner">kairoz9/</span>dsh-mcp-admin</span>
+  <p>dsh plugin for MCP status inspection and server management | dsh 的 MCP状态查看与服务管理插件</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

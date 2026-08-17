@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jiuge2467/dsh-studio — MCP Server | MCP Radar</title>
+<meta name="description" content="现代化 DeepSeek Harness (DSH) 全栈增强工作台 · 多源 MCP 可视化调试中枢 · 视觉思考引擎 · 灵动极客伴侣 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/jiuge2467--dsh-studio.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="jiuge2467/dsh-studio — MCP Server | MCP Radar">
+<meta property="og:description" content="现代化 DeepSeek Harness (DSH) 全栈增强工作台 · 多源 MCP 可视化调试中枢 · 视觉思考引擎 · 灵动极客伴侣 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "jiuge2467/dsh-studio", "description": "现代化 DeepSeek Harness (DSH) 全栈增强工作台 · 多源 MCP 可视化调试中枢 · 视觉思考引擎 · 灵动极客伴侣", "codeRepository": "https://github.com/jiuge2467/dsh-studio", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/jiuge2467--dsh-studio.html", "dateCreated": "2026-08-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">jiuge2467/</span>dsh-studio</h1>
+<p class="sub">现代化 DeepSeek Harness (DSH) 全栈增强工作台 · 多源 MCP 可视化调试中枢 · 视觉思考引擎 · 灵动极客伴侣</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-16</b></div>
+  <div class="chip">on radar since <b>2026-08-17</b></div>
+  
+</div>
+<div class="topics"><span class="topic">agent-workbench</span><a class="topic" href="/topic/deepseek.html">deepseek</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><span class="topic">dsh-better-sidebar</span><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><span class="topic">dsh-plugin-market</span><span class="topic">mcp-manager</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a></div>
+<a class="btn" href="https://github.com/jiuge2467/dsh-studio" rel="noopener">View on GitHub ↗</a>
+<h2>About dsh-studio</h2><p class="sub">🔥 现代化 DeepSeek Harness 全栈增强工作台 · 远程 SSH 极客侧边栏 · 多源 MCP 可视化调试中枢 · 视觉思考引擎 · 灵动伴侣</p><p class="sub">简体中文 • English • 与原生对比 • 实机展示 • 功能矩阵 • 快速开始</p><p class="sub">▲ DSH Studio 真实全栈工作台主界面：集成多模型对话、增强极客侧边栏、小鲸鱼姬桌宠与实时 Token 探针</p><p class="sub">🆚 与原生 DeepSeek Harness (DSH) 对比：我们增加了什么？</p><p class="sub">官方原生 DeepSeek Harness (DSH) 是一个底层的 Agent 运行时内核，侧重于核心 Loop 与基础 CLI。而 DSH Studio 是在上游基础上的全栈工业级增强工作台与微前端生态：</p><p class="sub">功能模块 原生 DeepSeek Harness (DSH) 🌟 DSH Studio (本项目真实特性) :--- :--- :--- 🌐 远程 SSH &amp; PTY 终端 ❌ 仅支持基础本地子进程，无持久化终端，无法直连远程服务器 ✅ 集成完整远程 SSH 主机直连 &amp; ConPTY / PTY 终端，支持多终端 Tab 与 8 套 Agent 终端工具直连操控 🧰 IDE 级开发工作流 ❌ 仅限纯 Chat 会话面板，无法浏览代码与 Git 变更 ✅ 工业级全功能侧边栏：Explorer 代码高亮预览与搜索、Git 分支切换、可视化提交历史与 Diff 差异对比 🔌 MCP 管理与发现 ❌ 仅支持后台手动编辑单个 JSON，极易格式出错 ✅ 全域多源自动扫描 (.vscode, Cursor, Claude, Antigravity 聚合) + 10+ 官方热门预设横向卡片流 🧪 MCP 在线沙箱调试 ❌ 无，必须提问大模型消耗 Token 触发 ✅ Tool Tester 独立沙箱 (Schema 动态表单、一键 Mock 填参、真实 RPC 握手与 0 Token 毫秒级测速) 🧠 视觉思考 (CoT) 穿透 ❌ 无法流式解析多模态 reasoningcontent，易白屏 ✅ 独创 CoT 视觉引擎 (流式穿透 Xiaomi MiMo 等深度思考链，支持折叠与连通性测速) 🐬 极客桌宠与碎片利用 ❌ 无伴侣系统，等待模型长生成枯燥漫长 ✅ 小鲸鱼姬 2.0 (3 套高精立绘 + 650ms 四级盲打背词 + 零食投喂 CD 体系 + 极客解压微游戏厅) 💰 计费与账本透明度 ⚠️ 仅单次会话粗略统计，刷新页面即全部丢失 ✅ 全站持久化总账本 (All-Time Ledger) + 实时底栏 Token 探针 + 月度预算动态进度条 🧩 架构与装配模式 单一整体静态装配 微前端热插拔插件群 + 侧边栏卡片自由拖拽排序与独立启停</p><p class="sub">🧰 1. 工业级极客增强侧边栏与远程 SSH 终端 (dsh-better-sidebar)</p><p class="sub">🌐 远程 SSH 会话直连与持久化 PTY 终端： - 支持多 Tab 会话管理（本地 Bash / PowerShell / WSL / 远程 SSH 主机免密直连）； - 支持断线重连与全屏极客终端沉浸模式； - 内置 8 套专用 Agent 终端控制工具： terminalcreate, terminalsend, terminalread, terminalwaitfor, terminalresize, terminalsignal, terminalclose, terminallist， 赋予 AI Agent 直接操控远程服务器与本地终端执行自动化运维任务的强大能力。 📁 资源管理器 (Explorer) 与代码高亮预览： - 工业级树状工程文件浏览、秒级文件名搜索定位； - 集成代码语法高亮即时预览（支持 Rust, Go, Python, T</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/jiuge2467--dsh-studio.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/labmimors--dsh-mcp-lens.html">
+  <span class="name"><span class="owner">labmimors/</span>dsh-mcp-lens</span>
+  <p>Shrink MCP schema overhead in DeepSeek Harness: 1,000 remote tools behind 2 exact-schema interfaces, plus a local calculator and CI budget Action.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/jiezeng2004-design--dsh-chatgpt-bridge.html">
+  <span class="name"><span class="owner">jiezeng2004-design/</span>dsh-chatgpt-bridge</span>
+  <p>MCP bridge that lets ChatGPT create, view, continue, and control DeepSeek Harness (DSH) agent sessions.</p>
+  <span class="meta"><span>⭐ 9</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/pazz11--Jnpz.html">
+  <span class="name"><span class="owner">pazz11/</span>Jnpz</span>
+  <p>Jnpz（技能配置）: DeepSeek Harness (DSH) web plugin for MCP server management &amp; skill management — JSON-to-MCP hot reload (no restart), zip/.skill upload with SKILL.md auto parsing, bilingual UI.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 97</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/chushixixin--dsh-harness-mcp-server.html">
+  <span class="name"><span class="owner">chushixixin/</span>dsh-harness-mcp-server</span>
+  <p>Expose DeepSeek Harness agent capabilities as an MCP server (brain=Hermes, arms=Harness)</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/PerryLink--dsh-mcp-panel.html">
+  <span class="name"><span class="owner">PerryLink/</span>dsh-mcp-panel</span>
+  <p>MCP management console for the official DeepSeek Harness MCP client: /mcp command with health diagnostics and pipeline trial calls, a Settings MCP tab with server CRUD (approval-gated writes, automati</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
