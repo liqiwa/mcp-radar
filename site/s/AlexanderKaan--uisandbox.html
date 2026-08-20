@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlexanderKaan/uisandbox — MCP Server | MCP Radar</title>
+<meta name="description" content="Restyle your app without rebuilding it. Your built web app, 1:1, with its own knobs. MIT. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/AlexanderKaan--uisandbox.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="AlexanderKaan/uisandbox — MCP Server | MCP Radar">
+<meta property="og:description" content="Restyle your app without rebuilding it. Your built web app, 1:1, with its own knobs. MIT. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "AlexanderKaan/uisandbox", "description": "Restyle your app without rebuilding it. Your built web app, 1:1, with its own knobs. MIT.", "codeRepository": "https://github.com/AlexanderKaan/uisandbox", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/AlexanderKaan--uisandbox.html", "dateCreated": "2026-08-18"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">AlexanderKaan/</span>uisandbox</h1>
+<p class="sub">Restyle your app without rebuilding it. Your built web app, 1:1, with its own knobs. MIT.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-08-18</b></div>
+  <div class="chip">on radar since <b>2026-08-20</b></div>
+  
+</div>
+<div class="topics"><span class="topic">css</span><span class="topic">design-review</span><a class="topic" href="/topic/design-system.html">design-system</a><a class="topic" href="/topic/design-tokens.html">design-tokens</a><span class="topic">design-tool</span><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">prototyping</span><a class="topic" href="/topic/sandbox.html">sandbox</a><span class="topic">theming</span><a class="topic" href="/topic/ui-design.html">ui-design</a><span class="topic">ui-testing</span><span class="topic">visual-testing</span></div>
+<a class="btn" href="https://github.com/AlexanderKaan/uisandbox" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://uisandbox.org" rel="noopener nofollow">Homepage ↗</a>
+<h2>About uisandbox</h2><p class="sub">Play with your real app&#x27;s design, live. Restyle your app without rebuilding it — drop the build, turn the knobs, watch it follow 1:1, export the patch. Test your design on the real thing.</p><p class="sub">uisandbox.org · npm: uisandbox-mcp · MCP registry · MIT</p><p class="sub">Or drop a zip on uisandbox.org — no build at hand? Try a sample under the drop zone (the Bootstrap docs, a VitePress site, an admin dashboard). Or, in Claude Code: /plugin marketplace add AlexanderKaan/uisandbox → /plugin install uisandbox@uisandbox and say &quot;open this app in UISandbox&quot;.</p><p class="sub">1. Bring the build — three ways in: a zip of dist/, build/, out/ (or a whole repo with the build inside); a folder (a build renders, a source folder is read for the knob stand); a public GitHub or GitLab repo URL (fetched as a zip through a same-origin route — the one thing that leaves the tab, see notes/security.md). While it works, the door shows the stages with their numbers. Otherwise nothing leaves the tab: files are read in the page and served to the frame by a service worker on this origin. 2. See it 1:1. Every colour, radius, font, size, spacing, line-height, letter-spacing, weight, border-width, duration, gradient angle and shadow literal in your CSS becomes a variable holding the very same value, so the page renders exactly as it was — runtime styles too (style=&quot;&quot; set by JS, your framework appends, insertRule/replaceSync from styled-components, Emotion, Lit, Ant&#x27;s cssinjs; CDN stylesheets through a same-origin proxy; nested same-origin frames such as Storybook&#x27;s). 3. Turn the knobs. Brand, and the colour families your CSS actually contains</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/AlexanderKaan--uisandbox.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/anshupriyan--cli-bridge.html">
+  <span class="name"><span class="owner">anshupriyan/</span>cli-bridge</span>
+  <p>MCP server for Claude Desktop and other Model Context Protocol clients — sandboxed filesystem access (read/write/edit/search) plus Dev Mode-gated shell command execution, scoped to a single workspace </p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/fengyincheng--ShellBridge.html">
+  <span class="name"><span class="owner">fengyincheng/</span>ShellBridge</span>
+  <p>Give ChatGPT fast, safe, and auditable visibility into your VPS through MCP.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/sandbaseai--deepseek-harness-handbook.html">
+  <span class="name"><span class="owner">sandbaseai/</span>deepseek-harness-handbook</span>
+  <p>Independent, source-backed handbook for DeepSeek AI&#x27;s official DeepSeek Harness (dsh): agents, plugins, security, troubleshooting, and runbooks.</p>
+  <span class="meta"><span>⭐ 29</span><span>HTML</span></span>
+</a><a class="card" href="/s/hoangann2000--figma-mcp-console.html">
+  <span class="name"><span class="owner">hoangann2000/</span>figma-mcp-console</span>
+  <p>MCP server that lets your AI assistant read and write Figma in real time — no API token, no rate limits. Works with Claude, Cursor, Copilot, Codex and any MCP client.</p>
+  <span class="meta"><span>⭐ 9</span><span>Go</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/abluva--mcp-remote.html">
+  <span class="name"><span class="owner">abluva/</span>mcp-remote</span>
+  <p>The bridge for remote MCP — seamless OAuth, resilient auth recovery, production-grade reliability</p>
+  <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
