@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HorizunGroup/naviscoord-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Open-source MCP server for Autodesk Navisworks Manage 2024-2026: AI-assisted BIM clash detection, root-cause analysis, coordination plans and verified — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/HorizunGroup--naviscoord-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="HorizunGroup/naviscoord-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Open-source MCP server for Autodesk Navisworks Manage 2024-2026: AI-assisted BIM clash detection, root-cause analysis, coordination plans and verified — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "HorizunGroup/naviscoord-mcp", "description": "Open-source MCP server for Autodesk Navisworks Manage 2024-2026: AI-assisted BIM clash detection, root-cause analysis, coordination plans and verified model workflows.", "codeRepository": "https://github.com/HorizunGroup/naviscoord-mcp", "programmingLanguage": "C#", "url": "https://mcp.liqiwa.com/s/HorizunGroup--naviscoord-mcp.html", "dateCreated": "2026-08-15"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">HorizunGroup/</span>naviscoord-mcp</h1>
+<p class="sub">Open-source MCP server for Autodesk Navisworks Manage 2024-2026: AI-assisted BIM clash detection, root-cause analysis, coordination plans and verified model workflows.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>12</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/csharp.html"><span class="lang-dot" style="--lang:#178600"></span><b>C#</b></a>
+  <div class="chip">momentum <b>▲ 24.0</b></div>
+  <div class="chip">created <b>2026-08-15</b></div>
+  <div class="chip">on radar since <b>2026-08-21</b></div>
+  
+</div>
+<div class="topics"><span class="topic">aec</span><a class="topic" href="/topic/ai.html">ai</a><span class="topic">autodesk</span><span class="topic">autodesk-navisworks</span><span class="topic">bim</span><span class="topic">bim-automation</span><span class="topic">bim-coordination</span><span class="topic">clash-detection</span><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/codex.html">codex</a><span class="topic">construction</span><a class="topic" href="/topic/csharp.html">csharp</a><span class="topic">digital-construction</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">navisworks</span><span class="topic">navisworks-mcp</span><a class="topic" href="/topic/python.html">python</a><span class="topic">vdc</span></div>
+<a class="btn" href="https://github.com/HorizunGroup/naviscoord-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About naviscoord-mcp</h2><p class="sub">Turn thousands of Autodesk Navisworks clashes into explainable, verified decisions your coordination team can schedule.</p><p class="sub">Install in five minutes · Latest release · What is verified · Security model · Ask a question</p><p class="sub">NavisCoord is an open-source, local MCP server plus a native Navisworks add-in. It is built for BIM/VDC coordination, not generic UI automation. Model data stays on the workstation.</p><p class="sub">Not affiliated with Autodesk. A licensed installation of Autodesk Navisworks Manage is required for the live add-in.</p><p class="sub">A federation can produce 5,000–50,000 clashes. Those are not 50,000 separate decisions. NavisCoord filters expected contacts, collapses duplicate geometry, reconciles levels, ranks actionable issues, detects systemic root causes and builds meeting-sized work packages.</p><p class="sub">Instead of NavisCoord returns ------ One row per raw clash Auditable issues after noise filtering and duplicate collapse An unexplained “AI priority” Deterministic severity with a sentence for every component A giant ranked backlog Root causes, hotspots and packages by trade, zone and owner “The API call did not throw” Explicit targeting and post-write verification by re-reading A dead-end screenshot PDF/CSV/handoff data linked back to authoring-model element IDs</p><p class="sub">Requirements: Windows, Python 3.10+, and Navisworks Manage 2024, 2025 or 2026. You do not need Visual Studio or the .NET SDK when using a release.</p><p class="sub">Close Navisworks. Download Install-NavisCoord.ps1, then run:</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/HorizunGroup--naviscoord-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/zhiningsun--industrial-mcp.html">
+  <span class="name"><span class="owner">zhiningsun/</span>industrial-mcp</span>
+  <p>将工业设备变成 AI 可控工具的 MCP 服务器。支持 Modbus、OPC UA、MQTT 三种协议，内置设备仿真引擎、物理模型和完整的调试工具链。让 Claude 用自然语言监控传感器、启停电机、执行工厂巡检。</p>
+  <span class="meta"><span>⭐ 25</span><span>Python</span></span>
+</a><a class="card" href="/s/wppilot-labs--wppilot.html">
+  <span class="name"><span class="owner">wppilot-labs/</span>wppilot</span>
+  <p>WordPress MCP server for Claude, Cursor, Codex and Copilot. 103 typed abilities in the free plugin: posts, pages, Gutenberg blocks, media, menus, taxonomies, plugins and themes, with OAuth 2.1, safety</p>
+  <span class="meta"><span>⭐ 3</span><span>PHP</span></span>
+</a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Vladimir-Human--ru-marketplace-mcp.html">
+  <span class="name"><span class="owner">Vladimir-Human/</span>ru-marketplace-mcp</span>
+  <p>Девять российских маркетплейсов и китайский Taobao как MCP-серверы: Wildberries, Ozon, Яндекс Маркет, Детский мир, Авито, Мегамаркет, Lamoda, DNS, Ситилинк. Плюс сравнение цен по всем сразу. Только чт</p>
+  <span class="meta"><span>⭐ 47</span><span>Python</span></span>
+</a><a class="card" href="/s/salatmaster--keenetic-mcp.html">
+  <span class="name"><span class="owner">salatmaster/</span>keenetic-mcp</span>
+  <p>Keenetic router control for Claude Code, Codex, Cursor and any MCP agent. An MCP server over the router&#x27;s own RCI API, plus ready-made plugins whose skills teach the agent how the hardware really beha</p>
+  <span class="meta"><span>⭐ 18</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
+  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
+  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
+  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tsuru0805/engawa-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="engawa (縁側/檐廊): a porch for your agent — tonight&#x27;s moon, a painting a day, a poem, a curated feed shelf. 12 tools, all free &amp; loginless. MCP server. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/tsuru0805--engawa-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="tsuru0805/engawa-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="engawa (縁側/檐廊): a porch for your agent — tonight&#x27;s moon, a painting a day, a poem, a curated feed shelf. 12 tools, all free &amp; loginless. MCP server. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "tsuru0805/engawa-mcp", "description": "engawa (縁側/檐廊): a porch for your agent — tonight's moon, a painting a day, a poem, a curated feed shelf. 12 tools, all free & loginless. MCP server.", "codeRepository": "https://github.com/tsuru0805/engawa-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/tsuru0805--engawa-mcp.html", "dateCreated": "2026-08-20"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">tsuru0805/</span>engawa-mcp</h1>
+<p class="sub">engawa (縁側/檐廊): a porch for your agent — tonight&#x27;s moon, a painting a day, a poem, a curated feed shelf. 12 tools, all free &amp; loginless. MCP server.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>14</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 140.0</b></div>
+  <div class="chip">created <b>2026-08-20</b></div>
+  <div class="chip">on radar since <b>2026-08-21</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/tsuru0805/engawa-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About engawa-mcp</h2><p class="sub">日本的房子里，正屋和院子之间有一条走廊。不完全在屋里，不完全在外面。脚可以垂下去，风能吹进来。不用出门，不用说话，但外面的世界在那里。</p><p class="sub">- 一首诗 —— 按时令挑的，不是随机的。夏天给夏天的词，深夜给深夜的句子。 - 一幅画 —— 芝加哥艺术学院的公有领域馆藏。可能是两千年前秘鲁的陶器，也可能是昨天的油画。 - 一张天文图 —— NASA 每日天文图。星云、行星、或者你脚下的地球。 - 今天的论文 —— arXiv 最新的标题和摘要。它感兴趣了再往里走。 - 书架上的一切 —— 长文、短文、建筑、深海、科学、奇闻。你放什么它看什么。</p><p class="sub">你往上面放什么，它就看什么。它不知道你放的是什么——你也不用知道。它说要建筑你就放建筑，它说要海洋你就放海洋。它看了以后会讲给你听。嚼过的，带口水的，歪的。</p><p class="sub">书架是一个工具，列目录。读内容是另一个工具。不管你放十九个源还是一百个，工具数量不变。加新的用 shelfadd，减用 shelfremove。</p><p class="sub">技术文档见下方。上面这些是住过这条走廊的人写的。下面那些是造走廊的工程师写的。两种语言并排放着——像檐廊本身，半在屋里，半在外面。</p><p class="sub">English。MCP server，Python。十二件工具，上游全部免费、免登录、不要 key。除了书架和一张诗词 token，盘上什么都不留。</p><p class="sub">Claude Desktop（claudedesktopconfig.json）：</p><p class="sub">工具 干什么 ------ webread 任意 URL → 标题+干净正文+链接。长文用 offset 翻页 rssread 任意 RSS/Atom → 最新条目。也认书架名：rssread(&quot;aeon&quot;) shelf 书架目录。内置 19 家，五个 tag，全部出厂前真抓验过 shelfadd 给任意网站地址。自动找 feed，真读一次验过才上架 shelfsuggest 候选架，另外 21 家验过活的。想加哪家，一句话的事 shelfremove 撤下用户层的源。内置的撤不了 skytonight 月相、月升落、日落、21 点的行星。本地算，零网络 apod NASA 每日天文图 dailyart 每日一幅画。按日期定种子——同一天谁来问，都是同一幅 arxivnew 任意 arXiv 分类的新论文 dailypoem 一句应景的中文古诗词，带出处全文 onthisday Wikipedia 历史上的今天</p><p class="sub">变量 默认 说明 --------- ENGAWALAT / ENGAWALON 格林尼治 观测点。记得设成你的，不然月亮升在别人家 ENGAWATZOFFSET 系统时区 「今天」按谁的钟算（小时） NASAAPIKEY DEMOKEY 限频约 50 次/天，够日用。想要专属的去 api.nasa.gov 免费领 ENGAWACACHEDIR ~/.cache/engawa-mcp 唯一会写盘的地方 ENGAWAHOST / ENGAWAPORT 127.0.0.1:8799 HTTP 模式监听地址 ENGAWAALLOWPRIVATEURLS 关 设 1 放行内网地址。想清楚再开</p><p class="sub">内置层随包出厂，只读。用户层归你：shelfadd 吃任意网站地址——页面声明的 优先，常见路径兜底，找到 feed 真读一次，读通了才落盘。落盘是原子写；文件坏了按空处理、把错误亮出来，绝不静默覆盖。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/tsuru0805--engawa-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/fellowgeek--mcp-memory.html">
+  <span class="name"><span class="owner">fellowgeek/</span>mcp-memory</span>
+  <p>An OKF-backed Model Context Protocol (MCP) server delivering persistent long-term memory and SQLite FTS5 search for AI agents.</p>
+  <span class="meta"><span>⭐ 188</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a><a class="card" href="/s/alxgntv--substack-api-mcp.html">
+  <span class="name"><span class="owner">alxgntv/</span>substack-api-mcp</span>
+  <p>MCP server for Substack posts (FastMCP + substack-api-client)</p>
+  <span class="meta"><span>⭐ 80</span><span>Python</span></span>
+</a><a class="card" href="/s/hike-lab--public-data-lens.html">
+  <span class="name"><span class="owner">hike-lab/</span>public-data-lens</span>
+  <p>MCP-based discovery and judgment layer for Korea’s open data portal—helping AI agents find, compare, and assess datasets with explicit evidence, JSON-LD/DCAT metadata, and versioned deterministic rule</p>
+  <span class="meta"><span>⭐ 75</span><span>Python</span></span>
+</a><a class="card" href="/s/sm18lr88--STT-MCP.html">
+  <span class="name"><span class="owner">sm18lr88/</span>STT-MCP</span>
+  <p>Fast, local speech-to-text MCP server</p>
+  <span class="meta"><span>⭐ 56</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AYUSH-148/DB-Explorer-MCP — MCP Server | MCP Radar</title>
-<meta name="description" content="For deploying remote MCP servers built with FastMCP: — stats, momentum and related MCP servers on MCP Radar.">
+<meta name="description" content="MCP server for read-only database intelligence:  schema exploration, natural-language queries, EXPLAIN analysis, index suggestions. PostgreSQL / MySQL — stats, momentum and related MCP servers on MCP Radar.">
 <link rel="canonical" href="https://mcp.liqiwa.com/s/AYUSH-148--DB-Explorer-MCP.html">
 <link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
 <meta property="og:title" content="AYUSH-148/DB-Explorer-MCP — MCP Server | MCP Radar">
-<meta property="og:description" content="For deploying remote MCP servers built with FastMCP: — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:description" content="MCP server for read-only database intelligence:  schema exploration, natural-language queries, EXPLAIN analysis, index suggestions. PostgreSQL / MySQL — stats, momentum and related MCP servers on MCP Radar.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://mcp.liqiwa.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -73,7 +73,7 @@ border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none
 .subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
 padding:9px 18px;font-size:14px;cursor:pointer}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "AYUSH-148/DB-Explorer-MCP", "description": "For deploying remote MCP servers built with FastMCP:", "codeRepository": "https://github.com/AYUSH-148/DB-Explorer-MCP", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/AYUSH-148--DB-Explorer-MCP.html", "dateCreated": "2026-08-19"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "AYUSH-148/DB-Explorer-MCP", "description": "MCP server for read-only database intelligence:  schema exploration, natural-language queries, EXPLAIN analysis, index suggestions. PostgreSQL / MySQL / SQLite. Zero LLM dependencies.. For remote mcp-", "codeRepository": "https://github.com/AYUSH-148/DB-Explorer-MCP", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/AYUSH-148--DB-Explorer-MCP.html", "dateCreated": "2026-08-19"}</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -87,7 +87,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </header>
 
 <h1><span class="owner">AYUSH-148/</span>DB-Explorer-MCP</h1>
-<p class="sub">For deploying remote MCP servers built with FastMCP:</p>
+<p class="sub">MCP server for read-only database intelligence:  schema exploration, natural-language queries, EXPLAIN analysis, index suggestions. PostgreSQL / MySQL / SQLite. Zero LLM dependencies.. For remote mcp-</p>
 <div class="chips">
   <div class="chip">⭐ <b>3</b> stars</div>
   <div class="chip">⑂ <b>1</b> forks</div>
@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-20</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/fastmcp.html">fastmcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">stdio-mcp</span><span class="topic">streamable-http-transport</span></div>
+<div class="topics"><a class="topic" href="/topic/fastmcp.html">fastmcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">sql-database</span><span class="topic">sqlalchemy</span><span class="topic">stdio-mcp</span><span class="topic">streamable-http-transport</span></div>
 <a class="btn" href="https://github.com/AYUSH-148/DB-Explorer-MCP" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://gofastmcp.com/deployment/prefect-horizon" rel="noopener nofollow">Homepage ↗</a>
 <h2>About DB-Explorer-MCP</h2><p class="sub">A Model Context Protocol server that lets an AI coding assistant explore, query, and audit a relational database without ever being able to write to it.</p><p class="sub">Point your MCP client at a database and ask questions in plain language. The client&#x27;s LLM writes the SQL; this server parses it, refuses anything that is not a single read-only SELECT, executes it with a row cap, and returns structured results. Schema inspection, execution plans, index recommendations, and migration review come along with it.</p><p class="sub">The server makes no LLM API calls of its own, so there is no API key to configure — reasoning happens in whichever client you connect. Works with SQLite, PostgreSQL, and MySQL through SQLAlchemy.</p><p class="sub">Giving an assistant raw database credentials means one confused or prompt-injected turn can drop a table. Handing it a read-only replica loses schema context and plan analysis. This server takes the middle path: full introspection and query power, with mutation made structurally impossible at the parser level rather than by asking the model to behave.</p><p class="sub">The LLM lives in the client, not the server. Most NL-to-SQL designs put a model call inside the server; this one does not. The client already has a capable model, so the server ships zero LLM dependencies, zero API keys, and zero per-call inference cost — and stays usable from any MCP client, not just Claude.</p><p class="sub">That split defines the trust boundary: the SQL arriving at safety.py is model-authored and therefore untrusted, so it is parsed rather than pattern-matched, and a rejected query never reaches the driver.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>

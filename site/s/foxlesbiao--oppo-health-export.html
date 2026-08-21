@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>foxlesbiao/oppo-health-export — MCP Server | MCP Radar</title>
+<meta name="description" content="OPPO Health export: LSPosed hook 提取加密健康数据 + 标准 MCP server 接口 (v5.0.0) — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/foxlesbiao--oppo-health-export.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="foxlesbiao/oppo-health-export — MCP Server | MCP Radar">
+<meta property="og:description" content="OPPO Health export: LSPosed hook 提取加密健康数据 + 标准 MCP server 接口 (v5.0.0) — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "foxlesbiao/oppo-health-export", "description": "OPPO Health export: LSPosed hook 提取加密健康数据 + 标准 MCP server 接口 (v5.0.0)", "codeRepository": "https://github.com/foxlesbiao/oppo-health-export", "programmingLanguage": "Kotlin", "url": "https://mcp.liqiwa.com/s/foxlesbiao--oppo-health-export.html", "dateCreated": "2026-08-19"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">foxlesbiao/</span>oppo-health-export</h1>
+<p class="sub">OPPO Health export: LSPosed hook 提取加密健康数据 + 标准 MCP server 接口 (v5.0.0)</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>2</b> forks</div>
+  <a class="chip" href="/lang/kotlin.html"><span class="lang-dot" style="--lang:#A97BFF"></span><b>Kotlin</b></a>
+  <div class="chip">momentum <b>▲ 44.0</b></div>
+  <div class="chip">created <b>2026-08-19</b></div>
+  <div class="chip">on radar since <b>2026-08-21</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/foxlesbiao/oppo-health-export" rel="noopener">View on GitHub ↗</a>
+<h2>About oppo-health-export</h2><p class="sub">Doc 导航：English README · AI Agent Guide · MCP tool schemas</p><p class="sub">通过 LSPosed hook 从 OPPO/欢太健康 App 导出加密健康数据，经标准 MCP (Model Context Protocol) 接口接入任意 AI agent 分析。</p><p class="sub">- 手机端：LSPosed/libxposed 模块 hook OPPO 健康的 SQLCipher 加解密方法拿到密钥，逐表流式分批导出，按 ===TABLE:TIMECOL:=== 分节 + 增量水位(/api/cursor)只导新增，每满 2 万行一个分块上传。 - 服务端：server/mcpserver.py 是标准 MCP server(stdio)，暴露 health 工具，任意 MCP 客户端可接入；行哈希 rowhash UNIQUE 幂等入库，杜绝重复。</p><p class="sub">1. 从 libxposed/api 下载最新的 .aar，解压出 classes.jar，重命名为 libxposed-api.jar 放到 android/app/libs/。 2. 配置 SDK（android/local.properties 写 sdk.dir=），compileSdk=34。 3. 构建：</p><p class="sub">4. 安装 app/build/outputs/apk/debug/app-debug.apk，在 LSPosed 里启用，勾选作用域 com.heytap.health。</p><p class="sub">模块依赖 libxposed API，不能打包进 APK（compileOnly）。</p><p class="sub">注册到任意 MCP 客户端（如 Hermes ~/.hermes/config.yaml）：</p><p class="sub">工具 功能 ------ healthingest 接收增量分节数据（幂等入库 + 更新水位） healthwatermark 查询各表水位（增量同步游标） healthlisttables / healthstats 列出表 / 统计概览 healthquery 按时间/列查询已入库数据 healthschema 表结构</p><p class="sub">- 5.1.0：分块批次去重 — 上传 meta 携带 batchid/final/totalchunks，服务端仅对最后一个分块触发一次分析，杜绝一次导出多次重复分析。 - 5.0.0：MCP 规范化服务端 + 模块版本对齐；增量水位/流式分片/分块上传/幂等去重。</p><p class="sub">MIT — 源码；libxposed-api.jar 属其原作者，按 LGPL-3.0 分发。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/foxlesbiao--oppo-health-export.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/risa-labs-inc--BossConsole.html">
+  <span class="name"><span class="owner">risa-labs-inc/</span>BossConsole</span>
+  <p>Open-source, multi-platform harness for AI agents — a native, multi-threaded operator&#x27;s console (JVM, not Electron) to run Claude Code, Codex, Gemini or OpenCode with a real browser, terminal, editor,</p>
+  <span class="meta"><span>⭐ 199</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/bilieebiliee1-design--SOMCP.html">
+  <span class="name"><span class="owner">bilieebiliee1-design/</span>SOMCP</span>
+  <p>Android-native SO reverse engineering MCP server</p>
+  <span class="meta"><span>⭐ 43</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/Cazriel--mcp-server.html">
+  <span class="name"><span class="owner">Cazriel/</span>mcp-server</span>
+  <p>Android MCP server exposing device tools over HTTP.</p>
+  <span class="meta"><span>⭐ 13</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/aoreshkov--kotlin-lib-mcp.html">
+  <span class="name"><span class="owner">aoreshkov/</span>kotlin-lib-mcp</span>
+  <p>MCP server exposing the sources, public API and KDoc of Maven-published Kotlin/Java libraries</p>
+  <span class="meta"><span>⭐ 4</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/maciejewskii--solver-mcp.html">
+  <span class="name"><span class="owner">maciejewskii/</span>solver-mcp</span>
+  <p>General-purpose Timefold-powered MCP solver server for AI agents</p>
+  <span class="meta"><span>⭐ 3</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/salatmaster--goland-mcp-plus.html">
+  <span class="name"><span class="owner">salatmaster/</span>goland-mcp-plus</span>
+  <p>Go semantic tools for the MCP server built into GoLand: 24 tools that answer questions about Go code through the type system, not text search</p>
+  <span class="meta"><span>⭐ 3</span><span>Kotlin</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
