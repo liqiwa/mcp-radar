@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-13</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agentic-commerce.html">agentic-commerce</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">base</span><a class="topic" href="/topic/claude.html">claude</a><span class="topic">http-402</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">micropayments</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">solana</span><a class="topic" href="/topic/usdc.html">usdc</a><a class="topic" href="/topic/x402.html">x402</a></div>
+<div class="topics"><a class="topic" href="/topic/agentic-commerce.html">agentic-commerce</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">base</span><a class="topic" href="/topic/claude.html">claude</a><span class="topic">http-402</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">micropayments</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/solana.html">solana</a><a class="topic" href="/topic/usdc.html">usdc</a><a class="topic" href="/topic/x402.html">x402</a></div>
 <a class="btn" href="https://github.com/nirholas/x402-mcp-commerce" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://nirholas.github.io/x402-mcp-commerce/" rel="noopener nofollow">Homepage ↗</a>
 <h2>About x402-mcp-commerce</h2><p class="sub">MCP server that gives Claude/GPT agents commerce tools — each tool call pays an upstream x402 endpoint and returns its artifact.</p><p class="sub">Pay in USDC on Base or Solana — the agent picks the rail, per call.</p><p class="sub">Give a model a wallet, a spending cap, and a dozen merchants. booktable, searchflights, buyitem, checkweather — each tool call pays an upstream x402 route in USDC and hands back the merchant&#x27;s artifact with the payment receipt attached. The model never sees a key, never signs anything, and cannot spend past a cap it doesn&#x27;t control.</p><p class="sub">Tool-using agents hit a wall the moment a tool costs money: API keys have to be provisioned per merchant, per agent, in advance, by a human. x402 inverts that — the merchant advertises a price in a 402, the agent signs a USDC payment for exactly that amount, and the goods come back in the same response. A new merchant becomes a new tool by adding four lines to a JSON file. No signup, no key distribution, no billing relationship, and a per-call cost the agent can reason about because it is printed in the result.</p><p class="sub">Add it to Claude Desktop with examples/claudedesktopconfig.json, restart, and ask for a table next Friday.</p><p class="sub">Twelve commerce tools, generated from config/tools.json, plus three built-ins. Every commerce tool takes an optional rail argument.</p><p class="sub">Tool Upstream Price What you get back ------------ searchflights x402-flight-search $0.005 Priced offers for a route and date. priceflight x402-flight-search $0.003 Live price + availability for one offer. findtables x402-tablebook $0.001 Open reservation slots. booktable x402-tablebook $0.01 Confirmed re</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/nirholas--x402-mcp-commerce.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/agentIgris--AgentFund.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/nirholas--onchain-agent-wallets.html">
+  <span class="name"><span class="owner">nirholas/</span>onchain-agent-wallets</span>
+  <p>Give an AI agent a real Solana wallet without giving it your money. An MCP server for spending allowances the SPL Token program enforces on-chain, with guardrails, x402 payments, and revocable custody</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/agentIgris--AgentFund.html">
   <span class="name"><span class="owner">agentIgris/</span>AgentFund</span>
   <p>Fundraising infrastructure for AI agents on Solana — x402 payments, milestone escrow, on-chain reputation. REST + WebSocket + MCP + ACP.</p>
   <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
@@ -116,18 +120,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Feeless402/</span>feeless402</span>
   <p>Feeless x402 micropayments for AI agents — self-custodied XNO wallet, pay-per-call client, merchant server with railHint, PoW-gated faucet, MCP server</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/alijancb--bubble-agent-mcp.html">
-  <span class="name"><span class="owner">alijancb/</span>bubble-agent-mcp</span>
-  <p>Open-source MCP server for discovering fast-growing internet conversations with Bubble Agent</p>
-  <span class="meta"><span>⭐ 34</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/AIPAYagent--aipay-protocol.html">
-  <span class="name"><span class="owner">AIPAYagent/</span>aipay-protocol</span>
-  <p>Verifier-backed USDC escrow for AI agents: signed orders, evidence hashes, Polygon deposits, and deterministic settlement.</p>
-  <span class="meta"><span>⭐ 31</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/roshanarnav25-sloth--google-flow-mcp.html">
-  <span class="name"><span class="owner">roshanarnav25-sloth/</span>google-flow-mcp</span>
-  <p>MCP server that drives Google Flow (Veo / Nano Banana) through its internal tRPC API, with a hard credit-cost gate</p>
-  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/nirholas--metaplex-agent-mcp.html">
+  <span class="name"><span class="owner">nirholas/</span>metaplex-agent-mcp</span>
+  <p>Deploy AI agents on-chain from any MCP client or your browser: mint a Metaplex Core asset and register its EIP-8004 identity in the Metaplex Agent Registry on Solana. By three.ws.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Cripacx--mediagen.html">
+  <span class="name"><span class="owner">Cripacx/</span>mediagen</span>
+  <p>AI image and video generation skill for Claude Code and other coding agents — Gemini, OpenAI and Kie AI behind one CLI and MCP server, with EU AI Act content marking.</p>
+  <span class="meta"><span>⭐ 54</span><span>TypeScript</span></span>
 </a>
 
 

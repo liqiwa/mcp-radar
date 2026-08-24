@@ -92,12 +92,12 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>15</b> stars</div>
   <div class="chip">⑂ <b>2</b> forks</div>
   <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
-  <div class="chip">momentum <b>▲ 54.0</b></div>
+  <div class="chip">momentum <b>▲ 41.5</b></div>
   <div class="chip">created <b>2026-08-19</b></div>
   <div class="chip">on radar since <b>2026-08-21</b></div>
   <div class="chip">star trend <b>13 → 15</b> since 2026-08-21</div>
 </div>
-<div class="topics"><span class="topic">acsl</span><span class="topic">formal-verification</span><span class="topic">frama-c</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a></div>
+<div class="topics"><span class="topic">acsl</span><a class="topic" href="/topic/formal-verification.html">formal-verification</a><span class="topic">frama-c</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a></div>
 <a class="btn" href="https://github.com/sysprog21/frama-c-mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About frama-c-mcp</h2><p class="sub">An MCP server that gives an AI agent Frama-C: EVA abstract interpretation, WP deductive proof, ACSL annotation injection, and isolated sandboxes for trying annotations out.</p><p class="sub">The server is designed to be driven by an agent rather than by a person. An MCP client spawns it and speaks to it over stdio, so there is no command for a human to type. It is built around an iterative loop: propose an annotation, prove it, read why the goal did not close, then revise. The session state follows from that loop rather than from shell use, since one project stays loaded across calls, sandboxes are addressed by name, and proof receipts compare only within a run.</p><p class="sub">Wire it into Claude Code, Claude Desktop, or any MCP client, then prompt in English. See Connect an agent and Prompt patterns. A check subcommand exists for CI and is the only part intended to be run by hand.</p><p class="sub">- Rust MCP server: exposes the tools over MCP stdio, translates requests into Frama-C&#x27;s server protocol, and lazily starts the main Frama-C process on the first project operation. - ast-utils Frama-C plugin: provides the custom requests for AST access, dependency extraction, ACSL injection, sandboxing, and WP configuration. Build and install it in the same opam switch as Frama-C.</p><p class="sub">createsandbox extracts a function together with its type, callee, and global dependencies into a temporary C file, then starts a separate Frama-C process. An agent can iterate on annotations there without mutating the main project; verified sandbox annotations are merged back explicitly.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
