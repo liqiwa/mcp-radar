@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hasmcp/mcp-spec-test — MCP Server | MCP Radar</title>
+<meta name="description" content="Test your stdio and remote mcp servers against to latest MCP specs. Generate conformance report for MCP servers, fix and repeat.  — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/hasmcp--mcp-spec-test.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="hasmcp/mcp-spec-test — MCP Server | MCP Radar">
+<meta property="og:description" content="Test your stdio and remote mcp servers against to latest MCP specs. Generate conformance report for MCP servers, fix and repeat.  — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "hasmcp/mcp-spec-test", "description": "Test your stdio and remote mcp servers against to latest MCP specs. Generate conformance report for MCP servers, fix and repeat. ", "codeRepository": "https://github.com/hasmcp/mcp-spec-test", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/hasmcp--mcp-spec-test.html", "dateCreated": "2026-08-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">hasmcp/</span>mcp-spec-test</h1>
+<p class="sub">Test your stdio and remote mcp servers against to latest MCP specs. Generate conformance report for MCP servers, fix and repeat. </p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">created <b>2026-08-22</b></div>
+  <div class="chip">on radar since <b>2026-08-25</b></div>
+  
+</div>
+<div class="topics"><span class="topic">mcp-conformance</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">mcp-spec</span><span class="topic">mcp-spec-test</span><span class="topic">mcp-specification-validation</span><span class="topic">mcp-specs</span><span class="topic">mcp-test</span><span class="topic">mcp-test-suite</span><span class="topic">mcp-testing</span></div>
+<a class="btn" href="https://github.com/hasmcp/mcp-spec-test" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://hasmcp.com" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcp-spec-test</h2><p class="sub">A black-box conformance suite for any MCP server. It speaks the protocol over the wire and nothing else — no plugin, no instrumentation, no knowledge of the implementation — so the same suite runs against a local process, a staging deployment or somebody else&#x27;s hosted endpoint without modification.</p><p class="sub">It supports the two most recent spec revisions only — currently 2026-07-28 and 2025-11-25 — and always tracks the newest one. Anything older is reported as out of scope rather than judged. See Supported revisions.</p><p class="sub">It reports what the server does, where it deviates from the spec, and — as its own section — what could not be checked:</p><p class="sub">Requirements this revision does not have are not reported</p><p class="sub">A case that does not run means one of two things, and only one of them is worth a reader&#x27;s attention:</p><p class="sub">- NOT VERIFIED — the requirement applies to this target, but the run could not establish it: a capability was not advertised, a call needed arguments the suite will not invent, a stream never opened. This is the list to work through before claiming conformance, which is why it is printed above the passes. - Not applicable — the revision under test does not define the thing, or the transport has no such requirement. initialize is not a gap in a 2026-07-28 run; that revision replaced the handshake with server/discover. These are omitted entirely — not listed, not counted. A requirement the spec does not define is not a result, and showing it only invites the question of why the suite is testing something the spec does not have.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/hasmcp--mcp-spec-test.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/cinderline--northcinder.html">
+  <span class="name"><span class="owner">cinderline/</span>northcinder</span>
+  <p>Open-source MCP server for comparing products and asking the buyer before purchase.</p>
+  <span class="meta"><span>⭐ 1205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/sv-number--mcp-server.html">
+  <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
+  <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
+  <span class="meta"><span>⭐ 598</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/shixinnt--codex-image-context-runtime.html">
+  <span class="name"><span class="owner">shixinnt/</span>codex-image-context-runtime</span>
+  <p>A Codex plugin and local MCP runtime for context-bounded image generation and inspection.</p>
+  <span class="meta"><span>⭐ 100</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/talivia-group--agent.html">
+  <span class="name"><span class="owner">talivia-group/</span>agent</span>
+  <p>Revenue-first website analytics installed and verified by AI agents through MCP</p>
+  <span class="meta"><span>⭐ 62</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/alexanderradahl--mac-developer-bridge.html">
+  <span class="name"><span class="owner">alexanderradahl/</span>mac-developer-bridge</span>
+  <p>Give ChatGPT a real terminal on your Mac. Open-source MCP bridge for shell, files, PTY sessions, jobs, and Codex history.</p>
+  <span class="meta"><span>⭐ 22</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

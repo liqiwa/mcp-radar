@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RuriLothlorien/CCSwitch-operations — MCP Server | MCP Radar</title>
+<meta name="description" content="Portable CC Switch (CCS) operations skill for Codex / Claude Code: safe management of prompts, skills, MCP servers and providers. 可移植的 CC Switch 操作/维护 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/RuriLothlorien--CCSwitch-operations.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="RuriLothlorien/CCSwitch-operations — MCP Server | MCP Radar">
+<meta property="og:description" content="Portable CC Switch (CCS) operations skill for Codex / Claude Code: safe management of prompts, skills, MCP servers and providers. 可移植的 CC Switch 操作/维护 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "RuriLothlorien/CCSwitch-operations", "description": "Portable CC Switch (CCS) operations skill for Codex / Claude Code: safe management of prompts, skills, MCP servers and providers. 可移植的 CC Switch 操作/维护技能。", "codeRepository": "https://github.com/RuriLothlorien/CCSwitch-operations", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/RuriLothlorien--CCSwitch-operations.html", "dateCreated": "2026-08-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">RuriLothlorien/</span>CCSwitch-operations</h1>
+<p class="sub">Portable CC Switch (CCS) operations skill for Codex / Claude Code: safe management of prompts, skills, MCP servers and providers. 可移植的 CC Switch 操作/维护技能。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">created <b>2026-08-22</b></div>
+  <div class="chip">on radar since <b>2026-08-25</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-coding.html">ai-coding</a><a class="topic" href="/topic/ai-tools.html">ai-tools</a><span class="topic">cc-switch</span><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/claude-desktop.html">claude-desktop</a><span class="topic">clawhub</span><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/gemini-cli.html">gemini-cli</a><a class="topic" href="/topic/grok.html">grok</a><a class="topic" href="/topic/hermes.html">hermes</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/openclaw.html">openclaw</a><a class="topic" href="/topic/opencode.html">opencode</a><span class="topic">prompts</span><span class="topic">provider-management</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/skills.html">skills</a></div>
+<a class="btn" href="https://github.com/RuriLothlorien/CCSwitch-operations" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/farion1231/cc-switch" rel="noopener nofollow">Homepage ↗</a>
+<h2>About CCSwitch-operations</h2><p class="sub">可移植、可发布的 CC Switch（CCS） 操作技能：安全地维护全局提示词、Skills、MCP 服务器、供应商与 Codex 模型目录，覆盖 CCS 管理的九个应用。</p><p class="sub">本包自包含：没有安装脚本，也不依赖任何外部辅助脚本。安装方式只有两种——把技能目录解压/复制到 agent 的 skills 目录，或在 CC Switch 中从 zip 导入。</p><p class="sub">[!WARNING] CC Switch 3.20.0 手动编辑缺陷（已知）：在 Codex 供应商编辑页即使不做任何修改直接保存，也可能导致 ~/.codex/config.toml 块顺序重排、通用配置被剥离、标记错位，甚至把 url-only 远程 MCP 写成 type=&quot;stdio&quot; + command=&quot;&quot;；“通用配置提取”同样受影响（上游 issue 6719）。 建议：不要用 CCS 编辑页维护 Codex 供应商/通用配置；请使用本技能的命令（check --strict、doctor --audit、repair、common-config、provider-block 等）安全修改。</p><p class="sub">CC Switch 的配置分散在数据库、settings.json 和多个应用的 live 配置文件里。手动维护的痛点是：位置多、容易忘，改完还要去 Codex、Claude Code、Claude Desktop、Gemini 等每个 agent 里逐个确认是否生效，稍不留神漏一处，下次切换供应商时配置就被覆盖、工具就失效。更麻烦的是，AI 在自我维护时往往只顾自己的 agent 配置，不会顾及你本机安装的 CC Switch——它自己写的 config.toml / settings.json 可能和 CCS 的管理状态冲突，下一次切换就被回写覆盖。更糟的是，CCS 自己也可能误操作你的配置——例如 3.20.0 的 Codex 供应商编辑页，即使零改动直接保存，也可能重排 config.toml、剥离通用配置、写入空命令 MCP 坏块，带来各种麻烦。用户不应该费时费力地手动维护 CCS 与你的 agents 的一致性。</p><p class="sub">- 不用碰数据库：mcp-upsert、prompt-set、skill-upsert、provider-block、provider-env、set-flags 覆盖日常操作，全部由工具代劳 - 按需维护，九个 agent 都覆盖：Codex、Claude Code、Claude Desktop、Gemini、Grok Build、OpenCode、OpenClaw、Hermes、Pi 的配置边界一次讲清；只改某一个 agent 或批量同步都可以，不用再逐个手工确认 - 先备份、后修改、再校验：备份 → 停止 CCS → 修改 → 校验 → 重启 → 复核，照着流程走就不会漏 - 自动发现路径、跨平台：支持 CCSWITCHHOME / ~/.cc-switch，Windows / macOS / Linux 通用 - 中文内容安全：UTF-8 安全读写，不再担心乱码 - 先看后改：doctor / check 只读检查环境与配置健康度，动手前先看清现状 - 主动防御误操作：check --strict / doctor --audit / repair 在写入前拦截异常、写入后校验、一键修复 CCS 造成的损坏</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/RuriLothlorien--CCSwitch-operations.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/naseridev--orven.html">
+  <span class="name"><span class="owner">naseridev/</span>orven</span>
+  <p>MCP-compatible context and memory system: paged code navigation for AI assistants, plus a recorded, verified theory of what is known about the code.</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Appllama--appllama-skills.html">
+  <span class="name"><span class="owner">Appllama/</span>appllama-skills</span>
+  <p>A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens.</p>
+  <span class="meta"><span>⭐ 5</span><span></span></span>
+</a><a class="card" href="/s/surendranb--writing-skills.html">
+  <span class="name"><span class="owner">surendranb/</span>writing-skills</span>
+  <p>Procedural writing-style skills for AI agents: official frameworks (plain language, business writing, GOV.UK, AP style, STE-100, developer docs) + character voices. Agent Plugins 1.0.0, works in openc</p>
+  <span class="meta"><span>⭐ 19</span><span>Python</span></span>
+</a><a class="card" href="/s/KernelLord--pickysteve.html">
+  <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
+  <p>Skill router and context picker for Claude Code, Cursor, and Aider. Auto-picks the right skill for every prompt, with prompt-injection filtering for MCP.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/bestdeejay-design--agent-skills.html">
+  <span class="name"><span class="owner">bestdeejay-design/</span>agent-skills</span>
+  <p>Agent Skills - 29 skills for AI agents (Sisyphus, opencode): frontend-perfection (Lighthouse audit), secret-scanner, security-review, version-bumper, commit-lint, coverage-analyzer, api-contract-testi</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/MaxFreedomPollard--engRAM.html">
+  <span class="name"><span class="owner">MaxFreedomPollard/</span>engRAM</span>
+  <p>Automatic one-click install. Encrypted, fully offline vector memory for AI agents; takes over built-in agentic memory.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
