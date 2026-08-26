@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guyao146/dsh-better-model-thinking-control — MCP Server | MCP Radar</title>
+<meta name="description" content="DSH 插件：为 OpenAI 兼容中转站按模型管理思考强度，并自动识别公开能力 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Guyao146--dsh-better-model-thinking-control.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Guyao146/dsh-better-model-thinking-control — MCP Server | MCP Radar">
+<meta property="og:description" content="DSH 插件：为 OpenAI 兼容中转站按模型管理思考强度，并自动识别公开能力 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Guyao146/dsh-better-model-thinking-control", "description": "DSH 插件：为 OpenAI 兼容中转站按模型管理思考强度，并自动识别公开能力", "codeRepository": "https://github.com/Guyao146/dsh-better-model-thinking-control", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Guyao146--dsh-better-model-thinking-control.html", "dateCreated": "2026-08-20"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Guyao146/</span>dsh-better-model-thinking-control</h1>
+<p class="sub">DSH 插件：为 OpenAI 兼容中转站按模型管理思考强度，并自动识别公开能力</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 6.0</b></div>
+  <div class="chip">created <b>2026-08-20</b></div>
+  <div class="chip">on radar since <b>2026-08-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/dsh-plugins.html">dsh-plugins</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a></div>
+<a class="btn" href="https://github.com/Guyao146/dsh-better-model-thinking-control" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/Guyao146/dsh-better-model-thinking-control" rel="noopener nofollow">Homepage ↗</a>
+<h2>About dsh-better-model-thinking-control</h2><p class="sub">DSH Web 插件：在 DSH 自身的「设置 - 插件 - 插件配置」里按中转站和模型设置思考强度，并从 OpenAI 兼容中转站自动拉取模型及公开的思考能力。</p><p class="sub">樱落生态Wiki 该项目已编写Wiki，了解项目更多细节 https://wiki.mcylyr.cn</p><p class="sub">dsh-better-model-thinking-control 是 DeepSeek Harness（DSH） 的 Web 插件，为 OpenAI 兼容中转 API 提供按模型的思考强度控制。它把配置保存到 DSH 原生 llm-pi-ai 设置中，而不是代理或篡改模型请求；因此配置即时生效，且可继续由 DSH 的模型选择器和思考档位 UI 使用。</p><p class="sub">- 接入 DSH 原生 settings.plugin.item，不修改 DSH 主仓库。 - 直接编辑 llm-pi-ai.providers..models[].reasoningEfforts，使用 DSH 原生的按模型推理能力。 - 支持 off、minimal、low、medium、high、xhigh、max，也可标记为非推理模型。 - 自动访问中转站的 OpenAI 兼容 /models 接口。 - 识别常见扩展字段：reasoningefforts、supportedreasoningefforts、thinkinglevels、reasoning.efforts 等，并保留网关自定义的 wire value。 - API Key 不写入本插件配置；探测时只通过 DSH credentials 引用读取。 - 每个模型可选择文字、图片、视频、语音输入模态；未配置时默认文字。模态选择保存在本插件的浏览器本地配置中。</p><p class="sub">重启 DSH Web 后，在设置左侧导航直接打开 「模型思考强度」。入口只出现在设置侧栏，不会在「插件」页重复显示。每个中转站都可展开/收起；自动拉取支持填写一次性 API Key（只用于本次请求，不会保存）。推理强度选项使用 Off / Minimal / Low / Medium / High / XHigh / Max。0.2.1 为每个模型增加输入模态选择：文字默认勾选，还可选择图片、视频、语音；这些模态设置保存在本插件的浏览器本地配置中。</p><p class="sub">reasoningEfforts 的键是 DSH 选择器提供的档位，值是中转站实际接受的拼写。只有 off 可以为空值，表示关闭思考时不发送协议参数。</p><p class="sub">0.1.6 起只注册设置侧栏中的独立「模型思考强度」入口，不再向「插件」页注册重复卡片；推理强度改为纯英文档位。 0.1.7 将自动识别说明移到总标题下方，只显示一次。 0.1.8 将档位勾选改为下拉多选。 0.1.9 将模型名称、强度下拉栏和删除按钮调整为同一行，并将「非推理模型」收进下拉菜单。 0.2.0 移除最外层卡片边框，仅保留中转站分组框，并固定三项控件的对齐布局。 0.2.1 增加每模型输入模态选择，文字默认勾选，配置保存在插件本地。视频和语音是插件侧能力标记，实际附件输入仍取决于 DSH 和模型适配器支持。 0.2.2 增加设置页模型搜索和主页面模型菜单搜索；模型行改为第一行模型名称/删除、第二行思考档位/输入模态。 0.2.3 修正主页面模型搜索菜单样式并保持对 DSH 原生选择逻辑的兼容。 0.2.4 使用统一三列网格对齐模型名称、删除按钮、思考档位和输入模态控件。 0.2.5 增加 Ultra 思考档位；自动拉取会保留网关返回的同模型思考档位和输入模态；中转站默认全部收起。 0.2.6 修正新增模型的 Ultra 默认档位。 0.2.7 在自动拉取时同时补全网关和 DSH 本地目录提供的思考档位、输入模态。 0.2.8 使用严格的两列网格对齐模型名称/删除与思考档位/输入模态。 </p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Guyao146--dsh-better-model-thinking-control.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/vibeinging--dsh-work.html">
+  <span class="name"><span class="owner">vibeinging/</span>dsh-work</span>
+  <p>Local-first AI workbench for DSH Plugins, combining Agent sessions, project files, data analysis, web research, MCP, and Office artifacts in an Electron desktop app.</p>
+  <span class="meta"><span>⭐ 26</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/pazz11--Jnpz.html">
+  <span class="name"><span class="owner">pazz11/</span>Jnpz</span>
+  <p>改配置+重启才能加 MCP？DeepSeek Harness (DSH) 插件「技能配置」解决：设置页粘贴 JSON 即连 MCP 服务器、热加载免重启；上传 zip/.skill 自动识别 SKILL.md，创建/编辑/启停技能，即点即用</p>
+  <span class="meta"><span>⭐ 11</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/jiezeng2004-design--dsh-chatgpt-bridge.html">
+  <span class="name"><span class="owner">jiezeng2004-design/</span>dsh-chatgpt-bridge</span>
+  <p>MCP bridge that lets ChatGPT create, view, continue, and control DeepSeek Harness (DSH) agent sessions.</p>
+  <span class="meta"><span>⭐ 9</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 151</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/kairoz9--dsh-mcp-admin.html">
+  <span class="name"><span class="owner">kairoz9/</span>dsh-mcp-admin</span>
+  <p>dsh plugin for MCP status inspection and server management | dsh 的 MCP状态查看与服务管理插件</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

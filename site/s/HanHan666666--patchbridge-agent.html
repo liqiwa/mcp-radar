@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HanHan666666/patchbridge-agent — MCP Server | MCP Radar</title>
+<meta name="description" content="Lightweight browser-side AI agent framework for legacy enterprise web apps—Java 8, Spring Boot 2, TypeScript, MCP/WebMCP, OpenAI-compatible LLMs, tool — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/HanHan666666--patchbridge-agent.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="HanHan666666/patchbridge-agent — MCP Server | MCP Radar">
+<meta property="og:description" content="Lightweight browser-side AI agent framework for legacy enterprise web apps—Java 8, Spring Boot 2, TypeScript, MCP/WebMCP, OpenAI-compatible LLMs, tool — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "HanHan666666/patchbridge-agent", "description": "Lightweight browser-side AI agent framework for legacy enterprise web apps—Java 8, Spring Boot 2, TypeScript, MCP/WebMCP, OpenAI-compatible LLMs, tool calling, streaming, audit, and persistence. 面向存量企", "codeRepository": "https://github.com/HanHan666666/patchbridge-agent", "programmingLanguage": "Java", "url": "https://mcp.liqiwa.com/s/HanHan666666--patchbridge-agent.html", "dateCreated": "2026-08-25"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">HanHan666666/</span>patchbridge-agent</h1>
+<p class="sub">Lightweight browser-side AI agent framework for legacy enterprise web apps—Java 8, Spring Boot 2, TypeScript, MCP/WebMCP, OpenAI-compatible LLMs, tool calling, streaming, audit, and persistence. 面向存量企</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/java.html"><span class="lang-dot" style="--lang:#b07219"></span><b>Java</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-25</b></div>
+  <div class="chip">on radar since <b>2026-08-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-framework.html">agent-framework</a><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/ai-assistant.html">ai-assistant</a><a class="topic" href="/topic/browser-agent.html">browser-agent</a><span class="topic">enterprise-ai</span><a class="topic" href="/topic/human-in-the-loop.html">human-in-the-loop</a><a class="topic" href="/topic/java.html">java</a><span class="topic">java8</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/openai-compatible.html">openai-compatible</a><a class="topic" href="/topic/spring-boot.html">spring-boot</a><span class="topic">spring-boot-2</span><span class="topic">sse</span><span class="topic">tool-calling</span><a class="topic" href="/topic/typescript.html">typescript</a><a class="topic" href="/topic/web-components.html">web-components</a><span class="topic">webmcp</span></div>
+<a class="btn" href="https://github.com/HanHan666666/patchbridge-agent" rel="noopener">View on GitHub ↗</a>
+<h2>About patchbridge-agent</h2><p class="sub">中文名：破补丁 Agent —— 为存量企业 Web 系统打造的轻量级 Agent 集成框架。</p><p class="sub">Browser runs Agent. Server runs Business. LLM does Reasoning.</p><p class="sub">项目状态： v0.1 源码候选阶段（v0.1.0-rc.2 已冻结）。API 可能调整；Maven / npm 公共包尚未发布，当前从源码构建。见当前状态与路线图。</p><p class="sub">PatchBridge Agent 让运行多年的 Java / Spring Boot 企业系统低成本获得 Agentic AI 能力。接入后，系统得到一个能操作真实业务的 AI 助手：用户用自然语言提出要求，Agent 调用现有的 Java 业务方法、前端页面函数和企业 MCP 服务完成任务。</p><p class="sub">- 纯客户端 Agent，服务端不保存任何 Agent 执行状态。 Agent Loop、Tool 调度、流式输出和人工确认（Human-in-the-loop）全部在用户浏览器中执行。服务端只处理短生命周期请求：转发模型调用、执行 Tool、保存会话、写审计。10,000 个在线用户对应的服务端 Agent 实例数是 0；扩容只需增加无状态副本，无需会话粘滞，无需同步 Agent 状态。 - 前端逻辑可直接注册为 Agent Tool。 页面已有的 Service 函数、API 调用和组件状态，几行代码注册成 Tool，Agent 即可直接调用，无需为此新写后端接口。 - 一个注解接入后端能力，复用现有安全体系。 Java 业务方法加上 @AiTool 即成为 Tool；认证、RBAC、业务服务、数据库原样复用；Java Core 零 Spring 依赖，Java 8 / Spring Boot 2.x 存量系统可直接接入。</p><p class="sub">能力 说明 --- --- 浏览器 Agent Runtime Agent Loop、流式输出、Tool 调度、人工确认、取消与资源上限全部在浏览器执行 后端 Tool 声明 @AiTool 注解把 Java 方法变成 Tool，参数自动生成 JSON Schema 前端 Tool 注册 页面函数注册为 Tool，直接复用前端 Service、页面状态和已有 API，不经过后端 Tool 端点 WebMCP 接入浏览器 document.modelContext 暴露的 Tool 统一 Tool Registry 四种 Tool 来源进入同一目录和命名空间；每轮执行使用不可变快照 Model Gateway 模型调用经后端转发，浏览器请求复用当前页面登录态；API Key 只存在服务端；内置 OpenAI-compatible Provider，可整体替换 MCP Gateway 企业接入的外部 MCP Server 由后端反向代理为统一 Tool，前端 Agent 直接调用；用户无需配置任何地址与凭据 会话持久化 消息与模型续接状态（ModelState）同一 revision 原子落库，跨设备恢复对话 审计与调试 服务端 Audit / Trace，浏览器 Tools Inspector 与 Call Trace 参考 Widget 开箱即用的 Web Component，三层样式定制，也可完全 Headless 自建 UI</p><p class="sub">技术栈被锁死。 大量企业系统仍运行在 Java 8 + Spring Boot 2.x 上，升级意味着回归测试整个业务系统。Spring AI 这类主流 Java AI 框架要求 JDK 17 与 Spring Boot 3.x，对老系统不友好；接入 AI 的第一步变成了技术栈升级。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/HanHan666666--patchbridge-agent.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/ultramancode--spring-ai-privacy-guardrails.html">
+  <span class="name"><span class="owner">ultramancode/</span>spring-ai-privacy-guardrails</span>
+  <p>Privacy guardrails for Spring AI: request-scoped PII tokenization and least-privilege disclosure across model/tool calls, with Presidio and JVM-local OpenNLP.</p>
+  <span class="meta"><span>⭐ 5</span><span>Java</span></span>
+</a><a class="card" href="/s/abluva--mcp-remote.html">
+  <span class="name"><span class="owner">abluva/</span>mcp-remote</span>
+  <p>The bridge for remote MCP — seamless OAuth, resilient auth recovery, production-grade reliability</p>
+  <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/BANG404--openagent.html">
+  <span class="name"><span class="owner">BANG404/</span>openagent</span>
+  <p>A modern, multi-agent desktop AI client built with Tauri, SvelteKit, and Rust.</p>
+  <span class="meta"><span>⭐ 4</span><span>Svelte</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Alex663028--pulse-agent.html">
+  <span class="name"><span class="owner">Alex663028/</span>pulse-agent</span>
+  <p>Pulse — Hermes-style self-improving AI agent. Reliability-first rebuild with evaluated skill self-evolution, multi-agent team orchestration, dialectic user modeling, and fully self-hosted default stac</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

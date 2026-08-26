@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-06</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><span class="topic">hardware</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">reasonix</span><span class="topic">reasonix-skill</span><a class="topic" href="/topic/rust.html">rust</a><span class="topic">serial</span><span class="topic">serial-port</span><span class="topic">uart</span></div>
+<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><span class="topic">hardware</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">reasonix</span><span class="topic">reasonix-skill</span><a class="topic" href="/topic/rust.html">rust</a><span class="topic">serial</span><a class="topic" href="/topic/serial-port.html">serial-port</a><span class="topic">uart</span></div>
 <a class="btn" href="https://github.com/woooooooooolf/ser2mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About ser2mcp</h2><p class="sub">UART 串口 MCP 服务器：把本地串口设备封装成标准的 MCP (Model Context Protocol) 工具，让 AI 助手（Claude Desktop、Cursor 及任何 MCP 客户端）直接读写串口。</p><p class="sub">- 9 个 MCP 工具：枚举端口、打开、运行时重配置、写、读、写+读、状态、清缓冲、关闭 - 完善的串口参数配置：波特率 / 数据位(5-8) / 校验位(none/even/odd) / 停止位(1,2) / 流控(none/software/hardware) / 读超时，均可在 uartopen / uartconfigure 中指定 - 内部参数可配置：环形缓冲大小 buffersize（默认 1 MiB）、空闲判定 idlems、单次拉取上限 maxbytes、总超时 timeoutms、读线程超时 readtimeoutms（默认 500ms，仅作读安全上限，不影响延迟） - 事件驱动/非阻塞读线程（平台适配层）：Unix（Linux/macOS）用 poll(2) + 自建管道事件驱动；Windows 用 1ms 轮询 + bytestoread() 门控 + timeBeginPeriod(1)，仅在数据就绪时 read()，读写延迟不再受读超时参数影响 - 上行数据不丢不堵：事件驱动/非阻塞读线程持续把串口数据囤积进环形缓冲；写满后覆盖最旧数据并累计溢出计数，返回值带 overflowdelta / overflowtotal，数据缺口可检测 - 二进制安全：数据以 hex 字符串传递（如 &quot;41 54 0D 0A&quot;），mode=&quot;text&quot; 可切换 UTF-8 文本 - 单二进制交付：cargo build --release 产出单个可执行文件，Windows / Linux / macOS 均无需额外运行时</p><p class="sub">也可以直接从 Releases 下载对应平台的预编译二进制（Windows / Linux / macOS）。</p><p class="sub">验证安装成功：注册后调用 uartlistports 应返回本机串口列表（可能为空数组）；若有 TX-RX 回环硬件，调用 uartexchange 发送的数据应原样返回。</p><p class="sub">Linux 用户注意：serialport 枚举 USB 端口信息依赖 libudev，编译前需先安装 Debian/Ubuntu：sudo apt-get install -y libudev-dev</p><p class="sub">MCP 客户端以 stdio 方式启动 server 子进程。通用配置（.mcp.json / Claude Desktop 等）：</p><p class="sub">Windows 示例：&quot;command&quot;: &quot;C:\\tools\\ser2mcp.exe&quot;。</p><p class="sub">Install the ser2mcp plugin package from https://github.com/woooooooooolf/ser2mcp. Use installsource with kind=&quot;auto&quot; (or &quot;plugin&quot;).</p><p class="sub">仓库根目录的 reasonix-plugin.json 将 ser2mcp 声明为标准 MCP 服务器（bin/ 内含 Windows / Linux / macOS 三平台预编译二进制与跨平台启动脚本）：</p><p class="sub">1. 在 Reasonix 中执行 installsource：源填仓库 URL https://github.com/woooooooooolf/ser2mcp，kind 用 auto（自动识别为插件包）或显式 plugin，scope 默认 global 2. Reasonix 把整个仓库复制到自己的全局插件目录（Windows 为 %APPDATA%\reasonix\plugins\ser2mcp）</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/woooooooooolf--ser2mcp.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/do-md--homekb.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/Leonezz--openbaud.html">
+  <span class="name"><span class="owner">Leonezz/</span>openbaud</span>
+  <p>Turn serial devices into reusable, auditable tools for coding agents — discover, decode, visualize, capture, and replay.</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+</a><a class="card" href="/s/do-md--homekb.html">
   <span class="name"><span class="owner">do-md/</span>homekb</span>
   <p>Local-first personal Markdown knowledge base with semantic search, AI Q&amp;A, MCP, desktop/web clients, and a self-hostable zero-data-at-rest relay.</p>
   <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
@@ -116,18 +120,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">mrpulor-gh/</span>nuphus-mcp</span>
   <p>Desktop automation MCP server — computer use for any AI agent: control screen, windows, mouse/keyboard, and Chrome via Model Context Protocol (stdio)</p>
   <span class="meta"><span>⭐ 152</span><span>Rust</span></span>
+</a><a class="card" href="/s/naw103--foremerge.html">
+  <span class="name"><span class="owner">naw103/</span>foremerge</span>
+  <p>Catch intent conflicts before code conflicts. The open-source coordination protocol for coding agents, built above Git.</p>
+  <span class="meta"><span>⭐ 15</span><span>Rust</span></span>
 </a><a class="card" href="/s/harlixay7--AgentXFlow.html">
   <span class="name"><span class="owner">harlixay7/</span>AgentXFlow</span>
   <p>Authoritative multi-agent software engineering coordinator with isolated Git worktrees, write scope locking, test verification, and serialized merge queue. (v0.1.0-beta).</p>
   <span class="meta"><span>⭐ 6</span><span>Rust</span></span>
-</a><a class="card" href="/s/menot-you--n-memory.html">
-  <span class="name"><span class="owner">menot-you/</span>n-memory</span>
-  <p>Memory your agent can trust — every answer carries its source; when it doesn&#x27;t know, it says so. Hermetic, local, MCP.</p>
-  <span class="meta"><span>⭐ 5</span><span>Rust</span></span>
-</a><a class="card" href="/s/bapho-bush--bugboard-mcp.html">
-  <span class="name"><span class="owner">bapho-bush/</span>bugboard-mcp</span>
-  <p>MCP server for the 1C Bugboard.</p>
-  <span class="meta"><span>⭐ 5</span><span>Rust</span></span>
 </a>
 
 

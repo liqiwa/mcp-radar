@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anhnv02/file-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="FileMCP is a native macOS app that gives ChatGPT controlled access to a local workspace through MCP — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/anhnv02--file-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="anhnv02/file-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="FileMCP is a native macOS app that gives ChatGPT controlled access to a local workspace through MCP — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "anhnv02/file-mcp", "description": "FileMCP is a native macOS app that gives ChatGPT controlled access to a local workspace through MCP", "codeRepository": "https://github.com/anhnv02/file-mcp", "programmingLanguage": "Swift", "url": "https://mcp.liqiwa.com/s/anhnv02--file-mcp.html", "dateCreated": "2026-08-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">anhnv02/</span>file-mcp</h1>
+<p class="sub">FileMCP is a native macOS app that gives ChatGPT controlled access to a local workspace through MCP</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/swift.html"><span class="lang-dot" style="--lang:#F05138"></span><b>Swift</b></a>
+  <div class="chip">momentum <b>▲ 12.0</b></div>
+  <div class="chip">created <b>2026-08-22</b></div>
+  <div class="chip">on radar since <b>2026-08-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent.html">agent</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/chatgpt.html">chatgpt</a><span class="topic">file</span><span class="topic">file-mcp</span><span class="topic">local</span><span class="topic">local-mcp</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-client.html">mcp-client</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><span class="topic">workflow</span></div>
+<a class="btn" href="https://github.com/anhnv02/file-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About file-mcp</h2><p class="sub">FileMCP is a native desktop app for macOS and Windows that gives ChatGPT controlled access to a local workspace through MCP. It can read and modify files, run Git operations, and—only when explicitly enabled—run local shell commands.</p><p class="sub">The MCP server stays bound to 127.0.0.1. FileMCP uses OpenAI Secure MCP Tunnel to make that local server available to supported OpenAI products without opening a public inbound port on your computer.</p><p class="sub">[!WARNING] FileMCP can modify or delete files inside the directory you choose. If command execution is enabled, it can also run processes with the permissions of your signed-in OS user. Use a narrowly scoped workspace and enable shell access only when you trust the workflow using it.</p><p class="sub">FileMCP is an independent open-source project. It is not an official OpenAI product.</p><p class="sub">- Native desktop implementations: - Swift + AppKit on macOS. - C + .NET 8 + WPF on Windows. - Equivalent MCP surface on both platforms: the same filesystem, Git, protocol, tunnel, and optional command-execution behavior. - Local MCP server listens on loopback only (127.0.0.1). - Built-in filesystem tools are restricted to one configured workspace root; optional shell commands are not OS-sandboxed. - Symlink/reparse-point and canonical-path checks protect the workspace boundary. - Git operations are available without enabling arbitrary shell execution. - Optional shell execution is off by default. - Runtime API keys are stored in the operating system credential store: - macOS Keychain. - Windows Credential Manager. - Process output, request sizes, search scope, and concurrency are b</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/anhnv02--file-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/LeastAction-Labs--LeastAction-Lite.html">
+  <span class="name"><span class="owner">LeastAction-Labs/</span>LeastAction-Lite</span>
+  <p>One platform to build, run, and operate every data workflow your team touches. Source-available, self-hosted.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/abluva--mcp-remote.html">
+  <span class="name"><span class="owner">abluva/</span>mcp-remote</span>
+  <p>The bridge for remote MCP — seamless OAuth, resilient auth recovery, production-grade reliability</p>
+  <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Dragkob--MCPhantom.html">
+  <span class="name"><span class="owner">Dragkob/</span>MCPhantom</span>
+  <p>MCPhantom is a local web dashboard for MCP endpoint recon. Discover resources, templates, tools, and prompts, then interact with them from a security console.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/NotNull92--workforge-mcp.html">
+  <span class="name"><span class="owner">NotNull92/</span>workforge-mcp</span>
+  <p>WorkForge is a Windows MCP gateway that lets ChatGPT inspect files, resume Git work, make SHA-guarded edits, read images, and run supervised PowerShell jobs.</p>
+  <span class="meta"><span>⭐ 6</span><span>PowerShell</span></span>
+</a><a class="card" href="/s/qfoldit--UNITY-TOOLBELT.html">
+  <span class="name"><span class="owner">qfoldit/</span>UNITY-TOOLBELT</span>
+  <p>102 composite editor-automation tools for Unity, exposed to AI agents through Unity&#x27;s own official MCP bridge.</p>
+  <span class="meta"><span>⭐ 5</span><span>C#</span></span>
+</a><a class="card" href="/s/qfoldit--UNIGINE-TOOLBELT.html">
+  <span class="name"><span class="owner">qfoldit/</span>UNIGINE-TOOLBELT</span>
+  <p>80 composite editor-automation tools for UNIGINE 2, exposed to AI agents via a companion MCP bridge that sits alongside UNIGINE&#x27;s own official MCPBridge Plugin.</p>
+  <span class="meta"><span>⭐ 5</span><span>C#</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
