@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ccebelenski/localagents — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP server that delegates Claude Code agent work to local models (llama.cpp / vLLM) on your own hardware — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/ccebelenski--localagents.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="ccebelenski/localagents — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP server that delegates Claude Code agent work to local models (llama.cpp / vLLM) on your own hardware — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "ccebelenski/localagents", "description": "MCP server that delegates Claude Code agent work to local models (llama.cpp / vLLM) on your own hardware", "codeRepository": "https://github.com/ccebelenski/localagents", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/ccebelenski--localagents.html", "dateCreated": "2026-08-26"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">ccebelenski/</span>localagents</h1>
+<p class="sub">MCP server that delegates Claude Code agent work to local models (llama.cpp / vLLM) on your own hardware</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 42.0</b></div>
+  <div class="chip">created <b>2026-08-26</b></div>
+  <div class="chip">on radar since <b>2026-08-27</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agents.html">agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/llama-cpp.html">llama-cpp</a><a class="topic" href="/topic/local-llm.html">local-llm</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">vllm</span></div>
+<a class="btn" href="https://github.com/ccebelenski/localagents" rel="noopener">View on GitHub ↗</a>
+<h2>About localagents</h2><p class="sub">Hand Claude Code&#x27;s grunt work to a model running on your own hardware.</p><p class="sub">localagents is an MCP server that gives Claude Code a runagent tool. Each call starts a full headless Claude Code session — same tools, same CLAUDE.md, same working tree — except its API traffic goes to a llama.cpp or vLLM server you run instead of to Anthropic. Claude writes the brief, the local model does the work, Claude reviews the result. Your Anthropic token budget goes on the parts that need it.</p><p class="sub">A 27B Qwen on one GPU is perfectly capable of &quot;add a CLI for this module and tests to match&quot;; Opus is better spent on the design conversation than on watching pytest run. Two local agents in parallel can build the two halves of a package against a pinned interface.</p><p class="sub">Status: early. It works, I use it daily, and the interface will move. It targets llama.cpp and vLLM specifically; Ollama isn&#x27;t a goal.</p><p class="sub">Three things make this more than an environment variable:</p><p class="sub">1. A registry that is probed live. models.yaml lists where servers are and a menu of model names. What each server is actually serving right now, its real context window, and how many slots are busy are discovered on every call. You bring models up and down by hand — the server never launches anything — and when Claude needs a model that isn&#x27;t running it asks you for it by name.</p><p class="sub">2. A shim between Claude Code and the backend. Claude Code sends things local chat templates reject, and local servers fail in ways Claude Code doesn&#x27;t recognise. The shim fixes both directions (details below) and writes a requests.jsonl per job so you can see exactly what we</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/ccebelenski--localagents.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/1102tools-dev--federal-contracting-agents.html">
+  <span class="name"><span class="owner">1102tools-dev/</span>federal-contracting-agents</span>
+  <p>Five packaged federal acquisition agent previews for Codex and Claude Code.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/janwilmake--agent-codemode.html">
+  <span class="name"><span class="owner">janwilmake/</span>agent-codemode</span>
+  <p>Let the scripts your coding agent writes call your connected MCP servers (no extra auth)</p>
+  <span class="meta"><span>⭐ 29</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/menot-you--n-memory.html">
+  <span class="name"><span class="owner">menot-you/</span>n-memory</span>
+  <p>Memory your agent can trust — every answer carries its source; when it doesn&#x27;t know, it says so. Hermetic, local, MCP.</p>
+  <span class="meta"><span>⭐ 5</span><span>Rust</span></span>
+</a><a class="card" href="/s/naseridev--orven.html">
+  <span class="name"><span class="owner">naseridev/</span>orven</span>
+  <p>MCP-compatible context and memory system: paged code navigation for AI assistants, plus a recorded, verified theory of what is known about the code.</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/xfloukiex-lab--pandaclip.html">
+  <span class="name"><span class="owner">xfloukiex-lab/</span>pandaclip</span>
+  <p>One local-first MCP server for agent working state — clipboard history &amp; snippets, TTL cache, file-organizer overlay, and a knowledge graph — plus a live desktop activity lens. 40 tools, SQLite everyw</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/LarryStanley--pi-delegate.html">
+  <span class="name"><span class="owner">LarryStanley/</span>pi-delegate</span>
+  <p>Delegate coding work from Claude Code to a local pi agent — MCP tools with mid-run steer/abort, plus per-project discipline hooks.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
