@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XRSec/Yance — MCP Server | MCP Radar</title>
+<meta name="description" content="Local-first AI brain for personal relationships and communication, powered by MCP｜多平台身份图谱、关系记忆、回复策略与受控自动回复 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/XRSec--Yance.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="XRSec/Yance — MCP Server | MCP Radar">
+<meta property="og:description" content="Local-first AI brain for personal relationships and communication, powered by MCP｜多平台身份图谱、关系记忆、回复策略与受控自动回复 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "XRSec/Yance", "description": "Local-first AI brain for personal relationships and communication, powered by MCP｜多平台身份图谱、关系记忆、回复策略与受控自动回复", "codeRepository": "https://github.com/XRSec/Yance", "programmingLanguage": "Kotlin", "url": "https://mcp.liqiwa.com/s/XRSec--Yance.html", "dateCreated": "2026-08-27"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">XRSec/</span>Yance</h1>
+<p class="sub">Local-first AI brain for personal relationships and communication, powered by MCP｜多平台身份图谱、关系记忆、回复策略与受控自动回复</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/kotlin.html"><span class="lang-dot" style="--lang:#A97BFF"></span><b>Kotlin</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-08-27</b></div>
+  <div class="chip">on radar since <b>2026-08-28</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">auto-reply</span><span class="topic">chat-analysis</span><span class="topic">communication-assistant</span><span class="topic">dingtalk</span><span class="topic">feishu</span><a class="topic" href="/topic/human-in-the-loop.html">human-in-the-loop</a><span class="topic">identity-graph</span><a class="topic" href="/topic/local-first.html">local-first</a><a class="topic" href="/topic/long-term-memory.html">long-term-memory</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">multi-platform</span><span class="topic">personal-ai</span><span class="topic">privacy-first</span><span class="topic">relationship-intelligence</span><span class="topic">reply-assistant</span><span class="topic">wechat</span><span class="topic">xianyu</span><span class="topic">xiaohongshu</span></div>
+<a class="btn" href="https://github.com/XRSec/Yance" rel="noopener">View on GitHub ↗</a>
+<h2>About Yance</h2><p class="sub">Yance 是一个由多个 MCP 连接器驱动的、本地优先的个人关系与沟通智能大脑。</p><p class="sub">它把散落在微信、小红书、闲鱼、钉钉、飞书等平台上的聊天放回真实的人、账号、身份、关系和场景中，帮助用户理解上下文、维护长期记忆，并生成目标和代价不同的回复策略。系统早期只提供建议并由人确认；经过持续反馈和专项验证后，用户可以对明确身份、账号、对象和场景开启受限、可审计、可随时暂停的自动回复。</p><p class="sub">A local-first relationship and communication intelligence brain that connects identities, context, memory, and controlled replies across messaging platforms.</p><p class="sub">[!IMPORTANT] Yance 当前处于 planning-only 阶段。本仓库已经包含产品、架构、安全边界、契约草案和验证计划，但还没有可安装发行版、受支持运行时或冻结的公开 API。下文描述的是已经确认的产品方向，不代表功能已经实现。详见项目状态。</p><p class="sub">- 消息分散在多个平台、多个账号和不同时间阶段； - 同一句话面对领导、客户、伴侣、朋友、长辈或晚辈，含义和合适回应完全不同； - 很难长期记住每个人的偏好、边界、历史承诺和关系变化； - 模型可以生成一段流畅文字，却不知道此刻应该以哪种身份说话，也不知道会新增什么承诺； - 自动回复工具往往直接把“模型能生成”误当成“模型有权发送”。</p><p class="sub">Yance 的目标不是代替用户社交，而是让用户在重要沟通前，看见更多上下文、可能解释、回复选择和相应代价。</p><p class="sub">现实中的一个人可能同时出现在多个平台，一个账号也可能由多人共用或暂时无法确认主体：</p><p class="sub">Yance 区分真实人物、平台账号、平台身份、关系和场景 Persona。跨平台身份关联由系统提出、用户确认；不能只因为昵称相同就自动合并，也必须允许撤销错误关联。</p><p class="sub">系统从长期互动中整理事实、观察、关系变化和沟通特征，但每个结论都有时间和关系范围。同一个人面对客户、领导、伴侣和朋友时可以呈现不同风格；一次生气、沉默或热情不能覆盖长期判断。</p><p class="sub">- 可观察到的原始信号； - 支持证据与反证； - 其他可能解释和未知项； - 用户的明确纠正； - 结论适用的人物、关系和时间范围。</p><p class="sub">- 推进结果：直接确认目标和下一步，但可能显得强势； - 维护关系：先回应情绪与立场，但解决问题的速度较慢； - 设置边界 / 降低风险：控制承诺和暴露面，但需要注意语气。</p><p class="sub">用户选择策略后再生成可编辑草稿。系统会指出润色是否改变了事实、金额、日期、责任或关系姿态，而不是只提供“正式一点”“温柔一点”的同义改写。</p><p class="sub">只有当某一身份、账号、对象范围和场景积累了足够反馈并通过验证后，用户才能主动建立自动回复授权。授权默认到期、可随时撤销；身份冲突、低置信判断、敏感关系、金额或重要承诺变化、平台风控、连接器变化和发送状态未知都会暂停自动回复并交还用户。</p><p class="sub">- 操控性沟通信号，包括通常所说的 PUA 模式； - 话里有话、试探、回避和隐含要求； - 合作、销售、资源或关系中的机会信号； - 类似“三国式”的多方关系、立场和利益变化分析。</p><p class="sub">这些能力只能输出带证据的假设、各方案的代价和验证方式，不能把推测写成对人的定罪，也不能提供利用个人弱点进行操控的建议。</p><p class="sub">场景 Yance 需要理解什么 可能提供什么 --- --- --- 微信上下级沟通 对方是直属领导、协作方还是提携者；此前是否承诺过时间 区分普通询问、进度压力与潜在风险，给出澄清、承诺或说明阻塞的不同策略 亲友与家庭 当前是伴侣、朋友、长辈还是晚辈关系；近期是否存在冲突或重要事件 在共情、直接问清和温和设界限之间展示真实取舍 闲鱼交易 使用者是</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/XRSec--Yance.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/tinhien11--tdai-memory-mcp.html">
+  <span class="name"><span class="owner">tinhien11/</span>tdai-memory-mcp</span>
+  <p>Local-first MCP memory server — Memory + CodeGraph + Wiki in one SQLite file. Tree-sitter code indexing, markdown wiki, lifecycle hooks, auto-capture. No API key, no cloud.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/tinhien11--remem-mcp.html">
+  <span class="name"><span class="owner">tinhien11/</span>remem-mcp</span>
+  <p>Long-term memory MCP server for AI coding agents. SQLite + FTS5 + vector search, CodeGraph, error learning, compaction survival. Beats Mem0 on benchmarks. No cloud, no API key.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/cinderline--northcinder.html">
+  <span class="name"><span class="owner">cinderline/</span>northcinder</span>
+  <p>Open-source MCP server for comparing products and asking the buyer before purchase.</p>
+  <span class="meta"><span>⭐ 1205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/KaichenCurry--TabNexus.html">
+  <span class="name"><span class="owner">KaichenCurry/</span>TabNexus</span>
+  <p>Turn tab overload into a local-first workspace with intent-first AI organization and Agent collaboration through MCP.</p>
+  <span class="meta"><span>⭐ 28</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

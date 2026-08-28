@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XiaoDuoYa/codex-with-chatgpt — MCP Server | MCP Radar</title>
+<meta name="description" content="ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/XiaoDuoYa--codex-with-chatgpt.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="XiaoDuoYa/codex-with-chatgpt — MCP Server | MCP Radar">
+<meta property="og:description" content="ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "XiaoDuoYa/codex-with-chatgpt", "description": "ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.", "codeRepository": "https://github.com/XiaoDuoYa/codex-with-chatgpt", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/XiaoDuoYa--codex-with-chatgpt.html", "dateCreated": "2026-08-28"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">XiaoDuoYa/</span>codex-with-chatgpt</h1>
+<p class="sub">ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 52.0</b></div>
+  <div class="chip">created <b>2026-08-28</b></div>
+  <div class="chip">on radar since <b>2026-08-28</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/chatgpt.html">chatgpt</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/oauth.html">oauth</a></div>
+<a class="btn" href="https://github.com/XiaoDuoYa/codex-with-chatgpt" rel="noopener">View on GitHub ↗</a>
+<h2>About codex-with-chatgpt</h2><p class="sub">ChatGPT thinks. Codex works. ChatGPT 负责思考，Codex 负责干活。</p><p class="sub">中文 — ChatGPT 付费订阅的网页版额度大量闲置，Codex 却在消耗紧张的 API 额度做规划和 Review。本项目把&quot;思考&quot;交给你已付费的网页版 ChatGPT， Codex 只负责执行。不用 API Key、不搞逆向代理——官方网页 + 只读 MCP 桥接。</p><p class="sub">EN — ChatGPT Plus/Pro web quota sits idle while your coding agent burns scarce API/Codex tokens on planning and review. This project moves the thinking to the subscription you already pay for; Codex only executes. No API keys, no reverse proxy — official web UI plus a read-only MCP bridge.</p><p class="sub">中文 — 把 ChatGPT 网页版变成 Codex 编码会话的&quot;规划与审查大脑&quot;，执行权 完全保留在 Codex 手里。你的仓库永远不会被上传：ChatGPT 通过一条安全的、 OAuth 保护的只读 MCP 连接，按需读取当前工作区里它真正需要的那几行代码。</p><p class="sub">EN — Use the ChatGPT web app as the planning and review brain for your Codex coding sessions, while Codex keeps full ownership of execution. Your repository is never uploaded: ChatGPT reads exactly the lines it needs through a secure, OAuth-protected, read-only MCP connection to your current workspace.</p><p class="sub">Detailed docs below are in English · 详细中文文档见 README.zh-CN.md</p><p class="sub">中文 — 不懂 git、Node、终端？完全不需要懂。把下面这段话原样复制给你的 编码 Agent（Codex），然后去倒杯咖啡：</p><p class="sub">EN — Don&#x27;t know git, Node, or terminals? You don&#x27;t need to. Copy the paragraph below, paste it to your coding agent (Codex), and go grab a coffee:</p><p class="sub">The sections below are in English. 以下详细内容为英文，中文完整版见 README.zh-CN.md。</p><p class="sub">1. Install the Codex Skill: copy skill/ to ~/.codex/skills/codex-with-chatgpt/. 2. Tell Codex: &quot;Set up Codex with ChatGPT.&quot; (中文: &quot;使用 Codex with ChatGPT 完成首次配置。&quot;) 3. Use Codex normally: &quot;Use Codex with ChatGPT to implement XXX.&quot;</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/XiaoDuoYa--codex-with-chatgpt.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Renaissance-AI-Solutions--consistorium.html">
+  <span class="name"><span class="owner">Renaissance-AI-Solutions/</span>consistorium</span>
+  <p>Local-first MCP server: give ChatGPT &amp; friends grounded, current context on the repos your coding agents work in. Live git, docs, tasks, agent handoffs.</p>
+  <span class="meta"><span>⭐ 10</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/alexanderradahl--mac-developer-bridge.html">
+  <span class="name"><span class="owner">alexanderradahl/</span>mac-developer-bridge</span>
+  <p>Give ChatGPT a real terminal on your Mac. Open-source MCP bridge for shell, files, PTY sessions, jobs, and Codex history.</p>
+  <span class="meta"><span>⭐ 22</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/alijancb--bubble-agent-mcp.html">
+  <span class="name"><span class="owner">alijancb/</span>bubble-agent-mcp</span>
+  <p>Open-source MCP server for discovering fast-growing internet conversations with Bubble Agent</p>
+  <span class="meta"><span>⭐ 34</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/janwilmake--agent-codemode.html">
+  <span class="name"><span class="owner">janwilmake/</span>agent-codemode</span>
+  <p>Let the scripts your coding agent writes call your connected MCP servers (no extra auth)</p>
+  <span class="meta"><span>⭐ 29</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/sgateway--s-gw.html">
+  <span class="name"><span class="owner">sgateway/</span>s-gw</span>
+  <p>Local credential control for AI coding agents.</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HasData/airbnb-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Airbnb MCP server by HasData: search stays and read full listing details, as JSON. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/HasData--airbnb-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="HasData/airbnb-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Airbnb MCP server by HasData: search stays and read full listing details, as JSON. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "HasData/airbnb-mcp", "description": "Airbnb MCP server by HasData: search stays and read full listing details, as JSON.", "codeRepository": "https://github.com/HasData/airbnb-mcp", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/HasData--airbnb-mcp.html", "dateCreated": "2026-08-24"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">HasData/</span>airbnb-mcp</h1>
+<p class="sub">Airbnb MCP server by HasData: search stays and read full listing details, as JSON.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 12.5</b></div>
+  <div class="chip">created <b>2026-08-24</b></div>
+  <div class="chip">on radar since <b>2026-08-28</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">airbnb</span><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/hasdata.html">hasdata</a><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/real-estate.html">real-estate</a><span class="topic">short-term-rental</span><a class="topic" href="/topic/travel.html">travel</a><span class="topic">vacation-rental</span><a class="topic" href="/topic/web-scraping.html">web-scraping</a><a class="topic" href="/topic/windsurf.html">windsurf</a></div>
+<a class="btn" href="https://github.com/HasData/airbnb-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About airbnb-mcp</h2><p class="sub">A hosted Model Context Protocol (MCP) server that gives Claude, Cursor, Windsurf and any other MCP client two read-only Airbnb tools. Search stays by location and dates, and read a single listing in full, all as structured JSON, with no Airbnb developer account and no partner approval.</p><p class="sub">It reads public listing pages that a signed-out visitor can see.</p><p class="sub">- What you need - Quick start - Example prompts - Tools - Errors and failure paths - Pricing, free tier and limits - Tool selection - How it compares - FAQ - HasData links - Development - Contributing - License</p><p class="sub">An MCP client and a HasData API key from the dashboard, free to create with no card, and the trial covers about 200 calls at the 5-credit rate. This is a remote server, so the simplest path is a URL and an x-api-key header, with no container to run and no Airbnb developer account anywhere in the flow. A client that only speaks stdio reaches it through a thin launcher, published as @hasdata/airbnb-mcp on npm and hasdata-airbnb-mcp on PyPI, shown below.</p><p class="sub">The server URL is the same for every client. We run it hands-on in Claude Code and Claude Desktop. The other blocks follow each client&#x27;s own documented format for a remote server.</p><p class="sub">Field Value :--- :--- URL https://mcp.hasdata.com/api/mcp?apis=airbnb Transport HTTP, streamable Auth header x-api-key: HASDATAAPIKEY</p><p class="sub">Clients with OAuth support can add the same URL as a connector and sign in without putting a key in a config file.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/HasData--airbnb-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/HasData--google-flights-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>google-flights-mcp</span>
+  <p>Google Flights MCP server by HasData: fares, flight legs, carbon emissions and price history, as JSON.</p>
+  <span class="meta"><span>⭐ 7</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--zillow-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>zillow-mcp</span>
+  <p>Zillow MCP server by HasData: for-sale, for-rent and sold listings and full property details, as JSON.</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--booking-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>booking-mcp</span>
+  <p>Booking.com MCP server by HasData: search stays and read full property details, as JSON.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--tiktok-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>tiktok-mcp</span>
+  <p>TikTok MCP server by HasData: public profiles, videos, comments and keyword search as JSON, over streamable HTTP.</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--google-trends-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>google-trends-mcp</span>
+  <p>Google Trends MCP server by HasData: interest over time, by region, and related queries and topics, as JSON.</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--indeed-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>indeed-mcp</span>
+  <p>Indeed MCP server by HasData: search job listings and read full postings, as JSON.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

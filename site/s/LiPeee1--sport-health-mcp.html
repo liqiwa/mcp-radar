@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiPeee1/sport-health-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Local-first MCP server for Huawei Health activity analysis — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/LiPeee1--sport-health-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="LiPeee1/sport-health-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Local-first MCP server for Huawei Health activity analysis — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "LiPeee1/sport-health-mcp", "description": "Local-first MCP server for Huawei Health activity analysis", "codeRepository": "https://github.com/LiPeee1/sport-health-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/LiPeee1--sport-health-mcp.html", "dateCreated": "2026-08-25"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">LiPeee1/</span>sport-health-mcp</h1>
+<p class="sub">Local-first MCP server for Huawei Health activity analysis</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">created <b>2026-08-25</b></div>
+  <div class="chip">on radar since <b>2026-08-28</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/LiPeee1/sport-health-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About sport-health-mcp</h2><p class="sub">一个本地优先的华为运动健康分析 MCP Server。用户只需提供一次 HUAWEIHEALTH 个人数据导出包，Agent 即可读取运动表现、运动内生理指标、 运动前后健康背景，并按需补充历史天气与空气质量。</p><p class="sub">- 识别华为个人数据导出目录及核心 JSON 文件。 - 容错解析华为非标准 JSON 数字键。 - 解析运动摘要、GPS 轨迹、心率、步频、速度、海拔和训练负荷。 - 聚合运动前一天、当天、后一天的心率、静息心率、HRV、压力、血氧和睡眠阶段。 - 调用 Open-Meteo 历史天气与空气质量 API，并在本地缓存响应。 - 通过 MCP 提供分页数据工具和报告证据包。</p><p class="sub">华为导出包不会被打包或提交，.gitignore 默认忽略所有 HUAWEIHEALTH 目录。</p><p class="sub">在支持 MCP stdio 的客户端中添加前述 command 和 env 配置，保存后重启客户端。 不同客户端的配置文件位置和外层字段名称可能不同，请以对应客户端文档为准。</p><p class="sub">- 同一台电脑：每个支持 MCP stdio 的 Agent 都可以启动同一个 Server，但需要按该 Agent 的配置格式注册一次。 - 其他用户的电脑：安装本项目、导出自己的 HUAWEIHEALTH 数据包，并把配置中的 命令和数据目录替换为自己的绝对路径。</p><p class="sub">项目不会共享作者的华为数据包。MCP Server 是通用程序，每位用户的数据仍保存在其本机。</p><p class="sub">- inspecthuaweiexport: 检查数据包完整性。 - listactivities: 列出运动。 - getactivitysummary: 查询单次运动摘要。 - getactivitytrack: 分页查询 GPS 轨迹。 - getactivitysamples: 分页查询心率、步频、速度和海拔样本。 - gethealthcontext: 查询运动前后多日健康背景。 - getactivityenvironment: 获取并缓存历史环境数据。 - getreportevidencepack: 生成供 Agent 写报告的确定性证据包。 - getreportcontract: 获取固定的报告章节、篇幅和写作约束。</p><p class="sub">建议 Agent 先调用 listactivities，选定 activityid 后优先调用 getreportevidencepack，并严格按照返回的 reportcontract 输出报告。固定格式只保留 核心判断、表现分析、身体反应和训练建议，避免复述设备应用已经展示的完整指标。 只有需要查看原始曲线或轨迹时，才调用分页明细工具。</p><p class="sub">- 原始健康数据默认仅在本机读取。 - 只有环境增强工具会访问网络，仅发送路线中心点、日期和小时范围。 - MCP 工具只读，不修改华为导出文件。 - 对外分享日志或问题报告前，应移除坐标、时间、设备标识和健康指标。 - 发布源码前不要直接压缩整个工作目录；应使用版本控制导出或发布构建产物，避免把已忽略的个人数据目录一并打包。</p><p class="sub">本项目采用 MIT License。提交安全问题前请阅读 SECURITY.md， 不要在公开 Issue 中上传真实健康数据、GPS轨迹、环境缓存或包含本地路径的日志。</p><p class="sub">- 环境数据由 Open-Meteo 提供，数据采用 CC BY 4.0，展示时必须保留来源和许可信息。 - Open-Meteo免费API仅限非商业用途并受调用配额约束。商业使用应采用其商业接口或按 官方许可自行部署，详见 Open-Meteo Terms。 - 本项目是独立社区项目，与华为官方不存在隶属、授权或背书关系。相关产品名称和商标归各自权利人所有。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/LiPeee1--sport-health-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/fellowgeek--mcp-memory.html">
+  <span class="name"><span class="owner">fellowgeek/</span>mcp-memory</span>
+  <p>An OKF-backed Model Context Protocol (MCP) server delivering persistent long-term memory and SQLite FTS5 search for AI agents.</p>
+  <span class="meta"><span>⭐ 188</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/Stupidoodle--swissdevjobs-cli.html">
+  <span class="name"><span class="owner">Stupidoodle/</span>swissdevjobs-cli</span>
+  <p>Search &amp; apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin</p>
+  <span class="meta"><span>⭐ 85</span><span>Python</span></span>
+</a><a class="card" href="/s/agents-universe--agents-universe.html">
+  <span class="name"><span class="owner">agents-universe/</span>agents-universe</span>
+  <p>让智能体像人一样学习和工作，共享智能体和项目记忆</p>
+  <span class="meta"><span>⭐ 83</span><span>Python</span></span>
+</a><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a><a class="card" href="/s/alxgntv--substack-api-mcp.html">
+  <span class="name"><span class="owner">alxgntv/</span>substack-api-mcp</span>
+  <p>MCP server for Substack posts (FastMCP + substack-api-client)</p>
+  <span class="meta"><span>⭐ 80</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
