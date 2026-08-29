@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-24</b></div>
   <div class="chip">star trend <b>3 → 4</b> since 2026-08-24</div>
 </div>
-<div class="topics"><span class="topic">agent-payments</span><span class="topic">agent-wallet</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">self-custody</span><a class="topic" href="/topic/solana.html">solana</a><span class="topic">spl-token</span><a class="topic" href="/topic/usdc.html">usdc</a><a class="topic" href="/topic/x402.html">x402</a></div>
+<div class="topics"><a class="topic" href="/topic/agent-payments.html">agent-payments</a><span class="topic">agent-wallet</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">self-custody</span><a class="topic" href="/topic/solana.html">solana</a><span class="topic">spl-token</span><a class="topic" href="/topic/usdc.html">usdc</a><a class="topic" href="/topic/x402.html">x402</a></div>
 <a class="btn" href="https://github.com/nirholas/onchain-agent-wallets" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://www.npmjs.com/package/@three-ws/onchain-agent-wallets" rel="noopener nofollow">Homepage ↗</a>
 <h2>About onchain-agent-wallets</h2><p class="sub">Give an AI agent a real Solana wallet without giving it your money.</p><p class="sub">An MCP server that hands any agent a spending allowance instead of a private key. The funds stay in an account you own. The agent gets a delegation the SPL Token program caps on-chain, plus guardrails you control, plus the ability to pay x402 APIs out of that allowance. You can revoke it in one instruction, and take the money back without asking the agent.</p><p class="sub">Nothing here is mocked: real SPL Token delegations, real Solana, real x402 settlement.</p><p class="sub">Every &quot;agent wallet&quot; today works the same way: you generate a keypair, you hand it to the agent, and now the agent has everything in it. There is no ceiling, no allowlist, no expiry, and no way to take it back short of racing the agent to move the funds. People solve this by keeping almost nothing in the wallet, which means the agent cannot do anything useful.</p><p class="sub">An allowance is the older, better answer. The money never moves to the agent. The agent gets permission to spend a slice of it, and the chain enforces the slice.</p><p class="sub">1. On-chain. The SPL Token program checks every agent-signed transfer against delegatedamount and decrements it on each spend. Our code cannot raise it. A single revoke sets it to zero. This is a stock token program feature, not a new contract to trust. 2. Local. Before this server signs anything it applies your rules: per-transaction cap, rolling 24-hour cap, recipient allowlist, x402 host allowlist, expiry, pause, and a confirm-above-this threshold that forces a human yes.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -120,14 +120,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">agentIgris/</span>AgentFund</span>
   <p>Fundraising infrastructure for AI agents on Solana — x402 payments, milestone escrow, on-chain reputation. REST + WebSocket + MCP + ACP.</p>
   <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Quidli--connect-mcp.html">
+  <span class="name"><span class="owner">Quidli/</span>connect-mcp</span>
+  <p>Identity and reputation for AI agents: resolve social handles to wallet addresses, check reputation scores, and send tokens from any MCP client.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/AIPAYagent--aipay-protocol.html">
   <span class="name"><span class="owner">AIPAYagent/</span>aipay-protocol</span>
   <p>Verifier-backed USDC escrow for AI agents: signed orders, evidence hashes, Polygon deposits, and deterministic settlement.</p>
   <span class="meta"><span>⭐ 31</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/hbhqq9--bde-score.html">
-  <span class="name"><span class="owner">hbhqq9/</span>bde-score</span>
-  <p>🏆 Open-source multi-factor stock scoring API (0-100) | US/HK/A-Share 74 stocks | Zero signup | shields.io badges | GitHub Action | EU AI Act compliant</p>
-  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
 </a>
 
 
