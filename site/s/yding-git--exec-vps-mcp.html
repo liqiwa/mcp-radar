@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yding-git/exec-vps-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="A detailed tutorial and minimal MCP server that gives AI agents an unrestricted VPS root shell. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yding-git--exec-vps-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yding-git/exec-vps-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="A detailed tutorial and minimal MCP server that gives AI agents an unrestricted VPS root shell. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yding-git/exec-vps-mcp", "description": "A detailed tutorial and minimal MCP server that gives AI agents an unrestricted VPS root shell.", "codeRepository": "https://github.com/yding-git/exec-vps-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yding-git--exec-vps-mcp.html", "dateCreated": "2026-08-30"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yding-git/</span>exec-vps-mcp</h1>
+<p class="sub">A detailed tutorial and minimal MCP server that gives AI agents an unrestricted VPS root shell.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 52.0</b></div>
+  <div class="chip">created <b>2026-08-30</b></div>
+  <div class="chip">on radar since <b>2026-08-31</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/yding-git/exec-vps-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About exec-vps-mcp</h2><p class="sub">用一个很薄的 Python MCP 服务，把 VPS 的任意 root shell 暴露给 Codex、Claude Code 或其他 MCP 客户端。</p><p class="sub">它收到一段 shell 命令，在 VPS 上以 root 身份执行，再把退出码、stdout、stderr、超时和截断状态作为结构化结果返回给 AI。</p><p class="sub">这很方便，也非常危险。连接到这个 MCP 的 AI 理论上可以读取服务器文件、修改服务、操作 Docker、防火墙和数据库，也可以执行删除或关机命令。只有在你完全控制客户端、网络入口和服务器时才应使用。</p><p class="sub">本仓库不会把 8798 直接开放到公网。默认只监听 127.0.0.1，推荐通过 SSH tunnel 使用；同机 Docker 场景可以改为私有 bridge 网络，但仍应由防火墙阻止公网访问。</p><p class="sub">服务端使用官方 MCP Python SDK v2 的 MCPServer。返回类型使用 TypedDict，SDK 会据此生成并校验结构化 output schema：</p><p class="sub">@mcp.tool() 根据 Python 类型和 docstring 自动生成工具定义；mcp.run(transport=&quot;streamable-http&quot;) 通过 HTTP 提供 MCP endpoint，默认地址为：</p><p class="sub">stdout 和 stderr 分别最多返回 1 MiB；任一路超过上限时只返回前 1 MiB，并把 truncated 设为 true。子进程输出先写入临时文件，避免把无限输出全部保存在 Python 内存或 MCP response 中。</p><p class="sub">本项目使用 MCP Python SDK v2 稳定线并约束为 mcp=2,&lt;3，使用 MCPServer API；HTTP 的 host / port 参数传给 run()。</p><p class="sub">- MCP Python SDK - MCP Python SDK v2 migration guide - Codex MCP 配置</p><p class="sub">不需要 OpenAI API Key。MCP 服务本身不调用模型；它只给已有的 Codex、Claude Code 或其他 Agent 提供工具。</p><p class="sub">不要把 SSH 私钥、root 密码或云厂商凭据粘贴到聊天、Issue、日志或公开仓库。在密钥登录验证成功前，不要关闭密码登录。</p><p class="sub">然后把客户端 URL 攡成 http://127.0.0.1:18798/mcp。</p><p class="sub">这个服务使用标准 Streamable HTTP MCP。Codex、Claude Code 和 OpenCode 都能原生连接同一个 endpoint；Pi 核心不内置 MCP，需要经过审查的扩展。</p><p class="sub">协议可以通用，客户端配置文件不能强行通用：Codex 使用 TOML，Claude Code 使用 CLI 或 .mcp.json，OpenCode 使用 opencode.json。完整换算方法、可复制配置和 Pi 的人工操作说明见：</p><p class="sub">Codex / Claude Code / OpenCode / Pi 客户端配置教程 → docs/client-setup.md</p><p class="sub">把 examples/codex-config.toml 中的配置加入 ~/.codex/config.toml：</p><p class="sub">其他客户端不要照抄这段 TOML；endpoint 仍然是 http://127.0.0.1:8798/mcp，只需换成对应客户端的配置外壳。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yding-git--exec-vps-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/fellowgeek--mcp-memory.html">
+  <span class="name"><span class="owner">fellowgeek/</span>mcp-memory</span>
+  <p>An OKF-backed Model Context Protocol (MCP) server delivering persistent long-term memory and SQLite FTS5 search for AI agents.</p>
+  <span class="meta"><span>⭐ 188</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/Stupidoodle--swissdevjobs-cli.html">
+  <span class="name"><span class="owner">Stupidoodle/</span>swissdevjobs-cli</span>
+  <p>Search &amp; apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin</p>
+  <span class="meta"><span>⭐ 92</span><span>Python</span></span>
+</a><a class="card" href="/s/agents-universe--agents-universe.html">
+  <span class="name"><span class="owner">agents-universe/</span>agents-universe</span>
+  <p>让智能体像人一样学习和工作，共享智能体和项目记忆</p>
+  <span class="meta"><span>⭐ 83</span><span>Python</span></span>
+</a><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a><a class="card" href="/s/alxgntv--substack-api-mcp.html">
+  <span class="name"><span class="owner">alxgntv/</span>substack-api-mcp</span>
+  <p>MCP server for Substack posts (FastMCP + substack-api-client)</p>
+  <span class="meta"><span>⭐ 80</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
