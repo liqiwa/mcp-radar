@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyChenSky/DBPilot.App — MCP Server | MCP Radar</title>
+<meta name="description" content="DBPilot - 自托管 SQL Server 诊断平台：性能趋势、性能洞察、Top SQL、索引诊断、阻塞/死锁分析、慢日志，内置只读 MCP Server 可接入 AI           自然语言诊断。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/SkyChenSky--DBPilot.App.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="SkyChenSky/DBPilot.App — MCP Server | MCP Radar">
+<meta property="og:description" content="DBPilot - 自托管 SQL Server 诊断平台：性能趋势、性能洞察、Top SQL、索引诊断、阻塞/死锁分析、慢日志，内置只读 MCP Server 可接入 AI           自然语言诊断。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "SkyChenSky/DBPilot.App", "description": "DBPilot - 自托管 SQL Server 诊断平台：性能趋势、性能洞察、Top SQL、索引诊断、阻塞/死锁分析、慢日志，内置只读 MCP Server 可接入 AI           自然语言诊断。", "codeRepository": "https://github.com/SkyChenSky/DBPilot.App", "programmingLanguage": "C#", "url": "https://mcp.liqiwa.com/s/SkyChenSky--DBPilot.App.html", "dateCreated": "2026-09-01"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">SkyChenSky/</span>DBPilot.App</h1>
+<p class="sub">DBPilot - 自托管 SQL Server 诊断平台：性能趋势、性能洞察、Top SQL、索引诊断、阻塞/死锁分析、慢日志，内置只读 MCP Server 可接入 AI           自然语言诊断。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/csharp.html"><span class="lang-dot" style="--lang:#178600"></span><b>C#</b></a>
+  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">created <b>2026-09-01</b></div>
+  <div class="chip">on radar since <b>2026-09-04</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/SkyChenSky/DBPilot.App" rel="noopener">View on GitHub ↗</a>
+<h2>About DBPilot.App</h2><p class="sub">自托管的 SQL Server 诊断系统，对标阿里云 DAS：持续采集性能数据，在浏览器中完成性能趋势、性能洞察、SQL 分析、索引诊断、锁与阻塞、慢日志、执行计划等日常 DBA 工作。</p><p class="sub">- 单进程部署 —— 一个 .NET 进程 + 一个平台库（SQL Server 自动建库建表），开箱即用 - 广泛兼容 —— 被监控实例支持 SQL Server 2008 ~ 2022 - 极低开销 —— 常规运行对被监控实例 ）， 把输出的哈希写入 app\appsettings.json 的 DBPilot:Auth:PasswordHash 后重启 4. 页面「实例管理」接入被监控实例（地址 + 账号密码，凭据加密存储）→ 连接测试 → 启用 5. 采集自动运行：实时类页面立即可用，历史类数据随运行时间积累</p><p class="sub">内置只读 MCP Server（/mcp，Streamable HTTP + API Key），把指标 / 慢SQL / 死锁 / 阻塞 / 索引证据以 11 个只读工具交给 AI agent。</p><p class="sub">常规运行 &lt;1% CPU、零磁盘压力。采集只读 SQL Server 内存里的元数据视图（DMV）和扩展事件文件——不扫业务表、不产生物理 IO、不对用户对象加锁。秒级 DMV 轮询是业界标准做法（SQL Server 自带 systemhealth、阿里云 DAS、AWS Performance Insights 同款路径）。</p><p class="sub">- 本仓库的 app\appsettings.json 与两个工程（DBPilot.McpConsole / DBPilot.Scenarios）的 appsettings.json 均为脱敏模板，不含任何真实凭据 - DBPilot.McpConsole / DBPilot.Scenarios 的真实凭据放各自目录的 appsettings.Local.json（已被 .gitignore 排除，程序优先读取，模板文件保持占位符不用改） - app\appsettings.json 为标准 ASP.NET 配置：本地填入真实连接串后 git status 会显示已修改——请勿提交，防止凭据外泄 - 被监控实例的连接信息在页面「实例管理」维护，加密存储于平台库，不在配置文件里 - 建议设置环境变量 DBPILOTMASTERKEY（凭据加密密钥），否则重启后需重新登录</p><p class="sub">现象 处理 ------ 启动告警 平台库结构初始化失败 检查 DBPilot:ConnectionString 与 SQL Server 可达性 打不开 5200 端口 确认 scripts\run.bat 中 ASPNETCOREURLS 端口未被占用 登录后重启就掉线 未设置 DBPILOTMASTERKEY（预期行为） 性能洞察无数据 确认实例已启用且采集正常，采样满 1 分钟后生成 死锁/慢SQL 事件看不到 事件落盘有约 1 分钟缓冲延迟，稍等后刷新 想多进程部署（采集与 Web 分开） 配置 DBPilot:Roles（Web/Collector，默认双开）；只允许一个 Collector 连同一平台库，Web 可多实例</p><p class="sub">源码与开发指南见源码仓库。本仓库仅分发可运行的发布产物（Release 构建产物 + 脱敏配置 + 启动脚本）。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/SkyChenSky--DBPilot.App.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/knx-ai--knx-ets-mcp.html">
+  <span class="name"><span class="owner">knx-ai/</span>knx-ets-mcp</span>
+  <p>MCP Server for KNX ETS 5/6 via ETS Addin</p>
+  <span class="meta"><span>⭐ 25</span><span>C#</span></span>
+</a><a class="card" href="/s/HorizunGroup--naviscoord-mcp.html">
+  <span class="name"><span class="owner">HorizunGroup/</span>naviscoord-mcp</span>
+  <p>Open-source MCP server for Autodesk Navisworks Manage 2024-2026: AI-assisted BIM clash detection, root-cause analysis, coordination plans and verified model workflows.</p>
+  <span class="meta"><span>⭐ 12</span><span>C#</span></span>
+</a><a class="card" href="/s/EMahmoudNabil--slnmap.html">
+  <span class="name"><span class="owner">EMahmoudNabil/</span>slnmap</span>
+  <p>A local knowledge graph + MCP server that gives AI coding agents a map of your .NET codebase</p>
+  <span class="meta"><span>⭐ 8</span><span>C#</span></span>
+</a><a class="card" href="/s/ryandeering--libraries-ireland-mcp.html">
+  <span class="name"><span class="owner">ryandeering/</span>libraries-ireland-mcp</span>
+  <p>An MCP server for the Libraries Ireland catalogue, to scour for interesting books, preferably in your local branch.</p>
+  <span class="meta"><span>⭐ 6</span><span>C#</span></span>
+</a><a class="card" href="/s/anurmatov--webos-mcp.html">
+  <span class="name"><span class="owner">anurmatov/</span>webos-mcp</span>
+  <p>Local-first MCP server for controlling LG webOS TVs — power, apps, browser, YouTube, inputs, media, and remote navigation.</p>
+  <span class="meta"><span>⭐ 6</span><span>C#</span></span>
+</a><a class="card" href="/s/Andes-Software-Solutions--Andes.Extensions.AI.html">
+  <span class="name"><span class="owner">Andes-Software-Solutions/</span>Andes.Extensions.AI</span>
+  <p>Composable Microsoft.Extensions.AI IChatClient middlewares for .NET — tool-call tracking with in-band streaming progress, per-tool token usage reports, and satellite packages for MCP tools and Microso</p>
+  <span class="meta"><span>⭐ 5</span><span>C#</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
