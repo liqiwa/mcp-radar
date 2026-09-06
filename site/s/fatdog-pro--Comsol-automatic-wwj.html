@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fatdog-pro/Comsol-automatic-wwj — MCP Server | MCP Radar</title>
+<meta name="description" content="作者：抖音 萌猪过河 用真实 COMSOL 计算，并让用户在 COMSOL Desktop 查看模型树和图形。读取本文件不会自动安装软件或创建连接器；运行环境由本目录随附的 `server/`、`vendor/installed-mcp/`、`pyproject.toml` 和 `scripts/` — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/fatdog-pro--Comsol-automatic-wwj.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="fatdog-pro/Comsol-automatic-wwj — MCP Server | MCP Radar">
+<meta property="og:description" content="作者：抖音 萌猪过河 用真实 COMSOL 计算，并让用户在 COMSOL Desktop 查看模型树和图形。读取本文件不会自动安装软件或创建连接器；运行环境由本目录随附的 `server/`、`vendor/installed-mcp/`、`pyproject.toml` 和 `scripts/` — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "fatdog-pro/Comsol-automatic-wwj", "description": "作者：抖音 萌猪过河 用真实 COMSOL 计算，并让用户在 COMSOL Desktop 查看模型树和图形。读取本文件不会自动安装软件或创建连接器；运行环境由本目录随附的 `server/`、`vendor/installed-mcp/`、`pyproject.toml` 和 `scripts/` 提供。保留整个目录，不能只拷贝 SKILL.md 就声称已安装 MCP。", "codeRepository": "https://github.com/fatdog-pro/Comsol-automatic-wwj", "programmingLanguage": "Unknown", "url": "https://mcp.liqiwa.com/s/fatdog-pro--Comsol-automatic-wwj.html", "dateCreated": "2026-09-05"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">fatdog-pro/</span>Comsol-automatic-wwj</h1>
+<p class="sub">作者：抖音 萌猪过河 用真实 COMSOL 计算，并让用户在 COMSOL Desktop 查看模型树和图形。读取本文件不会自动安装软件或创建连接器；运行环境由本目录随附的 `server/`、`vendor/installed-mcp/`、`pyproject.toml` 和 `scripts/` 提供。保留整个目录，不能只拷贝 SKILL.md 就声称已安装 MCP。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>7</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  
+  <div class="chip">momentum <b>▲ 70.0</b></div>
+  <div class="chip">created <b>2026-09-05</b></div>
+  <div class="chip">on radar since <b>2026-09-06</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/fatdog-pro/Comsol-automatic-wwj" rel="noopener">View on GitHub ↗</a>
+<h2>About Comsol-automatic-wwj</h2><p class="sub">用自然语言通过 MCP 驱动真实 COMSOL：建模、材料、物理场、耦合、网格、研究、求解与结果可视化。面向豆包自定义连接器及支持 MCP / SKILL.md 的其他 Agent。</p><p class="sub">一定不要使用屏幕识别，只使用 MCP 操作 COMSOL。 禁止截图定位、OCR 和鼠标键盘自动化；MPh / Java API 也必须经 MCP 工具调用。计算完成后，最后由用户手动点击 文件 → COMSOL Multiphysics Server → 从服务器导入 App，选择本次模型查看结果。</p><p class="sub">对外名称为 Comsol-Automatic-wwj；技能标识、目录及 Python 包名使用小写 comsol-automatic-wwj。</p><p class="sub">整个仓库就是一个技能目录。 根目录 SKILL.md 是 Agent 工作指南，server/ 是 MCP 运行入口，vendor/installed-mcp/ 包含原安装版 MCP 的 MIT 源码快照。必须下载完整目录；单独复制 SKILL.md 不会安装服务。</p><p class="sub">- 通过与 COMSOL Desktop 共享的服务器会话运行模型，前台查看模型树和图形。 - 提供 99 个 MCP 工具：保留安装版的建模能力，并补充会话保护、串行执行、案例任务及状态查询、HTTP 认证和可选的 Java API 代码通道。 - 提供原创三维散热器：10 W 热源、铝基座和翅片、对流换热，包含稳态、瞬态、网格细化和能量校验。 - 按物理场分类提供经典案例配方：AC/DC、声学、化学物质传递、电化学、流动、传热、光学、等离子体、射频、半导体、结构力学、数学，以及常见多物理场耦合和扩展模块。详见 案例目录。</p><p class="sub">通用 API 入口可扩展到本机有许可的 COMSOL 接口；“覆盖类别”不等于穷尽或验证全部模型组合。官方案例配方调用用户安装的 Application Library，不随包复制商业模型。每个条目都标注验证状态。COMSOL、模块许可证、Python 运行环境均需用户自行具备。</p><p class="sub">1. 将完整目录解压，安装 Python 3.11 或 3.12，以及 COMSOL。推荐先使用与本包实测一致的 COMSOL 6.2；已有可用 MCP 服务的用户继续使用原服务。 2. 按 安装与豆包连接器配置 运行 scripts/install.ps1，再启动 MCP。第一次在豆包创建 HTTP 自定义连接器，填入服务 URL 与 Bearer 请求头。新版启动脚本将 Token 保存在本机 .mcp-token，以后重启复用，无需反复改 Header；指南包含旧版迁移和 PowerShell 脚本执行策略报错的解决方法。 3. 按 豆包技能列表安装 在技能管理页选择“新建／创建 → 上传技能”，上传完整发布 ZIP；确认上传、安全检测通过及 comsol-automatic-wwj 条目可见。复制到本地文件夹不能代替这一步，也不假设存在“一键 GitHub 导入”功能。 4. 开启连接器后先说：</p><p class="sub">使用 comsol-automatic-wwj。一定不要使用屏幕识别，只使用 MCP。先检查连接，然后运行 heatsink3d 三维散热器案例，报告能量平衡与网格检查。最后告诉我本次模型名称，让我在 COMSOL 中点击“文件 → COMSOL Multiphysics Server → 从服务器导入 App”，查看模型树、温度云图和升温曲线。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/fatdog-pro--Comsol-automatic-wwj.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
