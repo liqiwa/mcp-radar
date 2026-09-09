@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HanKin666/sentaurus-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Standalone MCP server for native Sentaurus batch experiments with persistent jobs and an independent worker. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/HanKin666--sentaurus-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="HanKin666/sentaurus-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Standalone MCP server for native Sentaurus batch experiments with persistent jobs and an independent worker. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "HanKin666/sentaurus-mcp", "description": "Standalone MCP server for native Sentaurus batch experiments with persistent jobs and an independent worker.", "codeRepository": "https://github.com/HanKin666/sentaurus-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/HanKin666--sentaurus-mcp.html", "dateCreated": "2026-09-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">HanKin666/</span>sentaurus-mcp</h1>
+<p class="sub">Standalone MCP server for native Sentaurus batch experiments with persistent jobs and an independent worker.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-09-09</b></div>
+  <div class="chip">on radar since <b>2026-09-09</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">sentaurus</span><span class="topic">tcad</span></div>
+<a class="btn" href="https://github.com/HanKin666/sentaurus-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About sentaurus-mcp</h2><p class="sub">面向已经使用 Sentaurus 的半导体器件研究者。你可以让助手建立实验、提交已有脚本、查询运行进度，而不用在对话与终端之间反复复制信息。</p><p class="sub">当前版本：0.1 原型。 已通过模拟任务测试，尚未验证真实 Sentaurus 执行。使用前需要自行安装 Sentaurus 并具备有效许可证。本仓库是独立工具，不包含私人科研工作台、器件结构或实验数据。</p><p class="sub">能做什么 · 快速开始 · 怎么向助手提问 · 运行原理 · 常见问题 · 开发与验证</p><p class="sub">复制下面的指令，发给能访问本机文件、运行命令并配置 MCP 的 AI 助手。普通网页聊天窗口如果没有这些权限，只能指导你操作，不能代你安装。</p><p class="sub">第一次使用请获取 main 最新代码。 早期 v0.1.0-alpha.1 下载包不包含后来新增的诊断与连接向导。上面是给助手的操作指令，不是保证所有 LLM 都能自动完成部署。</p><p class="sub">助手会问 你提供什么 --- --- “服务器地址是什么？” 管理员给的 IP／域名；不知道就提供你已保存连接的地址栏或连接名称，遮住密码 “平时用什么软件连接？” 例如 VNC Viewer、终端或 SSH 客户端；不知道可以直接说不知道 “端口是多少？是端口还是显示编号？” 把已知值告诉助手。像 :1、:01 可能是 VNC 显示编号，需要确认实际 TCP 端口 “是否检查这个地址和端口的协议？” 同意后，向导仅检查这个端点的握手，不扫描其他端口 “用户名是什么？” SSH 通常需要 Linux 用户名；有些 VNC 连接只有密码，用户名可暂留空 “是否在本地保存连接信息？” 选择本机保存路径；配置为 .txt，密码如需保存则进入系统凭据库 “已有 SSH 权限吗？” 有就继续 SSH 配置；只有 VNC 就按下面的限制处理</p><p class="sub">只有“端口号＋密码”还不足以确定服务器，至少还需要地址。助手应帮助你找到缺少的信息，而不是反复要求你填写完整技术配置。</p><p class="sub">你可以先用向导保存连接信息，继续通过 VNC 查看 Sentaurus。当前 MCP 没有 VNC 自动控制或通过 VNC 自动部署服务器代理的功能；仅有 VNC 密码不能让后台执行器远程接通。</p><p class="sub">助手应告诉你缺的是哪一项：可用的 SSH 登录方式，或者在服务器本机运行 MCP 客户端的条件。可以把下面这句话发给管理员：</p><p class="sub">我已有 VNC 远程桌面访问，希望连接 Sentaurus MCP。请确认是否允许 SSH 登录，并提供服务器地址、SSH 端口、Linux 用户名和允许的认证方式；如果不允许 SSH，请确认能否在服务器本机运行 Python MCP 服务及客户端。</p><p class="sub">这需要助手本身具备文件访问能力。当前向导的 --load 仅支持本向导生成的配置，不自动解析所有 VNC／SSH 客户端配置。不要为此开放整台电脑或整个用户目录的读取权限。</p><p class="sub">你想完成的事 当前支持情况 --- --- 保存输入脚本，建立一个实验 支持；记录输入文件指纹，提交前检查文件是否变化 提交 SDE、SDevice 或 SVisual 批处理任务 已实现调用入口；真实软件命令需在你的安装环境验证 同时提交多个实验 支持排队和最大并行数量设置；默认一次运行一个 查看当前及历史实验 支持查询状态、阶段、进程编号和耗时 查看求解日志 支持增量读取，避免每次传回整份日志 查看产生了哪些结果文件 支持文件清单；暂不解析 TDR 或自动绘图 关闭 AI 客户端后继续计算 独立后台执行器正常运行时，任务可继续 在 Sentaurus Workbench 中直接添加原生工程或实验 尚未实现；当前保存的是批处理目录 自动判断收敛、提取击穿电压或优化器件参数 尚未实现 根据 CPU、内存和许可证自动排满资源 尚未实现；目前只限制并行任务数 打包下载、取消任务、重启后自动恢复 尚未实现</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/HanKin666--sentaurus-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/rokbenko--quackd.html">
+  <span class="name"><span class="owner">rokbenko/</span>quackd</span>
+  <p>🦆🧠 Give your small robot a brain. Tell a Microduck, a Reachy Mini, a LeRobot arm or any ROS base what you want in plain language. An LLM (Claude, OpenAI, Gemini, Grok, or a local model via Ollama, vLL</p>
+  <span class="meta"><span>⭐ 129</span><span>Python</span></span>
+</a><a class="card" href="/s/lotchuazzz-crypto--papergraph-mcp.html">
+  <span class="name"><span class="owner">lotchuazzz-crypto/</span>papergraph-mcp</span>
+  <p>Turn arXiv and LaTeX mathematical papers into theorem dependency graphs for AI agents through MCP.</p>
+  <span class="meta"><span>⭐ 102</span><span>Python</span></span>
+</a><a class="card" href="/s/Stupidoodle--swissdevjobs-cli.html">
+  <span class="name"><span class="owner">Stupidoodle/</span>swissdevjobs-cli</span>
+  <p>Search &amp; apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin</p>
+  <span class="meta"><span>⭐ 92</span><span>Python</span></span>
+</a><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

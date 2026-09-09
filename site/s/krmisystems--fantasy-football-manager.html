@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>krmisystems/fantasy-football-manager — MCP Server | MCP Radar</title>
+<meta name="description" content="ESPN draft and lineup tools for Codex and other MCP clients, with browser sign-in, approval modes, per-team limits, and server monitoring. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/krmisystems--fantasy-football-manager.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="krmisystems/fantasy-football-manager — MCP Server | MCP Radar">
+<meta property="og:description" content="ESPN draft and lineup tools for Codex and other MCP clients, with browser sign-in, approval modes, per-team limits, and server monitoring. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "krmisystems/fantasy-football-manager", "description": "ESPN draft and lineup tools for Codex and other MCP clients, with browser sign-in, approval modes, per-team limits, and server monitoring.", "codeRepository": "https://github.com/krmisystems/fantasy-football-manager", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/krmisystems--fantasy-football-manager.html", "dateCreated": "2026-09-08"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">krmisystems/</span>fantasy-football-manager</h1>
+<p class="sub">ESPN draft and lineup tools for Codex and other MCP clients, with browser sign-in, approval modes, per-team limits, and server monitoring.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>18</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 180.0</b></div>
+  <div class="chip">created <b>2026-09-08</b></div>
+  <div class="chip">on radar since <b>2026-09-09</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/browser-automation.html">browser-automation</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/codex-plugin.html">codex-plugin</a><span class="topic">espn</span><span class="topic">fantasy-draft</span><span class="topic">fantasy-football</span><span class="topic">lineup-optimization</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/monte-carlo.html">monte-carlo</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a></div>
+<a class="btn" href="https://github.com/krmisystems/fantasy-football-manager" rel="noopener">View on GitHub ↗</a>
+<h2>About fantasy-football-manager</h2><p class="sub">ESPN fantasy football draft and lineup tools for Codex and other Model Context Protocol (MCP) clients. Connect your league, sync its roster, and calculate a legal weekly lineup from current projections. The same package provides a draft assistant with continuous Monte Carlo simulations and a server coordinator for multiple teams.</p><p class="sub">The manager MCP server provides 17 tools for analysis, policy, and league state. The ESPN MCP companion provides 13 tools for browser observation and controlled draft or lineup submissions. ESPN requests use your signed-in browser session. This independent project does not supply an ESPN account or bypass sign-in. Use browser sign-in without manually copying cookies between profiles.</p><p class="sub">Run this demo with Python 3.11 or later and uv. It requires no ESPN account, Chrome session, or MCP client.</p><p class="sub">The command prints a fictional lineup report and exits without changing saved league state. The verified demo returns status: &quot;ok&quot;, liveactions: false, and a projected improvement of 5.50 points. These values describe synthetic inputs, not a measured fantasy result.</p><p class="sub">Read the developer showcase for the design, verified trials, and contribution ideas.</p><p class="sub">Authenticated sign-in, roster sync, and advisory lineup analysis are verified workflows. Start in advisory mode to inspect the recommendation before enabling live actions.</p><p class="sub">1. Install and connect both MCP servers. 2. Read the saved action modes with getmanagerconfig. 3. Keep setlineup in advisory mode for the first check. 4. Call espnconnect with your league ID, team ID, season, phase=&quot;season&quot;, and scoring week. </p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/krmisystems--fantasy-football-manager.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/NitcanKen--Codex-native-long-video-memory.html">
+  <span class="name"><span class="owner">NitcanKen/</span>Codex-native-long-video-memory</span>
+  <p>Local-first Codex plugin that indexes long videos with OCR/ASR and answers with timestamped, SHA-verified visual evidence.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/Riccardo8888--agent-link.html">
+  <span class="name"><span class="owner">Riccardo8888/</span>agent-link</span>
+  <p>An end-to-end encrypted channel between coding agents, anywhere</p>
+  <span class="meta"><span>⭐ 55</span><span>Python</span></span>
+</a><a class="card" href="/s/Alpha-Park--genpark-multi-step-web-form-fill-orchestrator-skill.html">
+  <span class="name"><span class="owner">Alpha-Park/</span>genpark-multi-step-web-form-fill-orchestrator-skill</span>
+  <p>Multi-step web form fill orchestrator with validation (Playwright / Puppeteer)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/Alpha-Park--genpark-self-healing-dom-semantic-selector-skill.html">
+  <span class="name"><span class="owner">Alpha-Park/</span>genpark-self-healing-dom-semantic-selector-skill</span>
+  <p>Self-healing DOM semantic selector resilient to class mutations (Tabbit / Stagehand)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-visual-viewport-element-occlusion-resolver-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-visual-viewport-element-occlusion-resolver-skill</span>
+  <p>Visual viewport element occlusion resolver &amp; modal dismiser (Computer Use)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

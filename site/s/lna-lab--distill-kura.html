@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-22</b></div>
   <div class="chip">star trend <b>3 → 9</b> since 2026-08-22</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/agent-memory.html">agent-memory</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><span class="topic">llm-memory</span><a class="topic" href="/topic/long-term-memory.html">long-term-memory</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/rag.html">rag</a></div>
+<div class="topics"><a class="topic" href="/topic/agent-memory.html">agent-memory</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/llm-memory.html">llm-memory</a><a class="topic" href="/topic/long-term-memory.html">long-term-memory</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/rag.html">rag</a></div>
 <a class="btn" href="https://github.com/lna-lab/distill-kura" rel="noopener">View on GitHub ↗</a>
 <h2>About distill-kura</h2><p class="sub">A long-term memory for agents that is distilled, not accumulated. Recall works by meaning, writing is gated by evidence, and one server can hold several separate memories — one per agent mode — so switching mode switches what the agent remembers.</p><p class="sub">Ships as a DeepSeek Harness plugin, an MCP server for any other host, an HTTP service, and a Python library. Standard library only; no vector database, no embeddings, no framework.</p><p class="sub">Two failures kill an agent&#x27;s long-term memory, and they kill it from opposite sides.</p><p class="sub">Retrieval by keyword misses the thing you needed. A question about &quot;SSD inference chips&quot; shares no word with a memory titled &quot;running the 2.6T model off an SSD tier&quot; — yet they are the same subject. Word search returns nothing; the agent answers from nowhere. The fix here is not embeddings but recognition: the entire index (one line per memory, written as a recognition trigger) goes into one prompt, and a small model names what bears on the question. An index of ~500 memories is around 6k tokens — a few percent of a modern context window, and it sits in the prefix cache.</p><p class="sub">Writing everything poisons the store. An agent asserts something; a naive distiller records the assertion as a fact; the next agent reads it back as ground truth and repeats it with more confidence. That loop is self-reinforcing, and prompt instructions do not stop it — measured, not assumed. So the write path is gated by deterministic Python: every candidate memory must carry quotes that exist character-for-character in the raw material, tagged with where they came from.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -124,10 +124,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">17861102832/</span>wanyimem</span>
   <p>为了服务于大众</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/rwnalds--engram.html">
-  <span class="name"><span class="owner">rwnalds/</span>engram</span>
-  <p>Self-hosted MCP server + dashboard giving Claude Code, Cursor &amp; Hermes agents shared long-term memory over a git-backed markdown vault. Agent-native, Obsidian-compatible second brain — markdown RAG, n</p>
-  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/okf-memory--okf-agent-memory.html">
+  <span class="name"><span class="owner">okf-memory/</span>okf-agent-memory</span>
+  <p>Git-native persistent memory for AI coding agents. Implements Google OKF v0.2 with sub-300µs in-memory BM25 search, embedded MCP server, and progressive disclosure. Slashes token bloat by 80% with zer</p>
+  <span class="meta"><span>⭐ 498</span><span>Go</span></span>
 </a>
 
 
