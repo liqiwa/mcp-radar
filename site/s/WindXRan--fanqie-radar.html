@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WindXRan/fanqie-radar — MCP Server | MCP Radar</title>
+<meta name="description" content="番茄小说榜单数据 · 扫榜选书工作台 · MCP Server · 开源 Agent Skill（Codex / Claude Code 一键安装）。内置真实榜单快照、内置扫榜采集、题材热度 / 趋势差分 / 仿写六维评分——AI 网文写作与数据驱动选书判断力。Fanqie novel rank d — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/WindXRan--fanqie-radar.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="WindXRan/fanqie-radar — MCP Server | MCP Radar">
+<meta property="og:description" content="番茄小说榜单数据 · 扫榜选书工作台 · MCP Server · 开源 Agent Skill（Codex / Claude Code 一键安装）。内置真实榜单快照、内置扫榜采集、题材热度 / 趋势差分 / 仿写六维评分——AI 网文写作与数据驱动选书判断力。Fanqie novel rank d — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "WindXRan/fanqie-radar", "description": "番茄小说榜单数据 · 扫榜选书工作台 · MCP Server · 开源 Agent Skill（Codex / Claude Code 一键安装）。内置真实榜单快照、内置扫榜采集、题材热度 / 趋势差分 / 仿写六维评分——AI 网文写作与数据驱动选书判断力。Fanqie novel rank data, webnovel scanning & book-selection workbench,", "codeRepository": "https://github.com/WindXRan/fanqie-radar", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/WindXRan--fanqie-radar.html", "dateCreated": "2026-09-05"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">WindXRan/</span>fanqie-radar</h1>
+<p class="sub">番茄小说榜单数据 · 扫榜选书工作台 · MCP Server · 开源 Agent Skill（Codex / Claude Code 一键安装）。内置真实榜单快照、内置扫榜采集、题材热度 / 趋势差分 / 仿写六维评分——AI 网文写作与数据驱动选书判断力。Fanqie novel rank data, webnovel scanning &amp; book-selection workbench,</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 9.5</b></div>
+  <div class="chip">created <b>2026-09-05</b></div>
+  <div class="chip">on radar since <b>2026-09-10</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent.html">agent</a><span class="topic">ai-writing</span><span class="topic">chinese-webnovel</span><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">codex-skills</span><a class="topic" href="/topic/data-analysis.html">data-analysis</a><span class="topic">fanqie</span><span class="topic">fanqie-novel</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">novel-ranking</span><span class="topic">novel-skills</span><span class="topic">novel-writing</span><span class="topic">rank-tracker</span><a class="topic" href="/topic/skills.html">skills</a><span class="topic">trend-analysis</span><span class="topic">web-dashboard</span><span class="topic">webnovel</span><span class="topic">webnovel-skills</span><span class="topic">writing-assistant</span></div>
+<a class="btn" href="https://github.com/WindXRan/fanqie-radar" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/WindXRan/fanqie-radar#readme" rel="noopener nofollow">Homepage ↗</a>
+<h2>About fanqie-radar</h2><p class="sub">番茄小说榜单 · 扫榜选书工作台 · MCP Server · 开源 Agent Skill —— 复制一个「懂网文选书的 AI 编辑」到你的写作工作流 零配置、零第三方运行时依赖，纯 Python 标准库。开箱自带当天完整真实榜单快照（女频/男频 × 阅读榜/新书榜，730+ 本书），内置极速扫榜采集器，克隆即用；一键安装为 Agent Skill（Claude Code / Codex / Cursor / Trae）。</p><p class="sub">在 Claude Code / Cursor / WorkBuddy / 任意 MCP 客户端里直接问「现在女频什么火」「这本适合仿写吗」「豪门总裁赛道最近什么套路吃香」，它就答。也可以打开自带的可视化看板，像人一样翻封面、扫书名、看在读、收藏候选、追题材热度。</p><p class="sub">关键词：番茄小说 · 番茄榜单 · 扫榜 · 网文数据 · 网文选题 · 题材热度 · 仿写选书 · AI 写作 · AI 网文写作 · 网文工具包 · MCP · Model Context Protocol · MCP Server · Agent Skill · Claude Code · Codex · 数据看板 · data analysis · webnovel</p><p class="sub">网文作者 / AI 写作从业者天天要回答三个问题：现在什么题材火？哪本书适合仿？为什么？</p><p class="sub">市面上番茄榜单爬虫一大堆，但爬完就扔给你一堆书名。真正稀缺的是选书判断力——这本能不能仿、仿出来质量天花板在哪。本项目把方寸写作跑过真金白银验证过的六维仿写选书评分模型开源出来，并包成 MCP 服务，让你的 AI 助手直接具备这套判断力——不是拍脑袋觉得「这书很火」，而是数据驱动地告诉你「这书为什么值得仿、怎么仿」。</p><p class="sub">能力 普通榜单爬虫 本仓库 --------- 榜单数据 ✅ ✅（自备快照，附示例数据） 题材热度聚合 偶尔 ✅ 跨榜强信号（新书即爆款） ❌ ✅ 多日趋势差分 ❌ ✅ 仿写适合度评分 ❌ ✅ 六维 + 加成，数据驱动 可视化扫榜看板 ❌ ✅ 接入 AI 助手（MCP） ❌ ✅ 上手成本 要配数据源 零配置，装完即用</p><p class="sub">评分模型是核心资产，不是拍脑袋的硬规则——维度权重、阈值都来自实测反馈（详见下方「评分模型」）。</p><p class="sub">1. 核心库不内置版权正文。 包内附的是公开榜单元数据快照（书名/作者/在读/分类/封面，采集自番茄小说公开榜单页）；不提供、不内嵌任何小说正文。真实数据可随时用自带采集器刷新，见下方「扫榜采集」。 2. 不提供「下载整本小说」能力。 MCP 只返回 bookid / url，让你自己去处理。 3. MCP 对外投影不返回 intro 简介全文 / cover 版权图 URL（书目只含：bookid、标题、作者、品类、在读、状态、章节数、url）。本地看板点击书名可看简介——渲染的是用户本地自有快照，按需单本拉取，不经仓库分发、不进 MCP。</p><p class="sub">不装包也能直接跑：python -m fanqieindex.mcpserver。</p><p class="sub">开箱即带当天完整真实快照（女频/男频 × 阅读榜/新书榜，730+ 本书）——克隆下来就能跑通全部工具和看板：</p><p class="sub">把你的榜单快照放进 ./data/ 目录（或任意目录，设 FANQIEINDEXDATADIRS 指过去）。命名规范见下方「数据格式规范」。</p><p class="sub">内置采集器直接解析番茄小说公开榜单页（HTTP 请求 + 页面数据提取，标准库 urllib，无 Playwright、无浏览器、零第三方依赖），把数据保存为本地 JSON 快照。全站 4 个榜（女频/男频 × 阅读榜/新书榜，74 个分类）仅需约 1 分钟。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/WindXRan--fanqie-radar.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/xinvxueyuan--NovelAI-Image-MCP.html">
+  <span class="name"><span class="owner">xinvxueyuan/</span>NovelAI-Image-MCP</span>
+  <p>MCP server for integrating NovelAI Image generation into AI agents.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/shubham303--meelu-analytics-mcp.html">
+  <span class="name"><span class="owner">shubham303/</span>meelu-analytics-mcp</span>
+  <p>Ask your AI assistant real questions about your data and get answers you can rely on — an MCP server with 45 analysis tools that pick the right statistical method themselves and tell you how much to t</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/aethrox--doctrine.html">
+  <span class="name"><span class="owner">aethrox/</span>doctrine</span>
+  <p>Software engineering discipline grounded in named primary standards (OWASP, ITIL, IETF RFCs, ISO, BABOK, SBAR, and more), shipped as a Claude Code plugin and an MCP server.</p>
+  <span class="meta"><span>⭐ 18</span><span>Astro</span></span>
+</a><a class="card" href="/s/jarvis-intelligence--jarvis-index.html">
+  <span class="name"><span class="owner">jarvis-intelligence/</span>jarvis-index</span>
+  <p>Public distribution surface for jarvis — local-first code intelligence MCP server (SCIP navigation + Zoekt search). Installer, Claude Code / Codex / Cursor plugins, and prebuilt binaries.</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/motif-Labs--motif.html">
+  <span class="name"><span class="owner">motif-Labs/</span>motif</span>
+  <p>Coding agents are single-player: each session starts cold, in its own tool, blind to what the rest of the team already worked out. Motif makes your team&#x27;s multiplayer — every Claude Code, Codex and Cu</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Stupidoodle--swissdevjobs-cli.html">
+  <span class="name"><span class="owner">Stupidoodle/</span>swissdevjobs-cli</span>
+  <p>Search &amp; apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin</p>
+  <span class="meta"><span>⭐ 92</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
