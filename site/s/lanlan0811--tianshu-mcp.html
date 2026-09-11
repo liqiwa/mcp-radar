@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lanlan0811/tianshu-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="天枢 × AI-Agent 编排 MCP server：把 其他AI-Agent 当作执行工人，自动完成「开发 → 验收 → 失败返修 → 再验收」闭环。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/lanlan0811--tianshu-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="lanlan0811/tianshu-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="天枢 × AI-Agent 编排 MCP server：把 其他AI-Agent 当作执行工人，自动完成「开发 → 验收 → 失败返修 → 再验收」闭环。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "lanlan0811/tianshu-mcp", "description": "天枢 × AI-Agent 编排 MCP server：把 其他AI-Agent 当作执行工人，自动完成「开发 → 验收 → 失败返修 → 再验收」闭环。", "codeRepository": "https://github.com/lanlan0811/tianshu-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/lanlan0811--tianshu-mcp.html", "dateCreated": "2026-09-07"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">lanlan0811/</span>tianshu-mcp</h1>
+<p class="sub">天枢 × AI-Agent 编排 MCP server：把 其他AI-Agent 当作执行工人，自动完成「开发 → 验收 → 失败返修 → 再验收」闭环。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 13.3</b></div>
+  <div class="chip">created <b>2026-09-07</b></div>
+  <div class="chip">on radar since <b>2026-09-11</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><span class="topic">tianshu-harness</span></div>
+<a class="btn" href="https://github.com/lanlan0811/tianshu-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://lanaiw.top" rel="noopener nofollow">Homepage ↗</a>
+<h2>About tianshu-mcp</h2><p class="sub">由天枢（Tianshu）当作标准 MCP server 接入，调度外部 AI-Agent（Codex CLI；TraeWork/TRAE SOLO CN 经 CDP 驱动桌面 UI）完成 项目开发 → 验收 → 失败返修 → 再验收 的闭环（架构可横向扩展）。</p><p class="sub">天枢官方仓库：github.com/huiliyi37/Tianshu-harness —— 基于 harness 工程的终端编程智能体运行时（TUI × GUI），本 MCP 作为其 MCP server 接入。</p><p class="sub">天枢的角色是总指挥；本 MCP server 是调度层 + 执行面 + 客观验收仪；外部 AI-Agent（Codex CLI、TraeWork GUI）是执行开发的「工人」。</p><p class="sub">- 9 个 MCP 工具：runtask / continuetask / querytask / listtasks / gettaskreport / canceltask / verifytask / reworktask / getprofiles。 - 异步契约：runtask 秒回 taskId，长任务用 querytask 轮询（长任务不卡 tools/call）。 - 客观验收：自动命令检查（typecheck/lint/test/build，缺则跳过 + 技术栈推导）+ 程序化代码分析（变更清单/diffstat/TODO·debugger·密钥形态等可疑标记），全部相对 git 基线，不自动 commit/stash。 - 失败返修闭环：自动返修（autoFixRounds）+ 手动 reworktask；验收失败时自动生成修复计划文件并回填给 agent；轮次用尽 → needsattention 等天枢裁决。 - 两种执行面：driver: &quot;spawn&quot; 走外部 CLI 子进程（Codex）；driver: &quot;gui&quot; 由显式 adapter 驱动桌面 UI（TraeWork 与 ZCode 各自使用隔离的 CDP 流程）。 - 调度纪律：每项目串行队列 + 全局并发上限（默认 2，可配）。 - 不碰密钥：各 agent 用自己的登录态；本 server 不保存/转发任何 API key。 - 可扩展：新 agent = 一个 profile（数据）+（如需）一个 adapter 文件，零改编排核心。</p><p class="sub">项 要求 ------ Node.js ≥ 20（CI 覆盖 20 / 22 / 24） 包管理器 npm（仓库含 package-lock.json） 操作系统 Windows / macOS / Linux（CI 三平台矩阵验证） Git 可选；验收的基线分析在 git 仓库内更完整</p><p class="sub">数据目录默认 ~/.tianshu-mcp，可用环境变量 TIANSHUMCPHOME 覆盖；首次启动自动创建。</p><p class="sub">天枢「设置 → MCP 服务器 → 添加」，按下面填写即可（传输方式选 stdio（本地进程））：</p><p class="sub">字段 npm 分发（推荐） 本地开发 --------- 服务器 ID tianshu-mcp tianshu-mcp 传输方式 stdio（本地进程） stdio（本地进程） 命令 npx node 参数（空格分隔） -y tianshu-mcp /dist/index.js</p><p class="sub">- 服务器 ID 即工具前缀：填 tianshu-mcp 后工具名为 mcptianshu-mcpruntask 等 9 个。 - 参数按空格分隔填写，不要加引号；本地开发模式请把 换成真实绝对路径（如 D:/Trae项目/tianshu-mcp/dist/index.js）。 - 界面未提供环境变量输入框；如需自定义数据目录，改用下面的 config.json 方式设置 TIANSHUMC</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/lanlan0811--tianshu-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/mkpoli--gmail-mcp.html">
+  <span class="name"><span class="owner">mkpoli/</span>gmail-mcp</span>
+  <p>Multi-account Gmail MCP server on Cloudflare Workers — one deployment, one Google sign-in per connection, any MCP client</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/ZeroDayEvil--ai-security-tool.html">
+  <span class="name"><span class="owner">ZeroDayEvil/</span>ai-security-tool</span>
+  <p>Free open-source AI-powered security terminal &amp; vulnerability scanner (CVE, SBOM). Supports SSH, SFTP, RDP, VNC, Serial, and 12+ autonomous AI agents (DeepSeek, OpenAI) for automated security workflow</p>
+  <span class="meta"><span>⭐ 8</span><span>HTML</span></span>
+</a><a class="card" href="/s/russeell--jobfindsme.html">
+  <span class="name"><span class="owner">russeell/</span>jobfindsme</span>
+  <p>🔥 AI 求职雷达｜一句话同时搜 BOSS直聘 + 猎聘，找到匹配你简历的岗位。</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/codeztech-atique--500-AI-Agents-Projects.html">
+  <span class="name"><span class="owner">codeztech-atique/</span>500-AI-Agents-Projects</span>
+  <p>The 500 AI Agents Projects is a curated collection of AI agent use cases across various industries. It showcases practical applications and provides links to open-source projects for implementation, i</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/anshupriyan--cli-bridge.html">
+  <span class="name"><span class="owner">anshupriyan/</span>cli-bridge</span>
+  <p>MCP server for Claude Desktop and other Model Context Protocol clients — sandboxed filesystem access (read/write/edit/search) plus Dev Mode-gated shell command execution, scoped to a single workspace </p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Techthos--gomukit.html">
+  <span class="name"><span class="owner">Techthos/</span>gomukit</span>
+  <p>Prebuilt, interactive HTML widgets for MCP Apps in Go — data tables and forms, self-contained in a single binary, host-themed, spec-compliant.</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -92,23 +92,19 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>4</b> stars</div>
   <div class="chip">⑂ <b>0</b> forks</div>
   <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
-  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">momentum <b>▲ 13.3</b></div>
   <div class="chip">created <b>2026-09-07</b></div>
   <div class="chip">on radar since <b>2026-09-10</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a></div>
+<div class="topics"><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><span class="topic">nonead</span><span class="topic">teradyne</span><span class="topic">universal-robots</span></div>
 <a class="btn" href="https://github.com/NoneadChina/dsh-nonead-universal-robots" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://www.nonead.com" rel="noopener nofollow">Homepage ↗</a>
 <h2>About dsh-nonead-universal-robots</h2><p class="sub">A DeepSeek Harness (DSH) plugin that lets you control Universal Robots (UR) collaborative arms directly from natural language, developed by Suzhou Nonead Robot Technology Co., Ltd. based on the same logic as the company&#x27;s own nUR MCP Server. (Suzhou Nonead Robot Technology Co., Ltd.)</p><p class="sub">This plugin shares the same ancestry as the company&#x27;s Nonead-Universal-Robots-MCP (see &quot;Reference implementation&quot; below). It exposes the &quot;control a UR robot with AI&quot; capability as native DSH tools: the plugin starts a persistent Python worker (which internally reuses the vendored URBasic library), and tools talk to the robot through that worker. After a single connect, you can keep issuing commands to the same IP.</p><p class="sub">⚠️ Safety notice: this plugin drives a real robotic arm directly. Always keep the robot in sight, keep the emergency stop within reach, and keep the workspace clear of people/obstacles. Treat it with the same care as granting the bash tool. You (or the model) bear full responsibility for any motion command.</p><p class="sub">🛡️ Motion approval gate: commands that physically move the arm or run a program — urmovej / urmovel / urmovexyz / urdraw / urloadprogram / urrunprogram / ursendscript / urreseterror — pause and wait for human confirmation before being sent to the robot. In an interactive deployment (approval policy ask) a confirmation dialog is shown in the UI; a call made without an approval service or without an agent fails closed (the command is rejected) and never moves without approval. Set requireApprovalForMotion: false to disable this gate.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/NoneadChina--dsh-nonead-universal-robots.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/lna-lab--distill-kura.html">
-  <span class="name"><span class="owner">lna-lab/</span>distill-kura</span>
-  <p>蒸留蔵 — distilled long-term memory for agents: recall by meaning, writing gated by evidence, one kura per agent mode. Ships as a DeepSeek Harness plugin and an MCP server.</p>
-  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
-</a><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
   <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
   <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
   <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
@@ -120,14 +116,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">vibeinging/</span>dsh-work</span>
   <p>Local-first AI workbench for DSH Plugins, combining Agent sessions, project files, data analysis, web research, MCP, and Office artifacts in an Electron desktop app.</p>
   <span class="meta"><span>⭐ 26</span><span>JavaScript</span></span>
-</a><a class="card" href="/s/huey1in--reef.html">
-  <span class="name"><span class="owner">huey1in/</span>reef</span>
-  <p>DSH 插件全家桶:浏览器自动化 + MCP Server + GitHub/GitLab 自动评审 + 原生嵌入面板 | One install, five modules for DeepSeek Harness: browser automation, MCP server, GitHub &amp; GitLab automation, native in-app panel</p>
-  <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/PerryLink--dsh-mcp-panel.html">
   <span class="name"><span class="owner">PerryLink/</span>dsh-mcp-panel</span>
   <p>MCP management console for the official DeepSeek Harness MCP client: /mcp command with health diagnostics and pipeline trial calls, a Settings MCP tab with server CRUD (approval-gated writes, automati</p>
   <span class="meta"><span>⭐ 14</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Smalldy--godot-bridge.html">
+  <span class="name"><span class="owner">Smalldy/</span>godot-bridge</span>
+  <p>DSH (DeepSeek Harness) plugin that launches and drives a running Godot 4.x game through its in-game TCP interaction server — replaces the godot-mcp MCP server with native agent tools.</p>
+  <span class="meta"><span>⭐ 12</span><span>GDScript</span></span>
+</a><a class="card" href="/s/oomol-lab--dsh-oomol.html">
+  <span class="name"><span class="owner">oomol-lab/</span>dsh-oomol</span>
+  <p>OOMOL Connector for DeepSeek Harness—discover connected apps and execute Actions through progressive MCP discovery without exposing provider credentials.</p>
+  <span class="meta"><span>⭐ 11</span><span>TypeScript</span></span>
 </a>
 
 
