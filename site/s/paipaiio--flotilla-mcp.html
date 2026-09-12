@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>paipaiio/flotilla-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Multi-server SSH MCP server: fleet fan-out with rolling execution + circuit breakers, cross-host diffing, policy engine with approval gates, tmux sess — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/paipaiio--flotilla-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="paipaiio/flotilla-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Multi-server SSH MCP server: fleet fan-out with rolling execution + circuit breakers, cross-host diffing, policy engine with approval gates, tmux sess — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "paipaiio/flotilla-mcp", "description": "Multi-server SSH MCP server: fleet fan-out with rolling execution + circuit breakers, cross-host diffing, policy engine with approval gates, tmux sessions, YAML workflows, and tamper-evident audit log", "codeRepository": "https://github.com/paipaiio/flotilla-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/paipaiio--flotilla-mcp.html", "dateCreated": "2026-09-11"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">paipaiio/</span>flotilla-mcp</h1>
+<p class="sub">Multi-server SSH MCP server: fleet fan-out with rolling execution + circuit breakers, cross-host diffing, policy engine with approval gates, tmux sessions, YAML workflows, and tamper-evident audit log</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 50.0</b></div>
+  <div class="chip">created <b>2026-09-11</b></div>
+  <div class="chip">on radar since <b>2026-09-12</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/paipaiio/flotilla-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About flotilla-mcp</h2><p class="sub">target 表达式 · rolling 执行带熔断 · 跨机比对 · 策略引擎 + 审批门 · 可篡改检测的审计日志</p><p class="sub">Flotilla 把&quot;逐台 SSH 20 台机器&quot;变成&quot;声明一次意图，安全地执行&quot;。它让 AI agent 通过 MCP 协议接管你的整个服务器舰队——但每一步都有策略引擎、审批门和审计链兜底。</p><p class="sub">- 为什么是 Flotilla - 功能亮点 - 28 个工具 - 快速开始 - Target 表达式 - 安全模型 - 远程配置与热重载 - Docker - 路线图 - 贡献 - License</p><p class="sub">大多数 SSH MCP 工具解决的是&quot;让 AI 操作一台服务器&quot;。Flotilla 从第一天就是舰队视角设计的：</p><p class="sub">- 一次调用，命中整个舰队——target 表达式（group:prod、tag:web !web-3、all）把一条命令扇出到 N 台机器 - 执行有战术——并行求快、串行求稳、rolling + 熔断求安全：批次失败自动停，不会把好机器一起拖下水 - 比对是一等公民——fleet-diff 一条命令告诉你全舰队的版本/配置是否漂移 - 安全不是开关是默认值——策略矩阵、审批门、哈希链审计全部默认开启，关掉要写进配置里 - 配置能集中管——放 Git 私有仓库，各端定时拉取 + 热重载，50 台机器改一处</p><p class="sub">- 🎯 Target 表达式寻址 — group:prod !web-3、tag:web,tag:arm、all，先 fleet-resolve 预演再执行 - 🚦 三种扇出策略 — 并行、串行、rolling（批次失败自动熔断，prod 破坏性操作默认 rolling） - 🛡️ 六层安全模型 — 永禁清单、角色×层级矩阵、资源白名单、审批门（MCP elicitation 弹窗 + JIT 免批）、哈希链审计、命令配额 - 🤖 AI 辅助审批 — 破坏性命令触发审批时，本地 LLM 先生成风险评估卡（只做建议，永不做判决；提示注入防护内置） - 🔍 跨机比对 — fleet-diff 比命令输出，fleet-diff-file 按 sha256 比文件/目录 - 📦 SFTP 批量分发/收集 — fleet-push / fleet-pull，按机路径白名单 - 🔁 服务器间直传 — fleet-copy / fleet-sync：A→B 经控制机内存中转，服务器之间不用互通、不用互配 SSH 密钥 - 🖥️ tmux 持久会话 — 断连不死，MCP server 重启也不死 - 🩺 零依赖体检 — doctor 一键全舰队 HEALTHY/WARN/CRIT - ⚙️ systemd 全家桶 — 服务状态、日志、启停重载，带服务白名单 - 🔄 YAML 工作流 — 多步骤编排、变量插值、失败回滚 - ➕ 一行加机器 — fleet add --bootstrap 一次性密码首连自动装公钥，新机器零准备入网；fleet-add 探测主机、钉死 host key、热重载生效 - ☁️ 配置集中管理 — 配置放 Git 私有仓库，各端定时拉取 + 热重载 - 🐳 Docker 双架构 — amd64 + arm64（树莓派友好），非 root 运行</p><p class="sub">工具 说明 ------ fleet-list 一览服务器/分组/标签/层级/角色 fleet-resolve 预演 target 表达式，跑之前先看清命中哪些机器 fleet-add 加机器：探测（hostname/uid/tmux/host key）→ 钉 key → 追加配置 → 热重载 config-pull / config-reload 远程配置拉取（强制审批）/ 本地热重载 fleet-grants 查看 / 一键清空活跃的 JIT 免批授权</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/paipaiio--flotilla-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/XiaoDuoYa--codex-with-chatgpt.html">
+  <span class="name"><span class="owner">XiaoDuoYa/</span>codex-with-chatgpt</span>
+  <p>ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.</p>
+  <span class="meta"><span>⭐ 2301</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/halofyai--halofy.html">
+  <span class="name"><span class="owner">halofyai/</span>halofy</span>
+  <p>Halofy is the open access and governance layer for AI agents across your organization. Identity, policy, provenance, audit, and signed erasure.</p>
+  <span class="meta"><span>⭐ 440</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/OpenLabs-so--openanalytics.html">
+  <span class="name"><span class="owner">OpenLabs-so/</span>openanalytics</span>
+  <p>Open-source, privacy-first and cookieless web analytics with revenue attribution and an MCP server.</p>
+  <span class="meta"><span>⭐ 217</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/noskillish--bankmcp.html">
+  <span class="name"><span class="owner">noskillish/</span>bankmcp</span>
+  <p>BankMCP™: your AI can now read your bank. Self-hosted, read-only MCP server for your own bank accounts via open banking (Enable Banking). Standard MCP; tested with Claude and Ollama.</p>
+  <span class="meta"><span>⭐ 193</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 151</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
