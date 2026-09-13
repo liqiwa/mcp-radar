@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>carnet-mcp/carnet — MCP Server | MCP Radar</title>
+<meta name="description" content="An MCP tool. Connect your assistant to /mcp and every tool call goes through a broker — scoped per caller, under a credential they never hold, revocab — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/carnet-mcp--carnet.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="carnet-mcp/carnet — MCP Server | MCP Radar">
+<meta property="og:description" content="An MCP tool. Connect your assistant to /mcp and every tool call goes through a broker — scoped per caller, under a credential they never hold, revocab — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "carnet-mcp/carnet", "description": "An MCP tool. Connect your assistant to /mcp and every tool call goes through a broker — scoped per caller, under a credential they never hold, revocable, metered and audited.", "codeRepository": "https://github.com/carnet-mcp/carnet", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/carnet-mcp--carnet.html", "dateCreated": "2026-09-08"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">carnet-mcp/</span>carnet</h1>
+<p class="sub">An MCP tool. Connect your assistant to /mcp and every tool call goes through a broker — scoped per caller, under a credential they never hold, revocable, metered and audited.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-09-08</b></div>
+  <div class="chip">on radar since <b>2026-09-13</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/audit-log.html">audit-log</a><span class="topic">broker</span><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/oauth2.html">oauth2</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/security.html">security</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a></div>
+<a class="btn" href="https://github.com/carnet-mcp/carnet" rel="noopener">View on GitHub ↗</a>
+<h2>About carnet</h2><p class="sub">One safe door between everything AI in your company and the tools it reaches.</p><p class="sub">Things in your company now call tools on their own. A coding assistant like Claude Code or Cursor. An agent your team built. A workflow in n8n or LangChain. A script with an LLM in the middle. Anything that speaks MCP, and increasingly everything does.</p><p class="sub">To let one read your Jira or open a pull request, somebody installs a connector and pastes in an API token — on a laptop, in a container, in a CI secret.</p><p class="sub">That token now sits somewhere nobody tracks. Nobody knows it exists, nobody can take it back, and nothing records what it did.</p><p class="sub">Fifty people means fifty credentials you did not issue, cannot revoke and cannot audit. When somebody leaves, their token keeps working.</p><p class="sub">Carnet puts one endpoint in the middle. Every assistant, agent and automation points at it instead of at the tool. The credential lives in Carnet, not wherever the thing is running.</p><p class="sub">Now you can answer the questions you could not answer before: who can reach what, what did they actually do, and how do I turn this off for one person — without touching anybody&#x27;s machine.</p><p class="sub">It does not run your agents. They stay where they are — a laptop, your cluster, a vendor&#x27;s cloud. Carnet only handles the tool calls they make, which is why it works the same for a coding assistant you did not build and an agent you did.</p><p class="sub">Every call takes the same path, and every one of them is written down.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/carnet-mcp--carnet.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a><a class="card" href="/s/CTRLRun--ctrlrun.html">
+  <span class="name"><span class="owner">CTRLRun/</span>ctrlrun</span>
+  <p>The execution safety layer for AI agents.</p>
+  <span class="meta"><span>⭐ 14</span><span>Python</span></span>
+</a><a class="card" href="/s/Vangardo--unity-mcp-efficient.html">
+  <span class="name"><span class="owner">Vangardo/</span>unity-mcp-efficient</span>
+  <p>Token-efficient facade and Codex skill for MCP for Unity: 96% smaller measured tool-schema surface, compact results, batching, and recovery.</p>
+  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a><a class="card" href="/s/chris-asmussen--warden.html">
+  <span class="name"><span class="owner">chris-asmussen/</span>warden</span>
+  <p>One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent&#x27;s context tiny. Migrate your Claude Code MCPs/skills behind it.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-role-playing-autonomous-agent-crew-orchestrator-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-role-playing-autonomous-agent-crew-orchestrator-skill</span>
+  <p>Role-playing autonomous agent orchestrator managing crews (CrewAI style)</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-realtime-neural-3d-mesh-pbr-texture-generator-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-realtime-neural-3d-mesh-pbr-texture-generator-skill</span>
+  <p>Real-time neural 3D asset generator and PBR texture synthesizer (Luma Genie style)</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
