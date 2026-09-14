@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sleepyquq/xiangsu-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="像塑 MCP | AI Agent scene editing, scripting and playtesting for Douyin Xiangsu 9.4. Effect House compatibility unverified. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/sleepyquq--xiangsu-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="sleepyquq/xiangsu-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="像塑 MCP | AI Agent scene editing, scripting and playtesting for Douyin Xiangsu 9.4. Effect House compatibility unverified. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "sleepyquq/xiangsu-mcp", "description": "像塑 MCP | AI Agent scene editing, scripting and playtesting for Douyin Xiangsu 9.4. Effect House compatibility unverified.", "codeRepository": "https://github.com/sleepyquq/xiangsu-mcp", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/sleepyquq--xiangsu-mcp.html", "dateCreated": "2026-09-08"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">sleepyquq/</span>xiangsu-mcp</h1>
+<p class="sub">像塑 MCP | AI Agent scene editing, scripting and playtesting for Douyin Xiangsu 9.4. Effect House compatibility unverified.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 6.0</b></div>
+  <div class="chip">created <b>2026-09-08</b></div>
+  <div class="chip">on radar since <b>2026-09-14</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">ar</span><span class="topic">douyin</span><span class="topic">editor-automation</span><span class="topic">effect-house</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/typescript.html">typescript</a><span class="topic">xiangsu</span></div>
+<a class="btn" href="https://github.com/sleepyquq/xiangsu-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About xiangsu-mcp</h2><p class="sub">让 AI Agent 通过 Model Context Protocol（MCP）操作抖音像塑：编辑场景、绑定素材、初始化 TypeScript 脚本、编译、截图和验证交互。</p><p class="sub">Xiangsu MCP is an independent MCP server for the Douyin Xiangsu AR effect editor. It exposes scene editing, asset binding, TypeScript scripting, compilation, preview screenshots and interactive playtesting to MCP clients. Verified target: Windows + Xiangsu 9.4.0. International TikTok Effect House compatibility is not verified.</p><p class="sub">- 项目版本：0.2.0，使用 Node.js 和 stdio MCP，编辑器侧通过用户插件桥接。 - 当前提供 105 个工具入口；入口数量包含兼容入口和明确未接入的云端入口，不代表 105 项均已实测。 - 独立社区项目，非字节跳动、抖音或 TikTok 官方产品。不宣称完整替代官方 Agent / Ask AI。 - 安装 · 功能与验证状态 · AI 使用指引 · English quick start</p><p class="sub">“已实测”指在像塑 9.4.0 的测试副本中完成相应操作并读回、编译或检查真实预览；不表示该工具的全部参数组合均已覆盖。详细证据范围见 9.4 验证记录。</p><p class="sub">能力 当前实现 验证情况 --------- 会话与工程发现 查询已打开工程，按 projectPath / sessionId 绑定操作 已验证；同工程多窗口需指定会话 场景读写 sceneSpec 实时场景读取；sceneOps 平铺 DSL，创建、修改、显隐与读回 文字、图片、布局、颜色、对齐、贴图等已实测；复杂父级变换待验证 脚本开发 setupGameScript 初始化、依赖同步、序列化资源字段绑定 挂载、编译失败与修复、Texture / Material 绑定已实测 编译与日志 官方编译器、日志分页、错误返回 已实测；失败不会伪装成成功 试玩与状态 playLifecycle / playStep / playState 等，开始、暂停、重启、结束 Game2D 就绪、真实运行帧、重启隔离、结束恢复已实测 预览与录像 截图、触摸、动作切换、MP4 录制 截图、触摸、张嘴/握拳/挥手、非空 MP4 已实测；拖拽等未逐项验证 音频输入模拟 模拟音高、音量、关键词检测结果，确认接收并清空 已实测；这是检测输入模拟，不生成声音 工程文件 限定路径读写、SHA256 覆盖保护、备份 自动化测试覆盖；不允许直接覆盖主场景文件 本地素材处理 图片裁剪、压缩、静态 SVG 转 PNG 有本地测试覆盖；完整生成素材到最终预览链路待验证 代码查询 基于 TypeScript 的本地符号查询 有本地测试覆盖；不是官方私有 CKG 引擎 原生命令映射 71 个 eh 本地命令入口 尚未逐项实测；预制件、包导入、复杂材质、物理和快照等仍需专项回归 官方资料读取 从本机安装目录提供 Skill、API 和资源说明 按需通过 MCP resources 读取，不附带官方文档包 官方云端生成 7 个图片/音频生成及等待任务入口 未接入，返回 OFFICIALCLOUDBACKENDNOTADAPTED</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/sleepyquq--xiangsu-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/anshupriyan--cli-bridge.html">
+  <span class="name"><span class="owner">anshupriyan/</span>cli-bridge</span>
+  <p>MCP server for Claude Desktop and other Model Context Protocol clients — sandboxed filesystem access (read/write/edit/search) plus Dev Mode-gated shell command execution, scoped to a single workspace </p>
+  <span class="meta"><span>⭐ 12</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/NotNull92--workforge-mcp.html">
+  <span class="name"><span class="owner">NotNull92/</span>workforge-mcp</span>
+  <p>WorkForge is a Windows MCP gateway that lets ChatGPT inspect files, resume Git work, make SHA-guarded edits, read images, and run supervised PowerShell jobs.</p>
+  <span class="meta"><span>⭐ 6</span><span>PowerShell</span></span>
+</a><a class="card" href="/s/dhavanikgithub--chartbrew-mcp.html">
+  <span class="name"><span class="owner">dhavanikgithub/</span>chartbrew-mcp</span>
+  <p>Chartbrew + AI agents. MCP server exposing Chartbrew&#x27;s documented API: teams, connections, datasets, dashboards, charts, live queries, and secure embedding. TypeScript · stdio · restricted/unrestricte</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/ictinnovations--pbx-mcp.html">
+  <span class="name"><span class="owner">ictinnovations/</span>pbx-mcp</span>
+  <p>MCP server for Asterisk and FreeSWITCH. Lets AI assistants inspect channels, SIP registrations, trunk status and dialplan on a live PBX.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/cinderline--northcinder.html">
+  <span class="name"><span class="owner">cinderline/</span>northcinder</span>
+  <p>Open-source MCP server for comparing products and asking the buyer before purchase.</p>
+  <span class="meta"><span>⭐ 1205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/sv-number--mcp-server.html">
+  <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
+  <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
+  <span class="meta"><span>⭐ 598</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

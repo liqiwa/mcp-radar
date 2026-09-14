@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wlmosv-png/apk-index — MCP Server | MCP Radar</title>
+<meta name="description" content="零依赖的本地 APK/AAR/DEX 结构索引 + MCP Server。17 个工具，为 Xposed 模块开发提供静态反查。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/wlmosv-png--apk-index.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="wlmosv-png/apk-index — MCP Server | MCP Radar">
+<meta property="og:description" content="零依赖的本地 APK/AAR/DEX 结构索引 + MCP Server。17 个工具，为 Xposed 模块开发提供静态反查。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "wlmosv-png/apk-index", "description": "零依赖的本地 APK/AAR/DEX 结构索引 + MCP Server。17 个工具，为 Xposed 模块开发提供静态反查。", "codeRepository": "https://github.com/wlmosv-png/apk-index", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/wlmosv-png--apk-index.html", "dateCreated": "2026-09-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">wlmosv-png/</span>apk-index</h1>
+<p class="sub">零依赖的本地 APK/AAR/DEX 结构索引 + MCP Server。17 个工具，为 Xposed 模块开发提供静态反查。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>7</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 19.5</b></div>
+  <div class="chip">created <b>2026-09-10</b></div>
+  <div class="chip">on radar since <b>2026-09-14</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/android.html">android</a><span class="topic">apk</span><span class="topic">dex</span><a class="topic" href="/topic/llm.html">llm</a><span class="topic">lsposed</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">repl</span><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><span class="topic">smali</span><a class="topic" href="/topic/static-analysis.html">static-analysis</a><span class="topic">xposed</span></div>
+<a class="btn" href="https://github.com/wlmosv-png/apk-index" rel="noopener">View on GitHub ↗</a>
+<h2>About apk-index</h2><p class="sub">apk-index —— Android 逆向 / Xposed 模块开发用的 APK 索引 MCP Server</p><p class="sub">静态索引 APK / split APK / AAR / 裸 dex / vdex / compact-dex，给 Agent 提供 「查类、查成员、查签名、查字符串、查交叉引用、生成 hook 起手块」的只读能力。 纯 Python 3 标准库（zipfile / sqlite3 / struct / json / hashlib），stdio 上说 MCP JSON-RPC 2.0。</p><p class="sub">运行要求 - Python = 3.10，无第三方依赖 - 可选：JDK 的 javac（AAR fixture）与 javap（.class 交叉校验）；缺省时用内置 tools/classwrite.py 兜底 - 只读挂载：索引写 APKINDEXCACHE（默认 ~/.cache/apk-index），永不写源文件</p><p class="sub">- HTTP：客户端 initialize 后回传 MCP-Session-Id 请求头 → 每个客户端一个 owner；不带头的老客户端归 default（兼容）。 - stdio：每个进程随机 owner（可用环境变量 APKINDEXOWNER 固定）。 - CLI：APKINDEXOWNER 或 cli。</p><p class="sub">隔离语义：sessionList 只显示本客户端的会话；unload 只解除自己的引用， 索引文件全局共享（同一包只建一次索引，多客户端 load 命中缓存）， 最后一个引用者释放时才删文件。跨进程写索引有文件锁（.lock）， 两个客户端同时索引同一新包不会互相踩。</p><p class="sub">APKINDEXALLOWEDROOTS（冒号分隔）是路径白名单，越界一律 INVALIDPATH —— 防止越权读宿主隐私文件。</p><p class="sub">23 个工具 分类 工具 一句话 --------- 装载 loadApk APK(+split 目录) → 会话；返回指纹 / manifest 摘要 / 组件 / 加固探测 装载 loadAar classes.jar + R.txt + consumer-rules.pro + jni/\/.so，可 mergeInto 并进 App 会话 装载 loadDex 裸 classes.dex / vdex / compact-dex，可追加进已有会话 会话 sessionList / stats / unload 忘了 sessionId 先 list；stats 看体量；unload 删登记（keepFiles 可选） 查询 searchClasses exact / prefix / regex，scope=appliball，packageFilter 查询 listMembers 类内方法与字段，include 走 namePattern 查询 getSignature 一个类或成员 → smali / reflector / java / helper-ktx 四形态 + hook 起手块 + 注解（含 visibility） 查询 searchByString 常量字符串反查方法（contains/exact/regex，按命中数聚合排序） 查询 findImplementations 接口实现 / 父类子类，含传递继承链 查询 xref callers / callees，depth 控制跳数 代码 decompile outline（骨架）/ smali / java，maxLines 截断 生成 matchSignature 只给结构条件（参数个数/类型/返回值/引用字符串）→ 候选成员 + 可粘 DSL 生成 diffSessions 两版本差分：exact-structure / s</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/wlmosv-png--apk-index.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/lm060719--reconbridge.html">
+  <span class="name"><span class="owner">lm060719/</span>reconbridge</span>
+  <p>通用逆向分析 KernelSU 模块：手机侧只做原子能力，智能全在 PC 侧（Claude Code + MCP）。仅限授权安全研究与教育用途。</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/frangelbarrera--code-review-agent-mcp.html">
+  <span class="name"><span class="owner">frangelbarrera/</span>code-review-agent-mcp</span>
+  <p>AI code review agent MCP server. Reviews code like a kernel maintainer: blunt, technical, no sugarcoating. Detects bugs + OWASP Top 10 security vulnerabilities. 4 harshness levels. Anti-RLHF.</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/Morningstar202604--agentseed-mcp.html">
+  <span class="name"><span class="owner">Morningstar202604/</span>agentseed-mcp</span>
+  <p>Anti-hallucination gate for AI coding agents — 8 MCP tools catch invented APIs (17 languages), fake &quot;all tests pass&quot; claims, and slopsquatting packages before they ship. Zero-dependency Agent Plugins </p>
+  <span class="meta"><span>⭐ 22</span><span>Python</span></span>
+</a><a class="card" href="/s/whoisqwerz--pocket_disasm.html">
+  <span class="name"><span class="owner">whoisqwerz/</span>pocket_disasm</span>
+  <p>Multi-session IDALib MCP router for coding agents. Analyze multiple binaries in parallel with IDA-compatible reverse engineering tools.</p>
+  <span class="meta"><span>⭐ 21</span><span>Python</span></span>
+</a><a class="card" href="/s/CTRLRun--ctrlrun.html">
+  <span class="name"><span class="owner">CTRLRun/</span>ctrlrun</span>
+  <p>The execution safety layer for AI agents.</p>
+  <span class="meta"><span>⭐ 14</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
