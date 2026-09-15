@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jinpy666/dbx-plugin-ssh — MCP Server | MCP Radar</title>
+<meta name="description" content="DBX SSH &amp; SFTP plugin: secure terminal, SFTP, MCP automation, and guarded server operations. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/jinpy666--dbx-plugin-ssh.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="jinpy666/dbx-plugin-ssh — MCP Server | MCP Radar">
+<meta property="og:description" content="DBX SSH &amp; SFTP plugin: secure terminal, SFTP, MCP automation, and guarded server operations. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "jinpy666/dbx-plugin-ssh", "description": "DBX SSH & SFTP plugin: secure terminal, SFTP, MCP automation, and guarded server operations.", "codeRepository": "https://github.com/jinpy666/dbx-plugin-ssh", "programmingLanguage": "HTML", "url": "https://mcp.liqiwa.com/s/jinpy666--dbx-plugin-ssh.html", "dateCreated": "2026-09-14"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">jinpy666/</span>dbx-plugin-ssh</h1>
+<p class="sub">DBX SSH &amp; SFTP plugin: secure terminal, SFTP, MCP automation, and guarded server operations.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>17</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/html.html"><span class="lang-dot" style="--lang:#e34c26"></span><b>HTML</b></a>
+  <div class="chip">momentum <b>▲ 172.0</b></div>
+  <div class="chip">created <b>2026-09-14</b></div>
+  <div class="chip">on radar since <b>2026-09-15</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/jinpy666/dbx-plugin-ssh" rel="noopener">View on GitHub ↗</a>
+<h2>About dbx-plugin-ssh</h2><p class="sub">DBX SSH 终端（DBX SSH Terminal）是面向现代运维团队的服务器终端：打开一个连接，就能完成终端操作、 文件传输、跳板访问、受控提权和 MCP 自动化。它把“登录服务器之后的下一小时”压缩成 一个连贯、可审计、可复用的工作流。</p><p class="sub">SSH Terminal · SFTP · Remote Operations：终端、文件、自动化和受控运维操作集中在一个 DBX 终端面板中。</p><p class="sub">如果你正在工具之间来回切换：终端一个窗口、SFTP 一个窗口、跳板机靠配置文件、 自动化又要另写脚本，那么 DBX SSH &amp; SFTP 的价值很直接——连接、终端、文件和自动化 都围绕同一个 DBX 连接上下文工作。</p><p class="sub">你要完成的事 DBX SSH &amp; SFTP 给你的体验 --- --- 快速处理线上问题 PTY 终端、命令历史、快速命令、可取消命令和目录跟随 安全地传文件 SFTP 预览、拖放、断点确认、进度、取消和原子替换 进入私网服务器 最多三跳 ProxyJump、连接保活和 Known Hosts 校验 限制高风险操作 只读模式、sudo 来源选择、命令白名单和宿主 secret binding 把重复工作自动化 MCP 工具复用连接、审批和权限边界</p><p class="sub">- 日常 Linux/Unix 服务器巡检、日志查看和远程命令执行。 - 通过跳板机访问内网环境，并在终端与 SFTP 之间快速切换。 - 在受控权限下完成配置文件、脚本和构建产物的上传下载。</p><p class="sub">- 支持密码、私钥、SSH Agent、键盘交互和无密码认证。 - 交互式终端支持 PTY、窗口调整、会话恢复、剪贴板、远程目录跟随和批量输入。 - SFTP 支持浏览、排序、预览、上传、下载、重命名、新建、拖放和递归删除；聚焦 SFTP 面板后按 Ctrl/Cmd+V，可把系统剪贴板中的本地文件直接上传到当前目录。 - 大文件传输支持进度、取消、断点确认和原子替换，降低中断造成的半成品风险。 - 支持 Known Hosts 校验、变更主机密钥拒绝、只读模式和远程目录磁盘用量查看。 - 支持最多三跳 ProxyJump、连接保活、可取消远程命令、chmod 和 Quick Sudo。 - 支持 TOTP/键盘交互式双因素认证，以及面向自动化客户端的 MCP 工具接口。 - 界面支持简体中文、繁体中文、英语、西班牙语、意大利语、日语和葡萄牙语。</p><p class="sub">系统剪贴板文件粘贴使用宿主/浏览器提供的原生 paste 文件事件；若当前宿主不暴露该事件，仍可使用 Upload 按钮或拖放上传。</p><p class="sub">完整的能力矩阵和与 OpenSSH、Tabby、Termius、FinalShell 等方案的定位对比见 特性与竞品对比。</p><p class="sub">协议路线：当前版本聚焦 SSH/SFTP 运维；RDP、Telnet 等协议支持仍在持续加强， 后续会逐步补齐更多远程访问场景，请以对应版本发布说明为准。</p><p class="sub">插件内置 31 个 MCP 工具——远程命令、sudo 提权、SFTP 文件、服务器指标、告警分诊—— 让 AI 编码代理（ZCode、Claude 等任何 MCP 客户端）在你的权限边界内操作服务器。 支持两种接入方式：</p><p class="sub">方式一：DBX MCP 桥（推荐）。DBX 的 MCP 服务器内置 dbxlistplugintools / dbxcallplugintool 两个通用桥工具，可发现并调用已装插件的全部 MCP 工具。 传 connectionId 即引用 DBX 已保存的 SSH 连接，凭据由 DBX 解析转发， 工具参数中不出现任何密码，审批、sudo 白名单与只读模式照常生效。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/jinpy666--dbx-plugin-ssh.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/walkererik1991--energyplus-idf-mcp-server.html">
+  <span class="name"><span class="owner">walkererik1991/</span>energyplus-idf-mcp-server</span>
+  <p>Python Model Context Protocol server for EnergyPlus building energy simulation. Inspect, change, validate, visualize, and simulate building models through structured tools, with stdio and streamable H</p>
+  <span class="meta"><span>⭐ 38</span><span>HTML</span></span>
+</a><a class="card" href="/s/caleb-rossvtf8117--arch-ai-tools-service-hub.html">
+  <span class="name"><span class="owner">caleb-rossvtf8117/</span>arch-ai-tools-service-hub</span>
+  <p>Arch AI Tools is a unified Node.js interface for AI services, data access, automation, and utility operations, with a native MCP server for building connected tool workflows in 2026.</p>
+  <span class="meta"><span>⭐ 36</span><span>HTML</span></span>
+</a><a class="card" href="/s/sandbaseai--deepseek-harness-handbook.html">
+  <span class="name"><span class="owner">sandbaseai/</span>deepseek-harness-handbook</span>
+  <p>Independent, source-backed handbook for DeepSeek AI&#x27;s official DeepSeek Harness (dsh): agents, plugins, security, troubleshooting, and runbooks.</p>
+  <span class="meta"><span>⭐ 29</span><span>HTML</span></span>
+</a><a class="card" href="/s/henryrjbennett4328--devmanager-dev-process.html">
+  <span class="name"><span class="owner">henryrjbennett4328/</span>devmanager-dev-process</span>
+  <p>DevManager v2026 is a native macOS menu bar utility for managing local development processes, with live server output, system resource monitoring, port availability checks, conflict detection, and MCP</p>
+  <span class="meta"><span>⭐ 24</span><span>HTML</span></span>
+</a><a class="card" href="/s/bar181--bar-observatory.html">
+  <span class="name"><span class="owner">bar181/</span>bar-observatory</span>
+  <p>Deterministic, local-only audit reports for Claude Code AI agent sessions. Rust + SQLite. Zero network calls. MCP server for agents.</p>
+  <span class="meta"><span>⭐ 18</span><span>HTML</span></span>
+</a><a class="card" href="/s/ZeroDayEvil--ai-security-tool.html">
+  <span class="name"><span class="owner">ZeroDayEvil/</span>ai-security-tool</span>
+  <p>🛡️ Free open-source AI-powered security terminal &amp; vulnerability scanner (CVE, SBOM). Supports SSH, SFTP, RDP, VNC, Serial, and 12+ autonomous AI agents (DeepSeek, OpenAI) for automated security workf</p>
+  <span class="meta"><span>⭐ 17</span><span>HTML</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

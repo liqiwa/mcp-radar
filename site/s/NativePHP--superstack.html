@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NativePHP/superstack — MCP Server | MCP Radar</title>
+<meta name="description" content="Open-source Laravel starter with Filament, NativePHP SuperNative, and MCP — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/NativePHP--superstack.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="NativePHP/superstack — MCP Server | MCP Radar">
+<meta property="og:description" content="Open-source Laravel starter with Filament, NativePHP SuperNative, and MCP — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "NativePHP/superstack", "description": "Open-source Laravel starter with Filament, NativePHP SuperNative, and MCP", "codeRepository": "https://github.com/NativePHP/superstack", "programmingLanguage": "PHP", "url": "https://mcp.liqiwa.com/s/NativePHP--superstack.html", "dateCreated": "2026-09-12"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">NativePHP/</span>superstack</h1>
+<p class="sub">Open-source Laravel starter with Filament, NativePHP SuperNative, and MCP</p>
+<div class="chips">
+  <div class="chip">⭐ <b>45</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  <a class="chip" href="/lang/php.html"><span class="lang-dot" style="--lang:#4F5D95"></span><b>PHP</b></a>
+  <div class="chip">momentum <b>▲ 231.0</b></div>
+  <div class="chip">created <b>2026-09-12</b></div>
+  <div class="chip">on radar since <b>2026-09-15</b></div>
+  
+</div>
+<div class="topics"><span class="topic">filamentphp</span><a class="topic" href="/topic/laravel.html">laravel</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">nativephp</span><span class="topic">nativephp-mobile</span><span class="topic">nativephp-web</span><a class="topic" href="/topic/php.html">php</a></div>
+<a class="btn" href="https://github.com/NativePHP/superstack" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://nativephp.com" rel="noopener nofollow">Homepage ↗</a>
+<h2>About superstack</h2><p class="sub">Open-source Laravel starter kit with Filament, NativePHP SuperNative, and Laravel MCP.</p><p class="sub">Piece Package --- --- Laravel laravel/framework Admin filament/filament (panel at /admin) API auth laravel/sanctum — wired, not demoed Mobile / SuperNative nativephp/mobile Native UI nativephp/mobile-ui Web UI (browser EDGE) nativephp/web-ui MCP server laravel/mcp — no auth added</p><p class="sub">- PHP 8.4+ (Herd recommended) - Composer - Node (optional, for Vite) - Xcode / Android Studio for native runs (NativePHP Mobile v4 environment)</p><p class="sub">In Herd’s site creation wizard, choose a community / custom starter kit and enter nativephp/superstack.</p><p class="sub">Create a Filament admin user with the Filament installation docs (php artisan make:filament-user).</p><p class="sub">With Laravel Herd, the site is available at http://my-app.test (or whatever you named the project).</p><p class="sub">- Home (SuperNative via Web UI): http://superstack.test - Admin panel: http://superstack.test/admin - API: Sanctum is installed (routes/api.php) — wired for token auth, not demoed with sample endpoints beyond /api/user</p><p class="sub">Routes live in routes/ai.php. No authentication is configured on the MCP server — fine for local exploration, not production-ready as-is.</p><p class="sub">- Web: POST /mcp/superstack - Local: php artisan mcp:start superstack</p><p class="sub">Starter tool: app-info (App\Mcp\Tools\AppInfoTool) — returns app + package versions.</p><p class="sub">See the Laravel MCP docs for servers, tools, and auth options.</p><p class="sub">Home is a SuperNative screen (Route::native). On a phone, NativePHP Mobile v4 renders it natively; in the browser, Web UI renders the same Blade as HTML.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/NativePHP--superstack.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Heyosseus--sloppy.html">
+  <span class="name"><span class="owner">Heyosseus/</span>sloppy</span>
+  <p>Laravel-aware static analysis for the debt AI coding agents leave behind. 24 rules, git-diff review, a Rector and Pint fix pass, Pest expectations, CI annotations, agent rulesets and an MCP server. De</p>
+  <span class="meta"><span>⭐ 15</span><span>PHP</span></span>
+</a><a class="card" href="/s/tmolavi--mcp-agent-skills-hub.html">
+  <span class="name"><span class="owner">tmolavi/</span>mcp-agent-skills-hub</span>
+  <p>Molavi Agent Skills: Curated AI agent skills and MCP configs for Antigravity, Cursor, Codex &amp; Claude — by Taghi Molavi</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/justadityaraj--shim-mcp.html">
+  <span class="name"><span class="owner">justadityaraj/</span>shim-mcp</span>
+  <p>WordPress MCP server plugin, live on WordPress.org. Connect Claude Code, Cursor, or any MCP client to WordPress over stdio (WP-CLI) or HTTP. 56 abilities, self-contained, no cloud.</p>
+  <span class="meta"><span>⭐ 47</span><span>PHP</span></span>
+</a><a class="card" href="/s/balatD--typo3-dev-mcp.html">
+  <span class="name"><span class="owner">balatD/</span>typo3-dev-mcp</span>
+  <p>MCP server for TYPO3 v13/v14 development — gives AI assistants like Claude Code live insight into TCA, database schema, sites, TypoScript, logs and the core changelog.</p>
+  <span class="meta"><span>⭐ 4</span><span>PHP</span></span>
+</a><a class="card" href="/s/laraXgram--Mcp.html">
+  <span class="name"><span class="owner">laraXgram/</span>Mcp</span>
+  <p>Build MCP servers for your LaraGram applications.</p>
+  <span class="meta"><span>⭐ 4</span><span>PHP</span></span>
+</a><a class="card" href="/s/wppilot-labs--wppilot.html">
+  <span class="name"><span class="owner">wppilot-labs/</span>wppilot</span>
+  <p>WordPress MCP server for Claude, Cursor, Codex and Copilot. 103 typed abilities in the free plugin: posts, pages, Gutenberg blocks, media, menus, taxonomies, plugins and themes, with OAuth 2.1, safety</p>
+  <span class="meta"><span>⭐ 3</span><span>PHP</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
