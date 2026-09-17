@@ -89,15 +89,15 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 <h1><span class="owner">Shalimov04/</span>mcp-airlock</h1>
 <p class="sub">Stateless governance proxy for MCP (2026-07-28): policy, dry-run, human confirmation, audit, tracing</p>
 <div class="chips">
-  <div class="chip">⭐ <b>23</b> stars</div>
-  <div class="chip">⑂ <b>1</b> forks</div>
+  <div class="chip">⭐ <b>24</b> stars</div>
+  <div class="chip">⑂ <b>2</b> forks</div>
   <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
-  <div class="chip">momentum <b>▲ 117.0</b></div>
+  <div class="chip">momentum <b>▲ 84.0</b></div>
   <div class="chip">created <b>2026-09-13</b></div>
   <div class="chip">on radar since <b>2026-09-16</b></div>
-  
+  <div class="chip">star trend <b>23 → 24</b> since 2026-09-16</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-safety.html">ai-safety</a><a class="topic" href="/topic/audit-log.html">audit-log</a><a class="topic" href="/topic/guardrails.html">guardrails</a><a class="topic" href="/topic/human-in-the-loop.html">human-in-the-loop</a><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">policy-as-code</span><a class="topic" href="/topic/proxy.html">proxy</a><a class="topic" href="/topic/security.html">security</a></div>
+<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-safety.html">ai-safety</a><a class="topic" href="/topic/audit-log.html">audit-log</a><a class="topic" href="/topic/guardrails.html">guardrails</a><a class="topic" href="/topic/human-in-the-loop.html">human-in-the-loop</a><a class="topic" href="/topic/llm-security.html">llm-security</a><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-gateway.html">mcp-gateway</a><span class="topic">mcp-proxy</span><a class="topic" href="/topic/mcp-security.html">mcp-security</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">policy-as-code</span><a class="topic" href="/topic/proxy.html">proxy</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/security.html">security</a></div>
 <a class="btn" href="https://github.com/Shalimov04/mcp-airlock" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://pypi.org/project/mcp-airlock/" rel="noopener nofollow">Homepage ↗</a>
 <h2>About mcp-airlock</h2><p class="sub">mcp-airlock is a proxy you put between an AI agent and an MCP server when the server can do things you don&#x27;t want an agent doing on its own. It speaks the 2026-07-28 revision of the protocol (the stateless one: no session, no initialize, one POST per request) and adds the parts the protocol leaves to you: who is allowed to call what, dry runs by default, a human in the loop for dangerous calls, an audit trail and tracing.</p><p class="sub">It is deliberately small. There is no UI, no policy language beyond flat YAML, no MCP SDK of its own. The whole proxy is one Starlette app plus a few helper modules.</p><p class="sub">The agent sends a normal tools/call to the proxy instead of the server. The proxy:</p><p class="sub">1. Works out who is calling. That comes from a JWT (Authorization: Bearer) or, if you run it behind a gateway that already did the authentication, from an X-Airlock-Principal header. It is never taken from the request body. No principal, no call. 2. Looks the tool up in the policy. Tools that are not listed are refused. Listed tools have a risk tier per environment, so the same deleteservice can be free in dev and gated in prod. 3. Depending on the tier: L0 (read) goes straight through. L1 (suggest) always goes through with dryrun: true, whatever the agent asked for. L2 (confirm) goes through with dryrun: true first, and the result comes back to the agent as inputrequired with a description of what would happen and a signed requestState. When a person says yes, the agent repeats the call with that state and the proxy executes it for real, once. Repeating it again is refused. L3 (auto) goes through as sent. 4.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -112,22 +112,22 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">carnet-mcp/</span>carnet</span>
   <p>An MCP tool. Connect your assistant to /mcp and every tool call goes through a broker — scoped per caller, under a credential they never hold, revocable, metered and audited.</p>
   <span class="meta"><span>⭐ 4</span><span>Python</span></span>
-</a><a class="card" href="/s/Morningstar202604--AgentSeed.html">
-  <span class="name"><span class="owner">Morningstar202604/</span>AgentSeed</span>
-  <p>Anti-hallucination guardrails for AI coding agents - hybrid Skill + MCP server (6 tools) that verifies code before it is marked done. Works with Claude Code, Cursor, VS Code, Copilot.</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/HasData--web-scraping-mcp.html">
-  <span class="name"><span class="owner">HasData/</span>web-scraping-mcp</span>
-  <p>MCP server for HasData&#x27;s Web Scraping API: fetch any public URL through managed proxies, render JavaScript when needed, and get markdown, text, HTML or structured JSON. From 1 credit a call.</p>
-  <span class="meta"><span>⭐ 14</span><span>JavaScript</span></span>
-</a><a class="card" href="/s/sainitish1609--mcp-guard.html">
-  <span class="name"><span class="owner">sainitish1609/</span>mcp-guard</span>
-  <p>🛡️ Ultra-fast local security firewall, secret sanitizer, and context token compressor for Claude Code, Cursor, and MCP AI agents.</p>
-  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
 </a><a class="card" href="/s/neuronto--agentic-resource-discovery.html">
   <span class="name"><span class="owner">neuronto/</span>agentic-resource-discovery</span>
   <p>Neuronto Agentic Resource Discovery (ARD) Index. Federated search across every public ARD registry, plus a verified tool index read from each MCP server&#x27;s own tools/list, hybrid lexical and semantic r</p>
   <span class="meta"><span>⭐ 52</span><span>Python</span></span>
+</a><a class="card" href="/s/chris-asmussen--warden.html">
+  <span class="name"><span class="owner">chris-asmussen/</span>warden</span>
+  <p>One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent&#x27;s context tiny. Migrate your Claude Code MCPs/skills behind it.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-role-playing-autonomous-agent-crew-orchestrator-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-role-playing-autonomous-agent-crew-orchestrator-skill</span>
+  <p>Role-playing autonomous agent orchestrator managing crews (CrewAI style)</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-realtime-neural-3d-mesh-pbr-texture-generator-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-realtime-neural-3d-mesh-pbr-texture-generator-skill</span>
+  <p>Real-time neural 3D asset generator and PBR texture synthesizer (Luma Genie style)</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
 </a>
 
 
