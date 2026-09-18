@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-09-17",
- "count": 2070,
+ "updated_at": "2026-09-18",
+ "count": 2082,
  "servers": [
   {
    "name": "XiaoDuoYa/codex-with-chatgpt",
@@ -208,6 +208,59 @@
     }
    ],
    "readme_excerpt": "The AI proposes. The bytes decide. Anti-hallucination for AI agents that read binaries: every claim is checked against the real bytes.\n\nAsk an AI to reverse-engineer a file and it will make things up — offsets, structs, what the code does — and say it like it's fact. Reverify checks it against the one thing that can't lie, the bytes. Every claim is tested against the real binary; only what's true survives.\n\nOn 19 real Windows system files, the AI's textbook answer was wrong 100% of the time — reverify caught every one, with zero false alarms (EXAMPLE.md, BENCHMARK.md; python benchmarks/prologueprior.py).\n\nLanguage models are great at reading code and unreliable at reverse engineering. Ask a model to reconstruct a struct or an algorithm from a binary and it will confidently invent offsets, sizes, and behavior. In binary analysis this hallucination problem is far worse than in source code, and \"did the model just make that up?\" is the single biggest blocker to using AI for real RE.\n\nReverify pairs a language model with a deterministic, pure-Python RE toolkit and makes the toolkit the judge. The model proposes; the tools verify. A hypothesis about a structure or an algorithm is only reported once it has been checked against the actual bytes — disassembled, pattern-matched, or executed in the emulator — so the output is grounded in the binary instead of the model's imagination.\n\n- Deterministic core — PE/ELF/Mach-O parsing, x86/x64/ARM/ARM64 disassembly, AOB pattern scanning, CPU emulation, Protobuf/TLV dissection, Frida hook generation. Pure Python out of the box; installs cle"
+  },
+  {
+   "name": "shinthink/blitzstrike",
+   "url": "https://github.com/shinthink/blitzstrike",
+   "description": "⚡ Blitz Strike — a universal MCP penetration-testing toolbelt. Structured methodology: reconnaissance & attack-surface mapping, source-to-sink analysis, and live validation. 57 escalation chains, 130-",
+   "stars": 634,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [
+    "active-directory",
+    "blue-team",
+    "bug-bounty",
+    "cve",
+    "defensive-security",
+    "exploit",
+    "mcp",
+    "mcp-server",
+    "nuclei",
+    "offensive-security",
+    "payloads",
+    "pentest",
+    "reconnaissance",
+    "red-team",
+    "reverse-engineering",
+    "security",
+    "security-tools",
+    "vulnerability-scanning",
+    "wordpress"
+   ],
+   "created_at": "2026-09-12",
+   "homepage": "https://github.com/shinthink/blitzstrike",
+   "score": 1270.0,
+   "first_seen": "2026-09-13",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-13",
+     "s": 3
+    },
+    {
+     "d": "2026-09-16",
+     "s": 6
+    },
+    {
+     "d": "2026-09-17",
+     "s": 7
+    },
+    {
+     "d": "2026-09-18",
+     "s": 634
+    }
+   ],
+   "readme_excerpt": "Reconnaissance at speed. Analysis in depth. Validation before report.\n\nBlitz Strike is a structured penetration-testing methodology — reconnaissance, source analysis, and validation — delivered as a universal MCP server. It enumerates the attack surface (BLITZ), traces source-to-sink reachability (EAGLE-EYE), and verifies each finding live before it is reported (STRIKE). One server, every agent: scope enforcement to submission-ready findings in a single runengagement call, with the relevant exploit-tool manual attached to every result.\n\nA scan hit is a hypothesis. A live test is the verdict.\n\nBlitz Strike exists to eliminate the two most common failure modes in automated security assessment: false positives from surface-level pattern matching, and unverified findings reported without live confirmation.\n\nBlitz Strike is a Model Context Protocol (MCP) server (TypeScript / Bun) that packages a 3-tier security-audit methodology as callable tools — and runs the whole engagement server-side, so a single runengagement call works from Claude Code, Cursor, Hermes, OpenCode, Claude Desktop, Gemini, or any MCP client.\n\nBlitz Strike maps a structured penetration-testing methodology — reconnaissance, source analysis, and validation — into three tool tiers executed server-side.\n\nTier Name Phase What it does ------------ 1 BLITZ Reconnaissance & attack-surface mapping Enumerates the exposed attack surface at scale: unauthenticated entry points, dangerous sinks, and authentication boundaries. 2 EAGLE-EYE Static analysis & data-flow tracing Traces source-to-sink reachability and enriches fi"
   },
   {
    "name": "sv-number/mcp-server",
@@ -1602,6 +1655,43 @@
    "readme_excerpt": "contextXは、Grok 4.3による通常検索とGrok 4.20 Multi-Agent 0309による深度検索を提供するリモートMCPサーバーです。\n\nMCPクライアントから受け取った検索クエリをOpenAI互換のResponses APIへストリーミング送信し、回答本文をMCPのツール結果として返します。上流ストリームを継続的に受信することで、検索処理中に発生するゲートウェイの待機タイムアウトを抑制します。利用者がモデルを変更することはできません。\n\n公開エンドポイント: https://mcp.twitter.monster/mcp\n\ncontextXはリモートMCPサーバーです。利用者側でバイナリをインストールしたり、APIキーを用意したりする必要はありません。\n\nPi本体にはMCP機能が組み込まれていないため、最初にMCPアダプターをインストールします。\n\nPiを再起動し、~/.config/mcp/mcp.jsonのmcpServersへ次の設定を追加します。既存のMCP設定がある場合は上書きせず、contextXの項目だけをマージしてください。\n\nユーザー全体の~/.cursor/mcp.json、またはプロジェクト内の.cursor/mcp.jsonへ追加します。\n\nStreamable HTTP対応クライアントに、次のURLをリモートMCPサーバーとして登録してください。認証ヘッダーやトークンは不要です。\n\n以下は、自分のAPIキーを使ってcontextXサーバーを運用する場合の手順です。\n\n.envに上流APIキーとResponses APIの完全なエンドポイントを設定してください。実際の上流URLをソースコードや公開リポジトリへ記載しないでください。\n\n変数 必須 説明 ------:--- GROKAPIKEY はい 通常検索上流APIのBearerトークン GROKUPSTREAMURL はい 通常検索上流のResponses APIエンドポイント GROKDEEPAPIKEY はい 深度検索上流APIのBearerトークン GROKDEEPUPSTREAMURL はい 深度検索上流のResponses APIエンドポイント BINDADDR いいえ サーバーの待受アドレス。デフォルトは0.0.0.0:3000 MCPALLOWEDHOSTS いいえ 受け入れるHostのカンマ区切りリスト\n\n公開サービスでは、どちらのツールも認証や利用回数制限なしで利用できます。モデルや設定ファイルを変更する必要はなく、利用者が依頼内容によって検索方法を選択できます。\n\nGrok 4.3で高速な通常検索を実行します。日常的な質問や簡単な情報確認に適しています。\n\nGrok 4.20 Multi-Agent 0309で包括的な深度検索を実行します。通常検索より時間がかかるため、詳細な調査が必要な場合に使用してください。\n\nMCPクライアントでは、「深度検索を使用してください」と明示することで深度検索ツールを選択できます。\n\n- 上流APIキーはサーバー側だけに保存します。 - .envはGitの管理対象外です。 - 現在、MCP利用者に対する認証は行いません。"
   },
   {
+   "name": "NiazMorshed2007/jev-review",
+   "url": "https://github.com/NiazMorshed2007/jev-review",
+   "description": "Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.",
+   "stars": 93,
+   "forks": 7,
+   "language": "TypeScript",
+   "topics": [
+    "agent-plugin",
+    "ai-agents",
+    "claude-code",
+    "code-review",
+    "codex",
+    "coding-agents",
+    "cursor",
+    "developer-tools",
+    "jev",
+    "local-first",
+    "mcp",
+    "model-context-protocol",
+    "opencode",
+    "software-quality",
+    "typescript"
+   ],
+   "created_at": "2026-09-17",
+   "homepage": "",
+   "score": 944.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 93
+    }
+   ],
+   "readme_excerpt": "Continuous software-quality review for AI coding agents, powered by Jev.\n\nQuick start · Client setup · Quality dimensions · Security\n\nJev Review runs as a local MCP server and gives Claude Code, Codex, Cursor, and OpenCode structured quality scores while they work. Your coding agent remains responsible for diagnosing weaknesses and changing the code; Jev supplies a fast scalar signal across correctness, complexity, changeability, modularity, tests, security, and other independent quality dimensions.\n\n[!IMPORTANT] Your API key stays on your machine. Jev Review has no hosted backend, database, telemetry service, or author-operated proxy. The only remote request is sent directly to the configured Jev API.\n\nhttps://github.com/user-attachments/assets/0ff9f873-0652-4826-af3d-6bb4f42c70b1\n\n--- --- Purpose Continuous, structured software-quality evaluation Supported clients Claude Code, Codex, Cursor, OpenCode Distribution This GitHub repository—no npm publication Runtime Local Node.js process over MCP stdio Remote access Direct requests to Jev using your API key MCP tools One focused tool: jevreview Code changes Always performed by the primary coding agent\n\n- Node.js 20 or newer - A Jev API key from the TypeSafe console - Claude Code, Codex, Cursor, or OpenCode\n\nSet your API key before starting the coding agent:\n\nInstall Jev Review directly from GitHub—no npm publication is required:\n\nChoose your coding client when prompted, restart it, and ask the agent to use jev-review while implementing a nontrivial change."
+  },
+  {
    "name": "Stupidoodle/swissdevjobs-cli",
    "url": "https://github.com/Stupidoodle/swissdevjobs-cli",
    "description": "Search & apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin",
@@ -2148,9 +2238,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://bsab.github.io/sweden-mcp-servers/",
-   "score": 375.0,
+   "score": 250.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -2368,6 +2458,47 @@
    "readme_excerpt": "the bridge between AI Agents &amp; Reality.\n\nHomekit gives any AI agent direct, physical control over Apple Home. Flip lights. Lock doors. Read sensors. Through a single open interface.\n\nAwaken · Understand · Witness · Install · Begin · Website · Docs · Changelog\n\nApple Home is powerful. But it's locked.\n\nLocked behind apps. Behind Siri. Behind tap-to-toggle UI designed for humans, not agents. Every AI model in 2025 can reason, plan, and act — but the moment you ask it to \"turn off the kitchen lights before the meeting\", it hits a wall.\n\nIt exposes your entire Apple Home — every light, lock, thermostat, sensor, scene, and automation — as structured tools that any AI agent can call. The Model Context Protocol becomes the language. Your home becomes the body.\n\nThis is the first open bridge between Apple's HomeKit framework and the agent layer.\n\nPackage Description Version --------- homekit-cli Full terminal interface for Apple Home homekit-mcp MCP server — 8 tools for AI agents @homekit/core Shared bridge, types, and auth manager @openclaw/homekit Plugin for the @openclaw agent framework\n\nTool Description ------ homekitlistaccessories List all accessories, optionally filtered by room homekitgetaccessory Get the current state of an accessory homekitsetaccessory Set accessory state (on/off, 0–100) homekitactivatescene Activate a scene by name homekitlistscenes List all available scenes homekitcreatescene Create a new scene with specified accessory states homekitlistautomations List all automations homekitrunautomation Trigger an automation by name"
   },
   {
+   "name": "NativePHP/superstack",
+   "url": "https://github.com/NativePHP/superstack",
+   "description": "Open-source Laravel starter with Filament, NativePHP SuperNative, and MCP",
+   "stars": 67,
+   "forks": 3,
+   "language": "PHP",
+   "topics": [
+    "filamentphp",
+    "laravel",
+    "mcp-server",
+    "nativephp",
+    "nativephp-mobile",
+    "nativephp-web",
+    "php"
+   ],
+   "created_at": "2026-09-12",
+   "homepage": "https://nativephp.com",
+   "score": 140.0,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-15",
+     "s": 45
+    },
+    {
+     "d": "2026-09-16",
+     "s": 52
+    },
+    {
+     "d": "2026-09-17",
+     "s": 60
+    },
+    {
+     "d": "2026-09-18",
+     "s": 67
+    }
+   ],
+   "readme_excerpt": "Open-source Laravel starter kit with Filament, NativePHP SuperNative, and Laravel MCP.\n\nPiece Package --- --- Laravel laravel/framework Admin filament/filament (panel at /admin) API auth laravel/sanctum — wired, not demoed Mobile / SuperNative nativephp/mobile Native UI nativephp/mobile-ui Web UI (browser EDGE) nativephp/web-ui MCP server laravel/mcp — no auth added\n\n- PHP 8.4+ (Herd recommended) - Composer - Node (optional, for Vite) - Xcode / Android Studio for native runs (NativePHP Mobile v4 environment)\n\nIn Herd’s site creation wizard, choose a community / custom starter kit and enter nativephp/superstack.\n\nCreate a Filament admin user with the Filament installation docs (php artisan make:filament-user).\n\nWith Laravel Herd, the site is available at http://my-app.test (or whatever you named the project).\n\n- Home (SuperNative via Web UI): http://superstack.test - Admin panel: http://superstack.test/admin - API: Sanctum is installed (routes/api.php) — wired for token auth, not demoed with sample endpoints beyond /api/user\n\nRoutes live in routes/ai.php. No authentication is configured on the MCP server — fine for local exploration, not production-ready as-is.\n\n- Web: POST /mcp/superstack - Local: php artisan mcp:start superstack\n\nStarter tool: app-info (App\\Mcp\\Tools\\AppInfoTool) — returns app + package versions.\n\nSee the Laravel MCP docs for servers, tools, and auth options.\n\nHome is a SuperNative screen (Route::native). On a phone, NativePHP Mobile v4 renders it natively; in the browser, Web UI renders the same Blade as HTML."
+  },
+  {
    "name": "tonnode/mcp",
    "url": "https://github.com/tonnode/mcp",
    "description": "TON MCP server for Claude, ChatGPT, Cursor, Codex and any MCP client — liteserver queries over native ADNL: balances, account state, transaction history, get-methods. Private & archive endpoints suppo",
@@ -2423,43 +2554,6 @@
     }
    ],
    "readme_excerpt": "Revenue-first website analytics that your AI agent can install, connect, and verify for you.\n\nTalivia shows founders which referrers, campaigns, pages, search keywords, and customer journeys turn visits into revenue. @talivia/agent connects Codex, Claude Code, ChatGPT, OpenClaw, Hermes, and other MCP clients to Talivia so an agent can finish the analytics setup inside your project - not just paste a tracking snippet and hope it works.\n\nAsk your agent to set up Talivia. It can find or create the right website, generate a framework-specific installation plan, add the tracker with its native coding tools, verify that real events are arriving, open a secure payment-provider handoff, and check that revenue attribution is ready.\n\nStart free Agent Kit Documentation npm GitHub\n\nMost analytics products count visits. Payment dashboards count transactions. Talivia connects the two, so you can answer the questions that matter to a growing product:\n\n- Which referrers, campaigns, and search keywords bring paying customers? - Which landing pages and customer journeys lead to a purchase? - How do visitors, conversion rate, revenue per visitor, and revenue change together? - Which tracked session produced an individual payment? - Is analytics and checkout attribution actually working in production?\n\nTalivia puts traffic, visitor journeys, events, payment revenue, and attribution in one workspace. Connect a supported payment provider or use the Manual Payment API for a custom checkout."
-  },
-  {
-   "name": "NativePHP/superstack",
-   "url": "https://github.com/NativePHP/superstack",
-   "description": "Open-source Laravel starter with Filament, NativePHP SuperNative, and MCP",
-   "stars": 60,
-   "forks": 3,
-   "language": "PHP",
-   "topics": [
-    "filamentphp",
-    "laravel",
-    "mcp-server",
-    "nativephp",
-    "nativephp-mobile",
-    "nativephp-web",
-    "php"
-   ],
-   "created_at": "2026-09-12",
-   "homepage": "https://nativephp.com",
-   "score": 156.0,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-15",
-     "s": 45
-    },
-    {
-     "d": "2026-09-16",
-     "s": 52
-    },
-    {
-     "d": "2026-09-17",
-     "s": 60
-    }
-   ],
-   "readme_excerpt": "Open-source Laravel starter kit with Filament, NativePHP SuperNative, and Laravel MCP.\n\nPiece Package --- --- Laravel laravel/framework Admin filament/filament (panel at /admin) API auth laravel/sanctum — wired, not demoed Mobile / SuperNative nativephp/mobile Native UI nativephp/mobile-ui Web UI (browser EDGE) nativephp/web-ui MCP server laravel/mcp — no auth added\n\n- PHP 8.4+ (Herd recommended) - Composer - Node (optional, for Vite) - Xcode / Android Studio for native runs (NativePHP Mobile v4 environment)\n\nIn Herd’s site creation wizard, choose a community / custom starter kit and enter nativephp/superstack.\n\nCreate a Filament admin user with the Filament installation docs (php artisan make:filament-user).\n\nWith Laravel Herd, the site is available at http://my-app.test (or whatever you named the project).\n\n- Home (SuperNative via Web UI): http://superstack.test - Admin panel: http://superstack.test/admin - API: Sanctum is installed (routes/api.php) — wired for token auth, not demoed with sample endpoints beyond /api/user\n\nRoutes live in routes/ai.php. No authentication is configured on the MCP server — fine for local exploration, not production-ready as-is.\n\n- Web: POST /mcp/superstack - Local: php artisan mcp:start superstack\n\nStarter tool: app-info (App\\Mcp\\Tools\\AppInfoTool) — returns app + package versions.\n\nSee the Laravel MCP docs for servers, tools, and auth options.\n\nHome is a SuperNative screen (Route::native). On a phone, NativePHP Mobile v4 renders it natively; in the browser, Web UI renders the same Blade as HTML."
   },
   {
    "name": "sm18lr88/STT-MCP",
@@ -3885,6 +3979,54 @@
    "readme_excerpt": "SEO & GEO MCP server for Claude, Codex, Cursor and any MCP client — Google Search Console, Google Analytics 4, PageSpeed Insights, structured data, llms.txt, WordPress and GitHub as 80 tools, so an assistant can diagnose and fix technical SEO, content and generative-engine-optimization issues in one conversation.\n\nGoogle Search Console · Google Analytics 4 · PageSpeed & CrUX · on-page and GEO audits · WordPress over SSH · GitHub\n\nQuick start · Tools · Any agent · Architecture · Configuration · Deploy 24/7 · 中文文档\n\ngoogle-seo-mcp is a Model Context Protocol server for SEO automation with AI agents. It connects Google Search Console, Google Analytics 4 (GA4), PageSpeed Insights / Core Web Vitals, the Chrome UX Report, Knowledge Graph, Wikidata, IndexNow, WordPress (Yoast SEO, WP-CLI over SSH) and GitHub, and adds GEO (generative engine optimization) checks: AI crawler access for GPTBot, OAI-SearchBot, ClaudeBot and PerplexityBot, llms.txt, JSON-LD / schema.org structured data, E-E-A-T signals and AI citation tracking.\n\nMost SEO MCP servers wrap one API. Real SEO work crosses several: you find a striking-distance keyword in Search Console, check the landing page's engagement in GA4, audit the page, rewrite its title and FAQ, publish the change to WordPress or a static-site repo, then watch the numbers. This server gives an assistant every step of that loop as tools, with the guard-rails a public-facing site needs: read-only mode, destructive-action annotations, and untrusted-content instructions."
   },
   {
+   "name": "Cortex-Arbitrage-Lab/cortex-ai-trading-bot",
+   "url": "https://github.com/Cortex-Arbitrage-Lab/cortex-ai-trading-bot",
+   "description": "Next-gen AI crypto trading platform & execution framework powered by Claude AI and Google AI models. Real-time sub-50ms HFT order routing, TradingView signals, Bitget & AvaTrade connectors, and native",
+   "stars": 36,
+   "forks": 19,
+   "language": "Python",
+   "topics": [
+    "ai-model",
+    "aicrypto",
+    "avatrade",
+    "bitget-ai",
+    "claude-plugin",
+    "cryptocurrency",
+    "mcp",
+    "mcp-client",
+    "model-context-protocol",
+    "polymarket-bot-free",
+    "solana-bot-free",
+    "trading-bot-bsc-solana",
+    "tradingbot2026",
+    "tradingview-automation"
+   ],
+   "created_at": "2026-09-14",
+   "homepage": "https://runcortex.xyz",
+   "score": 158.0,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-15",
+     "s": 3
+    },
+    {
+     "d": "2026-09-16",
+     "s": 15
+    },
+    {
+     "d": "2026-09-17",
+     "s": 29
+    },
+    {
+     "d": "2026-09-18",
+     "s": 36
+    }
+   ],
+   "readme_excerpt": "⚡ Cortex AI — Cross-Exchange Arbitrage and Market Automation Framework Open-source execution engine for detecting and acting on price spreads across CEX and prediction markets\n\nCortex AI is an open-source, non-custodial framework for building and running automated arbitrage strategies. It connects to multiple exchanges through read and write API keys, monitors order books in real time, and executes trades locally on your machine with no third-party custody and no cloud dependency.\n\nIf you have been searching for a free crypto arbitrage bot on GitHub that you can actually inspect, modify, and run on your own hardware, this project is built for exactly that. It is not a closed-source ai trading app that hides its logic behind a subscription. It is a transparent, developer-friendly alternative for traders who want to understand what their bot is doing.\n\nThe project is designed for traders and developers who want full control over their execution logic. You configure the venues, define the spread thresholds, and decide when to act. Cortex AI handles the monitoring, risk checks, and order routing. You can connect it to Binance, Bybit, OKX, Gate, Bitget, or any exchange with a public API, and you can run it as a pure scanner or as a live execution engine.\n\nFor those looking for an ai trading bot that combines automation with optional intelligence, Cortex AI supports pluggable AI models including Claude AI, Gemini, and OpenAI-compatible endpoints. The AI layer is entirely optional. If you prefer rule-based arbitrage, you can run the framework without any AI provider at all."
+  },
+  {
    "name": "willcadell/geo-mcp-servers",
    "url": "https://github.com/willcadell/geo-mcp-servers",
    "description": "A curated, tracked list of Model Context Protocol (MCP) servers for geospatial, GIS, mapping, and earth-observation work — geocoding, routing, PostGIS, STAC/imagery, QGIS/ArcGIS, weather, and the comm",
@@ -4117,6 +4259,50 @@
    "readme_excerpt": "Catch intent conflicts before code conflicts.\n\nForemerge is the open-source coordination protocol for coding agents, built above Git. Agents keep isolated worktrees while sharing intent, semantic claims, dependencies, provisional ChangeSets, decisions, validation, and provenance.\n\nTell your agent to install it → Done → See collisions before they land :---: :---: :---: :---: :---: Paste one line into Claude Code, Codex, or Cursor It installs Foremerge and wires itself up Every agent sees what the others are about to change, even in separate worktrees\n\nStatus: Foremerge 0.3.1 is a pre-1.0, local-first MVP. The CLI, JSON API, MCP server, SQLite store, deterministic conflict detector, and verification-gated lifecycle are implemented. Public schemas may still change. Shared multi-machine mode and published benchmark results do not yet exist.\n\nSay you have two AI agents working on the same project at the same time. Each one gets its own copy of the code, so they never fight over files. Both finish. Both look correct. Then you find they undid each other's work.\n\nGit cannot warn you about that, because Git compares text and not intent. It will stop you when two agents edit the same part of the same file. What it cannot see is two edits that are each perfectly reasonable on their own and land in different files. If one agent moves every caller onto a new StripePaymentService while another adds PayPal support to the old PaymentService, nothing overlaps, so Git merges both without complaint and the PayPal work is left stranded on a class nothing calls any more."
   },
   {
+   "name": "friday-memory/friday",
+   "url": "https://github.com/friday-memory/friday",
+   "description": "⚡ The open-source persistent cognitive memory layer for AI coding agents. Stop your Cursor, Claude & Copilot from having amnesia.",
+   "stars": 32,
+   "forks": 4,
+   "language": "HTML",
+   "topics": [
+    "ai-agents",
+    "ai-memory",
+    "antigravity",
+    "antigravity-cli",
+    "antigravity-ide",
+    "claude-code",
+    "claudecode",
+    "codex",
+    "cognitive-ai",
+    "cursor",
+    "developer-tools",
+    "fastapi",
+    "knowledge-graph",
+    "llm",
+    "mcp",
+    "model-context-protocol",
+    "neo4j",
+    "persistent-memory"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "https://github.com/itskie/friday",
+   "score": 328.0,
+   "first_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-17",
+     "s": 19
+    },
+    {
+     "d": "2026-09-18",
+     "s": 32
+    }
+   ],
+   "readme_excerpt": "An open-source, self-hosted persistent cognitive memory layer for AI coding agents (Cursor, Claude, VS Code). Persists architecture decisions, schemas, and preferences across sessions via the Model Context Protocol (MCP).\n\n🚀 Quickstart 🔌 IDE Setup ✨ Features 📡 API Docs 🏗️ Architecture 🗺️ Roadmap\n\nLive Neural Studio — Obsidian-grade knowledge graph visualizer mapping real AI cognitive memory constellations.\n\nProblem: Session Amnesia & Token Overhead\n\nModern coding assistants (Cursor, Claude Code, Copilot, Antigravity) initialize each chat thread without cross-session memory. While developers frequently mitigate this using project documentation (AGENTS.md, prompt templates, or manual file references), this workflow presents two major bottlenecks:\n\n1. Context Window & Token Inefficiency: Injecting massive architecture documents or having agents repeatedly read entire repository directories consumes thousands of context tokens on every single query. 2. Loss of Incremental Decisions: Ephemeral decisions—such as chosen dependency versions, schema adjustments, or bug fix rationale made in prior sessions—are lost when a session resets, forcing developers to repeatedly re-explain core constraints. ---\n\nFriday runs as an open-source, self-hosted Model Context Protocol (MCP) server. Instead of dumping entire documentation files into prompt context, Friday exposes 4 targeted tools (addmemory, addfact, memorysearch, getcontext) backed by a multi-tier storage engine:"
+  },
+  {
    "name": "aka-kika/hig-mcp",
    "url": "https://github.com/aka-kika/hig-mcp",
    "description": "MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.",
@@ -4240,6 +4426,36 @@
     }
    ],
    "readme_excerpt": "An MCP server that allows AI agents (Claude, Cursor) to directly control and manipulate Unreal Engine.\n\nThis server lets Claude (or any MCP client) read and edit Unreal Engine 5.6/5.8 Blueprints directly, without burning your context window on raw engine JSON, and without needing anything beyond a stock Epic Games Launcher install.\n\nIf you've tried pointing an AI assistant at a real Unreal project, you've hit this: Blueprints don't fit in a context window. A single graph dumped as raw engine data is enormous, so either the model never sees enough of the project to have real context, or you spend most of your budget re-explaining what already exists every time you open a new conversation.\n\nThis project is built around one idea: the model should never receive a raw engine dump. Every hop between the Unreal Editor and Claude compacts the data: tiered reads, diff-based edits, and a persistent index that's built once and updated incrementally instead of re-scanned on every question.\n\n- UnrealMCPBridge is a C++ editor plugin that runs inside UnrealEditor.exe and exposes a local TCP interface over the engine's own Kismet2/EdGraph/AssetRegistry APIs. Built against a stock launcher install: no engine source required to build or run it. - mcp-server is a Node/TypeScript MCP server that translates MCP tool calls into bridge requests, and is responsible for keeping every response cheap: compact field names, capped result sizes, and no re-serializing verbose engine data verbatim."
+  },
+  {
+   "name": "agentsea/nautilo",
+   "url": "https://github.com/agentsea/nautilo",
+   "description": "AI goes multiplayer. A self-hosted workspace for people and machine people. Create, code, and work together across desktop, mobile, and web. Open source. MIT licensed.",
+   "stars": 31,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "collaboration",
+    "electron",
+    "generative-ai",
+    "model-context-protocol",
+    "multi-agent",
+    "react-native",
+    "self-hosted"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "https://nautilo.ai",
+   "score": 312.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 31
+    }
+   ],
+   "readme_excerpt": "English · 简体中文 · 日本語 · Français · Español · 한국어\n\nCode and documentation are currently in English. Translation PRs are welcome; see translation contributions.\n\nhttps://github.com/user-attachments/assets/79a6c37f-ea01-4e95-afd5-85d4b9b55e0d\n\nYour own super agent. Your people and their Genies. You own the intelligence.\n\nMeet your Genie: a radically customizable agent with a personality, memory, face, and voice you choose. Put her to work writing, researching, browsing, coordinating coding agents, or making a film. Bring your friends, your team, and their Genies into the same Room. Work together. Grab the controls whenever you want to do it yourself.\n\nThat's Nautilo. Natively multi-user. Built for people and machine people. Desktop, mobile, and web. Your server, your models, your rules. Open source. MIT licensed.\n\nWebsite & demos · Get started · Documentation · Download · Packages · Contribute\n\nEvery Nautilo client connects to a Nautilo server. Choose the path that fits where you are:\n\nTrying Nautilo for the first time on a Mac? Start with the Local Deploy Quickstart. It is a single-machine evaluation setup. For mobile access or a server your team can reach, choose a hosted deployment below.\n\nYou want to… Start here --- --- Join an existing server Download Nautilo, then install and connect with your server address or invite. Run your first server on your Mac Follow the Local Deploy Quickstart, using Docker Desktop and the signed Nautilo CLI. Give your team a server in the cloud Use the Railway deployment guide. Run on your own Docker infrastructure Follow the Docker Compose gui"
   },
   {
    "name": "flankerhqd/cyvisguard",
@@ -4490,9 +4706,9 @@
    ],
    "created_at": "2026-09-13",
    "homepage": "https://daidocs.com",
-   "score": 96.7,
+   "score": 72.5,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -4510,48 +4726,33 @@
    "readme_excerpt": "An open plain-text format for AI memory (launched Sep 2026). Your assistant's memory becomes files on your disk that you can open, grep and keep.\n\nSecond on the LongMemEval-S leaderboard among memory systems anyone can re-run, 22.40 points above the same model with no memory, reading 10x fewer tokens per question. Every number here ships with its per-question judge verdicts and a sha256 manifest.\n\nQuickstart · The guide · Benchmark · The format · Reproduce it\n\nLaunch release V4.4n32, 12 September 2026. What is in it.\n\nIf .dai is useful to you, a star helps other people find it.\n\nThe whole product, in one loop. Install, build, remember, recall: one store, every model, about a tenth of the tokens. The recording uses invented data. &9654; For higher quality, watch the demo live in your browser\n\nA .dai file is three plain-text zones: a YAML header, a fenced JSON block, and the text. No binary, no database, no SDK required to read it.\n\n- Any programming language. The reference engine is Node. A reader in Python, Rust or Go is an afternoon's work, and the spec is normative, written so that two independent implementations agree. - Any model. The store is written once by a cheap observer model and read by whichever model answers. The same store measured with five answering models: 78% to 92%. Change the model, keep the memory. - Any tool. grep, git log, diff, your editor, a shell script. Memory that answers to ordinary tools."
   },
   {
-   "name": "Cortex-Arbitrage-Lab/cortex-ai-trading-bot",
-   "url": "https://github.com/Cortex-Arbitrage-Lab/cortex-ai-trading-bot",
-   "description": "Next-gen AI crypto trading platform & execution framework powered by Claude AI and Google AI models. Real-time sub-50ms HFT order routing, TradingView signals, Bitget & AvaTrade connectors, and native",
+   "name": "AlchemyInCode/plumloom-autoeval-oss",
+   "url": "https://github.com/AlchemyInCode/plumloom-autoeval-oss",
+   "description": "Open-source CLI and MCP server for evaluating AI applications and gating releases with reliability evidence.",
    "stars": 29,
-   "forks": 13,
-   "language": "Python",
-   "topics": [
-    "ai-model",
-    "aicrypto",
-    "avatrade",
-    "bitget-ai",
-    "claude-plugin",
-    "cryptocurrency",
-    "mcp",
-    "mcp-client",
-    "model-context-protocol",
-    "polymarket-bot-free",
-    "solana-bot-free",
-    "trading-bot-bsc-solana",
-    "tradingbot2026",
-    "tradingview-automation"
-   ],
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [],
    "created_at": "2026-09-14",
-   "homepage": "https://runcortex.xyz",
-   "score": 171.0,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "homepage": "",
+   "score": 96.7,
+   "first_seen": "2026-09-16",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
-     "d": "2026-09-15",
-     "s": 3
-    },
-    {
      "d": "2026-09-16",
-     "s": 15
+     "s": 24
     },
     {
      "d": "2026-09-17",
+     "s": 28
+    },
+    {
+     "d": "2026-09-18",
      "s": 29
     }
    ],
-   "readme_excerpt": "⚡ Cortex AI — Cross-Exchange Arbitrage and Market Automation Framework Open-source execution engine for detecting and acting on price spreads across CEX and prediction markets\n\nCortex AI is an open-source, non-custodial framework for building and running automated arbitrage strategies. It connects to multiple exchanges through read and write API keys, monitors order books in real time, and executes trades locally on your machine with no third-party custody and no cloud dependency.\n\nIf you have been searching for a free crypto arbitrage bot on GitHub that you can actually inspect, modify, and run on your own hardware, this project is built for exactly that. It is not a closed-source ai trading app that hides its logic behind a subscription. It is a transparent, developer-friendly alternative for traders who want to understand what their bot is doing.\n\nThe project is designed for traders and developers who want full control over their execution logic. You configure the venues, define the spread thresholds, and decide when to act. Cortex AI handles the monitoring, risk checks, and order routing. You can connect it to Binance, Bybit, OKX, Gate, Bitget, or any exchange with a public API, and you can run it as a pure scanner or as a live execution engine.\n\nFor those looking for an ai trading bot that combines automation with optional intelligence, Cortex AI supports pluggable AI models including Claude AI, Gemini, and OpenAI-compatible endpoints. The AI layer is entirely optional. If you prefer rule-based arbitrage, you can run the framework without any AI provider at all."
+   "readme_excerpt": "The release-confidence layer for AI-agent changes.\n\nAutoeval is an open-source CLI and MCP server for evaluating AI applications, inspecting reliability evidence, and gating releases from development and CI workflows.\n\nFollow this path from a repository visit to a repeatable release gate:\n\n1. Meet the requirements and configure Plumloom. 2. Install Autoeval. 3. Log in and run the quickstart. 4. Run your first file-driven evaluation. 5. Add a suite gate to CI. 6. Inspect results, refine evaluations, and repeat.\n\n- Node.js 22.13 or newer - pnpm 11 - A Plumloom API key beginning with plsk - AUTOEVALAPIBASEURL - A supported OS credential store for interactive login persistence\n\nComplete these two setup steps in Plumloom before running Autoeval.\n\nAutoeval needs access to a model to run evaluations.\n\nProfile avatar → Settings → AI Providers & Models\n\nPlumloom currently supports OpenAI and Together.ai API keys. More providers are coming soon.\n\nCreate an API key for Autoeval. Use it to authenticate from your terminal, CI, or other development tools.\n\nThe examples below use the installed autoeval binary. When running directly from this repository, replace autoeval with:\n\nWhen you are ready to use your own evaluation files, run:\n\nThen continue with the file-driven workflow below.\n\n4. Run your first file-driven evaluation\n\nAn evaluation file uses the configured-run JSON accepted by autoeval eval validate. Conversation and agent-trace files can keep their artifacts and reference documents in separate files:"
   },
   {
    "name": "KaichenCurry/TabNexus",
@@ -4630,31 +4831,6 @@
     }
    ],
    "readme_excerpt": "Turn a PDF or EPUB into reusable knowledge—not another one-off chat.\n\ncove-book-forge-mcp is a local-first, open-source MCP server that transforms books into structured AI analysis, Obsidian notes, chapter-level Skills, or one complete installable Agent Skill. Analyze a chapter once, reuse the result across outputs, and bring the finished knowledge into Codex, Claude Code, or another MCP-capable reading system.\n\n- Forge an entire book into one Agent Skill. Import a PDF or EPUB, analyze every chapter through a resumable job, and publish a progressively disclosed Skill that an agent can use without loading the whole book into every prompt. - Choose the right output for each chapter. Send the same analyzed chapter to a guarded Obsidian knowledge base or turn it into a reusable chapter Skill. - Analyze once instead of paying twice. Stable fingerprints cache validated chapter analysis, so Obsidian, chapter-Skill, and whole-book workflows reuse matching results with zero additional model calls. - Install Skills where you already work. Generated Skills can be installed for Codex, Claude Code, or a conventional generic Agent Skills directory. - Use your preferred model. Built-in adapters cover OpenAI, DeepSeek and other OpenAI-compatible endpoints, and Anthropic; applications can inject a custom provider without changing the forge. - Keep or skip the built-in library. Store managed copies locally, retain verified references, or let an existing reading system remain authoritative and send complete chapter snapshots through the public boundary. - Build any reading experience around i"
-  },
-  {
-   "name": "AlchemyInCode/plumloom-autoeval-oss",
-   "url": "https://github.com/AlchemyInCode/plumloom-autoeval-oss",
-   "description": "Open-source CLI and MCP server for evaluating AI applications and gating releases with reliability evidence.",
-   "stars": 28,
-   "forks": 0,
-   "language": "TypeScript",
-   "topics": [],
-   "created_at": "2026-09-14",
-   "homepage": "",
-   "score": 140.0,
-   "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-16",
-     "s": 24
-    },
-    {
-     "d": "2026-09-17",
-     "s": 28
-    }
-   ],
-   "readme_excerpt": "The release-confidence layer for AI-agent changes.\n\nAutoeval is an open-source CLI and MCP server for evaluating AI applications, inspecting reliability evidence, and gating releases from development and CI workflows.\n\nFollow this path from a repository visit to a repeatable release gate:\n\n1. Meet the requirements and configure Plumloom. 2. Install Autoeval. 3. Log in and run the quickstart. 4. Run your first file-driven evaluation. 5. Add a suite gate to CI. 6. Inspect results, refine evaluations, and repeat.\n\n- Node.js 22.13 or newer - pnpm 11 - A Plumloom API key beginning with plsk - AUTOEVALAPIBASEURL - A supported OS credential store for interactive login persistence\n\nComplete these two setup steps in Plumloom before running Autoeval.\n\nAutoeval needs access to a model to run evaluations.\n\nProfile avatar → Settings → AI Providers & Models\n\nPlumloom currently supports OpenAI and Together.ai API keys. More providers are coming soon.\n\nCreate an API key for Autoeval. Use it to authenticate from your terminal, CI, or other development tools.\n\nThe examples below use the installed autoeval binary. When running directly from this repository, replace autoeval with:\n\nWhen you are ready to use your own evaluation files, run:\n\nThen continue with the file-driven workflow below.\n\n4. Run your first file-driven evaluation\n\nAn evaluation file uses the configured-run JSON accepted by autoeval eval validate. Conversation and agent-trace files can keep their artifacts and reference documents in separate files:"
   },
   {
    "name": "vibeinging/dsh-work",
@@ -4739,6 +4915,39 @@
     }
    ],
    "readme_excerpt": "Try it live · Website · Quick start · API · MCP · Agent skill\n\nDearAgent: email inboxes for AI agents, self-hosted on Cloudflare\n\nYour agent needs an email address. DearAgent gives every agent its own inbox, running entirely on your Cloudflare account. Receive inbound email, wait for the verification code, reply in thread, send new mail, and get a webhook when something arrives. One Worker, one repo, no servers.\n\nIt is the open-source, self-hosted alternative to AgentMail: the same idea, an email inbox API for AI agents, run on your own infrastructure for the cost of a Workers plan.\n\nExperimental. DearAgent is early software. It works end to end, but it has not had an in-depth audit, the API may still change, and things may break. Review the code and run your own audit before pointing it at anything sensitive or exposing it to untrusted agents.\n\nThe same operations exist over REST. Under the hood:\n\nYou do not need to deploy anything to see it work. dearagent.sh creates a real inbox for you on the public demo instance when the page loads. Send it an email from anywhere and watch it arrive on the page. Demo addresses live for fifteen minutes and demo mail is not kept.\n\n- Catch-all inboxes. Any address at your domain works immediately. Inboxes are created implicitly on first email or explicitly via POST /inboxes (with a random address if you want one). - Threads. Messages are grouped by In-Reply-To / References, never by subject, so automated mail does not get merged. - Full-text search (SQLite FTS5) over subject, body and sender. - Attachments stored in R2 and served back wit"
+  },
+  {
+   "name": "jinpy666/dbx-plugin-ssh",
+   "url": "https://github.com/jinpy666/dbx-plugin-ssh",
+   "description": "DBX SSH & SFTP plugin: secure terminal, SFTP, MCP automation, and guarded server operations.",
+   "stars": 26,
+   "forks": 1,
+   "language": "HTML",
+   "topics": [],
+   "created_at": "2026-09-14",
+   "homepage": "",
+   "score": 88.7,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-15",
+     "s": 17
+    },
+    {
+     "d": "2026-09-16",
+     "s": 19
+    },
+    {
+     "d": "2026-09-17",
+     "s": 24
+    },
+    {
+     "d": "2026-09-18",
+     "s": 26
+    }
+   ],
+   "readme_excerpt": "DBX SSH 终端（DBX SSH Terminal）是面向现代运维团队的服务器终端：打开一个连接，就能完成终端操作、 文件传输、跳板访问、受控提权和 MCP 自动化。它把“登录服务器之后的下一小时”压缩成 一个连贯、可审计、可复用的工作流。\n\nSSH Terminal · SFTP · Remote Operations：终端、文件、自动化和受控运维操作集中在一个 DBX 终端面板中。\n\n如果你正在工具之间来回切换：终端一个窗口、SFTP 一个窗口、跳板机靠配置文件、 自动化又要另写脚本，那么 DBX SSH & SFTP 的价值很直接——连接、终端、文件和自动化 都围绕同一个 DBX 连接上下文工作。\n\n你要完成的事 DBX SSH & SFTP 给你的体验 --- --- 快速处理线上问题 PTY 终端、命令历史、快速命令、可取消命令和目录跟随 安全地传文件 SFTP 预览、拖放、断点确认、进度、取消和原子替换 进入私网服务器 最多三跳 ProxyJump、连接保活和 Known Hosts 校验 限制高风险操作 只读模式、sudo 来源选择、命令白名单和宿主 secret binding 把重复工作自动化 MCP 工具复用连接、审批和权限边界\n\n- 日常 Linux/Unix 服务器巡检、日志查看和远程命令执行。 - 通过跳板机访问内网环境，并在终端与 SFTP 之间快速切换。 - 在受控权限下完成配置文件、脚本和构建产物的上传下载。\n\n- 支持密码、私钥、SSH Agent、键盘交互和无密码认证。 - 交互式终端支持 PTY、窗口调整、会话恢复、剪贴板、远程目录跟随和批量输入。 - SFTP 支持浏览、排序、预览、上传、下载、重命名、新建、拖放和递归删除；聚焦 SFTP 面板后按 Ctrl/Cmd+V，可把系统剪贴板中的本地文件直接上传到当前目录。 - 大文件传输支持进度、取消、断点确认和原子替换，降低中断造成的半成品风险。 - 支持 Known Hosts 校验、变更主机密钥拒绝、只读模式和远程目录磁盘用量查看。 - 支持最多三跳 ProxyJump、连接保活、可取消远程命令、chmod 和 Quick Sudo。 - 支持 TOTP/键盘交互式双因素认证，以及面向自动化客户端的 MCP 工具接口。 - 界面支持简体中文、繁体中文、英语、西班牙语、意大利语、日语和葡萄牙语。\n\n系统剪贴板文件粘贴使用宿主/浏览器提供的原生 paste 文件事件；若当前宿主不暴露该事件，仍可使用 Upload 按钮或拖放上传。\n\n完整的能力矩阵和与 OpenSSH、Tabby、Termius、FinalShell 等方案的定位对比见 特性与竞品对比。\n\n协议路线：当前版本聚焦 SSH/SFTP 运维；RDP、Telnet 等协议支持仍在持续加强， 后续会逐步补齐更多远程访问场景，请以对应版本发布说明为准。\n\n插件内置 31 个 MCP 工具——远程命令、sudo 提权、SFTP 文件、服务器指标、告警分诊—— 让 AI 编码代理（ZCode、Claude 等任何 MCP 客户端）在你的权限边界内操作服务器。 支持两种接入方式：\n\n方式一：DBX MCP 桥（推荐）。DBX 的 MCP 服务器内置 dbxlistplugintools / dbxcallplugintool 两个通用桥工具，可发现并调用已装插件的全部 MCP 工具。 传 connectionId 即引用 DBX 已保存的 SSH 连接，凭据由 DBX 解析转发， 工具参数中不出现任何密码，审批、sudo 白名单与只读模式照常生效。"
   },
   {
    "name": "zhiningsun/industrial-mcp",
@@ -4959,6 +5168,54 @@
    "readme_excerpt": "Video-native MCP server for license-safe BGM. Watches the footage — not the script — and returns a shortlist, a 12–20s hook, and an ffmpeg ducking spec.\n\nPackage / CLI: sonicmatch-mcp. A Model Context Protocol server for Claude Desktop, Cursor, and other MCP clients. Drop an Instagram Reel, YouTube Short, or TikTok-style clip. Get royalty-free / Creative Commons matches with the license printed on every row.\n\nVideo-to-BGM already exists. The wedge is not “I also match music”:\n\n- it watches the footage, not the script - it returns a hook window + ffmpeg ducking spec - it is agent-native - it prints the license instead of lying\n\nCatalog quality will kill or save this. More tools will not.\n\nDo not treat this as “script in → YouTube Music search out.” That already exists (mcp-bgm-recommender). Sonicmatch watches the video.\n\nYou own You do not own ------ Local file / public URL ingest Platform music licenses Mood, energy curve, speech vs silence, scene cuts Meta/TikTok “trending audio” graph CC / royalty-free catalogs + optional paid adapters Spotify / IG official libraries Ranked tracks, preview URLs, mix spec, ffmpeg Auto-publish to Instagram\n\nNorth star: ingestvideo → analyzevideomusic → recommendbgm → previewmix → exportmixspec\n\n- The code is MIT. - Every track has its own license. It is printed on every recommendation. - Nothing here is an official Instagram sticker, TikTok Commercial Music Library track, or YouTube Audio Library API result. - Do not recommend commercial pop unless the adapter is explicitly a user-owned licensed library. - CC-BY still needs attribution. CC-"
   },
   {
+   "name": "Shalimov04/mcp-airlock",
+   "url": "https://github.com/Shalimov04/mcp-airlock",
+   "description": "Stateless governance proxy for MCP (2026-07-28): policy, dry-run, human confirmation, audit, tracing",
+   "stars": 25,
+   "forks": 2,
+   "language": "Python",
+   "topics": [
+    "agentic-ai",
+    "ai-agents",
+    "ai-safety",
+    "audit-log",
+    "guardrails",
+    "human-in-the-loop",
+    "llm-security",
+    "llm-tools",
+    "mcp",
+    "mcp-gateway",
+    "mcp-proxy",
+    "mcp-security",
+    "mcp-server",
+    "model-context-protocol",
+    "policy-as-code",
+    "proxy",
+    "python",
+    "security"
+   ],
+   "created_at": "2026-09-13",
+   "homepage": "https://pypi.org/project/mcp-airlock/",
+   "score": 66.5,
+   "first_seen": "2026-09-16",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-16",
+     "s": 23
+    },
+    {
+     "d": "2026-09-17",
+     "s": 24
+    },
+    {
+     "d": "2026-09-18",
+     "s": 25
+    }
+   ],
+   "readme_excerpt": "mcp-airlock is a proxy you put between an AI agent and an MCP server when the server can do things you don't want an agent doing on its own. It speaks the 2026-07-28 revision of the protocol (the stateless one: no session, no initialize, one POST per request) and adds the parts the protocol leaves to you: who is allowed to call what, dry runs by default, a human in the loop for dangerous calls, an audit trail and tracing.\n\nIt is deliberately small. There is no UI, no policy language beyond flat YAML, no MCP SDK of its own. The whole proxy is one Starlette app plus a few helper modules.\n\nThe agent sends a normal tools/call to the proxy instead of the server. The proxy:\n\n1. Works out who is calling. That comes from a JWT (Authorization: Bearer) or, if you run it behind a gateway that already did the authentication, from an X-Airlock-Principal header. It is never taken from the request body. No principal, no call. 2. Looks the tool up in the policy. Tools that are not listed are refused. Listed tools have a risk tier per environment, so the same deleteservice can be free in dev and gated in prod. 3. Depending on the tier: L0 (read) goes straight through. L1 (suggest) always goes through with dryrun: true, whatever the agent asked for. L2 (confirm) goes through with dryrun: true first, and the result comes back to the agent as inputrequired with a description of what would happen and a signed requestState. When a person says yes, the agent repeats the call with that state and the proxy executes it for real, once. Repeating it again is refused. L3 (auto) goes through as sent. 4."
+  },
+  {
    "name": "henryrjbennett4328/devmanager-dev-process",
    "url": "https://github.com/henryrjbennett4328/devmanager-dev-process",
    "description": "DevManager v2026 is a native macOS menu bar utility for managing local development processes, with live server output, system resource monitoring, port availability checks, conflict detection, and MCP",
@@ -5170,79 +5427,6 @@
     }
    ],
    "readme_excerpt": "MikuMikuDanceの制作操作とMME設定を扱うWindows用stdio MCPサーバーです。キャラクター・カメラ・照明・物理、タイムライン編集、EMMの編集と実機反映、画像・音声付きAVI出力に対応します。\n\nmmd-mcpで制作したシーンをMMD上に表示。モデル：Tda式初音ミクV4X／Tda。初音ミク © Crypton Future Media, INC. 画像のクレジット。\n\n検証環境は日本語配布版 MMD 9.32 x64、日本語Windows、Python 3.10 x64 です。同じ実行ファイルの日本語モードと内蔵の English Mode に対応します。英語OS上の通し検証は未実施です。\n\nボーン情報と名前指定による選択は、次のSHA-256のMMD実行ファイルに限定します。\n\nボーン選択には自作の小さなDLLをMMDのUIスレッドへ一時的に読み込み、MMD自身の選択処理を呼びます。処理後にフックを解除します。これは保証された公開APIではなく、検証した実行ファイルの内部構造に依存する方式です。未対応ビルドは拒否します。\n\nPython x64とVisual Studio 2022／Build Toolsの「C++によるデスクトップ開発」を用意し、開発フォルダで実行します。\n\n再現用の依存一覧は requirements-lock.txt です。現在はソース配布のため、上記の手順で自分の環境からDLLをビルドします。DLLはmmd-mcpのパッケージ内に生成されるため、MMDフォルダへコピーする必要はありません。\n\nビルド済みwheelの公開はMicrosoft製部分の配布条件確認が完了するまで保留です。以下は自分で生成したwheel等を使う場合の手順で、wheelからの導入にはC++環境が不要です。\n\nMCPクライアントにstdioサーバーとして登録します。以下のパスは配置先に変更してください。\n\nMCPクライアント（Codex・Claude Code 等）から制作用MMDを起動する場合は、インストール先のPythonで次を使えます。\n\nWindowsのローカルWMI経由で起動元のMCPクライアントと独立したプロセスを作り、ジョブ非所属を確認してからMMDを実行します。起動に失敗した場合、通常の子プロセスとして再起動はしません。戻り値のPIDを mmdlistwindows と照合してください。起動元のMCPクライアントの終了に伴う巻き込みを防ぐための経路で、MMD自身のクラッシュやWindows終了を防ぐものではありません。\n\n通常利用ではMMDを先に起動します。サーバーはMMDの自動起動やネットワーク待受を行いません。複数起動時は mmdlistwindows の hwnd を各呼び出しへ渡します。\n\nv0.3.0の公開MCPツールは50個です。ボーン・表情・カメラ・アクセサリのキー書き込みは、1件でもバッチ形式を使います。ネイティブ編集の手順 と 全機能の対応表 も参照してください。\n\nツール 内容 --- --- mmdlistwindows MMDのHWND・PID・タイトル mmdcapturewindow UIを含むウィンドウ全体のPNG mmdlistmodels / mmdselectmodel モデル一覧・名前またはインデックスで選択。0はカメラ・照明・アクセサリ mmdgetuistate 表示フレーム、モデル、表情一覧・表示値、IK選択欄 mmdlistbones / mmdselectbone ボーン一覧・名前またはインデックスで単一選択 mmdgetselectedbonetransform 選択名・選択数と位置・回転の表示値 mmdgetcamera カメラ中心位置・回転・距離・画角"
-  },
-  {
-   "name": "Shalimov04/mcp-airlock",
-   "url": "https://github.com/Shalimov04/mcp-airlock",
-   "description": "Stateless governance proxy for MCP (2026-07-28): policy, dry-run, human confirmation, audit, tracing",
-   "stars": 24,
-   "forks": 2,
-   "language": "Python",
-   "topics": [
-    "agentic-ai",
-    "ai-agents",
-    "ai-safety",
-    "audit-log",
-    "guardrails",
-    "human-in-the-loop",
-    "llm-security",
-    "llm-tools",
-    "mcp",
-    "mcp-gateway",
-    "mcp-proxy",
-    "mcp-security",
-    "mcp-server",
-    "model-context-protocol",
-    "policy-as-code",
-    "proxy",
-    "python",
-    "security"
-   ],
-   "created_at": "2026-09-13",
-   "homepage": "https://pypi.org/project/mcp-airlock/",
-   "score": 84.0,
-   "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-16",
-     "s": 23
-    },
-    {
-     "d": "2026-09-17",
-     "s": 24
-    }
-   ],
-   "readme_excerpt": "mcp-airlock is a proxy you put between an AI agent and an MCP server when the server can do things you don't want an agent doing on its own. It speaks the 2026-07-28 revision of the protocol (the stateless one: no session, no initialize, one POST per request) and adds the parts the protocol leaves to you: who is allowed to call what, dry runs by default, a human in the loop for dangerous calls, an audit trail and tracing.\n\nIt is deliberately small. There is no UI, no policy language beyond flat YAML, no MCP SDK of its own. The whole proxy is one Starlette app plus a few helper modules.\n\nThe agent sends a normal tools/call to the proxy instead of the server. The proxy:\n\n1. Works out who is calling. That comes from a JWT (Authorization: Bearer) or, if you run it behind a gateway that already did the authentication, from an X-Airlock-Principal header. It is never taken from the request body. No principal, no call. 2. Looks the tool up in the policy. Tools that are not listed are refused. Listed tools have a risk tier per environment, so the same deleteservice can be free in dev and gated in prod. 3. Depending on the tier: L0 (read) goes straight through. L1 (suggest) always goes through with dryrun: true, whatever the agent asked for. L2 (confirm) goes through with dryrun: true first, and the result comes back to the agent as inputrequired with a description of what would happen and a signed requestState. When a person says yes, the agent repeats the call with that state and the proxy executes it for real, once. Repeating it again is refused. L3 (auto) goes through as sent. 4."
-  },
-  {
-   "name": "jinpy666/dbx-plugin-ssh",
-   "url": "https://github.com/jinpy666/dbx-plugin-ssh",
-   "description": "DBX SSH & SFTP plugin: secure terminal, SFTP, MCP automation, and guarded server operations.",
-   "stars": 24,
-   "forks": 1,
-   "language": "HTML",
-   "topics": [],
-   "created_at": "2026-09-14",
-   "homepage": "",
-   "score": 122.0,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-15",
-     "s": 17
-    },
-    {
-     "d": "2026-09-16",
-     "s": 19
-    },
-    {
-     "d": "2026-09-17",
-     "s": 24
-    }
-   ],
-   "readme_excerpt": "DBX SSH 终端（DBX SSH Terminal）是面向现代运维团队的服务器终端：打开一个连接，就能完成终端操作、 文件传输、跳板访问、受控提权和 MCP 自动化。它把“登录服务器之后的下一小时”压缩成 一个连贯、可审计、可复用的工作流。\n\nSSH Terminal · SFTP · Remote Operations：终端、文件、自动化和受控运维操作集中在一个 DBX 终端面板中。\n\n如果你正在工具之间来回切换：终端一个窗口、SFTP 一个窗口、跳板机靠配置文件、 自动化又要另写脚本，那么 DBX SSH & SFTP 的价值很直接——连接、终端、文件和自动化 都围绕同一个 DBX 连接上下文工作。\n\n你要完成的事 DBX SSH & SFTP 给你的体验 --- --- 快速处理线上问题 PTY 终端、命令历史、快速命令、可取消命令和目录跟随 安全地传文件 SFTP 预览、拖放、断点确认、进度、取消和原子替换 进入私网服务器 最多三跳 ProxyJump、连接保活和 Known Hosts 校验 限制高风险操作 只读模式、sudo 来源选择、命令白名单和宿主 secret binding 把重复工作自动化 MCP 工具复用连接、审批和权限边界\n\n- 日常 Linux/Unix 服务器巡检、日志查看和远程命令执行。 - 通过跳板机访问内网环境，并在终端与 SFTP 之间快速切换。 - 在受控权限下完成配置文件、脚本和构建产物的上传下载。\n\n- 支持密码、私钥、SSH Agent、键盘交互和无密码认证。 - 交互式终端支持 PTY、窗口调整、会话恢复、剪贴板、远程目录跟随和批量输入。 - SFTP 支持浏览、排序、预览、上传、下载、重命名、新建、拖放和递归删除；聚焦 SFTP 面板后按 Ctrl/Cmd+V，可把系统剪贴板中的本地文件直接上传到当前目录。 - 大文件传输支持进度、取消、断点确认和原子替换，降低中断造成的半成品风险。 - 支持 Known Hosts 校验、变更主机密钥拒绝、只读模式和远程目录磁盘用量查看。 - 支持最多三跳 ProxyJump、连接保活、可取消远程命令、chmod 和 Quick Sudo。 - 支持 TOTP/键盘交互式双因素认证，以及面向自动化客户端的 MCP 工具接口。 - 界面支持简体中文、繁体中文、英语、西班牙语、意大利语、日语和葡萄牙语。\n\n系统剪贴板文件粘贴使用宿主/浏览器提供的原生 paste 文件事件；若当前宿主不暴露该事件，仍可使用 Upload 按钮或拖放上传。\n\n完整的能力矩阵和与 OpenSSH、Tabby、Termius、FinalShell 等方案的定位对比见 特性与竞品对比。\n\n协议路线：当前版本聚焦 SSH/SFTP 运维；RDP、Telnet 等协议支持仍在持续加强， 后续会逐步补齐更多远程访问场景，请以对应版本发布说明为准。\n\n插件内置 31 个 MCP 工具——远程命令、sudo 提权、SFTP 文件、服务器指标、告警分诊—— 让 AI 编码代理（ZCode、Claude 等任何 MCP 客户端）在你的权限边界内操作服务器。 支持两种接入方式：\n\n方式一：DBX MCP 桥（推荐）。DBX 的 MCP 服务器内置 dbxlistplugintools / dbxcallplugintool 两个通用桥工具，可发现并调用已装插件的全部 MCP 工具。 传 connectionId 即引用 DBX 已保存的 SSH 连接，凭据由 DBX 解析转发， 工具参数中不出现任何密码，审批、sudo 白名单与只读模式照常生效。"
   },
   {
    "name": "alexpilotto/uxon-ai",
@@ -6307,46 +6491,6 @@
     }
    ],
    "readme_excerpt": "14 production writing-style skills and character frameworks for AI agents (Claude Code, Cursor, Codex, Gemini) with dynamic GitHub skill loading.\n\n🌐 Live Documentation & Web Portal: https://writing-skills.builditwithai.xyz\n\nB. Cursor & Google Antigravity (mcp.json)\n\nC. Claude Desktop (claudedesktopconfig.json)\n\nTool Name Parameters Description Return Type ------------ searchstyles query (string) Searches 14+ writing frameworks and character personas. JSON getskill stylename (string) Retrieves the full procedural markdown playbook (SKILL.md) for any style. Markdown installskill stylename (string) Automatically installs a style playbook into the agent's active workspace. JSON liststyles (none) Lists all available styles and frameworks. JSON skillread skillname (string) Loads style playbooks dynamically from GitHub. Markdown skillslist (none) Lists all available skills. JSON\n\nA. Measurable Frameworks 1. plain-language: Federal plain language guidelines, 8th-grade readability, active voice. 2. technical-concise: Minimalist documentation, zero fluff, high signal-to-noise ratio. 3. executive-brief: BLUF (Bottom Line Up Front), structured bullet points, decision-oriented. 4. academic-rigorous: Factual precision, hedged claims, structured methodology tone. 5. storytelling-narrative: Pacing, tension-resolution arcs, relatable analogies. 6. persuasive-copy: Problem-agitation-solution, benefit-driven value propositions. 7. conversational-friendly: Approachable, warm, clear explanations for complex ideas."
-  },
-  {
-   "name": "friday-memory/friday",
-   "url": "https://github.com/friday-memory/friday",
-   "description": "⚡ The open-source persistent cognitive memory layer for AI coding agents. Stop your Cursor, Claude & Copilot from having amnesia.",
-   "stars": 19,
-   "forks": 3,
-   "language": "HTML",
-   "topics": [
-    "ai-agents",
-    "ai-memory",
-    "antigravity",
-    "antigravity-cli",
-    "antigravity-ide",
-    "claude-code",
-    "claudecode",
-    "codex",
-    "cognitive-ai",
-    "cursor",
-    "developer-tools",
-    "fastapi",
-    "knowledge-graph",
-    "llm",
-    "mcp",
-    "model-context-protocol",
-    "neo4j",
-    "persistent-memory"
-   ],
-   "created_at": "2026-09-16",
-   "homepage": "https://github.com/itskie/friday",
-   "score": 196.0,
-   "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-17",
-     "s": 19
-    }
-   ],
-   "readme_excerpt": "An open-source, self-hosted persistent cognitive memory layer for AI coding agents (Cursor, Claude, VS Code). Persists architecture decisions, schemas, and preferences across sessions via the Model Context Protocol (MCP).\n\n🚀 Quickstart 🔌 IDE Setup ✨ Features 📡 API Docs 🏗️ Architecture 🗺️ Roadmap\n\nLive Neural Studio — Obsidian-grade knowledge graph visualizer mapping real AI cognitive memory constellations.\n\nProblem: Session Amnesia & Token Overhead\n\nModern coding assistants (Cursor, Claude Code, Copilot, Antigravity) initialize each chat thread without cross-session memory. While developers frequently mitigate this using project documentation (AGENTS.md, prompt templates, or manual file references), this workflow presents two major bottlenecks:\n\n1. Context Window & Token Inefficiency: Injecting massive architecture documents or having agents repeatedly read entire repository directories consumes thousands of context tokens on every single query. 2. Loss of Incremental Decisions: Ephemeral decisions—such as chosen dependency versions, schema adjustments, or bug fix rationale made in prior sessions—are lost when a session resets, forcing developers to repeatedly re-explain core constraints. ---\n\nFriday runs as an open-source, self-hosted Model Context Protocol (MCP) server. Instead of dumping entire documentation files into prompt context, Friday exposes 4 targeted tools (addmemory, addfact, memorysearch, getcontext) backed by a multi-tier storage engine:"
   },
   {
    "name": "0xkillaflow/agama-redmine-mcp",
@@ -7528,7 +7672,7 @@
    "url": "https://github.com/00200200/maintainer-skills-lab",
    "description": "16 reusable skills and 6 agents for Codex, Claude Code, Cursor, OpenCode and Grok Bot: Humanizer, ML debugging, PR review and Skill Watch.",
    "stars": 16,
-   "forks": 1,
+   "forks": 2,
    "language": "Python",
    "topics": [
     "agent-skills",
@@ -7554,9 +7698,9 @@
    ],
    "created_at": "2026-09-13",
    "homepage": "https://github.com/00200200/maintainer-skills-lab/blob/main/docs/task-gallery.md",
-   "score": 55.3,
+   "score": 44.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -7576,6 +7720,42 @@
     }
    ],
    "readme_excerpt": "Try Humanizer · Copy a task prompt · Explore the skills · ☆ Star on GitHub · Download ZIPs · Grok Bot · Hooks · Skill Watch MCP\n\nMake stiff drafts readable. Debug code and ML training with reproducible evidence.\n\n16 skills and 6 agent profiles for Codex, Claude Code, Cursor, OpenCode, and Grok Bot. The workflows share one Markdown source, with generated versions for each client. Start with one skill, or get the full library with its agents.\n\nThe Humanizer skill edits a draft in its original language, keeping facts, code, quotations, and meaningful caveats intact.\n\nBefore One possible edit --- --- We are thrilled to announce that you can now leverage --dry-run to preview changes. Windows has not been tested yet. Use --dry-run to preview changes. We haven't tested Windows yet.\n\nThis is an authored illustration. More examples and acceptance checks →\n\nWith Node.js 22.20.0+ and Git, run this in the project where you want to use it:\n\nFor Claude Code, replace --agent codex with --agent claude-code. For Cursor, use --agent cursor. This uses the third-party Vercel Skills CLI to install one skill locally in the current project. Read the linked skill before installing it.\n\nUse mkl-humanize to improve this draft. Preserve its facts, code, and limitations. Explain any edit that changes the emphasis.\n\nExplicit invocation uses $mkl-humanize in Codex CLI or /mkl-humanize in Claude Code and Cursor. Installation, removal, and recorded checks →"
+  },
+  {
+   "name": "mmdju/digikala-mcp",
+   "url": "https://github.com/mmdju/digikala-mcp",
+   "description": "MCP server for Digikala: search, compare and price-check products on Iran's largest marketplace. Read-only, no API key. 16 tools, hosted on Cloudflare Workers.",
+   "stars": 16,
+   "forks": 3,
+   "language": "JavaScript",
+   "topics": [
+    "cloudflare-workers",
+    "digikala",
+    "iran",
+    "mcp",
+    "model-context-protocol",
+    "persian"
+   ],
+   "created_at": "2026-09-15",
+   "homepage": "https://digikala-mcp.mmdju.workers.dev/",
+   "score": 59.3,
+   "first_seen": "2026-09-16",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-16",
+     "s": 4
+    },
+    {
+     "d": "2026-09-17",
+     "s": 5
+    },
+    {
+     "d": "2026-09-18",
+     "s": 16
+    }
+   ],
+   "readme_excerpt": "Digikala MCP - Shop intelligence for AI agents\n\nA public MCP server that gives AI agents real Digikala knowledge: search, prices in Toman, discounts, ratings, sellers, reviews, deals and bestsellers. Read-only, no key needed.\n\nLive endpoint: https://digikala-mcp.mmdju.workers.dev/mcp (Streamable HTTP, stateless)\n\nنسخه فارسی · Examples · Tool reference · Changelog\n\nAny MCP client, one URL. Cline / Cursor / Claude Desktop (mcp.json style):\n\nThen just talk: \"best Samsung phone under 20 million Toman\", \"is this laptop any good?\", \"what is on deal today?\", \"what is popular in Iran right now?\".\n\nTool What it answers ------ digikalasuggest Vague wording to real search terms, category ids, trends searchdigikala \"Show me X\", price checks, filters + sorting + paging browsecategory Browse a category, drill into sub-categories productdetails Everything about one product: price, seller, warranty, specs, reviews productpricechart \"Is now cheap?\" - short price history with seller per point productquestions \"What did buyers ask?\" - questions + answer counts getproductsbatch Shortlist cards for up to 10 ids - feeds compareproducts producturl Product id to shareable URL + title productvariants \"Which colour is cheapest?\" - every variant with its own price + seller searchfilters \"Which brands exist for X?\" - brand/color/category ids + price range productreviews \"Is it any good?\" - buyer-only and min-rating filters compareproducts \"Which of these?\" - only the specs that actually differ findbestvalue \"Best X under Y Toman\" - ranked picks with seller grade incredibleoffers Today's deals (شگفت‌ان"
   },
   {
    "name": "enowdev/succubus",
@@ -8262,6 +8442,50 @@
    "readme_excerpt": "An MCP server exposing AMD BC-250 telemetry and tuning controls, plus an optimizer that uses them to tune a unit automatically — with a boot watchdog that reverts an unproven configuration if the machine hangs.\n\nEvery BC-250 is different, and tuning one is your responsibility. Read docs/SAFETY.md before pointing this at hardware you care about. It matters more for an automated tuner than for a manual GUI, not less.\n\n- Reads GPU/CPU temperature, power, clocks, voltage, fan RPM, and SMU throttle status — no root, no SMU mailbox contention. - Applies GPU frequency changes through a safety envelope that refuses out-of-range values rather than clamping them, one small step per call. - Snapshots the verbatim bytes of every config file before each write, and rolls back on demand. - Reverts automatically on the next boot if a config was applied and never proven stable — the piece that makes unattended tuning survivable. - Benchmarks with FurMark, sampling telemetry throughout and aborting on an over-temperature. - Controls fans where the hardware allows it — the in-tree nct6683 driver exposes PWM read-only, so this needs the out-of-tree nct6687d module. getfanstate() reports whether your board can do it.\n\nA BC-250 runs exactly one GPU governor; both in the wild are supported, and the backend is detected automatically.\n\noberon-governor cyan-skillfish-governor-smu --------- Operating points exactly two full V/F curve Control config file + restart live D-Bus Survives reboot yes no (config file does)"
   },
   {
+   "name": "KonghuanSmart/calculate-mcp",
+   "url": "https://github.com/KonghuanSmart/calculate-mcp",
+   "description": " A high-precision calculation & binary data MCP server with chained batch execution (batch_calc), bitwise logic, IEEE 754, crypto, and math. ",
+   "stars": 15,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [
+    "batch-processing",
+    "bitwise",
+    "calculator",
+    "cryptography",
+    "ieee754",
+    "llm-tools",
+    "mcp",
+    "model-context-protocol",
+    "reverse-engineering",
+    "typescript"
+   ],
+   "created_at": "2026-09-14",
+   "homepage": "",
+   "score": 52.0,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-15",
+     "s": 11
+    },
+    {
+     "d": "2026-09-16",
+     "s": 12
+    },
+    {
+     "d": "2026-09-17",
+     "s": 14
+    },
+    {
+     "d": "2026-09-18",
+     "s": 15
+    }
+   ],
+   "readme_excerpt": "A comprehensive Model Context Protocol (MCP) server providing precision numerical calculations, low-level binary data operations, IEEE 754 float decomposition, cryptographic utilities, data codecs, and an intelligent chained batch execution engine (batchcalc) designed to eliminate multi-turn round-trip overhead for Large Language Models.\n\n- ⚡ 29 Specialized Tools: Covers arbitrary-precision integer conversions, bitwise logic, endianness swapping, IEEE 754 floating-point layouts, modular arithmetic, cryptography, statistics, and trigonometry. - 🔗 Zero-Round-Trip Chained Execution (batchcalc): Run multiple operations in a single tool call with step-to-step dependency referencing ({\"$step\": 0, \"field\": \"resultHex\"}), reducing LLM latency and token consumption. - 🔢 Arbitrary-Precision & Native Bit-Widths: Powered by native BigInt — zero precision loss for 64-bit/128-bit+ integers with full 8/16/32/64-bit signed and unsigned two's complement representations. - 🛡️ Zero Bloat: Built purely with TypeScript, Node.js standard libraries, and Zod. No heavy native bindings or fragile dependencies.\n\nOption B: From Source (Clone & Run Locally)\n\n2. Add to your MCP client config (e.g. claudedesktopconfig.json or mcp.json):\n\n1. Pipeline & Batch Execution (1 Tool) Tool Description :--- :--- batchcalc Executes multiple calculation steps in a single call. Steps can reference earlier results using {\"$step\": index, \"field\": \"...\"}."
+  },
+  {
    "name": "xuzhougeng/ScientificFigureLibrary",
    "url": "https://github.com/xuzhougeng/ScientificFigureLibrary",
    "description": "Standard MCP server and MCP App for scientific figure templates from FigureYa and user-supplied references",
@@ -8753,46 +8977,6 @@
    "readme_excerpt": "A hosted Model Context Protocol (MCP) server that gives Claude, Cursor, Windsurf and any other MCP client one read-only tool for fetching any public web page. It goes out through managed proxies, renders JavaScript when a page needs it, and returns clean markdown, plain text, raw HTML or structured JSON, with nothing to host and no browser in your stack.\n\nThis is the fallback for sites with no dedicated API. When a site does have one in the HasData catalogue, that tool returns parsed fields and this one returns a page.\n\n1,000 free credits every month, no card required. A plain fetch costs 1 credit, so the free tier covers 1,000 of them.\n\n- What you need - Quick start - Example prompts - Tools - Output formats - Errors and failure paths - Pricing, free tier and limits - How it compares - FAQ - HasData links - Development - Contributing - License\n\nAn MCP client and a HasData API key from the dashboard, free to create with no card. This is a remote server, so the simplest path is a URL and an x-api-key header, with no container to run. A client that only speaks stdio reaches it through a thin launcher, published as @hasdata/web-scraping-mcp on npm and hasdata-web-scraping-mcp on PyPI, shown below.\n\nThe server URL is the same for every client. We run it hands-on in Claude Code and Claude Desktop. The other blocks follow each client's own documented format for a remote server.\n\nField Value :--- :--- URL https://mcp.hasdata.com/api/mcp?apis=webscraping Transport HTTP, streamable Auth header x-api-key: HASDATAAPIKEY"
   },
   {
-   "name": "KonghuanSmart/calculate-mcp",
-   "url": "https://github.com/KonghuanSmart/calculate-mcp",
-   "description": " A high-precision calculation & binary data MCP server with chained batch execution (batch_calc), bitwise logic, IEEE 754, crypto, and math. ",
-   "stars": 14,
-   "forks": 1,
-   "language": "TypeScript",
-   "topics": [
-    "batch-processing",
-    "bitwise",
-    "calculator",
-    "cryptography",
-    "ieee754",
-    "llm-tools",
-    "mcp",
-    "model-context-protocol",
-    "reverse-engineering",
-    "typescript"
-   ],
-   "created_at": "2026-09-14",
-   "homepage": "",
-   "score": 72.0,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-15",
-     "s": 11
-    },
-    {
-     "d": "2026-09-16",
-     "s": 12
-    },
-    {
-     "d": "2026-09-17",
-     "s": 14
-    }
-   ],
-   "readme_excerpt": "A comprehensive Model Context Protocol (MCP) server providing precision numerical calculations, low-level binary data operations, IEEE 754 float decomposition, cryptographic utilities, data codecs, and an intelligent chained batch execution engine (batchcalc) designed to eliminate multi-turn round-trip overhead for Large Language Models.\n\n- ⚡ 29 Specialized Tools: Covers arbitrary-precision integer conversions, bitwise logic, endianness swapping, IEEE 754 floating-point layouts, modular arithmetic, cryptography, statistics, and trigonometry. - 🔗 Zero-Round-Trip Chained Execution (batchcalc): Run multiple operations in a single tool call with step-to-step dependency referencing ({\"$step\": 0, \"field\": \"resultHex\"}), reducing LLM latency and token consumption. - 🔢 Arbitrary-Precision & Native Bit-Widths: Powered by native BigInt — zero precision loss for 64-bit/128-bit+ integers with full 8/16/32/64-bit signed and unsigned two's complement representations. - 🛡️ Zero Bloat: Built purely with TypeScript, Node.js standard libraries, and Zod. No heavy native bindings or fragile dependencies.\n\nOption B: From Source (Clone & Run Locally)\n\n2. Add to your MCP client config (e.g. claudedesktopconfig.json or mcp.json):\n\n1. Pipeline & Batch Execution (1 Tool) Tool Description :--- :--- batchcalc Executes multiple calculation steps in a single call. Steps can reference earlier results using {\"$step\": index, \"field\": \"...\"}."
-  },
-  {
    "name": "obundh/korea-public-data-catalog-mcp",
    "url": "https://github.com/obundh/korea-public-data-catalog-mcp",
    "description": "대한민국 공공데이터를 조합해 서비스 아이디어를 설계하는 정적 메타데이터 MCP 공개 베타",
@@ -9260,6 +9444,39 @@
     }
    ],
    "readme_excerpt": "Baron Munchausen — local memory that outlives the chat\n\nEverything above is a real run against a clean clone. rpc is the two-line curl wrapper defined in docs/demo/baron-demo.sh; re-record the whole thing with cd docs/demo && ./record.sh.\n\nPublic alpha (0.6.1). The engine has run daily in the authors' own work for months; this repository is one day old. The code is Apache-2.0 and complete — the packaging, the docs and the install path are what \"alpha\" refers to. Report anything that breaks.\n\nYour session ends. Your project doesn't. One call brings back where the project stopped, what was decided and what comes next — after a closed tab, a spent limit or a change of model. And every answer built on that memory comes back with a verdict: grounded, partial or ungrounded, with the sentences nothing backs named one by one.\n\nA memory server in Python 3.12 with no third-party runtime dependency. MCP over stdio for your client, JSON-RPC on 127.0.0.1:8765 for everything else. Nothing here calls a model and nothing leaves your machine. A fresh install starts with an empty graph: we ship the tools, never the data.\n\nThree numbers, each one measured, each one with what it does not say written next to it.\n\n1. One context return: 7 146 tokens → 2 388. The 7 146 is a real compaction summary out of a session transcript; the 2 388 is the slice a live memorygroundprepare returned for the same moment of the same project. Both counted with tiktoken/cl100kbase on 2026-09-10. What it does not say: it is one pair of instances, not a distribution — a second summary from the same corpus came to 5 91"
+  },
+  {
+   "name": "missuo/wisp",
+   "url": "https://github.com/missuo/wisp",
+   "description": "Wisp: computer use for agents on macOS (accessibility tree + synthesized input + DevTools), with a CLI and MCP server",
+   "stars": 13,
+   "forks": 2,
+   "language": "Swift",
+   "topics": [],
+   "created_at": "2026-09-14",
+   "homepage": "",
+   "score": 47.3,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-15",
+     "s": 10
+    },
+    {
+     "d": "2026-09-16",
+     "s": 11
+    },
+    {
+     "d": "2026-09-17",
+     "s": 12
+    },
+    {
+     "d": "2026-09-18",
+     "s": 13
+    }
+   ],
+   "readme_excerpt": "A computer-use toolkit for macOS: a daemon, a CLI and an MCP server that let AI agents see and drive native apps and Chrome.\n\nWisp is a computer-use toolkit for macOS: a daemon (wispd) that reads app windows as an indexed accessibility tree and performs UI actions with an animated agent cursor, plus a CLI (wisp) and an MCP server (wisp mcp) that any agent (Claude Code, Codex, scripts) can call. Chrome tabs are driven over the DevTools Protocol, in your own Chrome through the Wisp extension or in a separate hidden instance.\n\nIt is a from-scratch implementation of the ideas documented in DESIGN.md (how the ChatGPT/Codex desktop app's Computer Use works): indexed AX trees with diffs, window-targeted synthesized input that does not hijack the user's pointer, a glowing cursor with spring motion and click gating, settle detection, Esc to stop, and a policy file.\n\nThis installs Wisp.app and the wisp command-line tool together (both signed and notarized). Updates arrive automatically through Sparkle. Then open the app once and grant permissions:\n\nGrant Accessibility (required) and Screen Recording (optional, for screenshots) to Wisp in System Settings → Privacy & Security. The menu bar item guides you: it asks for Accessibility with the system prompt, shows a hint banner, and offers \"Grant Accessibility access…\" and \"Grant Screen Recording…\" items that open the right Settings pane. Once every permission is granted the badge disappears."
   },
   {
    "name": "djwmarcx/better-mealie-mcp",
@@ -10049,35 +10266,6 @@
    "readme_excerpt": "Grove is a small macOS menu bar app that lets AI assistants work with Apple Calendar and Reminders.\n\nIt is local-first. Your data stays on your Mac. Grove does not need an account, a cloud service, or a database.\n\n- Find calendars and events. - Create, update, and delete events. - Handle all-day events, time zones, repeats, and alarms.\n\n- Find reminder lists and reminders. - Create, update, complete, reopen, and delete reminders. - Handle due dates, priority, repeats, and alarms.\n\nEnable Calendar or Reminders from the Grove menu bar panel. More Apple app integrations will appear as they become available.\n\nWhen a release is available, download Grove from the Grove download page. It selects the Apple silicon or Intel archive for your Mac. Open the app, then allow Calendar or Reminders access when macOS asks.\n\nOpen Grove before you use it. The app keeps its local MCP server ready while it runs. Connect Grove to your AI assistant through its MCP setup. Developer and client setup instructions are in AGENTS.md.\n\nGrove reads and changes Apple data only when an enabled MCP tool is called. It does not copy your Calendar or Reminders data to another store.\n\nRead the contribution guide before opening a pull request. For security issues, read the security policy.\n\nGrove is an independent project. It is not affiliated with or endorsed by Apple."
   },
   {
-   "name": "missuo/wisp",
-   "url": "https://github.com/missuo/wisp",
-   "description": "Wisp: computer use for agents on macOS (accessibility tree + synthesized input + DevTools), with a CLI and MCP server",
-   "stars": 12,
-   "forks": 2,
-   "language": "Swift",
-   "topics": [],
-   "created_at": "2026-09-14",
-   "homepage": "",
-   "score": 64.0,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-15",
-     "s": 10
-    },
-    {
-     "d": "2026-09-16",
-     "s": 11
-    },
-    {
-     "d": "2026-09-17",
-     "s": 12
-    }
-   ],
-   "readme_excerpt": "A computer-use toolkit for macOS: a daemon, a CLI and an MCP server that let AI agents see and drive native apps and Chrome.\n\nWisp is a computer-use toolkit for macOS: a daemon (wispd) that reads app windows as an indexed accessibility tree and performs UI actions with an animated agent cursor, plus a CLI (wisp) and an MCP server (wisp mcp) that any agent (Claude Code, Codex, scripts) can call. Chrome tabs are driven over the DevTools Protocol, in your own Chrome through the Wisp extension or in a separate hidden instance.\n\nIt is a from-scratch implementation of the ideas documented in DESIGN.md (how the ChatGPT/Codex desktop app's Computer Use works): indexed AX trees with diffs, window-targeted synthesized input that does not hijack the user's pointer, a glowing cursor with spring motion and click gating, settle detection, Esc to stop, and a policy file.\n\nThis installs Wisp.app and the wisp command-line tool together (both signed and notarized). Updates arrive automatically through Sparkle. Then open the app once and grant permissions:\n\nGrant Accessibility (required) and Screen Recording (optional, for screenshots) to Wisp in System Settings → Privacy & Security. The menu bar item guides you: it asks for Accessibility with the system prompt, shows a hint banner, and offers \"Grant Accessibility access…\" and \"Grant Screen Recording…\" items that open the right Settings pane. Once every permission is granted the badge disappears."
-  },
-  {
    "name": "dhtoan/AunoStudio",
    "url": "https://github.com/dhtoan/AunoStudio",
    "description": "AI-native, self-hosted studio for editable video, motion, documentary creation, social publishing, and workspace collaboration.",
@@ -10108,9 +10296,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 60.0,
+   "score": 40.0,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -10877,9 +11065,9 @@
    "topics": [],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 55.0,
+   "score": 36.7,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -11823,9 +12011,9 @@
    ],
    "created_at": "2026-09-13",
    "homepage": "",
-   "score": 35.3,
+   "score": 27.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -11890,9 +12078,9 @@
    "topics": [],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 54.0,
+   "score": 37.3,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -11904,6 +12092,40 @@
     }
    ],
    "readme_excerpt": "Run the firmware of the Ultimate 64 Elite II and the C64 Ultimate on your computer, and develop and test it without flashing a device.\n\nThe Commodore C64 Ultimate firmware 1.1.0 runs as well:\n\nThe emulator runs the application part of the firmware unmodified: ultimate.elf, or the application inside a .ue2 update file. That is where the menu, file browser, REST API and web UI come from. The FPGA part of the firmware does not run; the emulator models the hardware the application talks to instead: flash, SD card, USB, network and the menu overlay. The C64 core is replaced by TRX64 behind the same register interface, with SID sound, cartridges and a 1541 drive. An MCP server lets Claude Code sessions start and drive emulator instances for automated tests.\n\nTo build from source, see docs/status/install.md. macOS is the main platform. Linux builds and passes CI but has not been used in practice. Windows is not supported.\n\nFirmware and ROMs are not included. You need:\n\n- a firmware image: your own ultimate.elf build or an update.ue2 file - the roms folder of a 1541ultimate checkout, for the menu font and the C64 ROMs\n\nWith --net user the web UI is at http://127.0.0.1:8080. ue2emu run --help lists all options. They can also go into a TOML file, started with ue2emu run --config my.toml (example).\n\n- Usage: build, options, config files, install, ROMs, MCP server - Status: what works, by area - Architecture"
+  },
+  {
+   "name": "lexmount/artifact-site",
+   "url": "https://github.com/lexmount/artifact-site",
+   "description": "A self-hosted home for your team’s AI-generated pages and documents. Publish HTML, build folders, ZIPs and PDFs as sandboxed, versioned links. CLI + remote MCP for AI agents.",
+   "stars": 10,
+   "forks": 2,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "artifacts",
+    "claude-artifacts",
+    "claude-code",
+    "docker",
+    "file-sharing",
+    "mcp",
+    "mcp-server",
+    "nextjs",
+    "openai-sites",
+    "self-hosted",
+    "static-hosting"
+   ],
+   "created_at": "2026-09-14",
+   "homepage": "https://artifact-site.app.lexmount.com",
+   "score": 29.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 10
+    }
+   ],
+   "readme_excerpt": "English 简体中文 日本語 Deutsch Français Español\n\nThere are now so many AI agents to choose from, but their output is scattered across your computer, chat histories and different platforms’ clouds, making it hard to organize, share and revisit.\n\nartifact-site is a self-hosted workspace for individuals and teams, similar to Claude Artifacts or OpenAI Sites. Your various agents create the work; artifact-site brings it together, turning pages and documents into links for sharing, comments and feedback, access control and version history. The agents you already use can keep editing, publishing, searching and updating that work through the CLI or MCP.\n\nTry the live demo — no installation needed. Drag and drop a file to publish it and get a shareable link, without signing in.\n\nAnonymous uploads expire after a few days. This is a public demo; please do not upload sensitive information.\n\nDrop a file, get a link, share it. View your published work online and choose who can open it in the sharing settings.\n\n- Keep work in one place. Organize pages and documents in folders and find them with full-text search, including Chinese. Team members and agents can find the work they have permission to access. - Drop it in and share it. Upload HTML, a build folder, a ZIP or a document to get a link. Large sites upload in chunks. Share with everyone, signed-in users, named people or passcode holders. - Keep improving published work. Edit HTML text or source in the browser, or let an agent update the whole site. Each change keeps a version, with rollback and the option to save a copy. - Let agents pick "
   },
   {
    "name": "samuraiseekerrefresh/tradeup-2026",
@@ -13709,6 +13931,31 @@
     }
    ],
    "readme_excerpt": "Paradigm E++ (Epistemic State, Vector Embeddings, Distributed Execution Mesh) is the formal architectural specification underlying Hermes Fleet Synapse:\n\n1. Zero Ambient Prompt Bloat (memory.provider: none): Memory is never ambiently stuffed into the LLM system prompt. Retrieval is on-demand via explicit FastMCP vector searches (fleetsynapsesearch / fleetmemorysearch), cutting prompt costs to zero for turns where memory is unnecessary. 2. Deterministic State Resolution (UUID5 + LWW): Overwrites stale facts in-place using deterministic DNS-namespace UUID5 hashes (domain:clientid:slotname), combined with Last-Write-Wins (LWW) timestamped validation to prevent out-of-order split-brain corruption. 3. Infrastructure-Enforced Domain Firewalls (FLEETHARDDOMAIN): Strict client-level boundary gates prevent enterprise data from cross-contaminating personal workstations, eliminating reliance on probabilistic LLM compliance.\n\n🤖 For AI Coding Agents: Autonomous Deployment Contract\n\nFull autonomous protocol, OS decision trees, and non-interactive flags: See AGENTS.md. The contract covers both pipelines — cross-device vector memory (§A) and the cross-node task plane (§B) — including when to pick each, and the mandatory verification ledger for each.\n\nIf you are an AI Coding Agent (Hermes, Claude Code, Codex, Cursor, Windsurf) instructed by your human to deploy this repository, execute the following deterministic protocol without open-ended interview loops:"
+  },
+  {
+   "name": "wgaostudio/closetscan",
+   "url": "https://github.com/wgaostudio/closetscan",
+   "description": "Turn a closet walkthrough video into a searchable wardrobe catalogue, with a local MCP server and agent skill",
+   "stars": 9,
+   "forks": 1,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-15",
+   "homepage": "",
+   "score": 47.0,
+   "first_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-17",
+     "s": 8
+    },
+    {
+     "d": "2026-09-18",
+     "s": 9
+    }
+   ],
+   "readme_excerpt": "Turn a closet walkthrough video into a wardrobe your AI assistant can use: source frames, AI-generated front/back flat-lays, attributes, and optional narration, handed to any MCP client by a local server and the included wardrobe skill. Ask what goes with the navy jacket, what you said about it while you were filming, or what you have not worn since spring — against your own clothes, catalogued from one video, on your own machine.\n\nBy Will Gao. A mention is appreciated, but not required. MIT licensed; retain the copyright and license notice as required by MIT.\n\nOpen the live demo — one 5-minute-49-second phone recording beside the 34-garment catalogue built from it. Nothing to install, no API key, no clone.\n\nThe demo is not part of this repository, so cloning stays small. To run it offline, download closetscan-demo.zip from the latest release, unzip it, and open index.html. Keep the folder together; the page loads its images from catalogue/.\n\nThat catalogue was generated from the included recording using DINOv2 and the paid AI stages; reruns can produce different results. It contains 34 garments with 68 generated front/back images. Images marked as plates are generated reconstructions; source frames remain available for comparison.\n\nOne MCP server and one skill, both local. Point the server at a catalogue — one you build with the pipeline below, or the published demo's, which needs no pipeline run at all — and your assistant can answer from your own clothes:"
   },
   {
    "name": "henrycqxzwalker1542/base-mcp-agent-orchestrator",
@@ -42131,9 +42378,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42167,9 +42414,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42203,9 +42450,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42241,9 +42488,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42277,9 +42524,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42315,9 +42562,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 22.0,
+   "score": 18.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42353,9 +42600,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42391,9 +42638,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42429,9 +42676,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42465,9 +42712,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -42503,9 +42750,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42540,9 +42787,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42577,9 +42824,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42614,9 +42861,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42652,9 +42899,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42690,9 +42937,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42727,9 +42974,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42765,9 +43012,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42803,9 +43050,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42840,9 +43087,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -42878,9 +43125,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 40.0,
+   "score": 26.7,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -42912,9 +43159,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 40.0,
+   "score": 26.7,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -42946,9 +43193,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 40.0,
+   "score": 26.7,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -42980,9 +43227,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 40.0,
+   "score": 26.7,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -43014,9 +43261,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 40.0,
+   "score": 26.7,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -43047,9 +43294,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://pics.io",
-   "score": 80.0,
+   "score": 40.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -43059,25 +43306,33 @@
    "readme_excerpt": "Official plugin and extension distribution for the Pics.io MCP server.\n\nPics.io is a digital asset management (DAM) system: a library of collections and files carrying keywords, faces, ratings, flags, color labels, custom fields and extracted document text. This repository packages that library as an installable plugin for AI assistants that speak the Model Context Protocol, so your assistant can answer from the approved files your team actually ships instead of guessing.\n\nIt is the canonical public surface for five install paths — Claude and Claude Code, ChatGPT / Codex, Cursor, and Gemini CLI — plus the bundled skills that teach an assistant how to search a DAM well.\n\nEverything here is read-only. The tools find and describe assets. They never upload, tag, rate, move, share or delete anything.\n\nTools — from the remote MCP server at https://mcp.pics.io/mcp\n\nTool What it does --- --- picsiosearchcollections Find collections by name, path or description, or list the children of one. Returns id, name, description, path, haschild, archived. picsiosearchassets Search assets by free text plus ~35 filters — type, keywords, faces, assignees, flag, rating, color label, file size, date ranges, collections — with sorting and paging. picsiogetasset Full metadata for one asset: keywords, description, collections, dimensions, preview URL. picsiogetassetpreview A safe preview URL for one asset. Oversized and unsupported files are rejected with an explanation."
   },
   {
-   "name": "wgaostudio/closetscan",
-   "url": "https://github.com/wgaostudio/closetscan",
-   "description": "Turn a closet walkthrough video into a searchable wardrobe catalogue, with a local MCP server and agent skill",
+   "name": "NousResearch/hermes-plugin-snyk",
+   "url": "https://github.com/NousResearch/hermes-plugin-snyk",
+   "description": "Hermes Agent plugin: Snyk code/dependency/container/IaC scanning via Snyk's first-party MCP server, with the snyk-security-scan skill bundled (Agent Plugins v1)",
    "stars": 8,
    "forks": 1,
-   "language": "Python",
+   "language": null,
    "topics": [],
-   "created_at": "2026-09-15",
+   "created_at": "2026-09-12",
    "homepage": "",
-   "score": 82.0,
-   "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
+   "score": 18.0,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
+     "d": "2026-09-15",
+     "s": 4
+    },
+    {
      "d": "2026-09-17",
+     "s": 5
+    },
+    {
+     "d": "2026-09-18",
      "s": 8
     }
    ],
-   "readme_excerpt": "Turn a closet walkthrough video into a wardrobe your AI assistant can use: source frames, AI-generated front/back flat-lays, attributes, and optional narration, handed to any MCP client by a local server and the included wardrobe skill. Ask what goes with the navy jacket, what you said about it while you were filming, or what you have not worn since spring — against your own clothes, catalogued from one video, on your own machine.\n\nBy Will Gao. A mention is appreciated, but not required. MIT licensed; retain the copyright and license notice as required by MIT.\n\nOpen the live demo — one 5-minute-49-second phone recording beside the 34-garment catalogue built from it. Nothing to install, no API key, no clone.\n\nThe demo is not part of this repository, so cloning stays small. To run it offline, download closetscan-demo.zip from the latest release, unzip it, and open index.html. Keep the folder together; the page loads its images from catalogue/.\n\nThat catalogue was generated from the included recording using DINOv2 and the paid AI stages; reruns can produce different results. It contains 34 garments with 68 generated front/back images. Images marked as plates are generated reconstructions; source frames remain available for comparison.\n\nOne MCP server and one skill, both local. Point the server at a catalogue — one you build with the pipeline below, or the published demo's, which needs no pipeline run at all — and your assistant can answer from your own clothes:"
+   "readme_excerpt": "Scan code, dependencies, container images, IaC and SBOMs from Hermes Agent through Snyk's first-party MCP server. Snyk ships the server inside the Snyk CLI (snyk mcp is a vendor subcommand, not a community wrapper), so this plugin is a pinned npx stdio launch plus a workflow skill.\n\nThis is a portable Agent Plugins v1 package. One install ships:\n\n- mcp.json — the Snyk MCP server entry (sn), registered for every new session while the plugin is enabled. No mcpservers edits in config.yaml. - skills/snyk-security-scan/ — the workflow skill: when to use which scanner, the auth/trust/scan/fix loop, pitfalls, and a full per-tool argument reference generated from the live server.\n\nThen start a new Hermes session. The skill is available as agent-plugin-snyk-8cb0f11d:snyk-security-scan via skillview (skillslist shows the exact name). Node.js/npm must be on PATH (the server is launched with npx -y snyk@1.1306.0 mcp -t stdio --profile full). The first launch downloads the pinned CLI.\n\nNo credentials are needed at install time. Ask Hermes to run the snykauth tool before the first scan: it opens Snyk's browser login and stores the token in the Snyk CLI's own config, never in Hermes. A free Snyk account covers the code (SAST) and open-source (SCA) scanners.\n\n13 tools, all listed in skills/snyk-security-scan/references/tools.md: snykcodescan (SAST), snykscascan (dependencies), snykcontainerscan, snykiacscan, snyksbomscan, snykaibom, snykpackagehealthcheck, snykbreakabilitycheck, snykauth, snyktrust, snyklogout, snykversion, snyksendfeedback."
   },
   {
    "name": "agentcathq/agentcat-go-sdk",
@@ -44665,9 +44920,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44699,9 +44954,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44731,9 +44986,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44765,9 +45020,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44799,9 +45054,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44831,9 +45086,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44863,9 +45118,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44895,9 +45150,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44929,9 +45184,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44963,9 +45218,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -44997,9 +45252,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45031,9 +45286,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45064,9 +45319,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45101,9 +45356,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://unempyd.github.io/revenueos/",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45134,9 +45389,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45167,9 +45422,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45201,9 +45456,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45234,9 +45489,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45268,9 +45523,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45302,9 +45557,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45335,9 +45590,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45369,9 +45624,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -45403,9 +45658,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -45437,9 +45692,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -45471,9 +45726,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -45505,9 +45760,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -45571,9 +45826,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45605,9 +45860,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45639,9 +45894,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45673,9 +45928,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45707,9 +45962,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45741,9 +45996,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45775,9 +46030,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45809,9 +46064,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45843,9 +46098,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45877,9 +46132,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -45927,9 +46182,9 @@
    "topics": [],
    "created_at": "2026-09-13",
    "homepage": "",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -45947,53 +46202,96 @@
    "readme_excerpt": "High-Performance Telegram Userbot & Model Context Protocol (MCP) Server Built with [Kurigram], [dispyro], and [FastMCP] with an integrated, persistent OpenAI Codex App-Server Bridge.\n\npyrogram-mcp bridges native Telegram operations directly into LLM agent workflows (such as OpenAI Codex, Claude Code, and Cursor) via the Model Context Protocol (MCP). It runs as both an interactive Telegram userbot and an MCP server over a single shared Kurigram session, cleanly separating Telegram update dispatching, core business operations, and MCP tool adapters into isolated layers.\n\n- 🔄 Unified Single Session: Shares one active MTProto session and asyncio event loop across userbot handlers, background workers, and MCP tool executions — eliminating session lockouts and duplicate polling. - 🛠️ Dual-Layer MCP Tooling: - High-Level Tools: Clean abstractions for managing chats, reading message history, sending media, search, contacts, and moderation. - Dynamic Reflection: Runtime introspection into installed Kurigram MTProto methods (rawsearch, rawdescribe, rawcall) and high-level client methods (clientsearch, clientdescribe, clientcall). - 🤖 Persistent Codex App-Server Bridge: Issue commands directly inside Telegram using ам to trigger a long-running, stateful OpenAI Codex session powered by gpt-5.6-luna. - 🌐 Flexible MCP Transports: Supports Streamable HTTP (http://127.0.0.1:8000/mcp) for long-lived daemon connections and stdio for direct process execution. - 🛡️ Owner-Only Security: All Telegram commands enforce strict filters.me checks; MCP filesystem access is sandboxed via configurable M"
   },
   {
-   "name": "shinthink/blitzstrike",
-   "url": "https://github.com/shinthink/blitzstrike",
-   "description": "⚡ Blitz Strike — a universal MCP penetration-testing toolbelt. Structured methodology: reconnaissance & attack-surface mapping, source-to-sink analysis, and live validation. 57 escalation chains, 130-",
+   "name": "Ignitic-AI/ignitic",
+   "url": "https://github.com/Ignitic-AI/ignitic",
+   "description": "AI agents that run your e-commerce ops — Shopify, ads, CRM & support via 190+ MCP tools. Open-source, self-hosted, one docker compose up.",
    "stars": 7,
    "forks": 0,
    "language": "TypeScript",
    "topics": [
-    "active-directory",
-    "blue-team",
-    "bug-bounty",
-    "cve",
-    "defensive-security",
-    "exploit",
+    "ai-agents",
+    "ai-automation",
+    "docker-compose",
+    "e-commerce",
+    "ecommerce",
+    "fastapi",
+    "golang",
+    "langgraph",
+    "llm",
     "mcp",
-    "mcp-server",
-    "nuclei",
-    "offensive-security",
-    "payloads",
-    "pentest",
-    "reconnaissance",
-    "red-team",
-    "reverse-engineering",
-    "security",
-    "security-tools",
-    "vulnerability-scanning",
-    "wordpress"
+    "model-context-protocol",
+    "multi-agent-systems",
+    "nextjs",
+    "open-source",
+    "self-hosted",
+    "shopify"
    ],
-   "created_at": "2026-09-12",
-   "homepage": "https://github.com/shinthink/blitzstrike",
-   "score": 17.5,
-   "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "created_at": "2026-09-14",
+   "homepage": "https://igniticai.hinterbuild.com/",
+   "score": 23.3,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
-     "d": "2026-09-13",
-     "s": 3
-    },
-    {
-     "d": "2026-09-16",
-     "s": 6
+     "d": "2026-09-15",
+     "s": 5
     },
     {
      "d": "2026-09-17",
+     "s": 6
+    },
+    {
+     "d": "2026-09-18",
      "s": 7
     }
    ],
-   "readme_excerpt": "Reconnaissance at speed. Analysis in depth. Validation before report.\n\nBlitz Strike is a structured penetration-testing methodology — reconnaissance, source analysis, and validation — delivered as a universal MCP server. It enumerates the attack surface (BLITZ), traces source-to-sink reachability (EAGLE-EYE), and verifies each finding live before it is reported (STRIKE). One server, every agent: scope enforcement to submission-ready findings in a single runengagement call, with the relevant exploit-tool manual attached to every result.\n\nA scan hit is a hypothesis. A live test is the verdict.\n\nBlitz Strike exists to eliminate the two most common failure modes in automated security assessment: false positives from surface-level pattern matching, and unverified findings reported without live confirmation.\n\nBlitz Strike is a Model Context Protocol (MCP) server (TypeScript / Bun) that packages a 3-tier security-audit methodology as callable tools — and runs the whole engagement server-side, so a single runengagement call works from Claude Code, Cursor, Hermes, OpenCode, Claude Desktop, Gemini, or any MCP client.\n\nBlitz Strike maps a structured penetration-testing methodology — reconnaissance, source analysis, and validation — into three tool tiers executed server-side.\n\nTier Name Phase What it does ------------ 1 BLITZ Reconnaissance & attack-surface mapping Enumerates the exposed attack surface at scale: unauthenticated entry points, dangerous sinks, and authentication boundaries. 2 EAGLE-EYE Static analysis & data-flow tracing Traces source-to-sink reachability and enriches fi"
+   "readme_excerpt": "Open-source, real-time AI agents that run your e-commerce operations.\n\nSpecialist agents for sales, marketing, support, ads and analytics — 190+ MCP tools across 15 domains, long-term memory, and team workspaces — behind one platform you self-host.\n\nQuick start · Agents · Integrations · Architecture · MCP tools · Contributing\n\n- Why Ignitic - Specialist agents - Integrations - Features - Quick start - Architecture - Repository layout - Tech stack - FAQ - Status - Contributing - License\n\nRunning an e-commerce store means juggling a dozen surfaces at once — the store, ad accounts, CRM, inbox, socials, analytics. Each one has its own dashboard, its own API, its own quirks. Wiring an AI agent to all of them by hand means a dozen different SDKs, a dozen different auth flows, and rewriting the same tool-calling glue every time a new integration shows up.\n\nIgnitic is that glue, already built. A super-agent on your team's chat delegates to specialist agents — a business analyst, a marketer, a Shopify agent, a customer-support agent — each backed by real tools served over the Model Context Protocol. Agents stream their work in real time, remember context across conversations via checkpointed and knowledge-graph memory, and act on your connected stores and tools directly. The whole platform is Apache-2.0-licensed and runs on your own infrastructure with docker compose up.\n\nThe super-agent orchestrates 14 specialist agents, each mounted as its own MCP server (apps/mcp):"
+  },
+  {
+   "name": "blakestone-x/jev-mcp",
+   "url": "https://github.com/blakestone-x/jev-mcp",
+   "description": "MCP server for TypeSafe Jev: typed classify, score, check, match and screen for any agent, with confidence on every answer",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-16",
+   "homepage": "",
+   "score": 70.0,
+   "first_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-17",
+     "s": 3
+    },
+    {
+     "d": "2026-09-18",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "Jev provides typed judgments over a closed answer set in about 130 ms, with no text generation, through TypeSafe.\n\nSet TYPESAFEAPIKEY in the environment used by your MCP client, then run:\n\nReplace ... with the key value. Passing it through the client environment keeps it out of tool arguments and request state.\n\nThe scripts/register.sh helper requires Bash 4+; do not run it with sh. Apply mode reads TYPESAFEAPIKEY from the environment and refuses to change client configuration when it is unset. --apply writes the plaintext key into ~/.codex/config.toml and the Claude Code user config. The key is briefly visible in the process list while claude mcp add runs because that command receives it as an argument. On Windows, use scripts/register.ps1; it restricts the resulting configuration files to the current user and keeps a .bak copy before rewriting an existing Codex configuration.\n\nThe install examples pin the public v0.2.1 tag. Omitting the tag tracks the repository's default branch instead.\n\nThis call classifies one state containing five support-ticket texts against one label map. It returns one label for the combined state; send one request per ticket when you need an individual label for each ticket:\n\nThe response is an ordinary MCP structured result with a stable envelope:\n\ntool use it for not for --- --- --- jevask Your own Choice, Score, and Noul question map Text generation or numeric extraction jevclassify Selecting one label from a closed list Open-ended writing or ranking without labels jevscore Placing state on an ordered rubric Returning a number extracted from te"
+  },
+  {
+   "name": "ravibagri5/crossplane-mcp-server",
+   "url": "https://github.com/ravibagri5/crossplane-mcp-server",
+   "description": "A Model Context Protocol server that lets AI assistants understand a Crossplane control plane.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Go",
+   "topics": [],
+   "created_at": "2026-09-12",
+   "homepage": "",
+   "score": 14.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "A Model Context Protocol server that lets AI assistants understand a Crossplane control plane.\n\nAsk your assistant \"how many managed resources do I have and is anything broken?\" and it will answer from your actual control plane, with the reason for every failure, instead of guessing.\n\nThe server is read-only by default: the tools that create and update are not registered at all unless you start it with --read-only=false, so a client cannot see them, let alone call them. Nothing deletes in either mode. Turn writes on and the same assistant can provision from your platform APIs:\n\nNothing there names a Kubernetes kind. The tool found the platform API this control plane offers, read the schema its XRD declares and filled it in. See examples/demo for a control plane you can try it on without a cloud account.\n\n- Why not a generic Kubernetes MCP server? - Quick start - Installation - Client configuration - Tools - Read-only and write modes - Prompts - Calling a tool directly - Configuration - Multiple control planes - Running in a cluster - Required RBAC - Contributing - Security - License\n\nWhy not a generic Kubernetes MCP server?\n\nA general purpose Kubernetes MCP server can already reach every object on a Crossplane control plane: Crossplane resources are Kubernetes resources, and a generic resourceslist with an apiVersion and a kind will happily return your XRDs. Access was never the problem.\n\nThe problem is that it does not know what any of it means, and it will happily delete it."
   },
   {
    "name": "plainfate/IotaPanel",
@@ -48165,9 +48463,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://www.npmjs.com/package/n8n-mcp-guard",
-   "score": 12.0,
+   "score": 10.0,
    "first_seen": "2026-09-12",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-12",
@@ -48200,9 +48498,9 @@
    ],
    "created_at": "2026-09-13",
    "homepage": "",
-   "score": 20.0,
+   "score": 15.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -48262,48 +48560,6 @@
    "readme_excerpt": "Your skills, anywhere. Install an Agent Skill once, use it in every agent: a live skill provider for DeepSeek Harness (dsh) and an MCP server for Claude Code, Cursor, Codex and friends.\n\nTry the interactive Hugging Face playground — explore an example workspace, resolve name clashes, and search beyond the catalog budget. No installation or model API needed. How it works.\n\nInspect a skill and return to the same row with the keyboard. Clear search while keeping catalog choices, or share a view that restores those choices explicitly.\n\nBring your own SKILL.md. Compare the provider's strict and lenient parsing locally: inspect repairs, invocation settings and a downloadable check report. Your file stays in the browser. The same checks are available in the command line and CI, with file hashes and actionable exit codes. The browser and each downloaded report also list the external sources the instructions reference and whether they are pinned, plus the tools the author declared. That is an enumeration, not a security audit, a verdict on intent or a guarantee of compatibility with every client.\n\nListed in community directories: Awesome DeepSeek Harness · Awesome Gemini CLI. Publication record.\n\nAgent Skills are portable by design: a folder with a SKILL.md. Every agent still looks only in its own folder, so a skill you install for Claude Code is invisible to Codex, Cursor and DeepSeek Harness, and the ones you wrote for them are invisible back. dsh-skills-anywhere reads all of those folders where they live and serves them everywhere: as a live skill provider inside dsh, and as an M"
   },
   {
-   "name": "Ignitic-AI/ignitic",
-   "url": "https://github.com/Ignitic-AI/ignitic",
-   "description": "AI agents that run your e-commerce ops — Shopify, ads, CRM & support via 190+ MCP tools. Open-source, self-hosted, one docker compose up.",
-   "stars": 6,
-   "forks": 0,
-   "language": "TypeScript",
-   "topics": [
-    "ai-agents",
-    "ai-automation",
-    "docker-compose",
-    "e-commerce",
-    "ecommerce",
-    "fastapi",
-    "golang",
-    "langgraph",
-    "llm",
-    "mcp",
-    "model-context-protocol",
-    "multi-agent-systems",
-    "nextjs",
-    "open-source",
-    "self-hosted",
-    "shopify"
-   ],
-   "created_at": "2026-09-14",
-   "homepage": "https://igniticai.hinterbuild.com/",
-   "score": 30.0,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-15",
-     "s": 5
-    },
-    {
-     "d": "2026-09-17",
-     "s": 6
-    }
-   ],
-   "readme_excerpt": "Open-source, real-time AI agents that run your e-commerce operations.\n\nSpecialist agents for sales, marketing, support, ads and analytics — 190+ MCP tools across 15 domains, long-term memory, and team workspaces — behind one platform you self-host.\n\nQuick start · Agents · Integrations · Architecture · MCP tools · Contributing\n\n- Why Ignitic - Specialist agents - Integrations - Features - Quick start - Architecture - Repository layout - Tech stack - FAQ - Status - Contributing - License\n\nRunning an e-commerce store means juggling a dozen surfaces at once — the store, ad accounts, CRM, inbox, socials, analytics. Each one has its own dashboard, its own API, its own quirks. Wiring an AI agent to all of them by hand means a dozen different SDKs, a dozen different auth flows, and rewriting the same tool-calling glue every time a new integration shows up.\n\nIgnitic is that glue, already built. A super-agent on your team's chat delegates to specialist agents — a business analyst, a marketer, a Shopify agent, a customer-support agent — each backed by real tools served over the Model Context Protocol. Agents stream their work in real time, remember context across conversations via checkpointed and knowledge-graph memory, and act on your connected stores and tools directly. The whole platform is Apache-2.0-licensed and runs on your own infrastructure with docker compose up.\n\nThe super-agent orchestrates 14 specialist agents, each mounted as its own MCP server (apps/mcp):"
-  },
-  {
    "name": "FelipeMiiller/my-memory",
    "url": "https://github.com/FelipeMiiller/my-memory",
    "description": "🧠 Memória semântica e relacional unificada (Go, SQLite-Vec, TurboQuant 4-bit, Grafo CTEs e MCP) para Agentes de IA",
@@ -48327,9 +48583,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 15.0,
+   "score": 12.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -48341,6 +48597,83 @@
     }
    ],
    "readme_excerpt": "Transforme qualquer repositório ou vault Markdown em uma memória autoconsciente (Repository Brain) para você e seus Agentes de IA.\n\nAgentes de IA (Claude Code, Cursor, Antigravity, Copilot, Zed) sofrem com limites de contexto e alucinações quando navegam em projetos grandes: 1. Perda de Contexto: Não é possível enviar centenas de arquivos para a janela de contexto sem estourar limites e aumentar custos. 2. Dependências Quebradas: A IA altera um módulo sem saber quem depende dele no grafo. 3. Decisões Esquecidas: A IA refatora código ignorando decisões de arquitetura (ADRs) documentadas no passado.\n\nO My-Memory resolve isso unificando busca vetorial, grafo de conhecimento e busca léxica em um único arquivo local memory.db de altíssima performance, acessível diretamente via linha de comando ou pelo Model Context Protocol (MCP).\n\n1. 📦 SQLite Unificado: Elimina a necessidade de múltiplos bancos de dados (sem Neo4j, sem Pinecone, sem Elasticsearch). Armazena documentos relacionais, tabela virtual sqlite-vec, busca léxica FTS5 (BM25) e conexões de grafo em um único arquivo. 2. 🔬 TurboQuant (Google DeepMind, ICLR 2026): Implementação pioneira em Go da quantização de 4-bits com 32 reflexões ortogonais de Householder ($R^T R = I$) e estimador não-viesado de produto escalar. Reduz o armazenamento vetorial em ~88% (de 3.072 para 388 bytes por chunk) mantendo correlação 99%. 3. 🕸 Grafo Estilo Obsidian via SQL Recursivo (WITH RECURSIVE): Extrai conexões explícitas de notas ([[links]] e tags), permitindo travessias relacionais e descoberta de vizinhos de dependência em microssegundos com"
+  },
+  {
+   "name": "Novaya-AI/novgraph",
+   "url": "https://github.com/Novaya-AI/novgraph",
+   "description": "Open-source client for Novgraph, Novaya's proprietary hosted code knowledge graph. Gives coding agents recorded intent, related-code context, ranked change impact and architecture context over MCP or ",
+   "stars": 6,
+   "forks": 1,
+   "language": "Python",
+   "topics": [
+    "agentic-ai",
+    "agentic-coding-tools",
+    "ai-agents",
+    "claude-code",
+    "cline",
+    "code-intelligence",
+    "code-knowledge-graph",
+    "codex",
+    "coding-agents",
+    "context-engineering",
+    "cursor",
+    "developer-tools",
+    "github-copilot",
+    "knowledge-graph",
+    "mcp",
+    "model-context-protocol",
+    "opencode",
+    "python",
+    "token-savings",
+    "windsurf"
+   ],
+   "created_at": "2026-09-12",
+   "homepage": "https://trynovaya.com",
+   "score": 14.0,
+   "first_seen": "2026-09-13",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-13",
+     "s": 3
+    },
+    {
+     "d": "2026-09-14",
+     "s": 5
+    },
+    {
+     "d": "2026-09-18",
+     "s": 6
+    }
+   ],
+   "readme_excerpt": "A live knowledge graph of your codebase, queried by coding agents.\n\nCommand-line client for Novgraph, a hosted knowledge graph of a git repository. The graph holds your files and symbols as nodes and their real relationships as typed edges, and coding agents query it over MCP or the shell for four things a file read cannot give them: the recorded intent behind each commit, files that change together without importing each other, ranked blast radius, and computed architecture.\n\nToken savings: 78% to 99.74% per answer, measured against the cost of reading the files each answer cites — not modelled, not estimated from a benchmark.\n\nThis repository is the client only — auth, agent detection, MCP registration and request transport. Python 3.11+, standard library, no dependencies, no engine. Indexing, storage and retrieval run on Novaya's servers.\n\ninstall detects every supported agent on the machine, registers the MCP server, writes a pointer into each agent's instruction file, adds a /novgraph command, resolves which indexed codebase this checkout is, and verifies each step. novgraph doctor re-runs those checks with an exit code.\n\nA coding agent starts each session with no memory of the repository. To answer \"what does this touch\", it greps, opens files, and infers — spending tokens to rebuild a picture it loses at the end of the session. Three classes of fact are not recoverable that way at all:"
+  },
+  {
+   "name": "Ying-Kai-Liao/jev-browser",
+   "url": "https://github.com/Ying-Kai-Liao/jev-browser",
+   "description": "Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server.",
+   "stars": 6,
+   "forks": 1,
+   "language": "JavaScript",
+   "topics": [
+    "browser-automation",
+    "llm-agents",
+    "mcp",
+    "mcp-server",
+    "playwright"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "",
+   "score": 62.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 6
+    }
+   ],
+   "readme_excerpt": "Browser automation where an LLM plans and Jev decides.\n\nUnofficial project, not affiliated with TypeSafe. It calls the TypeSafe System One API with your own API key.\n\nThe calling LLM (Claude, via MCP) says what outcome it wants, one step at a time, and hands over any text to type. For each round of a step, code describes the page. Then one ~300 ms Typesafe System One request asks Jev several questions at once: which element, which action, which value, and is the step done / blocked / showing an error / about to do something irreversible. Playwright performs the action. The LLM never reads page snapshots unless it chooses to take over.\n\nhttps://github.com/user-attachments/assets/2e688df9-4985-4854-8ebe-ba97c9d13d68\n\nJev only answers with probability distributions: yes/no (noul), pick one option (choice) or a rating (score). It never writes text. So everything free-form comes from the caller as candidates, and code turns disagreement or low confidence into a status the LLM can act on.\n\n42 tasks in 16 categories on live sites (see RESULTS.md):\n\n- 40/42 correct in the latest run, 0 false \"done\" claims (38/41 twice before the latest fixes). Remaining misses: counting (\"add until 3\", flagged likelydone) and verifying a sort. - ~300 ms per Jev call, 2–4 calls for most steps; a 5-step checkout takes ~14 s end to end. - Pause before irreversible actions: across ~200 rounds it flagged only saucedemo's \"Finish\" (place order) button. - Less page content for the LLM than a Playwright-MCP-style loop on the same tasks (estimate): median 5× per task, ≈8k vs ≈557k tokens in total. Big pages"
   },
   {
    "name": "Techthos/gomukit",
@@ -52291,52 +52624,6 @@
    "readme_excerpt": "Ask an AI assistant to get something signed, and it knows how.\n\nThese are agent skills for Formify — electronic signatures and identity verification. Install them once, and your assistant can build a contract or a fillable form, place the signature fields where they belong, send it to the right people, verify who signed with BankID or an ID scan, and chase the ones who have not.\n\nYou can also send an AI assistant along inside the document itself. The person receiving your contract can ask it what a clause means and it highlights the passage it is answering about, reads it aloud if they prefer, and answers in English, Swedish or Spanish — so nobody has to paste your contract into another chatbot to understand what they are signing.\n\nYou do not need to be technical, and you never learn a command. You describe what you want signed and by whom; everything below is what the assistant handles for you.\n\nWorks with Claude Desktop, the Codex desktop app, Claude Code, Codex CLI, ChatGPT, Grok, Manus, Cursor and around twenty other agents.\n\n- Claude Desktop and claude.ai — three steps, recorded - Codex Desktop — two steps, recorded - Claude Code and Codex CLI — two commands - Every other app — ChatGPT, Grok, Manus, and any agent - Try it\n\n- Why this exists - The skills - The estate-agency pack - What you can ask for - What the agent can actually do - The whole process, not one document\n\n- Connect the Formify MCP server - What is in this repository - Contributing · License"
   },
   {
-   "name": "Novaya-AI/novgraph",
-   "url": "https://github.com/Novaya-AI/novgraph",
-   "description": "Open-source client for Novgraph, Novaya's proprietary hosted code knowledge graph. Gives coding agents recorded intent, related-code context, ranked change impact and architecture context over MCP or ",
-   "stars": 5,
-   "forks": 1,
-   "language": "Python",
-   "topics": [
-    "agentic-ai",
-    "agentic-coding-tools",
-    "ai-agents",
-    "claude-code",
-    "cline",
-    "code-intelligence",
-    "code-knowledge-graph",
-    "codex",
-    "coding-agents",
-    "context-engineering",
-    "cursor",
-    "developer-tools",
-    "github-copilot",
-    "knowledge-graph",
-    "mcp",
-    "model-context-protocol",
-    "opencode",
-    "python",
-    "token-savings",
-    "windsurf"
-   ],
-   "created_at": "2026-09-12",
-   "homepage": "https://trynovaya.com",
-   "score": 14.5,
-   "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-13",
-     "s": 3
-    },
-    {
-     "d": "2026-09-14",
-     "s": 5
-    }
-   ],
-   "readme_excerpt": "A live knowledge graph of your codebase, queried by coding agents.\n\nCommand-line client for Novgraph, a hosted knowledge graph of a git repository. The graph holds your files and symbols as nodes and their real relationships as typed edges, and coding agents query it over MCP or the shell for four things a file read cannot give them: the recorded intent behind each commit, files that change together without importing each other, ranked blast radius, and computed architecture.\n\nToken savings: 78% to 99.74% per answer, measured against the cost of reading the files each answer cites — not modelled, not estimated from a benchmark.\n\nThis repository is the client only — auth, agent detection, MCP registration and request transport. Python 3.11+, standard library, no dependencies, no engine. Indexing, storage and retrieval run on Novaya's servers.\n\ninstall detects every supported agent on the machine, registers the MCP server, writes a pointer into each agent's instruction file, adds a /novgraph command, resolves which indexed codebase this checkout is, and verifies each step. novgraph doctor re-runs those checks with an exit code.\n\nA coding agent starts each session with no memory of the repository. To answer \"what does this touch\", it greps, opens files, and infers — spending tokens to rebuild a picture it loses at the end of the session. Three classes of fact are not recoverable that way at all:"
-  },
-  {
    "name": "Daksh-create349/Contradiction-MCP",
    "url": "https://github.com/Daksh-create349/Contradiction-MCP",
    "description": "Autonomous Model Context Protocol (MCP) engine for factual consistency, version reconciliation, and conflict resolution across engineering knowledge bases.",
@@ -52350,9 +52637,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://contradiction-navy.vercel.app/",
-   "score": 10.0,
+   "score": 8.3,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -52396,9 +52683,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 12.5,
+   "score": 10.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -52463,9 +52750,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://orca-mcp.mmdju.workers.dev",
-   "score": 10.0,
+   "score": 8.3,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -52475,61 +52762,102 @@
    "readme_excerpt": "Orca MCP - Movie/TV intelligence for AI agents\n\nA public MCP server that gives AI agents real movie and TV knowledge: search, ratings across sources, IMDb Top 250 and Letterboxd Top 500 ranks, streaming availability, episodes, artwork. Read-only, no key needed.\n\nLive endpoint: https://orca-mcp.mmdju.workers.dev/mcp (Streamable HTTP, stateless)\n\nAny MCP client, one URL. OpenCode (opencode.jsonc):\n\nClaude Desktop / Cursor (mcp.json style):\n\nThen just talk: \"what rank is Godfather on IMDb and Letterboxd?\", \"a good sci-fi movie after 2020 rated above 8\", \"who directed Dune and what else did they make?\", \"where can I watch Breaking Bad?\".\n\nTool What it answers ------ moviessearch Search films, shows, people by title (EN/FA) moviesdetails Plot, genres, all ratings, cast, director, trailer, awards, posters moviesdiscover Filter by genre, keyword, studio, year, min rating, min votes, sort moviestrending What is hot now (day/week) movieswheretowatch Netflix, Prime, Disney+ etc. per country moviescomparelists IMDb Top 250 rank vs Letterboxd Top 500 rank moviesratings TMDB + IMDb + Rotten Tomatoes + Metacritic, all ids resolved moviescollection Franchise watch order with runtime each, total runtime, per-part streaming moviessimilar \"Like Whiplash, what next?\" moviesperson Bio, photo, top acting and directing credits moviesartwork Poster, backdrop, logo, banner tvepisodes Season/episode list with airdates and summaries moviesreviews What people say: author reviews with ratings moviesvideos Trailers, teasers, clips with YouTube links tvseason One full season: ratings, runtimes, stills t"
   },
   {
-   "name": "NousResearch/hermes-plugin-snyk",
-   "url": "https://github.com/NousResearch/hermes-plugin-snyk",
-   "description": "Hermes Agent plugin: Snyk code/dependency/container/IaC scanning via Snyk's first-party MCP server, with the snyk-security-scan skill bundled (Agent Plugins v1)",
+   "name": "NousResearch/hermes-plugin-touchdesigner",
+   "url": "https://github.com/NousResearch/hermes-plugin-touchdesigner",
+   "description": "Hermes Agent plugin: drive TouchDesigner via the twozero MCP server, with the touchdesigner-mcp skill bundled (Agent Plugins v1)",
    "stars": 5,
    "forks": 1,
-   "language": null,
+   "language": "Shell",
    "topics": [],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 14.5,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-15",
-     "s": 4
-    },
-    {
-     "d": "2026-09-17",
-     "s": 5
-    }
-   ],
-   "readme_excerpt": "Scan code, dependencies, container images, IaC and SBOMs from Hermes Agent through Snyk's first-party MCP server. Snyk ships the server inside the Snyk CLI (snyk mcp is a vendor subcommand, not a community wrapper), so this plugin is a pinned npx stdio launch plus a workflow skill.\n\nThis is a portable Agent Plugins v1 package. One install ships:\n\n- mcp.json — the Snyk MCP server entry (sn), registered for every new session while the plugin is enabled. No mcpservers edits in config.yaml. - skills/snyk-security-scan/ — the workflow skill: when to use which scanner, the auth/trust/scan/fix loop, pitfalls, and a full per-tool argument reference generated from the live server.\n\nThen start a new Hermes session. The skill is available as agent-plugin-snyk-8cb0f11d:snyk-security-scan via skillview (skillslist shows the exact name). Node.js/npm must be on PATH (the server is launched with npx -y snyk@1.1306.0 mcp -t stdio --profile full). The first launch downloads the pinned CLI.\n\nNo credentials are needed at install time. Ask Hermes to run the snykauth tool before the first scan: it opens Snyk's browser login and stores the token in the Snyk CLI's own config, never in Hermes. A free Snyk account covers the code (SAST) and open-source (SCA) scanners.\n\n13 tools, all listed in skills/snyk-security-scan/references/tools.md: snykcodescan (SAST), snykscascan (dependencies), snykcontainerscan, snykiacscan, snyksbomscan, snykaibom, snykpackagehealthcheck, snykbreakabilitycheck, snykauth, snyktrust, snyklogout, snykversion, snyksendfeedback."
-  },
-  {
-   "name": "mmdju/digikala-mcp",
-   "url": "https://github.com/mmdju/digikala-mcp",
-   "description": "MCP server for Digikala: search, compare and price-check products on Iran's largest marketplace. Read-only, no API key. 16 tools, hosted on Cloudflare Workers.",
-   "stars": 5,
-   "forks": 0,
-   "language": "JavaScript",
-   "topics": [
-    "cloudflare-workers",
-    "digikala",
-    "iran",
-    "mcp",
-    "model-context-protocol",
-    "persian"
-   ],
-   "created_at": "2026-09-15",
-   "homepage": "https://digikala-mcp.mmdju.workers.dev/",
-   "score": 25.0,
+   "score": 10.3,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
      "s": 4
     },
     {
-     "d": "2026-09-17",
+     "d": "2026-09-18",
      "s": 5
     }
    ],
-   "readme_excerpt": "Digikala MCP - Shop intelligence for AI agents\n\nA public MCP server that gives AI agents real Digikala knowledge: search, prices in Toman, discounts, ratings, sellers, reviews, deals and bestsellers. Read-only, no key needed.\n\nLive endpoint: https://digikala-mcp.mmdju.workers.dev/mcp (Streamable HTTP, stateless)\n\nنسخه فارسی · Examples · Tool reference · Changelog\n\nAny MCP client, one URL. Cline / Cursor / Claude Desktop (mcp.json style):\n\nThen just talk: \"best Samsung phone under 20 million Toman\", \"is this laptop any good?\", \"what is on deal today?\", \"what is popular in Iran right now?\".\n\nTool What it answers ------ digikalasuggest Vague wording to real search terms, category ids, trends searchdigikala \"Show me X\", price checks, filters + sorting + paging browsecategory Browse a category, drill into sub-categories productdetails Everything about one product: price, seller, warranty, specs, reviews productpricechart \"Is now cheap?\" - short price history with seller per point productquestions \"What did buyers ask?\" - questions + answer counts getproductsbatch Shortlist cards for up to 10 ids - feeds compareproducts producturl Product id to shareable URL + title productvariants \"Which colour is cheapest?\" - every variant with its own price + seller searchfilters \"Which brands exist for X?\" - brand/color/category ids + price range productreviews \"Is it any good?\" - buyer-only and min-rating filters compareproducts \"Which of these?\" - only the specs that actually differ findbestvalue \"Best X under Y Toman\" - ranked picks with seller grade incredibleoffers Today's deals (شگفت‌ان"
+   "readme_excerpt": "Drive a live TouchDesigner session from Hermes Agent through 404.zero's free twozero plugin, which embeds an MCP server inside the running TouchDesigner process (Streamable HTTP on 127.0.0.1:40404).\n\nThis is a portable Agent Plugins v1 package. It ships two things in one install:\n\n- mcp.json — the twozero MCP server entry (td), registered for every session while the plugin is enabled. No mcpservers edits in config.yaml. - skills/touchdesigner-mcp/ — the workflow skill: critical rules, discovery steps, 20+ reference files (operators, GLSL, audio-reactive, instancing, pitfalls), and a scripts/setup.sh health check.\n\nThen, once per machine, inside TouchDesigner (2025.32280+, Windows/macOS):\n\n1. Download 2. Drag twozero.tox into the TD network editor and click Install. 3. twozero icon → Settings → mcp → \"auto start MCP\" → Yes.\n\nStart TD first, then a new Hermes session. The skill is available as agent-plugin-td-:touchdesigner-mcp via skillview (skillslist shows the exact name); health check:\n\nHermes registers portable MCP tools as mcpagentplugin. twozero's longest tool name (tdscreenpointtoglobal) plus a touchdesigner namespace lands at 71 characters, past the 64-character function-name cap on OpenAI-compatible and Bedrock wire formats. td keeps every tool name at or under 60.\n\n- tdexecutepython runs arbitrary Python inside TouchDesigner with no sandbox — the same trust level as the terminal tool. The hub is localhost-only and unauthenticated. - All 36 twozero tools register. The desktop input-automation tools (tdinput, tdclickscreenpoint, tdgetscreenscreenshot, ...) and admin "
+  },
+  {
+   "name": "semrush/skills",
+   "url": "https://github.com/semrush/skills",
+   "description": "Agent skills for the Semrush MCP server: Markdown playbooks for AI agents",
+   "stars": 5,
+   "forks": 0,
+   "language": null,
+   "topics": [
+    "agent-skills"
+   ],
+   "created_at": "2026-09-14",
+   "homepage": "https://developer.semrush.com/api/v4/introduction/semrush-mcp/",
+   "score": 16.7,
+   "first_seen": "2026-09-15",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-15",
+     "s": 3
+    },
+    {
+     "d": "2026-09-17",
+     "s": 4
+    },
+    {
+     "d": "2026-09-18",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "A collection of Agent Skills that give AI agents — Claude, ChatGPT, Codex, Cursor, and other Agent Skills-compatible tools — reusable SEO workflows built on the Semrush MCP server.\n\nA skill is a self-contained Markdown instruction set that teaches an AI agent how to complete one specific task, such as running a technical SEO audit or building a content brief. Each skill lives in its own folder in this repository and contains a SKILL.md file with the workflow the agent follows. There is no service code here — only instructions.\n\nSkills are designed to be used together with the Semrush MCP server: the skill defines the workflow, and the MCP server provides the underlying SEO data and tools. Once an agent has a skill loaded, it applies the same repeatable process every time instead of improvising a new approach.\n\nCategory Skill What it does ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ Technical SEO technical-seo-audit Audit crawlability, Core Web Vitals, schema, and on-page signals in one pass Technical SEO internal-link-audit Find orphan pages, broken internal links, depth issues, and missing hubs Technical SEO schema-markup Audit, draft, and validate structured data without inventing entity facts AI & Modern Search ai-brand-visibility Check whether ChatGPT, Gemini, and Perplexity mention your brand, and why Keyword Research keyword-research Find keyword ideas with volume, difficulty, intent, and CPC, clustered by topic Keyword Research content-brief Tur"
+  },
+  {
+   "name": "naderloocodelab/micro-actinf",
+   "url": "https://github.com/naderloocodelab/micro-actinf",
+   "description": "⚡ Ultra-fast O(1) Active Inference & Bayesian Cognitive Governor for AI Agents (Antigravity, Claude, Cursor) & Embedded Systems. Zero-alloc C11 core (<36KB) + FastMCP server.",
+   "stars": 5,
+   "forks": 0,
+   "language": "C",
+   "topics": [
+    "active-inference",
+    "ai-agents",
+    "antigravity",
+    "bayesian-inference",
+    "c11",
+    "claude-desktop",
+    "cursor-ai",
+    "dirichlet-distribution",
+    "embedded-ai",
+    "free-energy-principle",
+    "game-ai",
+    "mcp-server",
+    "model-context-protocol",
+    "pomdp",
+    "robotics",
+    "zero-allocation"
+   ],
+   "created_at": "2026-09-13",
+   "homepage": "https://github.com/naderloocodelab/micro-actinf",
+   "score": 12.5,
+   "first_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-17",
+     "s": 4
+    },
+    {
+     "d": "2026-09-18",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "🧠 Micro-ActInf: Ultra-Fast $O(1)$ Active Inference & Bayesian Cognitive Governor\n\nEliminate context drift, hallucination loops, and conversational token bloat in AI agents (Antigravity, Claude Desktop, Cursor) with Karl Friston's Free Energy Principle and an ultra-lightweight 20KB C11 POMDP engine.\n\n📑 Table of Contents - Why Micro-ActInf? (The Problem & Solution) - Feature Comparison vs Existing Frameworks - Dual-Target Architecture - How It Works: The Active Inference Loop - The 6 Cognitive Regimes & 4 Action Policies - Quickstart: Plug into AI Agents in 60 Seconds - 1. Google Antigravity - 2. Anthropic Claude Desktop - 3. Cursor / VS Code - 4. Pure Offline Local LLMs (Ollama / vLLM / llama.cpp) - Embedded Systems & Game Engines (C11 Core) - Mathematical Rigor - Empirical Benchmarks - 🇮🇷 راهنمای جامع فارسی (Persian Technical Guide)\n\n💡 Why Micro-ActInf? (The Problem & Solution)\n\n🚨 The AI Agent Crisis: 1. Context Drift & Goal Degradation: In multi-turn coding sessions, LLM agents forget high-level constraints, get distracted by minor side-tracks, and drift away from the original engineering objective. 2. Infinite Debugging Loops: When an error occurs, LLMs often attempt the same failed fix repeatedly or oscillate between conflicting implementations. 3. Conversational Token Waste: Up to 40% of generated tokens are squandered on polite filler (\"Certainly!\", \"I'd be happy to help!\"), repetitive apologies, and explanatory essays when you only needed production code. 4. Soft Constraints Fail: Prompt instructions (\"be concise\", \"focus on tests\") are probabilistic recommendations t"
   },
   {
    "name": "sunhao123456sun-svg/toolpermit",
@@ -57740,9 +58068,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 10.0,
+   "score": 8.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -57768,9 +58096,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://archbench.com/?utm_source=blender-mcp&utm_medium=github&utm_campaign=open-source",
-   "score": 8.0,
+   "score": 6.7,
    "first_seen": "2026-09-13",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-13",
@@ -57799,9 +58127,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "laraxgram.github.io/v4/mcp",
-   "score": 10.0,
+   "score": 8.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -57838,9 +58166,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://extra.yantraos.com",
-   "score": 14.0,
+   "score": 12.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -57912,9 +58240,9 @@
    ],
    "created_at": "2026-09-13",
    "homepage": "https://leandrodaf.github.io/3d-new-era-ai/",
-   "score": 13.3,
+   "score": 10.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -57922,27 +58250,6 @@
     }
    ],
    "readme_excerpt": "An open-source home design editor in Rust, inspired by Sweet Home 3D, that is AI-native from day one: the editor ships with a built-in Model Context Protocol server, so an AI agent can design alongside you and every change shows up live on screen.\n\nmacOS (Apple Silicon and Intel) — open Terminal and paste:\n\nThat's it: the app shows up in the Start menu / Launchpad, no administrator password, and the same command updates it. Prefer a plain download?\n\nWindows (64-bit) Mac Apple Silicon Mac Intel Linux (x64) :---::---::---::---:\n\nThe builds aren't signed with a paid Apple or Microsoft certificate, so the system asks once:\n\n- Windows: unzip, open newera-gui.exe; if SmartScreen appears, click More info → Run anyway. - macOS: unzip and move 3D New Era AI to Applications. Right-click it → Open → Open. On macOS 15 and later, open it once, then go to System Settings → Privacy & Security → Open Anyway. Or run xattr -dr com.apple.quarantine \"/Applications/3D New Era AI.app\". - Linux: tar xzf newera-linux-x64.tar.gz && ./newera/newera. Run ./newera/install-desktop.sh to add it to the menu with its icon and to give .newera files their own icon and double click (--uninstall undoes it).\n\nThe one-line installers above skip these prompts.\n\nNext: connect your AI — Claude, Codex, Gemini, Cursor, VS Code, DeepSeek and others.\n\nA real 105 m² apartment, traced from an openly licensed floor plan and furnished, lit and photographed by an AI agent through MCP alone — walls from the scan, doors that swing the right way, slatted TV wall, L kitchen and wardrobe from cabinetrun, downlights sized by pho"
-  },
-  {
-   "name": "NousResearch/hermes-plugin-touchdesigner",
-   "url": "https://github.com/NousResearch/hermes-plugin-touchdesigner",
-   "description": "Hermes Agent plugin: drive TouchDesigner via the twozero MCP server, with the touchdesigner-mcp skill bundled (Agent Plugins v1)",
-   "stars": 4,
-   "forks": 1,
-   "language": "Shell",
-   "topics": [],
-   "created_at": "2026-09-12",
-   "homepage": "",
-   "score": 10.0,
-   "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-16",
-     "s": 4
-    }
-   ],
-   "readme_excerpt": "Drive a live TouchDesigner session from Hermes Agent through 404.zero's free twozero plugin, which embeds an MCP server inside the running TouchDesigner process (Streamable HTTP on 127.0.0.1:40404).\n\nThis is a portable Agent Plugins v1 package. It ships two things in one install:\n\n- mcp.json — the twozero MCP server entry (td), registered for every session while the plugin is enabled. No mcpservers edits in config.yaml. - skills/touchdesigner-mcp/ — the workflow skill: critical rules, discovery steps, 20+ reference files (operators, GLSL, audio-reactive, instancing, pitfalls), and a scripts/setup.sh health check.\n\nThen, once per machine, inside TouchDesigner (2025.32280+, Windows/macOS):\n\n1. Download 2. Drag twozero.tox into the TD network editor and click Install. 3. twozero icon → Settings → mcp → \"auto start MCP\" → Yes.\n\nStart TD first, then a new Hermes session. The skill is available as agent-plugin-td-:touchdesigner-mcp via skillview (skillslist shows the exact name); health check:\n\nHermes registers portable MCP tools as mcpagentplugin. twozero's longest tool name (tdscreenpointtoglobal) plus a touchdesigner namespace lands at 71 characters, past the 64-character function-name cap on OpenAI-compatible and Bedrock wire formats. td keeps every tool name at or under 60.\n\n- tdexecutepython runs arbitrary Python inside TouchDesigner with no sandbox — the same trust level as the terminal tool. The hub is localhost-only and unauthenticated. - All 36 twozero tools register. The desktop input-automation tools (tdinput, tdclickscreenpoint, tdgetscreenscreenshot, ...) and admin "
   },
   {
    "name": "kaviththiranga/omada-mcp-server",
@@ -57954,9 +58261,9 @@
    "topics": [],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 13.3,
+   "score": 10.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -57970,69 +58277,33 @@
    "readme_excerpt": "An MCP server for TP-Link Omada controllers, so an AI assistant (Claude Code, or any MCP client) can read and tune your WiFi network directly.\n\nIt is spec-driven: instead of hand-writing a tool per endpoint, it indexes the Omada Open API (~1,650 operations) and gives the model three tools to search it, inspect one operation, and call it. That means the whole API surface is reachable through nine tools.\n\nIt is read-only until you say otherwise. Every non-GET request is refused unless you explicitly unlock writes, and even then a mutation returns a dry-run preview until it is confirmed.\n\nBuilt while fixing roaming on a real 3-AP home network. Full write-up with screenshots and measurements: article/ — what was actually wrong, what the numbers looked like before and after, and the two things the AI got wrong that measurement caught.\n\n- \"What is connected to my WiFi right now, and how strong is each device?\" - \"Are any of my APs on the same channel?\" - \"Is fast roaming actually configured correctly?\" - \"Why does my phone stay on the far access point?\" - \"Show me the SSID settings\" / \"turn on the minimum RSSI threshold at -75\"\n\nTool ------ omadastatus controller info, token health, write-mode, API index, site list omadasites / omadadevices / omadaclients / omadassids typed reads omadasearchapi search the Omada Open API spec omadadescribeapi parameters + request/response schema for one operation omadacall invoke any Open API endpoint (write-guarded) omadauicall legacy /api/v2 web-session API, for settings Open API does not expose"
   },
   {
-   "name": "semrush/skills",
-   "url": "https://github.com/semrush/skills",
-   "description": "Agent skills for the Semrush MCP server: Markdown playbooks for AI agents",
+   "name": "Regsorm/agents-mcp",
+   "url": "https://github.com/Regsorm/agents-mcp",
+   "description": "MCP-сервер для ИИ-агентов: агент — папка с prompt.md и config.toml, без пересборки и перезапуска. DeepSeek, OpenAI-совместимые API, Anthropic, Claude Code, Codex CLI, локальные модели; фоновые вызовы,",
    "stars": 4,
    "forks": 0,
-   "language": null,
+   "language": "Rust",
    "topics": [
-    "agent-skills"
-   ],
-   "created_at": "2026-09-14",
-   "homepage": "https://developer.semrush.com/api/v4/introduction/semrush-mcp/",
-   "score": 20.0,
-   "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-15",
-     "s": 3
-    },
-    {
-     "d": "2026-09-17",
-     "s": 4
-    }
-   ],
-   "readme_excerpt": "A collection of Agent Skills that give AI agents — Claude, ChatGPT, Codex, Cursor, and other Agent Skills-compatible tools — reusable SEO workflows built on the Semrush MCP server.\n\nA skill is a self-contained Markdown instruction set that teaches an AI agent how to complete one specific task, such as running a technical SEO audit or building a content brief. Each skill lives in its own folder in this repository and contains a SKILL.md file with the workflow the agent follows. There is no service code here — only instructions.\n\nSkills are designed to be used together with the Semrush MCP server: the skill defines the workflow, and the MCP server provides the underlying SEO data and tools. Once an agent has a skill loaded, it applies the same repeatable process every time instead of improvising a new approach.\n\nCategory Skill What it does ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ Technical SEO technical-seo-audit Audit crawlability, Core Web Vitals, schema, and on-page signals in one pass Technical SEO internal-link-audit Find orphan pages, broken internal links, depth issues, and missing hubs Technical SEO schema-markup Audit, draft, and validate structured data without inventing entity facts AI & Modern Search ai-brand-visibility Check whether ChatGPT, Gemini, and Perplexity mention your brand, and why Keyword Research keyword-research Find keyword ideas with volume, difficulty, intent, and CPC, clustered by topic Keyword Research content-brief Tur"
-  },
-  {
-   "name": "naderloocodelab/micro-actinf",
-   "url": "https://github.com/naderloocodelab/micro-actinf",
-   "description": "⚡ Ultra-fast O(1) Active Inference & Bayesian Cognitive Governor for AI Agents (Antigravity, Claude, Cursor) & Embedded Systems. Zero-alloc C11 core (<36KB) + FastMCP server.",
-   "stars": 4,
-   "forks": 0,
-   "language": "C",
-   "topics": [
-    "active-inference",
     "ai-agents",
-    "antigravity",
-    "bayesian-inference",
-    "c11",
-    "claude-desktop",
-    "cursor-ai",
-    "dirichlet-distribution",
-    "embedded-ai",
-    "free-energy-principle",
-    "game-ai",
-    "mcp-server",
+    "claude",
+    "deepseek",
+    "llm",
+    "mcp",
     "model-context-protocol",
-    "pomdp",
-    "robotics",
-    "zero-allocation"
+    "rust"
    ],
    "created_at": "2026-09-13",
-   "homepage": "https://github.com/naderloocodelab/micro-actinf",
-   "score": 13.3,
-   "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
+   "homepage": "",
+   "score": 10.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
-     "d": "2026-09-17",
+     "d": "2026-09-18",
      "s": 4
     }
    ],
-   "readme_excerpt": "🧠 Micro-ActInf: Ultra-Fast $O(1)$ Active Inference & Bayesian Cognitive Governor\n\nEliminate context drift, hallucination loops, and conversational token bloat in AI agents (Antigravity, Claude Desktop, Cursor) with Karl Friston's Free Energy Principle and an ultra-lightweight 20KB C11 POMDP engine.\n\n📑 Table of Contents - Why Micro-ActInf? (The Problem & Solution) - Feature Comparison vs Existing Frameworks - Dual-Target Architecture - How It Works: The Active Inference Loop - The 6 Cognitive Regimes & 4 Action Policies - Quickstart: Plug into AI Agents in 60 Seconds - 1. Google Antigravity - 2. Anthropic Claude Desktop - 3. Cursor / VS Code - 4. Pure Offline Local LLMs (Ollama / vLLM / llama.cpp) - Embedded Systems & Game Engines (C11 Core) - Mathematical Rigor - Empirical Benchmarks - 🇮🇷 راهنمای جامع فارسی (Persian Technical Guide)\n\n💡 Why Micro-ActInf? (The Problem & Solution)\n\n🚨 The AI Agent Crisis: 1. Context Drift & Goal Degradation: In multi-turn coding sessions, LLM agents forget high-level constraints, get distracted by minor side-tracks, and drift away from the original engineering objective. 2. Infinite Debugging Loops: When an error occurs, LLMs often attempt the same failed fix repeatedly or oscillate between conflicting implementations. 3. Conversational Token Waste: Up to 40% of generated tokens are squandered on polite filler (\"Certainly!\", \"I'd be happy to help!\"), repetitive apologies, and explanatory essays when you only needed production code. 4. Soft Constraints Fail: Prompt instructions (\"be concise\", \"focus on tests\") are probabilistic recommendations t"
+   "readme_excerpt": "Published on Infostart: agents-mcp — MCP-сервер узких ИИ-агентов: агент — папка, модель — строка в конфиге\n\nMCP-сервер платформы специализированных LLM-агентов. Каждый агент — папка agents// с prompt.md и config.toml; добавление нового агента не требует пересборки сервиса. В репозитории — только сам движок: агентов вы пишете сами (формат — в разделе «Добавление нового агента»).\n\n- MCP-инструменты: вызов агентов — invokeagent, agentrun (пуск в фон без ожидания), waitagent, agentcancel; сведения — listagents, getagentinfo, agenthistory, health; управление службой — configreload, prepareshutdown; доска задач — taskcreate, tasksetstatus, artifactwrite, artifactread, eventappend; файловые — fsreadfile, fswritefile, fseditfile, fsmkdir, fslistdir; навыки — skillload. - Вызов без ожидания — agentrun: пуск возвращает callid и путь файла-итога сразу, проверка по callid отвечает мгновенно. Ни один из двух режимов не держит вызывающего, поэтому клиенту не нужен скрипт-посредник. - Отмена фонового вызова — agentcancel: строка вызова закрывается ошибкой, файл-итог дописывается, ждущий не зависает. - Поставщики моделей: прямые HTTP-подключения через [providers.direct.] бывают OpenAI-совместимыми (api = \"openai\", это значение по умолчанию) и Anthropic Messages (api = \"anthropic\", включая MCP-инструменты); Claude через Claude Code CLI (claude -p, со своими инструментами и MCP); OpenAI через Codex CLI. Плюс mock для тестов. - Два способа связи с клиентом: Streamable HTTP (по умолчанию, без состояния сессии — нет «404 Session not found» после перезапуска) и стандартный ввод/вывод (--transpor"
   },
   {
    "name": "RuriLothlorien/CCSwitch-operations",
@@ -66858,9 +67129,9 @@
    "topics": [],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 6.0,
+   "score": 5.0,
    "first_seen": "2026-09-12",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-12",
@@ -67177,9 +67448,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "https://www.astrail.dev/",
-   "score": 7.5,
+   "score": 6.0,
    "first_seen": "2026-09-14",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-14",
@@ -67307,9 +67578,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 17.0,
+   "score": 12.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -67328,9 +67599,9 @@
    "topics": [],
    "created_at": "2026-09-14",
    "homepage": "https://screenbrowser.com",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -67349,9 +67620,9 @@
    "topics": [],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 7.5,
+   "score": 6.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -67380,9 +67651,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 7.5,
+   "score": 6.0,
    "first_seen": "2026-09-15",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-15",
@@ -67503,9 +67774,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -67532,9 +67803,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 8.0,
+   "score": 7.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -67574,9 +67845,9 @@
    ],
    "created_at": "2026-09-12",
    "homepage": "",
-   "score": 6.0,
+   "score": 5.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -67652,9 +67923,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://pagekit.cc",
-   "score": 32.0,
+   "score": 17.0,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -67662,27 +67933,6 @@
     }
    ],
    "readme_excerpt": "The content layer for your website. Stop building CMSs. Ship content in minutes.\n\nPageKit is a developer-first content backend. It provides a Content API, a publishing dashboard, media management, SEO tools, draft workflows, and AI-agent access through the Model Context Protocol (MCP).\n\nYou write code. PageKit handles the content.\n\nPackage Description Install ------------------------------- @arovi/pagekit-core TypeScript client for the PageKit content API pnpm add @arovi/pagekit-core @arovi/pagekit-mcp MCP server — let AI agents manage your content pnpm add -g @arovi/pagekit-mcp @arovi/pagekit-next Next.js integration (server components, caching) pnpm add @arovi/pagekit-next @arovi/pagekit-cli CLI tooling for scaffolding and management pnpm add -g @arovi/pagekit-cli pagekit-core Python client for the PageKit content API pip install pagekit-core\n\nPageKit exposes your content through the Model Context Protocol (MCP), enabling AI agents like Claude, Codex, and Cursor to read and write your content directly.\n\nClaude Desktop (claudedesktopconfig.json):\n\nTool Description ------------------- pagekitlistposts List posts with filters (status, author, tag, search) pagekitgetpost Get a post by ID or slug pagekitcreatepost Create a new post pagekitupdatepost Update an existing post pagekitdeletepost Delete a post pagekitlisttags List all tags pagekitlistcategories List all categories pagekitlistauthors List all authors pagekitlistmedia List media assets pagekitcreatemedia Register a media asset pagekitdeletemedia Delete a media asset pagekitprojectinfo Get project info and post counts "
-  },
-  {
-   "name": "blakestone-x/jev-mcp",
-   "url": "https://github.com/blakestone-x/jev-mcp",
-   "description": "MCP server for TypeSafe Jev: typed classify, score, check, match and screen for any agent, with confidence on every answer",
-   "stars": 3,
-   "forks": 0,
-   "language": "Python",
-   "topics": [],
-   "created_at": "2026-09-16",
-   "homepage": "",
-   "score": 30.0,
-   "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
-   "stars_history": [
-    {
-     "d": "2026-09-17",
-     "s": 3
-    }
-   ],
-   "readme_excerpt": "Jev provides typed judgments over a closed answer set in about 130 ms, with no text generation, through TypeSafe.\n\nSet TYPESAFEAPIKEY in the environment used by your MCP client, then run:\n\nReplace ... with the key value. Passing it through the client environment keeps it out of tool arguments and request state.\n\nThe scripts/register.sh helper requires Bash 4+; do not run it with sh. Apply mode reads TYPESAFEAPIKEY from the environment and refuses to change client configuration when it is unset. --apply writes the plaintext key into ~/.codex/config.toml and the Claude Code user config. The key is briefly visible in the process list while claude mcp add runs because that command receives it as an argument. On Windows, use scripts/register.ps1; it restricts the resulting configuration files to the current user and keeps a .bak copy before rewriting an existing Codex configuration.\n\nThe install examples pin the public v0.2.1 tag. Omitting the tag tracks the repository's default branch instead.\n\nThis call classifies one state containing five support-ticket texts against one label map. It returns one label for the combined state; send one request per ticket when you need an individual label for each ticket:\n\nThe response is an ordinary MCP structured result with a stable envelope:\n\ntool use it for not for --- --- --- jevask Your own Choice, Score, and Noul question map Text generation or numeric extraction jevclassify Selecting one label from a closed list Open-ended writing or ranking without labels jevscore Placing state on an ordered rubric Returning a number extracted from te"
   },
   {
    "name": "DreamC0der-AI/ddag",
@@ -67694,9 +67944,9 @@
    "topics": [],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 19.0,
+   "score": 14.0,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -67715,9 +67965,9 @@
    "topics": [],
    "created_at": "2026-09-15",
    "homepage": "",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -67746,9 +67996,9 @@
    ],
    "created_at": "2026-09-14",
    "homepage": "",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-17",
+   "last_seen": "2026-09-18",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -67777,6 +68027,163 @@
     }
    ],
    "readme_excerpt": "qa-mcp is an open-source Python manager and Model Context Protocol (MCP) server for native 1C TestClient QA automation. It speaks the TestManager / TestClient protocol directly, runs BDD/Gherkin scenarios, reads and verifies managed forms, and exposes target-bound lifecycle and UI operations to AI agents without requiring a Vanessa Automation manager runtime.\n\nThe public repository is vlikhobabin/qa-mcp-public. qa-mcp v0.1.0 (MVP prerelease) is published with the existing product unchanged; it is not Stable. The immutable tag points to the fresh public root ba576b752ebe2939d4c84d53a8b1732d7b641e36, imported from the prepared snapshot based on original commit b6ae33639d151e9b47bf0a1248f0be5309a72504. Internal Git ancestors are excluded. Only README/publication-policy documentation on main is updated after the tag. The release includes full source qa-mcp-b6ae336-source.tar.gz, Python wheel and package sdist, a Docker archive, Windows executable/ZIP and SHA256SUMS. Download the assets together and run sha256sum -c SHA256SUMS before use. No PyPI/GHCR publication was made; GitHub Actions is disabled for this initial import. The broader OSS-08 release train and OSS-09 downstream cutover are not mandatory MVP prerequisites. This release does not claim stable or live-native qualification.\n\n- Native TestClient protocol/session engine and curated, plaintext protocol fixtures for supported 8.3 and 8.5 families. - Managed-form reads/actions, assertions, waits and target-bound lifecycle. - Gherkin scenario parsing/execution and JUnit/Allure-compatible reporting. - Standalone stdio and a"
+  },
+  {
+   "name": "Blackman99/real-bot",
+   "url": "https://github.com/Blackman99/real-bot",
+   "description": "Alpha: local-first macOS app for persistent AI teammates, open model endpoints, and MCP tools",
+   "stars": 3,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "bun",
+    "desktop-app",
+    "llm",
+    "local-first",
+    "macos",
+    "mcp",
+    "model-context-protocol",
+    "multi-agent",
+    "rust",
+    "svelte",
+    "sveltekit",
+    "tauri",
+    "typescript"
+   ],
+   "created_at": "2026-09-17",
+   "homepage": "https://blackman99.github.io/real-bot/",
+   "score": 32.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Persistent AI teammates, organized by conversation, on your own Mac.\n\n- Teammates, not throwaway chats. Bots have names, duties and boundaries. They chat one to one, join groups, get @mentioned and hand work to each other. - Everything stays on your Mac. Window, daemon, sessions and one shared workspace folder are local. No project-run cloud. - Bring your own models and tools. Any OpenAI-compatible endpoint; MCP servers over stdio or Streamable HTTP, available to every bot. - Dangerous actions wait for you. New endpoints or MCP servers, anything outside the workspace and outbound network stop at an approval card. Keys go to Keychain, never into chat. - Bots run the app. Create bots, form groups and configure endpoints or MCP by talking to one.\n\nDownload the latest alpha from GitHub Releases: unsigned .dmg for Apple silicon and Intel. If Gatekeeper blocks the first launch, right-click → Open, or run:\n\nUpdates: the app checks GitHub Releases in the background and shows a dot on the settings gear when a newer build exists. Settings → General → About lists the current version and opens the matching .dmg in your browser; while builds are unsigned there is no in-app installer.\n\nRun from source (macOS, Node 22+, pnpm 12.3.4, Bun 1.2+, Rust, Xcode Command Line Tools):\n\nFirst run: pick a workspace folder (missing folders are created), add an OpenAI-compatible endpoint and key in Settings, create the first bot from the sidebar, then let it hire the rest."
+  },
+  {
+   "name": "powerdragonfire/platformio.mcp",
+   "url": "https://github.com/powerdragonfire/platformio.mcp",
+   "description": "MCP server that lets AI coding agents drive PlatformIO: build, flash, serial monitor, tests, crash decoding, size reports",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "ai-agents",
+    "claude-code",
+    "embedded",
+    "esp32",
+    "mcp",
+    "platformio"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "https://pypi.org/project/platformio.mcp/",
+   "score": 30.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Give your AI coding agent hands on real hardware. An MCP server for PlatformIO: build, flash, watch serial, run tests, decode crashes, shrink firmware.\n\nPython native · no Node · one line to install · works with Claude Code, Claude Desktop, Cursor, Codex, Windsurf, Cline\n\nYou need uv (curl -LsSf https://astral.sh/uv/install.sh sh). Then:\n\nNo PlatformIO on this machine? Add --with-platformio and the server brings PlatformIO Core along.\n\nAny other MCP client (Cline, Zed, Continue, ...)\n\nUse \"args\": [\"platformio.mcp[platformio]\"] to bundle PlatformIO Core.\n\nAs a plugin (Claude Code, Cursor: server + a skill that teaches the loop)\n\nThe repo follows the Open Plugins layout: .mcp.json, skills/platformio/SKILL.md, rules/platformio.mdc, plugin.json.\n\nThe server finds platformio / pio on your PATH or in ~/.platformio/penv. Override with PLATFORMIOMCPPIO=/path/to/pio. Run uvx platformio.mcp doctor to see what the agent will see.\n\nYou: flash the view env and make sure it boots.\n\nAgent → pioflashandverify(env=\"view\", expect=\"setup done\")\n\nAgent: null pointer on line 22 of displaytask.cpp, tft is used before begin(). Fixing, rebuilding, flashing again.\n\nNo 40 KB build logs in the context window. No human reading the serial monitor. The agent gets a verdict, a file and a line.\n\n🔍 Discover piosysteminfo · piolistboards · pioboardinfo · piolistdevices PlatformIO version and policy; ~1,700 boards with MCU, clock, RAM and flash sizes; serial ports with the likely dev boards flagged"
+  },
+  {
+   "name": "tppv-dev/tppv",
+   "url": "https://github.com/tppv-dev/tppv",
+   "description": "Open-source CLI and MCP server for TPP Validation",
+   "stars": 3,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [],
+   "created_at": "2026-09-16",
+   "homepage": "https://tppv.dev",
+   "score": 30.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Open-source CLI and MCP server for TPP Validation. Source: github.com/tppv-dev/tppv.\n\nThey talk to the hosted API (api.tppvalidation.com/v5). The validation engine itself stays a service — these packages are how you call it from a terminal or an agent.\n\nToken is stored in ~/.config/tppv/config.json (Windows: %LOCALAPPDATA%\\tppv\\config.json). Existing ~/.config/tpp files are still read.\n\nSame three tools as the hosted server: validatecertificate, auditchain, searchentity.\n\nToken from TPPVTOKEN or the CLI config file.\n\nHosted alternative (no local process): https://ai.tppvalidation.com/mcp.\n\nPackage What ------- ---- @tppv-dev/cli tppv command @tppv-dev/mcp stdio MCP server\n\nThe Rust validator, Slack/Teams bots, marketplace, and hosted MCP worker are the product. This repo is the client surface."
+  },
+  {
+   "name": "docxology/daf-jev",
+   "url": "https://github.com/docxology/daf-jev",
+   "description": "daf-jev: composable Python toolkit for TypeSafe's Jev (System One) decision API — question builders, confidence gates, evaluator, calibration, CLI, MCP server, agent skill",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-17",
+   "homepage": "",
+   "score": 30.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Modular, composable Python client and decision toolkit for the TypeSafe Jev (System One) API. One HTTP endpoint, three question primitives, and a set of pure-logic composition patterns built on top of the answers — plus a concurrent batch evaluation harness, an MCP server, a figure registry, and a reproducible manuscript pipeline.\n\n- Primitives — noul (yes/no), choice (pick an option from a probability distribution), score (rated on ordered levels). Build questions with noul() / choice() / score() and group them in a QuestionSet; batch any number of questions into a single API call. - Client — JevClient / AsyncJevClient wrapping POST https://api.typesafe.ai/v1/systemone, with retries (429/529, exponential backoff, Retry-After), typed error mapping, and a models() listing. Retry policy, default timeout, and default model resolve from the environment (see Configuration); every ask call also accepts a per-call timeout override and extra requestheaders (merged over the defaults for that call only). - Composition patterns — pure functions over answers: compositescore (probability-weighted expected value over score levels), confidencegate (auto-escalate low-confidence answers), route / pick (intent routing by choice). - Evaluation — Evaluator runs a fixed question set over many states concurrently (thread pool for JevClient, asyncio semaphore for AsyncJevClient) without aborting the batch: per-state failures are captured in EvaluationRecord.error. summary() aggregates per-question means/p95s; tojson() serializes records. - Usage accounting — UsageLedger (thread-safe) accumulates "
+  },
+  {
+   "name": "acroston1/epicor-mcp-oss",
+   "url": "https://github.com/acroston1/epicor-mcp-oss",
+   "description": "Read-only MCP server for Epicor Kinetic with configurable table access, optional document retrieval, and a desktop bridge.",
+   "stars": 3,
+   "forks": 1,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-15",
+   "homepage": "",
+   "score": 17.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "An Apache-2.0 read-only MCP server for Epicor Kinetic. It lets MCP-compatible assistants discover tables and fields, run bounded SELECT queries and saved BAQs, resolve dashboards, and search documents you import. It never writes business records.\n\nYou need a dedicated Epicor service account (username and password) and an Epicor REST API key for this server to work; it authenticates to Epicor as that account on behalf of every client. This project is independently developed and is not an official Epicor product and not endorsed by Epicor.\n\nMicrosoft SSO is disabled by default. Administrators can expose an explicit list of read-only tables, optionally require a shared server token, and enable Microsoft SSO later. Every tool call is recorded in a local audit log. No Epicor table/field database, vector index, vendor manuals, tenant configuration, credentials, or business records are included.\n\nTool Purpose ------ epicorquery Execute a bounded SELECT or read an existing saved BAQ epicortables Find tables in your imported metadata (substring, or optional semantic ranking) epicorfields Find fields and descriptions for an allowed table (substring, or optional semantic ranking) epicorhelp Search your imported documents; optional semantic search epicordashboards Resolve dashboard names to saved BAQ IDs\n\nIn SSO-disabled mode, all clients share the same table policy and service account. Business-record writes, BAQ saving, and admin endpoints are disabled. A table whitelist restricts data access; it does not authenticate a caller. For hosted use, set a shared server token or place the s"
+  },
+  {
+   "name": "bhpark1013/rn-find",
+   "url": "https://github.com/bhpark1013/rn-find",
+   "description": "Find and tap React Native elements by visible text through Metro's Hermes inspector. No testIDs, no in-app SDK, no MCP server.",
+   "stars": 3,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [
+    "ai-agents",
+    "automation",
+    "expo",
+    "hermes",
+    "idb",
+    "ios-simulator",
+    "metro",
+    "react-native"
+   ],
+   "created_at": "2026-09-15",
+   "homepage": "",
+   "score": 10.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-18",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Find and tap React Native elements by the text you can see, through the Hermes inspector that Metro already exposes for every dev build.\n\nNo testIDs. No SDK inside the app. No MCP server. One file per concern, zero dependencies, Node 22+.\n\nDriving a simulator from a script or an AI agent usually means one of three things:\n\n- Accessibility tree (idb ui describe-all, XCUITest, Maestro). The app decides what it exports. In practice bottom sheets, FlashList rows and anything without an accessibilityLabel come back as zero nodes, and you fall back to guessing coordinates from a screenshot. - testID everywhere. Works, but only after you retrofit every button in the app and keep doing so. - Screenshots + OCR / vision. Slow, flaky on Korean/Japanese text, and it can't tell two buttons at the same y apart.\n\nThere is a fourth source of truth that already exists in every dev build: the React fiber tree. It contains everything that is rendered, with the real children, and Metro exposes a Chrome DevTools Protocol socket to the Hermes runtime that renders it. rn-find evaluates a small script over that socket, walks the fiber roots via the React DevTools hook, measures the matches with measureInWindow, and hands the coordinates to idb (iOS) or adb (Android) for a real touch. Or skips the touch entirely and calls onPress / onChangeText in place.\n\n- A dev build of the app connected to Metro (Expo dev-client or bare RN debug build). Release builds have no inspector. Both the old (Paper) and the New Architecture (Fabric / Bridgeless) are supported. - iOS touches: idb — brew tap facebook/fb &&"
   }
  ]
 }
