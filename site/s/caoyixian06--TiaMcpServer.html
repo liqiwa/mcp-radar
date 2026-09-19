@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>caoyixian06/TiaMcpServer — MCP Server | MCP Radar</title>
+<meta name="description" content="西门子博途 V17 (TIA Portal V17) MCP 服务器 / MCP Server — 作者: 曹义贤 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/caoyixian06--TiaMcpServer.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="caoyixian06/TiaMcpServer — MCP Server | MCP Radar">
+<meta property="og:description" content="西门子博途 V17 (TIA Portal V17) MCP 服务器 / MCP Server — 作者: 曹义贤 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "caoyixian06/TiaMcpServer", "description": "西门子博途 V17 (TIA Portal V17) MCP 服务器 / MCP Server — 作者: 曹义贤", "codeRepository": "https://github.com/caoyixian06/TiaMcpServer", "programmingLanguage": "C#", "url": "https://mcp.liqiwa.com/s/caoyixian06--TiaMcpServer.html", "dateCreated": "2026-09-18"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">caoyixian06/</span>TiaMcpServer</h1>
+<p class="sub">西门子博途 V17 (TIA Portal V17) MCP 服务器 / MCP Server — 作者: 曹义贤</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/csharp.html"><span class="lang-dot" style="--lang:#178600"></span><b>C#</b></a>
+  <div class="chip">momentum <b>▲ 42.0</b></div>
+  <div class="chip">created <b>2026-09-18</b></div>
+  <div class="chip">on radar since <b>2026-09-19</b></div>
+  
+</div>
+<div class="topics"><span class="topic">hmi</span><span class="topic">ladder-logic</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">openness</span><span class="topic">plc</span><span class="topic">siemens</span><span class="topic">tia-portal</span><span class="topic">tia-portal-v17</span></div>
+<a class="btn" href="https://github.com/caoyixian06/TiaMcpServer" rel="noopener">View on GitHub ↗</a>
+<h2>About TiaMcpServer</h2><p class="sub">TIA-MCP Copilot V4.3.0 — 西门子博途 V17 MCP 服务器（TIA Portal V17 MCP Server）</p><p class="sub">基于 C / .NET Framework 4.8 / 西门子博途 V17（TIA Portal V17 Openness）的 MCP stdio 服务器，带中文 WinForms 控制中心。</p><p class="sub">作者：曹义贤 · 邮箱 3165352549@qq.com · GitHub @caoyixian06</p><p class="sub">- 工程需求会话、需求冻结、计划生成/批准和阶段状态机作为可选能力保留，不再阻断普通工程工具调用。 - serverpolicy.json 当前关闭 engineering workflow，因此 createproject、硬件、PLC、HMI 和离线编程工具无需先完成阶段推进即可调用。 - 关闭工程工作流不等于关闭安全边界：工具风险分类、参数 Schema、控制端锁、在线授权、TIA 工程状态检查、审计以及删除/重置确认仍然生效。 - LAD、HMI、验证和部署规范仍可按主题小包加载；它们不再作为普通工具调用的强制前置步骤。 - Safe / Assist / Auto 三态 ExecutionPolicy 仍然有效；当前默认配置为 Auto，但 Unknown 风险工具和未接入安全分发器的复合工具仍会被拒绝。 - Tool 调用仍统一经过 Schema - RiskCheck - Permission - Read/Write Lock - Audit - Execute。 - 在线写入、下载、上传、CPU 控制等仍必须进入 SafeOnlineExecutor 授权范围。 - 删除/重置类 Tool 仍支持 dryRun，正式执行必须显式二次确认。 - 长任务仍返回 jobid，支持 getjobstatus、listjobs、canceljob；需要立即拿到结果时传 wait=true。</p><p class="sub">必须在安装 TIA Portal、对应 Openness 和 .NET Framework 4.8 开发环境的 Windows 电脑上构建：</p><p class="sub">底层脚本为 scripts\构建V4.3.ps1，会扫描环境变量、注册表和本地盘符，并根据工程扩展名选择 TIA 版本。</p><p class="sub">该脚本检查 JSON/XML、C 分隔符、版本一致性、全部静态注册 Tool 的风险覆盖、工程工作流锚点、9 个按需规范包、统一安全链及 WinForms DPI 设置。它不能替代 C 编译、TIA Openness 实机连接和 PLC 下载测试。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/caoyixian06--TiaMcpServer.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/HorizunGroup--naviscoord-mcp.html">
+  <span class="name"><span class="owner">HorizunGroup/</span>naviscoord-mcp</span>
+  <p>Open-source MCP server for Autodesk Navisworks Manage 2024-2026: AI-assisted BIM clash detection, root-cause analysis, coordination plans and verified model workflows.</p>
+  <span class="meta"><span>⭐ 12</span><span>C#</span></span>
+</a><a class="card" href="/s/peopleworks--XAFLogicExplainer.html">
+  <span class="name"><span class="owner">peopleworks/</span>XAFLogicExplainer</span>
+  <p>Teach your AI coding agent what your DevExpress XAF application actually does. Roslyn-based extraction of entities, controllers, business rules and Model Editor customizations.</p>
+  <span class="meta"><span>⭐ 4</span><span>C#</span></span>
+</a><a class="card" href="/s/cinderline--northcinder.html">
+  <span class="name"><span class="owner">cinderline/</span>northcinder</span>
+  <p>Open-source MCP server for comparing products and asking the buyer before purchase.</p>
+  <span class="meta"><span>⭐ 1205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/sv-number--mcp-server.html">
+  <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
+  <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
+  <span class="meta"><span>⭐ 598</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/okf-memory--okf-agent-memory.html">
+  <span class="name"><span class="owner">okf-memory/</span>okf-agent-memory</span>
+  <p>Git-native persistent memory for AI coding agents. Implements Google OKF v0.2 with sub-300µs in-memory BM25 search, embedded MCP server, and progressive disclosure. Slashes token bloat by 80% with zer</p>
+  <span class="meta"><span>⭐ 553</span><span>Go</span></span>
+</a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
