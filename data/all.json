@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-09-20",
- "count": 2106,
+ "updated_at": "2026-09-21",
+ "count": 2121,
  "servers": [
   {
    "name": "XiaoDuoYa/codex-with-chatgpt",
@@ -971,6 +971,55 @@
    "readme_excerpt": "[!IMPORTANT] ray.run – from idea to a production-grade MCP server in under a minute! 🦜\n\nA curated list of remote Model Context Protocol (MCP) servers — hosted endpoints you connect to over a URL. No install, no runtime, no local process.\n\nLooking for servers you run yourself? See awesome-mcp-servers.\n\nWhat is a remote MCP server? How to connect Legend Servers Community Contributing\n\nA remote MCP server is an MCP server someone else operates for you. Instead of installing a package and spawning a local process over stdio, you point your client at a URL and authenticate — usually with OAuth.\n\nLocal server Remote server --- --- --- Distribution npm, PyPI, Docker, a binary a URL Transport stdio Streamable HTTP (or legacy SSE) Runs on your machine the provider's infrastructure Auth env vars, config files OAuth, or an API key Updates you upgrade the provider ships\n\nEverything listed here is a remote server. Entries are only listed after the endpoint answers an MCP initialize handshake.\n\nMost clients accept a bare URL. A few examples:\n\nmcp.json (Cursor, VS Code, and other clients that read this format)\n\nClaude.ai / ChatGPT — add the URL under Settings → Connectors.\n\nFor 🔐 OAuth servers your client opens a browser window on first use. For 🔑 servers you supply a token, usually as an Authorization: Bearer header.\n\nauthentication 🔓 – none, connect anonymously 🔑 – API key or token 🔐 – OAuth\n\nEntries with a Glama connector badge have been independently scored for tool definition quality and endpoint health:"
   },
   {
+   "name": "NiazMorshed2007/jev-review",
+   "url": "https://github.com/NiazMorshed2007/jev-review",
+   "description": "Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.",
+   "stars": 191,
+   "forks": 17,
+   "language": "TypeScript",
+   "topics": [
+    "agent-plugin",
+    "ai-agents",
+    "claude-code",
+    "code-review",
+    "codex",
+    "coding-agents",
+    "cursor",
+    "developer-tools",
+    "jev",
+    "local-first",
+    "mcp",
+    "model-context-protocol",
+    "opencode",
+    "software-quality",
+    "typescript"
+   ],
+   "created_at": "2026-09-17",
+   "homepage": "",
+   "score": 511.5,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 93
+    },
+    {
+     "d": "2026-09-19",
+     "s": 128
+    },
+    {
+     "d": "2026-09-20",
+     "s": 173
+    },
+    {
+     "d": "2026-09-21",
+     "s": 191
+    }
+   ],
+   "readme_excerpt": "Continuous software-quality review for AI coding agents, powered by Jev.\n\nQuick start · Client setup · Quality dimensions · Security\n\nJev Review runs as a local MCP server and gives Claude Code, Codex, Cursor, and OpenCode structured quality scores while they work. Your coding agent remains responsible for diagnosing weaknesses and changing the code; Jev supplies a fast scalar signal across correctness, complexity, changeability, modularity, tests, security, and other independent quality dimensions.\n\n[!IMPORTANT] Your API key stays on your machine. Jev Review has no hosted backend, database, telemetry service, or author-operated proxy. The only remote request is sent directly to the configured Jev API.\n\nhttps://github.com/user-attachments/assets/0ff9f873-0652-4826-af3d-6bb4f42c70b1\n\n--- --- Purpose Continuous, structured software-quality evaluation Supported clients Claude Code, Codex, Cursor, OpenCode Distribution This GitHub repository—no npm publication Runtime Local Node.js process over MCP stdio Remote access Direct requests to Jev using your API key MCP tools One focused tool: jevreview Code changes Always performed by the primary coding agent\n\n- Node.js 20 or newer - A Jev API key from the TypeSafe console - Claude Code, Codex, Cursor, or OpenCode\n\nSet your API key before starting the coding agent:\n\nInstall Jev Review directly from GitHub—no npm publication is required:\n\nChoose your coding client when prompted, restart it, and ask the agent to use jev-review while implementing a nontrivial change."
+  },
+  {
    "name": "fellowgeek/mcp-memory",
    "url": "https://github.com/fellowgeek/mcp-memory",
    "description": "An OKF-backed Model Context Protocol (MCP) server delivering persistent long-term memory and SQLite FTS5 search for AI agents.",
@@ -1010,51 +1059,6 @@
     }
    ],
    "readme_excerpt": "MCP-Memory: OKF-Backed Agent Memory Server\n\nMCP-Memory is a Model Context Protocol (MCP) server that equips AI agents (such as Claude Desktop, Cursor, Antigravity, Windsurf, or Codex) with persistent, long-term memory capabilities.\n\nMemory records are formatted using the Open Knowledge Format (OKF v0.2) standard and indexed with a local SQLite instance (supporting FTS5 full-text search) for fast key-value lookups, tag filtering, and content search.\n\nFast Track: Jump directly to Quick Start\n\nPersistent State Across Sessions: Enables AI agents to read, store, search, and delete stateful memory snippets that persist across chat turns and sessions. OKF Standard Compliance: Stores every memory item formatted as an OKF v0.2 Markdown document with YAML frontmatter (type, key, namespace, tags, generated, sources, verified, status, staleafter), adhering strictly to SPEC.md and OKFRULES.md. Dual-Layer Architecture: - Human-Browseable OKF Directory: Automatically dumps and syncs every memory to disk as a raw .md file inside the memory/ bundle directory with hierarchical index.md progressive disclosure files (root index.md versioned with okfversion: \"0.2\") and log.md update history tracking. - High-Performance SQLite Indexing: SQLite FTS5 (Full-Text Search) and automatic triggers for sub-20ms key lookups and instant keyword searches. Namespace Isolation: Supports contextual separation (e.g. user/preferences, project/architecture, default). Zero Boilerplate Setup: Quick setup wizard (python3 setup.py) auto-configures installed MCP tools (Antigravity, Claude, Cursor, Windsurf, Codex)."
-  },
-  {
-   "name": "NiazMorshed2007/jev-review",
-   "url": "https://github.com/NiazMorshed2007/jev-review",
-   "description": "Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.",
-   "stars": 173,
-   "forks": 16,
-   "language": "TypeScript",
-   "topics": [
-    "agent-plugin",
-    "ai-agents",
-    "claude-code",
-    "code-review",
-    "codex",
-    "coding-agents",
-    "cursor",
-    "developer-tools",
-    "jev",
-    "local-first",
-    "mcp",
-    "model-context-protocol",
-    "opencode",
-    "software-quality",
-    "typescript"
-   ],
-   "created_at": "2026-09-17",
-   "homepage": "",
-   "score": 608.7,
-   "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-18",
-     "s": 93
-    },
-    {
-     "d": "2026-09-19",
-     "s": 128
-    },
-    {
-     "d": "2026-09-20",
-     "s": 173
-    }
-   ],
-   "readme_excerpt": "Continuous software-quality review for AI coding agents, powered by Jev.\n\nQuick start · Client setup · Quality dimensions · Security\n\nJev Review runs as a local MCP server and gives Claude Code, Codex, Cursor, and OpenCode structured quality scores while they work. Your coding agent remains responsible for diagnosing weaknesses and changing the code; Jev supplies a fast scalar signal across correctness, complexity, changeability, modularity, tests, security, and other independent quality dimensions.\n\n[!IMPORTANT] Your API key stays on your machine. Jev Review has no hosted backend, database, telemetry service, or author-operated proxy. The only remote request is sent directly to the configured Jev API.\n\nhttps://github.com/user-attachments/assets/0ff9f873-0652-4826-af3d-6bb4f42c70b1\n\n--- --- Purpose Continuous, structured software-quality evaluation Supported clients Claude Code, Codex, Cursor, OpenCode Distribution This GitHub repository—no npm publication Runtime Local Node.js process over MCP stdio Remote access Direct requests to Jev using your API key MCP tools One focused tool: jevreview Code changes Always performed by the primary coding agent\n\n- Node.js 20 or newer - A Jev API key from the TypeSafe console - Claude Code, Codex, Cursor, or OpenCode\n\nSet your API key before starting the coding agent:\n\nInstall Jev Review directly from GitHub—no npm publication is required:\n\nChoose your coding client when prompted, restart it, and ask the agent to use jev-review while implementing a nontrivial change."
   },
   {
    "name": "mrpulor-gh/nuphus-mcp",
@@ -1407,6 +1411,42 @@
    "readme_excerpt": "One read-only command that inventories every AI agent, harness, MCP server, plugin, and AI extension on a machine — and tells you, in plain language, what each one can touch.\n\nNo install. No account. No telemetry. Reads configs and directories, writes nothing (unless you ask for --json yourfile.json).\n\nIn August 2026, an open-source agent harness went from zero to 200,000+ GitHub stars in three weeks. Its plugin ecosystem passed 13,000 repositories in the same window. One-click desktop clients appeared the same day it launched. Instagram carousels now teach office workers to install all of it.\n\nEvery one of those installs is a program that can execute commands, read files, and hold credentials — configured in dotfiles nobody looks at twice. Ask yourself the question this tool answers: what is actually running on this machine, and what can it reach? Most people cannot answer it. Now it's one command.\n\nReal output from a real machine (values redacted — see below).\n\nEcosystem What geiger reads ------ Claude Code global + per-project MCP servers, hooks, plugins, skills, subagents, apiKeyHelper MCP hosts Claude Desktop, Cursor, Windsurf, VS Code (user + project), Cline, Roo Code, Continue, Zed Other agents Codex CLI, Gemini CLI, Kilo CLI, Grok Build, Aider, OpenCode, Qwen Code, DeepSeek Harness, Continue, GitHub Copilot CLI, Goose, JetBrains Junie, Open Interpreter, LM Studio, Ollama Editor extensions AI extensions in VS Code / Insiders / Cursor JetBrains IDEs AI Assistant / MCP settings presence per product (the settings live inside the IDE — geiger points you at the right scre"
   },
   {
+   "name": "hirotomasato/yowes",
+   "url": "https://github.com/hirotomasato/yowes",
+   "description": "Generate realistic teacher documents (ID cards, licenses, letters) for 13 countries via MCP.",
+   "stars": 112,
+   "forks": 50,
+   "language": "Python",
+   "topics": [
+    "agent",
+    "document-generator",
+    "mcp",
+    "model-context-protocol",
+    "pillow",
+    "python"
+   ],
+   "created_at": "2026-09-19",
+   "homepage": "",
+   "score": 660.0,
+   "first_seen": "2026-09-19",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-19",
+     "s": 9
+    },
+    {
+     "d": "2026-09-20",
+     "s": 77
+    },
+    {
+     "d": "2026-09-21",
+     "s": 112
+    }
+   ],
+   "readme_excerpt": "Yowes — Canva Education Document Generator\n\nHeadless MCP server that generates teacher verification documents — employment letters, teacher ID cards, teaching licenses, payslips, and more — across 13 countries.\n\nPortable, self-contained, and installable anywhere.\n\n- Sample outputs - Features - Supported countries - Requirements - Installation - Usage — MCP server - Legacy GUI - Project structure - Adding a new country - License\n\nDocuments are rendered as high-resolution PNGs. Examples generated by this tool:\n\nTeacher ID (US) Employment letter (US) :---::---:\n\nTeacher ID (UK) Employment letter (UK) :---::---:\n\n- Headless MCP server — document generation exposed as agent-callable tools over stdio. - 13 countries, each with its own document types and local conventions. - Real school databases with street addresses, districts, and contact info. - Consistent profile photos per person — hash-based selection from a bundled, gender-aware photo pool. - Cross-platform fonts — DejaVu Sans bundled; no system-font dependency. - Packaged & portable — ships as a self-contained wheel (code + photos + fonts) installable with one command.\n\nCode Country Document types ------------------------------- uk United Kingdom employmentletter, teacherid, teachinglicense us United States employmentletter, teacherid, teachinglicense france France installationstatement, iprofscreenshot, bylawsextract, teachingcertificate netherlands Netherlands employmentcontract, teacherregistration, duodeclaration, schoolid indonesia Indonesia payslip, teachingexperienceletter, nuptkcard, appointmentletter australia Au"
+  },
+  {
    "name": "EndymionLee/PilotBrowseMCP",
    "url": "https://github.com/EndymionLee/PilotBrowseMCP",
    "description": "A browser runtime that lets AI agents control your real Chrome browser via MCP. Agents can explore websites, generate operation manuals, and reuse them to save tokens.  AI操控你的真实浏览器。",
@@ -1679,6 +1719,54 @@
    "readme_excerpt": "Keep image-heavy Codex workflows responsive, resumable, and context-bounded.\n\nFictional concept interface—not an actual Codex UI or a measured context, token, speed, or latency benchmark.\n\nImage Context Runtime for Codex is an experimental open-source Codex plugin backed by a durable local MCP runtime. It runs image generation and inspection as persisted jobs, keeps provider-returned media bytes behind the public MCP boundary, and returns only bounded text results, hashes, relative references, and Job IDs.\n\n- creating short-drama character sheets, location concepts, or storyboards; - producing image assets for websites and slide decks; - organizing image-heavy news, books, screenshots, or research; - generating many visual variations or running repeated visual QA.\n\nImportant: This project reduces one source of context pressure. It does not claim that Codex can never slow down, that images use zero tokens, or that explicitly opening an image adds no visual context.\n\nThe plugin does not patch or intercept Codex's built-in image features or other image tools. The bounded boundary applies only when Codex uses this plugin's MCP tools and follows its bundled skill.\n\nExecution shape: a bundled local MCP server plus a durable image-job runtime.\n\nv durable local jobs ---- optional OpenAI API\n\n+---- configured-workspace image artifacts\n\n+---- bounded text handoffs, hashes, refs, and Job IDs ~~~\n\nThe plugin is the installable workflow. MCP is the tool boundary. The Runtime owns Job state, controls media transfer, and writes generated artifacts only to configured workspace-relative pat"
   },
   {
+   "name": "mmdju/digikala-mcp",
+   "url": "https://github.com/mmdju/digikala-mcp",
+   "description": "MCP server for Digikala: search, compare and price-check products on Iran's largest marketplace. Read-only, no API key. 16 tools, hosted on Cloudflare Workers.",
+   "stars": 97,
+   "forks": 13,
+   "language": "JavaScript",
+   "topics": [
+    "cloudflare-workers",
+    "digikala",
+    "iran",
+    "mcp",
+    "model-context-protocol",
+    "persian"
+   ],
+   "created_at": "2026-09-15",
+   "homepage": "https://digikala-mcp.mmdju.workers.dev/",
+   "score": 187.7,
+   "first_seen": "2026-09-16",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-16",
+     "s": 4
+    },
+    {
+     "d": "2026-09-17",
+     "s": 5
+    },
+    {
+     "d": "2026-09-18",
+     "s": 16
+    },
+    {
+     "d": "2026-09-19",
+     "s": 77
+    },
+    {
+     "d": "2026-09-20",
+     "s": 91
+    },
+    {
+     "d": "2026-09-21",
+     "s": 97
+    }
+   ],
+   "readme_excerpt": "Digikala MCP - Shop intelligence for AI agents\n\nA public MCP server that gives AI agents real Digikala knowledge: search, prices in Toman, discounts, ratings, sellers, reviews, deals and bestsellers. Read-only, no key needed.\n\nLive endpoint: https://digikala-mcp.mmdju.workers.dev/mcp (Streamable HTTP, stateless)\n\nنسخه فارسی · Examples · Tool reference · Changelog\n\nAny MCP client, one URL. Cline / Cursor / Claude Desktop (mcp.json style):\n\nThen just talk: \"best Samsung phone under 20 million Toman\", \"is this laptop any good?\", \"what is on deal today?\", \"what is popular in Iran right now?\".\n\nTool What it answers ------ digikalasuggest Vague wording to real search terms, category ids, trends searchdigikala \"Show me X\", price checks, filters + sorting + paging browsecategory Browse a category, drill into sub-categories productdetails Everything about one product: price, seller, warranty, specs, reviews productpricechart \"Is now cheap?\" - short price history with seller per point productquestions \"What did buyers ask?\" - questions + answer counts getproductsbatch Shortlist cards for up to 10 ids - feeds compareproducts producturl Product id to shareable URL + title productvariants \"Which colour is cheapest?\" - every variant with its own price + seller searchfilters \"Which brands exist for X?\" - brand/color/category ids + price range productreviews \"Is it any good?\" - buyer-only and min-rating filters compareproducts \"Which of these?\" - only the specs that actually differ findbestvalue \"Best X under Y Toman\" - ranked picks with seller grade incredibleoffers Today's deals (شگفت‌ان"
+  },
+  {
    "name": "KayanoLiam/ContextX",
    "url": "https://github.com/KayanoLiam/ContextX",
    "description": "A free remote MCP server offering normal (Grok 4.3) and deep (Grok 4.20 Multi-Agent) search. No API keys required, streaming support prevents gateway timeouts. ",
@@ -1783,50 +1871,6 @@
     }
    ],
    "readme_excerpt": "A Model Context Protocol (MCP) server that exposes various Tiingo API endpoints as tools. This server allows programmatic access to financial data including stock prices, news, forex, fundamentals, and corporate actions via the MCP protocol.\n\n- Node.js (v18 or later recommended) - npm (comes with Node.js) - A Tiingo API Key - MCP-compatible client or runner (e.g., VSCode extension, CLI)\n\n1. Clone the repository or ensure you are in the project directory.\n\n3. Obtain Your Tiingo API Key: To use this server, you need a Tiingo API token. 1. Register for a Tiingo account if you don't have one. 2. Go to your Tiingo Account page and navigate to the API Token section (or directly visit: https://www.tiingo.com/account/api/token). 3. Copy your API Token. You will need to provide this token to your MCP client to authenticate with the Tiingo API. Note: Programmatic registration or logins are not supported by Tiingo; the API token is the sole method for authentication.\n\n4. Set Tiingo API Key: This server requires your Tiingo API key. You can typically provide the API key in your MCP client's configuration (see \"Running the Server\" below for an example).\n\nThis will create a build directory with the compiled JavaScript code.\n\n- Via MCP runner: Configure your MCP client to run the server using stdio transport. You can provide the TIINGOAPITOKEN in the env block of the configuration. Example MCP settings entry:"
-  },
-  {
-   "name": "mmdju/digikala-mcp",
-   "url": "https://github.com/mmdju/digikala-mcp",
-   "description": "MCP server for Digikala: search, compare and price-check products on Iran's largest marketplace. Read-only, no API key. 16 tools, hosted on Cloudflare Workers.",
-   "stars": 91,
-   "forks": 13,
-   "language": "JavaScript",
-   "topics": [
-    "cloudflare-workers",
-    "digikala",
-    "iran",
-    "mcp",
-    "model-context-protocol",
-    "persian"
-   ],
-   "created_at": "2026-09-15",
-   "homepage": "https://digikala-mcp.mmdju.workers.dev/",
-   "score": 208.0,
-   "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-16",
-     "s": 4
-    },
-    {
-     "d": "2026-09-17",
-     "s": 5
-    },
-    {
-     "d": "2026-09-18",
-     "s": 16
-    },
-    {
-     "d": "2026-09-19",
-     "s": 77
-    },
-    {
-     "d": "2026-09-20",
-     "s": 91
-    }
-   ],
-   "readme_excerpt": "Digikala MCP - Shop intelligence for AI agents\n\nA public MCP server that gives AI agents real Digikala knowledge: search, prices in Toman, discounts, ratings, sellers, reviews, deals and bestsellers. Read-only, no key needed.\n\nLive endpoint: https://digikala-mcp.mmdju.workers.dev/mcp (Streamable HTTP, stateless)\n\nنسخه فارسی · Examples · Tool reference · Changelog\n\nAny MCP client, one URL. Cline / Cursor / Claude Desktop (mcp.json style):\n\nThen just talk: \"best Samsung phone under 20 million Toman\", \"is this laptop any good?\", \"what is on deal today?\", \"what is popular in Iran right now?\".\n\nTool What it answers ------ digikalasuggest Vague wording to real search terms, category ids, trends searchdigikala \"Show me X\", price checks, filters + sorting + paging browsecategory Browse a category, drill into sub-categories productdetails Everything about one product: price, seller, warranty, specs, reviews productpricechart \"Is now cheap?\" - short price history with seller per point productquestions \"What did buyers ask?\" - questions + answer counts getproductsbatch Shortlist cards for up to 10 ids - feeds compareproducts producturl Product id to shareable URL + title productvariants \"Which colour is cheapest?\" - every variant with its own price + seller searchfilters \"Which brands exist for X?\" - brand/color/category ids + price range productreviews \"Is it any good?\" - buyer-only and min-rating filters compareproducts \"Which of these?\" - only the specs that actually differ findbestvalue \"Best X under Y Toman\" - ranked picks with seller grade incredibleoffers Today's deals (شگفت‌ان"
   },
   {
    "name": "omaekumiko2-create/kru",
@@ -2237,38 +2281,6 @@
    "readme_excerpt": "A local Model Context Protocol server for Windows that lets Codex, Claude Code, Claude Desktop, and other stdio MCP clients control TikTok LIVE Studio through its localhost Stream Deck Socket.IO channel.\n\nThe server does not use mouse automation, OCR, browser automation, or screen coordinates. It discovers the running LIVE Studio process and its owned port, validates the protocol, acknowledges each action, and verifies readable state changes.\n\nCommunity project. Not affiliated with TikTok, ByteDance, Elgato, Anthropic, or OpenAI.\n\n- Twelve typed MCP tools for status, scenes, sources, audio, microphone, recording, actions, and LIVE control. - Official MCP TypeScript SDK with stdio transport. - Windows process, installed-version, and process-owned port discovery. - Automatic rediscovery when LIVE Studio restarts on a different port. - Idempotent scene/source/audio/microphone/recording/LIVE operations. - Action-result validation plus post-action state verification. - Cross-process mutation lock for multiple locally configured MCP clients. - Structured error contract and compact JSONL evidence logs. - Mock Socket.IO, MCP contract, real safe integration, opt-in full integration, built stdio, packaging, and release gates.\n\n- Windows 10 or Windows 11. - Node.js 20 or newer. - TikTok LIVE Studio installed. Start it before running doctor or real integration checks.\n\nThen connect your MCP client using the client setup guide. For a complete walkthrough, safety model, examples, updates, and uninstall steps, read the full user guide or Vietnamese user guide."
   },
   {
-   "name": "hirotomasato/yowes",
-   "url": "https://github.com/hirotomasato/yowes",
-   "description": "Generate realistic teacher documents (ID cards, licenses, letters) for 13 countries via MCP.",
-   "stars": 77,
-   "forks": 24,
-   "language": "Python",
-   "topics": [
-    "agent",
-    "document-generator",
-    "mcp",
-    "model-context-protocol",
-    "pillow",
-    "python"
-   ],
-   "created_at": "2026-09-19",
-   "homepage": "",
-   "score": 818.0,
-   "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-19",
-     "s": 9
-    },
-    {
-     "d": "2026-09-20",
-     "s": 77
-    }
-   ],
-   "readme_excerpt": "Yowes — Canva Education Document Generator\n\nHeadless MCP server that generates teacher verification documents — employment letters, teacher ID cards, teaching licenses, payslips, and more — across 13 countries.\n\nPortable, self-contained, and installable anywhere.\n\n- Sample outputs - Features - Supported countries - Requirements - Installation - Usage — MCP server - Legacy GUI - Project structure - Adding a new country - License\n\nDocuments are rendered as high-resolution PNGs. Examples generated by this tool:\n\nTeacher ID (US) Employment letter (US) :---::---:\n\nTeacher ID (UK) Employment letter (UK) :---::---:\n\n- Headless MCP server — document generation exposed as agent-callable tools over stdio. - 13 countries, each with its own document types and local conventions. - Real school databases with street addresses, districts, and contact info. - Consistent profile photos per person — hash-based selection from a bundled, gender-aware photo pool. - Cross-platform fonts — DejaVu Sans bundled; no system-font dependency. - Packaged & portable — ships as a self-contained wheel (code + photos + fonts) installable with one command.\n\nCode Country Document types ------------------------------- uk United Kingdom employmentletter, teacherid, teachinglicense us United States employmentletter, teacherid, teachinglicense france France installationstatement, iprofscreenshot, bylawsextract, teachingcertificate netherlands Netherlands employmentcontract, teacherregistration, duodeclaration, schoolid indonesia Indonesia payslip, teachingexperienceletter, nuptkcard, appointmentletter australia Au"
-  },
-  {
    "name": "hike-lab/public-data-lens",
    "url": "https://github.com/hike-lab/public-data-lens",
    "description": "MCP-based discovery and judgment layer for Korea’s open data portal—helping AI agents find, compare, and assess datasets with explicit evidence, JSON-LD/DCAT metadata, and versioned deterministic rule",
@@ -2610,6 +2622,45 @@
     }
    ],
    "readme_excerpt": "Revenue-first website analytics that your AI agent can install, connect, and verify for you.\n\nTalivia shows founders which referrers, campaigns, pages, search keywords, and customer journeys turn visits into revenue. @talivia/agent connects Codex, Claude Code, ChatGPT, OpenClaw, Hermes, and other MCP clients to Talivia so an agent can finish the analytics setup inside your project - not just paste a tracking snippet and hope it works.\n\nAsk your agent to set up Talivia. It can find or create the right website, generate a framework-specific installation plan, add the tracker with its native coding tools, verify that real events are arriving, open a secure payment-provider handoff, and check that revenue attribution is ready.\n\nStart free Agent Kit Documentation npm GitHub\n\nMost analytics products count visits. Payment dashboards count transactions. Talivia connects the two, so you can answer the questions that matter to a growing product:\n\n- Which referrers, campaigns, and search keywords bring paying customers? - Which landing pages and customer journeys lead to a purchase? - How do visitors, conversion rate, revenue per visitor, and revenue change together? - Which tracked session produced an individual payment? - Is analytics and checkout attribution actually working in production?\n\nTalivia puts traffic, visitor journeys, events, payment revenue, and attribution in one workspace. Connect a supported payment provider or use the Manual Payment API for a custom checkout."
+  },
+  {
+   "name": "Ying-Kai-Liao/jev-browser",
+   "url": "https://github.com/Ying-Kai-Liao/jev-browser",
+   "description": "Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server.",
+   "stars": 61,
+   "forks": 5,
+   "language": "JavaScript",
+   "topics": [
+    "browser-automation",
+    "llm-agents",
+    "mcp",
+    "mcp-server",
+    "playwright"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "",
+   "score": 162.5,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 6
+    },
+    {
+     "d": "2026-09-19",
+     "s": 12
+    },
+    {
+     "d": "2026-09-20",
+     "s": 26
+    },
+    {
+     "d": "2026-09-21",
+     "s": 61
+    }
+   ],
+   "readme_excerpt": "Browser automation where an LLM plans and Jev decides.\n\nUnofficial project, not affiliated with TypeSafe. It calls the TypeSafe System One API with your own API key.\n\nThe calling LLM (Claude, via MCP) says what outcome it wants, one step at a time, and hands over any text to type. For each round of a step, code describes the page. Then one ~300 ms Typesafe System One request asks Jev several questions at once: which element, which action, which value, and is the step done / blocked / showing an error / about to do something irreversible. Playwright performs the action. The LLM never reads page snapshots unless it chooses to take over.\n\nhttps://github.com/user-attachments/assets/2e688df9-4985-4854-8ebe-ba97c9d13d68\n\nJev only answers with probability distributions: yes/no (noul), pick one option (choice) or a rating (score). It never writes text. So everything free-form comes from the caller as candidates, and code turns disagreement or low confidence into a status the LLM can act on.\n\n42 tasks in 16 categories on live sites (see RESULTS.md):\n\n- 40/42 correct in the latest run, 0 false \"done\" claims (38/41 twice before the latest fixes). Remaining misses: counting (\"add until 3\", flagged likelydone) and verifying a sort. - ~300 ms per Jev call, 2–4 calls for most steps; a 5-step checkout takes ~14 s end to end. - Pause before irreversible actions: across ~200 rounds it flagged only saucedemo's \"Finish\" (place order) button. - Less page content for the LLM than a Playwright-MCP-style loop on the same tasks (estimate): median 5× per task, ≈8k vs ≈557k tokens in total. Big pages"
   },
   {
    "name": "bsab/sweden-mcp-servers",
@@ -3029,6 +3080,62 @@
    "readme_excerpt": "List the tools exposed by a streamable HTTP MCP server:\n\nThe default output is deliberately compact: each tool is shown as a signature and a one-line description. Use -N or --no-truncate for full descriptions and detailed parameter metadata:\n\nThis forces the current MCP 2 stateless protocol by default. Use --legacy to force the older initialize-handshake protocol instead:\n\nUse --json to output the complete tool definitions, including their input schemas:\n\nThis displays the tool's complete description, nested input and output schemas, annotations, execution metadata, icons, and meta. Use --json for the complete tool definition as a single JSON object:\n\nCall a tool by passing its arguments as a JSON object:\n\nAlternatively, use repeatable -a/--argument NAME VALUE options:\n\nUse - to read the raw JSON object from standard input:\n\nWhen raw JSON and -a are combined, individual arguments override matching top-level keys in the JSON object and later -a values win. Values are interpreted using the tool's input schema: strings remain literal, while numbers, booleans, arrays, objects, and null are parsed as JSON. The assembled arguments are validated against the input schema before the tool is called.\n\nUse --json to print the tool's structuredContent as JSON. If the result has no structured content, this falls back to printing the first text content block:\n\nUse --raw for the complete MCP CallToolResult as JSON:"
   },
   {
+   "name": "friday-memory/friday",
+   "url": "https://github.com/friday-memory/friday",
+   "description": "⚡ The open-source persistent cognitive memory layer for AI coding agents. Stop your Cursor, Claude & Copilot from having amnesia.",
+   "stars": 50,
+   "forks": 4,
+   "language": "HTML",
+   "topics": [
+    "ai-agents",
+    "ai-memory",
+    "antigravity",
+    "antigravity-cli",
+    "antigravity-ide",
+    "claude-code",
+    "claudecode",
+    "codex",
+    "cognitive-ai",
+    "cursor",
+    "developer-tools",
+    "fastapi",
+    "knowledge-graph",
+    "llm",
+    "mcp",
+    "model-context-protocol",
+    "neo4j",
+    "persistent-memory"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "https://github.com/itskie/friday",
+   "score": 133.0,
+   "first_seen": "2026-09-17",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-17",
+     "s": 19
+    },
+    {
+     "d": "2026-09-18",
+     "s": 32
+    },
+    {
+     "d": "2026-09-19",
+     "s": 41
+    },
+    {
+     "d": "2026-09-20",
+     "s": 46
+    },
+    {
+     "d": "2026-09-21",
+     "s": 50
+    }
+   ],
+   "readme_excerpt": "An open-source, self-hosted persistent cognitive memory layer for AI coding agents (Cursor, Claude, VS Code). Persists architecture decisions, schemas, and preferences across sessions via the Model Context Protocol (MCP).\n\n🚀 Quickstart 🔌 IDE Setup ✨ Features 📡 API Docs 🏗️ Architecture 🗺️ Roadmap\n\nLive Neural Studio — Obsidian-grade knowledge graph visualizer mapping real AI cognitive memory constellations.\n\nProblem: Session Amnesia & Token Overhead\n\nModern coding assistants (Cursor, Claude Code, Copilot, Antigravity) initialize each chat thread without cross-session memory. While developers frequently mitigate this using project documentation (AGENTS.md, prompt templates, or manual file references), this workflow presents two major bottlenecks:\n\n1. Context Window & Token Inefficiency: Injecting massive architecture documents or having agents repeatedly read entire repository directories consumes thousands of context tokens on every single query. 2. Loss of Incremental Decisions: Ephemeral decisions—such as chosen dependency versions, schema adjustments, or bug fix rationale made in prior sessions—are lost when a session resets, forcing developers to repeatedly re-explain core constraints. ---\n\nFriday runs as an open-source, self-hosted Model Context Protocol (MCP) server. Instead of dumping entire documentation files into prompt context, Friday exposes 4 targeted tools (addmemory, addfact, memorysearch, getcontext) backed by a multi-tier storage engine:"
+  },
+  {
    "name": "sandeepbazar/ocm-mcp-server",
    "url": "https://github.com/sandeepbazar/ocm-mcp-server",
    "description": "An MCP server that lets AI agents operate a multi-cluster Kubernetes fleet through an Open Cluster Management hub, with policy, approval, and audit between the model and your clusters.",
@@ -3251,58 +3358,6 @@
    "readme_excerpt": "MCP-серверы для российских маркетплейсов. Цены, наличие, рейтинги, отзывы и реквизиты продавцов с Wildberries, Ozon, Яндекс Маркета и Детского мира. Плюс сравнение цен по всем источникам одним вызовом.\n\nТолько чтение. Ключи API, токены и регистрация не нужны.\n\nEnglish version below · Архитектура · Как добавить источник · Про анти-бот\n\nСервер Инструментов Доступ Что умеет ------------ Wildberries 9 анонимный HTTP Поиск, карточки, отзывы, вопросы о товаре, реквизиты продавца, каталог и товары категории Яндекс Маркет 3 анонимный HTTP Цены разных продавцов, разбивка оценок по звёздам, отзывы Детский мир 4 анонимный HTTP Детские товары, наличие в офлайн-магазинах, категории Ozon 4 TLS-имперсонация, дальше ваш Chrome Поиск, карточки, отзывы Сравнение 2 опрашивает всё перечисленное «Где дешевле?» одним вызовом\n\nВсего 22 инструмента в 5 stdio-серверах на общем рантайме mcp-core.\n\nКаждый сервер — консольная команда, поэтому пути в конфиге не зашиваются.\n\nClaude Desktop — claudedesktopconfig.json\n\nWindows: %APPDATA%\\Claude\\claudedesktopconfig.json macOS: ~/Library/Application Support/Claude/claudedesktopconfig.json\n\nПуть пишите с прямыми слешами / или двойными обратными \\\\.\n\nЗапустите uv run --directory /путь/к/репозиторию , где команда — одна из wb-mcp, ozon-mcp, yandex-mcp, detmir-mcp, compare-mcp. Серверы говорят по JSON-RPC через stdin и stdout, диагностику пишут в stderr.\n\nПосле подключения перезапустите клиент и попросите агента вызвать wbselfcheck. Он проверит все семейства эндпоинтов и ответит success, driftdetected или inconclusive."
   },
   {
-   "name": "friday-memory/friday",
-   "url": "https://github.com/friday-memory/friday",
-   "description": "⚡ The open-source persistent cognitive memory layer for AI coding agents. Stop your Cursor, Claude & Copilot from having amnesia.",
-   "stars": 46,
-   "forks": 4,
-   "language": "HTML",
-   "topics": [
-    "ai-agents",
-    "ai-memory",
-    "antigravity",
-    "antigravity-cli",
-    "antigravity-ide",
-    "claude-code",
-    "claudecode",
-    "codex",
-    "cognitive-ai",
-    "cursor",
-    "developer-tools",
-    "fastapi",
-    "knowledge-graph",
-    "llm",
-    "mcp",
-    "model-context-protocol",
-    "neo4j",
-    "persistent-memory"
-   ],
-   "created_at": "2026-09-16",
-   "homepage": "https://github.com/itskie/friday",
-   "score": 161.3,
-   "first_seen": "2026-09-17",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-17",
-     "s": 19
-    },
-    {
-     "d": "2026-09-18",
-     "s": 32
-    },
-    {
-     "d": "2026-09-19",
-     "s": 41
-    },
-    {
-     "d": "2026-09-20",
-     "s": 46
-    }
-   ],
-   "readme_excerpt": "An open-source, self-hosted persistent cognitive memory layer for AI coding agents (Cursor, Claude, VS Code). Persists architecture decisions, schemas, and preferences across sessions via the Model Context Protocol (MCP).\n\n🚀 Quickstart 🔌 IDE Setup ✨ Features 📡 API Docs 🏗️ Architecture 🗺️ Roadmap\n\nLive Neural Studio — Obsidian-grade knowledge graph visualizer mapping real AI cognitive memory constellations.\n\nProblem: Session Amnesia & Token Overhead\n\nModern coding assistants (Cursor, Claude Code, Copilot, Antigravity) initialize each chat thread without cross-session memory. While developers frequently mitigate this using project documentation (AGENTS.md, prompt templates, or manual file references), this workflow presents two major bottlenecks:\n\n1. Context Window & Token Inefficiency: Injecting massive architecture documents or having agents repeatedly read entire repository directories consumes thousands of context tokens on every single query. 2. Loss of Incremental Decisions: Ephemeral decisions—such as chosen dependency versions, schema adjustments, or bug fix rationale made in prior sessions—are lost when a session resets, forcing developers to repeatedly re-explain core constraints. ---\n\nFriday runs as an open-source, self-hosted Model Context Protocol (MCP) server. Instead of dumping entire documentation files into prompt context, Friday exposes 4 targeted tools (addmemory, addfact, memorysearch, getcontext) backed by a multi-tier storage engine:"
-  },
-  {
    "name": "upvoteclub/upvote-club-mcp-mcpb",
    "url": "https://github.com/upvoteclub/upvote-club-mcp-mcpb",
    "description": "Claude Desktop .mcpb bundle for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family — see core repo for all packages.",
@@ -3418,6 +3473,43 @@
     }
    ],
    "readme_excerpt": "Talk to your product data. Ask Claude anything about your users — drop-offs, rage clicks, conversion funnels — and get answers backed by real sessions.\n\nInstall · What it does · Skills · Prerequisites · Troubleshooting\n\nAlso works in Cursor (Marketplace panel, same URL) and VS Code Copilot (Chat: Install Plugin from Source).\n\nNo local server. No API keys to juggle. OAuth handles auth — you sign in once and it just works.\n\nClaude Desktop doesn't support the plugin marketplace — you get the MCP tools but not the skills/agents. Add this to claudedesktopconfig.json:\n\nConfig file locations: ~/Library/Application Support/Claude/claudedesktopconfig.json (macOS), %APPDATA%\\Claude\\claudedesktopconfig.json (Windows). Restart Claude Desktop after editing.\n\nFullstory records every session on your site. This plugin lets Claude read that data.\n\nBefore: Export CSV → pivot table → screenshot → Slack → someone asks \"but why?\" → repeat.\n\nYou ask Claude does ---------------------- \"What's the top frustration on our product right now?\" Builds a rage-click metric across all pages, surfaces the worst offenders, pulls sessions to show you exactly what users are clicking \"How many users abandoned checkout last month, by device?\" Resolves or builds a funnel metric, attaches segment, computes, returns a table with percentages \"Show me sessions where enterprise users hit errors on settings\" Builds enterprise segment, finds error sessions, reads each transcript in isolation, synthesizes patterns \"Is our new onboarding flow actually reducing drop-off?\" Trend metric comparing before/after deploy date, w"
+  },
+  {
+   "name": "INSANE0777/Awwards-mcp",
+   "url": "https://github.com/INSANE0777/Awwards-mcp",
+   "description": "Free, open-source MCP server that gives AI coding agents (Claude Code, Codex, Cursor, OpenCode, ZCode…) design inspiration from award-winning websites — search with real screenshots, pull design DNA, ",
+   "stars": 44,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "awwwards",
+    "claude-code",
+    "codex",
+    "coding-agent",
+    "cursor",
+    "design-inspiration",
+    "mcp",
+    "mcp-server",
+    "opencode",
+    "web-design"
+   ],
+   "created_at": "2026-09-18",
+   "homepage": "https://www.npmjs.com/package/awwwards-mcp",
+   "score": 222.0,
+   "first_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-20",
+     "s": 34
+    },
+    {
+     "d": "2026-09-21",
+     "s": 44
+    }
+   ],
+   "readme_excerpt": "Free, open-source MCP server that gives AI agents design inspiration from Awwwards — the Mobbin-style visual reference loop, sourced from the web's best award-winning websites.\n\nYour agent searches in natural language (\"dark 3D portfolio sites\", \"soft pastel e-commerce\"), sees real screenshots inline, and can pull the design DNA of any site: color palette, tech stack, design elements, award history. Free-text queries run on a porter-stemmed, prefix-matching FTS5 index with BM25 ranking — \"magazines\" now finds Magazine-tagged sites (68 on the live index), best matches first, where the old substring path returned zero. Multi-word queries keep AND semantics: every token must hit the same site.\n\nTool What it does -------------------- searchsites Search by color, tags, technology, award type or free-text query. Multi-word queries match against the local FTS5 index and rank BM25 (title hits lead); zero results come with loose-match and taxonomy-tag hints. Returns site cards with inline screenshots. getsitedetails Full design DNA for one site: palette, technologies, elements, awards, description. getsiteelements Component-level visuals for one site: each element's poster image inline (3D models, video content, mobile layouts, microcopy…) + video URLs. listcategories Every filter the agent can search by (200+ tags, 27 colors). capturelivesite Optional: fresh full-page screenshot of any live URL. Waits for load + a settle window with a bounded pre-scroll, so heavy sites work (waitStrategy: \"networkidle\" available). Pass viewport: \"mobile\" for the 390×844 iPhone-class render (\"deskto"
   },
   {
    "name": "isabelpapaya/MCP-Server-Lighter",
@@ -3865,6 +3957,48 @@
    "readme_excerpt": "Cove Sensory MCP——给纯文本 LLM 一双眼睛和耳朵 is a local stdio MCP server that lets an Agent ask configured multimodal providers to inspect an explicitly supplied image, video, audio file, or music file. It is a sensory layer only: it does not provide chat, memory, personality, playback, continuous monitoring, or a calling policy.\n\nThis repository is distributed as source code. It does not require a packaged desktop app or a standalone installer. Install Git, Python 3.11+, and uv, then clone and set up the locked environment:\n\nSupported renderers are generic, codex, claude-desktop, and claude-code. Copy the printed local stdio entry into your client, restart it, then ask the Agent to call sensorysetupguide. Official configuration references: Codex MCP, Claude Desktop, and Claude Code MCP. Client surfaces change independently; if a surface does not support local stdio MCP, run the server from a compatible host instead.\n\nRun later commands from the cloned repository with uv run cove-sensory-mcp .... FFmpeg is optional for initial setup and image sensing, but video/audio preparation requires a working system FFmpeg discoverable on PATH or configured locally.\n\nDo not paste an API key into chat. Run cove-sensory-mcp configure in a local terminal: hidden input goes to the operating-system credential store, while env:VARIABLENAME stores only the variable name. Add each readable local directory separately with cove-sensory-mcp configure paths."
   },
   {
+   "name": "agentsea/nautilo",
+   "url": "https://github.com/agentsea/nautilo",
+   "description": "AI goes multiplayer. A self-hosted workspace for people and machine people. Create, code, and work together across desktop, mobile, and web. Open source. MIT licensed.",
+   "stars": 39,
+   "forks": 3,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "collaboration",
+    "electron",
+    "generative-ai",
+    "model-context-protocol",
+    "multi-agent",
+    "react-native",
+    "self-hosted"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "https://nautilo.ai",
+   "score": 103.5,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 31
+    },
+    {
+     "d": "2026-09-19",
+     "s": 35
+    },
+    {
+     "d": "2026-09-20",
+     "s": 38
+    },
+    {
+     "d": "2026-09-21",
+     "s": 39
+    }
+   ],
+   "readme_excerpt": "English · 简体中文 · 日本語 · Français · Español · 한국어\n\nCode and documentation are currently in English. Translation PRs are welcome; see translation contributions.\n\nhttps://github.com/user-attachments/assets/79a6c37f-ea01-4e95-afd5-85d4b9b55e0d\n\nYour own super agent. Your people and their Genies. You own the intelligence.\n\nMeet your Genie: a radically customizable agent with a personality, memory, face, and voice you choose. Put her to work writing, researching, browsing, coordinating coding agents, or making a film. Bring your friends, your team, and their Genies into the same Room. Work together. Grab the controls whenever you want to do it yourself.\n\nThat's Nautilo. Natively multi-user. Built for people and machine people. Desktop, mobile, and web. Your server, your models, your rules. Open source. MIT licensed.\n\nWebsite & demos · Get started · Documentation · Download · Packages · Contribute\n\nEvery Nautilo client connects to a Nautilo server. Choose the path that fits where you are:\n\nTrying Nautilo for the first time on a Mac? Start with the Local Deploy Quickstart. It is a single-machine evaluation setup. For mobile access or a server your team can reach, choose a hosted deployment below.\n\nYou want to… Start here --- --- Join an existing server Download Nautilo, then install and connect with your server address or invite. Run your first server on your Mac Follow the Local Deploy Quickstart, using Docker Desktop and the signed Nautilo CLI. Give your team a server in the cloud Use the Railway deployment guide. Run on your own Docker infrastructure Follow the Docker Compose gui"
+  },
+  {
    "name": "rizzdev/awesome-mcp-open",
    "url": "https://github.com/rizzdev/awesome-mcp-open",
    "description": "",
@@ -3967,44 +4101,6 @@
     }
    ],
    "readme_excerpt": "EnergyPlus MCP Server v0.1.0 - Building Energy Simulation MCP Server 2026\n\nEnergyPlus MCP Server is a Python implementation of the Model Context Protocol that provides structured tools for inspecting, changing, validating, visualizing, and simulating EnergyPlus building models in version 0.1.0.\n\nEnergyPlus MCP Server gives Model Context Protocol clients a structured interface to EnergyPlus building energy models. Through its tools, users can open, review, update, validate, and execute IDF files while working consistently with zones, surfaces, materials, schedules, and HVAC connections.\n\nIt is suited to energy modelers, building-performance practitioners, developers, and automated workflows that use MCP. In addition to simulation execution, the service supports HVAC topology inspection, output-data configuration, interactive model views, and diagrams of building systems.\n\n- Open, review, modify, validate, analyze, and simulate EnergyPlus IDF files. - Provide 35 structured Model Context Protocol tools. - Inspect zones, surfaces, materials, schedules, and HVAC component relationships. - Execute building simulations with compatible weather files. - Explore HVAC system topology and associated component links. - Produce interactive visualizations of models and HVAC system diagrams. - Set EnergyPlus output variables and output meters. - Use either stdio or token-authenticated streamable HTTP transport."
-  },
-  {
-   "name": "agentsea/nautilo",
-   "url": "https://github.com/agentsea/nautilo",
-   "description": "AI goes multiplayer. A self-hosted workspace for people and machine people. Create, code, and work together across desktop, mobile, and web. Open source. MIT licensed.",
-   "stars": 38,
-   "forks": 2,
-   "language": "TypeScript",
-   "topics": [
-    "ai-agents",
-    "collaboration",
-    "electron",
-    "generative-ai",
-    "model-context-protocol",
-    "multi-agent",
-    "react-native",
-    "self-hosted"
-   ],
-   "created_at": "2026-09-16",
-   "homepage": "https://nautilo.ai",
-   "score": 130.7,
-   "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-18",
-     "s": 31
-    },
-    {
-     "d": "2026-09-19",
-     "s": 35
-    },
-    {
-     "d": "2026-09-20",
-     "s": 38
-    }
-   ],
-   "readme_excerpt": "English · 简体中文 · 日本語 · Français · Español · 한국어\n\nCode and documentation are currently in English. Translation PRs are welcome; see translation contributions.\n\nhttps://github.com/user-attachments/assets/79a6c37f-ea01-4e95-afd5-85d4b9b55e0d\n\nYour own super agent. Your people and their Genies. You own the intelligence.\n\nMeet your Genie: a radically customizable agent with a personality, memory, face, and voice you choose. Put her to work writing, researching, browsing, coordinating coding agents, or making a film. Bring your friends, your team, and their Genies into the same Room. Work together. Grab the controls whenever you want to do it yourself.\n\nThat's Nautilo. Natively multi-user. Built for people and machine people. Desktop, mobile, and web. Your server, your models, your rules. Open source. MIT licensed.\n\nWebsite & demos · Get started · Documentation · Download · Packages · Contribute\n\nEvery Nautilo client connects to a Nautilo server. Choose the path that fits where you are:\n\nTrying Nautilo for the first time on a Mac? Start with the Local Deploy Quickstart. It is a single-machine evaluation setup. For mobile access or a server your team can reach, choose a hosted deployment below.\n\nYou want to… Start here --- --- Join an existing server Download Nautilo, then install and connect with your server address or invite. Run your first server on your Mac Follow the Local Deploy Quickstart, using Docker Desktop and the signed Nautilo CLI. Give your team a server in the cloud Use the Railway deployment guide. Run on your own Docker infrastructure Follow the Docker Compose gui"
   },
   {
    "name": "bepitulaz/obsidian-multivault-mcp",
@@ -4309,37 +4405,39 @@
    "readme_excerpt": "A lightweight, Git-backed permanent memory for AI agents. Claude Code, Codex, ChatGPT, Cursor, and other MCP clients can share durable memories without sharing a vendor account or conversation history.\n\n- Separate MCP tools for reading, writing, and deleting memories - Local stdio and single-user OAuth-protected Streamable HTTP transports - Human-readable Markdown stored in an independent Git repository - Local Vexor retrieval index that can always be rebuilt from Git - Cross-process locking for multiple local agent processes\n\nYour memory should follow you, not the agent you happen to be using.\n\nClaude Code, Codex, Cursor, and ChatGPT keep memory in separate silos. Switch agents and your memory disappears. Switch machines and local memory stays behind.\n\nPerenna gives them one shared, Git-backed memory. Local agents and ChatGPT can connect to the same self-hosted Perenna service, while every durable memory stays ordinary Markdown you can inspect, edit, version, and back up yourself.\n\nMem0's self-hosted stack is much heavier, while its hosted Free Plan currently allows customer content to be used for model training and product improvement.\n\nPerenna is different by design: no account, no proprietary memory cloud, no lock-in. Just your memories, in your Git repository, on infrastructure you control.\n\nPaste this into Claude Code, Codex, ChatGPT Desktop, Cursor, or another coding agent with terminal and local MCP configuration access:"
   },
   {
-   "name": "INSANE0777/Awwards-mcp",
-   "url": "https://github.com/INSANE0777/Awwards-mcp",
-   "description": "Free, open-source MCP server that gives AI coding agents (Claude Code, Codex, Cursor, OpenCode, ZCode…) design inspiration from award-winning websites — search with real screenshots, pull design DNA, ",
+   "name": "nassim-arifette/jevgrep",
+   "url": "https://github.com/nassim-arifette/jevgrep",
+   "description": "Jev-powered semantic code search for coding agents — find behavior across repositories via CLI or MCP, with exact source excerpts and line numbers.",
    "stars": 34,
-   "forks": 0,
+   "forks": 3,
    "language": "TypeScript",
    "topics": [
     "ai-agents",
-    "awwwards",
-    "claude-code",
-    "codex",
-    "coding-agent",
-    "cursor",
-    "design-inspiration",
+    "cli",
+    "code-navigation",
+    "code-search",
+    "coding-agents",
+    "developer-tools",
+    "jev",
     "mcp",
-    "mcp-server",
-    "opencode",
-    "web-design"
+    "model-context-protocol",
+    "semantic-search",
+    "source-code-search",
+    "typesafeai",
+    "typescript"
    ],
-   "created_at": "2026-09-18",
-   "homepage": "https://www.npmjs.com/package/awwwards-mcp",
-   "score": 340.0,
-   "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "created_at": "2026-09-20",
+   "homepage": "",
+   "score": 346.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
-     "d": "2026-09-20",
+     "d": "2026-09-21",
      "s": 34
     }
    ],
-   "readme_excerpt": "Free, open-source MCP server that gives AI agents design inspiration from Awwwards — the Mobbin-style visual reference loop, sourced from the web's best award-winning websites.\n\nYour agent searches in natural language (\"dark 3D portfolio sites\", \"soft pastel e-commerce\"), sees real screenshots inline, and can pull the design DNA of any site: color palette, tech stack, design elements, award history. Free-text queries run on a porter-stemmed, prefix-matching FTS5 index with BM25 ranking — \"magazines\" now finds Magazine-tagged sites (68 on the live index), best matches first, where the old substring path returned zero. Multi-word queries keep AND semantics: every token must hit the same site.\n\nTool What it does -------------------- searchsites Search by color, tags, technology, award type or free-text query. Multi-word queries match against the local FTS5 index and rank BM25 (title hits lead); zero results come with loose-match and taxonomy-tag hints. Returns site cards with inline screenshots. getsitedetails Full design DNA for one site: palette, technologies, elements, awards, description. getsiteelements Component-level visuals for one site: each element's poster image inline (3D models, video content, mobile layouts, microcopy…) + video URLs. listcategories Every filter the agent can search by (200+ tags, 27 colors). capturelivesite Optional: fresh full-page screenshot of any live URL. Waits for load + a settle window with a bounded pre-scroll, so heavy sites work (waitStrategy: \"networkidle\" available). Pass viewport: \"mobile\" for the 390×844 iPhone-class render (\"deskto"
+   "readme_excerpt": "Find code by what it does. JevGrep helps coding agents find relevant code when they do not know the file name or symbol to search for.\n\nAsk a question such as “Where is session expiry handled?” and JevGrep scans the authorized repository, asks Jev to score all eligible fragments, then returns the original source excerpts with their paths and line numbers. The calling agent can read those files in detail and continue its work with less exploratory context.\n\nUse the CLI or connect a coding agent through the local MCP server.\n\nJevGrep is useful when a coding agent needs to:\n\n- locate behaviour without knowing the exact identifier; - understand a feature spread across implementation, configuration and tests; - reduce the amount of repository exploration placed in the agent's main context; - retrieve exact source excerpts instead of a generated summary.\n\nIt complements exact tools such as rg. If you already know the symbol or literal, ordinary text search is usually faster.\n\n- Node.js 24 - npm - a TypeSafe AI, Vercel AI Gateway or OpenRouter API key\n\nJevGrep searches every valid UTF-8 text file, regardless of repository language or extension.\n\nThe unscoped package name jevgrep belongs to a different project. Use the complete scoped name above when installing. The installed command is still jevgrep.\n\nTo install a development checkout instead:\n\nnpm link makes the jevgrep command available from any directory on the computer."
   },
   {
    "name": "liyana31811/Codexless",
@@ -4384,6 +4482,35 @@
     }
    ],
    "readme_excerpt": "ChatGPT just started doing Codex's work.\n\nCodexless is simple: give your ChatGPT the Codex toolbox already on your computer and let it get to work.\n\nSet things up, maintain projects, edit files, run commands, inspect web pages — tell ChatGPT what you need. It keeps working on its own; when Codex is actually needed, it can call Codex in.\n\nFewer unnecessary Codex calls means less Codex usage. Save that quota for the calls that matter. That's the less in Codexless.\n\nNo need to decide up front: “ChatGPT for this, Codex for that?”\n\nCurious? Give this repo to the ChatGPT you already use. Ask it whether your machine can run it and what you'll be able to do after setup.\n\nThe ChatGPT you're already talking to can work with the local Codex tools that Codexless has actually tested and exposed.\n\nInspect a project, set up the environment, handle maintenance, edit files, run commands, check the result — and keep going in the same conversation.\n\nPlain English: the step that used to force you over to Codex can now happen right here.\n\nThese supported tool actions do not call Codex itself or consume Codex quota.\n\nProject rules, Skills, directory conventions — when Codexless can safely reuse them, it does.\n\nDon't teach the same setup twice. Don't build a second stack.\n\nThere is a long-term benefit too: as the Codex toolbox evolves, Codexless does not have to rebuild every useful capability from scratch. New capabilities can come along after they have been re-tested and accepted for the public surface."
+  },
+  {
+   "name": "burnigtm/jev-mcp",
+   "url": "https://github.com/burnigtm/jev-mcp",
+   "description": "MCP server that puts TypeSafe Jev on the coding loop in Cursor, Codex, and any MCP client",
+   "stars": 33,
+   "forks": 4,
+   "language": "TypeScript",
+   "topics": [],
+   "created_at": "2026-09-17",
+   "homepage": "",
+   "score": 118.0,
+   "first_seen": "2026-09-19",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-19",
+     "s": 3
+    },
+    {
+     "d": "2026-09-20",
+     "s": 20
+    },
+    {
+     "d": "2026-09-21",
+     "s": 33
+    }
+   ],
+   "readme_excerpt": "A local stdio MCP server that gives Cursor, Codex, and other MCP clients typed TypeSafe Jev judgments. Jev returns Choice, Score, and Noul answers; the host agent still edits files and runs commands.\n\nTool Purpose --- --- jevstep Route the next step and select a prepared call in one request jevcodingloop Route the next step and decide whether a partner model is needed jevtoolroute Select an exact host-prepared tool call without generating arguments jevreview Assess a proposed patch jevverify Check claims against supplied evidence jevgate Combine patch review and claim verification in one upstream call jevscreen Screen untrusted content before the host reads it jevrank Rank candidates supplied by the host jevevaluate Ask custom, atomic typed questions\n\nResults include typed answers, token usage, and an action: auto, review, or escalate. Confidence measures model certainty, not factual truth. Incomplete context never permits auto; reduce the input and submit it again for a complete judgment.\n\nQuestion packs are MCP resources at jev://packs/{coding-loop,tool-route,step,review,verify,screen,rank,gate}.\n\njevstep answers the whole loop turn in one request: it routes the step and, when the host supplies prepared calls, selects among them. A host that would otherwise call jevcodingloop and then jevtoolroute spends one MCP round-trip instead of two, so it spends one host-model turn instead of two. Both original tools remain available."
   },
   {
    "name": "naw103/foremerge",
@@ -5049,41 +5176,6 @@
     }
    ],
    "readme_excerpt": "Try it live · Website · Quick start · API · MCP · Agent skill\n\nDearAgent: email inboxes for AI agents, self-hosted on Cloudflare\n\nYour agent needs an email address. DearAgent gives every agent its own inbox, running entirely on your Cloudflare account. Receive inbound email, wait for the verification code, reply in thread, send new mail, and get a webhook when something arrives. One Worker, one repo, no servers.\n\nIt is the open-source, self-hosted alternative to AgentMail: the same idea, an email inbox API for AI agents, run on your own infrastructure for the cost of a Workers plan.\n\nExperimental. DearAgent is early software. It works end to end, but it has not had an in-depth audit, the API may still change, and things may break. Review the code and run your own audit before pointing it at anything sensitive or exposing it to untrusted agents.\n\nThe same operations exist over REST. Under the hood:\n\nYou do not need to deploy anything to see it work. dearagent.sh creates a real inbox for you on the public demo instance when the page loads. Send it an email from anywhere and watch it arrive on the page. Demo addresses live for fifteen minutes and demo mail is not kept.\n\n- Catch-all inboxes. Any address at your domain works immediately. Inboxes are created implicitly on first email or explicitly via POST /inboxes (with a random address if you want one). - Threads. Messages are grouped by In-Reply-To / References, never by subject, so automated mail does not get merged. - Full-text search (SQLite FTS5) over subject, body and sender. - Attachments stored in R2 and served back wit"
-  },
-  {
-   "name": "Ying-Kai-Liao/jev-browser",
-   "url": "https://github.com/Ying-Kai-Liao/jev-browser",
-   "description": "Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server.",
-   "stars": 26,
-   "forks": 3,
-   "language": "JavaScript",
-   "topics": [
-    "browser-automation",
-    "llm-agents",
-    "mcp",
-    "mcp-server",
-    "playwright"
-   ],
-   "created_at": "2026-09-16",
-   "homepage": "",
-   "score": 92.7,
-   "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-18",
-     "s": 6
-    },
-    {
-     "d": "2026-09-19",
-     "s": 12
-    },
-    {
-     "d": "2026-09-20",
-     "s": 26
-    }
-   ],
-   "readme_excerpt": "Browser automation where an LLM plans and Jev decides.\n\nUnofficial project, not affiliated with TypeSafe. It calls the TypeSafe System One API with your own API key.\n\nThe calling LLM (Claude, via MCP) says what outcome it wants, one step at a time, and hands over any text to type. For each round of a step, code describes the page. Then one ~300 ms Typesafe System One request asks Jev several questions at once: which element, which action, which value, and is the step done / blocked / showing an error / about to do something irreversible. Playwright performs the action. The LLM never reads page snapshots unless it chooses to take over.\n\nhttps://github.com/user-attachments/assets/2e688df9-4985-4854-8ebe-ba97c9d13d68\n\nJev only answers with probability distributions: yes/no (noul), pick one option (choice) or a rating (score). It never writes text. So everything free-form comes from the caller as candidates, and code turns disagreement or low confidence into a status the LLM can act on.\n\n42 tasks in 16 categories on live sites (see RESULTS.md):\n\n- 40/42 correct in the latest run, 0 false \"done\" claims (38/41 twice before the latest fixes). Remaining misses: counting (\"add until 3\", flagged likelydone) and verifying a sort. - ~300 ms per Jev call, 2–4 calls for most steps; a 5-step checkout takes ~14 s end to end. - Pause before irreversible actions: across ~200 rounds it flagged only saucedemo's \"Finish\" (place order) button. - Less page content for the LLM than a Playwright-MCP-style loop on the same tasks (estimate): median 5× per task, ≈8k vs ≈557k tokens in total. Big pages"
   },
   {
    "name": "zhiningsun/industrial-mcp",
@@ -5769,6 +5861,56 @@
     }
    ],
    "readme_excerpt": "Interactive TUI manager for codebase-memory-mcp — a human-friendly front end for indexing and querying codebase knowledge graphs.\n\nThis crate is the Rust implementation, built on ratatui + crossterm. A companion bash implementation (built on tuish) lives in the same repository: .\n\n- Projects — list indexed projects (branch, nodes, edges, size, full root path), select one, and run per-project actions: index status, architecture overview, index coverage, git-diff impact (detectchanges), re-scan, delete - Scan / Index — add a repository with mode (moderate / full / fast / cross-repo), optional project-name override, and optional team-shared artifact persistence - Graph server (UI) — start / stop the graph-visualization server, set the port, open the UI in a browser, live status - Processes & resources — live monitor of every codebase-memory-mcp process (CPU, memory, RSS, uptime) plus artifact sizes in the cache directory; auto-refreshing - Configuration — view and edit persisted settings (autoindex, autoindexlimit, autowatch, uienabled, uiport, …) with one SAVE ALL - Graph queries — search graph (BM25 / name / semantic), search code, get code snippet, trace call paths, raw Cypher, architecture overview, graph schema, ingest runtime traces - ADR management — get / list sections / update architecture decision records - Maintenance — binary version, CLI help, update, uninstall (dry-run first), cache & diagnostics - All long-running operations run in the background with a spinner; the UI never freezes - cli pass-through mode for scripting: cbmman cli searchgraph '{\"project\":\"p\",\"q"
+  },
+  {
+   "name": "AkashPriyadarshii/jev-seo",
+   "url": "https://github.com/AkashPriyadarshii/jev-seo",
+   "description": "100% free ₹0 agent-first SEO & GEO CLI suite and MCP server in Rust replacing Semrush and OpenSEO via DuckDuckGo and TypeSafe Jev System One",
+   "stars": 23,
+   "forks": 2,
+   "language": "Rust",
+   "topics": [
+    "ahrefs-alternative",
+    "claude-code",
+    "cli",
+    "decision-oracle",
+    "duckduckgo",
+    "generative-engine-optimization",
+    "geo",
+    "jev",
+    "mcp",
+    "mcp-server",
+    "rank-tracker",
+    "rust",
+    "search-engine-optimization",
+    "semrush-alternative",
+    "seo",
+    "seo-audit",
+    "seo-tools",
+    "serp",
+    "typesafe",
+    "typesafe-ai"
+   ],
+   "created_at": "2026-09-18",
+   "homepage": "https://jevseo.vercel.app",
+   "score": 119.0,
+   "first_seen": "2026-09-19",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-19",
+     "s": 4
+    },
+    {
+     "d": "2026-09-20",
+     "s": 12
+    },
+    {
+     "d": "2026-09-21",
+     "s": 23
+    }
+   ],
+   "readme_excerpt": "--- title: \"jev-seo: FOSS Zero-Cost SEO & GEO Search Radar\" description: \"Open-source, subscription-free alternative to Semrush and OpenSEO. Powered by TypeSafe AI Jev and local DuckDuckGo scraping.\" canonical: \"https://github.com/AkashPriyadarshii/jev-seo\" keywords: - seo - geo - generative-engine-optimization - typesafe-ai - jev - rust - mcp - search-radar ---\n\njev-seo FOSS, zero-cost SEO & GEO search radar for developers and coding agents\n\nWhy • Quickstart • Workflows • Architecture • Non-Goals • Ecosystem\n\nSemrush and Ahrefs cost upwards of $130 per month. OpenSEO still requires paid DataForSEO credit cards. Most SEO suites are bloated web dashboards filled with vanity charts.\n\n- Zero subscriptions (₹0): Scrapes DuckDuckGo HTML and suggest endpoints directly. No credit cards, no paid API keys. - TypeSafe Jev System One: Semantic intent classification, competitive gap detection, and AI visibility (GEO) scored deterministically without conversational LLM hallucinations. - Batch Directory Auditing: Audits hundreds of markdown/HTML files in <1 second, detecting title collisions, canonical mismatches, and thin pages. - 2026 Schema.org Validator: Deeply inspects JSON-LD schemas (SoftwareApplication, Article, Organization, Product) and flags deprecated schemas. - Robots.txt & AI Crawler Radar: Evaluates permissions for AI bots (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Bytespider). - SERP Content Briefs: Synthesizes competitor SERP snippets into an actionable content blueprint with H2 outlines and optimal 134-167 word GEO blocks. - Agent native (MCP): Native stdio JSO"
   },
   {
    "name": "meshery-extensions/meshery-mcp-server",
@@ -6517,31 +6659,6 @@
     }
    ],
    "readme_excerpt": "An MCP server that lets Claude Code / Codex / Wibey (or any MCP-compliant coding agent) delegate simple, well-scoped tasks to your local LLM — code snippets, isolated refactors, documentation, code reviews, basic Q&A — so you spend premium tokens on coordination and architecture, not on work a local model can already do.\n\nThis is a complete rewrite in Java on langchain4j (local LLM client), langgraph4j (orchestration), and the official MCP Java SDK (stdio server).\n\nCredit for the original idea and the Python/FastMCP prototype goes to csabakecskemeti/cctokensavermcp — this project builds on that concept with a graph-based classify/delegate/escalate flow, server-side file reading, timeouts, and actionable errors.\n\nThe server exposes two MCP tools — querylocalllm and querylocalllmwithcontext — that Claude Code is instructed to try first for simple subtasks. Every call runs through a small langgraph4j graph instead of just forwarding straight to the model:\n\nclassify makes a cheap, low-temperature call to the local model to judge whether the task is actually simple enough for it. If not, escalate returns a structured ESCALATE: ... message telling Claude Code to handle the task itself — so a task that's too complex for the local model comes back as a clear signal, not a low-quality answer.\n\n- Server-side file reading. Both tools accept an optional filepaths array. The server reads the files itself and passes their content straight to the local LLM — Claude Code passes a path instead of Read()-ing the file into its own context first. This is where the real token savings on large f"
-  },
-  {
-   "name": "burnigtm/jev-mcp",
-   "url": "https://github.com/burnigtm/jev-mcp",
-   "description": "MCP server that puts TypeSafe Jev on the coding loop in Cursor, Codex, and any MCP client",
-   "stars": 20,
-   "forks": 0,
-   "language": "TypeScript",
-   "topics": [],
-   "created_at": "2026-09-17",
-   "homepage": "",
-   "score": 100.0,
-   "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-19",
-     "s": 3
-    },
-    {
-     "d": "2026-09-20",
-     "s": 20
-    }
-   ],
-   "readme_excerpt": "A local stdio MCP server that gives Cursor, Codex, and other MCP clients typed TypeSafe Jev judgments. Jev returns Choice, Score, and Noul answers; the host agent still edits files and runs commands.\n\nTool Purpose --- --- jevstep Route the next step and select a prepared call in one request jevcodingloop Route the next step and decide whether a partner model is needed jevtoolroute Select an exact host-prepared tool call without generating arguments jevreview Assess a proposed patch jevverify Check claims against supplied evidence jevgate Combine patch review and claim verification in one upstream call jevscreen Screen untrusted content before the host reads it jevrank Rank candidates supplied by the host jevevaluate Ask custom, atomic typed questions\n\nResults include typed answers, token usage, and an action: auto, review, or escalate. Confidence measures model certainty, not factual truth. Incomplete context never permits auto; reduce the input and submit it again for a complete judgment.\n\nQuestion packs are MCP resources at jev://packs/{coding-loop,tool-route,step,review,verify,screen,rank,gate}.\n\njevstep answers the whole loop turn in one request: it routes the step and, when the host supplies prepared calls, selects among them. A host that would otherwise call jevcodingloop and then jevtoolroute spends one MCP round-trip instead of two, so it spends one host-model turn instead of two. Both original tools remain available."
   },
   {
    "name": "wassermanproductions/unofficial-davinci-mcp",
@@ -7984,6 +8101,43 @@
    "readme_excerpt": "A computer-use toolkit for macOS: a daemon, a CLI and an MCP server that let AI agents see and drive native apps and Chrome.\n\nWisp is a computer-use toolkit for macOS: a daemon (wispd) that reads app windows as an indexed accessibility tree and performs UI actions with an animated agent cursor, plus a CLI (wisp) and an MCP server (wisp mcp) that any agent (Claude Code, Codex, scripts) can call. Chrome tabs are driven over the DevTools Protocol, in your own Chrome through the Wisp extension or in a separate hidden instance.\n\nIt is a from-scratch implementation of the ideas documented in DESIGN.md (how the ChatGPT/Codex desktop app's Computer Use works): indexed AX trees with diffs, window-targeted synthesized input that does not hijack the user's pointer, a glowing cursor with spring motion and click gating, settle detection, Esc to stop, and a policy file.\n\nThis installs Wisp.app and the wisp command-line tool together (both signed and notarized). Updates arrive automatically through Sparkle. Then open the app once and grant permissions:\n\nGrant Accessibility (required) and Screen Recording (optional, for screenshots) to Wisp in System Settings → Privacy & Security. The menu bar item guides you: it asks for Accessibility with the system prompt, shows a hint banner, and offers \"Grant Accessibility access…\" and \"Grant Screen Recording…\" items that open the right Settings pane. Once every permission is granted the badge disappears."
   },
   {
+   "name": "blakestone-x/jev-mcp",
+   "url": "https://github.com/blakestone-x/jev-mcp",
+   "description": "MCP server for TypeSafe Jev: typed classify, score, check, match and screen for any agent, with confidence on every answer",
+   "stars": 16,
+   "forks": 3,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-16",
+   "homepage": "",
+   "score": 46.0,
+   "first_seen": "2026-09-17",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-17",
+     "s": 3
+    },
+    {
+     "d": "2026-09-18",
+     "s": 7
+    },
+    {
+     "d": "2026-09-19",
+     "s": 9
+    },
+    {
+     "d": "2026-09-20",
+     "s": 11
+    },
+    {
+     "d": "2026-09-21",
+     "s": 16
+    }
+   ],
+   "readme_excerpt": "Jev provides typed judgments over a closed answer set in about 130 ms, with no text generation, through TypeSafe.\n\nSet TYPESAFEAPIKEY in the environment used by your MCP client, then run:\n\nReplace ... with the key value. Passing it through the client environment keeps it out of tool arguments and request state.\n\nThe scripts/register.sh helper requires Bash 4+; do not run it with sh. Apply mode reads TYPESAFEAPIKEY from the environment and refuses to change client configuration when it is unset. --apply writes the plaintext key into ~/.codex/config.toml and the Claude Code user config. The key is briefly visible in the process list while claude mcp add runs because that command receives it as an argument. On Windows, use scripts/register.ps1; it restricts the resulting configuration files to the current user and keeps a .bak copy before rewriting an existing Codex configuration.\n\nThe install examples pin the public v0.2.1 tag. Omitting the tag tracks the repository's default branch instead.\n\nThis call classifies one state containing five support-ticket texts against one label map. It returns one label for the combined state; send one request per ticket when you need an individual label for each ticket:\n\nThe response is an ordinary MCP structured result with a stable envelope:\n\ntool use it for not for --- --- --- jevask Your own Choice, Score, and Noul question map Text generation or numeric extraction jevclassify Selecting one label from a closed list Open-ended writing or ranking without labels jevscore Placing state on an ordered rubric Returning a number extracted from te"
+  },
+  {
    "name": "enowdev/succubus",
    "url": "https://github.com/enowdev/succubus",
    "description": "Cross-agent coordination for AI coding agents. One daemon, one database — so multiple agents in one repo can see each other's plan, tasks, and file claims.",
@@ -9212,9 +9366,9 @@
    "topics": [],
    "created_at": "2026-09-17",
    "homepage": "",
-   "score": 70.0,
+   "score": 46.7,
    "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-19",
@@ -9226,6 +9380,35 @@
     }
    ],
    "readme_excerpt": "Free and Open-Source Model Context Protocol Automation Plugin for the Godot Engine\n\n100% Free & Open Source Fully Local No External Websites No npm Packages No Cloud Logins\n\nClaude Code Cursor Antigravity VS Code / Cline Windsurf GitHub Copilot OpenAI Codex\n\nGodot MCP is a completely free, local, open-source automation plugin that connects AI coding assistants to the Godot Editor through the standard Model Context Protocol (MCP).\n\nUnlike other solutions that rely on external websites, cloud subscriptions, device logins, or custom npm CLI wrappers, Godot MCP is designed to be a straightforward in-engine Godot plugin:\n\n100% Free and Open Source: Released under the permissive MIT license. No subscriptions, no paid tiers, and no paywalls. Completely Local and Private: No external website accounts, no cloud relays, and no OAuth device logins. All communication stays strictly on your local machine. Pure Godot Plugin: Drop the addons into your project and enable them in Godot. No npm packages to install, no global node.js tooling, and no external account setup. Universal Engine Support: Operates via native GDScript inside Godot, supporting both Standard (GDScript) and .NET (Mono) editions of Godot 4.1 through 4.8+ Dev on Windows, macOS, and Linux. 59 Tool Families & 1,820+ Operations: Comprehensive scene building, node transformations, procedural animation, tilemap editing, collision creation, and direct GDScript evaluation. Single Native Dock: Seamlessly integrated tab directly beside your Inspector with live activity monitoring, connection diagnostics, and memory indicators."
+  },
+  {
+   "name": "Brainwires/jevwire",
+   "url": "https://github.com/Brainwires/jevwire",
+   "description": "Jev decision layer for agents: MCP server, embeddable DecisionModel library, and an escalate-only Claude Code plugin (TypeSafe AI's Jev)",
+   "stars": 14,
+   "forks": 3,
+   "language": "TypeScript",
+   "topics": [],
+   "created_at": "2026-09-17",
+   "homepage": "",
+   "score": 52.7,
+   "first_seen": "2026-09-19",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-19",
+     "s": 6
+    },
+    {
+     "d": "2026-09-20",
+     "s": 10
+    },
+    {
+     "d": "2026-09-21",
+     "s": 14
+    }
+   ],
+   "readme_excerpt": "Jev is TypeSafe AI's System One model: a fast, calibrated classifier. You give it a state and a map of typed questions — yes/no, pick-one, rate-on-a-rubric — and it answers every one in parallel with a probability over the answer space you defined. It never generates text, so the answer is always inside your schema.\n\njevwire wires it into a harness. The repository is Brainwires/jevwire; the npm package is still published as jevwire and the Claude Code plugin is jev.\n\n- 6 MCP tools — jevrank, jevverify, jevevaluate, jevgateaction, jevnextstep, jevlistmodels. - An embeddable library — JevDecisionModel plus a pure run function per tool, so mandatory checks can live in your harness instead of in a tool an agent may decline to call. - A Claude Code plugin — hooks that put judgments at the harness boundaries: before a tool call, after a fetched result, before the turn ends. Everything they decide is addressed to Claude, not to you: a note about a call that already ran, or a single deny Claude can answer. As of 0.3.0 they never prompt you.\n\nIt is not for generation, arithmetic, counting, date comparison, or multi-hop reasoning. It answers bounded questions over text you hand it. Anything numeric or ordered should be extracted as a choice over enumerated options and compared in code.\n\nRelease 0.4.0 has been exercised against the live TypeSafe API on 2026-09-18. Every latency, token count and cost figure quoted in this README comes from that run or the 0.3.0 one it is compared against."
   },
   {
    "name": "obundh/korea-public-data-catalog-mcp",
@@ -10564,52 +10747,6 @@
    "readme_excerpt": "English 简体中文 日本語 Deutsch Français Español\n\nThere are now so many AI agents to choose from, but their output is scattered across your computer, chat histories and different platforms’ clouds, making it hard to organize, share and revisit.\n\nartifact-site is a self-hosted workspace for individuals and teams, similar to Claude Artifacts or OpenAI Sites. Your various agents create the work; artifact-site brings it together, turning pages and documents into links for sharing, comments and feedback, access control and version history. The agents you already use can keep editing, publishing, searching and updating that work through the CLI or MCP.\n\nTry the live demo — no installation needed. Drag and drop a file to publish it and get a shareable link, without signing in.\n\nAnonymous uploads expire after a few days. This is a public demo; please do not upload sensitive information.\n\nDrop a file, get a link, share it. View your published work online and choose who can open it in the sharing settings.\n\n- Keep work in one place. Organize pages and documents in folders and find them with full-text search, including Chinese. Team members and agents can find the work they have permission to access. - Drop it in and share it. Upload HTML, a build folder, a ZIP or a document to get a link. Large sites upload in chunks. Share with everyone, signed-in users, named people or passcode holders. - Keep improving published work. Edit HTML text or source in the browser, or let an agent update the whole site. Each change keeps a version, with rollback and the option to save a copy. - Let agents pick "
   },
   {
-   "name": "AkashPriyadarshii/jev-seo",
-   "url": "https://github.com/AkashPriyadarshii/jev-seo",
-   "description": "100% free ₹0 agent-first SEO & GEO CLI suite and MCP server in Rust replacing Semrush and OpenSEO via DuckDuckGo and TypeSafe Jev System One",
-   "stars": 12,
-   "forks": 0,
-   "language": "Rust",
-   "topics": [
-    "ahrefs-alternative",
-    "claude-code",
-    "cli",
-    "decision-oracle",
-    "duckduckgo",
-    "generative-engine-optimization",
-    "geo",
-    "jev",
-    "mcp",
-    "mcp-server",
-    "rank-tracker",
-    "rust",
-    "search-engine-optimization",
-    "semrush-alternative",
-    "seo",
-    "seo-audit",
-    "seo-tools",
-    "serp",
-    "typesafe",
-    "typesafe-ai"
-   ],
-   "created_at": "2026-09-18",
-   "homepage": "https://akashpriyadarshii.github.io/jev-seo/",
-   "score": 120.0,
-   "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-19",
-     "s": 4
-    },
-    {
-     "d": "2026-09-20",
-     "s": 12
-    }
-   ],
-   "readme_excerpt": "--- title: \"jev-seo: FOSS Zero-Cost SEO & GEO Search Radar\" description: \"Open-source, subscription-free alternative to Semrush and OpenSEO. Powered by TypeSafe AI Jev and local DuckDuckGo scraping.\" canonical: \"https://github.com/AkashPriyadarshii/jev-seo\" keywords: - seo - geo - generative-engine-optimization - typesafe-ai - jev - rust - mcp - search-radar ---\n\njev-seo FOSS, zero-cost SEO & GEO search radar for developers and coding agents\n\nWhy • Quickstart • Workflows • Architecture • Non-Goals • Ecosystem\n\nSemrush and Ahrefs cost upwards of $130 per month. OpenSEO still requires paid DataForSEO credit cards. Most SEO suites are bloated web dashboards filled with vanity charts.\n\n- Zero subscriptions (₹0): Scrapes DuckDuckGo HTML and suggest endpoints directly. No credit cards, no paid API keys. - TypeSafe Jev System One: Semantic intent classification, competitive gap detection, and AI visibility (GEO) scored deterministically without conversational LLM hallucinations. - Batch Directory Auditing: Audits hundreds of markdown/HTML files in <1 second, detecting title collisions, canonical mismatches, and thin pages. - 2026 Schema.org Validator: Deeply inspects JSON-LD schemas (SoftwareApplication, Article, Organization, Product) and flags deprecated schemas. - Robots.txt & AI Crawler Radar: Evaluates permissions for AI bots (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Bytespider). - SERP Content Briefs: Synthesizes competitor SERP snippets into an actionable content blueprint with H2 outlines and optimal 134-167 word GEO blocks. - Agent native (MCP): Native stdio JSO"
-  },
-  {
    "name": "max-ramas/rms-memory-mcp",
    "url": "https://github.com/max-ramas/rms-memory-mcp",
    "description": "Persistent, local, cross-IDE memory for AI agents — markdown source of truth, LanceDB-powered semantic search, zero cloud dependency",
@@ -11358,37 +11495,45 @@
    "readme_excerpt": "基于 MCP（Model Context Protocol）协议和 Playwright 的淘宝自动购物 server，让 Claude 等支持 MCP 的 AI 助手可以直接帮你在淘宝搜索、查看商品、加购物车、下单，甚至完成支付。\n\n声明：本项目仅供个人学习交流使用，不用于商业用途，请遵守淘宝平台相关规定。自动化操作可能触发平台风控（例如短时间内频繁访问同一账号），使用者需自行承担相应风险。本项目不存储任何用户账号密码——登录状态通过手动扫码/密码在真实浏览器窗口里完成，程序本身从不接触你的账号密码。\n\n- Node.js + TypeScript - Playwright（真实 Chromium，非无头模式） - @modelcontextprotocol/sdk - Express（HTTP 传输 + 简易 OAuth 2.1 授权层）\n\n工具 说明 ------ logintaobao 打开一个可见的浏览器窗口，供你手动登录（扫码/密码/短信均可） completetaobaologin 手动登录完成后，保存登录状态 checktaobaoauth 检查保存的登录状态是否仍然有效（失效时附带页面截图） searchtaobaoitem 按关键词搜索商品，返回标题、价格、链接 viewtaobaoitem 查看商品详情页，返回价格和 SKU 规格选项（材质/颜色/尺码等） viewtaobaoitemimage 截取商品主图，方便下单前确认商品长相 addtocarttaobao 选好规格后加入购物车（不下单） buynowtaobao 选择规格并点击\"立即购买\"，进入确认订单页（不付款） paynowtaobao 在确认订单页完成真实付款——会真的花钱，谨慎调用 debugpaybuttontaobao 只读诊断：截图当前页面并检查支付按钮能否被找到，不会点击、不会花钱\n\n在 Claude Desktop 的 claudedesktopconfig.json 里添加：\n\n首次使用先调用 logintaobao，在弹出的浏览器窗口里手动登录，登录完成后调用 completetaobaologin 保存状态。之后的操作会复用同一个真实浏览器 Profile（browser-profile/ 目录），不是简单的 cookie 快照——这样做是因为 Taobao 的风控会检查设备指纹，光有 cookie 没有完整的浏览器环境（IndexedDB、Service Worker 等）容易被识别为异常登录。\n\n需要把这个端口通过内网穿透（比如 Cloudflare Tunnel）暴露到公网，并设置环境变量：\n\nclaude.ai 的自定义连接器只认标准 OAuth 2.1 + PKCE 授权流程，不支持直接填写静态 token——本项目内置了一个最简单的单用户 OAuth 授权层（src/oauth.ts）：连接时会打开一个网页，输入你设置的 MCPAUTHTOKEN 作为访问密码即可完成授权，之后颁发的是有过期时间的 access token，而不是把密码本身暴露给客户端。\n\n- 必须在有图形界面的本地 Mac/PC 上运行：浏览器是有头模式（非 headless），因为测试发现无头模式的浏览器指纹和有头模式不同，容易导致登录状态频繁失效。这意味着这台电脑不能休眠、进程不能退出，否则远程连接会失效。 - 登录只能手动完成：出于安全考虑，程序不会、也不能帮你输入账号密码——logintaobao 只是打开一个浏览器窗口，剩下的（扫码/输密码/验证码）必须你自己动手。 - 请求节流：每次操作之间会有约 5-10 秒的随机延迟，避免过于规律或过于密集的请求模式触发平台风控。即便如此，仍然可能因为短时间内操作过于频繁（尤其是反复调试同一个流程）被要求重新"
   },
   {
-   "name": "blakestone-x/jev-mcp",
-   "url": "https://github.com/blakestone-x/jev-mcp",
-   "description": "MCP server for TypeSafe Jev: typed classify, score, check, match and screen for any agent, with confidence on every answer",
+   "name": "shitianfang/jev-use",
+   "url": "https://github.com/shitianfang/jev-use",
+   "description": "Claude Code / Codex / pi plugin that hands agent steps needing no text output to Jev (TypeSafe's judgment model) — measured p50 ~230 ms and ~$0.02 per 1,000 judgments, with typed escalation back to th",
    "stars": 11,
    "forks": 1,
-   "language": "Python",
-   "topics": [],
-   "created_at": "2026-09-16",
-   "homepage": "",
-   "score": 38.7,
-   "first_seen": "2026-09-17",
-   "last_seen": "2026-09-20",
+   "language": "JavaScript",
+   "topics": [
+    "agent",
+    "agent-skills",
+    "ai-agents",
+    "claude-code",
+    "claude-code-hooks",
+    "claude-code-plugin",
+    "claude-skills",
+    "codex",
+    "jev",
+    "llm",
+    "mcp",
+    "mcp-server",
+    "mcp-tools",
+    "model-context-protocol",
+    "typesafe-ai"
+   ],
+   "created_at": "2026-09-19",
+   "homepage": "https://www.npmjs.com/package/jev-use",
+   "score": 112.0,
+   "first_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
-     "d": "2026-09-17",
-     "s": 3
-    },
-    {
-     "d": "2026-09-18",
-     "s": 7
-    },
-    {
-     "d": "2026-09-19",
+     "d": "2026-09-20",
      "s": 9
     },
     {
-     "d": "2026-09-20",
+     "d": "2026-09-21",
      "s": 11
     }
    ],
-   "readme_excerpt": "Jev provides typed judgments over a closed answer set in about 130 ms, with no text generation, through TypeSafe.\n\nSet TYPESAFEAPIKEY in the environment used by your MCP client, then run:\n\nReplace ... with the key value. Passing it through the client environment keeps it out of tool arguments and request state.\n\nThe scripts/register.sh helper requires Bash 4+; do not run it with sh. Apply mode reads TYPESAFEAPIKEY from the environment and refuses to change client configuration when it is unset. --apply writes the plaintext key into ~/.codex/config.toml and the Claude Code user config. The key is briefly visible in the process list while claude mcp add runs because that command receives it as an argument. On Windows, use scripts/register.ps1; it restricts the resulting configuration files to the current user and keeps a .bak copy before rewriting an existing Codex configuration.\n\nThe install examples pin the public v0.2.1 tag. Omitting the tag tracks the repository's default branch instead.\n\nThis call classifies one state containing five support-ticket texts against one label map. It returns one label for the combined state; send one request per ticket when you need an individual label for each ticket:\n\nThe response is an ordinary MCP structured result with a stable envelope:\n\ntool use it for not for --- --- --- jevask Your own Choice, Score, and Noul question map Text generation or numeric extraction jevclassify Selecting one label from a closed list Open-ended writing or ranking without labels jevscore Placing state on an ordered rubric Returning a number extracted from te"
+   "readme_excerpt": "The best way for Claude Code, Codex, and pi to work with Jev: hand the tasks that need no text output to Jev — faster steps, fewer tokens, tasks done sooner and better.\n\nIt makes the LLM and Jev true collaborators: when content needs to be written, the LLM takes over; when a step just needs a fast decision, Jev executes it.\n\nDirections task: Jev clicks, the LLM types — 10 decisions (p50 274 ms) · 4 writes; Jev rejects a wrong route, the LLM rewrites Context compaction — 200 messages judged in 7 calls, one LLM paragraph replaces the dropped pile; recall 3/3\n\nPong: ball speed = decision latency — 86 Jev decisions in 20 s vs 6 (haiku) and 3 (gemini) called the usual way; enum-constrain both and the gap is 3× Gate every shell command — dangerous ones denied in ~230 ms with a reason, zero LLM tokens\n\nEvery demo is a rerunnable script in bench/examples/; all numbers, methodology, variance and caveats: bench/RESULTS.md · third-party measurements: docs/evidence.md.\n\nSet one key in the environment your agent runs in (JEVBACKEND=mock for a keyless dry run):\n\nProvider Env var --- --- TypeSafe direct TYPESAFEAPIKEY OpenRouter OPENROUTERAPIKEY Vercel AI Gateway AIGATEWAYAPIKEY\n\nnpx -y jev-use doctor checks the wiring. Judged state goes to the provider you configure; JEVBACKEND=mock stays local. Plugin form with the routing skill and the PreToolUse gate: harness/claude-code · harness/codex.\n\nnpm i jev-use — zero runtime dependencies on the judgment path:"
   },
   {
    "name": "12122J/mcpvet",
@@ -12413,9 +12558,9 @@
    "topics": [],
    "created_at": "2026-09-15",
    "homepage": "",
-   "score": 27.0,
+   "score": 22.0,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -12431,31 +12576,6 @@
     }
    ],
    "readme_excerpt": "Turn a closet walkthrough video into a wardrobe your AI assistant can use: source frames, AI-generated front/back flat-lays, attributes, and optional narration, handed to any MCP client by a local server and the included wardrobe skill. Ask what goes with the navy jacket, what you said about it while you were filming, or what you have not worn since spring — against your own clothes, catalogued from one video, on your own machine.\n\nBy Will Gao. A mention is appreciated, but not required. MIT licensed; retain the copyright and license notice as required by MIT.\n\nOpen the live demo — one 5-minute-49-second phone recording beside the 34-garment catalogue built from it. Nothing to install, no API key, no clone.\n\nThe demo is not part of this repository, so cloning stays small. To run it offline, download closetscan-demo.zip from the latest release, unzip it, and open index.html. Keep the folder together; the page loads its images from catalogue/.\n\nThat catalogue was generated from the included recording using DINOv2 and the paid AI stages; reruns can produce different results. It contains 34 garments with 68 generated front/back images. Images marked as plates are generated reconstructions; source frames remain available for comparison.\n\nOne MCP server and one skill, both local. Point the server at a catalogue — one you build with the pipeline below, or the published demo's, which needs no pipeline run at all — and your assistant can answer from your own clothes:"
-  },
-  {
-   "name": "Brainwires/jevwire",
-   "url": "https://github.com/Brainwires/jevwire",
-   "description": "Jev decision layer for agents: MCP server, embeddable DecisionModel library, and an escalate-only Claude Code plugin (TypeSafe AI's Jev)",
-   "stars": 10,
-   "forks": 2,
-   "language": "TypeScript",
-   "topics": [],
-   "created_at": "2026-09-17",
-   "homepage": "",
-   "score": 54.0,
-   "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-19",
-     "s": 6
-    },
-    {
-     "d": "2026-09-20",
-     "s": 10
-    }
-   ],
-   "readme_excerpt": "Jev is TypeSafe AI's System One model: a fast, calibrated classifier. You give it a state and a map of typed questions — yes/no, pick-one, rate-on-a-rubric — and it answers every one in parallel with a probability over the answer space you defined. It never generates text, so the answer is always inside your schema.\n\njevwire wires it into a harness. The repository is Brainwires/jevwire; the npm package is still published as jevwire and the Claude Code plugin is jev.\n\n- 6 MCP tools — jevrank, jevverify, jevevaluate, jevgateaction, jevnextstep, jevlistmodels. - An embeddable library — JevDecisionModel plus a pure run function per tool, so mandatory checks can live in your harness instead of in a tool an agent may decline to call. - A Claude Code plugin — hooks that put judgments at the harness boundaries: before a tool call, after a fetched result, before the turn ends. Everything they decide is addressed to Claude, not to you: a note about a call that already ran, or a single deny Claude can answer. As of 0.3.0 they never prompt you.\n\nIt is not for generation, arithmetic, counting, date comparison, or multi-hop reasoning. It answers bounded questions over text you hand it. Anything numeric or ordered should be extracted as a choice over enumerated options and compared in code.\n\nRelease 0.4.0 has been exercised against the live TypeSafe API on 2026-09-18. Every latency, token count and cost figure quoted in this README comes from that run or the 0.3.0 one it is compared against."
   },
   {
    "name": "OldJii/google-play-vitals-mcp",
@@ -14290,43 +14410,6 @@
     }
    ],
    "readme_excerpt": "Paradigm E++ (Epistemic State, Vector Embeddings, Distributed Execution Mesh) is the formal architectural specification underlying Hermes Fleet Synapse:\n\n1. Zero Ambient Prompt Bloat (memory.provider: none): Memory is never ambiently stuffed into the LLM system prompt. Retrieval is on-demand via explicit FastMCP vector searches (fleetsynapsesearch / fleetmemorysearch), cutting prompt costs to zero for turns where memory is unnecessary. 2. Deterministic State Resolution (UUID5 + LWW): Overwrites stale facts in-place using deterministic DNS-namespace UUID5 hashes (domain:clientid:slotname), combined with Last-Write-Wins (LWW) timestamped validation to prevent out-of-order split-brain corruption. 3. Infrastructure-Enforced Domain Firewalls (FLEETHARDDOMAIN): Strict client-level boundary gates prevent enterprise data from cross-contaminating personal workstations, eliminating reliance on probabilistic LLM compliance.\n\n🤖 For AI Coding Agents: Autonomous Deployment Contract\n\nFull autonomous protocol, OS decision trees, and non-interactive flags: See AGENTS.md. The contract covers both pipelines — cross-device vector memory (§A) and the cross-node task plane (§B) — including when to pick each, and the mandatory verification ledger for each.\n\nIf you are an AI Coding Agent (Hermes, Claude Code, Codex, Cursor, Windsurf) instructed by your human to deploy this repository, execute the following deterministic protocol without open-ended interview loops:"
-  },
-  {
-   "name": "shitianfang/jev-use",
-   "url": "https://github.com/shitianfang/jev-use",
-   "description": "Claude Code / Codex / pi plugin that hands agent steps needing no text output to Jev (TypeSafe's judgment model) — measured p50 ~230 ms and ~$0.02 per 1,000 judgments, with typed escalation back to th",
-   "stars": 9,
-   "forks": 1,
-   "language": "JavaScript",
-   "topics": [
-    "agent",
-    "agent-skills",
-    "ai-agents",
-    "claude-code",
-    "claude-code-hooks",
-    "claude-code-plugin",
-    "claude-skills",
-    "codex",
-    "jev",
-    "llm",
-    "mcp",
-    "mcp-server",
-    "mcp-tools",
-    "model-context-protocol",
-    "typesafe-ai"
-   ],
-   "created_at": "2026-09-19",
-   "homepage": "https://www.npmjs.com/package/jev-use",
-   "score": 92.0,
-   "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-20",
-     "s": 9
-    }
-   ],
-   "readme_excerpt": "The best way for Claude Code, Codex, and pi to work with Jev: hand the tasks that need no text output to Jev — faster steps, fewer tokens, tasks done sooner and better.\n\nIt makes the LLM and Jev true collaborators: when content needs to be written, the LLM takes over; when a step just needs a fast decision, Jev executes it.\n\nDirections task: Jev clicks, the LLM types — 10 decisions (p50 274 ms) · 4 writes; Jev rejects a wrong route, the LLM rewrites Context compaction — 200 messages judged in 7 calls, one LLM paragraph replaces the dropped pile; recall 3/3\n\nPong: ball speed = decision latency — 86 Jev decisions in 20 s vs 6 (haiku) and 3 (gemini) called the usual way; enum-constrain both and the gap is 3× Gate every shell command — dangerous ones denied in ~230 ms with a reason, zero LLM tokens\n\nEvery demo is a rerunnable script in bench/examples/; all numbers, methodology, variance and caveats: bench/RESULTS.md · third-party measurements: docs/evidence.md.\n\nSet one key in the environment your agent runs in (JEVBACKEND=mock for a keyless dry run):\n\nProvider Env var --- --- TypeSafe direct TYPESAFEAPIKEY OpenRouter OPENROUTERAPIKEY Vercel AI Gateway AIGATEWAYAPIKEY\n\nnpx -y jev-use doctor checks the wiring. Judged state goes to the provider you configure; JEVBACKEND=mock stays local. Plugin form with the routing skill and the PreToolUse gate: harness/claude-code · harness/codex.\n\nnpm i jev-use — zero runtime dependencies on the judgment path:"
   },
   {
    "name": "henrycqxzwalker1542/base-mcp-agent-orchestrator",
@@ -43673,6 +43756,52 @@
    "readme_excerpt": "Scan code, dependencies, container images, IaC and SBOMs from Hermes Agent through Snyk's first-party MCP server. Snyk ships the server inside the Snyk CLI (snyk mcp is a vendor subcommand, not a community wrapper), so this plugin is a pinned npx stdio launch plus a workflow skill.\n\nThis is a portable Agent Plugins v1 package. One install ships:\n\n- mcp.json — the Snyk MCP server entry (sn), registered for every new session while the plugin is enabled. No mcpservers edits in config.yaml. - skills/snyk-security-scan/ — the workflow skill: when to use which scanner, the auth/trust/scan/fix loop, pitfalls, and a full per-tool argument reference generated from the live server.\n\nThen start a new Hermes session. The skill is available as agent-plugin-snyk-8cb0f11d:snyk-security-scan via skillview (skillslist shows the exact name). Node.js/npm must be on PATH (the server is launched with npx -y snyk@1.1306.0 mcp -t stdio --profile full). The first launch downloads the pinned CLI.\n\nNo credentials are needed at install time. Ask Hermes to run the snykauth tool before the first scan: it opens Snyk's browser login and stores the token in the Snyk CLI's own config, never in Hermes. A free Snyk account covers the code (SAST) and open-source (SCA) scanners.\n\n13 tools, all listed in skills/snyk-security-scan/references/tools.md: snykcodescan (SAST), snykscascan (dependencies), snykcontainerscan, snykiacscan, snyksbomscan, snykaibom, snykpackagehealthcheck, snykbreakabilitycheck, snykauth, snyktrust, snyklogout, snykversion, snyksendfeedback."
   },
   {
+   "name": "jiawei686/jev-ultrafast-mcp",
+   "url": "https://github.com/jiawei686/jev-ultrafast-mcp",
+   "description": "Hand the browser work off: an MCP server where a decision model drives the page for your agent, so a flow costs one tool call instead of a turn per click. Ref-based element tables, code-checked assert",
+   "stars": 8,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-tools",
+    "ai-agents",
+    "browser-agent",
+    "browser-automation",
+    "browser-use",
+    "cdp",
+    "chrome-devtools-protocol",
+    "claude",
+    "claude-code",
+    "cursor",
+    "headless-chrome",
+    "llm",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "playwright-alternative",
+    "python",
+    "vscode",
+    "web-automation",
+    "workbuddy"
+   ],
+   "created_at": "2026-09-19",
+   "homepage": "https://pypi.org/project/jev-ultrafast-mcp/",
+   "score": 40.0,
+   "first_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-20",
+     "s": 4
+    },
+    {
+     "d": "2026-09-21",
+     "s": 8
+    }
+   ],
+   "readme_excerpt": "Hand the browser work off — an MCP server that drives the page for your agent.\n\nYour agent should not be opening the browser at all. A browser task goes over whole — the URL, the goal, and the check that proves it — and the loop runs on the server. One tool call instead of twenty. Three seconds instead of a minute. A cent instead of a frontier model's context. And it never invents a target: it picks from what the page actually has, and the server refuses rather than guesses.\n\nWhat it cost. A cent for the whole day, and a cent is all of it:\n\nThree commands, then restart your client.\n\ninstall.py looks for WorkBuddy, Claude Code, Claude Desktop, Codex CLI, Cursor, VS Code, Cline, Windsurf and Gemini CLI, and writes the format each one expects — merging into your existing config and saving a .bak first. Needs Python ≥ 3.10 and any Chromium-family browser.\n\nRestart the client, and then just say what you want:\n\nYou: Set this form to 3 adults, tick Nonstop only, then submit it. Your agent: browsergoal(goal=…, url=…, verify=[…]) — one call; the page is opened and the loop runs server-side, and the result is checked by code afterwards. (what that costs)\n\nYou: Open example.com and tell me what the page says. Your agent: browseropen → reads the element table → answers — a look is not a task, so it does not need the model. (verbatim run)\n\nRestarted and the tools are not there? Some clients make you approve the server once. In WorkBuddy that is Connectors → Custom connectors → Trust. The approval is remembered against the config itself, so if you later edit the config it asks once more."
+  },
+  {
    "name": "TopTechPhoto/picsio-mcp-plugin",
    "url": "https://github.com/TopTechPhoto/picsio-mcp-plugin",
    "description": "Pics.io MCP Plugin for AI Marketplaces (Anthropic, OpenAI, Copilot, Gemini)",
@@ -43694,9 +43823,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://pics.io",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46201,9 +46330,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46235,9 +46364,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46269,9 +46398,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46303,9 +46432,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46337,9 +46466,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46371,9 +46500,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46405,9 +46534,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46439,9 +46568,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46473,9 +46602,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46507,9 +46636,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-16",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-16",
@@ -46642,6 +46771,40 @@
     }
    ],
    "readme_excerpt": "A Model Context Protocol server that lets AI assistants understand a Crossplane control plane.\n\nAsk your assistant \"how many managed resources do I have and is anything broken?\" and it will answer from your actual control plane, with the reason for every failure, instead of guessing.\n\nThe server is read-only by default: the tools that create and update are not registered at all unless you start it with --read-only=false, so a client cannot see them, let alone call them. Nothing deletes in either mode. Turn writes on and the same assistant can provision from your platform APIs:\n\nNothing there names a Kubernetes kind. The tool found the platform API this control plane offers, read the schema its XRD declares and filled it in. See examples/demo for a control plane you can try it on without a cloud account.\n\n- Why not a generic Kubernetes MCP server? - Quick start - Installation - Client configuration - Tools - Read-only and write modes - Prompts - Calling a tool directly - Configuration - Multiple control planes - Running in a cluster - Required RBAC - Contributing - Security - License\n\nWhy not a generic Kubernetes MCP server?\n\nA general purpose Kubernetes MCP server can already reach every object on a Crossplane control plane: Crossplane resources are Kubernetes resources, and a generic resourceslist with an apiVersion and a kind will happily return your XRDs. Access was never the problem.\n\nThe problem is that it does not know what any of it means, and it will happily delete it."
+  },
+  {
+   "name": "shaharia-lab/jev-cli",
+   "url": "https://github.com/shaharia-lab/jev-cli",
+   "description": "Command-line tool for TypeSafe AI's Jev model. Ask yes/no, multiple-choice and rubric questions about any text and get calibrated probabilities back. Answers become exit codes for shells and CI, JSON ",
+   "stars": 7,
+   "forks": 0,
+   "language": "Rust",
+   "topics": [
+    "ai-agents",
+    "classification",
+    "cli",
+    "command-line-tool",
+    "devtools",
+    "jev",
+    "llm",
+    "mcp",
+    "mcp-server",
+    "rust",
+    "text-classification",
+    "typesafe-ai"
+   ],
+   "created_at": "2026-09-19",
+   "homepage": "",
+   "score": 35.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "Ask any text a typed question. Get a probability back, not a paragraph.\n\njev is a command-line tool for TypeSafe AI's Jev model, the model that never writes text. Send it some content and a question you defined, get a calibrated probability, and branch on it in a shell script, a CI job or an AI agent. It is a semantic if statement for your terminal.\n\nQuick start · What can I use it for? · Documentation · Command reference · FAQ\n\nIt takes two seconds, and it is how the next person finds jev.\n\nAsk a question, get a probability, branch on the exit code, then ask several questions at once.\n\n[!IMPORTANT] Unofficial project. jev is community-built. It is not affiliated with, endorsed by, or sponsored by TypeSafe AI. \"TypeSafe\" and \"Jev\" belong to their owner. You need a TypeSafe API key to use it.\n\nYou have text: a support ticket, a commit message, a user's answer, a product review, a model's output. You need a decision about it: is it angry, which team owns it, how risky is it, should this pipeline continue?\n\nToday you either write brittle keyword rules, or you ask a large language model and then parse a sentence it might phrase differently tomorrow.\n\nJev is a third option. You define the question and the possible answers. The model returns a number for each one. Your code decides what to do.\n\nOne question, one number, about a hundredth of a cent. No prompt engineering, no JSON parsing, no \"As an AI language model\"."
   },
   {
    "name": "plainfate/IotaPanel",
@@ -48997,6 +49160,50 @@
     }
    ],
    "readme_excerpt": "A live knowledge graph of your codebase, queried by coding agents.\n\nCommand-line client for Novgraph, a hosted knowledge graph of a git repository. The graph holds your files and symbols as nodes and their real relationships as typed edges, and coding agents query it over MCP or the shell for four things a file read cannot give them: the recorded intent behind each commit, files that change together without importing each other, ranked blast radius, and computed architecture.\n\nToken savings: 78% to 99.74% per answer, measured against the cost of reading the files each answer cites — not modelled, not estimated from a benchmark.\n\nThis repository is the client only — auth, agent detection, MCP registration and request transport. Python 3.11+, standard library, no dependencies, no engine. Indexing, storage and retrieval run on Novaya's servers.\n\ninstall detects every supported agent on the machine, registers the MCP server, writes a pointer into each agent's instruction file, adds a /novgraph command, resolves which indexed codebase this checkout is, and verifies each step. novgraph doctor re-runs those checks with an exit code.\n\nA coding agent starts each session with no memory of the repository. To answer \"what does this touch\", it greps, opens files, and infers — spending tokens to rebuild a picture it loses at the end of the session. Three classes of fact are not recoverable that way at all:"
+  },
+  {
+   "name": "Blackman99/real-bot",
+   "url": "https://github.com/Blackman99/real-bot",
+   "description": "Alpha: local-first macOS app for persistent AI teammates, open model endpoints, and MCP tools",
+   "stars": 6,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "bun",
+    "desktop-app",
+    "llm",
+    "local-first",
+    "macos",
+    "mcp",
+    "model-context-protocol",
+    "multi-agent",
+    "rust",
+    "svelte",
+    "sveltekit",
+    "tauri",
+    "typescript"
+   ],
+   "created_at": "2026-09-17",
+   "homepage": "https://blackman99.github.io/real-bot/",
+   "score": 17.0,
+   "first_seen": "2026-09-18",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-18",
+     "s": 3
+    },
+    {
+     "d": "2026-09-20",
+     "s": 5
+    },
+    {
+     "d": "2026-09-21",
+     "s": 6
+    }
+   ],
+   "readme_excerpt": "Persistent AI teammates, organized by conversation, on your own Mac.\n\n- Teammates, not throwaway chats. Bots have names, duties and boundaries. They chat one to one, join groups, get @mentioned and hand work to each other. - Everything stays on your Mac. Window, daemon, sessions and one shared workspace folder are local. No project-run cloud. - Bring your own models and tools. Any OpenAI-compatible endpoint; MCP servers over stdio or Streamable HTTP, available to every bot. - Dangerous actions wait for you. New endpoints or MCP servers, anything outside the workspace and outbound network stop at an approval card. Keys go to Keychain, never into chat. - Bots run the app. Create bots, form groups and configure endpoints or MCP by talking to one.\n\nDownload the latest alpha from GitHub Releases: unsigned .dmg for Apple silicon and Intel. If Gatekeeper blocks the first launch, right-click → Open, or run:\n\nUpdates: the app checks GitHub Releases in the background and shows a dot on the settings gear when a newer build exists. Settings → General → About lists the current version and opens the matching .dmg in your browser; while builds are unsigned there is no in-app installer.\n\nRun from source (macOS, Node 22+, pnpm 12.3.4, Bun 1.2+, Rust, Xcode Command Line Tools):\n\nFirst run: pick a workspace folder (missing folders are created), add an OpenAI-compatible endpoint and key in Settings, create the first bot from the sidebar, then let it hire the rest."
   },
   {
    "name": "Techthos/gomukit",
@@ -53192,9 +53399,9 @@
    "topics": [],
    "created_at": "2026-09-15",
    "homepage": "",
-   "score": 12.0,
+   "score": 10.3,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -53212,14 +53419,14 @@
    "url": "https://github.com/ExMapo/awesome-productivity-mcp-servers",
    "description": "A curated list of awesome MCP servers for productivity, knowledge work, research, collaboration, automation, and AI workflows.",
    "stars": 5,
-   "forks": 4,
+   "forks": 5,
    "language": null,
    "topics": [],
    "created_at": "2026-09-18",
    "homepage": "",
-   "score": 58.0,
+   "score": 35.0,
    "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-19",
@@ -53227,46 +53434,6 @@
     }
    ],
    "readme_excerpt": "A curated list of Model Context Protocol (MCP) servers for productivity, knowledge work, research, collaboration, automation, and getting things done with AI.\n\nDiscover MCP servers that connect AI assistants such as ChatGPT, Claude, Claude Code, Cursor, VS Code, and other MCP-compatible clients with the tools you use every day.\n\n- Mind Mapping & Visual Thinking - Notes & Knowledge Management - Tasks & To-Do Management - Project Management - Calendar & Scheduling - Meetings & Transcription - Research & Web Search - Documents & Files - Email Productivity - Team Communication - Automation & Integrations - Developer Productivity - Data & Spreadsheets - Memory & Personal Knowledge - Content & Publishing - Browser Productivity - MCP Clients - MCP Frameworks & Utilities - Contributing\n\nTools that help AI organize information visually.\n\n- MindMap AI — Create visual mind maps from documents, research, conversations, meetings, notes, and code. - ECharts MCP — Generate charts and visualizations dynamically with AI. - Mermaid MCP — Generate Mermaid diagrams and charts through MCP. - Miro MCP — Connect AI assistants with Miro boards and visual collaboration workflows. - Vega-Lite MCP — Generate data visualizations with Vega-Lite.\n\n- Apple Notes MCP — Interact with Apple Notes through AI. - Google Keep MCP — Read, create, update, and delete Google Keep notes. - HackMD MCP — Access and manage HackMD notes from AI assistants. - Notion MCP — Official Notion MCP server for connecting AI assistants with Notion. - Obsidian MCP — Interact with Obsidian through its REST API. - Paperless MCP — Ma"
-  },
-  {
-   "name": "Blackman99/real-bot",
-   "url": "https://github.com/Blackman99/real-bot",
-   "description": "Alpha: local-first macOS app for persistent AI teammates, open model endpoints, and MCP tools",
-   "stars": 5,
-   "forks": 1,
-   "language": "TypeScript",
-   "topics": [
-    "ai-agents",
-    "bun",
-    "desktop-app",
-    "llm",
-    "local-first",
-    "macos",
-    "mcp",
-    "model-context-protocol",
-    "multi-agent",
-    "rust",
-    "svelte",
-    "sveltekit",
-    "tauri",
-    "typescript"
-   ],
-   "created_at": "2026-09-17",
-   "homepage": "https://blackman99.github.io/real-bot/",
-   "score": 18.7,
-   "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-18",
-     "s": 3
-    },
-    {
-     "d": "2026-09-20",
-     "s": 5
-    }
-   ],
-   "readme_excerpt": "Persistent AI teammates, organized by conversation, on your own Mac.\n\n- Teammates, not throwaway chats. Bots have names, duties and boundaries. They chat one to one, join groups, get @mentioned and hand work to each other. - Everything stays on your Mac. Window, daemon, sessions and one shared workspace folder are local. No project-run cloud. - Bring your own models and tools. Any OpenAI-compatible endpoint; MCP servers over stdio or Streamable HTTP, available to every bot. - Dangerous actions wait for you. New endpoints or MCP servers, anything outside the workspace and outbound network stop at an approval card. Keys go to Keychain, never into chat. - Bots run the app. Create bots, form groups and configure endpoints or MCP by talking to one.\n\nDownload the latest alpha from GitHub Releases: unsigned .dmg for Apple silicon and Intel. If Gatekeeper blocks the first launch, right-click → Open, or run:\n\nUpdates: the app checks GitHub Releases in the background and shows a dot on the settings gear when a newer build exists. Settings → General → About lists the current version and opens the matching .dmg in your browser; while builds are unsigned there is no in-app installer.\n\nRun from source (macOS, Node 22+, pnpm 12.3.4, Bun 1.2+, Rust, Xcode Command Line Tools):\n\nFirst run: pick a workspace folder (missing folders are created), add an OpenAI-compatible endpoint and key in Settings, create the first bot from the sidebar, then let it hire the rest."
   },
   {
    "name": "huawei-developers/mcp-huaweicloud-ops-deploy",
@@ -53278,9 +53445,9 @@
    "topics": [],
    "created_at": "2026-09-18",
    "homepage": "",
-   "score": 54.0,
+   "score": 29.0,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -53310,9 +53477,9 @@
    ],
    "created_at": "2026-09-16",
    "homepage": "",
-   "score": 16.7,
+   "score": 12.5,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -53320,6 +53487,78 @@
     }
    ],
    "readme_excerpt": "Authority management for autonomous software agents.\n\nThe agent proposes. The harness authorizes. The executor acts.\n\nCapgate is a runtime enforcement boundary that sits underneath your existing agent stack. Every consequential action an agent takes — a tool call, a message to another agent, a request that another agent act — is a structured proposal that passes through one deterministic, deny-by-default policy engine before anything executes. Every decision is written to a tamper-evident audit trail.\n\nIt is not an agent framework, a prompt library, or a model wrapper. It does not ask the model to follow rules; it makes unauthorized actions structurally unable to reach a tool.\n\n- The boundary, under attack — a compromised agent, contained - Inspect — the local UI (screenshots) - The contract · The API · Delegation - What is actually enforced · MCP - Audit trail · Tests · Status - Design: DESIGN.md (the five invariants) · Workload identity · Isolation runtime · State & multi-host · docs/threat-model.md · Roadmap · SECURITY.md\n\nRun a compromised agent — one that ignores the SDK and tries every route around the harness — inside the reference isolated runtime:\n\nor, with all checks evaluated automatically:\n\nWhat this runtime enforces, precisely: the agent process cannot open a socket to anything except the harness API, and it cannot read the tool credentials, permit signing key or token keyring. Its own credential is a short-lived signed token; tampered, forged, expired, revoked and over-long tokens are rejected. The direct tool calls now fail at the network (0 = no connection),"
+  },
+  {
+   "name": "MAX-786/claude-3d-harness",
+   "url": "https://github.com/MAX-786/claude-3d-harness",
+   "description": "One entry point for Claude Code over pinned open-source Blender skill libraries: registry, workflows, profiles, single Blender MCP server",
+   "stars": 5,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "3d-modeling",
+    "agent-skills",
+    "ai-agents",
+    "blender",
+    "blender-mcp",
+    "blender-python",
+    "claude-code",
+    "claude-code-marketplace",
+    "claude-code-plugin",
+    "claude-skills",
+    "mcp",
+    "model-context-protocol"
+   ],
+   "created_at": "2026-09-18",
+   "homepage": "",
+   "score": 25.0,
+   "first_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-20",
+     "s": 4
+    },
+    {
+     "d": "2026-09-21",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "Build Blender scenes with Claude Code using five community skill libraries, through one registry and one MCP server.\n\nhttps://github.com/user-attachments/assets/915189cc-cb68-4e78-84b0-212230ff18bf\n\nThe first cinematic job run through the harness, from a grey blockout at 22:07 to the final frame at 01:37, in Blender 5.2.2 with Cycles. The renders are stills; the moving rain was added in the edit. 23 seconds, sound on.\n\nGet started · How it works · A real job · Upstreams · Status\n\n- Claude Code - Blender 4.2 or newer - uv and Git on your PATH - optionally ffmpeg, for camera-move videos\n\nWindows 11 is tested. macOS and Linux should work but have not been tried yet.\n\nThen restart Claude Code so the plugin's Blender MCP server starts.\n\n2. Open Blender and leave it running. The harness finds it by itself. To see the connection, press N in the 3D View and open the BlenderMCP tab.\n\nThe first run takes a little longer. The harness downloads its five skill libraries at their pinned commits (about 30 seconds, once per plugin version). If Blender does not have the MCP extension yet, it offers to install it from the pinned release, checked against a SHA-256; restart Blender after that.\n\nYou don't have to type the command: describe any 3D job and Claude picks the skill up on its own. Each job writes its plan, checkpoint renders, final images and a report to output/-/ in your current project. Claude Code asks before each Blender tool call. executeblendercode runs Python inside Blender, so only allow it if you are comfortable with that."
+  },
+  {
+   "name": "00200200/tokencut",
+   "url": "https://github.com/00200200/tokencut",
+   "description": "Reduce verbose AI coding output with a local CLI and MCP server. Targeted reads, output budgets, and recoverable context for Claude Code and Codex.",
+   "stars": 5,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "claude-code",
+    "cli",
+    "codex",
+    "context-window",
+    "cursor",
+    "developer-tools",
+    "gemini",
+    "mcp",
+    "mcp-server",
+    "openai",
+    "rate-limit",
+    "token-optimization"
+   ],
+   "created_at": "2026-09-20",
+   "homepage": "https://github.com/00200200/tokencut",
+   "score": 50.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "Smaller tool outputs, zero LSP daemons, with omitted context available on demand. A local CLI, MCP server, and macOS desktop HUD for Claude Code, Codex / ChatGPT Desktop, Antigravity, and Cursor.\n\nTry in 1 Min · macOS Desktop Pet · Zero-LSP Code Intel · Architecture · Integrations\n\nRequires Python 3.11+ and uv. Install this repository: the PyPI name tokencut belongs to another project.\n\nThe demo works outside a project and makes no model calls. It measures an authored log, checks the complete diagnostic tail, verifies recovery of the original, and confirms that unfamiliar output stays unchanged. Checks print PASS or FAIL; a failed check returns a nonzero exit code. Use tokencut demo --json for machine-readable results. Demo data uses a disposable cache.\n\nThen try your own command: tokencut run -- , or connect Claude Code, Claude Desktop, Codex, or Antigravity. Smaller tool output is the measured benefit; subscription limits and task quality need separate evaluation.\n\nIllustrative terminal demo. Run the fixture benchmark below for reproducible measurements.\n\nmacOS desktop pet companion (local preview)\n\nTokenCut Desktop Pet — A draggable macOS companion monitoring real-time tool output reduction and 5-hour model quota windows.\n\nA small draggable SwiftUI pet lives above other windows, remembers its position, and keeps working across Spaces. Click it to see quota windows, reset times and estimated tool-output reduction, before/after counts, recovery costs, seven days of history and breakdowns by client, Git project and tool. The UI is in English, follows the system appearance, "
   },
   {
    "name": "sunhao123456sun-svg/toolpermit",
@@ -58834,9 +59073,9 @@
    ],
    "created_at": "2026-09-18",
    "homepage": "",
-   "score": 42.0,
+   "score": 22.0,
    "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-19",
@@ -58855,9 +59094,9 @@
    "topics": [],
    "created_at": "2026-09-17",
    "homepage": "",
-   "score": 20.0,
+   "score": 13.3,
    "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-18",
@@ -58875,7 +59114,7 @@
    "url": "https://github.com/rashedInt32/jev-mcp",
    "description": "MCP server exposing TypeSafe Jev as typed, calibrated judgment tools: classify, score, check, batched ask. Ships as a Claude Code plugin.",
    "stars": 4,
-   "forks": 1,
+   "forks": 2,
    "language": "TypeScript",
    "topics": [
     "ai-agents",
@@ -58892,9 +59131,9 @@
    ],
    "created_at": "2026-09-17",
    "homepage": "https://www.npmjs.com/package/jev-mcp",
-   "score": 22.0,
+   "score": 17.3,
    "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-19",
@@ -58938,7 +59177,7 @@
    "homepage": "",
    "score": 42.0,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -58946,69 +59185,6 @@
     }
    ],
    "readme_excerpt": "The Universal Context Engine & Multi-Agent Handoff Protocol for AI-Assisted Development\n\nUnify fragmented rulebases across Cursor, Claude Code, GitHub Copilot, Cline, and Antigravity into a single canonical brain — complete with lease-based collision locks, baton-passing handoffs, and an interactive 3D WebGL knowledge galaxy.\n\nQuick Start • Why SyncytiumMD? • Key Architecture • 3D Galaxy View • API Grant Request\n\n[!IMPORTANT] What is a \"Syncytium\"? In biology, a syncytium is a single multinucleated cell formed by the fusion of multiple cells, allowing shared cytoplasm and coordinated pulses of action. SyncytiumMD applies this biological paradigm to software engineering: fusing fragmented AI coding agents into a single, cohesive, collision-free nervous system.\n\n🌪️ The Problem: Context Fragmentation & Agent Collisions\n\nModern engineering teams rarely use a single AI tool. Developers switch between Cursor for inline completions, Claude Code for large-scale CLI terminal refactors, GitHub Copilot inside VSCode/JetBrains, Cline/Roo Code for autonomous iterations, and Antigravity for complex multi-step reasoning.\n\nThis multi-agent reality introduces three critical points of failure:\n\n1. Fragmented Rules & Context Drift: Canonical guidelines are scattered across .cursorrules, CLAUDE.md, .clinerules, and .github/copilot-instructions.md. Updating a standard in one file leaves other agents working on stale, contradictory rules. 2. Multi-Agent Race Conditions: When multiple autonomous agents (or human-agent pairs) operate on the same repository concurrently, they overwrite each other’s"
-  },
-  {
-   "name": "jiawei686/jev-ultrafast-mcp",
-   "url": "https://github.com/jiawei686/jev-ultrafast-mcp",
-   "description": "Hand the browser work off: an MCP server where a decision model drives the page for your agent, so a flow costs one tool call instead of a turn per click. Ref-based element tables, code-checked assert",
-   "stars": 4,
-   "forks": 0,
-   "language": "Python",
-   "topics": [
-    "agent-tools",
-    "ai-agents",
-    "browser-agent",
-    "browser-automation",
-    "browser-use",
-    "cdp",
-    "chrome-devtools-protocol",
-    "claude",
-    "claude-code",
-    "cursor",
-    "headless-chrome",
-    "llm",
-    "mcp",
-    "mcp-server",
-    "model-context-protocol",
-    "playwright-alternative",
-    "python",
-    "vscode",
-    "web-automation",
-    "workbuddy"
-   ],
-   "created_at": "2026-09-19",
-   "homepage": "https://pypi.org/project/jev-ultrafast-mcp/",
-   "score": 40.0,
-   "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-20",
-     "s": 4
-    }
-   ],
-   "readme_excerpt": "Hand the browser work off — an MCP server that drives the page for your agent.\n\nYour agent should not be opening the browser at all. A browser task goes over whole — the URL, the goal, and the check that proves it — and the loop runs on the server. One tool call instead of twenty. Three seconds instead of a minute. A cent instead of a frontier model's context. And it never invents a target: it picks from what the page actually has, and the server refuses rather than guesses.\n\nWhat it cost. A cent for the whole day, and a cent is all of it:\n\nThree commands, then restart your client.\n\ninstall.py looks for WorkBuddy, Claude Code, Claude Desktop, Codex CLI, Cursor, VS Code, Cline, Windsurf and Gemini CLI, and writes the format each one expects — merging into your existing config and saving a .bak first. Needs Python ≥ 3.10 and any Chromium-family browser.\n\nRestart the client, and then just say what you want:\n\nYou: Set this form to 3 adults, tick Nonstop only, then submit it. Your agent: browsergoal(goal=…, url=…, verify=[…]) — one call; the page is opened and the loop runs server-side, and the result is checked by code afterwards. (what that costs)\n\nYou: Open example.com and tell me what the page says. Your agent: browseropen → reads the element table → answers — a look is not a task, so it does not need the model. (verbatim run)\n\nRestarted and the tools are not there? Some clients make you approve the server once. In WorkBuddy that is Connectors → Custom connectors → Trust. The approval is remembered against the config itself, so if you later edit the config it asks once more."
-  },
-  {
-   "name": "MAX-786/claude-3d-harness",
-   "url": "https://github.com/MAX-786/claude-3d-harness",
-   "description": "One entry point for Claude Code over pinned open-source Blender skill libraries: registry, workflows, profiles, single Blender MCP server",
-   "stars": 4,
-   "forks": 0,
-   "language": "Python",
-   "topics": [],
-   "created_at": "2026-09-18",
-   "homepage": "",
-   "score": 40.0,
-   "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
-   "stars_history": [
-    {
-     "d": "2026-09-20",
-     "s": 4
-    }
-   ],
-   "readme_excerpt": "Build Blender scenes with Claude Code using five community skill libraries, through one registry and one MCP server.\n\nhttps://github.com/user-attachments/assets/915189cc-cb68-4e78-84b0-212230ff18bf\n\nThe first cinematic job run through the harness, from a grey blockout at 22:07 to the final frame at 01:37, in Blender 5.2.2 with Cycles. The renders are stills; the moving rain was added in the edit. 23 seconds, sound on.\n\nGet started · How it works · A real job · Upstreams · Status\n\n- Claude Code - Blender 4.2 or newer - uv and Git on your PATH - optionally ffmpeg, for camera-move videos\n\nWindows 11 is tested. macOS and Linux should work but have not been tried yet.\n\nThen restart Claude Code so the plugin's Blender MCP server starts.\n\n2. Open Blender and leave it running. The harness finds it by itself. To see the connection, press N in the 3D View and open the BlenderMCP tab.\n\nThe first run takes a little longer. The harness downloads its five skill libraries at their pinned commits (about 30 seconds, once per plugin version). If Blender does not have the MCP extension yet, it offers to install it from the pinned release, checked against a SHA-256; restart Blender after that.\n\nYou don't have to type the command: describe any 3D job and Claude picks the skill up on its own. Each job writes its plan, checkpoint renders, final images and a report to output/-/ in your current project. Claude Code asks before each Blender tool call. executeblendercode runs Python inside Blender, so only allow it if you are comfortable with that."
   },
   {
    "name": "Mane087/skill-router",
@@ -59030,9 +59206,9 @@
    ],
    "created_at": "2026-09-16",
    "homepage": "",
-   "score": 13.3,
+   "score": 10.0,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -59040,6 +59216,108 @@
     }
    ],
    "readme_excerpt": "MCP server that ranks and retrieves agent skills, so an agent loads the smallest sufficient context instead of an entire catalog.\n\nSkill Router is an MCP server that indexes the SKILL.md catalogs already present on a machine, ranks them against a described task, and returns a short list of candidates with the reason each one was selected. It speaks stdio to any MCP client — Claude Code, Codex, OpenCode — and ships as a self-contained binary per platform.\n\nRanking is deterministic: no model call, no network, no embedding index. The same query against the same catalog always returns the same list in the same order, which is what makes the routing decision reproducible and testable.\n\nCoding agents already discover and select skills on their own, and that works while the catalog is small and each skill is clearly different from the rest.\n\nIt stops working as the catalog grows. With a hundred skills the agent has to read a hundred descriptions, tell overlapping ones apart, and decide what is relevant before starting the actual task. Progressive disclosure limits how much of each skill is exposed, but the routing decision still happens inside the agent's context, competing for attention with the work.\n\nSkill Router moves that decision into a retrieval layer. The agent describes the task instead of reading the catalog:\n\nand gets back a ranked shortlist, each entry carrying the signals that put it there:"
+  },
+  {
+   "name": "Enzx/Topical",
+   "url": "https://github.com/Enzx/Topical",
+   "description": "A personal knowledge graph for tracking work, with an MCP server for coding agents and a git extension that keeps a code graph honest",
+   "stars": 4,
+   "forks": 1,
+   "language": "TypeScript",
+   "topics": [],
+   "created_at": "2026-09-18",
+   "homepage": "",
+   "score": 22.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Topical is a personal knowledge graph for tracking work. Every piece of work is a topic: a node with a summary, attributes, a todo list, typed references and a dated journal. Topics are linked into graphs called spaces, and the same topics can be looked at as a canvas, a board, a timeline or a full-screen document. The graph is also readable and writable by coding agents over an MCP server, and a git extension keeps a graph that describes a codebase honest as that code moves.\n\nIt is a desktop app built with Tauri 2, React 19 and TypeScript on the front, and Rust with SQLite behind. It currently runs on Windows only: the data directory, the MCP handshake file and the installer are all Windows-specific, and nothing has been tried elsewhere yet.\n\n- Spaces. One graph per space, and spaces nest. A nested space appears as a node on its parent's canvas, and a portal is a topic that points at a topic in another space of the same tree. - Topics. Title, summary, an open attribute map, todos with due dates, refs, notes and blocks. Every topic gets a stable key such as KEY-12 that the omnibox and the MCP server can look up. - Refs. Typed external references spelled type:value: code: for a file, symbol or heading in a workspace, plus tag:, jira:, confluence:, email:, person: and link:. Code refs are resolved against the tree and reported when they dangle. - Links. A workspace-wide registry of link types, each with a name, an outward and an inward phrase, and whether it is directed and acyclic. related and parent are built in. - Four views of the same topics. A force-laid-out canvas, a k"
+  },
+  {
+   "name": "riecodes/pacto",
+   "url": "https://github.com/riecodes/pacto",
+   "description": "Archive an idle project folder into a single zip that lives inside it. CLI + MCP server.",
+   "stars": 4,
+   "forks": 1,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-17",
+   "homepage": "",
+   "score": 15.3,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Archive an idle project folder into a single zip that lives inside it, so the folder stays visible as a marker of what used to be there.\n\npacto unzip old-project puts it all back and deletes the zip.\n\nNothing is deleted until the archive has been verified: every entry is CRC-checked and the file count and total size are compared against the folder. If a locked file interrupts the delete, re-running pacto zip finds the good archive and finishes the job instead of re-zipping.\n\n- the current directory when it is inside the default root (C:\\dev) - otherwise the default root itself - --root D:\\projects overrides both, and PACTOROOT changes the default\n\nOnly the direct children of that folder are candidates.\n\nscan ranks by size × idle days, so a big folder untouched for a year comes before a big one you edited yesterday. Idle time is the newest file anywhere in the tree.\n\n- The archive is verified before anything is deleted. - Git repos with uncommitted or unpushed work are flagged, then archived anyway. .git goes into the zip, so history survives. - Symlinks and Windows junctions are skipped, not followed, and are listed in the output. - unzip refuses to run when the folder holds anything besides the archive, and rejects entries whose paths point outside it. - Empty directories are preserved through the round trip. - pacto never archives its own checkout.\n\nTools: scan, suggest, zip, unzip. zip is gated: without confirm=true it only reports what would happen, so an agent cannot delete a project by accident."
+  },
+  {
+   "name": "tontoko/jev-browser",
+   "url": "https://github.com/tontoko/jev-browser",
+   "description": "One grounded Jev/Playwright core: typed SDK, persistent CLI, and MCP server with native browser operations and deterministic assertions.",
+   "stars": 4,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [
+    "browser-automation",
+    "cli",
+    "jev",
+    "mcp",
+    "playwright",
+    "typescript"
+   ],
+   "created_at": "2026-09-17",
+   "homepage": "",
+   "score": 13.3,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Parallel semantic decisions. Deterministic Playwright effects. Explicit verification provenance.\n\nJev Browser combines native Playwright operations with Jev decisions over actual page elements. Use it instead of a Playwright MCP/CLI setup for browser automation, and instead of Stagehand for DOM-grounded act, observe, structured extract, and bounded agent workflows.\n\nNative operations and assertions run without an AI key. Natural-language operations use the official TypeSafe SDK against hosted Jev by default, or any compatible System One endpoint configured with baseURL / JEVBASEURL. A custom endpoint does not require a Jev API key. The decision backend chooses supplied candidates; it does not generate executable JavaScript or selectors. The project is Apache-2.0 licensed; hosted services and model weights are not included.\n\n日本語 · Migration guide · API · Semantic verification · Security · Verification\n\nNode.js 22.15 or newer. Download the package from GitHub Releases, then install it into your project:\n\nThe release tarball includes compiled JavaScript, declarations, the DOM bundle, documentation, and examples. There is no postinstall browser download and no requirement for a global browser daemon. The package is distributed on GitHub Releases; a registry publication is not implied.\n\nUse existing Playwright Locators, not another selector engine\n\nactual: { locator, property: 'text' 'value' 'checked' 'attribute' } also works directly in assertSemantic / assertSemanticBatch. Exact values need no model configuration. Ambiguous targets, other Pages and caller-scope escapes are rej"
+  },
+  {
+   "name": "impossibleG/impossible-embeddings",
+   "url": "https://github.com/impossibleG/impossible-embeddings",
+   "description": "A self-hosted embedding server with HTTP, gRPC and MCP APIs, verified model installation, batching, health checks, metrics and Windows and Linux releases.",
+   "stars": 4,
+   "forks": 0,
+   "language": "Rust",
+   "topics": [
+    "embedding-server",
+    "embeddings",
+    "grpc",
+    "local-ai",
+    "mcp",
+    "onnx-runtime",
+    "rust",
+    "self-hosted",
+    "semantic-search",
+    "vector-search"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "impossibleg.org",
+   "score": 10.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Impossible Embedding is a local-first server for dense text embeddings with open models. It owns the operational pieces that are easy to get wrong: verified model installation, bounded dynamic batching, predictable cancellation, readiness, metrics, authentication, and graceful shutdown.\n\nInference runs locally through ONNX Runtime. Nothing calls OpenAI or any other hosted inference service. POST /v1/embeddings is only a wire-compatible adapter so existing OpenAI-compatible clients can use a local base URL.\n\n- Native and OpenAI-compatible HTTP APIs, with a checked-in OpenAPI v1 contract. - gRPC embeddings, standard gRPC health, and reflection. - MCP 2025-03-26 over stateless HTTP and stateful standard input/output. - Curated, revision-pinned model manifests with verified downloads and explicit semantic status. - Atomic model installation, offline reuse, load/unload/delete operations, and concurrent-use protection. - Bounded request sizes, queueing, tokenization, batching, concurrency, and shutdown. - Prometheus metrics, structured privacy-safe logs, liveness, readiness, and a small status page. - Native Windows and Linux x86-64 release archives and a non-root container recipe.\n\nRust 1.85.1 is selected by rust-toolchain.toml. Start the server on explicit loopback addresses:\n\nIn a second terminal, install and load a curated model through the local administration API:\n\nInstallation is the only model operation that may use the network. It is always explicit, pins the revision and hashes from the curated manifest, and never executes repository code. Once installed, start with --o"
   },
   {
    "name": "RuriLothlorien/CCSwitch-operations",
@@ -68659,9 +68937,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "https://pagekit.cc",
-   "score": 9.5,
+   "score": 8.0,
    "first_seen": "2026-09-17",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-17",
@@ -68729,9 +69007,9 @@
    ],
    "created_at": "2026-09-16",
    "homepage": "https://pypi.org/project/platformio.mcp/",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-18",
@@ -68750,9 +69028,9 @@
    "topics": [],
    "created_at": "2026-09-16",
    "homepage": "https://tppv.dev",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-18",
@@ -68771,9 +69049,9 @@
    "topics": [],
    "created_at": "2026-09-15",
    "homepage": "",
-   "score": 9.5,
+   "score": 8.0,
    "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-18",
@@ -68801,9 +69079,9 @@
    ],
    "created_at": "2026-09-15",
    "homepage": "",
-   "score": 6.0,
+   "score": 5.0,
    "first_seen": "2026-09-18",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-18",
@@ -68837,9 +69115,9 @@
    ],
    "created_at": "2026-09-17",
    "homepage": "https://social0.app",
-   "score": 17.0,
+   "score": 12.0,
    "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-19",
@@ -68858,9 +69136,9 @@
    "topics": [],
    "created_at": "2026-09-17",
    "homepage": "https://labs.tonyseets.com/projects/pantograph",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-09-19",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-19",
@@ -68926,9 +69204,9 @@
    ],
    "created_at": "2026-09-17",
    "homepage": "https://help.rengabim.com/api/",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -68951,9 +69229,9 @@
    ],
    "created_at": "2026-09-17",
    "homepage": "",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -68981,9 +69259,9 @@
    ],
    "created_at": "2026-09-17",
    "homepage": "https://crafterwiki.com/",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -69023,9 +69301,9 @@
    ],
    "created_at": "2026-09-16",
    "homepage": "https://gburgyan.github.io/aat/",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -69044,9 +69322,9 @@
    "topics": [],
    "created_at": "2026-09-15",
    "homepage": "",
-   "score": 6.0,
+   "score": 5.0,
    "first_seen": "2026-09-20",
-   "last_seen": "2026-09-20",
+   "last_seen": "2026-09-21",
    "stars_history": [
     {
      "d": "2026-09-20",
@@ -69054,6 +69332,206 @@
     }
    ],
    "readme_excerpt": "Autonomous Google Play Console Release Sentinel, Phased Rollout Governor & Android Publisher Plugin for Google Antigravity.\n\nAn enterprise-grade Antigravity plugin engineered to give AI agents and developers programmatic, deterministic control over the Google Play Developer API v3. Deploy Android App Bundles (.aab), orchestrate staged rollouts (internal, alpha, beta, production), manage localized store presences, and triage user reviews with guaranteed sovereign credential quarantine.\n\nThe repository comes equipped with high-resolution vector and raster branding assets designed for GitHub releases, docs, and banners:\n\nAsset Type Dimensions Preview / File Link :--- :--- :--- :--- Hero Poster / Banner Vector SVG & Rendered PNG 1200 × 500 assets/poster.svg • assets/poster.png Brand Logo / Icon Vector SVG & Rendered PNG 512 × 512 assets/logo.svg • assets/logo.png Compact Banner Vector SVG 1200 × 500 assets/banner.svg\n\n1. 📦 Android App Bundle (.aab) Uploader (playuploadbundle): - Streamed chunked uploads to Google Play Console with automatic extraction and validation of assigned versionCode.\n\n2. 🚀 Track Management & Phased Rollouts (playcreaterelease, playlisttracks): - Seamlessly targets internal, alpha, beta, and production tracks. - Enforces staged rollout fractions (userfraction between 0.05 [5%] and 1.0 [100%]) to eliminate catastrophic single-point release bugs.\n\n3. 📝 Store Listing Governor (playupdatelisting, playgetlistings): - Enforces policy character constraints: Title (≤ 30 chars), Short Description (≤ 80 chars), Full Description (≤ 4,000 chars). - Supports multi-lin"
+  },
+  {
+   "name": "vigneshv1cky/alphadesk-terminal",
+   "url": "https://github.com/vigneshv1cky/alphadesk-terminal",
+   "description": "Self-hosted market-research terminal: SEC filings, market data on your own vendor keys, and 37 read-only MCP tools for your own AI agent. pip install alphadesk. AGPL-3.0.",
+   "stars": 3,
+   "forks": 2,
+   "language": "Python",
+   "topics": [
+    "agpl",
+    "fastapi",
+    "financial-terminal",
+    "market-data",
+    "mcp",
+    "model-context-protocol",
+    "react",
+    "sec-edgar",
+    "self-hosted"
+   ],
+   "created_at": "2026-09-19",
+   "homepage": "https://alphadesk-764298799571.us-east4.run.app",
+   "score": 34.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "AlphaDesk — dense, fast market-research terminal & MCP integration platform\n\nA dense, fast market-research terminal and integration platform. Readers connect their own market-data and news providers; AlphaDesk is the workspace that connects, checks and presents what those providers — and the public record at SEC EDGAR and the US Treasury — actually say. Questions are asked in the reader's own AI agent (Claude, ChatGPT, Codex, Cursor, opencode), which reads the same records through 37 read-only agent tools (MCP).\n\nAlphaDesk reads: quotes and charts, news, SEC filings, financial statements, ownership and insider activity, earnings and corporate calendars, options, crypto. It does not trade, route orders, hold positions, score ideas or write summaries.\n\nTwo ways to use it — the managed cloud or your own server. The code is open source under the GNU AGPL-3.0, with a commercial licence for anyone who cannot meet its terms. See Licence.\n\n1. What AlphaDesk is — and is not 2. Two ways to run it 3. Design principles 4. Features 5. Data sources 6. Search 7. Agent access (MCP) 8. Accounts, security and privacy 9. Architecture 10. Repository layout 11. Development 12. Configuration reference 13. Production deployment and operations 14. Testing and quality 15. Known limitations 16. History 17. Licence\n\nAlphaDesk is AlphaDesk is not ------ A consumption terminal: it fetches, checks and presents market information A trading system — there is no order routing, position state or broker integration An integration platform: every vendor figure runs on the reader's own key An aggregator — the "
+  },
+  {
+   "name": "Miro-sh/yeswehack-mcp",
+   "url": "https://github.com/Miro-sh/yeswehack-mcp",
+   "description": "Read-only MCP server for YesWeHack hunter accounts with credentials and TOTP authentication",
+   "stars": 3,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [],
+   "created_at": "2026-09-20",
+   "homepage": "",
+   "score": 30.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Serveur Model Context Protocol non officiel et entièrement en lecture seule pour un compte hunter YesWeHack.\n\nIl s'authentifie directement avec l'adresse e-mail, le mot de passe et le secret TOTP du compte. Aucun navigateur et aucun Personal Access Token ne sont requis. Le jeton de session obtenu reste uniquement en mémoire.\n\nCe projet n'est ni développé, ni sponsorisé, ni approuvé par YesWeHack.\n\n- Consultation des programmes publics et privés accessibles au hunter - Lecture des règles, scopes, exclusions et grilles de récompenses - Vérification locale d'une URL, d'un domaine ou d'une IPv4 contre les scopes - Consultation et recherche des rapports du hunter - Chronologie, statistiques et tableau de bord du compte - Consultation du solde et de l'historique des crédits - Hacktivity et classement lorsqu'ils sont publiés par le programme - Métadonnées des credentials de test avec secrets systématiquement masqués\n\n- Node.js 20 ou supérieur - npm - Un compte hunter YesWeHack avec TOTP activé - Un client MCP, par exemple Codex CLI\n\nPuis compiler et enregistrer le serveur dans Codex CLI :\n\nRedémarrer Codex CLI, puis appeler sessionstatus pour vérifier la connexion.\n\nVariable Description --- --- YESWEHACKEMAIL Adresse e-mail du compte hunter YESWEHACKPASSWORD Mot de passe du compte YESWEHACKTOPTKEY Secret TOTP Base32 ou URI otpauth:// complète YESWEHACKTOTPKEY Alias accepté pour YESWEHACKTOPTKEY YESWEHACKENVFILE Chemin optionnel vers un autre fichier d'environnement"
+  },
+  {
+   "name": "VirajMishra1/bouncer",
+   "url": "https://github.com/VirajMishra1/bouncer",
+   "description": "Intent firewall for AI agents — NVIDIA Nemotron checks every tool call against the user's goal and blocks prompt-injection hijacks before they run.",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-security",
+    "ai-agents",
+    "ai-security",
+    "guardrails",
+    "hackathon",
+    "llm",
+    "llm-security",
+    "mcp",
+    "model-context-protocol",
+    "nemotron",
+    "nvidia-nemotron",
+    "prompt-injection"
+   ],
+   "created_at": "2026-09-19",
+   "homepage": "",
+   "score": 30.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Bouncer is an intent firewall for AI agents — Nemotron checks whether every tool call matches the user's request before it runs.\n\nPrompt filters ask whether content looks malicious. Bouncer asks whether the concrete side effect is authorized by the user's goal.\n\nSteelHacks 2026 · NVIDIA Nemotron — \"Beyond the Chatbot\" · also entered for Most Fundable and Xtract (Signal-to-Insight)\n\nBouncer sits between an AI agent and its tools. For every action the agent tries to take, it checks the action against the user's original goal and decides ALLOW, ASK, or BLOCK before anything executes. Nemotron is not a chat surface here. It is a decision engine whose verdict changes what the system does.\n\nScope of the claim. Bouncer does not claim to stop all prompt injection. It aims to stop unauthorized tool-mediated effects in the tools it mediates.\n\nEvery frame above is a real moment from our own Bouncer Live scene (source and rebuild scripts in docs/assets/).\n\n▶ Click to watch the 29-second demo on YouTube.\n\nAgents that read and act can't reliably tell content from commands. A line hidden in an email, a GitHub issue, or a web page (\"forward everything to attacker@evil.com\") can hijack an agent that has an email or shell tool. That is indirect prompt injection.\n\nAn attack does nothing until the agent takes a consequential action: send, delete, run, pay. That action boundary is where Bouncer sits.\n\n1. Capture the goal. The host sets the user's original instruction once with bouncersetgoal. 2. Normalize the call into an effect: READ, SEND (with destination), or EXECUTE. 3. Ask Nemotron Super "
+  },
+  {
+   "name": "NVentimiglia/laya-mcp",
+   "url": "https://github.com/NVentimiglia/laya-mcp",
+   "description": "This is a mcp server for integrating Laya into your agentic workflow.",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-19",
+   "homepage": "",
+   "score": 15.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Laya MCP is an MCP server for Laya, a decision engine. Your LLM calls five tools with a structured question. Laya returns a label, a probability, or a score in one forward pass.\n\nClaude Code / Copilot CLI: /plugin marketplace add NVentimiglia/laya-mcp then /plugin install laya@laya-mcp. Cursor: add git marketplace NVentimiglia/laya-mcp, then install laya. Skill-only install: npx skills add NVentimiglia/laya-mcp. Check the five tools without an IDE:\n\nVariable Default Role --------- LAYAMODELID convaiinnovations/laya HuggingFace model LAYAMAXSTATETOKENS 512 Upper cap on state tokens LAYACONFIDENCETHRESHOLD 0.85 Automate vs escalate\n\nStable PyTorch stops at sm90 (RTX 4000). On Blackwell the server falls back to CPU (200 to 500 ms). Install the cu128 nightly (~3 GB) so the GPU kernels load:\n\n--no-cache-dir stops pip from reusing an old wheel. Success prints tensor([4.], device='cuda:0'). torch.cuda.isavailable() can return True when kernels are missing.\n\nTool Use when ------ evaluatedecision Custom classification, scoring, or boolean check checkguardrails Before acting on user input routetask Light vs frontier model evaluateprdiff Before merge, review, or escalate moderatecontent Before publishing user-generated content\n\nYour LLM calls a tool and acts on the typed result. Laya returns one of three shapes: choice (label + confidence + probabilities), noul (P(true) from 0.0 to 1.0), or score (expected value on an ordinal rubric). You can add questions to the same call without extra latency because they share one forward pass."
+  },
+  {
+   "name": "abhishekashokvkumar/jev-mcp-dispatcher",
+   "url": "https://github.com/abhishekashokvkumar/jev-mcp-dispatcher",
+   "description": "Natural-language MCP tool dispatcher powered entirely by TypeSafe's Jev — no general-purpose LLM. Discovers a simple MCP server's tool signatures at runtime and uses Jev's typed primitives (Choice/Nou",
+   "stars": 3,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-09-18",
+   "homepage": "",
+   "score": 15.0,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Zero general-purpose LLM calls — anywhere in this pipeline, not for picking the tool, not for reading a parameter's value out of a sentence, not for anything. This is a proof of concept for a different way to do MCP tool dispatch: given a simple MCP (Model Context Protocol) server — one whose tools take primitive-typed parameters — this script dynamically discovers its tool signatures at runtime and uses Jev — TypeSafe's System One reasoning model — to route a plain natural-language command to the correct tool and extract its arguments straight out of the sentence, using only Jev's typed primitives (Choice / Noul) instead of free-text generation. The dispatcher logic never hardcodes a specific tool name, parameter name, or parameter count. It is not a claim that this works against an arbitrary MCP server unconditionally — see Scope and caveats for exactly what the input text and the tool registry need to look like.\n\nEvery decision — which tool to call, which words belong to which argument, how many independent actions a command describes, whether a number is spelled out in words — is made by asking Jev one typed question and reading back a probability, never by asking a model to generate text.\n\nTraditional function-calling asks one model to both pick a tool and free-form-generate its arguments as text, then hopes the JSON parses and the types line up. This does the same job with Jev's typed primitives instead, which keeps every step inspectable and cheap:"
+  },
+  {
+   "name": "sloplink/aseprite-mcp",
+   "url": "https://github.com/sloplink/aseprite-mcp",
+   "description": "Unofficial local MCP server that lets AI assistants draw in Aseprite",
+   "stars": 3,
+   "forks": 0,
+   "language": "JavaScript",
+   "topics": [],
+   "created_at": "2026-09-16",
+   "homepage": "",
+   "score": 7.5,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "Let an AI assistant draw live in your running Aseprite via the Model Context Protocol.\n\nUnofficial community project. Not affiliated with or endorsed by Anthropic or Igara Studio (Aseprite). Use at your own risk – see DISCLAIMER.md.\n\n\"create me a map inside a dark medieval castle with dark wooden floor include a tilemap 16x16 for it\"\n\n\"now draw me a wizard for the castle interior and create a walk animation in all four directions\"\n\nThe assistant can create sprites, set exact pixels, use Aseprite's tools (line, rectangle, ellipse, bucket, curve, freehand …), manage layers and animation frames, undo/redo, and look at its own result as an upscaled PNG to iterate on it. Every change lands in Aseprite's undo history.\n\nDrawing is designed to be cheap in tokens: whole sprites are sent as a palette plus text rows, several steps fit into one call, and pixels can be read back in the same text format.\n\n- Aseprite v1.3 or later (Windows, macOS or Linux; the Steam version works too) - Node.js 20+ (some Linux distributions ship older versions – use nodejs.org or a version manager) - An MCP client that runs local (stdio) servers, e.g. Claude Code, Claude Desktop, Cursor, VS Code (GitHub Copilot), Windsurf, Gemini CLI or Codex CLI. Clients that only support remote (HTTP) servers, such as ChatGPT, cannot use it.\n\nDownload aseprite-mcp-bridge.aseprite-extension from the releases (or build it with npm run build), then in Aseprite: Edit › Preferences › Extensions › Add Extension."
+  },
+  {
+   "name": "weselben/gomodel-admin-mcp",
+   "url": "https://github.com/weselben/gomodel-admin-mcp",
+   "description": "MCP server for the GoModel admin API — grouped tools with gradual discovery, live docs from GitHub, TTL read cache, opt-in HTTP host mode. Runs on Bun; distroless Docker; auto-releases via CI through ",
+   "stars": 3,
+   "forks": 0,
+   "language": "TypeScript",
+   "topics": [
+    "admin-api",
+    "ai-gateway",
+    "bun",
+    "distroless",
+    "llm-tools",
+    "mcp",
+    "model-context-protocol",
+    "typescript"
+   ],
+   "created_at": "2026-09-16",
+   "homepage": "",
+   "score": 7.5,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "MCP server for the GoModel admin REST API.\n\nGradual-discovery group tools for the whole admin surface (the same operations the dashboard UI uses), live documentation tools that search the GoModel docs straight from GitHub, a TTL read cache that spares the Admin API, and an opt-in HTTP host mode so the server can run as a container anywhere. Runs on Bun or Node ≥ 18.\n\nArchitecture: grouped tools, gradual discovery\n\nInstead of exposing 79 individual tools (~12k tokens of passive context), the server registers one tool per area — the same grouping as the list below (~5k tokens total). Each area tool takes:\n\nDiscovery ladder, harness-agnostic (plain tools/calls, no protocol exotics):\n\n1. The server instructions teach the generic call pattern once. 2. Omit operation → the area returns its operation list. 3. An unknown operation errors with the valid list. 4. Invalid params error with field-level messages (Unrecognized key(s), type mismatches) — correct the call and retry; a wrong guess costs one failed call, not a re-read of the docs.\n\nAreas: adminruntime, adminruntimecontrol, adminusage, adminusagecontrol, adminaudit, admincache, adminmodels, adminproviders, adminprovidercontrol, admingovernance, admingovernancecontrol, adminauthkeys, adminvirtualmodels, adminpricingoverrides, adminratelimits, adminworkflows, adminworkflowscontrol, adminmcpservers, adminmcpserverscontrol — plus docsindex, docssearch, docsget, getserverinfo."
+  },
+  {
+   "name": "renatogroffe/ia-opensource-bichinhos-ti-2026-09",
+   "url": "https://github.com/renatogroffe/ia-opensource-bichinhos-ti-2026-09",
+   "description": "Conteúdos da apresentação \"Open Source + Inteligência Artificial - Projetos úteis para a construção de Agents, MCP Servers e soluções baseadas em LLMs!\".",
+   "stars": 3,
+   "forks": 0,
+   "language": null,
+   "topics": [],
+   "created_at": "2026-09-16",
+   "homepage": "",
+   "score": 7.5,
+   "first_seen": "2026-09-21",
+   "last_seen": "2026-09-21",
+   "stars_history": [
+    {
+     "d": "2026-09-21",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "ia-opensource-bichinhos-ti-2026-09 Conteúdos da apresentação \"Open Source + Inteligência Artificial - Projetos úteis para a construção de Agents, MCP Servers e soluções baseadas em LLMs!\"."
   }
  ]
 }
