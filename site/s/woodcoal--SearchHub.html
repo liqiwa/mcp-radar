@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>woodcoal/SearchHub — MCP Server | MCP Radar</title>
+<meta name="description" content="SearchHub normalizes Serper, Tavily, Exa, AnySearch, and other search APIs behind one HTTP, CLI, and MCP interface. It manages provider keys, quotas,  — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/woodcoal--SearchHub.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="woodcoal/SearchHub — MCP Server | MCP Radar">
+<meta property="og:description" content="SearchHub normalizes Serper, Tavily, Exa, AnySearch, and other search APIs behind one HTTP, CLI, and MCP interface. It manages provider keys, quotas,  — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "woodcoal/SearchHub", "description": "SearchHub normalizes Serper, Tavily, Exa, AnySearch, and other search APIs behind one HTTP, CLI, and MCP interface. It manages provider keys, quotas, rate limits, circuit breakers, logs, and failover ", "codeRepository": "https://github.com/woodcoal/SearchHub", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/woodcoal--SearchHub.html", "dateCreated": "2026-09-21"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">woodcoal/</span>SearchHub</h1>
+<p class="sub">SearchHub normalizes Serper, Tavily, Exa, AnySearch, and other search APIs behind one HTTP, CLI, and MCP interface. It manages provider keys, quotas, rate limits, circuit breakers, logs, and failover </p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-09-21</b></div>
+  <div class="chip">on radar since <b>2026-09-22</b></div>
+  
+</div>
+<div class="topics"><span class="topic">anysearch</span><span class="topic">exa-api</span><span class="topic">exa-search</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><a class="topic" href="/topic/search.html">search</a><span class="topic">search-api</span><span class="topic">search-engine</span><span class="topic">serper</span><span class="topic">tavily</span><span class="topic">tavily-api</span><span class="topic">tavily-search</span></div>
+<a class="btn" href="https://github.com/woodcoal/SearchHub" rel="noopener">View on GitHub ↗</a>
+<h2>About SearchHub</h2><p class="sub">One protocol. Multiple search providers. Automatic key rotation and failover.</p><p class="sub">SearchHub 把 Serper、Tavily、Exa、AnySearch 等搜索 API 统一成一个协议，并集中处理 API Key 轮换、限流、配额、供应商故障切换和熔断。</p><p class="sub">它适合需要稳定联网搜索能力的 MCP 客户端、AI Agent、RAG 应用和内部自动化服务。</p><p class="sub">- 一个 Key 失效或被限流：自动换下一个 Key - 一个供应商故障或超时：自动切换供应商 - 连续失败：熔断，冷却后半开探测 - 每个 Key 独立设置 QPS、日/月/总配额 - HTTP API、CLI、MCP 和管理后台统一提供 - 自托管，密钥和调用日志留在自己的机器上</p><p class="sub">概览 —— 每个供应商一张卡片：熔断状态、可用密钥数、冷却 / 隔离数、能力标签与全局默认配额。</p><p class="sub">搜索调试 —— 一次真实调用。第一把 Exa 密钥返回配额耗尽（keyQuotaExhausted），系统自动换到第二把并成功返回；调用链路把两次尝试完整记录下来，一眼看清命中了谁、用了哪把 Key、有没有降级。</p><p class="sub">供应商配置 —— 按权重（优先级）排序。全局 QPS 与三级配额可作为兜底，密钥里留空的字段自动继承；超时、单供应商最大换 Key 次数、熔断阈值与冷却时长都可调。</p><p class="sub">用量统计 —— 按尝试次数统计，含最近 24 小时与 14 天趋势、分供应商与分密钥的成功率、平均耗时与最近错误。</p><p class="sub">API 接口 —— 内置接口文档：认证方式、请求格式，以及各供应商在分页上的能力差异。</p><p class="sub">这两项保护的是你的上游供应商密钥和后台登录。示例里出现的 change-me 只是占位符，直接沿用会让密钥加密形同虚设。 另外 SEARCHHUBSECRET 一旦设置就不要再改——它是密钥的解密主密钥，改了之后已落盘的供应商密钥将无法解密。</p><p class="sub">打开 。数据和日志保存在 Docker 命名卷 searchhub-data 中。</p><p class="sub">注意 heredoc 用的是 生成的值请自行保管：SEARCHHUBSECRET 是供应商密钥的解密主密钥，设置之后不要再更改；改了已落盘的密钥将无法解密。</p><p class="sub">不要把 .env 提交到 Git。生产环境请把 SEARCHHUBADMINPASSWORD、SEARCHHUBSECRET 和供应商密钥放进安全的 Secret 管理系统。</p><p class="sub">1. 登录管理后台。 2. 进入「供应商」或「密钥管理」，添加 Serper / Tavily / Exa / AnySearch 的 API Key。 3. 进入「API 授权」，创建一个调用方 API Key。 4. 用调试台或 CLI 发起第一次搜索。</p><p class="sub">供应商密钥和 SearchHub 调用方 API Key 是两套凭据：前者用于访问上游搜索服务，后者用于保护 SearchHub 接口。</p><p class="sub">适用于 Claude Desktop、Cursor、Cline 等支持本地 MCP 的客户端：</p><p class="sub">工具 用途 ------ searchhubsearch 执行统一搜索 searchhubstatus 查看供应商健康度、熔断状态和密钥数量 searchhubproviders 查看供应商及其能力</p><p class="sub">搜索接口使用管理后台「API 授权」生成的 Key，或 SEARCHHUBAPITOKEN：</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/woodcoal--SearchHub.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/muzihuaner--SearXNG-MCP.html">
+  <span class="name"><span class="owner">muzihuaner/</span>SearXNG-MCP</span>
+  <p>一个基于 FastMCP 实现的 SearXNG 搜索 MCP 服务</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/lanlan0811--tianshu-mcp.html">
+  <span class="name"><span class="owner">lanlan0811/</span>tianshu-mcp</span>
+  <p>天枢 × AI-Agent 编排 MCP server：把 其他AI-Agent 当作执行工人，自动完成「开发 → 验收 → 失败返修 → 再验收」闭环。</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Techthos--gomukit.html">
+  <span class="name"><span class="owner">Techthos/</span>gomukit</span>
+  <p>Prebuilt, interactive HTML widgets for MCP Apps in Go — data tables and forms, self-contained in a single binary, host-themed, spec-compliant.</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Techthos--gadget.html">
+  <span class="name"><span class="owner">Techthos/</span>gadget</span>
+  <p>Prebuilt, interactive HTML widgets for MCP Apps in Go — data tables and forms, self-contained in a single binary, host-themed, spec-compliant.</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/mkpoli--gmail-mcp.html">
+  <span class="name"><span class="owner">mkpoli/</span>gmail-mcp</span>
+  <p>Multi-account Gmail MCP server on Cloudflare Workers — one deployment, one Google sign-in per connection, any MCP client</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/priyansh-narang2308--TheBlacklisted-NitroStack.html">
+  <span class="name"><span class="owner">priyansh-narang2308/</span>TheBlacklisted-NitroStack</span>
+  <p>Protocol-0 is an MCP (Model Context Protocol) server that gives AI assistants, Claude, Cursor, ChatGPT, NitroChat, or any MCP-compatible client, real authority to act as your Site Reliability Engineer</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
