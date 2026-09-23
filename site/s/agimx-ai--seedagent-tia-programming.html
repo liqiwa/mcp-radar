@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>agimx-ai/seedagent-tia-programming — MCP Server | MCP Radar</title>
+<meta name="description" content="西门子博途(博图) / Siemens TIA Portal V16–V21 AI 编程智能体。支持 S7-1200/1500 SCL 代码自动生成、编译诊断、工程归档(.zap)、PLCSIM 仿真与 PLC 下载。| AI agent for Siemens TIA Portal (S7-120 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/agimx-ai--seedagent-tia-programming.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="agimx-ai/seedagent-tia-programming — MCP Server | MCP Radar">
+<meta property="og:description" content="西门子博途(博图) / Siemens TIA Portal V16–V21 AI 编程智能体。支持 S7-1200/1500 SCL 代码自动生成、编译诊断、工程归档(.zap)、PLCSIM 仿真与 PLC 下载。| AI agent for Siemens TIA Portal (S7-120 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "agimx-ai/seedagent-tia-programming", "description": "西门子博途(博图) / Siemens TIA Portal V16–V21 AI 编程智能体。支持 S7-1200/1500 SCL 代码自动生成、编译诊断、工程归档(.zap)、PLCSIM 仿真与 PLC 下载。| AI agent for Siemens TIA Portal (S7-1200/1500): SCL code generation, compile diagnostics,", "codeRepository": "https://github.com/agimx-ai/seedagent-tia-programming", "programmingLanguage": "Unknown", "url": "https://mcp.liqiwa.com/s/agimx-ai--seedagent-tia-programming.html", "dateCreated": "2026-09-21"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">agimx-ai/</span>seedagent-tia-programming</h1>
+<p class="sub">西门子博途(博图) / Siemens TIA Portal V16–V21 AI 编程智能体。支持 S7-1200/1500 SCL 代码自动生成、编译诊断、工程归档(.zap)、PLCSIM 仿真与 PLC 下载。| AI agent for Siemens TIA Portal (S7-1200/1500): SCL code generation, compile diagnostics,</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  
+  <div class="chip">momentum <b>▲ 60.0</b></div>
+  <div class="chip">created <b>2026-09-21</b></div>
+  <div class="chip">on radar since <b>2026-09-23</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">botu</span><span class="topic">industrial-automation</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">plc</span><span class="topic">plc-code-generation</span><span class="topic">plc-programming</span><span class="topic">plcsim-advanced</span><span class="topic">s7-1200</span><span class="topic">s7-1500</span><span class="topic">scl</span><span class="topic">siemens</span><span class="topic">siemens-plc</span><span class="topic">simatic</span><span class="topic">step7</span><span class="topic">tia-portal</span><span class="topic">tia-portal-openness</span><span class="topic">workbuddy</span><span class="topic">workbuddy-plugin</span></div>
+<a class="btn" href="https://github.com/agimx-ai/seedagent-tia-programming" rel="noopener">View on GitHub ↗</a>
+<h2>About seedagent-tia-programming</h2><p class="sub">SeedAgent 西门子博途（TIA Portal / 博图）AI 编程智能体</p><p class="sub">面向 Siemens S7-1200 / S7-1500 的工控 AI 编程助手：通过自然语言生成西门子 SCL 代码、项目批量修改、语法编译排错、工程归档（.zap）与安全下载。适配腾讯 WorkBuddy。</p><p class="sub">通过 SeedAgent 西门子博途（TIA Portal / 行业常称“博图”）编程智能体，一套面向 Siemens S7-1200、S7-1500 和 TIA Portal V16～V21 的工控 AI 工程扩展（适配腾讯 WorkBuddy），让自控工程师通过自然语言，在本机或远程工控机/虚拟机上完成西门子 PLC 工程编程、SCL 代码自动生成、编译诊断、工程归档与经确认的 PLC 安全下载。</p><p class="sub">SeedAgent 博途（TIA Portal / 博图）编程智能体，不是一个简单地把大模型接到 TIA Portal Openness 上的演示 Demo，也不依赖模型反复试错或临场拼凑 Openness 自动化逻辑，安装后即可使用。我们把项目生命周期、版本选择、工程机连接、文件传递、编译诊断、收费、确认与安全边界固化为确定性的工具级产品，让自控工程师所选择的 AI Agent 能够真正理解工控需求、编写规范的西门子博途程序、管理项目状态并推进任务。</p><p class="sub">当前版本：0.9.0 当前 TIA 连接器版本：1.6.0 当前适配的 Agent 客户端：腾讯 WorkBuddy 支付方式：SkillPay 余额；需要追加授权时，由 WorkBuddy 调起腾讯“AI 专属卡”页面，通过微信支付完成</p><p class="sub">本仓库用于产品介绍、安装入口、版本发布、使用文档和问题反馈。产品不开源，仓库不包含核心源代码。</p><p class="sub">很多自控工程师和电气工程师在日常工作中会遇到各种繁琐的西门子 PLC 编程与维护需求，SeedAgent 针对以下典型工控场景提供确定性支持：</p><p class="sub">场景分类 痛点场景与工程师常见需求 SeedAgent 支持能力 :--- :--- :--- SCL 代码生成 电机启停、气缸/阀门逻辑、模拟量处理（NormX / ScaleX）、FIFO 队列、PID 参数整定等 自然语言描述工艺需求，直接生成标准 SCL 结构化文本，自动创建 FB/FC/DB 块 通信与协议处理 Modbus TCP 轮询、Profinet 交互、自定义报文解析、数据格式转换 辅助编写通信功能块逻辑与数据结构，减少手写重复代码的繁琐与易错 博途工程与归档 打开历史工程 .ap16～.ap21、解压/恢复 .zap16～.zap21 归档文件 支持打开现有工程、恢复归档、修改后一键重新归档导出，全流程保护原工程副本 语法与编译排错 SCL 语法报错、数据类型不匹配、未定义变量、编译不通过 驱动工控机真实 TIA Portal 编译器执行编译，获取真实报错并由 AI 针对性排错修复 TIA Openness 自动化 批量导出/导入程序块、自动化工程处理，免去繁琐手写 C 脚本 底层封装稳定的 Openness 接口与确定性安全边界，零脚本门槛开箱即用 仿真与安全下载 PLCSIM Advanced 离线仿真、真实 S7-1200 / S7-1500 PLC 下载 支持下载至 PLCSIM Advanced 仿真验证；对真实 PLC 下载执行严格的二次确认机制</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/agimx-ai--seedagent-tia-programming.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/caoyixian06--TiaMcpServer.html">
+  <span class="name"><span class="owner">caoyixian06/</span>TiaMcpServer</span>
+  <p>西门子博途 V17 (TIA Portal V17) MCP 服务器 / MCP Server — 作者: 曹义贤</p>
+  <span class="meta"><span>⭐ 4</span><span>C#</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/mrpulor-gh--nuphus-mcp.html">
+  <span class="name"><span class="owner">mrpulor-gh/</span>nuphus-mcp</span>
+  <p>Desktop automation MCP server — computer use for any AI agent: control screen, windows, mouse/keyboard, and Chrome via Model Context Protocol (stdio)</p>
+  <span class="meta"><span>⭐ 152</span><span>Rust</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/nduc99911--repo-context-mcp.html">
+  <span class="name"><span class="owner">nduc99911/</span>repo-context-mcp</span>
+  <p>MCP server: repo map, code search, and token-aware context packs for AI coding agents</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

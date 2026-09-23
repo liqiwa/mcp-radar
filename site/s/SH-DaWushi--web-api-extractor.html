@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SH-DaWushi/web-api-extractor — MCP Server | MCP Radar</title>
+<meta name="description" content="Capture browser API traffic via CDP and turn any site into a ready-to-run FastMCP server, with no official API required. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/SH-DaWushi--web-api-extractor.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="SH-DaWushi/web-api-extractor — MCP Server | MCP Radar">
+<meta property="og:description" content="Capture browser API traffic via CDP and turn any site into a ready-to-run FastMCP server, with no official API required. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "SH-DaWushi/web-api-extractor", "description": "Capture browser API traffic via CDP and turn any site into a ready-to-run FastMCP server, with no official API required.", "codeRepository": "https://github.com/SH-DaWushi/web-api-extractor", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/SH-DaWushi--web-api-extractor.html", "dateCreated": "2026-09-21"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">SH-DaWushi/</span>web-api-extractor</h1>
+<p class="sub">Capture browser API traffic via CDP and turn any site into a ready-to-run FastMCP server, with no official API required.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-09-21</b></div>
+  <div class="chip">on radar since <b>2026-09-23</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">api-extraction</span><a class="topic" href="/topic/browser-automation.html">browser-automation</a><a class="topic" href="/topic/cdp.html">cdp</a><a class="topic" href="/topic/chrome-devtools-protocol.html">chrome-devtools-protocol</a><a class="topic" href="/topic/fastmcp.html">fastmcp</a><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/playwright.html">playwright</a><a class="topic" href="/topic/python.html">python</a><span class="topic">traffic-capture</span></div>
+<a class="btn" href="https://github.com/SH-DaWushi/web-api-extractor" rel="noopener">View on GitHub ↗</a>
+<h2>About web-api-extractor</h2><p class="sub">把「只能手动点网页的系统」，变成 AI 能直接调用的工具 —— 你不用写一行代码。</p><p class="sub">很多系统只有网页界面，没有 API。你想让 AI 助手帮你查数据、提工单、导报表， 却卡在「它碰不到这个系统」这一步。</p><p class="sub">- 手上有一套只能登录网页、手动点操作的系统（OA、ERP、CRM、工单、报表、 内部管理后台……） - 想让 AI 助手替你完成里面的重复操作 - 没有 API 文档，也没有开发资源</p><p class="sub">- 一个支持「技能 / Skill」的 AI 助手桌面客户端 - 你自己的电脑（所有数据都留在本机） - 对该系统的合法授权 —— 只对你自己有权使用的系统使用</p><p class="sub">- 别人给了你 web-api-extractor-agent.zip —— 直接用它，跳到第二步。 - 自己打一个 —— 下载本仓库后运行一次打包脚本：</p><p class="sub">打开你的 AI 助手客户端，找到 「技能 / Skill」 相关的设置页，选择导入， 把上面那个 zip 加进去。</p><p class="sub">不同客户端的入口位置不一样，但都在技能设置里。导入成功后，技能列表中会出现 web-api-extractor 这一项。</p><p class="sub">这一步之后，你的 AI 助手就多了一项能力：陪你在浏览器里完成登录、记录你的操作、 并把它们做成工具。</p><p class="sub">首次使用需要装一点运行环境（含一个浏览器内核），AI 会带你完成，之后不用再管。</p><p class="sub">你得到的 意味着 ------ AI 能直接操作那个系统 不用再手动点网页 登录一次，长期复用 不用每次重新登录 后续想加功能，再操作一遍就行 不用推倒重做 可以把分发包给同事 对方只能调用，无法改动你的工具</p><p class="sub">想了解技术实现（接口归一化、凭据脱敏、加密识别、生成器能力、环境变量、 21 个工具的完整清单），见 docs/reference.md。</p><p class="sub">问题 回答 ------ 我需要会编程吗？ 不需要。全程对话 + 在浏览器里操作。 我的账号密码安全吗？ 密码不由它保存或转发；抓到的数据里凭据值一律被抹成 。登录态只存在你本机。 数据会上传到云端吗？ 不会。所有记录都在你电脑的数据目录里（~/.webapiextractor）。 支持哪些系统？ 只要你能用浏览器登录并操作，就能做 —— 包括需要验证码、短信验证、单点登录的内部系统。 生成的工具只能我自己用吗？ 也可以把分发包给同事；拿到的人只能调用，不能修改工具集。 系统改版了怎么办？ 再操作一遍，让 AI 补上变化的部分，不用重做。 这是 Skill 还是 MCP？ 你不用区分。它底层是一个 MCP 服务，上层是 Agent 可调用的技能 —— 导入技能就能用。</p><p class="sub">- 允许个人学习、测试和非商业自用 - 修改后再分发须保留原始来源说明 - 基于本项目开发的衍生工作应当开源 - 不允许直接商用</p><p class="sub">本项目仅用于合法合规的开发、测试、接口分析、文档生成、集成验证与合规评估场景，目的在于帮助使用者研究、理解和管理自己拥有授权的系统接口行为。</p><p class="sub">使用者必须遵守中华人民共和国法律法规及当地适用法律，并自行确认其使用行为的合法性。下列用途均不被视为本项目的合法用途：</p><p class="sub">- 用于未经授权的系统探测、攻击、绕过认证、破坏服务可用性或违反网站/平台使用条款的行为 - 用于窃取、泄露、篡改、篡用他人数据或敏感信息 - 用于非法访问、非法抓取、非法分析或非法加工受保护的接口与数据 - 用于造成目标系统宕机、服务中断、拒绝服务或其他损害他人合法权益的行为 - 用于任何违反适用法律、合同、行业规范和安全要求的目的</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/SH-DaWushi--web-api-extractor.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand the browser work off: an MCP server where a decision model drives the page for your agent, so a flow costs one tool call instead of a turn per click. Ref-based element tables, code-checked assert</p>
+  <span class="meta"><span>⭐ 14</span><span>Python</span></span>
+</a><a class="card" href="/s/Alpha-Park--genpark-multi-step-web-form-fill-orchestrator-skill.html">
+  <span class="name"><span class="owner">Alpha-Park/</span>genpark-multi-step-web-form-fill-orchestrator-skill</span>
+  <p>Multi-step web form fill orchestrator with validation (Playwright / Puppeteer)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/Alpha-Park--genpark-self-healing-dom-semantic-selector-skill.html">
+  <span class="name"><span class="owner">Alpha-Park/</span>genpark-self-healing-dom-semantic-selector-skill</span>
+  <p>Self-healing DOM semantic selector resilient to class mutations (Tabbit / Stagehand)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-visual-viewport-element-occlusion-resolver-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-visual-viewport-element-occlusion-resolver-skill</span>
+  <p>Visual viewport element occlusion resolver &amp; modal dismiser (Computer Use)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/Alpha-Park--genpark-visual-viewport-element-occlusion-resolver-skill.html">
+  <span class="name"><span class="owner">Alpha-Park/</span>genpark-visual-viewport-element-occlusion-resolver-skill</span>
+  <p>Visual viewport element occlusion resolver &amp; modal dismiser (Computer Use)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-multi-step-web-form-fill-orchestrator-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-multi-step-web-form-fill-orchestrator-skill</span>
+  <p>Multi-step web form fill orchestrator with validation (Playwright / Puppeteer)</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

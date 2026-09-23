@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-30</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-governance.html">ai-governance</a><span class="topic">audit-logging</span><span class="topic">authorization</span><a class="topic" href="/topic/guardrails.html">guardrails</a><span class="topic">hexagonal-architecture</span><a class="topic" href="/topic/java.html">java</a><a class="topic" href="/topic/llm-security.html">llm-security</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><a class="topic" href="/topic/rate-limiting.html">rate-limiting</a><a class="topic" href="/topic/spring-boot.html">spring-boot</a><span class="topic">spring-boot-starter</span></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-governance.html">ai-governance</a><a class="topic" href="/topic/audit-logging.html">audit-logging</a><span class="topic">authorization</span><a class="topic" href="/topic/guardrails.html">guardrails</a><span class="topic">hexagonal-architecture</span><a class="topic" href="/topic/java.html">java</a><a class="topic" href="/topic/llm-security.html">llm-security</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><a class="topic" href="/topic/rate-limiting.html">rate-limiting</a><a class="topic" href="/topic/spring-boot.html">spring-boot</a><span class="topic">spring-boot-starter</span></div>
 <a class="btn" href="https://github.com/TikyParkinson/mcp-agent-guardrails-spring-boot-starter" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://central.sonatype.com/artifact/io.github.tikyparkinson/mcp-guardrails-spring-boot-starter" rel="noopener nofollow">Homepage ↗</a>
 <h2>About mcp-agent-guardrails-spring-boot-starter</h2><p class="sub">MCP Agent Guardrails helps you put security and governance controls around MCP tool calls in Java / Spring Boot applications with absolute minimum fuss. Every tool invocation runs through a chain of guardrails — audit, authorization, prompt-injection detection and rate limiting — before the tool executes.</p><p class="sub">When you expose MCP tools to LLM agents, the &quot;client&quot; is a model deciding on its own what to invoke and with which arguments. This project closes the four gaps that opens.</p><p class="sub">Work with zero configuration: add one dependency and all four guardrails are active with sensible in-memory defaults. Be opinionated, but get out of the way: every store, policy source and rule set is a port — expose your own bean and the default backs off. Fail closed: a guardrail that throws denies the call rather than passing it. The one deliberate exception is recording the decision trace — a broken audit store degrades observability, never protection, because a store that could block calls would be a single point of failure for the whole server. Never persist tool arguments (PII/secret risk) — audit trails carry metadata only.</p><p class="sub">Module Description ------ guardrails-core Shared model, Guardrail and ResultGuardrail SPIs, inbound and outbound chains, and the MCP tool-call interceptor guardrails-audit Audit trail of every invocation, every guardrail decision, both chains and every human approval guardrails-authz Declarative agent→tool authorization policy (first-match-wins rules) guardrails-injection-guard Rule-based prompt-injection detection over tool arguments guardrails-ratelimit Fixed-window rate </p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -108,6 +108,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">ultramancode/</span>spring-ai-privacy-guardrails</span>
   <p>Privacy guardrails for Spring AI: request-scoped PII tokenization and least-privilege disclosure across model/tool calls, with Presidio and JVM-local OpenNLP.</p>
   <span class="meta"><span>⭐ 5</span><span>Java</span></span>
+</a><a class="card" href="/s/Matthew0822--MCPBastion.html">
+  <span class="name"><span class="owner">Matthew0822/</span>MCPBastion</span>
+  <p>Zero-trust security gateway between AI agents and MCP servers: scoped capabilities, redaction, rate and cost limits, and verifiable session logs.</p>
+  <span class="meta"><span>⭐ 20</span><span>Rust</span></span>
+</a><a class="card" href="/s/agent-chaperone--agent-chaperone.html">
+  <span class="name"><span class="owner">agent-chaperone/</span>agent-chaperone</span>
+  <p>Screens an AI agent&#x27;s tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client&#x27;s built-in tools.</p>
+  <span class="meta"><span>⭐ 20</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/VirajMishra1--bouncer.html">
   <span class="name"><span class="owner">VirajMishra1/</span>bouncer</span>
   <p>Intent firewall for AI agents — NVIDIA Nemotron checks every tool call against the user&#x27;s goal and blocks prompt-injection hijacks before they run.</p>
@@ -120,14 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Shalimov04/</span>mcp-airlock</span>
   <p>Stateless governance proxy for MCP (2026-07-28): policy, dry-run, human confirmation, audit, tracing</p>
   <span class="meta"><span>⭐ 25</span><span>Python</span></span>
-</a><a class="card" href="/s/eltociear--mcp-audit.html">
-  <span class="name"><span class="owner">eltociear/</span>mcp-audit</span>
-  <p>Scan MCP servers &amp; AI-agent skills for malicious patterns (prompt injection in tool descriptions, credential exfil, download-and-execute). 17 patterns / 60 signatures, zero-dep. Measured over 196 publ</p>
-  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
-</a><a class="card" href="/s/java-ai-in-action--framework-compare.html">
-  <span class="name"><span class="owner">java-ai-in-action/</span>framework-compare</span>
-  <p>Spring AI vs LangChain4j vs SAA 三框架同台对比（配套篇2）</p>
-  <span class="meta"><span>⭐ 4</span><span>Java</span></span>
 </a>
 
 
