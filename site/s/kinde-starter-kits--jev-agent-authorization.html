@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kinde-starter-kits/jev-agent-authorization — MCP Server | MCP Radar</title>
+<meta name="description" content="Jev agent authorization for MCP tool calls: Kinde identity and permissions plus Jev&#x27;s typed, calibrated decisions, checked server-side before every ca — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/kinde-starter-kits--jev-agent-authorization.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="kinde-starter-kits/jev-agent-authorization — MCP Server | MCP Radar">
+<meta property="og:description" content="Jev agent authorization for MCP tool calls: Kinde identity and permissions plus Jev&#x27;s typed, calibrated decisions, checked server-side before every ca — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "kinde-starter-kits/jev-agent-authorization", "description": "Jev agent authorization for MCP tool calls: Kinde identity and permissions plus Jev's typed, calibrated decisions, checked server-side before every call runs", "codeRepository": "https://github.com/kinde-starter-kits/jev-agent-authorization", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/kinde-starter-kits--jev-agent-authorization.html", "dateCreated": "2026-09-23"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">kinde-starter-kits/</span>jev-agent-authorization</h1>
+<p class="sub">Jev agent authorization for MCP tool calls: Kinde identity and permissions plus Jev&#x27;s typed, calibrated decisions, checked server-side before every call runs</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 50.0</b></div>
+  <div class="chip">created <b>2026-09-23</b></div>
+  <div class="chip">on radar since <b>2026-09-24</b></div>
+  
+</div>
+<div class="topics"><span class="topic">agent-authorization</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/authorization.html">authorization</a><span class="topic">convex</span><a class="topic" href="/topic/jev.html">jev</a><span class="topic">kinde</span><a class="topic" href="/topic/llm-security.html">llm-security</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/nextjs.html">nextjs</a><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><a class="topic" href="/topic/tool-calling.html">tool-calling</a><a class="topic" href="/topic/typesafe-ai.html">typesafe-ai</a></div>
+<a class="btn" href="https://github.com/kinde-starter-kits/jev-agent-authorization" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://jev-gatehouse.vercel.app" rel="noopener nofollow">Homepage ↗</a>
+<h2>About jev-agent-authorization</h2><p class="sub">Jev Gatehouse: Jev agent authorization with Kinde</p><p class="sub">A starter kit that checks every AI agent tool call before it runs. Kinde checks who the agent acts for and what that user can do. Jev, the System One model from TypeSafe AI, judges each call in about 200 ms. Policy code in the app decides: allow the call, ask the user to approve it, or stop it.</p><p class="sub">An agent calls a small workspace API through a Kinde MCP connection. The Kinde MCP server passes the user&#x27;s access token to the API. The guard in front of the API runs these steps for each call:</p><p class="sub">1. Verifies the Kinde access token (issuer, audience, signature). 2. Reads the user&#x27;s permissions and feature flags for the organization, from the token or from the Kinde Management API. 3. Denies the call if a Kinde permission or flag is missing. Allows reads that have the permission. 4. Sends every other call to Jev with the user&#x27;s request, the tool call and the documents the agent read. Jev returns calibrated signals: does the call match the request, is it destructive, does it follow planted text, does it send data out, and how risky is it. 5. Decides in code from the signals. A low-confidence call goes to an LLM judge. 6. Writes the decision to a ledger before anything runs. If the write fails, the call does not run.</p><p class="sub">A call that needs approval is held for 10 minutes. The user approves it on a page that requires a fresh sign-in. The held call then runs once.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/kinde-starter-kits--jev-agent-authorization.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/agent-chaperone--agent-chaperone.html">
+  <span class="name"><span class="owner">agent-chaperone/</span>agent-chaperone</span>
+  <p>Screens an AI agent&#x27;s tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client&#x27;s built-in tools.</p>
+  <span class="meta"><span>⭐ 20</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/TikyParkinson--mcp-agent-guardrails-spring-boot-starter.html">
+  <span class="name"><span class="owner">TikyParkinson/</span>mcp-agent-guardrails-spring-boot-starter</span>
+  <p>Security &amp; governance guardrails for MCP agents in Java — audit trail, agent-to-tool authorization, prompt-injection detection and rate limiting as a zero-config Spring Boot starter.</p>
+  <span class="meta"><span>⭐ 4</span><span>Java</span></span>
+</a><a class="card" href="/s/flankerhqd--cyvisguard.html">
+  <span class="name"><span class="owner">flankerhqd/</span>cyvisguard</span>
+  <p>Security control plane for AI agents — identity and delegation, capability policy, data-flow taint and a live audit trail, enforced over MCP. Guards a real Claude Code end to end.</p>
+  <span class="meta"><span>⭐ 30</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/abhishekswe--agent-fastpath.html">
+  <span class="name"><span class="owner">abhishekswe/</span>agent-fastpath</span>
+  <p>Jev MCP server: a decision layer for coding agents, built on TypeSafe Jev (System One model). Ship gates, risk checks, file triage that keeps files out of context, and a safe headless browser, with ca</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/shitianfang--jev-use.html">
+  <span class="name"><span class="owner">shitianfang/</span>jev-use</span>
+  <p>Claude Code / Codex / pi plugin that hands agent steps needing no text output to Jev (TypeSafe&#x27;s judgment model) — measured p50 ~230 ms and ~$0.02 per 1,000 judgments, with typed escalation back to th</p>
+  <span class="meta"><span>⭐ 25</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/shaharia-lab--jev-cli.html">
+  <span class="name"><span class="owner">shaharia-lab/</span>jev-cli</span>
+  <p>Command-line tool for TypeSafe AI&#x27;s Jev model. Ask yes/no, multiple-choice and rubric questions about any text and get calibrated probabilities back. Answers become exit codes for shells and CI, JSON </p>
+  <span class="meta"><span>⭐ 25</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PyModel/jev-judge-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Typed judgment tools for MCP agents. TypeSafe&#x27;s Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/PyModel--jev-judge-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="PyModel/jev-judge-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Typed judgment tools for MCP agents. TypeSafe&#x27;s Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "PyModel/jev-judge-mcp", "description": "Typed judgment tools for MCP agents. TypeSafe's Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score: the model judges, policy decides auto, review, o", "codeRepository": "https://github.com/PyModel/jev-judge-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/PyModel--jev-judge-mcp.html", "dateCreated": "2026-09-23"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">PyModel/</span>jev-judge-mcp</h1>
+<p class="sub">Typed judgment tools for MCP agents. TypeSafe&#x27;s Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score: the model judges, policy decides auto, review, o</p>
+<div class="chips">
+  <div class="chip">⭐ <b>24</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 246.0</b></div>
+  <div class="chip">created <b>2026-09-23</b></div>
+  <div class="chip">on radar since <b>2026-09-24</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-tools.html">agent-tools</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">ai-guardrails</span><a class="topic" href="/topic/classification.html">classification</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/fact-checking.html">fact-checking</a><a class="topic" href="/topic/guardrails.html">guardrails</a><a class="topic" href="/topic/llm.html">llm</a><span class="topic">llm-as-a-judge</span><a class="topic" href="/topic/llm-evaluation.html">llm-evaluation</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><a class="topic" href="/topic/python.html">python</a><span class="topic">reranking</span><a class="topic" href="/topic/structured-output.html">structured-output</a><span class="topic">uv</span><a class="topic" href="/topic/verification.html">verification</a></div>
+<a class="btn" href="https://github.com/PyModel/jev-judge-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About jev-judge-mcp</h2><p class="sub">An MCP server that gives your coding agent eleven judgment tools backed by TypeSafe&#x27;s Jev model. The agent hands a tool some evidence and a question it can enumerate: is this claim supported, is this page safe to read, which of these files answers the question, did this patch finish the task. Jev answers with probabilities, usually in under a second. Policy turns them into one of three actions: auto (proceed), review (check it another way), or escalate (stop).</p><p class="sub">Use it for checks that have a fixed set of answers. When the step needs new text, code, or options you cannot list, the agent should write it itself.</p><p class="sub">You need Python 3.12+, uv, a POSIX system (Linux or macOS), and a TypeSafe API key from console.typesafe.ai. The package is not on PyPI yet, so you run it from a clone.</p><p class="sub">Install with the installer (recommended)</p><p class="sub">Restart your agent. The tools show up as jevverify, jevgate, and so on (mcpjev in Claude Code).</p><p class="sub">setup reads the key from TYPESAFEAPIKEY, or asks for it at a hidden prompt. It never takes the key as an argument, so the key stays out of your shell history. It makes one live call to check the key and writes nothing if TypeSafe rejects it. A good key goes to ~/.config/jev-mcp/key, readable only by you. The server uses that file whenever TYPESAFEAPIKEY is unset, so agents you start without exporting the key still work. When the variable is set, it wins.</p><p class="sub">install finds the agents on your machine, shows what it will change, and asks before writing. It supports Claude Code, Claude Desktop, Codex (CLI and the ChatGPT app), Cursor, OpenCode, Pi, omp, and Pythinker.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/PyModel--jev-judge-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/abhishekswe--agent-fastpath.html">
+  <span class="name"><span class="owner">abhishekswe/</span>agent-fastpath</span>
+  <p>Jev MCP server: a decision layer for coding agents, built on TypeSafe Jev (System One model). Ship gates, risk checks, file triage that keeps files out of context, and a safe headless browser, with ca</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model m</p>
+  <span class="meta"><span>⭐ 15</span><span>Python</span></span>
+</a><a class="card" href="/s/iflytek--dolphin-mcp-pilot.html">
+  <span class="name"><span class="owner">iflytek/</span>dolphin-mcp-pilot</span>
+  <p>Production-ready MCP server that lets AI agents build, schedule, run and recover Apache DolphinScheduler data pipelines - 53+ tools, beyond read-only.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/KernelLord--pickysteve.html">
+  <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
+  <p>Skill router and context picker for Claude Code, Cursor, and Aider. Auto-picks the right skill for every prompt, with prompt-injection filtering for MCP.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/shitianfang--jev-use.html">
+  <span class="name"><span class="owner">shitianfang/</span>jev-use</span>
+  <p>Claude Code / Codex / pi plugin that hands agent steps needing no text output to Jev (TypeSafe&#x27;s judgment model) — measured p50 ~230 ms and ~$0.02 per 1,000 judgments, with typed escalation back to th</p>
+  <span class="meta"><span>⭐ 25</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/agent-chaperone--agent-chaperone.html">
+  <span class="name"><span class="owner">agent-chaperone/</span>agent-chaperone</span>
+  <p>Screens an AI agent&#x27;s tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client&#x27;s built-in tools.</p>
+  <span class="meta"><span>⭐ 20</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

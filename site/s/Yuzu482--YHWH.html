@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuzu482/YHWH — MCP Server | MCP Radar</title>
+<meta name="description" content="Kether-governed AI agent orchestration with Pi/MCP, isolated workers, LSP tools, and a portable Windows/WSL2 installer — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Yuzu482--YHWH.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Yuzu482/YHWH — MCP Server | MCP Radar">
+<meta property="og:description" content="Kether-governed AI agent orchestration with Pi/MCP, isolated workers, LSP tools, and a portable Windows/WSL2 installer — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Yuzu482/YHWH", "description": "Kether-governed AI agent orchestration with Pi/MCP, isolated workers, LSP tools, and a portable Windows/WSL2 installer", "codeRepository": "https://github.com/Yuzu482/YHWH", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Yuzu482--YHWH.html", "dateCreated": "2026-09-18"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Yuzu482/</span>YHWH</h1>
+<p class="sub">Kether-governed AI agent orchestration with Pi/MCP, isolated workers, LSP tools, and a portable Windows/WSL2 installer</p>
+<div class="chips">
+  <div class="chip">⭐ <b>21</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 44.0</b></div>
+  <div class="chip">created <b>2026-09-18</b></div>
+  <div class="chip">on radar since <b>2026-09-24</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-orchestration.html">agent-orchestration</a><a class="topic" href="/topic/agents.html">agents</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/coding-agents.html">coding-agents</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/lsp.html">lsp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a><a class="topic" href="/topic/subagents.html">subagents</a><span class="topic">windows-11</span><span class="topic">wsl2</span></div>
+<a class="btn" href="https://github.com/Yuzu482/YHWH" rel="noopener">View on GitHub ↗</a>
+<h2>About YHWH</h2><p class="sub">YHWH 是面向 Windows 11 + WSL2 的便携式 Kether 治理规则与 Pi 执行环境，适合希望为 AI 编码工作流配置受控 worker、沙箱和 LSP 工具的开发者与维护者。它提供宿主接入配置、主代理规则、资源限制与结果校验；不安装主代理客户端，也不代表所有宿主或模型均已实机验证。</p><p class="sub">快速开始： 查看一键安装（需 Windows 11、WSL2 与硬件虚拟化），或先读常见客户端接入；项目结构见下方，安装细节与验证边界见安装和验证与卸载。</p><p class="sub">主代理只负责思考与调度： Astra（或宿主选择的主模型）负责方案、调度、补丁整合与验收；代码、测试和实现修复由 Pi 子代理编写，原生 worker 默认 Luna/medium，并按任务复杂度显式选择 low、high 或 max。子代理失败不自动回退为主代理编码。该策略是宿主指令约束，不能禁用所有客户端的编辑工具；详见职责与失败处理与思考档位和交付预算。</p><p class="sub">子代理监管心跳： 本地计时器提供不调用模型的心跳，并单独记录最近执行进度；静默不触发自动重试。它不证明远端模型健康，也不自动唤醒主代理；详见心跳说明与部署边界。</p><p class="sub">交付诊断（待发布）： 新增思考、正文、工具事件计数及最近活动时间，帮助解释子代理超时；不保存原始内容，不改变预算或成功判定。现有安装需升级；它不是完成等待接口。详见诊断字段与证据边界。</p><p class="sub">连续调用改进：HeadlessBatchEvents 实时显示各项阶段、等待状态和结果；会话缓存减少重复文件读取与哈希，保留每次版本检查。整批执行前校验，同会话串行调用，失败即停止；报告缓存命中及分段耗时。详见操作与验收边界。</p><p class="sub">v0.12 工作流优化： CLI 实机回显验收、连续批次与耗时证据、可选 Windows Job Object 清理、受管插件升级/回滚、Git 变更影响候选及 Windows CI 配置。Antigravity 路径留空、默认禁用；CI 尚有失败项。源码能力与已部署/已发布状态分别记录，见操作与验收指南。</p><p class="sub">新增可选特性：Codex、Claude Code、Antigravity 官方 CLI 无头主代理入口，包含版本锁定、统一结果、运行预算和发布/本地文件比对。现有 Pi 路由保持不变，默认不启用客户端。见 使用说明。</p><p class="sub">v0.13.0： 原生 Luna worker 改为按任务选择思考档位（默认 medium），加入交付和清理预算、思考／正文／工具活动诊断，以及 Windows 与无凭据测试兼容性修复。保留此前的连续调用、心跳、关系记忆和确定性探针。本地服务需单独升级，性能收益尚未做对照验证；详见双语发布说明。</p><p class="sub">开发背景、架构演进、关键决策及历史验证边界见 架构开发历史；对应的脱敏记录见 历史证据索引。</p><p class="sub">本仓库的 README 统一采用中英文双版本，并在顶部提供语言切换按钮；新增或修改时同步维护两版。维护约定见 AGENTS.md（仓库文件，不随安装包分发）。</p><p class="sub">0.7 受控 API 配置： 支持 OpenCode Go、CommandCode、OpenRouter 和自定义 HTTPS 平台。宿主显式配置后选择可选 API 路由，保留 Luna/Sonnet 5 与 max 绑定、审查者无工具、无自动降级。新增 Configure-Providers.cmd；见平台配置指南。真实账号与付费心跳尚未验证。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Yuzu482--YHWH.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/NiazMorshed2007--jev-review.html">
+  <span class="name"><span class="owner">NiazMorshed2007/</span>jev-review</span>
+  <p>Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.</p>
+  <span class="meta"><span>⭐ 209</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/naw103--foremerge.html">
+  <span class="name"><span class="owner">naw103/</span>foremerge</span>
+  <p>Catch intent conflicts before code conflicts. The open-source coordination protocol for coding agents, built above Git.</p>
+  <span class="meta"><span>⭐ 32</span><span>Rust</span></span>
+</a><a class="card" href="/s/yunuo110--engineering-mcp.html">
+  <span class="name"><span class="owner">yunuo110/</span>engineering-mcp</span>
+  <p>Engineering MCP is a repository-aware AI engineering control plane for orchestrating trusted coding workers through MCP, with lifecycle management, execution isolation, and verifiable task handoff.</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Get-Concord-AI--concord-mcp.html">
+  <span class="name"><span class="owner">Get-Concord-AI/</span>concord-mcp</span>
+  <p>Shared work-state for coding agents: claim work, leave handoffs, and generate review packets before PRs, over MCP.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/luckeyfaraday--frontier-orchestrator.html">
+  <span class="name"><span class="owner">luckeyfaraday/</span>frontier-orchestrator</span>
+  <p>Multi-agent orchestration for Claude Code: MCP server + skill that keeps Claude as lead engineer while delegating backend work to OpenAI Codex and frontend/design work to Kimi</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Novaya-AI--novgraph.html">
+  <span class="name"><span class="owner">Novaya-AI/</span>novgraph</span>
+  <p>Open-source client for Novgraph, Novaya&#x27;s proprietary hosted code knowledge graph. Gives coding agents recorded intent, related-code context, ranked change impact and architecture context over MCP or </p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
