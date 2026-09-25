@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vivian-labs/1point3acres-toolkit — MCP Server | MCP Radar</title>
+<meta name="description" content="一亩三分地自动签到 + 每日答题：在你自己电脑的 Chrome 里、用你自己的登录完成，不经过第三方；也是给 Claude Code / Codex 用的 MCP 服务。1point3acres daily check-in &amp; quiz automation, local-only, plus a — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/vivian-labs--1point3acres-toolkit.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="vivian-labs/1point3acres-toolkit — MCP Server | MCP Radar">
+<meta property="og:description" content="一亩三分地自动签到 + 每日答题：在你自己电脑的 Chrome 里、用你自己的登录完成，不经过第三方；也是给 Claude Code / Codex 用的 MCP 服务。1point3acres daily check-in &amp; quiz automation, local-only, plus a — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "vivian-labs/1point3acres-toolkit", "description": "一亩三分地自动签到 + 每日答题：在你自己电脑的 Chrome 里、用你自己的登录完成，不经过第三方；也是给 Claude Code / Codex 用的 MCP 服务。1point3acres daily check-in & quiz automation, local-only, plus an MCP server for AI assistants.", "codeRepository": "https://github.com/vivian-labs/1point3acres-toolkit", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/vivian-labs--1point3acres-toolkit.html", "dateCreated": "2026-09-23"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">vivian-labs/</span>1point3acres-toolkit</h1>
+<p class="sub">一亩三分地自动签到 + 每日答题：在你自己电脑的 Chrome 里、用你自己的登录完成，不经过第三方；也是给 Claude Code / Codex 用的 MCP 服务。1point3acres daily check-in &amp; quiz automation, local-only, plus an MCP server for AI assistants.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>10</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 50.0</b></div>
+  <div class="chip">created <b>2026-09-23</b></div>
+  <div class="chip">on radar since <b>2026-09-25</b></div>
+  
+</div>
+<div class="topics"><span class="topic">1point3acres</span><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/browser-automation.html">browser-automation</a><span class="topic">checkin</span><span class="topic">chrome</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><span class="topic">daily-checkin</span><span class="topic">interview</span><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/python.html">python</a><span class="topic">seleniumbase</span><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/vivian-labs/1point3acres-toolkit" rel="noopener">View on GitHub ↗</a>
+<h2>About 1point3acres-toolkit</h2><p class="sub">它每天做什么 · 怎么工作 · 安全与隐私 · 快速开始 · 常见问题 · 给开发者</p><p class="sub">每天自动帮你完成一亩三分地（1point3acres）的 签到 和 每日答题，每天稳拿 2 个大米，连续签到不断档，你什么都不用做。它不是把账号交给某个服务器代跑，而是在你电脑上开一个专用的 Chrome，用你自己的登录，像人一样点按钮，点完还会去积分页确认大米真的到账。</p><p class="sub">支持 macOS 和 Windows，只需要装好 Chrome 和 Python 3.12。签到答题之外，它还能采集面经、离线搜索、发帖回复，并能接给 Claude Code、Codex 这类 AI 助手用。这些是附加功能，不装不影响签到答题。</p><p class="sub">[!NOTE] 本文讲「它是怎么做的」；具体命令、参数和排错步骤都在 使用说明。</p><p class="sub">你想 看这里 :--:-- 先看效果 它每天替你做什么 看懂原理 三分钟总览 · 自动签到 · 自动答题 · 怎么算真的成功 · 出错了怎么自救 · 每天什么时候跑 放心用 安全与隐私：你的数据在哪 动手 快速开始 · 其他功能 · 常见问题 · 更新 改代码 技术栈 · 代码结构 · 测试与 CI</p><p class="sub">打开「我的积分」，每天都有两条 +1 大米的记录：一条「签到奖励」，一条「每日答题」。</p><p class="sub">这两张图就是工具每天的全部目标。它不会做别的事：不发帖、不回复、不点赞。签到时会随机选一个心情、配一句「说说」，让签到像真人；不想要可以关掉，见 自动签到。</p><p class="sub">一句话：你的电脑每 10 分钟醒来问一次「今天签了吗」，没签就开一个专用的 Chrome，用你自己的登录，像人一样点按钮，点完再去积分页确认大米真的到账。</p><p class="sub">1. 到点了，系统叫醒它。 用的是电脑自带的定时任务功能，每 10 分钟叫醒一次。 2. 先看看今天做过没。 只翻本机的记录，不开浏览器：还没到你设定的时间？今天两项都已经到账了？是的话直接退出。绝大多数时候都停在这一步，所以每 10 分钟跑一次也不费资源。 3. 打开专用 Chrome。 和你平时用的浏览器互不干扰，见下一小节。 4. 自动签到。 打开签到页，选一个心情，点「提交签到」。细节见 自动签到。 5. 自动答题。 读出今天的题目和选项，和题库比对，命中就点对应选项、点「提交答案」。细节见 自动答题。 6. 确认大米真的到账。 打开积分页，看到当天的「签到奖励 +1」和「每日答题 +1」，而且是你账号名下的。细节见 怎么算真的成功。 7. 记在本机。 这次做了什么、结果如何，写进你电脑上的记录，以后可以离线查。 8. 报告结果。 结论只有三种：圆满完成、需要看一眼、失败。</p><p class="sub">工具不会动你平时用的浏览器。它用电脑上已经装好的 Chrome 程序，但给它一套独立的设置和登录状态，里面只有这个论坛的登录。跑完就关，不常驻后台。</p><p class="sub">三个配套的保险：同一时刻只有一个任务能用它；一次运行最多 15 分钟，超时就强制关掉；它只允许打开论坛自己的网址，别的地址在代码里直接拒绝。</p><p class="sub">1. 打开签到页。 打开前先确认登录还在不在，不在就自动恢复（见下面「登录是怎么自动恢复的」）。 2. 选心情。 签到页要求选一个心情。默认随机抽一个，并配一句「说说」，让签到看起来像真人；不想要可以关掉，关掉后每天固定选「没心情」、什么都不写（见下面「关于今日心情 / 说说」）。 3. 点「提交签到」。 只点一次。按钮还没就绪（页面没加载完）就先退出，留给下一轮再来，不会硬点。 4. 等网站回应。 点完按钮不算数。工具会盯着网络请求，等到网站真的回应了才往下走，最多等 45 秒。快超时时会自动再试一次人机验证。 5. 确认大米到账。 打开积分页，看当天有没有一条「签到奖励」、大米 +1、属于你账号的记录。有，这一项才算成功。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/vivian-labs--1point3acres-toolkit.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/klarluft--gitwarren-app.html">
+  <span class="name"><span class="owner">klarluft/</span>gitwarren-app</span>
+  <p>A cross-platform desktop app for doing local code reviews of your own git repositories. Single user, single machine, no server, no account.</p>
+  <span class="meta"><span>⭐ 11</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/ig-shadow-walker--agentBrowser.html">
+  <span class="name"><span class="owner">ig-shadow-walker/</span>agentBrowser</span>
+  <p>A local browser your coding agent can actually finish a job in — file uploads, cross-origin iframes, native dialogs, and downloads, all via CLI/MCP.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/krmisystems--fantasy-football-manager.html">
+  <span class="name"><span class="owner">krmisystems/</span>fantasy-football-manager</span>
+  <p>ESPN draft and lineup tools for Codex and other MCP clients, with browser sign-in, approval modes, per-team limits, and server monitoring.</p>
+  <span class="meta"><span>⭐ 84</span><span>Python</span></span>
+</a><a class="card" href="/s/Riccardo8888--agent-link.html">
+  <span class="name"><span class="owner">Riccardo8888/</span>agent-link</span>
+  <p>An end-to-end encrypted channel between coding agents, anywhere</p>
+  <span class="meta"><span>⭐ 55</span><span>Python</span></span>
+</a><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
+</a><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model m</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
