@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xy200303/termpilot — MCP Server | MCP Radar</title>
+<meta name="description" content="跨平台 SSH 终端。用户在本机登录后，Agent 通过 MCP 继续操作同一条会话。你的终端，助手可以接着用。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/xy200303--termpilot.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="xy200303/termpilot — MCP Server | MCP Radar">
+<meta property="og:description" content="跨平台 SSH 终端。用户在本机登录后，Agent 通过 MCP 继续操作同一条会话。你的终端，助手可以接着用。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "xy200303/termpilot", "description": "跨平台 SSH 终端。用户在本机登录后，Agent 通过 MCP 继续操作同一条会话。你的终端，助手可以接着用。", "codeRepository": "https://github.com/xy200303/termpilot", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/xy200303--termpilot.html", "dateCreated": "2026-09-24"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">xy200303/</span>termpilot</h1>
+<p class="sub">跨平台 SSH 终端。用户在本机登录后，Agent 通过 MCP 继续操作同一条会话。你的终端，助手可以接着用。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">created <b>2026-09-24</b></div>
+  <div class="chip">on radar since <b>2026-09-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/electron.html">electron</a><a class="topic" href="/topic/linux.html">linux</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/sftp.html">sftp</a><a class="topic" href="/topic/ssh.html">ssh</a><a class="topic" href="/topic/ssh-client.html">ssh-client</a><a class="topic" href="/topic/terminal.html">terminal</a><a class="topic" href="/topic/typescript.html">typescript</a><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/xy200303/termpilot" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/xy200303/termpilot/releases/latest" rel="noopener nofollow">Homepage ↗</a>
+<h2>About termpilot</h2><p class="sub">本机 SSH 终端。凭据保存在本机。用户在窗口中登录后，Agent 继续操作同一条未断开的会话。</p><p class="sub">登录 中途需要输入 继续下一步 --- --- --- --- 独立远程终端 用户在软件中输入密码 菜单、安装向导和 sudo 密码只由用户操作 会话仍在，Agent 不能进入该窗口 Agent 自行连接 Agent 需要获得密码或私钥 本次调用结束后，提示符不再保留 经常重新连接，工作目录和正在运行的程序不一致 TermPilot 用户在窗口中登录，口令留在本机 Agent 的后续按键进入当前画面，用户可见 仍是同一终端，无需再次连接</p><p class="sub">先打开 TermPilot，在设置中启用 Agent 连接。然后将下面这段话发给 Claude Code、Kimi Code、Codex、Cursor、WorkBuddy 或 CodeBuddy：</p><p class="sub">Agent 会安装使用说明并注册 TermPilot。之后直接说明目标主机和操作。连接口令写在本机 mcp.json 中，不进入代码仓库。</p><p class="sub">MCP 不可用时，可运行本机命令 termpilot。窗口未打开时，该命令会先启动 TermPilot。tools 列出工具，schema 查看参数，call 执行调用。优先读取文本；需要查看画面时再截图。已打开的终端继续使用，不为同一操作再打开一个。</p><p class="sub">- 支持密码或私钥登录。同一主机可保存多个账号，并按主机分组。无公网地址的主机可连回本机，且只接受本机连入。 - 本机终端与远程终端使用同一行标签。右键可复制、截图和粘贴。有选中文本时 Ctrl+C 为复制，无选中时为中断；Ctrl+V 为粘贴。 - 远程文件按目录展开。双击文本文件进行编辑，Ctrl+S 写回服务器。 - 可截取当前画面、指定行，或将滚动内容合成为长图。截图内容为窗口中已经显示的画面。 - 在连接或终端上右键「复制为 Agent 提示词」，将该条事实发给 Agent。 - 窗口配色与终端配色分开设置。</p><p class="sub">平台 文件 --- --- Windows x64 TermPilot.Setup..exe、TermPilot--win.zip macOS（Apple Silicon） TermPilot--arm64.dmg、TermPilot--arm64-mac.zip Linux x64 TermPilot-.AppImage、termpilotamd64.deb</p><p class="sub">会话数据库位于 %APPDATA%\TermPilot\termpilot.db。</p><p class="sub">推送到 main 会执行类型检查和构建。创建与 package.json 中 version 一致的标签（例如 v0.5.8）后，工作流在 Windows、macOS 和 Linux 上打包，并发布到 GitHub Release。发布说明来自 .github/release-body.md。提交说明、更新日志和开发约定见 AGENT.md。仅构建当前系统时使用 npm run dist:win、npm run dist:mac 或 npm run dist:linux。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/xy200303--termpilot.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/liangyou09--lyshell.html">
+  <span class="name"><span class="owner">liangyou09/</span>lyshell</span>
+  <p>AI-native terminal &amp; SSH client — built-in DeepSeek Harness to launch agents in TUI or embedded Web UI, plus SFTP, serial/Telnet and MCP server.</p>
+  <span class="meta"><span>⭐ 3</span><span></span></span>
+</a><a class="card" href="/s/klarluft--gitwarren-app.html">
+  <span class="name"><span class="owner">klarluft/</span>gitwarren-app</span>
+  <p>A cross-platform desktop app for doing local code reviews of your own git repositories. Single user, single machine, no server, no account.</p>
+  <span class="meta"><span>⭐ 11</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/calesthio--Resonant.html">
+  <span class="name"><span class="owner">calesthio/</span>Resonant</span>
+  <p>Free, local AI music studio for Windows—generate songs, play instruments, arrange, mix, export WAV, and connect Codex or Claude through MCP.</p>
+  <span class="meta"><span>⭐ 83</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/bolivestilo--Homekit.html">
+  <span class="name"><span class="owner">bolivestilo/</span>Homekit</span>
+  <p>Homekit gives any AI agent direct, physical control over Apple Home. Flip lights. Lock doors. Read sensors. Through a single open interface.</p>
+  <span class="meta"><span>⭐ 68</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/sgateway--s-gw.html">
+  <span class="name"><span class="owner">sgateway/</span>s-gw</span>
+  <p>Local credential control for AI coding agents.</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

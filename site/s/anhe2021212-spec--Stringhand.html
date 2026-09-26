@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anhe2021212-spec/Stringhand — MCP Server | MCP Radar</title>
+<meta name="description" content="Stringhand gives AI agents a pair of hands for the guitar. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/anhe2021212-spec--Stringhand.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="anhe2021212-spec/Stringhand — MCP Server | MCP Radar">
+<meta property="og:description" content="Stringhand gives AI agents a pair of hands for the guitar. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "anhe2021212-spec/Stringhand", "description": "Stringhand gives AI agents a pair of hands for the guitar.", "codeRepository": "https://github.com/anhe2021212-spec/Stringhand", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/anhe2021212-spec--Stringhand.html", "dateCreated": "2026-09-25"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">anhe2021212-spec/</span>Stringhand</h1>
+<p class="sub">Stringhand gives AI agents a pair of hands for the guitar.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>9</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 90.0</b></div>
+  <div class="chip">created <b>2026-09-25</b></div>
+  <div class="chip">on radar since <b>2026-09-26</b></div>
+  
+</div>
+<div class="topics"><span class="topic">accompaniment</span><a class="topic" href="/topic/agents.html">agents</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">fingerstyle</span><span class="topic">generative-music</span><span class="topic">guitar</span><span class="topic">guitar-tabs</span><a class="topic" href="/topic/javascript.html">javascript</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">midi</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">musci-ai</span><span class="topic">music</span><span class="topic">tablature</span></div>
+<a class="btn" href="https://github.com/anhe2021212-spec/Stringhand" rel="noopener">View on GitHub ↗</a>
+<h2>About Stringhand</h2><p class="sub">一把由本地浏览器持续演奏、Agent 提前交付乐句意图的吉他。包含完整前端 PWA、九个 MCP 工具、规则式 Guitar Brain、真实采样、听唱反射、曲谱库、录音与离线原创谱渲染。</p><p class="sub">非商业许可：PolyForm Noncommercial 1.0.0。 原创代码及随附原创内容允许按许可用于非商业用途、修改和再分发；商业用途需另获权利人授权。完整条款见 LICENSE.md，范围与例外见 LICENSE-STATUS.md。这是非商业源码公开（source-available），不是 OSI 定义的开源。第三方 CC0 采样不受新增非商业限制。</p><p class="sub">0.2 更新：共享实时/离线编配器、持续低音与空弦共鸣、逐颗冲突日志、17 根音完整尾音采样、柔化勾弦/滑音，以及离线并联房间混响。见 编配指南 与 音色说明。编配自然度仍有改进空间。</p><p class="sub">需要 Node.js 22+、Python 3.10+、FFmpeg（带 libmp3lame）在 PATH。采样已包含，无需下载或调用音乐生成 API。</p><p class="sub">打开 http://localhost:3072/guitar/，输入 GUITARBROWSERKEY。浏览器只保存 HttpOnly 会话 cookie，不把控制密钥放到前端。选择曲目或即兴，然后点击递琴，首次点击解锁音频。麦克风拒绝授权时仍可手动等我、继续、结束。</p><p class="sub">可选 Docker：配置 .env 后 docker compose up --build -d。容器包含 Node、Python、FFmpeg，数据通过独立 volume 持久化。Docker 配置随包提供；验证范围见 docs/VALIDATION.md。</p><p class="sub">手机需要 HTTPS。把 GUITARORIGIN 改成实际 HTTPS origin，使用 ops/nginx.conf.example 将 /guitar/ 反代至本机3072，保留 Host/Origin 与 WebSocket。勿将 /control/ 暴露到公网。已有网站可用普通菜单链接 /guitar/ 嵌入；无需原作者的主页或登录服务。</p><p class="sub">复制并修改 mcp.example.json 中 Python 和脚本的绝对路径，在客户端设置单独的 GUITARCONTROLKEY，它必须与服务端一致。MCP 的 GUITARCONTROLURL 默认 http://localhost:3072；浏览器使用公网 HTTPS 时，MCP 仍可走本机地址。远程 Agent 可通过 SSH 隧道访问控制端；浏览器反代需保持配置的 Host。</p><p class="sub">九个工具：start / intent / wait / state / stop / fill / hold / tease / score。</p><p class="sub">页面递琴后，Agent 调用 state 读取 songId、sessionId 与和声预览，再 start。即兴建议一次提交开场：</p><p class="sub">Agent 只提前排未来一两句；错过边界即拒绝。没有新意图，重复上一句而不停止。wait 使用 cursor 与长等待，可加 untilphrase/sessionid。守拍、扫弦、反射全部本地执行。stop(style=&quot;natural&quot;) 自然收尾。</p><p class="sub">递琴通知为可配置功能：设 GUITARHANDOFFURL，可另设 GUITARHANDOFFTOKEN。点击后服务端 POST {&quot;text&quot;:&quot;演奏上下文与工具用法&quot;}，接收方返回2xx表示成功。没有 webhook 时页面仍能递琴，Agent 手动 state/start；不伪造通知送达。含糊失败不自动重复发送。通知不含私人歌词。测试与示例不会向真实 Agent 发消息。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/anhe2021212-spec--Stringhand.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/nirholas--3D-AR-Studio.html">
+  <span class="name"><span class="owner">nirholas/</span>3D-AR-Studio</span>
+  <p>Drop a full augmented-reality studio into any web page. Place any number of 3D models in your real room through the camera, generate new ones from a text prompt, arrange them, then share the scene as </p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/janwilmake--agent-codemode.html">
+  <span class="name"><span class="owner">janwilmake/</span>agent-codemode</span>
+  <p>Let the scripts your coding agent writes call your connected MCP servers (no extra auth)</p>
+  <span class="meta"><span>⭐ 29</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/slxca--opencontext.html">
+  <span class="name"><span class="owner">slxca/</span>opencontext</span>
+  <p>A Model Context Protocol server for persistent project-specific AI agent context.</p>
+  <span class="meta"><span>⭐ 9</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/menot-you--n-memory.html">
+  <span class="name"><span class="owner">menot-you/</span>n-memory</span>
+  <p>Memory your agent can trust — every answer carries its source; when it doesn&#x27;t know, it says so. Hermetic, local, MCP.</p>
+  <span class="meta"><span>⭐ 5</span><span>Rust</span></span>
+</a><a class="card" href="/s/naseridev--orven.html">
+  <span class="name"><span class="owner">naseridev/</span>orven</span>
+  <p>MCP-compatible context and memory system: paged code navigation for AI assistants, plus a recorded, verified theory of what is known about the code.</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/polymind-inc--agent-framework-js.html">
+  <span class="name"><span class="owner">polymind-inc/</span>agent-framework-js</span>
+  <p>A TypeScript implementation of the Microsoft Agent Framework programming model, with semantic parity to the official .NET, Python, and Go implementations. Independent community project.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
