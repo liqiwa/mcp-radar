@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SerenQi/rain-go — MCP Server | MCP Radar</title>
+<meta name="description" content="西窗 West Window · 人和 AI 在同一张桌上下棋打牌的 MCP 游戏平台 · 10 games, seat-based multiplayer, server-side hidden-hand isolation — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/SerenQi--rain-go.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="SerenQi/rain-go — MCP Server | MCP Radar">
+<meta property="og:description" content="西窗 West Window · 人和 AI 在同一张桌上下棋打牌的 MCP 游戏平台 · 10 games, seat-based multiplayer, server-side hidden-hand isolation — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "SerenQi/rain-go", "description": "西窗 West Window · 人和 AI 在同一张桌上下棋打牌的 MCP 游戏平台 · 10 games, seat-based multiplayer, server-side hidden-hand isolation", "codeRepository": "https://github.com/SerenQi/rain-go", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/SerenQi--rain-go.html", "dateCreated": "2026-09-26"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">SerenQi/</span>rain-go</h1>
+<p class="sub">西窗 West Window · 人和 AI 在同一张桌上下棋打牌的 MCP 游戏平台 · 10 games, seat-based multiplayer, server-side hidden-hand isolation</p>
+<div class="chips">
+  <div class="chip">⭐ <b>8</b> stars</div>
+  <div class="chip">⑂ <b>5</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 90.0</b></div>
+  <div class="chip">created <b>2026-09-26</b></div>
+  <div class="chip">on radar since <b>2026-09-27</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/SerenQi/rain-go" rel="noopener">View on GitHub ↗</a>
+<h2>About rain-go</h2><p class="sub">一个可以连接到 AI 的 MCP 服务器：人在手机网页上，AI 通过 MCP 工具，在同一张桌上下棋、打牌、玩大富翁。 一张桌可以坐好几个人：你、朋友、一个或几个 AI，缺人时用机器人补位。 名字取自李商隐「何当共剪西窗烛，却话巴山夜雨时」。</p><p class="sub">类别 游戏 落子写法 --------- 棋 围棋 D4、pass，数子阶段 dead C3、accept、resume 棋 五子棋 H8 棋 黑白棋 d3 棋 国际象棋 e2e4、e7e8q 棋 中国象棋 h2e2 牌 德州扑克（两人单挑） call、raise 120、fold 牌 跑得快（两人版） 3 3、10 J Q K A、pass 牌 斗地主（三人，第三家是机器人） bid 3、3 3 3 4、pass 骰 大富翁（两人版） roll、buy、build 夜雨、end 骰 飞行棋（两人版） roll、move 2、launch</p><p class="sub">棋子是雨窗上的水珠。围棋里横竖相连的同色棋子会融成一滴。 牌局里各看各的手牌：服务端给每一方单独生成视图，AI 看不到你的牌，网页也拿不到 AI 的牌。</p><p class="sub">显示名称集中在 apps/web/src/brand.ts 和 apps/worker/src/mcp.ts 开头的说明里，改名只要改这两处。 内部标识统一用 rain-go。</p><p class="sub">座位 怎么坐进来 ------ 你 开局时选「你」，这台设备记住你的座位 朋友 开局后打开邀请面板，把他那个座位的链接发给他，他用自己的手机打开就能坐下 AI 你自己的 AI 用连接器开局，或调用 joingame 认领空的 AI 座位；别人的 AI 用那个座位的专用连接地址 /mcp/seat/ 接入，只能玩这一个座位 机器人 由游戏自带的规则机器人自动出招</p><p class="sub">没有座位的人打开对局链接就是观战，看不到任何人的手牌。每个浏览器只收到自己座位的视图，AI 也只能读到自己座位的描述。</p><p class="sub">游戏 人数 ------ 围棋、五子棋、黑白棋、国际象棋、中国象棋 2 跑得快 2 到 3 斗地主 3 大富翁、飞行棋 2 到 4 德州扑克 2 到 6</p><p class="sub">目录 内容 ------ packages/engine/src/match 通用对局层：游戏模块接口、可复现的随机数、走子、认输、聊天、改名、按玩家生成视图、给 AI 的文字描述 packages/engine/src/games 每种游戏一个纯函数规则模块 apps/worker Cloudflare Worker：Hono 路由、MCP 服务器（Streamable HTTP，无状态）、每局一个 Durable Object、对局列表 Durable Object apps/web React + Vite + Tailwind v4 + Motion 前端。src/games/ 是每种游戏的界面，src/components/MatchScreen.tsx 是共用的对局页</p><p class="sub">AI 通过 MCP 工具走子，人在网页上走子，两边通过同一个 Durable Object 同步。 AI 调用 waitforopponent 会挂起，直到轮到它。</p><p class="sub">工具 作用 ------ listgametypes 能玩哪些游戏，每种的人数、完整规则、选项和落子写法 newgame 开新局，seats 按顺序写每个座位是 human、ai 还是 bot；返回每位朋友的链接和其他 AI 座位的连接地址 joingame 认领一局里空着的 AI 座位，返回座位口令 listgames 列出对局 getstate 当前棋盘或牌桌、轮到谁、合法走法、最近的悄悄话 play 走一步，可附带一句话 waitforopponent 等人走，最长约 50 秒，超时就再调一次 resign 认输 rename 改你或 AI 的显示名字，</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/SerenQi--rain-go.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/XiaoDuoYa--codex-with-chatgpt.html">
+  <span class="name"><span class="owner">XiaoDuoYa/</span>codex-with-chatgpt</span>
+  <p>ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.</p>
+  <span class="meta"><span>⭐ 2301</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/shinthink--blitzstrike.html">
+  <span class="name"><span class="owner">shinthink/</span>blitzstrike</span>
+  <p>⚡ Blitz Strike — a universal MCP penetration-testing toolbelt. Structured methodology: reconnaissance &amp; attack-surface mapping, source-to-sink analysis, and live validation. 57 escalation chains, 130-</p>
+  <span class="meta"><span>⭐ 634</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/halofyai--halofy.html">
+  <span class="name"><span class="owner">halofyai/</span>halofy</span>
+  <p>Halofy is the open access and governance layer for AI agents across your organization. Identity, policy, provenance, audit, and signed erasure.</p>
+  <span class="meta"><span>⭐ 440</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/OpenLabs-so--openanalytics.html">
+  <span class="name"><span class="owner">OpenLabs-so/</span>openanalytics</span>
+  <p>Open-source, privacy-first and cookieless web analytics with revenue attribution and an MCP server.</p>
+  <span class="meta"><span>⭐ 217</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/NiazMorshed2007--jev-review.html">
+  <span class="name"><span class="owner">NiazMorshed2007/</span>jev-review</span>
+  <p>Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.</p>
+  <span class="meta"><span>⭐ 209</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
