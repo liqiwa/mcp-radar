@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>youagainchen/claude-codex-coop — MCP Server | MCP Radar</title>
+<meta name="description" content="Let Claude and Codex call each other from their desktop apps to review, cross-check or implement, with a live side panel. / 让 Claude 与 Codex 在各自桌面版里互相 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/youagainchen--claude-codex-coop.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="youagainchen/claude-codex-coop — MCP Server | MCP Radar">
+<meta property="og:description" content="Let Claude and Codex call each other from their desktop apps to review, cross-check or implement, with a live side panel. / 让 Claude 与 Codex 在各自桌面版里互相 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "youagainchen/claude-codex-coop", "description": "Let Claude and Codex call each other from their desktop apps to review, cross-check or implement, with a live side panel. / 让 Claude 与 Codex 在各自桌面版里互相审查、协作的插件。", "codeRepository": "https://github.com/youagainchen/claude-codex-coop", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/youagainchen--claude-codex-coop.html", "dateCreated": "2026-09-27"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">youagainchen/</span>claude-codex-coop</h1>
+<p class="sub">Let Claude and Codex call each other from their desktop apps to review, cross-check or implement, with a live side panel. / 让 Claude 与 Codex 在各自桌面版里互相审查、协作的插件。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>14</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 140.0</b></div>
+  <div class="chip">created <b>2026-09-27</b></div>
+  <div class="chip">on radar since <b>2026-09-29</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/code-review.html">code-review</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a></div>
+<a class="btn" href="https://github.com/youagainchen/claude-codex-coop" rel="noopener">View on GitHub ↗</a>
+<h2>About claude-codex-coop</h2><p class="sub">一次真实调用：Codex 审查 macOS 安装脚本，找出了一个真问题（已在 v0.13.1 修复）</p><p class="sub">- 一个 AI 说得头头是道，你却拿不准它是不是在&quot;一本正经地胡说&quot;； - 想让 Claude 和 Codex 互相把关，只能在两个窗口之间来回复制粘贴，两边说法不同时也不知道该信谁。</p><p class="sub">在 Claude 桌面版或 Codex 桌面版里照常聊天，当前的 AI 就是主协调：它先形成自己的判断，需要时自动调用另一边的 AI 做审查、找反例或实现，逐项核对对方的依据，再给你一个综合回答，并说清哪些已证实、哪些存疑。</p><p class="sub">在哪边聊天 主协调 被调用执行任务的协作 AI --------- Claude 桌面版 Claude Codex Codex 桌面版 Codex Claude</p><p class="sub">侧边面板：正在调用的模型、推理强度、实时额度与调用记录 点开任意一次调用，查看对方的完整回复</p><p class="sub">预览版。Windows 10/11 已实测；macOS 为实验性支持（仅脚本安装，尚未在真机验证）。</p><p class="sub">OpenAI 的 codex-plugin-cc 让你在 Claude Code 里调用 Codex，提供命令、自然语言委派和可选的审查门禁。本项目的侧重点不同：</p><p class="sub">- 双向：同时装进 Claude 与 Codex 桌面版，在哪边聊天，哪边就能调用另一边。 - 自动协作，并按协议复核：开启后按任务需要自动调用；主协调先给初判，结构化交接，逐项核对依据，分歧转成可执行的检验，最后标出已证实与存疑之处。适用于代码，也适用于写作、分析等需要&quot;防胡说&quot;的场景。 - 可视化面板：随时看到对方的模型、额度、完整回复和实时进度。</p><p class="sub">- 自动协作：打开一次，之后值得协作的任务会自动调用另一边；问候、状态查询等不会触发。 - 协作协议：主协调独立判断后，把目标、已知、初判、具体问题、验收标准交给对方；对方按分析、决策、审查、实施四种模式交付；每个任务最多两轮。 - 侧边面板：对方的模型、推理强度、实时状态、账号额度与本轮 token；完整回复（思考过程与命令步骤默认折叠）；手动指定下一次调用的模型与推理强度；背景可跟随 App 浅色/深色，或选择极光、星河、地平线动态背景；界面中英文随系统语言，也可在外观菜单切换。 - 按任务授权：分析、决策、审查只读；实施任务按你给出的授权修改文件，两边规则相同。</p><p class="sub">前提：Windows 10/11；Python 3.10+，并且在 PowerShell 里能运行 python --version（Codex 只从 PATH 启动插件，脚本安装也需要）；已登录的 Claude 桌面版与 Codex 桌面版。</p><p class="sub">在 PowerShell 中为 Claude 安装（终端与 Claude 桌面版的本地会话共用同一份插件设置，装一次两边都能用）：</p><p class="sub">也可以在 Claude Code 终端会话里输入 /plugin marketplace add youagainchen/claude-codex-coop；添加之后，在桌面版 Code 标签页点输入框旁的 + → Plugins → Add plugin 也能找到并安装它。</p><p class="sub">在 PowerShell 中为 Codex 安装。只装了 Codex 桌面版时 codex 不在 PATH 里，先定位 App 自带的那一份：</p><p class="sub">已单独安装 Codex CLI 的话，直接运行 codex plugin marketplace add … 和 codex plugin add … 即可。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/youagainchen--claude-codex-coop.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Riccardo8888--agent-link.html">
+  <span class="name"><span class="owner">Riccardo8888/</span>agent-link</span>
+  <p>An end-to-end encrypted channel between coding agents, anywhere</p>
+  <span class="meta"><span>⭐ 55</span><span>Python</span></span>
+</a><a class="card" href="/s/zjgxkj--codex-cc-orchestrator.html">
+  <span class="name"><span class="owner">zjgxkj/</span>codex-cc-orchestrator</span>
+  <p>点将台：可迁移的 Agent 分层协作编排器。支持任务派发、会话续跑、独立审查、后台执行与用量记录。当前开箱即用为 Codex → Claude Code，可经适配迁移到其他 Agent 组合。</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/menma4ever--agentic-team-mcp.html">
+  <span class="name"><span class="owner">menma4ever/</span>agentic-team-mcp</span>
+  <p>Autonomous hierarchical multi-agent team (CEO -&gt; Manager -&gt; Workers) for Model Context Protocol (MCP). Mix Claude Code, Antigravity, Codex &amp; Direct API with persistent SQLite queues and a real-time we</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/klarluft--gitwarren-app.html">
+  <span class="name"><span class="owner">klarluft/</span>gitwarren-app</span>
+  <p>A cross-platform desktop app for doing local code reviews of your own git repositories. Single user, single machine, no server, no account.</p>
+  <span class="meta"><span>⭐ 11</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/luckeyfaraday--frontier-orchestrator.html">
+  <span class="name"><span class="owner">luckeyfaraday/</span>frontier-orchestrator</span>
+  <p>Multi-agent orchestration for Claude Code: MCP server + skill that keeps Claude as lead engineer while delegating backend work to OpenAI Codex and frontend/design work to Kimi</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/azimov777--casefile.html">
+  <span class="name"><span class="owner">azimov777/</span>casefile</span>
+  <p>The task tracker your AI agents keep for each other: every task carries a case file, so the next agent picks up where the last one stopped. MCP server + live board. Self-hosted, one-line install.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
