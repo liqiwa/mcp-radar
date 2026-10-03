@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-10-02",
- "count": 2599,
+ "updated_at": "2026-10-03",
+ "count": 2616,
  "servers": [
   {
    "name": "XiaoDuoYa/codex-with-chatgpt",
@@ -2259,9 +2259,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 296.0,
+   "score": 226.0,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -5184,6 +5184,35 @@
    "readme_excerpt": "ChatGPT just started doing Codex's work.\n\nCodexless is simple: give your ChatGPT the Codex toolbox already on your computer and let it get to work.\n\nSet things up, maintain projects, edit files, run commands, inspect web pages — tell ChatGPT what you need. It keeps working on its own; when Codex is actually needed, it can call Codex in.\n\nFewer unnecessary Codex calls means less Codex usage. Save that quota for the calls that matter. That's the less in Codexless.\n\nNo need to decide up front: “ChatGPT for this, Codex for that?”\n\nCurious? Give this repo to the ChatGPT you already use. Ask it whether your machine can run it and what you'll be able to do after setup.\n\nThe ChatGPT you're already talking to can work with the local Codex tools that Codexless has actually tested and exposed.\n\nInspect a project, set up the environment, handle maintenance, edit files, run commands, check the result — and keep going in the same conversation.\n\nPlain English: the step that used to force you over to Codex can now happen right here.\n\nThese supported tool actions do not call Codex itself or consume Codex quota.\n\nProject rules, Skills, directory conventions — when Codexless can safely reuse them, it does.\n\nDon't teach the same setup twice. Don't build a second stack.\n\nThere is a long-term benefit too: as the Codex toolbox evolves, Codexless does not have to rebuild every useful capability from scratch. New capabilities can come along after they have been re-tested and accepted for the public surface."
   },
   {
+   "name": "duclm1x1/Muse-Chat-MCP",
+   "url": "https://github.com/duclm1x1/Muse-Chat-MCP",
+   "description": "MCP server + OpenAI-compatible shim to use Meta Muse (muse.ai, Hatch) by driving the real logged-in Chrome.",
+   "stars": 33,
+   "forks": 13,
+   "language": "JavaScript",
+   "topics": [],
+   "created_at": "2026-09-30",
+   "homepage": "",
+   "score": 136.0,
+   "first_seen": "2026-10-01",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-01",
+     "s": 20
+    },
+    {
+     "d": "2026-10-02",
+     "s": 30
+    },
+    {
+     "d": "2026-10-03",
+     "s": 33
+    }
+   ],
+   "readme_excerpt": "Use Meta Muse — the muse.ai \"Hatch\" agent — from any MCP client or any OpenAI-compatible client, with your own account and quota.\n\nMuse has no public API: its chat is an encrypted WebSocket (wss://hatch.metaaivm.com/v1/noise, an X25519 + HKDF + AES‑GCM + Ed25519 Noise transport). So instead of re‑implementing the protocol, this project drives your real, logged‑in Chrome with Playwright: the app performs all the crypto itself, and we type into the composer and read the rendered reply.\n\nFront door What it is Use it from --- --- --- MCP server (stdio) 7 tools: musestatus, muselogin, musenewchat, musechat, musereadlast, musedumpdom, museclose Claude Desktop, opencode, Cursor, any MCP host OpenAI-compatible shim (HTTP) GET /v1/models, POST /v1/chat/completions (stream + non-stream, tool calling) any OpenAI SDK / @ai-sdk/openai-compatible provider\n\nPlus a tiny CLI (muse-cli.mjs) for one-shot generation from scripts.\n\n[!IMPORTANT] This drives your browser and your Muse account. It ships with no credentials, no Chrome profile, and no captured traffic — you sign in to your own Meta account on first run. See Disclaimer.\n\n- MCP tools over stdio — drop-in for Claude Desktop / opencode / any MCP host. - OpenAI-compatible HTTP shim with real streaming (SSE), correct finishreason, and /v1 error objects. - Prompt-injected tool calling — expose OpenAI tools to Muse and get toolcalls back. - Attachments — send images/video with a prompt (MCP files, OpenAI imageurl parts, CLI -f). - Sessions & media — list/open/read/send in any Muse chat, and pull out the images/videos Muse generates (links +"
+  },
+  {
    "name": "naw103/foremerge",
    "url": "https://github.com/naw103/foremerge",
    "description": "Catch intent conflicts before code conflicts. The open-source coordination protocol for coding agents, built above Git.",
@@ -5449,6 +5478,53 @@
    "readme_excerpt": "An MCP server that allows AI agents (Claude, Cursor) to directly control and manipulate Unreal Engine.\n\nThis server lets Claude (or any MCP client) read and edit Unreal Engine 5.6/5.8 Blueprints directly, without burning your context window on raw engine JSON, and without needing anything beyond a stock Epic Games Launcher install.\n\nIf you've tried pointing an AI assistant at a real Unreal project, you've hit this: Blueprints don't fit in a context window. A single graph dumped as raw engine data is enormous, so either the model never sees enough of the project to have real context, or you spend most of your budget re-explaining what already exists every time you open a new conversation.\n\nThis project is built around one idea: the model should never receive a raw engine dump. Every hop between the Unreal Editor and Claude compacts the data: tiered reads, diff-based edits, and a persistent index that's built once and updated incrementally instead of re-scanned on every question.\n\n- UnrealMCPBridge is a C++ editor plugin that runs inside UnrealEditor.exe and exposes a local TCP interface over the engine's own Kismet2/EdGraph/AssetRegistry APIs. Built against a stock launcher install: no engine source required to build or run it. - mcp-server is a Node/TypeScript MCP server that translates MCP tool calls into bridge requests, and is responsible for keeping every response cheap: compact field names, capped result sizes, and no re-serializing verbose engine data verbatim."
   },
   {
+   "name": "etosin/arc-draw",
+   "url": "https://github.com/etosin/arc-draw",
+   "description": "ARC-DRAW is an SAP-aware Model Context Protocol (MCP) server for SAP Solution Architects. You describe an architecture in plain language; the AI agent places the correct SAP BTP icons and follows the ",
+   "stars": 31,
+   "forks": 3,
+   "language": "TypeScript",
+   "topics": [
+    "ai-agents",
+    "architecture",
+    "claude",
+    "diagrams",
+    "drawio",
+    "mcp",
+    "model-context-protocol",
+    "sap",
+    "sap-btp"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "",
+   "score": 83.5,
+   "first_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-09-29",
+     "s": 12
+    },
+    {
+     "d": "2026-09-30",
+     "s": 19
+    },
+    {
+     "d": "2026-10-01",
+     "s": 23
+    },
+    {
+     "d": "2026-10-02",
+     "s": 30
+    },
+    {
+     "d": "2026-10-03",
+     "s": 31
+    }
+   ],
+   "readme_excerpt": "An open-source MCP server that lets your AI agent draw SAP BTP solution diagrams on a live draw.io canvas, with the official SAP icons and the SAP diagram rules built in.\n\nQuick start · Try a prompt · Help build it · Roadmap\n\nEvery SAP architect knows the routine. A whiteboard sketch turns into forty minutes of hunting for the right BTP icon, fixing colours and re-routing connectors, just so the diagram looks like something SAP would publish.\n\nGeneric AI diagram tools don't fix that. They draw boxes, not SAP products. They use black arrows and random colours, and they put your on-premise S/4HANA inside the BTP boundary.\n\nARC-DRAW gives your agent the two things it is missing.\n\nWhat it is Why it matters --------- 🎨 Vocabulary 111 SAP BTP icons as native sap. shapes, plus draw.io's own SAP palette (mxgraph.sap.) when your draw.io ships it The agent places sap.cloudintegration, not \"a blue box labelled CPI\". Icons live in the plugin, so they never eat your model's context. 📐 Grammar The SAP BTP Solution Diagram guideline distilled into a drawing constitution, sent to your MCP client the moment it connects Colours, connector semantics (solid = sync, dashed = async), area nesting and compose order become rules the agent follows, not suggestions.\n\nOn top of that, two tools the agent can call by itself: get-sap-examples (canonical patterns with ground-truth styles) and get-sap-guideline (specific rules by topic: areas, connectors, icons, numbering…)."
+  },
+  {
    "name": "flankerhqd/cyvisguard",
    "url": "https://github.com/flankerhqd/cyvisguard",
    "description": "Security control plane for AI agents — identity and delegation, capability policy, data-flow taint and a live audit trail, enforced over MCP. Guards a real Claude Code end to end.",
@@ -5515,74 +5591,6 @@
     }
    ],
    "readme_excerpt": "The release-confidence layer for AI-agent changes.\n\nAutoeval is an open-source CLI and MCP server for evaluating AI applications, inspecting reliability evidence, and gating releases from development and CI workflows.\n\nFollow this path from a repository visit to a repeatable release gate:\n\n1. Meet the requirements and configure Plumloom. 2. Install Autoeval. 3. Log in and run the quickstart. 4. Run your first file-driven evaluation. 5. Add a suite gate to CI. 6. Inspect results, refine evaluations, and repeat.\n\n- Node.js 22.13 or newer - pnpm 11 - A Plumloom API key beginning with plsk - AUTOEVALAPIBASEURL - A supported OS credential store for interactive login persistence\n\nComplete these two setup steps in Plumloom before running Autoeval.\n\nAutoeval needs access to a model to run evaluations.\n\nProfile avatar → Settings → AI Providers & Models\n\nPlumloom currently supports OpenAI and Together.ai API keys. More providers are coming soon.\n\nCreate an API key for Autoeval. Use it to authenticate from your terminal, CI, or other development tools.\n\nThe examples below use the installed autoeval binary. When running directly from this repository, replace autoeval with:\n\nWhen you are ready to use your own evaluation files, run:\n\nThen continue with the file-driven workflow below.\n\n4. Run your first file-driven evaluation\n\nAn evaluation file uses the configured-run JSON accepted by autoeval eval validate. Conversation and agent-trace files can keep their artifacts and reference documents in separate files:"
-  },
-  {
-   "name": "etosin/arc-draw",
-   "url": "https://github.com/etosin/arc-draw",
-   "description": "ARC-DRAW is an SAP-aware Model Context Protocol (MCP) server for SAP Solution Architects. You describe an architecture in plain language; the AI agent places the correct SAP BTP icons and follows the ",
-   "stars": 30,
-   "forks": 3,
-   "language": "TypeScript",
-   "topics": [
-    "ai-agents",
-    "architecture",
-    "claude",
-    "diagrams",
-    "drawio",
-    "mcp",
-    "model-context-protocol",
-    "sap",
-    "sap-btp"
-   ],
-   "created_at": "2026-09-28",
-   "homepage": "",
-   "score": 106.0,
-   "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-09-29",
-     "s": 12
-    },
-    {
-     "d": "2026-09-30",
-     "s": 19
-    },
-    {
-     "d": "2026-10-01",
-     "s": 23
-    },
-    {
-     "d": "2026-10-02",
-     "s": 30
-    }
-   ],
-   "readme_excerpt": "An open-source MCP server that lets your AI agent draw SAP BTP solution diagrams on a live draw.io canvas, with the official SAP icons and the SAP diagram rules built in.\n\nQuick start · Try a prompt · Help build it · Roadmap\n\nEvery SAP architect knows the routine. A whiteboard sketch turns into forty minutes of hunting for the right BTP icon, fixing colours and re-routing connectors, just so the diagram looks like something SAP would publish.\n\nGeneric AI diagram tools don't fix that. They draw boxes, not SAP products. They use black arrows and random colours, and they put your on-premise S/4HANA inside the BTP boundary.\n\nARC-DRAW gives your agent the two things it is missing.\n\nWhat it is Why it matters --------- 🎨 Vocabulary 111 SAP BTP icons as native sap. shapes, plus draw.io's own SAP palette (mxgraph.sap.) when your draw.io ships it The agent places sap.cloudintegration, not \"a blue box labelled CPI\". Icons live in the plugin, so they never eat your model's context. 📐 Grammar The SAP BTP Solution Diagram guideline distilled into a drawing constitution, sent to your MCP client the moment it connects Colours, connector semantics (solid = sync, dashed = async), area nesting and compose order become rules the agent follows, not suggestions.\n\nOn top of that, two tools the agent can call by itself: get-sap-examples (canonical patterns with ground-truth styles) and get-sap-guideline (specific rules by topic: areas, connectors, icons, numbering…)."
-  },
-  {
-   "name": "duclm1x1/Muse-Chat-MCP",
-   "url": "https://github.com/duclm1x1/Muse-Chat-MCP",
-   "description": "MCP server + OpenAI-compatible shim to use Meta Muse (muse.ai, Hatch) by driving the real logged-in Chrome.",
-   "stars": 30,
-   "forks": 10,
-   "language": "JavaScript",
-   "topics": [],
-   "created_at": "2026-09-30",
-   "homepage": "",
-   "score": 170.0,
-   "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-10-01",
-     "s": 20
-    },
-    {
-     "d": "2026-10-02",
-     "s": 30
-    }
-   ],
-   "readme_excerpt": "Use Meta Muse — the muse.ai \"Hatch\" agent — from any MCP client or any OpenAI-compatible client, with your own account and quota.\n\nMuse has no public API: its chat is an encrypted WebSocket (wss://hatch.metaaivm.com/v1/noise, an X25519 + HKDF + AES‑GCM + Ed25519 Noise transport). So instead of re‑implementing the protocol, this project drives your real, logged‑in Chrome with Playwright: the app performs all the crypto itself, and we type into the composer and read the rendered reply.\n\nFront door What it is Use it from --- --- --- MCP server (stdio) 7 tools: musestatus, muselogin, musenewchat, musechat, musereadlast, musedumpdom, museclose Claude Desktop, opencode, Cursor, any MCP host OpenAI-compatible shim (HTTP) GET /v1/models, POST /v1/chat/completions (stream + non-stream, tool calling) any OpenAI SDK / @ai-sdk/openai-compatible provider\n\nPlus a tiny CLI (muse-cli.mjs) for one-shot generation from scripts.\n\n[!IMPORTANT] This drives your browser and your Muse account. It ships with no credentials, no Chrome profile, and no captured traffic — you sign in to your own Meta account on first run. See Disclaimer.\n\n- MCP tools over stdio — drop-in for Claude Desktop / opencode / any MCP host. - OpenAI-compatible HTTP shim with real streaming (SSE), correct finishreason, and /v1 error objects. - Prompt-injected tool calling — expose OpenAI tools to Muse and get toolcalls back. - Attachments — send images/video with a prompt (MCP files, OpenAI imageurl parts, CLI -f). - Sessions & media — list/open/read/send in any Muse chat, and pull out the images/videos Muse generates (links +"
   },
   {
    "name": "sandbaseai/deepseek-harness-handbook",
@@ -6626,6 +6634,49 @@
    "readme_excerpt": "100% free Shopify store and Meta ads intelligence, built for the community.\n\nFind the stores that are winning, see the ads they run, and track your competitors. Every number comes from a real measurement with its source attached. Nothing is estimated.\n\nOpen the app → · Run it yourself · Use it from Claude or ChatGPT · This week's breakouts\n\nAdLibrarySpy indexes 14.7M online stores, 3.9M of them on Shopify (as of September 2026), and the Meta ads they run. It shows you which stores are growing, what they sell and how they advertise. Traffic figures come from SimilarWeb's measurement of each store's exact domain, labelled with the month they cover. Ad data comes from the Meta Ad Library.\n\nIt's free: there are no plans, no credit limits and no checkout. It's also open source under MIT, and this repository is the code that runs adlibraryspy.com.\n\n- Filter by platform (Shopify, WooCommerce, Shopline, Shoplazza and others), category, traffic, traffic growth, product count, store origin, visitor country, creation date, technology and pixels - SimilarWeb visits and month-over-month growth for the exact store, with a trend line - AOV, live Meta ads, 7-day ad peak, top products and launch year on every row - Hide stores you've already seen, and save stores to shared folders\n\n- Search ad copy, brands and landing pages, then filter by creation date, media type, format, placement, country and niche - Run dates and placements for each ad, with video playback in the grid - AI creative labels: hook, angle, funnel stage, offer and urgency, each with the model's confidence - Save ads to fold"
   },
   {
+   "name": "cmoraes10/loci",
+   "url": "https://github.com/cmoraes10/loci",
+   "description": "Typed long-term memory for AI agents. One core, an MCP server, and a Hermes plugin.",
+   "stars": 25,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-memory",
+    "ai-agents",
+    "hermes",
+    "llm",
+    "long-term-memory",
+    "mcp",
+    "mcp-server",
+    "memory",
+    "model",
+    "model-context-protocol",
+    "open-source",
+    "python",
+    "sqlite"
+   ],
+   "created_at": "2026-10-01",
+   "homepage": "https://pypi.org/project/mowave-loci/",
+   "score": 125.0,
+   "first_seen": "2026-10-01",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-01",
+     "s": 9
+    },
+    {
+     "d": "2026-10-02",
+     "s": 24
+    },
+    {
+     "d": "2026-10-03",
+     "s": 25
+    }
+   ],
+   "readme_excerpt": "Typed long-term memory for AI agents. One core, two adapters.\n\nThe name comes from the method of loci, the ancient memory palace technique where every recollection gets a place and a structure. That is the thesis of this project.\n\nAn agent that forgets you every session is a search box with manners. This is the layer that fixes that: durable facts about a person, typed and ranked, extracted from the conversation rather than typed into a settings page, consolidated daily so the list does not rot.\n\nPorted from the memory system running in production in Lima, rewritten host-agnostic.\n\nEight categories (routine, study, preferences, finance, goals, relationships, constraints, ephemeral), four importance tiers, a status lifecycle. A preference and a deadline are not the same kind of thing and do not age the same way.\n\nExtraction runs on two paths. A model reads the exchange for meaning; regex heuristics catch the phrasings you wrote them for. Merged with model precedence. When the provider is down the regex path still runs.\n\nA write filter keeps the store from becoming a mood diary. Passing mood is the case it exists for. \"Tired today\" is true for hours and wrong for months.\n\nThe injection cap keeps context from growing without bound. Twelve facts reach the model, ranked by importance and then by deadline proximity and recency.\n\nDaily consolidation and decay keep the list honest. Exact duplicates merge; guesses nobody confirmed expire on their own; ephemeral facts carry a 24-hour TTL; completed goals expire after 90 days."
+  },
+  {
    "name": "henryrjbennett4328/devmanager-dev-process",
    "url": "https://github.com/henryrjbennett4328/devmanager-dev-process",
    "description": "DevManager v2026 is a native macOS menu bar utility for managing local development processes, with live server output, system resource monitoring, port availability checks, conflict detection, and MCP",
@@ -6907,45 +6958,6 @@
     }
    ],
    "readme_excerpt": "Choose which past images go to the model with your next message, without leaving the task.\n\nI was iterating on image generation with GPT in Codex. After a dozen or so images, the task started failing: the connection kept dropping, and the retries every few minutes never went through. Digging into it, I found that Codex sends every image in the task's history again with every request, and each request had grown to about 44 MB. The only way out was a new task, which meant losing the conversation.\n\nSo I wanted to keep the long conversation going and decide, turn by turn, which images the model still gets. Uncheck the ones you no longer need: from the next message on they become short placeholders, and the task and the conversation stay the same.\n\n- Every image in one list: a Context Assets tab in Codex's side panel lists every image in the task, turn by turn: the ones you uploaded and the ones the model viewed or generated, with thumbnails, IDs and sizes. Click one to preview it. - Filter by source: with many images, show only some sources: your uploads, PDF pages you commented on in Codex (with the page number and the PDF's name), web page screenshots, and images the model viewed, got from a tool or generated. Filtering changes what you see, never what is sent. - One click to leave an image out: unchecked images become a short placeholder from the next message on. Toggle single images or a whole turn. - Duplicates handled: when an identical image is still being sent, the placeholder points to it. - The model knows why: a note tells the model the images were left out by you to"
-  },
-  {
-   "name": "cmoraes10/loci",
-   "url": "https://github.com/cmoraes10/loci",
-   "description": "Typed long-term memory for AI agents. One core, an MCP server, and a Hermes plugin.",
-   "stars": 24,
-   "forks": 0,
-   "language": "Python",
-   "topics": [
-    "agent-memory",
-    "ai-agents",
-    "hermes",
-    "llm",
-    "long-term-memory",
-    "mcp",
-    "mcp-server",
-    "memory",
-    "model",
-    "model-context-protocol",
-    "open-source",
-    "python",
-    "sqlite"
-   ],
-   "created_at": "2026-10-01",
-   "homepage": "https://pypi.org/project/mowave-loci/",
-   "score": 240.0,
-   "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-10-01",
-     "s": 9
-    },
-    {
-     "d": "2026-10-02",
-     "s": 24
-    }
-   ],
-   "readme_excerpt": "Typed long-term memory for AI agents. One core, two adapters.\n\nThe name comes from the method of loci, the ancient memory palace technique where every recollection gets a place and a structure. That is the thesis of this project.\n\nAn agent that forgets you every session is a search box with manners. This is the layer that fixes that: durable facts about a person, typed and ranked, extracted from the conversation rather than typed into a settings page, consolidated daily so the list does not rot.\n\nPorted from the memory system running in production in Lima, rewritten host-agnostic.\n\nEight categories (routine, study, preferences, finance, goals, relationships, constraints, ephemeral), four importance tiers, a status lifecycle. A preference and a deadline are not the same kind of thing and do not age the same way.\n\nExtraction runs on two paths. A model reads the exchange for meaning; regex heuristics catch the phrasings you wrote them for. Merged with model precedence. When the provider is down the regex path still runs.\n\nA write filter keeps the store from becoming a mood diary. Passing mood is the case it exists for. \"Tired today\" is true for hours and wrong for months.\n\nThe injection cap keeps context from growing without bound. Twelve facts reach the model, ranked by importance and then by deadline proximity and recency.\n\nDaily consolidation and decay keep the list honest. Exact duplicates merge; guesses nobody confirmed expire on their own; ephemeral facts carry a 24-hour TTL; completed goals expire after 90 days."
   },
   {
    "name": "alexpilotto/uxon-ai",
@@ -7975,9 +7987,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "",
-   "score": 50.0,
+   "score": 40.0,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -10453,6 +10465,39 @@
    "readme_excerpt": "把 ChatGPT / Claude 网页版的大额度、近似无限配额，变成你的远程 Coding Token 池。\n\nUse your ChatGPT / Claude Web quota as a remote coding agent — no second API token meter.\n\n如果你的 ChatGPT / Claude 网页套餐本身提供大额度或近似无限的使用量，AgentDock 就能让这部分现有配额直接驱动你自己 Linux 服务器上的真实开发流程，而不是再额外购买一套 Coding Agent API Token。\n\nIf your chat plan gives you high or near-unlimited usage, AgentDock lets that same chat-model quota drive real remote software engineering on your own Linux server.\n\nNo second coding model. No extra server-side AI API key. No separate per-token reasoning bill.\n\nAgentDock keeps ChatGPT / Claude / another MCP-capable chat client as the only reasoning agent and adds the missing execution layer: Git worktrees, file editing, shell/process execution, tests, durable tasks, approvals, commits, host access, and audit.\n\nLong coding tasks are token-hungry. A real debugging loop may repeatedly:\n\nWith an API-based coding agent, every reasoning loop consumes separately billed API tokens.\n\nWith AgentDock, the reasoning stays inside the chat product you already use. If your ChatGPT / Claude plan provides a large or near-unlimited chat allowance, that existing allowance becomes the reasoning budget for remote coding, while the server only executes deterministic MCP tools.\n\nAgentDock does not claim that every chat subscription is literally unlimited. Plans can have usage, rate, or context limits. The value proposition is that AgentDock adds no second model/API token meter on the server."
   },
   {
+   "name": "AsWali/CallBoard",
+   "url": "https://github.com/AsWali/CallBoard",
+   "description": "A shared to-do list for you and your AI coding agents",
+   "stars": 15,
+   "forks": 1,
+   "language": "Go",
+   "topics": [
+    "ai-agents",
+    "claude-code",
+    "codex",
+    "developer-tools",
+    "mcp",
+    "mcp-server",
+    "task-manager"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "",
+   "score": 39.5,
+   "first_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-02",
+     "s": 14
+    },
+    {
+     "d": "2026-10-03",
+     "s": 15
+    }
+   ],
+   "readme_excerpt": "A shared to-do list for you and your AI coding agents.\n\nWhen Claude Code or Codex works on your project, Callboard keeps its plan where you can see it: what's being done, by whom, and what's waiting on you. Agents bring you their questions with options and a recommendation, and list the things only you can do (an API key, an account, a deploy) with exact steps. You answer in one click, and the agent carries on.\n\nSet it up using a coding agent by telling it this: Read https://asror.dev/callboard-setup.md and set up Callboard for me Why\n\n- See what your agents are doing. Stop scrolling back through a chat to find out what's done and what's next. It's all in one list, updated as they work. - They ask, you decide. Decisions that are yours come to you as questions, with the options and the agent's recommendation. If an agent can't wait, it goes ahead with its best guess, and redoes the work if you pick something else. - Know what's holding things up. \"Waiting on you\" shows what only you can do, starting with whatever frees the most work. - Several agents, no collisions. Claude Code and Codex, several sessions, several branches: each agent claims a task before starting it, so no two do the same work. - Just files in your project. Three Markdown checklists you can read on GitHub or edit by hand. No account, no server, no cloud.\n\n1. Install (macOS or Linux; for Windows, see setup):\n\n2. Connect your agents, once for all your projects:"
+  },
+  {
    "name": "xuzhougeng/ScientificFigureLibrary",
    "url": "https://github.com/xuzhougeng/ScientificFigureLibrary",
    "description": "Standard MCP server and MCP App for scientific figure templates from FigureYa and user-supplied references",
@@ -11076,35 +11121,6 @@
    "readme_excerpt": "一把由本地浏览器持续演奏、Agent 提前交付乐句意图的吉他。包含完整前端 PWA、九个 MCP 工具、规则式 Guitar Brain、真实采样、听唱反射、曲谱库、录音与离线原创谱渲染。\n\n非商业许可：PolyForm Noncommercial 1.0.0。 原创代码及随附原创内容允许按许可用于非商业用途、修改和再分发；商业用途需另获权利人授权。完整条款见 LICENSE.md，范围与例外见 LICENSE-STATUS.md。这是非商业源码公开（source-available），不是 OSI 定义的开源。第三方 CC0 采样不受新增非商业限制。\n\n0.2 更新：共享实时/离线编配器、持续低音与空弦共鸣、逐颗冲突日志、17 根音完整尾音采样、柔化勾弦/滑音，以及离线并联房间混响。见 编配指南 与 音色说明。编配自然度仍有改进空间。\n\n需要 Node.js 22+、Python 3.10+、FFmpeg（带 libmp3lame）在 PATH。采样已包含，无需下载或调用音乐生成 API。\n\n打开 http://localhost:3072/guitar/，输入 GUITARBROWSERKEY。浏览器只保存 HttpOnly 会话 cookie，不把控制密钥放到前端。选择曲目或即兴，然后点击递琴，首次点击解锁音频。麦克风拒绝授权时仍可手动等我、继续、结束。\n\n可选 Docker：配置 .env 后 docker compose up --build -d。容器包含 Node、Python、FFmpeg，数据通过独立 volume 持久化。Docker 配置随包提供；验证范围见 docs/VALIDATION.md。\n\n手机需要 HTTPS。把 GUITARORIGIN 改成实际 HTTPS origin，使用 ops/nginx.conf.example 将 /guitar/ 反代至本机3072，保留 Host/Origin 与 WebSocket。勿将 /control/ 暴露到公网。已有网站可用普通菜单链接 /guitar/ 嵌入；无需原作者的主页或登录服务。\n\n复制并修改 mcp.example.json 中 Python 和脚本的绝对路径，在客户端设置单独的 GUITARCONTROLKEY，它必须与服务端一致。MCP 的 GUITARCONTROLURL 默认 http://localhost:3072；浏览器使用公网 HTTPS 时，MCP 仍可走本机地址。远程 Agent 可通过 SSH 隧道访问控制端；浏览器反代需保持配置的 Host。\n\n九个工具：start / intent / wait / state / stop / fill / hold / tease / score。\n\n页面递琴后，Agent 调用 state 读取 songId、sessionId 与和声预览，再 start。即兴建议一次提交开场：\n\nAgent 只提前排未来一两句；错过边界即拒绝。没有新意图，重复上一句而不停止。wait 使用 cursor 与长等待，可加 untilphrase/sessionid。守拍、扫弦、反射全部本地执行。stop(style=\"natural\") 自然收尾。\n\n递琴通知为可配置功能：设 GUITARHANDOFFURL，可另设 GUITARHANDOFFTOKEN。点击后服务端 POST {\"text\":\"演奏上下文与工具用法\"}，接收方返回2xx表示成功。没有 webhook 时页面仍能递琴，Agent 手动 state/start；不伪造通知送达。含糊失败不自动重复发送。通知不含私人歌词。测试与示例不会向真实 Agent 发消息。"
   },
   {
-   "name": "AsWali/CallBoard",
-   "url": "https://github.com/AsWali/CallBoard",
-   "description": "A shared to-do list for you and your AI coding agents",
-   "stars": 14,
-   "forks": 1,
-   "language": "Go",
-   "topics": [
-    "ai-agents",
-    "claude-code",
-    "codex",
-    "developer-tools",
-    "mcp",
-    "mcp-server",
-    "task-manager"
-   ],
-   "created_at": "2026-09-28",
-   "homepage": "",
-   "score": 48.7,
-   "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-10-02",
-     "s": 14
-    }
-   ],
-   "readme_excerpt": "A shared to-do list for you and your AI coding agents.\n\nWhen Claude Code or Codex works on your project, Callboard keeps its plan where you can see it: what's being done, by whom, and what's waiting on you. Agents bring you their questions with options and a recommendation, and list the things only you can do (an API key, an account, a deploy) with exact steps. You answer in one click, and the agent carries on.\n\nSet it up using a coding agent by telling it this: Read https://asror.dev/callboard-setup.md and set up Callboard for me Why\n\n- See what your agents are doing. Stop scrolling back through a chat to find out what's done and what's next. It's all in one list, updated as they work. - They ask, you decide. Decisions that are yours come to you as questions, with the options and the agent's recommendation. If an agent can't wait, it goes ahead with its best guess, and redoes the work if you pick something else. - Know what's holding things up. \"Waiting on you\" shows what only you can do, starting with whatever frees the most work. - Several agents, no collisions. Claude Code and Codex, several sessions, several branches: each agent claims a task before starting it, so no two do the same work. - Just files in your project. Three Markdown checklists you can read on GitHub or edit by hand. No account, no server, no cloud.\n\n1. Install (macOS or Linux; for Windows, see setup):\n\n2. Connect your agents, once for all your projects:"
-  },
-  {
    "name": "obundh/korea-public-data-catalog-mcp",
    "url": "https://github.com/obundh/korea-public-data-catalog-mcp",
    "description": "대한민국 공공데이터를 조합해 서비스 아이디어를 설계하는 정적 메타데이터 MCP 공개 베타",
@@ -11572,6 +11588,52 @@
     }
    ],
    "readme_excerpt": "Baron Munchausen — local memory that outlives the chat\n\nEverything above is a real run against a clean clone. rpc is the two-line curl wrapper defined in docs/demo/baron-demo.sh; re-record the whole thing with cd docs/demo && ./record.sh.\n\nPublic alpha (0.6.1). The engine has run daily in the authors' own work for months; this repository is one day old. The code is Apache-2.0 and complete — the packaging, the docs and the install path are what \"alpha\" refers to. Report anything that breaks.\n\nYour session ends. Your project doesn't. One call brings back where the project stopped, what was decided and what comes next — after a closed tab, a spent limit or a change of model. And every answer built on that memory comes back with a verdict: grounded, partial or ungrounded, with the sentences nothing backs named one by one.\n\nA memory server in Python 3.12 with no third-party runtime dependency. MCP over stdio for your client, JSON-RPC on 127.0.0.1:8765 for everything else. Nothing here calls a model and nothing leaves your machine. A fresh install starts with an empty graph: we ship the tools, never the data.\n\nThree numbers, each one measured, each one with what it does not say written next to it.\n\n1. One context return: 7 146 tokens → 2 388. The 7 146 is a real compaction summary out of a session transcript; the 2 388 is the slice a live memorygroundprepare returned for the same moment of the same project. Both counted with tiktoken/cl100kbase on 2026-09-10. What it does not say: it is one pair of instances, not a distribution — a second summary from the same corpus came to 5 91"
+  },
+  {
+   "name": "Digisensus/digisensus-recorder",
+   "url": "https://github.com/Digisensus/digisensus-recorder",
+   "description": "Free, open source call recorder and bot-free AI meeting note taker for Mac: record Zoom, Meet, Teams, FaceTime, WhatsApp and phone calls, get transcripts and meeting notes.",
+   "stars": 13,
+   "forks": 0,
+   "language": "Swift",
+   "topics": [
+    "ai-note-taker",
+    "audio-recorder",
+    "bot-free",
+    "call-recorder",
+    "fireflies-alternative",
+    "granola-alternative",
+    "mac-app",
+    "macos",
+    "mcp-server",
+    "meeting-notes",
+    "meeting-recorder",
+    "menu-bar-app",
+    "ogg-opus",
+    "open-source",
+    "otter-alternative",
+    "speech-to-text",
+    "swift",
+    "swiftui",
+    "transcription",
+    "whatsapp"
+   ],
+   "created_at": "2026-09-29",
+   "homepage": "https://digisensus.com/call-recorder-mac/",
+   "score": 32.5,
+   "first_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-02",
+     "s": 12
+    },
+    {
+     "d": "2026-10-03",
+     "s": 13
+    }
+   ],
+   "readme_excerpt": "Digisensus Recorder: free call recorder and AI meeting notes for Mac\n\nA free, open source call recorder and bot-free AI meeting note taker for Mac. Record Zoom, Google Meet, Microsoft Teams, FaceTime, WhatsApp and phone calls with no bot joining the meeting, then get transcripts that show who said what and AI meeting notes with the next steps.\n\nRecordings stay on your Mac. An open source alternative to Granola, Otter.ai and Fireflies, made by Digisensus.com.\n\nTranscripts that show who said what Every call in one place, searchable\n\nWorks with the apps you call from One click from the menu bar\n\n- Records any call. Zoom, Google Meet, Microsoft Teams, FaceTime, WhatsApp, Viber, Telegram, Slack and any other app, plus iPhone phone calls answered on your Mac through Continuity. Your microphone and the other side are kept as separate channels, so transcripts know who said what. - No meeting bot. It records the audio on your Mac, so no notetaker joins the call, nobody sees an extra participant, and it works for any call, not just scheduled meetings. - Starts and stops with your call. Auto-record begins when a call starts and ends when you hang up, with a banner and a Stop button so you always know. Nothing is captured between calls. - Private, on your Mac. Audio only, never the screen. Recordings are Ogg Opus files in ~/Music/Digisensus Recorder, and nothing is uploaded unless you choose to transcribe. - Transcription and AI meeting notes when you want them. Summaries list decisions and next steps, like meeting minutes written for you. Use a Digisensus account (free daily credit, s"
   },
   {
    "name": "djwmarcx/better-mealie-mcp",
@@ -12644,48 +12706,6 @@
    "readme_excerpt": "Stateful Windows RPC Research MCP — 2024–2026 CVE methodologies as one-click tools\n\nA Model Context Protocol server that gives an AI agent live, stateful access to Windows RPC attack-surface research, built on James Forshaw's NtObjectManager (NtCoreLib).\n\nThree things a generic PowerShell MCP cannot do — and the reason this exists:\n\n1. Stateful RPC connections — a persistent PowerShell engine keeps parsed RpcServer objects and connected RPC clients alive across tool calls: rpcconnect once, rpccall many times (auth handshakes, context-handle chains, session variables survive). 2. CVE methodology as fixed tools — the standard hunting workflows from 2024–2026 public research are one-click, not prompt-engineering. 3. Stateful execution inside a lab VM — the same one-engine principle applied in the guest: rpcvmexec keeps variables and connected RPC clients alive across calls through a single persistent guest runspace, never a fresh shell per call (the vmrun fallback is reported as stateful: false).\n\nTool Purpose --------------- rpcparse(file, symbolpath?) Parse a PE for RPC servers, cache (keys fileN) rpcstate() Cached servers + live sessions rpcgetinterface(key) Procedures, NDR params, context handles, strictness rpcqueryendpoints(ifid?, searchbinding?, findalpcport?) EPM query (local or remote) rpcrunningservers(pid?/service?) Live process/service enumeration rpcconnect(session, key, binding?, auth?) Generate + connect client (stateful) rpcmethods(session) Signatures with opnum mapping rpccall(session, method, argsjson, storeas?) Reflection invoke; {\"var\"} passes stored object"
   },
   {
-   "name": "Digisensus/digisensus-recorder",
-   "url": "https://github.com/Digisensus/digisensus-recorder",
-   "description": "Free, open source call recorder and bot-free AI meeting note taker for Mac: record Zoom, Meet, Teams, FaceTime, WhatsApp and phone calls, get transcripts and meeting notes.",
-   "stars": 12,
-   "forks": 0,
-   "language": "Swift",
-   "topics": [
-    "ai-note-taker",
-    "audio-recorder",
-    "bot-free",
-    "call-recorder",
-    "fireflies-alternative",
-    "granola-alternative",
-    "mac-app",
-    "macos",
-    "mcp-server",
-    "meeting-notes",
-    "meeting-recorder",
-    "menu-bar-app",
-    "ogg-opus",
-    "open-source",
-    "otter-alternative",
-    "speech-to-text",
-    "swift",
-    "swiftui",
-    "transcription",
-    "whatsapp"
-   ],
-   "created_at": "2026-09-29",
-   "homepage": "https://digisensus.com/call-recorder-mac/",
-   "score": 40.0,
-   "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-10-02",
-     "s": 12
-    }
-   ],
-   "readme_excerpt": "Digisensus Recorder: free call recorder and AI meeting notes for Mac\n\nA free, open source call recorder and bot-free AI meeting note taker for Mac. Record Zoom, Google Meet, Microsoft Teams, FaceTime, WhatsApp and phone calls with no bot joining the meeting, then get transcripts that show who said what and AI meeting notes with the next steps.\n\nRecordings stay on your Mac. An open source alternative to Granola, Otter.ai and Fireflies, made by Digisensus.com.\n\nTranscripts that show who said what Every call in one place, searchable\n\nWorks with the apps you call from One click from the menu bar\n\n- Records any call. Zoom, Google Meet, Microsoft Teams, FaceTime, WhatsApp, Viber, Telegram, Slack and any other app, plus iPhone phone calls answered on your Mac through Continuity. Your microphone and the other side are kept as separate channels, so transcripts know who said what. - No meeting bot. It records the audio on your Mac, so no notetaker joins the call, nobody sees an extra participant, and it works for any call, not just scheduled meetings. - Starts and stops with your call. Auto-record begins when a call starts and ends when you hang up, with a banner and a Stop button so you always know. Nothing is captured between calls. - Private, on your Mac. Audio only, never the screen. Recordings are Ogg Opus files in ~/Music/Digisensus Recorder, and nothing is uploaded unless you choose to transcribe. - Transcription and AI meeting notes when you want them. Summaries list decisions and next steps, like meeting minutes written for you. Use a Digisensus account (free daily credit, s"
-  },
-  {
    "name": "max-ramas/rms-memory-mcp",
    "url": "https://github.com/max-ramas/rms-memory-mcp",
    "description": "Persistent, local, cross-IDE memory for AI agents — markdown source of truth, LanceDB-powered semantic search, zero cloud dependency",
@@ -13562,6 +13582,142 @@
     }
    ],
    "readme_excerpt": "它每天做什么 · 怎么工作 · 安全与隐私 · 快速开始 · 常见问题 · 给开发者\n\n每天自动帮你完成一亩三分地（1point3acres）的 签到 和 每日答题，每天稳拿 2 个大米，连续签到不断档，你什么都不用做。它不是把账号交给某个服务器代跑，而是在你电脑上开一个专用的 Chrome，用你自己的登录，像人一样点按钮，点完还会去积分页确认大米真的到账。\n\n支持 macOS 和 Windows，只需要装好 Chrome 和 Python 3.12。签到答题之外，它还能采集面经、离线搜索、发帖回复，并能接给 Claude Code、Codex 这类 AI 助手用。这些是附加功能，不装不影响签到答题。\n\n[!NOTE] 本文讲「它是怎么做的」；具体命令、参数和排错步骤都在 使用说明。\n\n你想 看这里 :--:-- 先看效果 它每天替你做什么 看懂原理 三分钟总览 · 自动签到 · 自动答题 · 怎么算真的成功 · 出错了怎么自救 · 每天什么时候跑 放心用 安全与隐私：你的数据在哪 动手 快速开始 · 其他功能 · 常见问题 · 更新 改代码 技术栈 · 代码结构 · 测试与 CI\n\n打开「我的积分」，每天都有两条 +1 大米的记录：一条「签到奖励」，一条「每日答题」。\n\n这两张图就是工具每天的全部目标。它不会做别的事：不发帖、不回复、不点赞。签到时会随机选一个心情、配一句「说说」，让签到像真人；不想要可以关掉，见 自动签到。\n\n一句话：你的电脑每 10 分钟醒来问一次「今天签了吗」，没签就开一个专用的 Chrome，用你自己的登录，像人一样点按钮，点完再去积分页确认大米真的到账。\n\n1. 到点了，系统叫醒它。 用的是电脑自带的定时任务功能，每 10 分钟叫醒一次。 2. 先看看今天做过没。 只翻本机的记录，不开浏览器：还没到你设定的时间？今天两项都已经到账了？是的话直接退出。绝大多数时候都停在这一步，所以每 10 分钟跑一次也不费资源。 3. 打开专用 Chrome。 和你平时用的浏览器互不干扰，见下一小节。 4. 自动签到。 打开签到页，选一个心情，点「提交签到」。细节见 自动签到。 5. 自动答题。 读出今天的题目和选项，和题库比对，命中就点对应选项、点「提交答案」。细节见 自动答题。 6. 确认大米真的到账。 打开积分页，看到当天的「签到奖励 +1」和「每日答题 +1」，而且是你账号名下的。细节见 怎么算真的成功。 7. 记在本机。 这次做了什么、结果如何，写进你电脑上的记录，以后可以离线查。 8. 报告结果。 结论只有三种：圆满完成、需要看一眼、失败。\n\n工具不会动你平时用的浏览器。它用电脑上已经装好的 Chrome 程序，但给它一套独立的设置和登录状态，里面只有这个论坛的登录。跑完就关，不常驻后台。\n\n三个配套的保险：同一时刻只有一个任务能用它；一次运行最多 15 分钟，超时就强制关掉；它只允许打开论坛自己的网址，别的地址在代码里直接拒绝。\n\n1. 打开签到页。 打开前先确认登录还在不在，不在就自动恢复（见下面「登录是怎么自动恢复的」）。 2. 选心情。 签到页要求选一个心情。默认随机抽一个，并配一句「说说」，让签到看起来像真人；不想要可以关掉，关掉后每天固定选「没心情」、什么都不写（见下面「关于今日心情 / 说说」）。 3. 点「提交签到」。 只点一次。按钮还没就绪（页面没加载完）就先退出，留给下一轮再来，不会硬点。 4. 等网站回应。 点完按钮不算数。工具会盯着网络请求，等到网站真的回应了才往下走，最多等 45 秒。快超时时会自动再试一次人机验证。 5. 确认大米到账。 打开积分页，看当天有没有一条「签到奖励」、大米 +1、属于你账号的记录。有，这一项才算成功。"
+  },
+  {
+   "name": "batrapulkit/squidbrake",
+   "url": "https://github.com/batrapulkit/squidbrake",
+   "description": "Brakes for your AI agents: every tool call is checked against your rules, held for human approval when risky, and recorded in a tamper-evident audit trail. Works with Claude Code and any MCP app.",
+   "stars": 11,
+   "forks": 9,
+   "language": "Python",
+   "topics": [
+    "agent-security",
+    "agent-skills",
+    "ai-agents",
+    "ai-safety",
+    "approval-workflow",
+    "audit-log",
+    "claude-code",
+    "claude-code-plugin",
+    "codex",
+    "cursor",
+    "fastapi",
+    "gemini-cli",
+    "guardrails",
+    "hacktoberfest",
+    "human-in-the-loop",
+    "llm-security",
+    "mcp",
+    "model-context-protocol",
+    "prompt-injection",
+    "self-hosted"
+   ],
+   "created_at": "2026-09-29",
+   "homepage": "https://squidbrake.com",
+   "score": 54.7,
+   "first_seen": "2026-10-01",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-01",
+     "s": 9
+    },
+    {
+     "d": "2026-10-02",
+     "s": 10
+    },
+    {
+     "d": "2026-10-03",
+     "s": 11
+    }
+   ],
+   "readme_excerpt": "Brakes for your AI agents. Every action an agent takes (running a command, editing a file, sending an email, issuing a refund, changing a database) goes through Squidbrake first. It is checked against your rules, held for a person when it's risky, recorded in a tamper-evident audit trail, and can be stopped instantly.\n\nFree and open source (Apache 2.0). Runs on your laptop or your own server; your data never leaves it.\n\n- Rules, not vibes: rules.yaml says what runs by itself, what's blocked, and what waits for a person. No LLM in the decision path. - Human approval: risky actions wait in the dashboard, on your phone (one-tap links, push via ntfy) or in Slack. The approver sees what led to it, e.g. the email the agent just read. - Reads what a command really does: ls && rm -rf ~/, bash -c \"...\", rmdir /s /q d:\\ or curl ... sh are split and read before they run. Wiping a disk or home folder is blocked; git push --force, terraform destroy, kubectl delete or cloud deletes wait for a person; commands that only look (ls, git status) run without asking. - Catches prompt injection without a model: if an agent sends data to an address that only a web page, email or issue mentioned (not you, not your own systems), it's held and the approver is told where the address came from. - Judges by history: blocks a retry of something a person rejected, catches look-alike domains (acrne-corp.com pretending to be acme.com), flags duplicate refunds, and lets you write sequence rules (\"deleting a database right after its backups were turned off\") that say which earlier step caused them. - Works w"
+  },
+  {
+   "name": "FidelisMM/shipstores",
+   "url": "https://github.com/FidelisMM/shipstores",
+   "description": "Ship iOS and Android apps from your AI agent. MCP server for App Store Connect, Google Play Console and Expo EAS.",
+   "stars": 11,
+   "forks": 3,
+   "language": "Python",
+   "topics": [
+    "ai-agents",
+    "android",
+    "app-store-connect",
+    "claude",
+    "claude-code",
+    "eas",
+    "expo",
+    "fastlane-alternative",
+    "google-play",
+    "ios",
+    "mcp",
+    "mcp-server",
+    "mobile-release",
+    "model-context-protocol"
+   ],
+   "created_at": "2026-10-01",
+   "homepage": "",
+   "score": 116.0,
+   "first_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-02",
+     "s": 8
+    },
+    {
+     "d": "2026-10-03",
+     "s": 11
+    }
+   ],
+   "readme_excerpt": "Quick start · 60 tools · Workflows · Hard-won lessons · Contributing\n\nshipstores drives App Store Connect and Google Play Console end to end — builds, store listings, screenshots, privacy labels, review submission and even replying to App Review — so Claude (or any MCP client) can take an app from eas build to \"Waiting for Review\" without you clicking through two consoles.\n\nBuilt because publishing was always the slowest part of shipping an app. Every quirk documented below cost at least one rejected build to discover.\n\nPublishing a mobile app is ~40 manual steps across two consoles, half of which have no public API. AI agents can write your app, but they stall at the store. This server closes that gap:\n\nApp Store Connect Google Play --------- Upload build, versions, listing, screenshots ✅ API ✅ API Subscriptions / in-app purchases ✅ API — Age rating, categories, price, URLs ✅ API ✅ API Privacy label & country availability ✅ console's internal API ✅ Data safety via console Read the rejection & reply to App Review (with video) ✅ console — \"App content\" declarations (11 forms, no API) — ✅ console automation Create the app record 🧭 opens the right form, tells you what to type 🧭 same Expo / EAS builds ✅ start, poll, download, submit ✅\n\nNeither store lets anyone create an app record through an API, so createappform opens the right page in a logged-in browser and returns the exact values to fill. Everything else is automated."
+  },
+  {
+   "name": "FavioVazquez/showtime",
+   "url": "https://github.com/FavioVazquez/showtime",
+   "description": "A local video studio for your coding agent. Describe a video in one sentence: your agent directs, your machine renders. Claude Code, Codex, Cursor, Devin and more. No API keys, no uploads.",
+   "stars": 11,
+   "forks": 3,
+   "language": "Python",
+   "topics": [
+    "agent-skills",
+    "ai-agents",
+    "captions",
+    "claude-code",
+    "claude-code-plugin",
+    "claude-skills",
+    "codex",
+    "cursor",
+    "explainer-video",
+    "ffmpeg",
+    "headless-chrome",
+    "kokoro-tts",
+    "local-first",
+    "manim",
+    "mcp-server",
+    "motion-graphics",
+    "text-to-speech",
+    "video",
+    "video-editing",
+    "video-generation"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "https://faviovazquez.github.io/showtime/",
+   "score": 33.5,
+   "first_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-02",
+     "s": 8
+    },
+    {
+     "d": "2026-10-03",
+     "s": 11
+    }
+   ],
+   "readme_excerpt": "https://github.com/user-attachments/assets/1132aa71-7fe5-4345-a925-790d80462fda\n\nThe 0.3.0 showreel: 50 seconds, rendered by showtime 0.3.0 on one machine; every shot names the feature it uses (about the film).Download the 50-second showreel (full quality, 41 MB). Music: “Born Of The Sky” by Scott Buckley, CC BY 4.0. CO2 data: NOAA GML / Scripps (credits).\n\nA local video studio for your coding agent.Describe a video. Your agent directs. Your machine renders.\n\nMotion graphics, voice-over, music, sound design, captions, footage editing and platform exports, with no cloud AI services, no API keys and no uploads. Works in Claude Code, Codex, Cursor, Devin, OpenCode and any agent that supports Agent Skills.\n\nQuick start · Works with · Gallery · How it works · The crew · Studio · Formats · Docs · Site · Requirements\n\n1. Install the two prerequisites (details in Requirements): uv and Node.js 24 or 22 LTS (20 or newer works). Restart your coding agent afterwards so it sees them.\n\n2. Add showtime to your agent. In Claude Code:\n\nUsing Codex, Cursor, Devin, OpenCode or another agent? Works with has the exact install for each, and npx skills add FavioVazquez/showtime covers any agent that supports Agent Skills.\n\nThe first time, your agent checks what is missing, tells you the download size and time (about 0.6 to 0.8 GB into ~/.showtime, depending on your system, usually 2 to 6 minutes; nothing outside that folder changes) and runs setup once you say yes. Bigger pieces (the transcription model, Manim, music tracks) come the first time a video needs them, announced with their size. After"
   },
   {
    "name": "12122J/mcpvet",
@@ -14880,9 +15036,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://passportsim.bugs.cc",
-   "score": 35.3,
+   "score": 27.0,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -14932,50 +15088,42 @@
    "readme_excerpt": "[![CI][ci-shield]][ci-url] [![npm][npm-shield]][npm-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![License: Apache-2.0][license-shield]][license-url]\n\nWrite an agent's procedure once, as a YAML stepfile, and every step is gated.\n\nQuick start &middot; Browse the catalog &middot; Report a bug &middot; Request a feature\n\nA stepfile Make the procedure you already wrote enforceable Create your stepfile Command line\n\nAgents can't skip steps. The agent moves on only when a mechanical check passes, never on its own word. Stepgate is for anyone running agents on procedures where a skipped step or an invented value costs something, such as a cited research report, a CVE triage or a ticket written to Jira.\n\nOne file runs anywhere. A stepfile has no packages, no versions to pin and no code to deploy, so it moves as a single file to any MCP client, such as Claude Code, Cursor or an agent you wrote, and runs on the model that client already uses.\n\nA stepfile declares its inputs, the remote APIs and MCP servers it may call, and an ordered list of steps. Each step says what output it must produce and which gates check that output. The file names no model and no framework.\n\nStepgate runs stepfiles. It is an MCP server that offers each stepfile as a tool. When a client's agent calls it, Stepgate shows the agent one step at a time, makes every API call the step needs, and moves on only when the step's gates pass."
   },
   {
-   "name": "batrapulkit/squidbrake",
-   "url": "https://github.com/batrapulkit/squidbrake",
-   "description": "Brakes for your AI agents: every tool call is checked against your rules, held for human approval when risky, and recorded in a tamper-evident audit trail. Works with Claude Code and any MCP app.",
+   "name": "amber-notes/amber-notes",
+   "url": "https://github.com/amber-notes/amber-notes",
+   "description": "Amber Notes: the free, open-source notes app for iPhone and Mac that ChatGPT and Claude can use (MCP).",
    "stars": 10,
-   "forks": 9,
-   "language": "Python",
+   "forks": 3,
+   "language": "Swift",
    "topics": [
-    "agent-security",
-    "agent-skills",
-    "ai-agents",
-    "ai-safety",
-    "approval-workflow",
-    "audit-log",
-    "claude-code",
+    "apple-notes",
+    "chatgpt",
+    "claude",
     "claude-code-plugin",
-    "codex",
-    "cursor",
-    "fastapi",
-    "gemini-cli",
-    "guardrails",
-    "hacktoberfest",
-    "human-in-the-loop",
-    "llm-security",
+    "gemini-cli-extension",
+    "ios",
+    "macos",
+    "markdown",
     "mcp",
+    "mcp-server",
     "model-context-protocol",
-    "prompt-injection",
-    "self-hosted"
+    "note-taking",
+    "notes",
+    "notes-app",
+    "supabase",
+    "swiftui"
    ],
    "created_at": "2026-09-29",
-   "homepage": "https://squidbrake.com",
-   "score": 68.0,
-   "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "homepage": "https://ambernotes.app",
+   "score": 39.3,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
-     "d": "2026-10-01",
-     "s": 9
-    },
-    {
-     "d": "2026-10-02",
+     "d": "2026-10-03",
      "s": 10
     }
    ],
-   "readme_excerpt": "Brakes for your AI agents. Every action an agent takes (running a command, editing a file, sending an email, issuing a refund, changing a database) goes through Squidbrake first. It is checked against your rules, held for a person when it's risky, recorded in a tamper-evident audit trail, and can be stopped instantly.\n\nFree and open source (Apache 2.0). Runs on your laptop or your own server; your data never leaves it.\n\n- Rules, not vibes: rules.yaml says what runs by itself, what's blocked, and what waits for a person. No LLM in the decision path. - Human approval: risky actions wait in the dashboard, on your phone (one-tap links, push via ntfy) or in Slack. The approver sees what led to it, e.g. the email the agent just read. - Reads what a command really does: ls && rm -rf ~/, bash -c \"...\", rmdir /s /q d:\\ or curl ... sh are split and read before they run. Wiping a disk or home folder is blocked; git push --force, terraform destroy, kubectl delete or cloud deletes wait for a person; commands that only look (ls, git status) run without asking. - Catches prompt injection without a model: if an agent sends data to an address that only a web page, email or issue mentioned (not you, not your own systems), it's held and the approver is told where the address came from. - Judges by history: blocks a retry of something a person rejected, catches look-alike domains (acrne-corp.com pretending to be acme.com), flags duplicate refunds, and lets you write sequence rules (\"deleting a database right after its backups were turned off\") that say which earlier step caused them. - Works w"
+   "readme_excerpt": "The notes app your AI can actually use. Apple Notes-style notes for iPhone and Mac that ChatGPT, Claude, Claude Code and Codex can read and edit.\n\nDownload for Mac &nbsp;·&nbsp; iPhone coming soon &nbsp;·&nbsp; ambernotes.app\n\n- AI edits you can see and undo. Whatever an assistant writes is tinted and labeled with its name, and one tap undoes it. - Version history. Every change keeps the previous version, with who made it: you on iPhone, you on Mac, or which AI. - Apple Notes import on the Mac, and Evernote (.enex), Google Keep (Takeout) and Markdown or text imports on the Mac and iPhone, bring your notes over. - Sync between iPhone and Mac in about half a second. - Connect ChatGPT, Claude, Claude Code or Codex. You approve each connection in the app and choose read-only or read-and-edit.\n\n- Apple Notes layout and behaviour. Folders, a note list grouped by date, pinning, search, multi-select, Recently Deleted. When in doubt, it does what Notes does. - Markdown underneath, formatted on screen. Headings, bold, italic, underline, strikethrough, code, quotes, links. The markdown syntax stays out of sight. - Lists like Notes. Checklists (ticked items slide to the bottom), bulleted (), dashed (-) and numbered lists. Return continues a list, Tab nests it. - Tables you edit cell by cell, including typed columns (number, date, yes/no). - Sub-notes. Link a note inside another, like a folder inside a page. - Files and images inside a note: paste, drag in, or attach. PDFs open in Quick Look. - Live sync. Typing on one device shows up on the others in about half a second. Edits made on "
   },
   {
    "name": "OldJii/google-play-vitals-mcp",
@@ -17025,9 +17173,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://x402check.xyz",
-   "score": 24.5,
+   "score": 20.0,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -46440,9 +46588,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -46473,9 +46621,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -46510,9 +46658,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -46540,9 +46688,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://www.npmjs.com/package/@studioraming/warudo-agent-bridge",
-   "score": 26.7,
+   "score": 20.0,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -46581,9 +46729,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "",
-   "score": 16.0,
+   "score": 13.3,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -46608,9 +46756,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 20.0,
+   "score": 16.0,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -46632,82 +46780,44 @@
    "readme_excerpt": "An MCP server for PreSonus Studio One. It lets Claude and other MCP clients read your songs and control a running Studio One.\n\nStudio One has no public API, no OSC, and no network scripting. This server combines two things it does have:\n\nLayer How Needs Studio One running? --------- song tools Parse .song files, which are zip archives of XML: tempo map, meter, markers, arranger sections, tracks, takes, clips, mixer, plug-in inserts and media. No. Reflects the last save or autosave. live tools A small control-surface device, installed into Studio One, that answers requests through a local file mailbox. It uses Studio One's own JavaScript device SDK. Yes\n\nStatus: early. Developed against Studio One 5.5.2 on macOS. Paths for Windows and for Studio One 6/7 and Studio Pro 8 are wired in but untested.\n\nAn independent project, not affiliated with or endorsed by PreSonus or Fender. Studio One is their trademark.\n\nTool What it does ------ songlist Songs on disk, newest first. This includes songs that exist only as autosaves. songread One song, as a summary (one line per track) or full (every take and clip, instrument notes, each plug-in's saved settings, automation envelopes). Positions are given as bar/beat and as seconds. songhistory A song's autosaves, for comparing versions. songdiff What changed between two saves: tempo, meter, markers, sections, tracks (added, removed, renamed, takes, events, notes), mixer (levels, mute/solo, automation mode, output, plug-ins and their settings) and automation. By default it compares the song with its newest autosave, older to newer. livestatu"
   },
   {
-   "name": "FidelisMM/shipstores",
-   "url": "https://github.com/FidelisMM/shipstores",
-   "description": "Ship iOS and Android apps from your AI agent. MCP server for App Store Connect, Google Play Console and Expo EAS.",
+   "name": "kaithoughtarchitect/titration",
+   "url": "https://github.com/kaithoughtarchitect/titration",
+   "description": "Let your coding agent fix a prompt until it actually works, and prove it did. A self-hosted MCP server: cross-vendor judges, frozen baselines and memory.",
    "stars": 8,
-   "forks": 2,
-   "language": "Python",
+   "forks": 0,
+   "language": "TypeScript",
    "topics": [
     "ai-agents",
-    "android",
-    "app-store-connect",
-    "claude",
-    "claude-code",
-    "eas",
-    "expo",
-    "fastlane-alternative",
-    "google-play",
-    "ios",
+    "eval-harness",
+    "evals",
+    "llm-as-a-judge",
+    "llm-evaluation",
     "mcp",
-    "mcp-server",
-    "mobile-release",
-    "model-context-protocol"
-   ],
-   "created_at": "2026-10-01",
-   "homepage": "",
-   "score": 84.0,
-   "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-10-02",
-     "s": 8
-    }
-   ],
-   "readme_excerpt": "Quick start · 60 tools · Workflows · Hard-won lessons · Contributing\n\nshipstores drives App Store Connect and Google Play Console end to end — builds, store listings, screenshots, privacy labels, review submission and even replying to App Review — so Claude (or any MCP client) can take an app from eas build to \"Waiting for Review\" without you clicking through two consoles.\n\nBuilt because publishing was always the slowest part of shipping an app. Every quirk documented below cost at least one rejected build to discover.\n\nPublishing a mobile app is ~40 manual steps across two consoles, half of which have no public API. AI agents can write your app, but they stall at the store. This server closes that gap:\n\nApp Store Connect Google Play --------- Upload build, versions, listing, screenshots ✅ API ✅ API Subscriptions / in-app purchases ✅ API — Age rating, categories, price, URLs ✅ API ✅ API Privacy label & country availability ✅ console's internal API ✅ Data safety via console Read the rejection & reply to App Review (with video) ✅ console — \"App content\" declarations (11 forms, no API) — ✅ console automation Create the app record 🧭 opens the right form, tells you what to type 🧭 same Expo / EAS builds ✅ start, poll, download, submit ✅\n\nNeither store lets anyone create an app record through an API, so createappform opens the right page in a logged-in browser and returns the exact values to fill. Everything else is automated."
-  },
-  {
-   "name": "FavioVazquez/showtime",
-   "url": "https://github.com/FavioVazquez/showtime",
-   "description": "A local video studio for your coding agent. Describe a video in one sentence: your agent directs, your machine renders. Claude Code, Codex, Cursor, Devin and more. No API keys, no uploads.",
-   "stars": 8,
-   "forks": 2,
-   "language": "Python",
-   "topics": [
-    "agent-skills",
-    "ai-agents",
-    "captions",
-    "claude-code",
-    "claude-code-plugin",
-    "claude-skills",
-    "codex",
-    "cursor",
-    "explainer-video",
-    "ffmpeg",
-    "headless-chrome",
-    "kokoro-tts",
-    "local-first",
-    "manim",
-    "mcp-server",
-    "motion-graphics",
-    "text-to-speech",
-    "video",
-    "video-editing",
-    "video-generation"
+    "model-context-protocol",
+    "pgvector",
+    "prompt-engineering",
+    "typescript"
    ],
    "created_at": "2026-09-28",
-   "homepage": "https://faviovazquez.github.io/showtime/",
-   "score": 30.7,
-   "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "homepage": "",
+   "score": 16.0,
+   "first_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
-     "d": "2026-10-02",
+     "d": "2026-09-29",
+     "s": 6
+    },
+    {
+     "d": "2026-10-01",
+     "s": 7
+    },
+    {
+     "d": "2026-10-03",
      "s": 8
     }
    ],
-   "readme_excerpt": "https://github.com/user-attachments/assets/1132aa71-7fe5-4345-a925-790d80462fda\n\nThe 0.3.0 showreel: 50 seconds, rendered by showtime 0.3.0 on one machine; every shot names the feature it uses (about the film).Download the 50-second showreel (full quality, 41 MB). Music: “Born Of The Sky” by Scott Buckley, CC BY 4.0. CO2 data: NOAA GML / Scripps (credits).\n\nA local video studio for your coding agent.Describe a video. Your agent directs. Your machine renders.\n\nMotion graphics, voice-over, music, sound design, captions, footage editing and platform exports, with no cloud AI services, no API keys and no uploads. Works in Claude Code, Codex, Cursor, Devin, OpenCode and any agent that supports Agent Skills.\n\nQuick start · Works with · Gallery · How it works · The crew · Studio · Formats · Docs · Site · Requirements\n\n1. Install the two prerequisites (details in Requirements): uv and Node.js 24 or 22 LTS (20 or newer works). Restart your coding agent afterwards so it sees them.\n\n2. Add showtime to your agent. In Claude Code:\n\nUsing Codex, Cursor, Devin, OpenCode or another agent? Works with has the exact install for each, and npx skills add FavioVazquez/showtime covers any agent that supports Agent Skills.\n\nThe first time, your agent checks what is missing, tells you the download size and time (about 0.6 to 0.8 GB into ~/.showtime, depending on your system, usually 2 to 6 minutes; nothing outside that folder changes) and runs setup once you say yes. Bigger pieces (the transcription model, Manim, music tracks) come the first time a video needs them, announced with their size. After"
+   "readme_excerpt": "Let your coding agent fix a prompt until it actually works, and prove it did.\n\nPoint your agent at a prompt that misbehaves. It changes the prompt, reruns it, and Titration grades every attempt against a baseline that doesn't move, with judges from other AI vendors. The loop keeps going until the problem is gone, or until Titration tells you the prompt was never the problem.\n\nReal run: billing tickets wrongly marked urgent went from 90% → 0% in one measured change (worked example).\n\nAn open-source MCP server with 18 tools. Self-hosted. Setup for Claude Code, Codex and Cursor. Five-slide overview (PDF)\n\nAn agent that iterates against a score will happily game the score. Titration is built so it can't:\n\n- Other vendors grade the work. Your agent's own vendor is never on the judge panel, and a score needs judges from at least two vendor families to answer. Fewer, and the attempt is refused with the reason and never scored. - The baseline doesn't move. A baseline freezes its rubric, its outputs and its judges, so \"better\" always means better against the same yardstick. - Noise is not a win. A change inside the judges' disagreement band comes back inconclusive, never passed, and a gain that breaks another group of cases doesn't ship. - It tells you when it isn't the prompt. Every failure is classified into one of nine origins. Only one of them means \"edit the prompt\"; the others point at your test set, your rubric, your judges or the code around the model. - Memory that compounds. What each run learns becomes searchable cards your agent can use next time, alongside a starter pac"
   },
   {
    "name": "TopTechPhoto/picsio-mcp-plugin",
@@ -51087,9 +51197,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 14.0,
+   "score": 11.7,
    "first_seen": "2026-09-27",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-27",
@@ -51252,9 +51362,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 14.0,
+   "score": 11.7,
    "first_seen": "2026-09-27",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-27",
@@ -52143,9 +52253,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 14.0,
+   "score": 11.7,
    "first_seen": "2026-09-27",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-27",
@@ -52275,9 +52385,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 11.7,
    "first_seen": "2026-09-27",
-   "last_seen": "2026-09-28",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-27",
@@ -52572,9 +52682,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 14.0,
+   "score": 11.7,
    "first_seen": "2026-09-27",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-27",
@@ -52745,9 +52855,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://hubx.co/products",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -52779,9 +52889,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://hubx.co/products",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -52813,9 +52923,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -52847,9 +52957,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -52881,9 +52991,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -52915,9 +53025,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -52948,9 +53058,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -52981,9 +53091,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53014,9 +53124,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53047,9 +53157,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53080,9 +53190,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53113,9 +53223,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53146,9 +53256,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53179,9 +53289,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53212,9 +53322,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53245,9 +53355,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53278,9 +53388,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53311,9 +53421,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53344,9 +53454,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53377,9 +53487,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53410,9 +53520,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53443,9 +53553,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53476,9 +53586,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53509,9 +53619,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53542,9 +53652,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53575,9 +53685,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53608,9 +53718,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53641,9 +53751,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53674,9 +53784,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53707,9 +53817,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53740,9 +53850,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53773,9 +53883,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53806,9 +53916,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53839,9 +53949,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53872,9 +53982,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53905,9 +54015,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53935,9 +54045,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-01",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -53968,9 +54078,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54001,9 +54111,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54034,9 +54144,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54067,9 +54177,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54100,9 +54210,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54133,9 +54243,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54166,9 +54276,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54199,9 +54309,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54232,9 +54342,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54265,9 +54375,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54298,9 +54408,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54331,9 +54441,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54364,9 +54474,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54397,9 +54507,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54430,9 +54540,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54463,9 +54573,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54496,9 +54606,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54529,9 +54639,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54562,9 +54672,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54595,9 +54705,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54959,9 +55069,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -54992,9 +55102,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55025,9 +55135,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55058,9 +55168,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55091,9 +55201,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55124,9 +55234,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55487,9 +55597,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-28",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55520,9 +55630,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-28",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55553,9 +55663,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-28",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55586,9 +55696,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-28",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55620,9 +55730,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-09-28",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55653,9 +55763,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55686,9 +55796,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55719,9 +55829,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55752,9 +55862,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55785,9 +55895,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55818,9 +55928,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55851,9 +55961,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55884,9 +55994,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -55917,9 +56027,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56446,9 +56556,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56479,9 +56589,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56512,9 +56622,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56545,9 +56655,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56578,9 +56688,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56611,9 +56721,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56644,9 +56754,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56876,9 +56986,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-09-28",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-28",
@@ -56908,9 +57018,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -56940,9 +57050,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -56972,9 +57082,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57004,9 +57114,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57036,9 +57146,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57068,9 +57178,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57100,9 +57210,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57132,9 +57242,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57164,9 +57274,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57196,9 +57306,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57751,9 +57861,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57783,9 +57893,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -57848,9 +57958,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -57881,9 +57991,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -57913,9 +58023,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -57945,9 +58055,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -57977,9 +58087,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58009,9 +58119,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58041,9 +58151,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58073,9 +58183,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58105,9 +58215,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58137,9 +58247,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58169,9 +58279,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58201,9 +58311,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58233,9 +58343,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58265,9 +58375,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58297,9 +58407,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58329,9 +58439,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58361,9 +58471,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58393,9 +58503,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58425,9 +58535,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58682,9 +58792,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -58692,42 +58802,6 @@
     }
    ],
    "readme_excerpt": "genpark-proactive-intent-disambiguation-clarifier-skill\n\nProduction-Grade AI Agent Infrastructure Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub • 📦 GenPark Official • 📖 Documentation\n\ngenpark-proactive-intent-disambiguation-clarifier-skill delivers robust, industrial-grade capabilities for autonomous agents, copilot frameworks, and personal assistant architectures. Built exclusively on the Python standard library with zero external runtime dependencies, it integrates seamlessly as a native Model Context Protocol (MCP) server or an importable Python module.\n\nProactive High-Stakes Intent Disambiguator & Option Clarifier. Detects under-specified user goals, assesses reversibility and risk, and constructs minimal multiple-choice clarifications before triggering autonomous execution.\n\n- Zero-Dependency Architecture: Runs anywhere Python 3.9+ is installed without pip install overhead or supply-chain vulnerabilities. - Model Context Protocol (MCP) First: Compatible with Claude Desktop, Cursor, GenPark Engine, and custom agentic frameworks. - Deterministic & Safe: Designed with strict validation, graceful error handling, and structured telemetry. - High Concurrency & Low Latency: In-memory caching and optimized data structures for real-time agent execution loops.\n\nRun the MCP server via standard JSON-RPC 2.0 stdio:\n\nVerify standard compliance and self-tests:"
-  },
-  {
-   "name": "kaithoughtarchitect/titration",
-   "url": "https://github.com/kaithoughtarchitect/titration",
-   "description": "Let your coding agent fix a prompt until it actually works, and prove it did. A self-hosted MCP server: cross-vendor judges, frozen baselines and memory.",
-   "stars": 7,
-   "forks": 0,
-   "language": "TypeScript",
-   "topics": [
-    "ai-agents",
-    "eval-harness",
-    "evals",
-    "llm-as-a-judge",
-    "llm-evaluation",
-    "mcp",
-    "model-context-protocol",
-    "pgvector",
-    "prompt-engineering",
-    "typescript"
-   ],
-   "created_at": "2026-09-28",
-   "homepage": "",
-   "score": 17.5,
-   "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-09-29",
-     "s": 6
-    },
-    {
-     "d": "2026-10-01",
-     "s": 7
-    }
-   ],
-   "readme_excerpt": "Let your coding agent fix a prompt until it actually works, and prove it did.\n\nPoint your agent at a prompt that misbehaves. It changes the prompt, reruns it, and Titration grades every attempt against a baseline that doesn't move, with judges from other AI vendors. The loop keeps going until the problem is gone, or until Titration tells you the prompt was never the problem.\n\nReal run: billing tickets wrongly marked urgent went from 90% → 0% in one measured change (worked example).\n\nAn open-source MCP server with 18 tools. Self-hosted. Setup for Claude Code, Codex and Cursor. Five-slide overview (PDF)\n\nAn agent that iterates against a score will happily game the score. Titration is built so it can't:\n\n- Other vendors grade the work. Your agent's own vendor is never on the judge panel, and a score needs judges from at least two vendor families to answer. Fewer, and the attempt is refused with the reason and never scored. - The baseline doesn't move. A baseline freezes its rubric, its outputs and its judges, so \"better\" always means better against the same yardstick. - Noise is not a win. A change inside the judges' disagreement band comes back inconclusive, never passed, and a gain that breaks another group of cases doesn't ship. - It tells you when it isn't the prompt. Every failure is classified into one of nine origins. Only one of them means \"edit the prompt\"; the others point at your test set, your rubric, your judges or the code around the model. - Memory that compounds. What each run learns becomes searchable cards your agent can use next time, alongside a starter pac"
   },
   {
    "name": "alphaparkinc/genpark-enterprise-compliance-pii-redaction-sentinel-skill",
@@ -58750,9 +58824,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -58783,9 +58857,9 @@
    ],
    "created_at": "2026-10-01",
    "homepage": "https://sparkfly.net/",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -58815,9 +58889,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -58848,9 +58922,9 @@
    ],
    "created_at": "2026-10-01",
    "homepage": "https://sparkfly.net/",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -58880,9 +58954,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -58944,9 +59018,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59038,9 +59112,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59071,9 +59145,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59104,9 +59178,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59137,9 +59211,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59167,9 +59241,9 @@
    ],
    "created_at": "2026-09-27",
    "homepage": "https://genpark.ai/mcp",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59200,9 +59274,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59233,9 +59307,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59266,9 +59340,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59299,9 +59373,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -59343,7 +59417,7 @@
    "homepage": "",
    "score": 70.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59373,9 +59447,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://genpark.ai/mcp",
-   "score": 70.0,
+   "score": 35.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59405,9 +59479,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59437,9 +59511,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59469,9 +59543,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://genpark.ai/mcp",
-   "score": 35.0,
+   "score": 23.3,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59501,9 +59575,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "https://genpark.ai/mcp",
-   "score": 23.3,
+   "score": 17.5,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59534,9 +59608,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59567,9 +59641,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59600,9 +59674,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59633,9 +59707,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59666,9 +59740,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59699,9 +59773,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59732,9 +59806,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59765,9 +59839,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 17.5,
+   "score": 14.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -59775,6 +59849,443 @@
     }
    ],
    "readme_excerpt": "genpark-task-dag-critical-path-scheduler-skill\n\nDirected Acyclic Graph (DAG) task scheduling engine implementing Critical Path Method (CPM) and slack computation.\n\nPart of the GenPark AI Agent Skills Matrix. Production-ready, zero external dependencies, native Python 3.9+ standard library.\n\nFeatures - Zero Third-Party Dependencies: Pure Python standard library (collections, heapq). - Autonomous Swarm Intelligence: Blackboard pattern, Critical Path DAG scheduler, Contract Net Protocol auctions, Subsumption architecture, and BDI reasoning. - Native MCP Protocol Support: Integrated JSON-RPC 2.0 stdio server ready for Claude Desktop, Cursor, and Windsurf.\n\nAdd to your claudedesktopconfig.json or cursor.json:\n\nLicense MIT License. Copyright (c) 2026 AlphaPark Inc. & Alpha-Park."
+  },
+  {
+   "name": "gonzaroman/IHMT-MEMORY",
+   "url": "https://github.com/gonzaroman/IHMT-MEMORY",
+   "description": "Long-term memory for AI coding agents (Claude Code, Codex, opencode) as a tree of plain files",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-memory",
+    "artificial-intelligence",
+    "chatgpt",
+    "claude",
+    "claude-code",
+    "codex",
+    "context-window",
+    "llm-memory",
+    "long-term-memory",
+    "mcp",
+    "mcp-memory",
+    "mcp-memory-service",
+    "model-context-protocol",
+    "model-memory",
+    "model-memory-usage",
+    "open-source",
+    "opencode",
+    "token-efficiency",
+    "token-optimization",
+    "vibe-coding"
+   ],
+   "created_at": "2026-09-30",
+   "homepage": "",
+   "score": 35.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "IHMT — Infinite Hierarchical Memory Tree\n\nLong-term memory for your AI coding agents. Tell your agent something once — a decision, how your setup works, a correction — and it remembers it in every future session, in any project, with any of your agents.\n\n- Remembers across sessions. Decisions and their reasons, your environment, your preferences, people and projects, corrections. Your agent searches the memory before answering and saves what lasts, so you stop repeating yourself. - One memory for all your agents and models. Claude Code, Codex and opencode can share the same memory: what one saves, the others find. Tested with models from Anthropic, OpenAI, Google and Meta. - Saves tokens. Instead of pasting your notes or re-explaining context every session, the agent retrieves only what the question needs — typically 200–900 tokens, whether the memory holds 50 entries or 50,000, because search walks a tree instead of reading everything. Honest numbers, including where it does not save. - Understands time. When something changes (\"I moved to Valencia\"), the old fact is kept as history and flagged OUTDATED if it comes up. When a question is ambiguous (\"Luis\" — which one?), it asks instead of guessing. - Portable. Your memory is one folder of plain text files. Copy it to another computer, back it up, or put it under version control — it works wherever you put it. - Local, private and readable. No cloud, no database, no account: IHMT stores everything on your disk and sends nothing anywhere. (The memories your agent retrieves reach its model like any other context.) Every memor"
+  },
+  {
+   "name": "alphaparkinc/genpark-proactive-intent-disambiguation-clarifier-skill",
+   "url": "https://github.com/alphaparkinc/genpark-proactive-intent-disambiguation-clarifier-skill",
+   "description": "Proactive High-Stakes Intent Disambiguator & Option Clarifier. Detects under-specified user goals, assesses reversibility and risk, and constructs minimal multiple-choice clarifications before trigger",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-skills",
+    "agent-tools",
+    "ai-agent",
+    "autonomous-agent",
+    "developer-tools",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "personal-agent",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-29",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 23.3,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-proactive-intent-disambiguation-clarifier-skill\n\nProduction-Grade AI Agent Infrastructure Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub • 📦 GenPark Official • 📖 Documentation\n\ngenpark-proactive-intent-disambiguation-clarifier-skill delivers robust, industrial-grade capabilities for autonomous agents, copilot frameworks, and personal assistant architectures. Built exclusively on the Python standard library with zero external runtime dependencies, it integrates seamlessly as a native Model Context Protocol (MCP) server or an importable Python module.\n\nProactive High-Stakes Intent Disambiguator & Option Clarifier. Detects under-specified user goals, assesses reversibility and risk, and constructs minimal multiple-choice clarifications before triggering autonomous execution.\n\n- Zero-Dependency Architecture: Runs anywhere Python 3.9+ is installed without pip install overhead or supply-chain vulnerabilities. - Model Context Protocol (MCP) First: Compatible with Claude Desktop, Cursor, GenPark Engine, and custom agentic frameworks. - Deterministic & Safe: Designed with strict validation, graceful error handling, and structured telemetry. - High Concurrency & Low Latency: In-memory caching and optimized data structures for real-time agent execution loops.\n\nRun the MCP server via standard JSON-RPC 2.0 stdio:\n\nVerify standard compliance and self-tests:"
+  },
+  {
+   "name": "Alpha-Park/genpark-agentic-delegated-escrow-settlement-ledger-skill",
+   "url": "https://github.com/Alpha-Park/genpark-agentic-delegated-escrow-settlement-ledger-skill",
+   "description": "Cryptographic Delegated Agentic Commerce Escrow & Settlement Ledger (inspired by Mastercard Agent Connect & Stripe Split-Settlements). Provides multi-party conditional escrow locking, autonomous proof",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agentic-commerce",
+    "autonomous-agent",
+    "developer-tools",
+    "enterprise-ai",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "personal-agent",
+    "work-agent",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-30",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 23.3,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-agentic-delegated-escrow-settlement-ledger-skill\n\nProduction-Grade Agentic Commerce & Enterprise Work Agent Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub • 📦 GenPark Official • 📖 Documentation\n\ngenpark-agentic-delegated-escrow-settlement-ledger-skill delivers robust, industrial-grade capabilities engineered for Consumer Agentic Commerce (e.g. Meta Muse, Expedia, Mastercard Agent Connect) and Enterprise Workplace Execution (e.g. Tencent WorkBuddy Goal-to-PPT/Excel deliverable workflows). Built exclusively on the Python standard library with zero external runtime dependencies, it integrates seamlessly as a native Model Context Protocol (MCP) server or an importable Python module.\n\nCryptographic Delegated Agentic Commerce Escrow & Settlement Ledger (inspired by Mastercard Agent Connect & Stripe Split-Settlements). Provides multi-party conditional escrow locking, autonomous proof-of-delivery release triggers, referral fee splits, and dispute freeze protection.\n\n- Zero-Dependency Architecture: Runs anywhere Python 3.9+ is installed without pip install overhead or supply-chain vulnerabilities. - Model Context Protocol (MCP) First: Compatible with Claude Desktop, Cursor, GenPark Engine, Meta Muse, and enterprise managed agent runtimes. - Deterministic & Safe: Rigorous state machine models, cryptographic ledger hashes, mathematical dependency graphs, and full telemetry. - High Concurrency & Low Latency: In-memory caching, topological cycle detection, and optimized execution loops."
+  },
+  {
+   "name": "Alpha-Park/genpark-milwaukee-onekey-smart-tool-inventory-skill",
+   "url": "https://github.com/Alpha-Park/genpark-milwaukee-onekey-smart-tool-inventory-skill",
+   "description": "GenPark AI Agent Skill - Milwaukee Tool M18 FUEL with ONE-KEY smart cordless hardware, BLE proximity tracking, torque calibration & jobsite lockout.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-skills",
+    "ai-agent",
+    "ai-gadgets",
+    "ble-beacon",
+    "iot-tracking",
+    "mcp",
+    "mcp-server",
+    "milwaukee-tool",
+    "model-context-protocol",
+    "one-key",
+    "smart-hardware",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "https://www.milwaukeetool.com/Innovations/ONE-KEY",
+   "score": 17.5,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-milwaukee-onekey-smart-tool-inventory-skill\n\nProduction-Grade Smart Hardware & Industrial Tool Fleet MCP Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub • 📦 Milwaukee Tool ONE-KEY • 📖 Documentation\n\ngenpark-milwaukee-onekey-smart-tool-inventory-skill is a deterministic, zero-dependency Python skill and native Model Context Protocol (MCP) server engineered for smart hardware agents, industrial jobsite robotics, and connected tool management. Distilled directly from Milwaukee Tool's M18 FUEL with ONE-KEY technology, it enables AI agents to interface seamlessly with industrial power tools:\n\n📡 Bluetooth (BLE) & Cellular Asset Tracking: Real-time proximity radar, geofencing breaches, and misplaced tool recovery. ⚙️ Digital Profile & Torque Calibration: Wirelessly program repeatable torque limits (within ±5%), speed cutoffs, and ramp-up timings. 🔒 Smart Security Lockout: Remotely lock missing tools and render them inoperable upon jobsite perimeter violations. 📊 Fleet Telematics & Compliance Logging: Audit trigger pulls, operating temperatures, and motor brush life cycles.\n\nExecutive Capability: GenPark AI Agent Skill - Milwaukee Tool M18 FUEL with ONE-KEY smart cordless hardware, BLE proximity tracking, torque calibration & jobsite lockout.\n\nConnect this skill to Claude Desktop, Cursor, or any MCP-compliant client:\n\nParameter Type Required Description ------:---:--- toolserial string Yes Hardware serial / BLE MAC address of the connected M18 tool operation string Yes Action: locate, lock, unlock, configuretorque, fetchtelemati"
+  },
+  {
+   "name": "alphaparkinc/genpark-personal-spending-impulse-friction-guard-skill",
+   "url": "https://github.com/alphaparkinc/genpark-personal-spending-impulse-friction-guard-skill",
+   "description": "Behavioral personal spending impulse guard enforcing cooling-off friction timers and net work-hour wage conversions.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-skills",
+    "ai-agent",
+    "behavioral-design",
+    "executive-assistant",
+    "life-os",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "personal-agent",
+    "productivity",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-27",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-personal-spending-impulse-friction-guard-skill\n\nProduction-Grade Personal AI Agent & Executive Life OS Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub Showcase • 📦 Official Website • 📖 Documentation\n\ngenpark-personal-spending-impulse-friction-guard-skill is a deterministic, zero-dependency Python skill engineered with 100% production-grade functional parity for personal AI agents, executive decision triage, behavioral habit reinforcement, and cognitive load minimization.\n\nExecutive Capability: Behavioral personal spending impulse guard enforcing cooling-off friction timers and net work-hour wage conversions.\n\n⚡ Key Highlights & Value 🐍 Zero External pip Dependencies: Runs instantly on standard Python 3.9+ with zero environment bloat. 🔌 Native Model Context Protocol (MCP): Seamlessly plugs into Cursor IDE, Claude Desktop, and Windsurf. 🎯 100% Production-Grade Dynamic Execution: Real mathematical scoring, behavioral friction models, and deterministic outputs without static placeholders. 🚀 Human-Centric Optimization: Designed to protect focus, minimize cognitive fatigue, and enhance user agency.\n\nConnect this skill to Claude Desktop, Cursor, or any MCP-compliant client:\n\nParameter Type Required Description ------:---:--- querypayload string / dict Yes Primary personal message, habit, financial, or sleep context payload outputformat json / dict Yes Standardized response schema containing actionable executive decisions"
+  },
+  {
+   "name": "alphaparkinc/genpark-personal-inbox-cognitive-triage-skill",
+   "url": "https://github.com/alphaparkinc/genpark-personal-inbox-cognitive-triage-skill",
+   "description": "Personal inbox cognitive triage engine classifying actionability, effort duration, and urgency to prevent attention fragmentation.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-skills",
+    "ai-agent",
+    "behavioral-design",
+    "executive-assistant",
+    "life-os",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "personal-agent",
+    "productivity",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-27",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-personal-inbox-cognitive-triage-skill\n\nProduction-Grade Personal AI Agent & Executive Life OS Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub Showcase • 📦 Official Website • 📖 Documentation\n\ngenpark-personal-inbox-cognitive-triage-skill is a deterministic, zero-dependency Python skill engineered with 100% production-grade functional parity for personal AI agents, executive decision triage, behavioral habit reinforcement, and cognitive load minimization.\n\nExecutive Capability: Personal inbox cognitive triage engine classifying actionability, effort duration, and urgency to prevent attention fragmentation.\n\n⚡ Key Highlights & Value 🐍 Zero External pip Dependencies: Runs instantly on standard Python 3.9+ with zero environment bloat. 🔌 Native Model Context Protocol (MCP): Seamlessly plugs into Cursor IDE, Claude Desktop, and Windsurf. 🎯 100% Production-Grade Dynamic Execution: Real mathematical scoring, behavioral friction models, and deterministic outputs without static placeholders. 🚀 Human-Centric Optimization: Designed to protect focus, minimize cognitive fatigue, and enhance user agency.\n\nConnect this skill to Claude Desktop, Cursor, or any MCP-compliant client:\n\nParameter Type Required Description ------:---:--- querypayload string / dict Yes Primary personal message, habit, financial, or sleep context payload outputformat json / dict Yes Standardized response schema containing actionable executive decisions"
+  },
+  {
+   "name": "alphaparkinc/genpark-monorepo-dependency-cycle-detector-skill",
+   "url": "https://github.com/alphaparkinc/genpark-monorepo-dependency-cycle-detector-skill",
+   "description": "Monorepo dependency cycle resolver and topological build-order planner using Tarjan SCC and Kahn algorithms.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "ai-agent",
+    "ast",
+    "code-refactoring",
+    "coding-agent",
+    "developer-tools",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "semver",
+    "static-analysis",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-27",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-monorepo-dependency-cycle-detector-skill\n\nProduction-Grade Coding Agent & AST Static Analysis Refactoring Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub Showcase • 📦 Official Website • 📖 Documentation\n\ngenpark-monorepo-dependency-cycle-detector-skill is a deterministic, zero-dependency Python skill engineered with 100% production-grade functional parity for autonomous coding agents, Python AST static analysis, codebase refactoring, and architectural dependency auditing.\n\nExecutive Capability: Monorepo dependency cycle resolver and topological build-order planner using Tarjan SCC and Kahn algorithms.\n\n⚡ Key Highlights & Value 🐍 Zero External pip Dependencies: Runs instantly on standard Python 3.9+ using built-in ast and pure graph algorithms. 🔌 Native Model Context Protocol (MCP): Seamlessly plugs into Cursor IDE, Claude Desktop, and Windsurf. 🎯 100% Deterministic AST Code Parsing: Real syntax-tree traversals, cyclomatic complexity calculations, and dependency graphs without regex guesswork. 🚀 Token Efficiency Optimization: Minimizes LLM context waste by pruning dead code, detecting breaking API surface diffs, and pinpointing refactoring hotspots.\n\nConnect this skill to Claude Desktop, Cursor, or any MCP-compliant client:\n\nParameter Type Required Description ------:---:--- querypayload string / dict Yes Source code string, package manifests, or symbol AST tree outputformat json / dict Yes Standardized response schema containing AST diffs and refactoring telemetry"
+  },
+  {
+   "name": "Alpha-Park/genpark-time-series-exponential-smoothing-forecaster-skill",
+   "url": "https://github.com/Alpha-Park/genpark-time-series-exponential-smoothing-forecaster-skill",
+   "description": "Zero-dependency Holt linear exponential smoothing engine forecasting numerical trends with multi-step horizon and variance confidence bands.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "ai-agent",
+    "anomaly-detection",
+    "data-science",
+    "linear-regression",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "pca-svd",
+    "statistics",
+    "time-series",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-time-series-exponential-smoothing-forecaster-skill\n\nProduction-Grade Data Science & Statistical Agent Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\ngenpark-time-series-exponential-smoothing-forecaster-skill delivers zero-dependency, mathematically rigorous statistical modeling, time-series forecasting, and anomaly detection primitives engineered strictly using Python 3.9+ standard library.\n\n🌟 Key Architectural Capabilities - Zero External Dependencies: Operates exclusively via pure Python (math, random, statistics, json). Zero pip install overhead, zero numpy/scipy compilation failures. - Enterprise Statistical Invariants: Implements formal Holt linear smoothing, modified Z-score & Tukey IQR anomaly bounds, Welch's t-test p-value estimations, multivariate linear regression via gradient descent, and Power Iteration PCA dimensionality reduction. - Native Anthropic MCP Protocol: Compliant with standard JSON-RPC 2.0 stdio MCP specifications for Claude Desktop, Cursor, and Windsurf.\n\n🏗️ Architectural Topology & State Machine\n\n🔌 One-Click MCP Integration (Claude Desktop / Cursor)\n\nAdd to your claudedesktopconfig.json or cursor.json:\n\nThis skill contains pre-configured smithery.yaml and pyproject.toml manifests. Install directly via pip:\n\nMaintained with ❤️ by GenPark AI Engineering • Powering Next-Gen Autonomous Data Agents 🌍"
+  },
+  {
+   "name": "Alpha-Park/genpark-agent-bash-command-sandbox-guard-skill",
+   "url": "https://github.com/Alpha-Park/genpark-agent-bash-command-sandbox-guard-skill",
+   "description": "Zero-dependency AST & heuristic bash command sandbox guard blocking destructive system mutations, path traversals, and reverse shells.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-safety",
+    "ai-agent",
+    "circuit-breaker",
+    "differential-privacy",
+    "loop-detector",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "prompt-injection",
+    "sandbox-guard",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-agent-bash-command-sandbox-guard-skill\n\nProduction-Grade Autonomous Agent Safety, Sandbox & Guardrail Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\ngenpark-agent-bash-command-sandbox-guard-skill provides zero-dependency, deterministic agentic execution safety, sandboxing, and financial circuit breakers engineered strictly using Python 3.9+ standard library.\n\n🌟 Key Architectural Capabilities - Zero External Dependencies: Operates exclusively via pure Python (math, re, collections, heapq, hashlib, json). Zero pip install overhead, zero C-extension compile errors. - Enterprise Agent Safety Invariants: Implements formal defenses against destructive shell commands, prompt injections, runaway spend loops, differential privacy data leakage, and planning deadlocks. - Native Anthropic MCP Protocol: Compliant with standard JSON-RPC 2.0 stdio MCP specifications for Claude Desktop, Cursor, and Windsurf.\n\n🔌 One-Click MCP Integration (Claude Desktop / Cursor)\n\nAdd to your claudedesktopconfig.json or cursor.json:\n\nThis skill contains pre-configured smithery.yaml and pyproject.toml manifests. Install directly via pip:\n\nMaintained with ❤️ by GenPark AI Engineering • Powering Next-Gen Autonomous Cognitive Agents 🌍"
+  },
+  {
+   "name": "alphaparkinc/genpark-smart-dunning-churn-prevention-strategist-skill",
+   "url": "https://github.com/alphaparkinc/genpark-smart-dunning-churn-prevention-strategist-skill",
+   "description": "Intelligent payment recovery and smart dunning strategist optimizing decline-code retry windows and involuntary churn mitigation.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "ai-agent",
+    "double-entry-ledger",
+    "fintech",
+    "fraud-detection",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "payment-processing",
+    "treasury-management",
+    "webhooks",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-smart-dunning-churn-prevention-strategist-skill\n\nProduction-Grade FinTech & Autonomous Financial Ledger Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\n🌐 GenPark MCP Hub Showcase • 📦 Official Website • 📖 Documentation\n\ngenpark-smart-dunning-churn-prevention-strategist-skill is a deterministic, zero-dependency Python skill engineered with 100% production-grade functional parity for autonomous financial agents, real-time payment webhooks, immutable double-entry bookkeeping, and transaction fraud defense.\n\nExecutive Capability: Intelligent payment recovery and smart dunning strategist optimizing decline-code retry windows and involuntary churn mitigation.\n\n⚡ Key Highlights & Value 🐍 Zero External pip Dependencies: Runs instantly on standard Python 3.9+ using built-in hmac, hashlib, and pure financial algorithms. 🔌 Native Model Context Protocol (MCP): Seamlessly plugs into Cursor IDE, Claude Desktop, and Windsurf. 🎯 100% Mathematical Ledger Integrity: Enforces strict Debits = Credits invariants, HMAC-SHA256 signature verification, and sliding-window fraud detection. 🚀 Sub-Millisecond Financial Execution: Designed for high-throughput payment rails and real-time ledger accounting.\n\nConnect this skill to Claude Desktop, Cursor, or any MCP-compliant client:\n\nParameter Type Required Description ------:---:--- querypayload string / dict Yes Webhook event payload, ledger journal entry, or transaction stream outputformat json / dict Yes Standardized response schema containing balanced ledger records and audit telemetry"
+  },
+  {
+   "name": "Alpha-Park/genpark-agent-synthetic-data-differential-privacy-guard-skill",
+   "url": "https://github.com/Alpha-Park/genpark-agent-synthetic-data-differential-privacy-guard-skill",
+   "description": "Differential privacy epsilon-noise generator and quasi-identifier redaction kernel protecting tabular data releases from re-identification.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-safety",
+    "ai-agent",
+    "circuit-breaker",
+    "differential-privacy",
+    "loop-detector",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "prompt-injection",
+    "sandbox-guard",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "https://genpark.ai/mcp",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-agent-synthetic-data-differential-privacy-guard-skill\n\nProduction-Grade Autonomous Agent Safety, Sandbox & Guardrail Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\ngenpark-agent-synthetic-data-differential-privacy-guard-skill provides zero-dependency, deterministic agentic execution safety, sandboxing, and financial circuit breakers engineered strictly using Python 3.9+ standard library.\n\n🌟 Key Architectural Capabilities - Zero External Dependencies: Operates exclusively via pure Python (math, re, collections, heapq, hashlib, json). Zero pip install overhead, zero C-extension compile errors. - Enterprise Agent Safety Invariants: Implements formal defenses against destructive shell commands, prompt injections, runaway spend loops, differential privacy data leakage, and planning deadlocks. - Native Anthropic MCP Protocol: Compliant with standard JSON-RPC 2.0 stdio MCP specifications for Claude Desktop, Cursor, and Windsurf.\n\n🔌 One-Click MCP Integration (Claude Desktop / Cursor)\n\nAdd to your claudedesktopconfig.json or cursor.json:\n\nThis skill contains pre-configured smithery.yaml and pyproject.toml manifests. Install directly via pip:\n\nMaintained with ❤️ by GenPark AI Engineering • Powering Next-Gen Autonomous Cognitive Agents 🌍"
+  },
+  {
+   "name": "alphaparkinc/genpark-topological-sorter-tarjan-scc-skill",
+   "url": "https://github.com/alphaparkinc/genpark-topological-sorter-tarjan-scc-skill",
+   "description": "Directed acyclic graph (DAG) topological sorting and Tarjan's strongly connected components (SCC) engine for agent dependency resolution.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agentic-ai",
+    "cycle-detection",
+    "dag",
+    "dependency-resolution",
+    "graph-theory",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "tarjan-scc",
+    "topological-sort",
+    "zero-dependency"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-topological-sorter-tarjan-scc-skill\n\nProduction-Grade Graph Theory & Network Flow Agent Skill • 100% Standard Library Python • Native Model Context Protocol (MCP)\n\ngenpark-topological-sorter-tarjan-scc-skill delivers zero-dependency graph pathfinding, topological dependency resolution, network maximum flow, and centrality ranking engineered strictly using Python 3.9+ standard library.\n\n🌟 Key Architectural Capabilities - Zero External Dependencies: Operates exclusively via pure Python (heapq, collections, math, json). Zero NetworkX or SciPy build overhead. - Enterprise Graph Invariants: Implements formal Dijkstra/A priority queue path traversal, Kahn's DAG topological sorting, Edmonds-Karp BFS residual flow augmentation, Kruskal's disjoint-set minimum spanning tree, and PageRank random surfer power iteration. - Native Anthropic MCP Protocol: Compliant with standard JSON-RPC 2.0 stdio MCP specifications for Claude Desktop, Cursor, and Windsurf.\n\n🏗️ Architectural Topology & State Machine\n\n🔌 One-Click MCP Integration (Claude Desktop / Cursor)\n\nAdd to your claudedesktopconfig.json or cursor.json:\n\nThis skill contains pre-configured smithery.yaml and pyproject.toml manifests. Install directly via pip:\n\nMaintained with ❤️ by GenPark AI Engineering • Powering Graph Intelligence in Autonomous Agents 🌍"
+  },
+  {
+   "name": "Alpha-Park/genpark-levenshtein-damerau-fuzzy-matcher-skill",
+   "url": "https://github.com/Alpha-Park/genpark-levenshtein-damerau-fuzzy-matcher-skill",
+   "description": "Damerau-Levenshtein edit distance metric with transposition detection and fuzzy string candidate ranker.",
+   "stars": 7,
+   "forks": 0,
+   "language": "Python",
+   "topics": [
+    "agent-skills",
+    "damerau-levenshtein",
+    "edit-distance",
+    "fuzzy-matching",
+    "mcp-server",
+    "model-context-protocol",
+    "nlp",
+    "python",
+    "spell-check",
+    "string-similarity",
+    "text-processing"
+   ],
+   "created_at": "2026-09-28",
+   "homepage": "",
+   "score": 14.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 7
+    }
+   ],
+   "readme_excerpt": "genpark-levenshtein-damerau-fuzzy-matcher-skill\n\nDamerau-Levenshtein edit distance metric with transposition detection and fuzzy string candidate ranker.\n\nPart of the GenPark AI Agent Skills Matrix. Production-ready, zero external dependencies, native Python 3.9+ standard library.\n\nFeatures - Zero Third-Party Dependencies: Pure Python standard library (collections, re, math). - High-Performance NLP: Subword BPE merges, Okapi BM25 ranking, and Damerau-Levenshtein metrics. - Native MCP Protocol Support: Integrated JSON-RPC 2.0 stdio server ready for Claude Desktop, Cursor, and Windsurf.\n\nAdd to your claudedesktopconfig.json or cursor.json:\n\nLicense MIT License. Copyright (c) 2026 AlphaPark Inc. & Alpha-Park."
   },
   {
    "name": "menma4ever/agentic-team-mcp",
@@ -62649,9 +63160,9 @@
    ],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 20.0,
+   "score": 15.0,
    "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-29",
@@ -62674,9 +63185,9 @@
    "topics": [],
    "created_at": "2026-09-27",
    "homepage": "",
-   "score": 18.0,
+   "score": 16.0,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -67448,9 +67959,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "",
-   "score": 27.0,
+   "score": 18.7,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -67476,9 +67987,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "",
-   "score": 25.0,
+   "score": 16.7,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -67486,6 +67997,27 @@
     }
    ],
    "readme_excerpt": "An MCP server for SAP Crystal Reports .rpt files.\n\nAn MCP server that lets AI assistants (Claude Code, Claude Desktop, Cursor, …) read and edit SAP Crystal Reports .rpt files.\n\n.rpt is a binary format, so an AI cannot edit it as text. This server wraps the official Crystal Reports .NET runtime (Engine + in-process Report Application Server) and exposes safe, structured edit operations as MCP tools.\n\nTool What it does ------ listreports List .rpt files in a folder inspectreport Page setup, tables / SQL commands / connections, links, parameters, formulas, selection formulas, groups, sorts, sections and every object (position, text, bound field, font), including conditional formulas hidden in formatting (suppress, color, number format…) batchedit Run several edit operations with one load, one backup and one save; all-or-nothing diffreports Structural diff between two reports (e.g. backup vs. edited) setformula / deleteformula Edit, create or delete formula fields setselectionformula Record or group selection formula addparameter / setparameter / deleteparameter Report parameters; setparameter changes prompt, type, multiple values or defaults in place, keeping every formula that uses it addgroup / deletegroup Group on a field (per shift, per day, per month…); returns the new Group Header/Footer sections. Subtotals are formulas like Sum({T.Qty}, {T.Shift}) in the group footer addsort / deletesort Record sort (ascending/descending); on a grouped field addsort flips the group's order addrunningtotal / deleterunningtotal Running totals (sum, count, distinct count, average, min, max"
+  },
+  {
+   "name": "toks-love/modelharbor",
+   "url": "https://github.com/toks-love/modelharbor",
+   "description": "A self-hosted model library. Download Hugging Face models onto your own storage, pin the revision you want, verify the copy, and keep an eye out for updates. Includes an MCP server and scoped keys for",
+   "stars": 5,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-10-01",
+   "homepage": "https://modelharbor.toks.love",
+   "score": 50.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 5
+    }
+   ],
+   "readme_excerpt": "A model library on your own storage. Find models on the Hugging Face Hub, keep exactly the files you want, and read them from a plain folder.\n\nModelHarbor is self-hosted software for local model weights. It is not affiliated with or endorsed by Hugging Face.\n\nMulti-userRoles, per-account libraries, notes, and preferences. Shared notesModel notes travel with the team, pinned or latest.\n\nPrivate uploadsYour own weights, private by default, shareable within the install. Storage locationsMove copies between cold, warm, and hot tiers on demand.\n\nRevision pinningThe copy is the contract. Drift is reported, never applied. Agentic controlScoped keys and a stable API for research and ops.\n\nOne containerThe whole service is a container and a volume. Nothing else to operate.\n\nModelHarbor ships as a container. Running it needs Docker and two host directories: one for model files, one for application state.\n\nEdit .env — MODELSTORAGEPATH is the host directory that holds models — then:\n\nOpen port 7860. The first visit creates the owner account, which adds member accounts from Settings. docker compose down stops the service; model files and the database are preserved.\n\nSession cookies are marked Secure by default, so sign-ins persist once HTTPS terminates in front of the app. On a plain-HTTP LAN, the template documents the escape hatch.\n\nWindows users can run it with Docker Desktop through the helpers in deploy/desktop; the same document covers the compose route and a source checkout in full."
   },
   {
    "name": "sunhao123456sun-svg/toolpermit",
@@ -73705,9 +74237,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://pypi.org/project/appfactory/",
-   "score": 22.0,
+   "score": 15.3,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -73761,9 +74293,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "",
-   "score": 40.0,
+   "score": 20.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -73786,9 +74318,9 @@
    "topics": [],
    "created_at": "2026-09-27",
    "homepage": "",
-   "score": 12.0,
+   "score": 10.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -73824,7 +74356,7 @@
    "homepage": "https://gridpath.dev",
    "score": 40.0,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -73832,6 +74364,52 @@
     }
    ],
    "readme_excerpt": "Let AI edit the Excel files you already have: faster, for fewer tokens, and you get them back intact.\n\nGridPath is an engine for editing real .xlsx files. Give it to your coding agent and the same edit takes a fraction of the time and tokens, because the agent calls spreadsheet tools instead of writing and debugging scripts:\n\n- Faster and cheaper. An in-process calculation engine and purpose-built tools (workbook map, row search, structural edits) replace the write-a-script, run-it, recalculate-somewhere-else loop. - Intact. A surgical saver rewrites only the parts an edit touched; charts, pivots, VBA, add-in data and everything else come back byte-identical. - Reviewed. You see every changed cell, before and after, and nothing is written until you accept.\n\nClaude Code (Sonnet 5.5) on a real 1.4 MB, 55,000-formula analyst model, same prompt with and without GridPath:\n\nTask With GridPath Without --------- Insert a row (median of 5 runs) 17 s · 1.0k output tokens · $0.35 52 s · 6.1k · $0.86 Change 12 inputs and report the recalculated result (1 run) 29 s · 2.2k output tokens · $0.49 161 s · 17.1k · $1.62\n\nBoth lanes got every edit right. The difference is time, tokens, and seeing the diff before it's saved. Full runs, including the ones we lose, are in the evals repo.\n\nIt comes as two front doors on the same engine:\n\nMCP server — npx gridpath mcp Desktop app --------- The agent Yours: Claude Code, Cursor, Codex, any MCP host GridPath's own, in the app You review In a local browser tab the agent links you to In the app's diff panel Install One line, Node only Download for Mac "
+  },
+  {
+   "name": "LochlanMacQueen/auto-edit-app",
+   "url": "https://github.com/LochlanMacQueen/auto-edit-app",
+   "description": "One-install macOS app: Palmier Pro (GPL fork) + the auto-edit MCP server. Your agent edits, you review, it posts from Instagram Edits.",
+   "stars": 4,
+   "forks": 1,
+   "language": "Swift",
+   "topics": [],
+   "created_at": "2026-09-27",
+   "homepage": "",
+   "score": 8.7,
+   "first_seen": "2026-09-29",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-09-29",
+     "s": 3
+    },
+    {
+     "d": "2026-10-03",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "Download: lochlanmacqueen.github.io/auto-edit · latest DMG\n\nOne install: a native macOS app that is the video editor and the auto-edit server. Your agent (Claude Desktop / Claude Code / ChatGPT) connects to one MCP endpoint and can transcribe takes, cut dead space, build the timeline, export with music, park the result in Review, then run it through Instagram Edits on your iPhone and post it — captions and headers as native Edits text, shared from the Instagram app.\n\n- Editor: a fork of Palmier Pro at its last GPL-3.0 source (last-gpl-source), renamed, with the cloud account/generation/telemetry removed. - Server + dashboard: bundled inside the app (Contents/Resources/autoedit-runtime: relocatable Python, ffmpeg, the auto-edit MCP server). The app starts it on launch and shows Review / Queue / Phone / Setup / Connect in the auto-edit menu. - MCP: the agent connects to http://127.0.0.1:4747/mcp (Claude Desktop extension from the Connect panel); Palmier's own tools are reachable through it.\n\nLicense: GPL-3.0 (see LICENSE). Palmier is a trademark of Palmier, Inc.; this fork is not affiliated with or endorsed by Palmier.\n\nRequires macOS 26, Apple Silicon, Xcode 27 (with the Metal Toolchain component: xcodebuild -downloadComponent MetalToolchain).\n\nRequires macOS 26 (Tahoe) on Apple Silicon\n\nEnglish · Español · 简体中文 · 繁體中文 · 日本語 · 한국어 · Tiếng Việt · हिन्दी · বাংলা · العربية · Italiano · Português (Brasil) · Français · Русский · Türkçe"
+  },
+  {
+   "name": "hamza-paracha/courselink-mcp",
+   "url": "https://github.com/hamza-paracha/courselink-mcp",
+   "description": "CourseLink monitor with versioned downloads, document search, and an MCP server. Configure your own account and courses.",
+   "stars": 4,
+   "forks": 0,
+   "language": "Python",
+   "topics": [],
+   "created_at": "2026-10-02",
+   "homepage": "",
+   "score": 40.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 4
+    }
+   ],
+   "readme_excerpt": "got tired of opening CourseLink, clicking through every course, and downloading assignments one by one. so i made this. plug it into Claude Code, Codex, Hermes, or whatever you use that supports MCP and just ask.\n\n- “anything new?” checks for new posts, changed instructions, and due dates. the monitor refreshes every 5 minutes while running, so most questions can use the cache and come back quick. - “what do i need for this assignment?” pulls the instructions and searches inside downloaded files. - files ready when you sit down. set up automatic sync and new or changed files land in the right course folders when your computer is online. get on your computer, open the folder, and start working. it skips identical files already there and keeps older versions when files change.\n\nsign in through the separate browser window, pick your courses, and you're set. it saves your session; if CourseLink logs you out, just sign in again. runs locally or on a server, with remote access for supported clients.\n\nbuilt for University of Guelph CourseLink. clone it and tell your tool: “set this up using AGENTS.md.” setup guide has the details."
   },
   {
    "name": "elizmorales19/affinity-photo-new",
@@ -85396,27 +85974,6 @@
    "readme_excerpt": "Test your 3D prints before you print them — and let AI agents do it for you.\n\nphyx3d checks a 3D model (STL, 3MF, or a sliced Bambu Studio .gcode.3mf) for the things that make prints fail or break — overhangs, floating parts, thin walls, tipping over, weak spots under load — and simulates how the printed part behaves in the real world: dropped, tilted, pushed, stacked, or moving as part of a robot or machine.\n\nIt works three ways, all from the same engine:\n\nInterface Good for --------- 🖥 Web app (phyx3d serve) Looking at problems in 3D, strength maps, physics & robot replays, G-code layer replay 🤖 MCP server (phyx3d-mcp) Letting Claude Code / Claude Desktop / Cursor design → test → fix parts on their own ⌨️ CLI (phyx3d check part.stl --json) Scripts and CI: JSON reports, PNG pictures, non-zero exit when a part needs changes\n\nMade with Bambu Lab printers in mind (P1S / P1P / P2S / X1C / A1 / A1 mini / H2D presets), but the checks apply to any FDM printer.\n\nCheck How How far to trust it --------- Mesh health — holes, flipped faces, separate bodies edge topology exact Fits the build plate bounding box vs. printer volume exact Overhangs & supports (Bambu's 30° threshold); bridges vs. cantilevers face normals + voxel support test exact Floating islands (regions that start in mid-air) layer-by-layer voxels estimate Thin walls (\n\nKeep phyx3d serve open while the agent works: every check it runs appears live in the web app's Agent tab. Runs are stored in ~/.phyx3d/runs/ (override with PHYX3DHOME)."
   },
   {
-   "name": "LochlanMacQueen/auto-edit-app",
-   "url": "https://github.com/LochlanMacQueen/auto-edit-app",
-   "description": "One-install macOS app: Palmier Pro (GPL fork) + the auto-edit MCP server. Your agent edits, you review, it posts from Instagram Edits.",
-   "stars": 3,
-   "forks": 1,
-   "language": "Swift",
-   "topics": [],
-   "created_at": "2026-09-27",
-   "homepage": "",
-   "score": 8.0,
-   "first_seen": "2026-09-29",
-   "last_seen": "2026-10-02",
-   "stars_history": [
-    {
-     "d": "2026-09-29",
-     "s": 3
-    }
-   ],
-   "readme_excerpt": "Download: lochlanmacqueen.github.io/auto-edit · latest DMG\n\nOne install: a native macOS app that is the video editor and the auto-edit server. Your agent (Claude Desktop / Claude Code / ChatGPT) connects to one MCP endpoint and can transcribe takes, cut dead space, build the timeline, export with music, park the result in Review, then run it through Instagram Edits on your iPhone and post it — captions and headers as native Edits text, shared from the Instagram app.\n\n- Editor: a fork of Palmier Pro at its last GPL-3.0 source (last-gpl-source), renamed, with the cloud account/generation/telemetry removed. - Server + dashboard: bundled inside the app (Contents/Resources/autoedit-runtime: relocatable Python, ffmpeg, the auto-edit MCP server). The app starts it on launch and shows Review / Queue / Phone / Setup / Connect in the auto-edit menu. - MCP: the agent connects to http://127.0.0.1:4747/mcp (Claude Desktop extension from the Connect panel); Palmier's own tools are reachable through it.\n\nLicense: GPL-3.0 (see LICENSE). Palmier is a trademark of Palmier, Inc.; this fork is not affiliated with or endorsed by Palmier.\n\nRequires macOS 26, Apple Silicon, Xcode 27 (with the Metal Toolchain component: xcodebuild -downloadComponent MetalToolchain).\n\nRequires macOS 26 (Tahoe) on Apple Silicon\n\nEnglish · Español · 简体中文 · 繁體中文 · 日本語 · 한국어 · Tiếng Việt · हिन्दी · বাংলা · العربية · Italiano · Português (Brasil) · Français · Русский · Türkçe"
-  },
-  {
    "name": "CHOCEK-RB/cpp-mcp",
    "url": "https://github.com/CHOCEK-RB/cpp-mcp",
    "description": "High-performance Model Context Protocol (MCP) server & CLI for C and C++: offline cppreference, semantic code analysis (clangd + xmake/CMake), Core Guidelines, SEI CERT, and compiler matrix.",
@@ -85612,9 +86169,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "",
-   "score": 17.0,
+   "score": 12.0,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -85642,9 +86199,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://www.pointfree.co",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-09-30",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-09-30",
@@ -85705,9 +86262,9 @@
    "topics": [],
    "created_at": "2026-09-30",
    "homepage": "",
-   "score": 30.0,
+   "score": 15.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -85726,9 +86283,9 @@
    "topics": [],
    "created_at": "2026-09-30",
    "homepage": "",
-   "score": 30.0,
+   "score": 15.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -85758,9 +86315,9 @@
    ],
    "created_at": "2026-09-30",
    "homepage": "https://madbuilder.dev",
-   "score": 30.0,
+   "score": 15.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -85789,9 +86346,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "https://123wwwa.github.io/JevTrace/",
-   "score": 15.0,
+   "score": 10.0,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -85818,9 +86375,9 @@
    ],
    "created_at": "2026-09-29",
    "homepage": "",
-   "score": 16.0,
+   "score": 13.5,
    "first_seen": "2026-10-01",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-01",
@@ -85839,9 +86396,9 @@
    "topics": [],
    "created_at": "2026-09-28",
    "homepage": "",
-   "score": 10.0,
+   "score": 7.5,
    "first_seen": "2026-10-02",
-   "last_seen": "2026-10-02",
+   "last_seen": "2026-10-03",
    "stars_history": [
     {
      "d": "2026-10-02",
@@ -85876,6 +86433,42 @@
     }
    ],
    "readme_excerpt": "Drex MCP exposes Nace.AI Drex as a bounded closed-decision tool for MCP-compatible agents. The agent supplies a question, explicit choices, and optional evidence/context; Drex returns a selected choice and probabilities. The agent remains responsible for deciding whether and how to act.\n\nThe server is a thin stdio MCP adapter to the public Drex API. It does not provide general conversation, execute the selected action, or contain a separate decision engine.\n\n- Python 3.10+ - A Nace.AI Drex API key - An MCP client (Hermes Agent is supported through its documented stdio MCP configuration)\n\nThe server reads DREXAPIKEY from its process environment. It makes an HTTPS request to the fixed public Drex endpoint with a 30 second request timeout and 5 second connect timeout. It does not print provider responses, credentials, or exception text.\n\ndrexdecide(question, choices, evidence=\"\")\n\n- question: non-empty string, up to 2,000 characters - choices: 2–12 non-empty string labels, each up to 200 characters - evidence: optional string, up to 6,000 characters\n\nThe input becomes Drex's supported state and questions.decision choice schema. No unsupported API metadata is sent.\n\nErrors use {\"ok\": false, \"error\": {\"code\": \"...\", \"message\": \"...\"}}; an upstream HTTP status is included when available. API response bodies and secrets are not included.\n\nHermes reads MCP servers from ~/.hermes/config.yaml. Install this package in the environment available to Hermes and merge examples/hermes/config.yaml into that file. Set DREXAPIKEY in the MCP server env mapping, then restart Hermes. See the Herm"
+  },
+  {
+   "name": "oleg-tkachuk/paladin",
+   "url": "https://github.com/oleg-tkachuk/paladin",
+   "description": "Multi-tenant control plane for S3-compatible object storage: tenant-scoped credentials, Cedar policies, quotas, audit and events. Not an S3 proxy — clients move bytes over presigned URLs. Connect API,",
+   "stars": 3,
+   "forks": 0,
+   "language": "Go",
+   "topics": [
+    "cedar",
+    "connect-rpc",
+    "control-plane",
+    "golang",
+    "helm",
+    "kubernetes",
+    "mcp",
+    "model-context-protocol",
+    "multi-tenant",
+    "nextjs",
+    "object-storage",
+    "postgresql",
+    "presigned-url",
+    "s3"
+   ],
+   "created_at": "2026-09-30",
+   "homepage": "",
+   "score": 15.0,
+   "first_seen": "2026-10-03",
+   "last_seen": "2026-10-03",
+   "stars_history": [
+    {
+     "d": "2026-10-03",
+     "s": 3
+    }
+   ],
+   "readme_excerpt": "A multi-tenant control plane for S3-compatible object storage. Applications authenticate with a Paladin credential scoped to a tenant instead of holding storage credentials; Paladin checks each request against the tenant's Cedar policies, resolves the backend and bucket the tenant is on, meters usage against quotas, and writes an audit trail.\n\nPaladin does not proxy traffic to S3. Object bytes move between the client and the storage backend over presigned URLs that Paladin signs; the API carries metadata only. Paladin itself calls S3 to manage buckets and objects — create and delete buckets, open and close multipart uploads, verify a completed upload, copy and delete objects server-side — never to relay a client's upload or download. ARCHITECTURE.md lists every call.\n\nAccess is granted through users, API tokens and capability tokens — short-lived, budgeted and individually revocable. The capability primitive is capability/, a separate Go module with no database driver and no storage SDK among its dependencies. Besides the Connect API, the console and the Go and Python SDKs, the same operations are exposed over the Model Context Protocol, so AI agents can use them as tools.\n\nPaladin is one Go binary. Each role below runs as its own Deployment (paladin serve ), next to a web console:\n\nRole What it does -------------------- api the data plane (object metadata, presigned upload and download URLs) and IAM (sign-in, users, API tokens) admin tenants, buckets, storage backends, quotas, policies, capabilities, audit mcp the api and admin operations, as tools for AI agents worker bac"
   }
  ]
 }
