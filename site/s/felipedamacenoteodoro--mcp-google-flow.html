@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>felipedamacenoteodoro/mcp-google-flow — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP server for controlling Google Flow (Veo, Nano Banana) with AI agents from your own browser. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/felipedamacenoteodoro--mcp-google-flow.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="felipedamacenoteodoro/mcp-google-flow — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP server for controlling Google Flow (Veo, Nano Banana) with AI agents from your own browser. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "felipedamacenoteodoro/mcp-google-flow", "description": "MCP server for controlling Google Flow (Veo, Nano Banana) with AI agents from your own browser.", "codeRepository": "https://github.com/felipedamacenoteodoro/mcp-google-flow", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/felipedamacenoteodoro--mcp-google-flow.html", "dateCreated": "2026-10-03"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">felipedamacenoteodoro/</span>mcp-google-flow</h1>
+<p class="sub">MCP server for controlling Google Flow (Veo, Nano Banana) with AI agents from your own browser.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-03</b></div>
+  <div class="chip">on radar since <b>2026-10-05</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-agents-automation.html">ai-agents-automation</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/browser-automation.html">browser-automation</a><span class="topic">google-flow</span><a class="topic" href="/topic/image-generation.html">image-generation</a><span class="topic">image-generation-ai</span><span class="topic">image-generation-tool</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-servers.html">mcp-servers</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">nano-banana</span><a class="topic" href="/topic/typescript.html">typescript</a><span class="topic">veo</span><span class="topic">veo3</span><a class="topic" href="/topic/video-generation.html">video-generation</a><span class="topic">video-generation-api</span><span class="topic">video-generation-tool</span></div>
+<a class="btn" href="https://github.com/felipedamacenoteodoro/mcp-google-flow" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://felipeteodoro.com.br" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcp-google-flow</h2><p class="sub">An MCP server that lets any MCP client produce videos and images in Google Flow (Veo, Nano Banana, Omni) through your own signed-in Chrome, with spending guards and a sandboxed file vault.</p><p class="sub">[!WARNING] Independent project, not affiliated with, endorsed or maintained by Google. &quot;Google Flow&quot; and &quot;Veo&quot; are trademarks of Google. It automates Flow&#x27;s web interface on your account. Automation may go against Google&#x27;s Terms of Service and could lead to limits or suspension of the account. Use it at your own risk, ideally with an account separate from your main one. Flow changes its interface without notice; when it does, a tool may stop working until its labels are adjusted (see When Flow&#x27;s interface changes).</p><p class="sub">15 visual styles generated in Google Flow: food, cinematic, anime, fight scene, brand story, music video, social hook, 3D, motion design, cartoon, comic, product ad, fashion, real estate and product 360. ▶ Watch the 62-second reel on YouTube.</p><p class="sub">- Projects and media: creates and opens projects, uploads images and videos, lists what is in the grid, waits for renders and downloads with predictable names. - Generation with Flow&#x27;s real options: reads the modes (Image, Video, Frames), models (Veo 3.1, Omni, Nano Banana…), aspect ratios, resolution, duration, variants and the credit price Flow itself shows, live. - References by name, like typing @name: characters, voices, avatars, images and videos from the library. - Frames: video that starts and/or ends on a chosen image. - Reusable characters, created from Flow&#x27;s presets or from a description. - Shot lists: several shots with the</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/felipedamacenoteodoro--mcp-google-flow.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/roshanarnav25-sloth--google-flow-mcp.html">
+  <span class="name"><span class="owner">roshanarnav25-sloth/</span>google-flow-mcp</span>
+  <p>MCP server that drives Google Flow (Veo / Nano Banana) through its internal tRPC API, with a hard credit-cost gate</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Cripacx--mediagen.html">
+  <span class="name"><span class="owner">Cripacx/</span>mediagen</span>
+  <p>AI image and video generation skill for Claude Code and other coding agents — Gemini, OpenAI and Kie AI behind one CLI and MCP server, with EU AI Act content marking.</p>
+  <span class="meta"><span>⭐ 56</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/nikships--droid-codex-computer-use.html">
+  <span class="name"><span class="owner">nikships/</span>droid-codex-computer-use</span>
+  <p>🖱️ Let Factory Droid control your Mac with the Codex app&#x27;s Computer Use tool. One-command install, no approval forms, works with any Codex install path.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/PerryLink--jevcore.html">
+  <span class="name"><span class="owner">PerryLink/</span>jevcore</span>
+  <p>TypeSafe Jev for DeepSeek Harness, the Model Context Protocol, and plain Node: typed judgments instead of prose, offline by default.</p>
+  <span class="meta"><span>⭐ 38</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Akxan--google-seo-mcp.html">
+  <span class="name"><span class="owner">Akxan/</span>google-seo-mcp</span>
+  <p>SEO &amp; GEO MCP server for Claude, Codex, Cursor and any MCP client: Search Console, GA4, PageSpeed, Core Web Vitals, structured data, llms.txt, AI crawler checks, WordPress (Yoast, WP-CLI over SSH), Gi</p>
+  <span class="meta"><span>⭐ 36</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

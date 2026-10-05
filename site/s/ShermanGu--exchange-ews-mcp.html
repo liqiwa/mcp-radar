@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-04</b></div>
   <div class="chip">star trend <b>3 → 6</b> since 2026-08-04</div>
 </div>
-<div class="topics"><span class="topic">calendar</span><a class="topic" href="/topic/email.html">email</a><span class="topic">ews</span><span class="topic">exchange</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">microsoft-exchange</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">ntlm</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/windows.html">windows</a></div>
+<div class="topics"><a class="topic" href="/topic/calendar.html">calendar</a><a class="topic" href="/topic/email.html">email</a><span class="topic">ews</span><span class="topic">exchange</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">microsoft-exchange</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">ntlm</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/windows.html">windows</a></div>
 <a class="btn" href="https://github.com/ShermanGu/exchange-ews-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/ShermanGu/exchange-ews-mcp#readme" rel="noopener nofollow">Homepage ↗</a>
 <h2>About exchange-ews-mcp</h2><p class="sub">A local, draft-first Model Context Protocol (MCP) server for on-premises Microsoft Exchange. It connects through EWS and NTLM, keeps credentials in Windows Credential Manager, and exposes focused mail and calendar tools to MCP clients over stdio.</p><p class="sub">[!IMPORTANT] This project is designed for on-premises Exchange environments that expose EWS with NTLM. It is not an OAuth client for Exchange Online or Microsoft Graph.</p><p class="sub">- Local by design — the MCP server runs on the user&#x27;s Windows machine; no relay service is required. - Draft-first safety — mail-writing tools create drafts and never send automatically. - Explicit meeting sends — invitations require an explicit confirmation path. - Focused tool surface — 18 production tools cover identity, mail, templates, availability, and calendar workflows. - Opaque local references — Agents work with messageref, draftref, and templateref instead of raw Exchange identifiers. - Conversation-aware templates — EWS UniqueBody is preferred so quoted history is excluded before a reusable format is stored. - Server-side template rendering — complete templates stay local; the Agent provides only new content when using templateref.</p><p class="sub">Exchange EWS MCP intentionally places several boundaries between an Agent and Exchange:</p><p class="sub">Boundary Behavior --- --- Credentials Passwords are stored in Windows Credential Manager, not in project files or MCP responses. Mail writes Compose, reply, and forward workflows create unsent drafts. Meeting invitations Sending requires an explicit confirmation flag. Exchange identifiers Item IDs and change keys remain behind expiring </p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -108,6 +108,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">jumpifequal/</span>mcp-calibre</span>
   <p>Read-only MCP server for Calibre: metadata, BM25 full-text search over EPUB/PDF/MOBI/LIT, chapter/page reading, highlights. Direct SQLite (works with Calibre open), incremental FTS5 index, stdio + Str</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/dominikamann--agent-mail-gateway.html">
+  <span class="name"><span class="owner">dominikamann/</span>agent-mail-gateway</span>
+  <p>Self-hosted email MCP server &amp; REST gateway: give each AI agent its own IMAP/SMTP mailbox with sender/recipient allow lists, HTML-to-Markdown, attachments and calendar invites. One Docker container.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/Stupidoodle--swissdevjobs-cli.html">
   <span class="name"><span class="owner">Stupidoodle/</span>swissdevjobs-cli</span>
   <p>Search &amp; apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">PyModel/</span>jev-judge-mcp</span>
   <p>Typed judgment tools for MCP agents. TypeSafe&#x27;s Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score: the model judges, policy decides auto, review, o</p>
   <span class="meta"><span>⭐ 29</span><span>Python</span></span>
-</a><a class="card" href="/s/zhiningsun--industrial-mcp.html">
-  <span class="name"><span class="owner">zhiningsun/</span>industrial-mcp</span>
-  <p>将工业设备变成 AI 可控工具的 MCP 服务器。支持 Modbus、OPC UA、MQTT 三种协议，内置设备仿真引擎、物理模型和完整的调试工具链。让 Claude 用自然语言监控传感器、启停电机、执行工厂巡检。</p>
-  <span class="meta"><span>⭐ 25</span><span>Python</span></span>
 </a>
 
 
