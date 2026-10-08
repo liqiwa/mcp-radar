@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-22</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">content-extraction</span><a class="topic" href="/topic/context-engineering.html">context-engineering</a><span class="topic">html-to-markdown</span><a class="topic" href="/topic/llm-agents.html">llm-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/typescript.html">typescript</a><a class="topic" href="/topic/web-scraping.html">web-scraping</a></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/content-extraction.html">content-extraction</a><a class="topic" href="/topic/context-engineering.html">context-engineering</a><a class="topic" href="/topic/html-to-markdown.html">html-to-markdown</a><a class="topic" href="/topic/llm-agents.html">llm-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/typescript.html">typescript</a><a class="topic" href="/topic/web-scraping.html">web-scraping</a></div>
 <a class="btn" href="https://github.com/AntonG87/codearia-sieve" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://www.npmjs.com/package/codearia-sieve" rel="noopener nofollow">Homepage ↗</a>
 <h2>About codearia-sieve</h2><p class="sub">Parses a web page into the exact format a decision model needs. Dates as dates. Numbers with units. Text in chunks that fit the model&#x27;s window, each pointing back to where it came from. One call — and the token bill, before and after.</p><p class="sub">Measured, not promised. A live run over random pages picked the same day — fresh news from RSS feeds in several languages, random Wikipedia articles, docs, blogs, government sites, recipes, shops. Every row is in bench/analytics/, and npm run analytics reruns the whole thing. The output was then put in front of a decision model: see Checked by a judge.</p><p class="sub">An agent that needs a web page fetches the whole thing: navigation, cookie banner, footer, ad slots, a megabyte of framework markup. Then a model paid per token digs through the pile for one paragraph.</p><p class="sub">codearia-sieve does the digging before the model sees anything — and returns the page as state, not prose:</p><p class="sub">&quot;Published September 15, 2026&quot; → &quot;2026-09-15&quot;. Read from JSON-LD, meta tags and first; from a byline only when the markup is silent, and never guessed.</p><p class="sub">&quot;$42 per billion tokens&quot; → { value: 42, unit: &quot;USDperbillion&quot; }. Works in nine languages; the decimal comma follows the page&#x27;s language. A number without a unit is not a fact. A year is never a fact.</p><p class="sub">Each chunk knows its size in tokens and characters, the blocks it was built from, and the anchor on the page where a decision can be checked.</p><p class="sub">Everything else — menus, footers, banners, tag rows, &quot;read more&quot; — is removed, and with trace: true you get the list of what was removed and why.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/AntonG87--codearia-sieve.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/herry2059--project-os-for-codex.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/pinkpixel-dev--pulpie-mcp.html">
+  <span class="name"><span class="owner">pinkpixel-dev/</span>pulpie-mcp</span>
+  <p>MCP server that turns web pages into clean Markdown, keeping tables, code blocks, and images intact. Agents can fetch pages, save docs to your project or a global library, and crawl whole doc sites.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
   <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
   <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
   <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">rashedInt32/</span>jev-mcp</span>
   <p>MCP server exposing TypeSafe Jev as typed, calibrated judgment tools: classify, score, check, batched ask. Ships as a Claude Code plugin.</p>
   <span class="meta"><span>⭐ 7</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/luckeyfaraday--frontier-orchestrator.html">
-  <span class="name"><span class="owner">luckeyfaraday/</span>frontier-orchestrator</span>
-  <p>Multi-agent orchestration for Claude Code: MCP server + skill that keeps Claude as lead engineer while delegating backend work to OpenAI Codex and frontend/design work to Kimi</p>
-  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
 </a>
 
 

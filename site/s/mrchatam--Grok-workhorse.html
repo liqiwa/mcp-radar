@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-27</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">bubblewrap</span><a class="topic" href="/topic/coding-agent.html">coding-agent</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><span class="topic">git-worktree</span><a class="topic" href="/topic/grok.html">grok</a><a class="topic" href="/topic/kilo-code.html">kilo-code</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/opencode.html">opencode</a><a class="topic" href="/topic/sandbox.html">sandbox</a></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">bubblewrap</span><a class="topic" href="/topic/coding-agent.html">coding-agent</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/git-worktree.html">git-worktree</a><a class="topic" href="/topic/grok.html">grok</a><a class="topic" href="/topic/kilo-code.html">kilo-code</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/opencode.html">opencode</a><a class="topic" href="/topic/sandbox.html">sandbox</a></div>
 <a class="btn" href="https://github.com/mrchatam/Grok-workhorse" rel="noopener">View on GitHub ↗</a>
 <h2>About Grok-workhorse</h2><p class="sub">Unofficial community project. Not affiliated with, endorsed by or sponsored by xAI.</p><p class="sub">Grok Workhorse lets a supervising AI agent (for example Grok Bot) hand coding tasks to sandboxed coding-agent workers on your own Linux machine. The supervisor calls a small MCP interface (delegatetask, waittask, taskresult, ...). A local daemon creates a fresh git worktree for each task and runs a coding-agent CLI (Kilo CLI or OpenCode today, with more adapters on the way) inside a bubblewrap sandbox, using any OpenAI-compatible model you configure. The daemon then runs your tests itself and returns a short structured result plus the diff. Workers never commit, merge or push: you (or your supervisor) review the branch and decide.</p><p class="sub">- Repo: https://github.com/mrchatam/Grok-workhorse - License: MIT (vendored skills: MIT, see NOTICE) - Status: v0.3.0 in development (latest release v0.1.0), Linux only</p><p class="sub">Why: to reduce supervisor (for example Grok) usage. The expensive model plans and reviews; smaller models you choose do the bounded coding work, and v0.3 keeps what the supervisor reads and does per task small (one waittask call, a ~0.5-1 KB brief result, automatic fix rounds and reviews on cheap models). See docs/token-savings.md.</p><p class="sub">- MCP server over stdio, usable from any MCP client (Grok Bot custom connector, Claude Desktop, Cursor, ...). It forwards to one persistent daemon, so many supervisor sessions share a queue. - Pluggable worker backends. One adapter interface drives different coding-agent CLIs, and each profile picks its backend (adapter matrix). - Any OpenAI-compatible provider: NVIDI</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -120,14 +120,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">HarjjotSinghh/</span>locum</span>
   <p>Delegate Grok Bot coding work to your own local Claude Code / Codex CLIs via a custom MCP connector</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/nettanvirdev--inertia.html">
+  <span class="name"><span class="owner">nettanvirdev/</span>inertia</span>
+  <p>inertia-ai: a desktop workspace for AI agents. Chat, built-in tools, MCP and OpenAPI integrations, Docker/Daytona sandboxes with a live desktop, routines and memory. Bring your own model and keys.</p>
+  <span class="meta"><span>⭐ 3</span><span>Rust</span></span>
 </a><a class="card" href="/s/ucsandman--declick.html">
   <span class="name"><span class="owner">ucsandman/</span>declick</span>
   <p>Compile an API, an MCP server, a database or a web page into a CLI your agent can run. Ten engines, one output contract, 4.1x less context than raw MCP.</p>
   <span class="meta"><span>⭐ 17</span><span>JavaScript</span></span>
-</a><a class="card" href="/s/holetexvn--memgw.html">
-  <span class="name"><span class="owner">holetexvn/</span>memgw</span>
-  <p>Shared long-term memory for AI coding agents — one local store for Claude Code, Codex CLI, opencode and anything that speaks MCP. SQLite + FTS5, no vector DB, $1-3/month.</p>
-  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
 </a>
 
 

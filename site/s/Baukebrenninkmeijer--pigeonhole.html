@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-20</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agent-plugins.html">agent-plugins</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">git-worktree</span><a class="topic" href="/topic/multi-agent.html">multi-agent</a><span class="topic">shell</span></div>
+<div class="topics"><a class="topic" href="/topic/agent-plugins.html">agent-plugins</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/git-worktree.html">git-worktree</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a><span class="topic">shell</span></div>
 <a class="btn" href="https://github.com/Baukebrenninkmeijer/pigeonhole" rel="noopener">View on GitHub ↗</a>
 <h2>About pigeonhole</h2><p class="sub">If you run several agents at once, one per git worktree, they can&#x27;t see each other. Two of them refactor the same shared module, and you find out at rebase. pigeonhole gives each worktree a mail slot: agents post what they&#x27;re working on, and leave each other notes when something they changed will break someone else.</p><p class="sub">There is no server, no daemon and no MCP. It is one POSIX shell script and the filesystem.</p><p class="sub">That&#x27;s it. The plugin registers the skill and the SessionStart hook. Nothing to add to settings.json, nothing to symlink.</p><p class="sub">Any Agent Plugins client: install the repo as a plugin however your client does it. You get the skill; you do not get the hook, because hooks are not part of the portable spec. Have your agent run pigeonhole join once per session instead. AGENTS.md at the repo root says so in the form an agent will follow.</p><p class="sub">The two formats coexist in one repo rather than one being generated from the other:</p><p class="sub">Agent Plugins 1.0.0 Claude Code --------- Manifest plugin.json (root) .claude-plugin/plugin.json Marketplace n/a .claude-plugin/marketplace.json Skills skills/pigeonhole/SKILL.md same file Hooks client extension, not portable hooks/hooks.json</p><p class="sub">The skill is the one both specs agree on, so it exists once and is never copied.</p><p class="sub">Two things in one line: mail is waiting, and someone else is already in shared/auth.py.</p><p class="sub">whoami, join, peers and sweep also exist; under Claude Code the hook handles the last three.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -108,6 +108,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Winterrks/</span>telepathy</span>
   <p>Allow your coding agents to self discover and collaborate with eachother (Claude Code, Codex, open code and other 9 supported)</p>
   <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/zriyox--codex-supervisor-mcp.html">
+  <span class="name"><span class="owner">zriyox/</span>codex-supervisor-mcp</span>
+  <p>Codex MCP server: run parallel Codex CLI workers in isolated git worktrees, state on disk, web dashboard, auto-update.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
 </a><a class="card" href="/s/Riccardo8888--agent-link.html">
   <span class="name"><span class="owner">Riccardo8888/</span>agent-link</span>
   <p>An end-to-end encrypted channel between coding agents, anywhere</p>
@@ -123,10 +127,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/luckeyfaraday--frontier-orchestrator.html">
   <span class="name"><span class="owner">luckeyfaraday/</span>frontier-orchestrator</span>
   <p>Multi-agent orchestration for Claude Code: MCP server + skill that keeps Claude as lead engineer while delegating backend work to OpenAI Codex and frontend/design work to Kimi</p>
-  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/mrcbrbn5361--SyncytiumMD.html">
-  <span class="name"><span class="owner">mrcbrbn5361/</span>SyncytiumMD</span>
-  <p>Universal Context, Rules &amp; Handoff Bridge for AI Coding Tools (Cursor, Copilot, Cline, Claude Code, Antigravity, MCP)</p>
   <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
 </a>
 
