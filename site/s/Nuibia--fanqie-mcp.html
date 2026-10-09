@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuibia/fanqie-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="自部署的番茄作者平台 MCP 查询服务：作家课堂、本人作品、经营数据与草稿；支持 HTTP MCP / REST，写操作默认关闭。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Nuibia--fanqie-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Nuibia/fanqie-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="自部署的番茄作者平台 MCP 查询服务：作家课堂、本人作品、经营数据与草稿；支持 HTTP MCP / REST，写操作默认关闭。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Nuibia/fanqie-mcp", "description": "自部署的番茄作者平台 MCP 查询服务：作家课堂、本人作品、经营数据与草稿；支持 HTTP MCP / REST，写操作默认关闭。", "codeRepository": "https://github.com/Nuibia/fanqie-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/Nuibia--fanqie-mcp.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Nuibia/</span>fanqie-mcp</h1>
+<p class="sub">自部署的番茄作者平台 MCP 查询服务：作家课堂、本人作品、经营数据与草稿；支持 HTTP MCP / REST，写操作默认关闭。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>8</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 80.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-09</b></div>
+  
+</div>
+<div class="topics"><span class="topic">author-tools</span><a class="topic" href="/topic/docker.html">docker</a><span class="topic">fanqie</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/playwright.html">playwright</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/typescript.html">typescript</a></div>
+<a class="btn" href="https://github.com/Nuibia/fanqie-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/Nuibia/fanqie-mcp/blob/main/docs/QUICKSTART.md" rel="noopener nofollow">Homepage ↗</a>
+<h2>About fanqie-mcp</h2><p class="sub">这是一个自行部署的番茄作者平台 MCP 服务。服务在本机运行，Codex、Claude Code 等 Agent Host 通过 HTTP 调用它；你在客户端用自然语言提出需求即可。服务也提供 REST API，供程序接入。</p><p class="sub">这是独立开发的早期项目，与番茄官方无隶属关系。当前版本以查询为主，写操作默认关闭。</p><p class="sub">- “列出番茄作家课堂的写作技巧课程，选一篇读给我。” - “确认当前登录的番茄账号是谁，再列出我的短故事作品。” - “查看我的作品经营数据，说明统计口径和数据截止时间。” - “读取这部作品的章节目录和草稿。” - “查看上一次保存的账号数据，不重新访问平台。”</p><p class="sub">能力 是否需要番茄登录 当前范围 ------------------------------ ---------------- ---------------------------------------------- 作家课堂目录与文章 否 五个分类、文章文字和图片链接；不转写视频或图片 官方活动 否 平台公开活动资料 本人短故事、长篇作品及经营指标 是 全分页读取、完整性检查、历史快照 本人章节目录与草稿 是 当前账号可访问的管理目录及草稿箱 本人章节、短故事正文 是 作者当前编辑版本；不证明与已发布正文一致 已保存数据与任务结果 有本地数据即可 明确标记为历史，不伪装实时数据 草稿维护、投稿与发布 是，且需独立能力 已有适配代码；默认关闭，真实投稿闭环尚未验证</p><p class="sub">查询能力已有真实平台读取记录，平台页面和接口变化后仍可能失效。部署后以 fanqiegetcapabilities 和本次任务结果为准；工具出现在列表里不等于当前一定可用。</p><p class="sub">推荐 Docker Compose。需要 Git、Node.js 22.13+、Yarn 1.22.22 和支持 Linux 容器的 Docker。</p><p class="sub">首次构建会下载依赖和浏览器镜像、准备固定测试资料并运行检查，可能需要数分钟。源码仓库的公开发行状态以 Release 为准。也可按固定版本镜像安装直接启动，无需本机 Node/Yarn；可用架构和固定 digest 以版本发行说明为准。</p><p class="sub">健康检查应返回 status: &quot;ok&quot;。接下来在 Agent Host 中连接：</p><p class="sub">配置项 值 -------------------- ------------------------------------ 传输 Streamable HTTP MCP 地址 http://127.0.0.1:18062/mcp 鉴权 Authorization: Bearer Token 所在文件 .secrets/api-token 建议单次工具等待时间 至少 135 秒</p><p class="sub">完整步骤看快速开始，客户端配置看接入教程。 服务 Token 只用于连接本服务；番茄账号登录通过本人扫码完成，两者是不同操作。</p><p class="sub">第一次使用可以照着完整演示完成连接 → 公开课程 → 扫码与身份核验 → 本人作品 → 历史读取；日常查询直接复制五份提示词。示例结果均使用合成数据。</p><p class="sub">登录了为什么显示 unknown？ 服务重启后，还没有实际检查登录时也会显示 unknown。让 Agent 调用 fanqiecheckloginstatus：它会访问平台核验，并返回账号昵称、ID 和检查时间。unknown 本身不代表已经退出登录。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Nuibia--fanqie-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/dominikamann--agent-mail-gateway.html">
+  <span class="name"><span class="owner">dominikamann/</span>agent-mail-gateway</span>
+  <p>Self-hosted email MCP server &amp; REST gateway: give each AI agent its own IMAP/SMTP mailbox with sender/recipient allow lists, HTML-to-Markdown, attachments and calendar invites. One Docker container.</p>
+  <span class="meta"><span>⭐ 10</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/docouno--notarium.html">
+  <span class="name"><span class="owner">docouno/</span>notarium</span>
+  <p>File-first knowledge base for humans and AI agents — self-hosted Markdown notes with a web editor and a built-in MCP server.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/meskhetian--linkedin-applicants-mcp.html">
+  <span class="name"><span class="owner">meskhetian/</span>linkedin-applicants-mcp</span>
+  <p>MCP server that exports your LinkedIn job applicants (lists, resumes, profiles) through your own Chrome, paced like a person, with a local dashboard</p>
+  <span class="meta"><span>⭐ 28</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/LilithGames--a2wave.html">
+  <span class="name"><span class="owner">LilithGames/</span>a2wave</span>
+  <p>Turn the agent CLIs you already use into shared services your whole team can call. Natural-language-driven agent orchestration for Claude Code, Cursor Agent, and OpenAI Codex.</p>
+  <span class="meta"><span>⭐ 18</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/PhantomPixelDev--BetterWebSearch-MCP.html">
+  <span class="name"><span class="owner">PhantomPixelDev/</span>BetterWebSearch-MCP</span>
+  <p>Keyless-first MCP for better web research — DuckDuckGo out of the box, Brave/Tavily optional, 3-tier extraction (HTTP → hydration → Playwright)</p>
+  <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
