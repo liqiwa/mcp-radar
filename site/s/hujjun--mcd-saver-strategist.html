@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hujjun/mcd-saver-strategist — MCP Server | MCP Radar</title>
+<meta name="description" content="麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Serv — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/hujjun--mcd-saver-strategist.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="hujjun/mcd-saver-strategist — MCP Server | MCP Radar">
+<meta property="og:description" content="麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Serv — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "hujjun/mcd-saver-strategist", "description": "麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品", "codeRepository": "https://github.com/hujjun/mcd-saver-strategist", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/hujjun--mcd-saver-strategist.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">hujjun/</span>mcd-saver-strategist</h1>
+<p class="sub">麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+<div class="chips">
+  <div class="chip">⭐ <b>29</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 290.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-10</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">coupon-optimizer</span><span class="topic">coupons</span><span class="topic">deterministic-optimization</span><span class="topic">fast-food</span><span class="topic">mcd</span><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><span class="topic">mcdonalds-mcp</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">money-saving</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a><span class="topic">workbuddy-skill</span></div>
+<a class="btn" href="https://github.com/hujjun/mcd-saver-strategist" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-saver-strategist</h2><p class="sub">基于 麦当劳中国 MCP（McDonald&#x27;s China MCP） 开发的省钱点餐 Skill / AI 智能体技能： 把「菜单 × 优惠券 × 叠加规则」的组合优化交给确定性算法， 让每一顿麦麦都点得明明白白、省得清清楚楚。 又名：麦门省钱精算师 / 麦当劳省钱点餐助手 / MCD Saver Strategist。</p><p class="sub">用户说&quot;我想吃巨无霸套餐，怎么最便宜&quot;，它拉取门店菜单和所有可用优惠券， 用算法穷举出总价最低的合规组合，并帮你下单。</p><p class="sub">示例：巨无霸 + 中薯条 + 可乐，直选 ¥47.00； 用「1+1 随心配」组合后 ¥21.90，省 ¥25.10（53%）。</p><p class="sub">🎮 在线试算（无需登录）： —— 优化算法的前端完整复刻，选好想吃的、拖动预算和热量上限，实时算出最优组合，打开即玩。 （若链接打不开，说明 GitHub Pages 尚未开启：仓库 Settings → Pages → Branch 选 main + /docs → Save，约 1 分钟生效。）</p><p class="sub">🔎 静态示例：docs/demo.html · 🖼️ 原理图：images/how-it-works.png · 🎬 宣传动画：images/promo.mp4</p><p class="sub">- 菜单几十项、优惠券动辄十几张、叠加规则各不相同； - 用券还要考虑「为凑满减而加购是否划算」； - 用户懒得算，大模型也容易算错（价格、折扣、叠加口算不可靠）。</p><p class="sub">本 Skill 的核心洞察是：取数交给 MCP，算术交给代码，表达交给 Agent。</p><p class="sub">角色 职责 ------ 麦当劳 MCP 实时菜单、价格、优惠券、营养、门店、下单 scripts/optimizer.py 确定性组合优化，输出总价最低的 Top-N 方案 WorkBuddy Agent 理解需求、归一化数据、讲解方案、确认后下单</p><p class="sub">（Windows 为 %USERPROFILE%\.workbuddy\skills\；MCP Token 配置见下文「安装」。）</p><p class="sub">前往麦当劳 MCP 开放平台 https://open.mcd.cn/mcp ，手机号登录后在「控制台」激活并复制 Token。</p><p class="sub">在 WorkBuddy 左侧边栏【专家·技能·连接器】→【连接器】→ 右上角【自定义连接器】→【配置 MCP】中， 填入 mcp-config.example.json 的内容， 并把 ${MCDMCPTOKEN} 替换为你的真实 Token（或用环境变量注入），保存后【启用】。</p><p class="sub">把 skills/mcd-saver-strategist/ 整个目录复制到 WorkBuddy 的用户技能目录：</p><p class="sub">（Windows 为 %USERPROFILE%\.workbuddy\skills\）</p><p class="sub">精算师：拉菜单 + 四路券池 → 优化 → 「1+1 随心配 ¥12.9 覆盖巨无霸和中薯条，另外单点可乐 ¥9， 合计 ¥21.90，比直选省 ¥25.10」。</p><p class="sub">精算师：以 budget=30 求解，返回在预算内的最优搭配，并列出各方案到手价与热量。</p><p class="sub">精算师：引入 list-nutrition-foods，以 maxcalories=800 求解， 给出低卡又省钱的组合（如板烧鸡腿堡 + 麦咖啡 + 圆筒）。</p><p class="sub">精算师：delivery-query-addresses → delivery-query-stores → 后续流程同上， 下单前用 calculate-price 核价（含配送费）。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/hujjun--mcd-saver-strategist.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/SH-DaWushi--web-api-extractor.html">
+  <span class="name"><span class="owner">SH-DaWushi/</span>web-api-extractor</span>
+  <p>Capture browser API traffic via CDP and turn any site into a ready-to-run FastMCP server, with no official API required.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/Mercury-vivis--mcd-benefits-butler.html">
+  <span class="name"><span class="owner">Mercury-vivis/</span>mcd-benefits-butler</span>
+  <p>基于麦当劳官方 mcd-mcp-server 的 MCP 客户端与 WorkBuddy 技能：扫描历史订单中仍来得及用餐评价的权益机会，盘点积分兑换，聚合当月活动。</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/Zafer-Liu--mcd-event-radar.html">
+  <span class="name"><span class="owner">Zafer-Liu/</span>mcd-event-radar</span>
+  <p>麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟</p>
+  <span class="meta"><span>⭐ 67</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model m</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a><a class="card" href="/s/mytt-10566--mcd-points-vault.html">
+  <span class="name"><span class="owner">mytt-10566/</span>mcd-points-vault</span>
+  <p>把你的麦当劳积分和优惠券当成一份资产来管：折算人民币现值、排出最优兑换出口、量化过期风险，并给出可执行的兑换路径。</p>
+  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
+</a><a class="card" href="/s/CacheCarti--dmoera-mcp.html">
+  <span class="name"><span class="owner">CacheCarti/</span>dmoera-mcp</span>
+  <p>dMoERA Creator Studio MCP Server: build, backtest, and deploy crypto trading strategies via AI agents</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

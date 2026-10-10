@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>akexin/mcd-points-actuary — MCP Server | MCP Radar</title>
+<meta name="description" content="麦麦积分精算师 — 基于麦当劳中国 MCP，把「渠道费 / 券叠加 / 积分机会成本」统一折算到一个目标函数「到手成本 = 现金 + 积分 × 影子价格」，回答同一份订单在到店自取、麦乐送、美团、饿了么哪边到手最便宜、该叠哪几张券、要不要动积分；并给出积分价值矩阵（同积分价值差 13 倍）、抽奖期望 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/akexin--mcd-points-actuary.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="akexin/mcd-points-actuary — MCP Server | MCP Radar">
+<meta property="og:description" content="麦麦积分精算师 — 基于麦当劳中国 MCP，把「渠道费 / 券叠加 / 积分机会成本」统一折算到一个目标函数「到手成本 = 现金 + 积分 × 影子价格」，回答同一份订单在到店自取、麦乐送、美团、饿了么哪边到手最便宜、该叠哪几张券、要不要动积分；并给出积分价值矩阵（同积分价值差 13 倍）、抽奖期望 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "akexin/mcd-points-actuary", "description": "麦麦积分精算师 — 基于麦当劳中国 MCP，把「渠道费 / 券叠加 / 积分机会成本」统一折算到一个目标函数「到手成本 = 现金 + 积分 × 影子价格」，回答同一份订单在到店自取、麦乐送、美团、饿了么哪边到手最便宜、该叠哪几张券、要不要动积分；并给出积分价值矩阵（同积分价值差 13 倍）、抽奖期望值边界与到期止损方案（麦当劳程序员创意开发大赛参赛作品）", "codeRepository": "https://github.com/akexin/mcd-points-actuary", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/akexin--mcd-points-actuary.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">akexin/</span>mcd-points-actuary</h1>
+<p class="sub">麦麦积分精算师 — 基于麦当劳中国 MCP，把「渠道费 / 券叠加 / 积分机会成本」统一折算到一个目标函数「到手成本 = 现金 + 积分 × 影子价格」，回答同一份订单在到店自取、麦乐送、美团、饿了么哪边到手最便宜、该叠哪几张券、要不要动积分；并给出积分价值矩阵（同积分价值差 13 倍）、抽奖期望值边界与到期止损方案（麦当劳程序员创意开发大赛参赛作品）</p>
+<div class="chips">
+  <div class="chip">⭐ <b>15</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 150.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-10</b></div>
+  
+</div>
+<div class="topics"><span class="topic">actuary</span><span class="topic">coupon-optimization</span><span class="topic">loyalty-program</span><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/points.html">points</a><a class="topic" href="/topic/python.html">python</a></div>
+<a class="btn" href="https://github.com/akexin/mcd-points-actuary" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-points-actuary</h2><p class="sub">点外卖这件事，钱已经有很多工具在算，积分几乎没人算。 本项目把「渠道费 / 券叠加 / 积分机会成本」折算到同一个目标函数上， 回答一句以前没人算得清的话：这单到底在哪买、用哪张券、要不要动积分，到手最便宜？</p><p class="sub">上图四个阶段的相邻两层之间没有网络调用：7 次只读 MCP 取数之后， 组合枚举、券叠加、积分折算全部在本地完成，不占用 MCP 计价配额。</p><p class="sub">同一份订单 —— 巨无霸 + 薯条 + 可乐，在麦当劳南京新百餐厅（storeCode=1990346）实查菜单下：</p><p class="sub">渠道 券后商品 配送 打包 实付现金 用到券 到手成本 --------------------- 美团外卖 ¥22.75 ¥3.50 ¥1.50 ¥27.75 半价周末·巨无霸 5折 + 买薯条送可乐 + 必点榜减5 ¥27.75 饿了么 ¥34.44 ¥4.50 ¥1.00 ¥39.94 店铺满35减10 + 整单88折 ¥39.94 麦当劳 · 到店自取 ¥50.50 ¥0.00 ¥0.00 ¥50.50 无 ¥50.50 麦当劳 · 麦乐送 ¥50.50 ¥0.00 ¥0.00 ¥50.50 无 ¥50.50</p><p class="sub">选对渠道 + 选对券，比最贵的组合省 ¥22.75（−45%）。 而这还没算积分那一层 —— 见下。</p><p class="sub">关键在于「积分影子价格」不是拍脑袋设的常数，而是由积分商城实测算出来的 —— &quot;这些积分拿去做最优兑换，能保证换回多少现金&quot;。它让&quot;花 500 积分省 24 元&quot; 这类决策第一次可以被判定为亏损，而不是凭感觉。</p><p class="sub">真实积分商城的实测结果（2026-10-09）：周期内最优兑换 0.1380 元/积分，最差 0.0274。</p><p class="sub">0.1380 是&quot;积分商城里最划算的那一档&quot;，不是&quot;你手上这些积分&quot;的价值。把两者混为一谈， 会系统性高估积分、把本来划算的抵扣误判成亏损。所以本项目不再只给一个数，而是并列摆出三档， 每一档都写清楚它是怎么算的、什么时候该用：</p><p class="sub">口径 定义 怎么算 该在什么时候用 ------------ 最优标的效率 周期内效率最高的那件标的 max(面值 ÷ 积分) 主口径，对外公布、跨期可比；刻意保守，杜绝&quot;积分不值钱&quot;的过度乐观 保守分位（P25） 历史各期最优效率的 25% 分位 shadowprice.py 时间序列 历史攒够多期后，给出&quot;至少不会比这更差&quot;的下界；样本不足时明确降级而不是假装有 余额处边际效率 在你的余额处，最后一份积分还能换回什么 有界背包在余额处的边际值 判断&quot;这一单该不该花积分&quot; —— 它才是这笔决策的机会成本</p><p class="sub">主口径仍然是 0.1380，本文与对外数字一律以它为准；保守分位与边际效率并列展示， 用于说明结论的适用边界，不改动任何已公布的结论。</p><p class="sub">原因很朴素 —— 最优标的是限量的。「50 积分换 6.9 元派」每人每月通常只能换 1 次， 换完之后下一档是 0.1090、再下一档 0.0358……所以 0.1380 只对最前面那几十个积分成立。</p><p class="sub">expirypolicy.py 把这个&quot;效率断崖&quot;直接算出来（有界背包的精确解，不是估的）：</p><p class="sub">同一套代码在余额 50 积分时，三档全部等于 0.1380（高估幅度 0.0%）—— 差异从哪来、 什么时候来，是可复算的，不是话术。</p><p class="sub">积分餐品券 所需积分 菜单单点价 打包价 抵扣 打平 ypp 判定 --------------------- 17.9元板烧可乐组合 500 ¥33.00 ¥17.90 ¥15.10 0.0302 ❌ 不划算 21.9元巨无霸可乐组合 800 ¥36.00 ¥21.90 ¥14.10 0.0176 ❌ 不划算 16.9元中薯麦乐鸡组合 200 ¥28.50 ¥16.90 ¥11.60 0.0580 ❌ 不划算 28.8元巨无霸四件套 80</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/akexin--mcd-points-actuary.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/mytt-10566--mcd-points-vault.html">
+  <span class="name"><span class="owner">mytt-10566/</span>mcd-points-vault</span>
+  <p>把你的麦当劳积分和优惠券当成一份资产来管：折算人民币现值、排出最优兑换出口、量化过期风险，并给出可执行的兑换路径。</p>
+  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
+</a><a class="card" href="/s/hirotomasato--yowes.html">
+  <span class="name"><span class="owner">hirotomasato/</span>yowes</span>
+  <p>Generate realistic teacher documents (ID cards, licenses, letters) for 13 countries via MCP.</p>
+  <span class="meta"><span>⭐ 174</span><span>Python</span></span>
+</a><a class="card" href="/s/rokbenko--quackd.html">
+  <span class="name"><span class="owner">rokbenko/</span>quackd</span>
+  <p>🦆🧠 Give your small robot a brain. Tell a Microduck, a Reachy Mini, a LeRobot arm or any ROS base what you want in plain language. An LLM (Claude, OpenAI, Gemini, Grok, or a local model via Ollama, vLL</p>
+  <span class="meta"><span>⭐ 129</span><span>Python</span></span>
+</a><a class="card" href="/s/lotchuazzz-crypto--papergraph-mcp.html">
+  <span class="name"><span class="owner">lotchuazzz-crypto/</span>papergraph-mcp</span>
+  <p>Turn arXiv and LaTeX mathematical papers into theorem dependency graphs for AI agents through MCP.</p>
+  <span class="meta"><span>⭐ 102</span><span>Python</span></span>
+</a><a class="card" href="/s/Stupidoodle--swissdevjobs-cli.html">
+  <span class="name"><span class="owner">Stupidoodle/</span>swissdevjobs-cli</span>
+  <p>Search &amp; apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin</p>
+  <span class="meta"><span>⭐ 92</span><span>Python</span></span>
+</a><a class="card" href="/s/bybit-exchange--kaas.html">
+  <span class="name"><span class="owner">bybit-exchange/</span>kaas</span>
+  <p>Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.</p>
+  <span class="meta"><span>⭐ 82</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

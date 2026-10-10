@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07liu/maimen-butler — MCP Server | MCP Radar</title>
+<meta name="description" content="麦门全能管家：基于麦当劳中国官方 MCP 的一站式助手——自动领券、权威比价、点餐推荐、每日巡检、巨无霸指数。2026 麦当劳程序员节创意开发大赛参赛作品。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/07liu--maimen-butler.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="07liu/maimen-butler — MCP Server | MCP Radar">
+<meta property="og:description" content="麦门全能管家：基于麦当劳中国官方 MCP 的一站式助手——自动领券、权威比价、点餐推荐、每日巡检、巨无霸指数。2026 麦当劳程序员节创意开发大赛参赛作品。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "07liu/maimen-butler", "description": "麦门全能管家：基于麦当劳中国官方 MCP 的一站式助手——自动领券、权威比价、点餐推荐、每日巡检、巨无霸指数。2026 麦当劳程序员节创意开发大赛参赛作品。", "codeRepository": "https://github.com/07liu/maimen-butler", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/07liu--maimen-butler.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">07liu/</span>maimen-butler</h1>
+<p class="sub">麦门全能管家：基于麦当劳中国官方 MCP 的一站式助手——自动领券、权威比价、点餐推荐、每日巡检、巨无霸指数。2026 麦当劳程序员节创意开发大赛参赛作品。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>8</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 82.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-10</b></div>
+  
+</div>
+<div class="topics"><span class="topic">maimen</span><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">mcp-skill</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/nodejs.html">nodejs</a></div>
+<a class="btn" href="https://github.com/07liu/maimen-butler" rel="noopener">View on GitHub ↗</a>
+<h2>About maimen-butler</h2><p class="sub">让 AI 把你的麦当劳安排得明明白白：该领的券自动领，该薅的羊毛一天不落，点餐永远是最优价。</p><p class="sub">一个基于 麦当劳中国官方 MCP（https://mcp.mcd.cn）开发的全能点餐助手 Skill，适配 ZCode / WorkBuddy 等 MCP 客户端。三合一能力：</p><p class="sub">能力 一句话 ------ 🛡️ 省钱助手 可领优惠券一键全领，点餐自动比价出最低价组合，积分快过期主动提醒兑换 🍔 点餐助手 一句话点餐：&quot;来个不辣、500 大卡以内的套餐&quot; → 推荐 → 算价 → 下单，全程对话完成 🎁 白嫖日历 营销活动、每日抽奖机会、限时免费，主动弹出来提醒你去薅</p><p class="sub">- 🎫 优惠券躺在 App 里没领，下单时多花 8 块 - 🤔 点开菜单 200 个 SKU，纠结 20 分钟最后随便点 - 🎰 抽奖机会白白过期，积分悄悄清零 - 📱 下个 App、注册会员、翻活动页……就想吃个汉堡而已</p><p class="sub">麦门全能管家把这些全部变成一句话的事。 你只管说&quot;今晚想吃点便宜的辣的&quot;，剩下的交给 AI。</p><p class="sub">同一顿巨无霸 + 薯条 + 可乐的三种价格（calculate-price 权威核价，北京中关村5号店实测）：</p><p class="sub">❌ 菜单直接单点 = ¥48.50 ✅ 巨无霸三件套 = ¥36.50（省 ¥12.00 / -25%） 💡 精选超值随心配 1+1 = ¥13.90（省 ¥34.60 / -71%）</p><p class="sub">菜单接口不展示价格，唯一可信的报价来自 calculate-price——管家每一单都走权威核价，从不猜价格。</p><p class="sub">内置 scripts/bigmac-index.mjs：一键采集全国 8 城市中心门店的巨无霸实时价格，生成麦门版巨无霸指数（致敬 The Economist）：</p><p class="sub">2026-10-09 实测：均价 ¥26.38，最贵（杭州灵隐景区 ¥29.00）与最便宜（上海/广州/深圳 ¥25.50）价差 13.7%——景区溢价在麦门数据里无处遁形。运行 node scripts/bigmac-index.mjs 即可刷新。</p><p class="sub">市面上的麦麦工具大多只做&quot;读&quot;（查一查、推一条晨报）。麦门全能管家是&quot;读 + 做&quot;：领券、比价、下单、抽奖、积分兑换都能实际执行——当然，每一个花钱的写操作都强制先经你确认。</p><p class="sub">10 月 20 日-26 日自动激活（由 now-time-info 驱动）：热量改用程序员单位播报（1G = 1024 kcal）、主动推送程序员节活动与&quot;Bug 猎杀奖励&quot;巡检、推荐&quot;改完最后一个 Bug 就吃&quot;的下单理由。1024 当天上手，仪式感拉满。</p><p class="sub">1. 打开 open.mcd.cn/mcp，手机号验证码登录 2. 进入 控制台 → 点击 激活 → 同意服务协议 3. 复制你的 MCP Token</p><p class="sub">在 ZCode / WorkBuddy / Cherry Studio / Cursor 等支持 Streamable HTTP 的客户端中配置（参考 mcp-config.example.json）：</p><p class="sub">把本仓库克隆下来，将 SKILL.md 安装到你的 AI 客户端 Skill 目录（ZCode / WorkBuddy 用户可直接指向本仓库目录），然后：</p><p class="sub">也可以用 npm 别名：npm run patrol / npm run bigmac / npm run deals（零依赖，不需要 npm install）。</p><p class="sub">scripts/patrol.mjs 把&quot;每天该薅的羊毛&quot;一次跑完——积分临期、可领优惠券、今日活动、抽奖机会，实测输出（2026-10-09）：</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/07liu--maimen-butler.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/ucsandman--declick.html">
+  <span class="name"><span class="owner">ucsandman/</span>declick</span>
+  <p>Compile an API, an MCP server, a database or a web page into a CLI your agent can run. Ten engines, one output contract, 4.1x less context than raw MCP.</p>
+  <span class="meta"><span>⭐ 17</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/tianyupaipai-cmd--netease-music-mcp.html">
+  <span class="name"><span class="owner">tianyupaipai-cmd/</span>netease-music-mcp</span>
+  <p>跨平台、隐私优先的网易云音乐 MCP：搜索、歌词、歌单与设备适配器</p>
+  <span class="meta"><span>⭐ 8</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/viRomulus-gif--browser-integration-mcp.html">
+  <span class="name"><span class="owner">viRomulus-gif/</span>browser-integration-mcp</span>
+  <p>MCP server for Claude Desktop: a shared, isolated browser agent behind a token-guarded local broker. Chrome/Edge/Vivaldi via CDP on a private pipe. Windows.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Parv17k--tasktracker.html">
+  <span class="name"><span class="owner">Parv17k/</span>tasktracker</span>
+  <p>The local-first task board for you and your AI agents. Claude &amp; Cursor work on it over MCP, the built-in assistant asks before changing anything, and it all stays on your machine.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/syouro--InkPaw.html">
+  <span class="name"><span class="owner">syouro/</span>InkPaw</span>
+  <p>An MCP server and deterministic DOCX toolkit for AI agents—create, edit, validate, and render reliable Word documents with a local agent playground.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/charbelkassab--relatio-crm.html">
+  <span class="name"><span class="owner">charbelkassab/</span>relatio-crm</span>
+  <p>Lightweight self-hosted CRM with a built-in MCP connector. Let Claude, ChatGPT, or Gemini run your pipeline.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

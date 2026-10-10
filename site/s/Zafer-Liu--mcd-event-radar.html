@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zafer-Liu/mcd-event-radar — MCP Server | MCP Radar</title>
+<meta name="description" content="麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Zafer-Liu--mcd-event-radar.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Zafer-Liu/mcd-event-radar — MCP Server | MCP Radar">
+<meta property="og:description" content="麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Zafer-Liu/mcd-event-radar", "description": "麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟", "codeRepository": "https://github.com/Zafer-Liu/mcd-event-radar", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Zafer-Liu--mcd-event-radar.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Zafer-Liu/</span>mcd-event-radar</h1>
+<p class="sub">麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟</p>
+<div class="chips">
+  <div class="chip">⭐ <b>67</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 670.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-10</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><span class="topic">event-map</span><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/skill.html">skill</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/Zafer-Liu/mcd-event-radar" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://app-ezf35mw5oq9t.miaoda.online" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-event-radar</h2><p class="sub">一句话问出去，回来一张卡通活动地图——门店小屋站在麦当劳官方给的真实经纬度上， 活动卡片里只装官方亲口确认还有名额的场次。</p><p class="sub">麦当劳程序员创意开发大赛参赛作品 · 基于麦当劳 MCP 的 Agent Skill · 全程使用 WorkBuddy 开发</p><p class="sub">每一个数字都有出处：620 是官方接口实时返回的场次数，¥88 是和商城价核对过的价格， 「余 12」是官方接口的原始名额数——雷达只转述，不编故事。</p><p class="sub">▶ 点击观看 / 下载视频（13.4 MB · 1080p） · 讨论见 Issue 1</p><p class="sub">GitHub 不支持在线播放视频，链接会下载到本机后用播放器观看；不想下载就先看 在线演示地图，浏览器里直接点。</p><p class="sub">视频里你能看到：一句话提问 → 城市确认 → 官方 MCP 实时扫描 → 卡通活动地图生成 → 点日期/活动类型筛选 → 导出 .ics 日历，全程无剪辑、无假数据。</p><p class="sub">想先看效果？ 打开在线演示地图：不用安装、不用 Token，在浏览器里直接点门店、筛日期、导出日历。 演示站的活动与场次为虚构数据（门店相对位置仍是真实经纬度投影），页面本身已明确标注； 真实数据请按下面三步接入自己的 Token。</p><p class="sub">不用打开任何命令行——WorkBuddy 自己就会干活。复制下面这句，粘贴进 WorkBuddy 对话框，回车：</p><p class="sub">不想用对话装？ 两个替代方案，效果一样： - 图形界面：下载本仓库的 dist/mcd-event-radar-skill.zip， 在 WorkBuddy「技能 → 添加技能 → 上传技能」里导入。 - 命令行（适合熟手，重复运行 = 更新；卸载 = 删掉 ~/.workbuddy/skills/mcd-event-radar 文件夹）：</p><p class="sub">第一次使用时，它会给你一个 1 分钟的官方 Token 申请指引 （open.mcd.cn/mcp/doc → 登录 → 控制台 → 激活 → 一键复制）， 你把 Token 粘贴到对话里，剩下的配置它自己完成——自动备份、在线验证、绝不外传。</p><p class="sub">⚠️ Token 等同于你的账号凭证：只贴在自己的对话里，不要发群聊、朋友圈或 GitHub。</p><p class="sub">你看到的 是真的吗 一句话解释 --- --- --- 🏠 门店小屋的位置 ✅ 真 麦当劳官方接口返回的门店经纬度，直接投影到地图上 🛣️ 街道名字（东单北大街…） ✅ 真 官方地址字段里的街道名 🎫 卡片上的「可预约」 ✅ 真 官方场次接口亲口说还有名额，才算可预约 💰 卡片上的 ¥88 ✅ 核实过 接口原始值 8800（单位是分），已和商城标价 88 元核对一致 🎪 彩色片区 / 道路 / 公园 ⚠️ 示意 画得好看用的，页面明确标注「卡通示意图 · 非精确地图」 🟡 小屋头顶的数字 ✅ 实时 当前筛选下这家店还有多少场，点日期立刻变</p><p class="sub">不画假位置、不虚报名额、不瞎标价格——这是本项目的底线，详见下方「数据诚实红线」。</p><p class="sub">顺手还能做：点活动类型的色标一键筛选、把当前筛选结果导出成日历文件（.ics，可直接导入手机日历；官方没给场次时间的会如实标成全天事件）； 门店小屋支持键盘操作（Tab 聚焦、回车筛选），系统开启「减少动态效果」时会自动关掉动画。</p><p class="sub">你是 你会问 --- --- 有娃家庭 「周末带娃去哪家麦麦？生日派对/读书会哪场还有名额？」 活动型麦门 「麦麦奇妙夜捣蛋派对什么时候开？离我近吗？」 附近党 「别给我一堵文字墙，地图上指给我看哪家店最近」 谨慎型用户 「预约前我要看清活动、门店、场次、费用、名额依据」</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Zafer-Liu--mcd-event-radar.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 29</span><span>Python</span></span>
+</a><a class="card" href="/s/lvzuojing--mcd-wrapped.html">
+  <span class="name"><span class="owner">lvzuojing/</span>mcd-wrapped</span>
+  <p>M-CODE WRAPPED · 麦当劳数据全景报告 + 个人年报 + 方言播报</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/mytt-10566--mcd-points-vault.html">
+  <span class="name"><span class="owner">mytt-10566/</span>mcd-points-vault</span>
+  <p>把你的麦当劳积分和优惠券当成一份资产来管：折算人民币现值、排出最优兑换出口、量化过期风险，并给出可执行的兑换路径。</p>
+  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
+</a><a class="card" href="/s/mikelgh--mcd-send-a-meal.html">
+  <span class="name"><span class="owner">mikelgh/</span>mcd-send-a-meal</span>
+  <p>麦麦代送 mcd-send-a-meal：用麦当劳中国 MCP 给「别人」点一份（M-CODE 程序员创意开发大赛参赛项目）</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/Mercury-vivis--mcd-benefits-butler.html">
+  <span class="name"><span class="owner">Mercury-vivis/</span>mcd-benefits-butler</span>
+  <p>基于麦当劳官方 mcd-mcp-server 的 MCP 客户端与 WorkBuddy 技能：扫描历史订单中仍来得及用餐评价的权益机会，盘点积分兑换，聚合当月活动。</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/Cripacx--mediagen.html">
+  <span class="name"><span class="owner">Cripacx/</span>mediagen</span>
+  <p>AI image and video generation skill for Claude Code and other coding agents — Gemini, OpenAI and Kie AI behind one CLI and MCP server, with EU AI Act content marking.</p>
+  <span class="meta"><span>⭐ 56</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

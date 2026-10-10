@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fengzhizishu/maimen-wrapped — MCP Server | MCP Radar</title>
+<meta name="description" content="🍔 麦门画像 · 用麦当劳中国 MCP Server 把消费记录生成 11 张可分享的故事卡片流 | Spotify Wrapped 风格 · 零依赖单文件报告 · 麦当劳程序员节创意开发大赛参赛项目 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/fengzhizishu--maimen-wrapped.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="fengzhizishu/maimen-wrapped — MCP Server | MCP Radar">
+<meta property="og:description" content="🍔 麦门画像 · 用麦当劳中国 MCP Server 把消费记录生成 11 张可分享的故事卡片流 | Spotify Wrapped 风格 · 零依赖单文件报告 · 麦当劳程序员节创意开发大赛参赛项目 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "fengzhizishu/maimen-wrapped", "description": "🍔 麦门画像 · 用麦当劳中国 MCP Server 把消费记录生成 11 张可分享的故事卡片流 | Spotify Wrapped 风格 · 零依赖单文件报告 · 麦当劳程序员节创意开发大赛参赛项目", "codeRepository": "https://github.com/fengzhizishu/maimen-wrapped", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/fengzhizishu--maimen-wrapped.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">fengzhizishu/</span>maimen-wrapped</h1>
+<p class="sub">🍔 麦门画像 · 用麦当劳中国 MCP Server 把消费记录生成 11 张可分享的故事卡片流 | Spotify Wrapped 风格 · 零依赖单文件报告 · 麦当劳程序员节创意开发大赛参赛项目</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-10</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/data-visualization.html">data-visualization</a><span class="topic">mcd-mcp</span><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/python.html">python</a><span class="topic">spotify-wrapped</span></div>
+<a class="btn" href="https://github.com/fengzhizishu/maimen-wrapped" rel="noopener">View on GitHub ↗</a>
+<h2>About maimen-wrapped</h2><p class="sub">最多 11 张 9:16 全屏卡片 · 逐张翻阅 · 每张都可截图分享 · 自带原创 BGM</p><p class="sub">参赛项目 · 麦当劳程序员节创意开发大赛。本项目由参赛者独立开发，非麦当劳官方产品。</p><p class="sub">3 秒看懂：打开报告 → 上滑逐张翻阅 → 每张都是 9:16 全屏、可直接截图发朋友圈。</p><p class="sub">maimen-wrapped 读取你自己的麦当劳历史订单，生成一份像 Spotify Wrapped 那样的故事卡片流——最多 11 张竖版全屏卡片，上滑逐张翻阅：</p><p class="sub">卡片 内容 --- --- 1 封面 · 统计区间 2 总单数（超大数字冲击） 3 总花费 + 生活化换算 4 本命餐品 Top 5 5 干饭时钟（早/午/下午茶/晚/夜宵分布） 6 逐月出勤记录 7 累计热量换算 8 省钱武器库（券 + 积分） 9 错过的麦麦活动 10 专属麦门称号 + 六格数据回顾 11 数据边界说明（样本量 / 覆盖区间 / 剔除项）</p><p class="sub">称号卡会按你的数据发放称号：麦香鱼信徒、深夜麦乐送战士、早餐狂魔、板烧鸡腿堡信徒……</p><p class="sub">麦当劳 MCP 的 order-list 工具未定义任何入参，官方文档仅说明「查询近期的到店/外送历史订单」。实测：</p><p class="sub">- 尝试 pageNum / page / pageSize / limit / offset / 日期区间等 14 种参数组合，均返回完全相同的 10 条订单 - 这 10 条跨越约 9 个月（非固定 60 天窗口），与麦当劳 App 端历史订单口径一致 - 结论：10 单是平台固有约束，不是接口缺陷，也无法突破</p><p class="sub">因此本项目如实标注数据边界，而非宣称「年度报告」：封面注明样本范围，末卡专设「数据边界说明卡」，列明样本订单数、覆盖区间、已剔除的取消单、券/积分兑换单。我们认为诚实标注样本量，比用「年度账单」的噱头更站得住脚。</p><p class="sub">清洗动作 为什么必须做 --- --- 套餐拆解 comboItemList 9/10 单是套餐。不拆解则「本命餐品」全是「精选超值随心配」，毫无传播力；拆解后得到「麦香鱼 6 次」 保留零元单 券/积分兑换单 realTotalAmount=&quot;0&quot;，丢弃会损失约 30% 样本。保留但不计入花费 过滤取消单 orderStatus=&quot;订单已取消&quot; 会虚增单数。过滤但单独计数，在边界卡如实展示</p><p class="sub">用浏览器打开 myreport.html，点击封面按钮即可翻阅全部 11 张卡片。</p><p class="sub">1. 访问 2. 使用手机号验证登录 3. 点击右上角「控制台」→「激活」申请 MCP Token，一键复制</p><p class="sub">若你希望在 WorkBuddy / Cursor / Cherry Studio / TRAE 等 MCP Client 中直接挂载麦当劳 MCP， 可直接使用仓库根目录的 mcp-config.example.json：</p><p class="sub">⚠️ 该文件仅使用环境变量占位符 ${MCDMCPTOKEN}，不含任何真实凭据，可安全提交。 接入 Client 前请先设置环境变量 MCDMCPTOKEN。</p><p class="sub">完成后用浏览器打开 output/maimen-wrapped.html，点击封面卡「开启你的麦门之旅」即可开始翻阅。</p><p class="sub">参数 说明 --- --- --token 指定 MCP Token（优先级最高） --probe 探查模式：dump 各工具返回结构，便于核对字段 --from-json 离线模式：从本地 JSON 生成报告，无需 Token --out 输出路径（默认 output/maimen-wrapped.html） --repo 报告中展示的仓库地址 --cache 复用本地营养表缓存，减少网络请求 --quiet 精简输出</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/fengzhizishu--maimen-wrapped.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 29</span><span>Python</span></span>
+</a><a class="card" href="/s/akexin--mcd-points-actuary.html">
+  <span class="name"><span class="owner">akexin/</span>mcd-points-actuary</span>
+  <p>麦麦积分精算师 — 基于麦当劳中国 MCP，把「渠道费 / 券叠加 / 积分机会成本」统一折算到一个目标函数「到手成本 = 现金 + 积分 × 影子价格」，回答同一份订单在到店自取、麦乐送、美团、饿了么哪边到手最便宜、该叠哪几张券、要不要动积分；并给出积分价值矩阵（同积分价值差 13 倍）、抽奖期望值边界与到期止损方案（麦当劳程序员创意开发大赛参赛作品）</p>
+  <span class="meta"><span>⭐ 15</span><span>Python</span></span>
+</a><a class="card" href="/s/Mercury-vivis--mcd-benefits-butler.html">
+  <span class="name"><span class="owner">Mercury-vivis/</span>mcd-benefits-butler</span>
+  <p>基于麦当劳官方 mcd-mcp-server 的 MCP 客户端与 WorkBuddy 技能：扫描历史订单中仍来得及用餐评价的权益机会，盘点积分兑换，聚合当月活动。</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/hirotomasato--yowes.html">
+  <span class="name"><span class="owner">hirotomasato/</span>yowes</span>
+  <p>Generate realistic teacher documents (ID cards, licenses, letters) for 13 countries via MCP.</p>
+  <span class="meta"><span>⭐ 174</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
