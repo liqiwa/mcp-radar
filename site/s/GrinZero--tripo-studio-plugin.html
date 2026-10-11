@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrinZero/tripo-studio-plugin — MCP Server | MCP Radar</title>
+<meta name="description" content="Unofficial Codex plugin for AI 3D creation with your Tripo Studio account. Generate, texture, rig, animate and export assets with MCP Apps and local B — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/GrinZero--tripo-studio-plugin.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="GrinZero/tripo-studio-plugin — MCP Server | MCP Radar">
+<meta property="og:description" content="Unofficial Codex plugin for AI 3D creation with your Tripo Studio account. Generate, texture, rig, animate and export assets with MCP Apps and local B — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "GrinZero/tripo-studio-plugin", "description": "Unofficial Codex plugin for AI 3D creation with your Tripo Studio account. Generate, texture, rig, animate and export assets with MCP Apps and local Blender tools.", "codeRepository": "https://github.com/GrinZero/tripo-studio-plugin", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/GrinZero--tripo-studio-plugin.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">GrinZero/</span>tripo-studio-plugin</h1>
+<p class="sub">Unofficial Codex plugin for AI 3D creation with your Tripo Studio account. Generate, texture, rig, animate and export assets with MCP Apps and local Blender tools.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>7</b> stars</div>
+  <div class="chip">⑂ <b>2</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 74.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-11</b></div>
+  
+</div>
+<div class="topics"><span class="topic">3d-assets</span><span class="topic">3d-generation</span><a class="topic" href="/topic/animation.html">animation</a><a class="topic" href="/topic/blender.html">blender</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/codex-plugin.html">codex-plugin</a><span class="topic">image-to-3d</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-apps.html">mcp-apps</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/openai-codex.html">openai-codex</a><a class="topic" href="/topic/rigging.html">rigging</a><a class="topic" href="/topic/text-to-3d.html">text-to-3d</a><span class="topic">tripo</span><span class="topic">tripo-studio</span></div>
+<a class="btn" href="https://github.com/GrinZero/tripo-studio-plugin" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/GrinZero/tripo-studio-plugin/blob/main/README.en.md" rel="noopener nofollow">Homepage ↗</a>
+<h2>About tripo-studio-plugin</h2><p class="sub">你的专属独立 3D 资产工坊。在 Codex 中，用一句话开启从概念到绑定的全流程 3D 资产生产。</p><p class="sub">Your own one-person 3D studio. Everything you need to create 3D assets with AI, right inside Codex. Bring your own Tripo Studio account.</p><p class="sub">💡 什么是它 · 🚀 安装上手 · 🛠️ 工具清单 · 💬 对话范式 · 🖼️ 界面画廊 · 📐 工程边界 · 📖 文档导航</p><p class="sub">[!NOTE] 🚀 零 API 门槛 · 会员直接复用：直接连接你在 Tripo Studio 网页端的现有会员账号，无需申请与额外购买 Tripo API Key。内嵌 68 个 MCP 工具与可交互式 MCP Apps 工作台，云端积分透明预估，本地 Blender 辅助操作完全零积分消耗！</p><p class="sub">1. 什么是 Tripo Studio for Codex (What it is)</p><p class="sub">Tripo API 由 Tripo 官方提供；Tripo Studio for Codex 是我们独立开发的非官方插件。 官方目前未提供在 Codex 中直接复用 Tripo Studio 网页会员账号的集成，因此我们提供这个插件来补足这一能力，让用户通过自己的 Studio 账号在 Codex 中完成 3D 资产工作流。</p><p class="sub">制作 3D 资产以往是一条高度割裂的繁复流水线： 在浏览器网页中输入 Prompt 生成模型 ➔ 手动下载 GLB 导出文件 ➔ 导入 Blender 检查拓扑与面数 ➔ 发现问题反复切换回网页重刷 ➔ 换外部工具绑定骨骼与动作 ➔ 格式转换与贴图烘焙频繁报错。</p><p class="sub">Tripo Studio for Codex 将整套 3D 工业级生产管线彻底整合进 Codex 智能体中。</p><p class="sub">你只需对 Codex 发送一句自然语言描述，Agent 即可为你设计参数草稿、智能核算积分、调起 Tripo Studio 最新高精度或 Smart Mesh 模型生成；在聊天窗口中直接旋转检视 3D GLB 模型；一键执行拓扑重构、Rig V3 骨骼绑定与动效重定向；本地更内嵌 Blender 引擎，零成本完成几何检查、线框渲染、投影烘焙与多格式交付。</p><p class="sub">1. 双模协同：对话即生成，工作台即控制台 (Agent-Driven &amp; Interactive Workbench) 不仅能用自然语言向 Agent 发号施令，还能随时打开集成资产库、任务监控、创建面板的三合一可视化工作台。聊天中自带 60 秒草稿防手滑确认卡片，直观掌握面数、拓扑与贴图预算。 2. 账号直通：复用 Studio 会员，告别 API 昂贵中转 (BYO Account · Zero API Token Markup) 直接打通并复用本机的 Tripo Studio 网页会话凭证，享受官方最新 H3.1、Smart Mesh P2 与 Rig V3 算力，无任何二次计费与代理溢价。 3. 端云闭环：云端生成算力 + 本地 Blender 管线 (Cloud Generation + Local Blender Engine) 云端专攻高负载几何生成、8K PBR 贴图生成与 AI Motion 动效；本地静默调用 Blender 免费完成几何体素检查、流形修复、贴图投影与 FBX/OBJ/USDZ 交付，不消耗任何云端点数。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/GrinZero--tripo-studio-plugin.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/chipfighter--codex-attachment-manager.html">
+  <span class="name"><span class="owner">chipfighter/</span>codex-attachment-manager</span>
+  <p>Codex plugin: choose which past images go to the model with your next message. Unchecked images become placeholders, the task goes on, and requests stay small.</p>
+  <span class="meta"><span>⭐ 24</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/SamG-Coder--ThreeBrowserStudio.html">
+  <span class="name"><span class="owner">SamG-Coder/</span>ThreeBrowserStudio</span>
+  <p>LLM-first Three.js WebGPU scene and animation authoring with a persistent native viewport and typed MCP editing</p>
+  <span class="meta"><span>⭐ 18</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/pairbrowse--pairbrowse.html">
+  <span class="name"><span class="owner">pairbrowse/</span>pairbrowse</span>
+  <p>Multiplayer browser sessions for developers and AI coding agents</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/nikships--droid-codex-computer-use.html">
+  <span class="name"><span class="owner">nikships/</span>droid-codex-computer-use</span>
+  <p>🖱️ Let Factory Droid control your Mac with the Codex app&#x27;s Computer Use tool. One-command install, no approval forms, works with any Codex install path.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/zriyox--codex-supervisor-mcp.html">
+  <span class="name"><span class="owner">zriyox/</span>codex-supervisor-mcp</span>
+  <p>Codex MCP server: run parallel Codex CLI workers in isolated git worktrees, state on disk, web dashboard, auto-update.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/theisegoria--game-asset-mcp.html">
+  <span class="name"><span class="owner">theisegoria/</span>game-asset-mcp</span>
+  <p>MCP server for agentic game-asset generation: reference images to 3D models with PBR textures, plus retexturing meshes you already own.</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

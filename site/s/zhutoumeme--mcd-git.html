@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zhutoumeme/mcd-git — MCP Server | MCP Radar</title>
+<meta name="description" content="用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/zhutoumeme--mcd-git.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="zhutoumeme/mcd-git — MCP Server | MCP Radar">
+<meta property="og:description" content="用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "zhutoumeme/mcd-git", "description": "用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。", "codeRepository": "https://github.com/zhutoumeme/mcd-git", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/zhutoumeme--mcd-git.html", "dateCreated": "2026-10-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">zhutoumeme/</span>mcd-git</h1>
+<p class="sub">用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>9</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 90.0</b></div>
+  <div class="chip">created <b>2026-10-10</b></div>
+  <div class="chip">on radar since <b>2026-10-11</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cli.html">cli</a><a class="topic" href="/topic/git.html">git</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-client.html">mcp-client</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/terminal.html">terminal</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/zhutoumeme/mcd-git" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-git</h2><p class="sub">git mcd add 放进购物车，git mcd rebase 自动凑套餐、挑最省的券，git mcd push 才真正下单，终端里直接出支付二维码。基于麦当劳中国 MCP Server（mcp.mcd.cn）。</p><p class="sub">动图和下面所有截图都是 --demo 合成数据：门店、价格、订单号、券都是编的，支付链接指向 example.com。</p><p class="sub">- 开发者：在终端里敲 git mcd。git-mcd 在 PATH 里，git 就会把 git mcd … 交给它，任何目录都能用，不碰你代码仓库的 .git。 - 普通用户：把 SKILL.md 装进 WorkBuddy / Claude Code / Kiro，用大白话点餐，Agent 在后台跑 git mcd --json。</p><p class="sub">和普通 Skill 的区别：确认由代码强制执行。 普通 Skill 只是一段提示词，Agent 手里有 MCP 连接器就能随时直接调 create-order。mcd-git 的 Skill 不需要给 Agent 配 MCP 连接器，Token 只给 mcd-git 用，Agent 手里只有 git mcd 这一套命令：下单必须先出确认摘要，再用 --confirm 执行；哈希、参数、重新算出的应付金额，任何一项和预览时对不上，代码都会拒绝。代码保证的是这三件事：一定先出预览，确认时不能换参数，价格会复核。至于 Agent 有没有先把摘要拿给你看、等你点头，代码分辨不出来，这一步靠 SKILL.md 的规则约束 Agent。</p><p class="sub">- 麦门天际线（skyline，默认）：等距 3D 的 53 周 × 7 天，每天吃了几次就叠几层汉堡（底面包、肉饼、芝士、生菜、顶面包），超过 4 层只画 4 层、顶上标一个「+」；10-24 那格插一面「0x400」小旗。打开时汉堡按周从左到右落下叠好，只播一次、3 秒内停在完整状态，系统开了「减弱动态效果」就直接显示完成状态。默认深色夜景，浅色模式下换成奶油底。宽版，适合贴在 GitHub 个人主页。 - 年度吃麦小票（receipt）：竖版热敏小票，最常点 TOP 5 当商品行，中间一块点阵热力图（红圈是 10-24），下面是时段分布、TOTAL 和一根装饰条形码。适合发朋友圈、小红书。 - 平面格子（grid）：GitHub 风格的 7 行 × 53 周格子，颜色深浅表示那天吃了几单，10-24 那格单独描边。最朴素，放进文档里也不扎眼。</p><p class="sub">终端里先出预览（终端画不出 3D，天际线和格子都用格子预览；小票直接打印文字版），同时在本机写一个 SVG：自包含（不引用外部字体、图片和脚本，重复的图形用 + 复用），跟着系统切换浅色 / 深色，二三十 KB。同样的数据每次生成的文件都一样。</p><p class="sub">--with-savings 的数是下限：order-list 不返回优惠明细，只有 push 过或 show 过的单才知道省了多少。天际线和小票上有单缺明细时会写「只算有优惠明细的 N 单，是下限」，终端里也会提示。</p><p class="sub">1. 建一个和用户名同名的仓库 /，GitHub 会把它的 README 显示在你的个人主页上； 2. 在本机运行 git mcd card -o /mcd-contributions.svg； 3. 在那个仓库的 README.md 里加一行 ； 4. 自己 git add、git commit、git push。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/zhutoumeme--mcd-git.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Mercury-vivis--mcd-benefits-butler.html">
+  <span class="name"><span class="owner">Mercury-vivis/</span>mcd-benefits-butler</span>
+  <p>基于麦当劳官方 mcd-mcp-server 的 MCP 客户端与 WorkBuddy 技能：扫描历史订单中仍来得及用餐评价的权益机会，盘点积分兑换，聚合当月活动。</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/dontpayfull--AInotate.html">
+  <span class="name"><span class="owner">dontpayfull/</span>AInotate</span>
+  <p>Annotated screenshots for AI agents: Skitch-style arrows, numbered steps, boxes, labels, solid redaction</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/thaildhe172591--pythia.html">
+  <span class="name"><span class="owner">thaildhe172591/</span>pythia</span>
+  <p>PL/SQL development for AI agents on Oracle Database - expert queries, impact analysis, and a snapshot-verified write path with honest rollback</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Stupidoodle--swissdevjobs-cli.html">
+  <span class="name"><span class="owner">Stupidoodle/</span>swissdevjobs-cli</span>
+  <p>Search &amp; apply to ~4,700 salary-transparent tech jobs across 7 countries (🇨🇭🇩🇪🇬🇧🇺🇸🇨🇦🇳🇱🇫🇷) from your terminal or AI agent — zero-dependency Python CLI + MCP server + Claude Code plugin</p>
+  <span class="meta"><span>⭐ 92</span><span>Python</span></span>
+</a><a class="card" href="/s/24KaratAu--openhub.html">
+  <span class="name"><span class="owner">24KaratAu/</span>openhub</span>
+  <p>Terminal discovery hub and package manager for AI coding tools, MCP servers, and agent skills. Built with Python &amp; Textual</p>
+  <span class="meta"><span>⭐ 20</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

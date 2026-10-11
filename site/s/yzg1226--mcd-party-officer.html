@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yzg1226/mcd-party-officer — MCP Server | MCP Radar</title>
+<meta name="description" content="🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yzg1226--mcd-party-officer.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yzg1226/mcd-party-officer — MCP Server | MCP Radar">
+<meta property="og:description" content="🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yzg1226/mcd-party-officer", "description": "🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函", "codeRepository": "https://github.com/yzg1226/mcd-party-officer", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yzg1226--mcd-party-officer.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yzg1226/</span>mcd-party-officer</h1>
+<p class="sub">🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函</p>
+<div class="chips">
+  <div class="chip">⭐ <b>73</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 730.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-11</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">party</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/yzg1226/mcd-party-officer" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://yzg1226.github.io/mcd-party-officer/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-party-officer</h2><p class="sub">麦当劳门店派对最怕的不是贵，是凑不齐人。 一句话问出去，回来一张「这场到底办得成吗」的确定性答案。</p><p class="sub">官方规则写明：拼团未在截止前凑够人数会自动取消并退款。 本项目把派对从「怎么策划」推进到「到底办不办得成」：算成团概率、比包场与拼团、挑最值的日子、一键生成招募卡把人群拉满，并给出预订截止倒计时。</p><p class="sub">纯 Python 标准库 麦当劳官方 MCP 全链路真实跑通 零第三方依赖 :--::--::--::--: 3.7+ 即可运行 mcp.mcd.cn 真实场次 / 余位 / 满减 无 pip install</p><p class="sub">上图为 2026-10-09 用真实 Token 跑通的原始输出，未做美化、未替换数据。</p><p class="sub">🍟 打开在线演示页 —— 浏览器直接点： 切换人数（4 / 6 / 9 人），看成团概率雷达、包场 vs 拼团对比、招募卡与邀请函的完整输出。 页面为 2026-10-09 真实 Token 跑通的快照（由本仓库 scripts/partyplus.py 真实函数计算固化），不是实时查询，已明确标注。</p><p class="sub">卸载：rm -rf ~/.workbuddy/skills/mcd-party-officer</p><p class="sub">第一次使用时按提示到 登录 → 控制台 → 激活 → 复制 Token，粘进对话即可。 Token 只写进你本机的环境变量或 WorkBuddy 配置，不进仓库、不进日志、不在回复里回显。</p><p class="sub">⚠️ Token 等同账号凭证：只贴在自己的对话里，不要发群聊、朋友圈或 GitHub。</p><p class="sub">章节 你会看到 ------ 三步开吃 一句话装进 WorkBuddy 30 秒看懂 它和策划类 / 地图类 Skill 的本质差别 痛点 为什么派对真正死在「凑不齐人」 解决什么 四个决策、三个产出物、一个扫描视图 快速开始 Token / 配置 / 运行 使用示例 对话式、代码式、真实运行输出 能力清单 八大能力入口 隐私与安全 Token 与下单的边界 参赛信息 参赛材料对照</p><p class="sub">做法 代表 它回答的问题 停在 ------------ 策划案生成 多角色协作输出主题、流程、预算 &quot;怎么办好这场派对&quot; 方案交付即结束 活动地图 / 雷达 把门店与可约场次可视化 &quot;哪里有能办的场次&quot; 展示即结束 本项目 成团调度与撮合 &quot;这场办得成吗、人怎么凑齐&quot; 一直管到锁场 + 拉人</p><p class="sub">维度 策划 / 地图类 本项目 --------- 核心问题 怎么办好、哪里有 办得成吗、人怎么凑齐 输出性质 文档 / 列表 可复现的概率与成本数字 风险量化 无 成团概率、包场 vs 拼团的确定性差异 传播环节 无 招募卡 + 邀请函，复制即可发群 时间管理 无 T-7 → T 筹备时间线 + 预订截止倒计时</p><p class="sub">「未成团自动退款」这条规则，只有先发现它，才会意识到真问题是凑人而不是策划——这就是本项目的立足点。</p><p class="sub">工具产出数字容易，产出能传播的内容难。派对是麦当劳场景里唯一自带&quot;发出去&quot;动作的品类：</p><p class="sub">邀请函为单文件 HTML，麦当劳红黄配色，可直接分享；上图为真实渲染结果。 招募卡为纯文本，复制即可粘贴到任意群聊。</p><p class="sub">规则 后果 ------ 拼团若未在截止前凑够人数，预约自动取消并退款 选错场次 = 白折腾，生日当天没场地 需提前 3 天预订 留给&quot;拉人&quot;的窗口是有限的倒计时</p><p class="sub">1. 哪家店、哪天、哪一场，我最可能凑满人？ —— 余位和成团区间全在门店端，没法自助比价 2. 包场还是拼团？ —— 两种模式价格与风险不同，没人会算 3. 未来哪天办最值？ —— 官方营销活动日历是公开的，但没人拿它做决策 4. 怎么快速把人凑齐？ —— 发群、催人、统计，全靠人肉</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yzg1226--mcd-party-officer.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 33</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Zafer-Liu--mcd-event-radar.html">
+  <span class="name"><span class="owner">Zafer-Liu/</span>mcd-event-radar</span>
+  <p>麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟</p>
+  <span class="meta"><span>⭐ 68</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model m</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a><a class="card" href="/s/zhutoumeme--mcd-git.html">
+  <span class="name"><span class="owner">zhutoumeme/</span>mcd-git</span>
+  <p>用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/Mercury-vivis--mcd-benefits-butler.html">
+  <span class="name"><span class="owner">Mercury-vivis/</span>mcd-benefits-butler</span>
+  <p>基于麦当劳官方 mcd-mcp-server 的 MCP 客户端与 WorkBuddy 技能：扫描历史订单中仍来得及用餐评价的权益机会，盘点积分兑换，聚合当月活动。</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
