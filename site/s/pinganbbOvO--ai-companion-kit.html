@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pinganbbOvO/ai-companion-kit — MCP Server | MCP Radar</title>
+<meta name="description" content="给你的 AI 一副身体，和一点人味 —— 会记事、会看场合的 QQ 陪聊 + 能控制安卓手机的 MCP — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/pinganbbOvO--ai-companion-kit.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="pinganbbOvO/ai-companion-kit — MCP Server | MCP Radar">
+<meta property="og:description" content="给你的 AI 一副身体，和一点人味 —— 会记事、会看场合的 QQ 陪聊 + 能控制安卓手机的 MCP — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pinganbbOvO/ai-companion-kit", "description": "给你的 AI 一副身体，和一点人味 —— 会记事、会看场合的 QQ 陪聊 + 能控制安卓手机的 MCP", "codeRepository": "https://github.com/pinganbbOvO/ai-companion-kit", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/pinganbbOvO--ai-companion-kit.html", "dateCreated": "2026-10-08"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">pinganbbOvO/</span>ai-companion-kit</h1>
+<p class="sub">给你的 AI 一副身体，和一点人味 —— 会记事、会看场合的 QQ 陪聊 + 能控制安卓手机的 MCP</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 12.5</b></div>
+  <div class="chip">created <b>2026-10-08</b></div>
+  <div class="chip">on radar since <b>2026-10-12</b></div>
+  
+</div>
+<div class="topics"><span class="topic">adb</span><a class="topic" href="/topic/agent.html">agent</a><span class="topic">ai-companion</span><a class="topic" href="/topic/android.html">android</a><a class="topic" href="/topic/chatbot.html">chatbot</a><a class="topic" href="/topic/deepseek.html">deepseek</a><span class="topic">human-like</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/memory.html">memory</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">onebot</span><span class="topic">persona</span><span class="topic">qq</span></div>
+<a class="btn" href="https://github.com/pinganbbOvO/ai-companion-kit" rel="noopener">View on GitHub ↗</a>
+<h2>About ai-companion-kit</h2><p class="sub">干什么 有什么 --------- 🤖 ai-companion 让它记得住你、打字像人、知道什么时候该闭嘴 角色卡 · 记忆账本 · 拟人化发送 · 唤醒策略 📱 phone-mcp 让它摸得到你的手机 点按 · 滑动 · 中文输入 · 截图 · 录屏 · 连招 · 网易云 · QQ空间</p><p class="sub">文件 干什么 ------ tools/安装.bat 下载 qq-bridge → 装依赖 → 生成 config.json → 打开记事本让你填三个值 tools/启动.bat 检查前置 → 启动 qq-bridge（复制进 qq-bridge 目录后双击）</p><p class="sub">它不会做的事：装 DSH / SnowLuma、碰你现有的文件、联网往外发任何东西。</p><p class="sub">前置只有两个，脚本装不了： Node.js（去 nodejs.org 下 LTS，装完重启电脑） 一个能连 QQ 的网关（SnowLuma） → 这两步看 傻瓜版教程，带截图。</p><p class="sub">一路回车就行 —— 它自己下载、装依赖、生成配置文件， 最后弹出记事本让你填三个值（你的 QQ 号 / 她的 QQ 号 / 网关令牌）。</p><p class="sub">只有两样东西脚本装不了：Node.js 和一个能连 QQ 的网关（SnowLuma）。 这两个照着 傻瓜版教程 一步步点就行（有截图）。</p><p class="sub">里面包含语音识别、手机控制、听歌、日记、 防风控的完整实现，还有 15 个我真实踩过的坑。</p><p class="sub">第十三章是保命章节：我用 20 条/分钟的频率发了一整天， 被腾讯限速了，服务端直接不回包。别跳。</p><p class="sub">① 没有人味。 回复&quot;唰&quot;一下全出来、一次说一大段、 不管你在群里闲聊还是在跟它说正事，它都用同一种客服腔。 而且它不记得你——今天说完，明天就忘。</p><p class="sub">② 没有手。 它能写代码、能查资料、能分析数据， 但它碰不到你的手机——开不了 App、点不了按钮、看不了屏幕。</p><p class="sub">缺什么 谁补 怎么补 --------- 记不住人 ai-companion/Memory 记忆按人存，不按会话存；跨场合共享一条对话流 不像人打字 ai-companion/Humanizer 打字时长、自动分条、条间停顿、深夜变慢 太吵 ai-companion/Waker @/名字/提问/拍一拍/关键词/概率，条件独立，可潜水 不像&quot;她&quot; ai-companion/Role 角色卡 + 体检，防止写成客服手册 碰不到手机 phone-mcp 34 个 MCP 工具，通过 adb 驱动真机或模拟器</p><p class="sub">这里最容易卡住的一步是 npm start。 它需要一个 OneBot 实现（能连上 QQ 的网关程序）。 这一步没有一行命令能搞定 ✗ 见完整教程第三章 ✓</p><p class="sub">例如：让它替你在手机上签到、刷视频、玩游戏， 同时它在 QQ 上还是那个记得你昨天熬夜、会催你早睡的熟人。</p><p class="sub">也可以只用一半： - 只想给自己做个&quot;会记住我的 QQ 机器人&quot; → 只用 companion - 只想让 AI 帮着点手机 → 只用 phone-mcp</p><p class="sub">文档 字数 给谁看 --------- 主帖（故事） 6k 所有人 ✗ 先看这个 ✓ 傻瓜版 · 手把手装 13k ★完全不会写代码的 ✗ 从这篇开始★ 进阶篇 · 日记/听歌/手机/主动找你 19k ★跑通了基础版之后看这篇★ 快速开始 · 15 分钟 4.7k 先跑起来看到效果 完整教程 · 从零搭一只小鲸鱼 18.5k 认真要搭一套的 发布文案 16k 想拍视频/发帖的</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/pinganbbOvO--ai-companion-kit.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/leluong141996-dev--Agent-Brain-Hub.html">
+  <span class="name"><span class="owner">leluong141996-dev/</span>Agent-Brain-Hub</span>
+  <p>Shared, brain-inspired memory for AI agents: 13 brain regions with awake/sleep loops, a live visualizer, agents connected via REST/SDK/MCP, governance &amp; audit, and business-value metrics. Works with C</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/sandbaseai--deepseek-harness-handbook.html">
+  <span class="name"><span class="owner">sandbaseai/</span>deepseek-harness-handbook</span>
+  <p>Independent, source-backed handbook for DeepSeek AI&#x27;s official DeepSeek Harness (dsh): agents, plugins, security, troubleshooting, and runbooks.</p>
+  <span class="meta"><span>⭐ 29</span><span>HTML</span></span>
+</a><a class="card" href="/s/MuhittinYilmazer--akana.html">
+  <span class="name"><span class="owner">MuhittinYilmazer/</span>akana</span>
+  <p>Self-hosted, local-first AI assistant server: swappable LLM providers, review-gated memory, an encrypted vault, and wake-word voice. No accounts, no telemetry.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/liangyou09--lyshell.html">
+  <span class="name"><span class="owner">liangyou09/</span>lyshell</span>
+  <p>AI-native terminal &amp; SSH client — built-in DeepSeek Harness to launch agents in TUI or embedded Web UI, plus SFTP, serial/Telnet and MCP server.</p>
+  <span class="meta"><span>⭐ 3</span><span></span></span>
+</a><a class="card" href="/s/shitianfang--jev-use.html">
+  <span class="name"><span class="owner">shitianfang/</span>jev-use</span>
+  <p>Claude Code / Codex / pi plugin that hands agent steps needing no text output to Jev (TypeSafe&#x27;s judgment model) — measured p50 ~230 ms and ~$0.02 per 1,000 judgments, with typed escalation back to th</p>
+  <span class="meta"><span>⭐ 27</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/holetexvn--memgw.html">
+  <span class="name"><span class="owner">holetexvn/</span>memgw</span>
+  <p>Shared long-term memory for AI coding agents — one local store for Claude Code, Codex CLI, opencode and anything that speaks MCP. SQLite + FTS5, no vector DB, $1-3/month.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

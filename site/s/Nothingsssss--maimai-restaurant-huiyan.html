@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nothingsssss/maimai-restaurant-huiyan — MCP Server | MCP Radar</title>
+<meta name="description" content="麦麦餐厅-慧眼识人 | 麦当劳 2026 年 1024 程序员创意开发大赛参赛项目：基于麦当劳 MCP 真实餐品数据的出餐配餐与优惠推荐练习游戏（单文件 HTML，双击即玩） — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Nothingsssss--maimai-restaurant-huiyan.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Nothingsssss/maimai-restaurant-huiyan — MCP Server | MCP Radar">
+<meta property="og:description" content="麦麦餐厅-慧眼识人 | 麦当劳 2026 年 1024 程序员创意开发大赛参赛项目：基于麦当劳 MCP 真实餐品数据的出餐配餐与优惠推荐练习游戏（单文件 HTML，双击即玩） — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Nothingsssss/maimai-restaurant-huiyan", "description": "麦麦餐厅-慧眼识人 | 麦当劳 2026 年 1024 程序员创意开发大赛参赛项目：基于麦当劳 MCP 真实餐品数据的出餐配餐与优惠推荐练习游戏（单文件 HTML，双击即玩）", "codeRepository": "https://github.com/Nothingsssss/maimai-restaurant-huiyan", "programmingLanguage": "HTML", "url": "https://mcp.liqiwa.com/s/Nothingsssss--maimai-restaurant-huiyan.html", "dateCreated": "2026-10-11"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Nothingsssss/</span>maimai-restaurant-huiyan</h1>
+<p class="sub">麦麦餐厅-慧眼识人 | 麦当劳 2026 年 1024 程序员创意开发大赛参赛项目：基于麦当劳 MCP 真实餐品数据的出餐配餐与优惠推荐练习游戏（单文件 HTML，双击即玩）</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/html.html"><span class="lang-dot" style="--lang:#e34c26"></span><b>HTML</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-11</b></div>
+  <div class="chip">on radar since <b>2026-10-12</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/1024.html">1024</a><span class="topic">canvas</span><span class="topic">game</span><span class="topic">html5-game</span><a class="topic" href="/topic/javascript.html">javascript</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">single-file</span><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/Nothingsssss/maimai-restaurant-huiyan" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://maimai-restaurant.app.workbuddy.host/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About maimai-restaurant-huiyan</h2><p class="sub">麦当劳 2026 年 1024 程序员创意开发大赛参赛项目 用 WorkBuddy 开发的 MCP 餐品数据驱动的配餐与优惠服务练习网页游戏。</p><p class="sub">⭐ 如果这个小游戏让你觉得有点意思，欢迎点右上角的 Star 支持一下 —— 本次比赛按 Star 数排名，你的一个 Star 对我们很重要，谢谢老板！🙏</p><p class="sub">无需下载、无需安装，浏览器打开就能玩。也可以下载仓库里的 maimai-restaurant.html 双击离线运行。</p><p class="sub">「麦麦餐厅」是一款单人上帝视角俯视餐厅的轻量出餐游戏：观察顾客订单 → 推荐更划算组合 → 按配方点材料 → 整盘交餐 → 获得餐费、小费与评价 → 升级餐厅。游戏在浏览器中即可运行，离线也能玩；麦当劳真实餐品营养数据通过本地同步脚本接入，数据脱敏后嵌入游戏侧栏。</p><p class="sub">- 喜欢轻量模拟经营小游戏的玩家 - 想练习餐品认知、配餐组合与优惠服务表达的服务人员/爱好者 - 对 MCP（Model Context Protocol）数据如何驱动前端游戏感兴趣的开发者</p><p class="sub">生成： - dist/maimai-restaurant.html - maimai-restaurant.html（项目根目录，可直接双击打开） - docs/index.html（在线试玩页 / GitHub Pages 发布源）</p><p class="sub">同步成功后，data/mcd-menu.json 会更新，构建时自动嵌入游戏。本次开发已真实同步 160 条餐品营养数据。无 Token 或网络失败时保留旧缓存，游戏仍可离线运行。</p><p class="sub">1. 双击 maimai-restaurant.html 或在浏览器中打开。 2. 选择「开始营业（3 分钟）」或「自由练习（不计时）」；可输入固定种子复现相同顾客。 3. 顾客出现在画面上方，面前悬浮订单卡：有优惠提示时可选「推荐优惠」赚取额外小费，也可「直接接单」。 4. 点击顾客卡选中本单，右侧侧栏显示游戏简化配方与麦当劳 MCP 营养数据。 5. 点击下方厨房材料入口制作汉堡（如：面包 + 牛肉饼 + 芝士 = 吉士汉堡包），小食/饮料直接点击取餐。 6. 配齐后点击顾客卡上的「整盘出餐」，正确且完整交付可获得收入；漏掉优惠可能被投诉。</p><p class="sub">- 默认营业 3 分钟，失焦自动暂停。 - 八种基础餐品，支持单点、套餐、同款多份。 - 推荐优惠成功：收入 = 原价 + 优惠节省额 × 小费倍率。 - 漏掉优惠且顾客投诉：收入 = 原价 − 原价 × 补偿倍率，差评 −1。 - 错误/多余餐品：扣原价，差评 −1。 - 餐厅规模与评价独立升级；余额可为负，继续营业。</p><p class="sub">⚠️ 游戏内价格、配方、小费、投诉补偿均为游戏设定，不代表现实餐厅售价、实际配方或真实交易。</p><p class="sub">见 .env.example 与 mcp-config.example.json。真实 Token 仅用于本地同步脚本，不进入前端、GitHub 或部署包。</p><p class="sub">- 在线试玩页：docs/index.html（即 maimai-restaurant.html 的副本，已发布到 ） - GitHub Pages：仓库已内置 docs/，在 Settings → Pages 里把 Source 选为 main 分支的 /docs 即可 - Netlify / Vercel / Cloudflare Pages：直接上传 dist/maimai-restaurant.html</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Nothingsssss--maimai-restaurant-huiyan.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/zouweivivian723-stack--mcd-fortune-ordering.html">
+  <span class="name"><span class="owner">zouweivivian723-stack/</span>mcd-fortune-ordering</span>
+  <p>麦门抽签 - 麦当劳运势抽签式点餐 Skill | McDonalds Fortune-Telling Ordering</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/zhutoumeme--mcd-git.html">
+  <span class="name"><span class="owner">zhutoumeme/</span>mcd-git</span>
+  <p>用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。</p>
+  <span class="meta"><span>⭐ 61</span><span>Python</span></span>
+</a><a class="card" href="/s/mytt-10566--mcd-points-vault.html">
+  <span class="name"><span class="owner">mytt-10566/</span>mcd-points-vault</span>
+  <p>把你的麦当劳积分和优惠券当成一份资产来管：折算人民币现值、排出最优兑换出口、量化过期风险，并给出可执行的兑换路径。</p>
+  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
+</a><a class="card" href="/s/lvzuojing--mcd-wrapped.html">
+  <span class="name"><span class="owner">lvzuojing/</span>mcd-wrapped</span>
+  <p>M-CODE WRAPPED · 麦当劳数据全景报告 + 个人年报 + 方言播报</p>
+  <span class="meta"><span>⭐ 14</span><span>Python</span></span>
+</a><a class="card" href="/s/MarkWang90--mcd-memory-can.html">
+  <span class="name"><span class="owner">MarkWang90/</span>mcd-memory-can</span>
+  <p>麦当劳 MCP 订单可视化 · WorkBuddy 开发的九幕长卷生成器 —— 调用麦当劳中国官方 MCP 只读接口 order-list，把历史订单做成《重庆森林》质感的九幕图文长卷（1080×1440 竖图 / 长图 / PDF）</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

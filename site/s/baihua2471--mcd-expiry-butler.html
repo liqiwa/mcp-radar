@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>baihua2471/mcd-expiry-butler — MCP Server | MCP Radar</title>
+<meta name="description" content="看看哪些麦当劳权益快到期，哪些值得用，哪些不用为了到期硬消费。基于麦当劳官方 MCP 的 WorkBuddy Skill：只读查询优惠券与积分，按预算给出最多两套经官方接口试算的用餐方案。McDonald&#x27;s coupon &amp; points expiry assistant — a WorkBudd — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/baihua2471--mcd-expiry-butler.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="baihua2471/mcd-expiry-butler — MCP Server | MCP Radar">
+<meta property="og:description" content="看看哪些麦当劳权益快到期，哪些值得用，哪些不用为了到期硬消费。基于麦当劳官方 MCP 的 WorkBuddy Skill：只读查询优惠券与积分，按预算给出最多两套经官方接口试算的用餐方案。McDonald&#x27;s coupon &amp; points expiry assistant — a WorkBudd — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "baihua2471/mcd-expiry-butler", "description": "看看哪些麦当劳权益快到期，哪些值得用，哪些不用为了到期硬消费。基于麦当劳官方 MCP 的 WorkBuddy Skill：只读查询优惠券与积分，按预算给出最多两套经官方接口试算的用餐方案。McDonald's coupon & points expiry assistant — a WorkBuddy Skill on the official McDonald's MCP. Read-only ", "codeRepository": "https://github.com/baihua2471/mcd-expiry-butler", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/baihua2471--mcd-expiry-butler.html", "dateCreated": "2026-10-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">baihua2471/</span>mcd-expiry-butler</h1>
+<p class="sub">看看哪些麦当劳权益快到期，哪些值得用，哪些不用为了到期硬消费。基于麦当劳官方 MCP 的 WorkBuddy Skill：只读查询优惠券与积分，按预算给出最多两套经官方接口试算的用餐方案。McDonald&#x27;s coupon &amp; points expiry assistant — a WorkBuddy Skill on the official McDonald&#x27;s MCP. Read-only </p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-10</b></div>
+  <div class="chip">on radar since <b>2026-10-12</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/skills.html">skills</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/baihua2471/mcd-expiry-butler" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="【WorkBuddy】当前有接入麦当劳的MCP吗 ，如果没有，配置下 ardot-design-core ardot-design-router https://workbuddy.link/p/RZciPqwzx2l3LHYKDkrjvE?ext2=copy_link" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-expiry-butler</h2><p class="sub">一个真实使用麦当劳 MCP 的 WorkBuddy Skill：只读查询你的优惠券与积分，按预算给出最多两套用餐方案， 金额全部经过官方 calculate-price 试算，并明确告诉你哪些权益不值得为了消耗而额外花钱。</p><p class="sub">- 卡包里攒了一堆券，每次点单前都要翻半天的人 - 被「今日到期」提示催着下单，事后发现并不划算的人 - 有预算约束（比如这周只吃一次、只花 30 元），想吃得明白的人</p><p class="sub">做： - 列出快到期权益（默认 7 天窗口，可调）与有效期、剩余天数 - 按门店 + 渠道筛选真正可用的券 - 对每个候选方案调用官方价格试算，给出已验证应付金额 - 输出最多两套方案 + 推荐理由 + 不建议使用清单 + 未确认条件 - 积分与现金分开展示（不做任何兑换比例换算）</p><p class="sub">不做（第一版红线）： - ❌ 领券 / 兑换 / 抽奖 / 下单 / 取消订单 / 付款 / 改地址 - ❌ 估算或编造价格；试算失败就显示失败 - ❌ 推断缺失的到期时间；缺就写「到期信息未提供」 - ❌ 假设券可叠加、跨门店或跨渠道通用</p><p class="sub">1. 已在 https://open.mcd.cn/mcp 用手机号登录并激活 MCP Token 2. 已把麦当劳 MCP 配到 WorkBuddy：</p><p class="sub">配置位置：~/.workbuddy/mcp.json（WorkBuddy 的用户级自定义 MCP 配置）。 配好后需在连接器管理 → 自定义连接器中信任该服务，并重启 WorkBuddy。 mcp-config.example.json 只含 ${MCDMCPTOKEN} 占位符，WorkBuddy 不会自动展开， 请手工替换，且不要把替换后的文件提交到任何仓库。</p><p class="sub">安装到 ~/.workbuddy/skills/mcd-expiry-butler（加 --project 可装到当前项目）。 重新执行同一条命令即可更新。</p><p class="sub">它会先问清三件事（预算 / 就餐方式 / 门店），然后查数据、试算价格、生成结果页。</p><p class="sub">输出的页面顶部有醒目横幅：「样例数据，非实时账户结果」。 真实查询失败时不会静默切换为样例数据。</p><p class="sub">1. 我这周只准备吃一次麦当劳，预算 30 元，看看有什么快到期的权益值得用。 2. 帮我看看哪些券 3 天内到期，在深圳科技园到店吃，预算 25 元。 3. 我的积分快过期了，用麦麦权益到期管家看看要不要换，别推荐我为了积分多花钱。</p><p class="sub">场景 期望 ------ 没有优惠券 建议不使用，说明原因 没有到期字段 显示「到期信息未提供」，不输出剩余天数，不推断 已过期权益 进入「不建议使用」，不参与推荐 所有方案超预算 不推荐，列出实际金额与差额 门店/渠道不适用 排除并说明原因 价格试算失败 不输出估算金额，标记为失败 积分将过期但缺兑换商品信息 不给积分建议，标注缺失 真实模式失败 不混入演示数据，模式标识保持 real 正常场景 最多两套，价格均为「已验证」且可追溯</p><p class="sub">真实联调记录见 docs/REALRUN2026-10-09.md（只读，已脱敏）。</p><p class="sub">- 第一版只做查询与试算，不会替你领券、下单或兑换。 - 券的适用范围以门店维度接口结果为准；卡包概览里的券不一定在该店可用。 - 积分接口不返回具体到期日期，只有「本月/下月将过期」数量。 - 早餐券等带时段的券，只在对应时段可用；当前时段不符时不会推荐。 - 价格是查询那一刻的结果，实际下单可能因库存、时段变化而不同。 - 餐品、价格、权益与供应状态以麦当劳官方渠道实时结果为准。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/baihua2471--mcd-expiry-butler.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/zouweivivian723-stack--mcd-fortune-ordering.html">
+  <span class="name"><span class="owner">zouweivivian723-stack/</span>mcd-fortune-ordering</span>
+  <p>麦门抽签 - 麦当劳运势抽签式点餐 Skill | McDonalds Fortune-Telling Ordering</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/zhutoumeme--mcd-git.html">
+  <span class="name"><span class="owner">zhutoumeme/</span>mcd-git</span>
+  <p>用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。</p>
+  <span class="meta"><span>⭐ 61</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 36</span><span>Python</span></span>
+</a><a class="card" href="/s/mytt-10566--mcd-points-vault.html">
+  <span class="name"><span class="owner">mytt-10566/</span>mcd-points-vault</span>
+  <p>把你的麦当劳积分和优惠券当成一份资产来管：折算人民币现值、排出最优兑换出口、量化过期风险，并给出可执行的兑换路径。</p>
+  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

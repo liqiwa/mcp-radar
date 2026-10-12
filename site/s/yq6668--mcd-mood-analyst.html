@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yq6668/mcd-mood-analyst — MCP Server | MCP Radar</title>
+<meta name="description" content="一个基于麦当劳 MCP Server 的开源 Skill。它读取你的真实订单记录，结合下单时间、餐品构成和消费金额，推断你下单时的心情，同时给出账单统计、营养画像与每日/每月开支分析。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yq6668--mcd-mood-analyst.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yq6668/mcd-mood-analyst — MCP Server | MCP Radar">
+<meta property="og:description" content="一个基于麦当劳 MCP Server 的开源 Skill。它读取你的真实订单记录，结合下单时间、餐品构成和消费金额，推断你下单时的心情，同时给出账单统计、营养画像与每日/每月开支分析。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yq6668/mcd-mood-analyst", "description": "一个基于麦当劳 MCP Server 的开源 Skill。它读取你的真实订单记录，结合下单时间、餐品构成和消费金额，推断你下单时的心情，同时给出账单统计、营养画像与每日/每月开支分析。", "codeRepository": "https://github.com/yq6668/mcd-mood-analyst", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yq6668--mcd-mood-analyst.html", "dateCreated": "2026-10-12"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yq6668/</span>mcd-mood-analyst</h1>
+<p class="sub">一个基于麦当劳 MCP Server 的开源 Skill。它读取你的真实订单记录，结合下单时间、餐品构成和消费金额，推断你下单时的心情，同时给出账单统计、营养画像与每日/每月开支分析。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 50.0</b></div>
+  <div class="chip">created <b>2026-10-12</b></div>
+  <div class="chip">on radar since <b>2026-10-12</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/yq6668/mcd-mood-analyst" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-mood-analyst</h2><p class="sub">一个基于麦当劳 MCP Server 的开源 Skill。它读取你的真实订单记录，结合下单时间、餐品构成和消费金额，推断你下单时的心情，同时给出账单统计、营养画像与每日/每月开支分析。</p><p class="sub">麦当劳情绪食鉴官不评判你该不该吃麦当劳，它做的是另一件事：把你的订单翻译成情绪语言，让你看见自己的消费习惯背后的状态。</p><p class="sub">维度 你能得到什么 ------ 💰 账单统计 笔数、总支出、客单价、最高单笔、门店榜、时段分布 💗 情绪解读 情绪标签 + 强度分数 + 具体触发因子（点名是哪些餐品） 🥗 营养画像 能量/脂肪/钠/蛋白质/钙五项评级 + 可追溯的改进建议 📅 开支账本 日均/月均开支、环比变化、下月预测、建议预算 📈 趋势洞察 消费周期规律、高频单品、情绪-时间关联模式</p><p class="sub">1. WorkBuddy 智能体客户端 2. 已完成麦当劳 MCP Server 授权（连接器面板中完成麦当劳账号授权） 3. Python 3.8+（仅使用标准库，无需 pip 安装任何依赖）</p><p class="sub">将 mcp-config.example.json 中的配置合并到你的 MCP 配置文件，敏感信息用环境变量占位符替换（详见 MCPINTEGRATION.md）。</p><p class="sub">Windows 用户可手动将目录复制到 %USERPROFILE%\.workbuddy\skills\mcd-mood-analyst\。</p><p class="sub">用户类型 典型场景 ------ 🧑‍💻 程序员/学生 工作日深夜加班后的例行下单，想了解自己的压力曲线 🧠 情绪管理需求者 通过饮食记录观察自己的情绪触发点 🏃 健身/控卡人群 需要精确的能量与钠摄入参考，辅助日常决策 💰 记账习惯者 希望把餐饮消费纳入月度预算管理 🍔 麦当劳重度用户 好奇自己的口味画像和消费规律</p><p class="sub">因子 权重 逻辑 --------- 🕐 深夜因子 30% 22:00 后下单为满分，20:00-22:00 线性衰减 🍟 高糖高脂因子 30% 甜品占当日热量比，50% 记满分 💸 金额冲动因子 25% 当日总额 / 客单价，2 倍记满分 🔁 频次因子 15% 单日订单数，≥3 笔记满分</p><p class="sub">营养评级依据《中国居民膳食指南（2022）》成年人日参考值。完整定义见 references/moodmodel.md 与 references/nutritionreference.md。</p><p class="sub">- 订单数据仅保存在用户本地 mcddata/ 目录，不上传任何第三方服务器 - 不收集手机号、地址、会员卡号等个人敏感信息 - 报告输出前自动检查敏感信息泄露 - 随时说&quot;删掉我的数据&quot;即可清除本地记录 - 营养建议为一般性参考，不构成医疗建议 - 情绪分析为基于订单的推测，不构成心理诊断</p><p class="sub">本项目为「麦当劳程序员创意开发大赛」参赛作品，真实使用麦当劳 MCP Server 能力开发。</p><p class="sub">- 参赛声明：CONTESTDECLARATION.md - MCP 集成说明：MCPINTEGRATION.md</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yq6668--mcd-mood-analyst.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/fellowgeek--mcp-memory.html">
+  <span class="name"><span class="owner">fellowgeek/</span>mcp-memory</span>
+  <p>An OKF-backed Model Context Protocol (MCP) server delivering persistent long-term memory and SQLite FTS5 search for AI agents.</p>
+  <span class="meta"><span>⭐ 188</span><span>Python</span></span>
+</a><a class="card" href="/s/hirotomasato--yowes.html">
+  <span class="name"><span class="owner">hirotomasato/</span>yowes</span>
+  <p>Generate realistic teacher documents (ID cards, licenses, letters) for 13 countries via MCP.</p>
+  <span class="meta"><span>⭐ 174</span><span>Python</span></span>
+</a><a class="card" href="/s/sosoj92--jarvis-assistant-vocal.html">
+  <span class="name"><span class="owner">sosoj92/</span>jarvis-assistant-vocal</span>
+  <p>Assistant vocal local en francais : Claude ou Ollama (offline), domotique Hue, OBS, agenda, navigateur, appels Twilio, serveur MCP. Python.</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/ThinkFlowLab--system1-agents.html">
+  <span class="name"><span class="owner">ThinkFlowLab/</span>system1-agents</span>
+  <p>System 1 decision models (Jev, Laya, Cua-S1) as brain for agents: Browser use, computer use, games and robotics</p>
+  <span class="meta"><span>⭐ 132</span><span>Python</span></span>
+</a><a class="card" href="/s/rokbenko--quackd.html">
+  <span class="name"><span class="owner">rokbenko/</span>quackd</span>
+  <p>🦆🧠 Give your small robot a brain. Tell a Microduck, a Reachy Mini, a LeRobot arm or any ROS base what you want in plain language. An LLM (Claude, OpenAI, Gemini, Grok, or a local model via Ollama, vLL</p>
+  <span class="meta"><span>⭐ 129</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

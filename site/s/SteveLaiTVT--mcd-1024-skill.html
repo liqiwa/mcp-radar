@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SteveLaiTVT/mcd-1024-skill — MCP Server | MCP Radar</title>
+<meta name="description" content="麦麦饱饱盘：官方套餐核价、圆盘选餐、DeepSeek 双 Agent 个性推荐与用餐热力图｜麦当劳创意开发大赛参赛作品（非官方） — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/SteveLaiTVT--mcd-1024-skill.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="SteveLaiTVT/mcd-1024-skill — MCP Server | MCP Radar">
+<meta property="og:description" content="麦麦饱饱盘：官方套餐核价、圆盘选餐、DeepSeek 双 Agent 个性推荐与用餐热力图｜麦当劳创意开发大赛参赛作品（非官方） — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "SteveLaiTVT/mcd-1024-skill", "description": "麦麦饱饱盘：官方套餐核价、圆盘选餐、DeepSeek 双 Agent 个性推荐与用餐热力图｜麦当劳创意开发大赛参赛作品（非官方）", "codeRepository": "https://github.com/SteveLaiTVT/mcd-1024-skill", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/SteveLaiTVT--mcd-1024-skill.html", "dateCreated": "2026-10-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">SteveLaiTVT/</span>mcd-1024-skill</h1>
+<p class="sub">麦麦饱饱盘：官方套餐核价、圆盘选餐、DeepSeek 双 Agent 个性推荐与用餐热力图｜麦当劳创意开发大赛参赛作品（非官方）</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">created <b>2026-10-10</b></div>
+  <div class="chip">on radar since <b>2026-10-12</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/browser-extension.html">browser-extension</a><a class="topic" href="/topic/deepseek.html">deepseek</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/skill.html">skill</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/SteveLaiTVT/mcd-1024-skill" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://stevelaitvt.github.io/mcd-1024-skill/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-1024-skill</h2><p class="sub">饭点选套餐：几个人吃、每个人想吃几分饱、人均预算多少、前两天的主食要不要再吃？先比较完整套餐的优惠价，再让圆盘揭晓这一餐。AI 饭搭子用明确口味记忆、当地天气与节令挑选；麦当劳雷达用历史订单点亮用餐热力图。</p><p class="sub">参赛者独立开发，非麦当劳官方产品。2.3.0 · 无业务后端的浏览器扩展，附带无需 Token 的静态体验页。</p><p class="sub">直接体验历史样本 · 下载 2.3.0 扩展 · 安装与更新 · WorkBuddy 实际开发记录</p><p class="sub">活动申请已提交至 官方 Issue 398，报名结果以官方回复为准。发布验证见 验证记录。</p><p class="sub">适合午餐选择困难、想在预算内吃完整套餐、或需要一起选餐的 1–4 人。无需 AI key 就能体验圆盘和示例热力图；实时选餐使用自己的麦当劳 Token，AI 饭搭子另用自己的 DeepSeek API key。</p><p class="sub">例如：1 人、7 分饱、人均 30 元，勾选前两天吃过的主食 → 官方核价 → 转盘揭晓，或请饭搭子按口味与天气挑选。喜欢的组合可以主动记住，下次推荐会参考这些反馈。</p><p class="sub">1. 从 GitHub Release 下载扩展 ZIP，解压得到 mcd-wheel-extension 文件夹。 2. Chrome 打开 chrome://extensions，或 Edge 打开 edge://extensions；开启开发者模式，选择“加载已解压的扩展程序”，选中该文件夹。 3. 点击扩展图标 → “连接我的账号” → 填写自己的 麦当劳 MCP Token，选择营业中的门店，开始核价。 4. 顶部“AI 搭子与记忆”可配置 DeepSeek key、风格、Agent 和 prompt；两种 key 都能分别选择在本机长期保存。</p><p class="sub">这是 GitHub 下载发布，扩展尚未上架 Chrome / Edge 商店。在线体验页只展示历史样本与虚构雷达，不接收真实凭证；实时 MCP 与 DeepSeek 功能在扩展中使用。</p><p class="sub">- 默认 1 人、7 分、人均 30 元，支持 1–4 人。每个人都有主餐，显示整顿上限、完整内容、总价和人均价。 - 套餐优先：随心配、三件套餐、分享餐与多份完整套餐；前两天吃过的主食可以手动勾选，或从雷达读取后主动加入避开项，本页记住。 - 麦当劳雷达：全年 / 近 12 周热力图、年份切换、日期餐单和常点餐品；只计已完成或已评价订单。接口没有分页参数，未返回的日期标为未知，不等于没吃过。 - 扩展直接连接麦当劳。用户可自行勾选“在这个浏览器长期记住凭证”，将 Token 和上次门店保存在本机扩展中，刷新或重开自动连接；不进入开发者服务器、日志或浏览器同步。 - 输入城市和地址 / 地标查找附近门店，或主动读取、选择麦当劳已保存的地址作为搜索位置；展示官方营业状态和时段，可随时换店。恢复上次门店前会向官方重新确认营业情况。 - DeepSeek V4.1 Flash：推荐 Agent、优化 Agent 或最多两轮协作；可编辑口味与两个 prompt，选择温柔 / 节省 / 惊喜的搭子风格、偏好 / 省钱 / 换口味目标。key 与麦当劳凭证独立，长期保存默认关闭，刷新不自动请求 AI。 - 明确喜欢 / 少推荐反馈可选择本机长期记忆，支持查看、忘掉和清空，旧偏好逐渐减弱；城市天气、月份和已核验的 2026 年节假日 / 调休进入推荐。AI 只选已核价候选 ID，卡片价格与餐品来自原报告；无 key 时仍可用本地偏好推荐。见 AI 饭搭子说明。 - 先查可领券、持有券、门店适用范围和活动日历，再比较各餐单的官方整单报价，最后按预算入盘。 - “领取全部可领券”有明确确认窗口；官方一次领取全部，无法指定单张。领取后重新查券、核价，写请求不自动重试。 - 暖色卡片、人数与食量切换、预算快捷选项、优惠口袋、核价进度、套餐</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/SteveLaiTVT--mcd-1024-skill.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Zafer-Liu--mcd-event-radar.html">
+  <span class="name"><span class="owner">Zafer-Liu/</span>mcd-event-radar</span>
+  <p>麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟</p>
+  <span class="meta"><span>⭐ 71</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/yzg1226--mcd-party-officer.html">
+  <span class="name"><span class="owner">yzg1226/</span>mcd-party-officer</span>
+  <p>🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函</p>
+  <span class="meta"><span>⭐ 85</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 36</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/lvzuojing--mcd-wrapped.html">
+  <span class="name"><span class="owner">lvzuojing/</span>mcd-wrapped</span>
+  <p>M-CODE WRAPPED · 麦当劳数据全景报告 + 个人年报 + 方言播报</p>
+  <span class="meta"><span>⭐ 14</span><span>Python</span></span>
+</a><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

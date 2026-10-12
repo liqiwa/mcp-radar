@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LingCore/WinShun — MCP Server | MCP Radar</title>
+<meta name="description" content="Win顺：免费开源的 Windows 快速搜索启动器。双击 Ctrl，拼音秒搜文件、全文搜索 Word/Excel/PDF、剪贴板历史（代替 Win+V）、对话框搜索、任务栏搜索、插件、AI 助手 MCP。Free Windows search launcher: pinyin file searc — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/LingCore--WinShun.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="LingCore/WinShun — MCP Server | MCP Radar">
+<meta property="og:description" content="Win顺：免费开源的 Windows 快速搜索启动器。双击 Ctrl，拼音秒搜文件、全文搜索 Word/Excel/PDF、剪贴板历史（代替 Win+V）、对话框搜索、任务栏搜索、插件、AI 助手 MCP。Free Windows search launcher: pinyin file searc — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "LingCore/WinShun", "description": "Win顺：免费开源的 Windows 快速搜索启动器。双击 Ctrl，拼音秒搜文件、全文搜索 Word/Excel/PDF、剪贴板历史（代替 Win+V）、对话框搜索、任务栏搜索、插件、AI 助手 MCP。Free Windows search launcher: pinyin file search, full-text search, clipboard history, MCP server", "codeRepository": "https://github.com/LingCore/WinShun", "programmingLanguage": "C++", "url": "https://mcp.liqiwa.com/s/LingCore--WinShun.html", "dateCreated": "2026-10-08"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">LingCore/</span>WinShun</h1>
+<p class="sub">Win顺：免费开源的 Windows 快速搜索启动器。双击 Ctrl，拼音秒搜文件、全文搜索 Word/Excel/PDF、剪贴板历史（代替 Win+V）、对话框搜索、任务栏搜索、插件、AI 助手 MCP。Free Windows search launcher: pinyin file search, full-text search, clipboard history, MCP server</p>
+<div class="chips">
+  <div class="chip">⭐ <b>208</b> stars</div>
+  <div class="chip">⑂ <b>21</b> forks</div>
+  <a class="chip" href="/lang/cpp.html"><span class="lang-dot" style="--lang:#f34b7d"></span><b>C++</b></a>
+  <div class="chip">momentum <b>▲ 562.0</b></div>
+  <div class="chip">created <b>2026-10-08</b></div>
+  <div class="chip">on radar since <b>2026-10-12</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/chinese.html">chinese</a><span class="topic">clipboard-history</span><span class="topic">clipboard-manager</span><a class="topic" href="/topic/cpp.html">cpp</a><span class="topic">everything</span><span class="topic">file-search</span><span class="topic">full-text-search</span><span class="topic">launcher</span><span class="topic">listary</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">ntfs</span><a class="topic" href="/topic/ocr.html">ocr</a><span class="topic">pinyin</span><a class="topic" href="/topic/productivity.html">productivity</a><span class="topic">qt6</span><a class="topic" href="/topic/search.html">search</a><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/LingCore/WinShun" rel="noopener">View on GitHub ↗</a>
+<h2>About WinShun</h2><p class="sub">双击 Ctrl，搜遍整台电脑 —— 免费开源的 Windows 文件搜索、快速启动器 Press Ctrl twice, search your whole PC — a free, open-source file search and launcher for Windows</p><p class="sub">拼音秒搜文件 · 文件内容全文搜索（Word / Excel / PPT / PDF） · 应用和系统设置 · 网页搜索 · 收藏夹 · 插件 “打开 / 另存为”对话框搜索 · 剪贴板历史（代替 Win+V，图片文字也能搜） · 任务栏搜索框（代替 Win+S） · AI 助手 MCP Pinyin file search · full-text search in documents · apps and settings · web search · favorites · plugins · file dialog search · clipboard history with OCR · taskbar search box · MCP server for AI assistants</p><p class="sub">Win顺 是 Windows 上免费开源的快速搜索启动器：连按两下 Ctrl 弹出搜索框，边打字边出结果。按文件名或拼音秒找文件，搜 Word、Excel、PDF 里的文字，打开应用和系统设置，还有剪贴板历史、对话框搜索、任务栏搜索框、插件和给 AI 用的 MCP 搜索。</p><p class="sub">它直接读 NTFS 主文件表（MFT）建索引，三百多万个文件几秒建好，增删改名实时跟上，不用装 Everything。不需要账号，不上传数据。界面有简体中文和英文。</p><p class="sub">- 双击 Ctrl 打开，再按一次或 Esc 关闭；三百多万个文件里搜一次只要几毫秒。 - 拼音和首字母：ndbg → 年度报告，baog → 报告；多音字按常用读音。打错了同音字（年度报高）找不到时，自动按读音再找一遍。 - 搜整台电脑：所有本地磁盘，U 盘可选（没收录的 U 盘插着时，列表末尾会提示你顺手搜一下它）；NAS、内网共享文件夹（SMB） 也能加进来一起搜，服务器关机时收录过的照样能搜到。 - 排序懂你：自己的文件在前，系统目录、nodemodules 在后，名字完全一样的最前。每行显示修改日期，Ctrl+S 在最匹配、最新、最早之间切换。不输入时列出最近打开或最近修改的文件。 - 数字键直达：结果的图标上标着序号，Ctrl+1～Ctrl+9 打开第几行（也可改成 Alt）。 - 按类型找：选中 文件 后，下面一排是文件夹、文档、图片、视频、压缩包等类型，Tab 依次切换；点 + 或在设置里自己加类型。 - 拖出去就能用：结果直接拖进微信、邮件、资源管理器。 - 实时更新：读 USN 变更日志，改名、新建、删除马上搜得到；拔 U 盘不会提示“设备正在使用”。</p><p class="sub">搜索语法 含义 ------ 报告 2024 每个词都要有（空格分隔，顺序不限）；也可以在所在文件夹的名字里 ndbg、niandubaogao 拼音全拼、首字母，可以混用 &quot;年度 报告&quot; 引号内作为整体 !草稿、!nodemodules\ 排除文件名、排除文件夹 .pdf、报告?.docx 通配符 ext:pdf,docx 只要这些扩展名 项目\readme 在名字含“项目”的文件夹下 tools/out/、D:\My Files\ 路径直达：回车进去，列出里面的内容</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/LingCore--WinShun.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/ostapondo--Plonk.html">
+  <span class="name"><span class="owner">ostapondo/</span>Plonk</span>
+  <p>A macOS window manager with snap zones you draw yourself and workspaces that reopen your apps on the right monitor — plus on-device OCR, keep-awake, screenshot annotation, pointer tools, a shortcut gu</p>
+  <span class="meta"><span>⭐ 7</span><span>Swift</span></span>
+</a><a class="card" href="/s/arxdsilva--vault.html">
+  <span class="name"><span class="owner">arxdsilva/</span>vault</span>
+  <p>A minimal, keyboard-first file manager that replaces Finder and Explorer. Search-first navigation, instant preview, OS-trash-only deletes. Go + Wails.</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a><a class="card" href="/s/jumpifequal--mcp-calibre.html">
+  <span class="name"><span class="owner">jumpifequal/</span>mcp-calibre</span>
+  <p>Read-only MCP server for Calibre: metadata, BM25 full-text search over EPUB/PDF/MOBI/LIT, chapter/page reading, highlights. Direct SQLite (works with Calibre open), incremental FTS5 index, stdio + Str</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/mrpulor-gh--nuphus-mcp.html">
+  <span class="name"><span class="owner">mrpulor-gh/</span>nuphus-mcp</span>
+  <p>Desktop automation MCP server — computer use for any AI agent: control screen, windows, mouse/keyboard, and Chrome via Model Context Protocol (stdio)</p>
+  <span class="meta"><span>⭐ 152</span><span>Rust</span></span>
+</a><a class="card" href="/s/korovin-aa97--talkthrough-mcp.html">
+  <span class="name"><span class="owner">korovin-aa97/</span>talkthrough-mcp</span>
+  <p>MCP server: turn narrated screen recordings into agent-ready data — local Whisper transcript, scene keyframes, OCR, wall-clock anchoring. Record your screen, talk — your AI agent files the bugs.</p>
+  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a><a class="card" href="/s/klarluft--gitwarren-app.html">
+  <span class="name"><span class="owner">klarluft/</span>gitwarren-app</span>
+  <p>A cross-platform desktop app for doing local code reviews of your own git repositories. Single user, single machine, no server, no account.</p>
+  <span class="meta"><span>⭐ 11</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

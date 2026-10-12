@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donglaiye/mcd-calorie-architect — MCP Server | MCP Radar</title>
+<meta name="description" content="麦门卡路里精算师 - 基于麦当劳 MCP 真实营养数据的热量约束配餐Skill — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Donglaiye--mcd-calorie-architect.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Donglaiye/mcd-calorie-architect — MCP Server | MCP Radar">
+<meta property="og:description" content="麦门卡路里精算师 - 基于麦当劳 MCP 真实营养数据的热量约束配餐Skill — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Donglaiye/mcd-calorie-architect", "description": "麦门卡路里精算师 - 基于麦当劳 MCP 真实营养数据的热量约束配餐Skill", "codeRepository": "https://github.com/Donglaiye/mcd-calorie-architect", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/Donglaiye--mcd-calorie-architect.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Donglaiye/</span>mcd-calorie-architect</h1>
+<p class="sub">麦门卡路里精算师 - 基于麦当劳 MCP 真实营养数据的热量约束配餐Skill</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-12</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">calorie-counter</span><span class="topic">health</span><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">meal-planner</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/nutrition.html">nutrition</a><a class="topic" href="/topic/python.html">python</a></div>
+<a class="btn" href="https://github.com/Donglaiye/mcd-calorie-architect" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-calorie-architect</h2><p class="sub">🍟 麦门卡路里精算师（McDonald&#x27;s Calorie Architect）</p><p class="sub">输入「热量预算 + 想吃什么」，AI 用麦当劳官方 MCP 的真实营养数据，算出在热量、蛋白质、预算三重约束下的最优配餐， 再告诉你这顿吃完要跑几公里。</p><p class="sub">基于 麦当劳中国官方 MCP 服务 开发的参赛 Skill —— 2026 麦当劳程序员创意开发大赛。</p><p class="sub">⭐ 本仓库正在参加 2026 麦当劳程序员创意开发大赛，比赛排名唯一依据就是 GitHub Star 数。 如果这个配餐求解器的思路对你有用，麻烦点一下页面右上角的 Star —— 这是支持它的唯一方式，也是决定它排名的那一票。 看完感兴趣的话，Issue 区欢迎聊约束求解和营养数据的对齐问题。</p><p class="sub">「吃麦当劳」和「控卡健身」一直是两件打架的事。大家讨论得最多的是怎么点最省钱， 但另一批人真正的问题是：怎么点才不胖。</p><p class="sub">官方 MCP 里有一个 list-nutrition-foods（餐品营养信息列表），官方描述写着 「需要帮助用户搭配指定热量套餐时使用此工具」——零参数调用，一次性给出 160 条常见品的完整营养明细 （能量 / 蛋白 / 脂肪 / 碳水 / 钠 / 钙）。</p><p class="sub">所以差别不在「要不要算热量」，而在怎么算：让模型凭印象给一个热量数字是免费的， 但那个数字不可复算。这里把真实营养数据作为输入，在本地做一道带约束的组合优化—— 结果可复算、可验证，并用 20 项自测兜底。</p><p class="sub">和其他配餐 Skill 的区别：第一约束是热量和蛋白质，价格是第二约束，钠始终跟着输出；三者的取舍会被显式算出来，而不是被藏起来。</p><p class="sub">模式 你说 它做 --------- 🧮 卡路里配餐 &quot;午餐 600 大卡怎么吃&quot; &quot;今天练腿，蛋白要 40g&quot; 拉真实营养数据 → 约束求解 → Top3 方案（热量/蛋白/脂肪/碳水/钠/价格全列出） 🔥 运动换算 &quot;这顿要跑几公里&quot; 翻译成跑步/快走/骑车/游泳/跳绳的分钟数、公里数、步数 💰 双目标 &quot;600 大卡以内，最好别超 35 块&quot; 热量与预算同时约束 🛒 确认下单 &quot;就按方案 2 下单&quot; 复核价格 → 明细确认 → 确认后才下单 ☀️ 每日轻食播报 &quot;麦麦轻食早报&quot;（可挂定时任务） 今日活动 + 低卡推荐 + 积分提醒</p><p class="sub">前往 open.mcd.cn/mcp → 手机号登录 → 右上角「控制台」→「激活」→ 复制 Token。</p><p class="sub">左侧边栏【专家·技能·连接器】→【连接器】→ 右上角【自定义连接器】→【配置MCP】，填入：</p><p class="sub">⚠️ 把 YOURMCPTOKEN 换成你的真实 Token，保存并启用。 其他客户端（Cursor / Cherry Studio / Trae / VSCode 等）配置方式相同。</p><p class="sub">把本仓库的 SKILL.md、scripts/、references/ 复制到你的技能目录：</p><p class="sub">- WorkBuddy：~/.workbuddy/skills/mcd-calorie-architect/ - 其他 Agent：放入对应 skills 目录即可（SKILL.md 为通用格式，不绑定框架）</p><p class="sub">已用真实 MCP Token 打通营养 + 门店 + 菜单 + 价格全链路，拿到官方 160 条营养数据、 83 条真实价格，跑通端到端约束求解。</p><p class="sub">场景：减脂午餐，600 kcal 以内，蛋白 ≥ 30g，必含堡，≤ ¥40，最多 3 件</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Donglaiye--mcd-calorie-architect.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 36</span><span>Python</span></span>
+</a><a class="card" href="/s/MarkWang90--mcd-memory-can.html">
+  <span class="name"><span class="owner">MarkWang90/</span>mcd-memory-can</span>
+  <p>麦当劳 MCP 订单可视化 · WorkBuddy 开发的九幕长卷生成器 —— 调用麦当劳中国官方 MCP 只读接口 order-list，把历史订单做成《重庆森林》质感的九幕图文长卷（1080×1440 竖图 / 长图 / PDF）</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/baihua2471--mcd-expiry-butler.html">
+  <span class="name"><span class="owner">baihua2471/</span>mcd-expiry-butler</span>
+  <p>看看哪些麦当劳权益快到期，哪些值得用，哪些不用为了到期硬消费。基于麦当劳官方 MCP 的 WorkBuddy Skill：只读查询优惠券与积分，按预算给出最多两套经官方接口试算的用餐方案。McDonald&#x27;s coupon &amp; points expiry assistant — a WorkBuddy Skill on the official McDonald&#x27;s MCP. Read-only </p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/zjh-1024--mcd-coupon-desk.html">
+  <span class="name"><span class="owner">zjh-1024/</span>mcd-coupon-desk</span>
+  <p>券能不能用 · 怎么摆最省 —— 基于麦当劳 MCP 的优惠券可用性判定与点餐方案求解</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
