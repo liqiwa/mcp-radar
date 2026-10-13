@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>junxchan54-maker/mcd-cn-assistant — MCP Server | MCP Radar</title>
+<meta name="description" content="把麦当劳中国 MCP 的 36 个工具编排成「活动推送 + 关键词关注 + 最优惠点餐+多人群点聚合」算价走真实计算、下单必须二次确认，帮你不错过活动也不多花一分钱。The 36 tools of McDonald&#x27;s China MCP have been organized into three — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/junxchan54-maker--mcd-cn-assistant.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="junxchan54-maker/mcd-cn-assistant — MCP Server | MCP Radar">
+<meta property="og:description" content="把麦当劳中国 MCP 的 36 个工具编排成「活动推送 + 关键词关注 + 最优惠点餐+多人群点聚合」算价走真实计算、下单必须二次确认，帮你不错过活动也不多花一分钱。The 36 tools of McDonald&#x27;s China MCP have been organized into three — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "junxchan54-maker/mcd-cn-assistant", "description": "把麦当劳中国 MCP 的 36 个工具编排成「活动推送 + 关键词关注 + 最优惠点餐+多人群点聚合」算价走真实计算、下单必须二次确认，帮你不错过活动也不多花一分钱。The 36 tools of McDonald's China MCP have been organized into three business flows: \"event push + keyword Follow + Be", "codeRepository": "https://github.com/junxchan54-maker/mcd-cn-assistant", "programmingLanguage": "Unknown", "url": "https://mcp.liqiwa.com/s/junxchan54-maker--mcd-cn-assistant.html", "dateCreated": "2026-10-09"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">junxchan54-maker/</span>mcd-cn-assistant</h1>
+<p class="sub">把麦当劳中国 MCP 的 36 个工具编排成「活动推送 + 关键词关注 + 最优惠点餐+多人群点聚合」算价走真实计算、下单必须二次确认，帮你不错过活动也不多花一分钱。The 36 tools of McDonald&#x27;s China MCP have been organized into three business flows: &quot;event push + keyword Follow + Be</p>
+<div class="chips">
+  <div class="chip">⭐ <b>15</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  
+  <div class="chip">momentum <b>▲ 39.5</b></div>
+  <div class="chip">created <b>2026-10-09</b></div>
+  <div class="chip">on radar since <b>2026-10-13</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai.html">ai</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/ai-tools.html">ai-tools</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">open-claw</span><a class="topic" href="/topic/skills.html">skills</a><span class="topic">wordbuddyai</span></div>
+<a class="btn" href="https://github.com/junxchan54-maker/mcd-cn-assistant" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-cn-assistant</h2><p class="sub">把麦当劳中国官方 MCP 工具，封装成一个开箱即用的 Agent 技能：活动不错过、优惠不放过、点餐不吃亏、群点不算账。</p><p class="sub">mcd-cn-assistant 是一个面向 AI Agent 的技能包（Skill），建立在麦当劳中国官方 MCP 服务（）之上。</p><p class="sub">麦当劳中国官方 MCP 提供了 30+ 个原子工具——查门店、查菜单、查券、领券、算价、下单、查积分、积分商城、积分抽奖、主题活动预约……但原子工具不等于能用的助手。直接用这些工具，用户需要自己记住几十个工具名、自己判断先调哪个后调哪个、自己组合券和商品算最便宜的方案，还得时刻提防 AI 擅自下单。</p><p class="sub">本项目做的事情是：把这堆原子工具编排成四条用户真正会用的业务流，并把安全边界写死。</p><p class="sub">用户的真实困扰 本项目的解法 ------ &quot;这个月麦当劳有什么活动？&quot; ——活动散落在 App 各处，懒得翻 能力一：一句话拉出当月活动日历，按「进行中 / 即将开始」分组摘要 &quot;我就想盯联名款，别的别烦我&quot; ——原生工具只会返回全量活动 能力二：自定义关键词 + 同义词扩展，只推命中项，还能每天定时自动推 &quot;到底怎么点最便宜？&quot; ——券有门槛、有第二份半价、有满减，人脑算不过来 能力三：围绕券的适用条件枚举候选组合，逐个真算价再比价，主推应付金额最低方案 &quot;我压根不知道还能拼单&quot; ——群点功能得用户自己想起来才会被触发 入口主动询问：任何点餐请求在选门店前，Agent 都会先问一句「单人还是多人拼单」，答多人即刻转入能力四，不依赖用户自己提出 &quot;办公室下午茶 8 个人拼单，算账算到下班&quot; ——刷屏报菜名、满减没人凑、配送费打包费没人算、收钱更尴尬 能力四：群点聚合——代录全员餐品 → 满减凑单建议 → 券归属标注 → 公共费用分摊（配送费+打包费）→ 一张每人应付的清晰账单 &quot;AI 会不会自己把我钱花了？&quot; 设计红线：任何下单 / 领券 / 取消 / 抽奖等写操作，必须先列明细并获得用户显式同意</p><p class="sub">统一入口（关键设计）：能力三与能力四共用一个点餐入口——只要是点餐请求，Agent 在定位门店前会主动问一句「这单是你自己吃，还是帮几个人一起点（拼单）？」，再据此分流。多人拼单不需要用户自己想到，答一句&quot;拼单&quot;即可进入完整的分账流程；回答含糊时会再确认一次，不会默认按单人处理。</p><p class="sub">能力 触发场景 核心编排 --------- ① 最新活动推送 &quot;最近有什么活动&quot;&quot;麦当劳有什么优惠&quot; now-time-info → campaign-calendar →（可选）available-coupons ② 关键词关注推送 &quot;关注一下联名&quot;&quot;每天推给我&quot; 读 config/keywords.json → 拉活动 → 关键词+同义词命中筛选 → 只推命中项 ③ 最优惠点餐 &quot;怎么点最划算&quot;&quot;帮我点个到店取&quot;（入口询问后确认为单人） 定位门店 → 盘券 → 看菜单 → 枚举组合 → 逐个 calculate-price → 比价 → 确认后下单 ④ 多人群点聚合 入口询问回答&quot;多人 / 拼单&quot;，或直接说&quot;办公室拼单&quot;&quot;帮大家点，帮我算账&quot; 开单（分摊偏好）→ 收单（代录 + 重复提醒）→ 算账（满减凑单 + 券归属 + 公共费用分摊）→ 账单 → 确认后单账户结算</p><p class="sub">用户画像 他们的诉求 ------ 麦当劳高频用户 / &quot;麦门&quot;爱好者 每周多次消费，关心活动与优惠，想用最少的钱吃到想吃的 联名 / IP 收集型用户 只为特定联名或限定周边消费，怕错过开售时间，需要&quot;只推我关心的&quot; 群体点单组织者（办公室下午茶 / 加班夜宵 / 宿舍 / 带娃局 / 球队） 每次群点都当&quot;人肉计算器&quot;：刷屏报菜名记不住、满减没人凑、配送费打包费没人算、收钱最尴尬——需要一张&quot;每人应付多少&quot;的清晰账单 不知道还能拼单的人 想帮同事/室友</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/junxchan54-maker--mcd-cn-assistant.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/wahyunuriman999--Muse-Skill-Hub.html">
+  <span class="name"><span class="owner">wahyunuriman999/</span>Muse-Skill-Hub</span>
+  <p>Open-source, LLM-agnostic capability runtime for AI agents — 97 skills as typed, permission-enforced MCP tools. Final certification: 23/23 gates PASS.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/breakstageaxe61--genspark-claw.html">
+  <span class="name"><span class="owner">breakstageaxe61/</span>genspark-claw</span>
+  <p>🦀⚡ Community skill pack &amp; CLI for Genspark Claw, OpenClaw &amp; Hermes agents — 5 production-ready SKILL.md skills (deep research, reports, slides, browser automation, AI call prep), zero-dependency Node.</p>
+  <span class="meta"><span>⭐ 42</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/SysikNagibator--AiPC.html">
+  <span class="name"><span class="owner">SysikNagibator/</span>AiPC</span>
+  <p>Give the agent &quot;this&quot; and he gets a real PC.</p>
+  <span class="meta"><span>⭐ 29</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-role-playing-autonomous-agent-crew-orchestrator-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-role-playing-autonomous-agent-crew-orchestrator-skill</span>
+  <p>Role-playing autonomous agent orchestrator managing crews (CrewAI style)</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-realtime-neural-3d-mesh-pbr-texture-generator-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-realtime-neural-3d-mesh-pbr-texture-generator-skill</span>
+  <p>Real-time neural 3D asset generator and PBR texture synthesizer (Luma Genie style)</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-multivariate-ad-creative-fatigue-auditor-skill.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-multivariate-ad-creative-fatigue-auditor-skill</span>
+  <p>Multivariate ad creative fatigue auditor &amp; refresh triggers (AdEspresso style)</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

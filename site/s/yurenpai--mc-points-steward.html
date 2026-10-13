@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yurenpai/mc-points-steward — MCP Server | MCP Radar</title>
+<meta name="description" content="麦当劳积分资产管家：剔假上架 · 性价比排序 · 抽奖参谋 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yurenpai--mc-points-steward.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yurenpai/mc-points-steward — MCP Server | MCP Radar">
+<meta property="og:description" content="麦当劳积分资产管家：剔假上架 · 性价比排序 · 抽奖参谋 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yurenpai/mc-points-steward", "description": "麦当劳积分资产管家：剔假上架 · 性价比排序 · 抽奖参谋", "codeRepository": "https://github.com/yurenpai/mc-points-steward", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yurenpai--mc-points-steward.html", "dateCreated": "2026-10-12"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yurenpai/</span>mc-points-steward</h1>
+<p class="sub">麦当劳积分资产管家：剔假上架 · 性价比排序 · 抽奖参谋</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 60.0</b></div>
+  <div class="chip">created <b>2026-10-12</b></div>
+  <div class="chip">on radar since <b>2026-10-13</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/mcd-mcp.html">mcd-mcp</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a><a class="topic" href="/topic/workbuddy-skill.html">workbuddy-skill</a></div>
+<a class="btn" href="https://github.com/yurenpai/mc-points-steward" rel="noopener">View on GitHub ↗</a>
+<h2>About mc-points-steward</h2><p class="sub">一个替你打理麦当劳积分资产的 WorkBuddy Skill —— 查得清账、剔得掉假、算得出值、守得住手。</p><p class="sub">↑ 横幅上的三个数字不是口号，是 python skill/scripts/makebannersvg.py 从真实调用快照里算出来的。</p><p class="sub">↑ 这张图不是画的，是 python skill/scripts/makereportsvg.py 从真实调用快照里算出来自动生成的——每个数字都能复现。</p><p class="sub">打开麦当劳 App 的积分商城，一次默认查询返回 50 件商品—— 其中 26 件是现金商品（派对、品鉴会、体验营，point=0），与积分无关； 真正的积分商品只有 24 件。</p><p class="sub">而这 24 件还不是全部：按 catRuleIds 逐一查询再合并，积分类实际有 27 件。</p><p class="sub">陷阱 现象 后果 --------- 隐藏现金成本 🔴 真可兑 9 件，没有一件是纯积分白拿的——「3.9元圆筒冰淇淋」100 分换的只是一张券，到店还要再付 3.9 元 以为白拿，实际掏钱 同名陷阱 「10.9元指定小食任选」有两个 spuId：100 分 和 200 分，名字一字不差 界面上分不出来该选哪个 默认查询漏报 不带 catRuleIds 查商城，会漏掉 2 件真能兑的商品（3.9元圆筒冰淇淋、16.9元2份麦辣鸡翅） 少报 22% 的可兑选项</p><p class="sub">积分是&quot;沉默资产&quot;。 大多数人不知道自己有多少分、什么时候过期、换什么划算，直到过期清零。</p><p class="sub">1. 假上架：Nike Book 2 麦当劳特别联名款（8888 分）仍显示&quot;上架&quot;，但它的兑换窗口是 2026-06-05 14:00 ~ 16:00，只有两小时，早已结束。系统不改变 status 字段。 2. 隐藏现金成本：积分商城里没有任何一件是纯积分白拿的（实测 9/9 全部需到店另付现金）。 这笔钱记在 skuList[].extTradePrice，列表接口里根本没有这个字段—— 不调 mall-product-detail 就永远看不到。 3. 同名陷阱：同一个名字，两个价格，界面上分不出来。查了详情才发现 它们根本不是同一个东西（一个兑薯条/麦旋风，一个兑麦乐鸡/鸡翅）。 4. 默认查询不完整：只调一次不带参数的接口，会漏掉五分之一的可兑商品。 5. 性价比无从判断：积分商品的 price 字段恒为 &quot;0&quot;，商品名里的数字 （&quot;6.9元可乐麦炫酷&quot; → 6.9 元）其实是券后支付价，不是市价。不解析就无法比较。</p><p class="sub">同样是花积分，最划算和最贵的单位成本差 5.04 倍。而这个差异，App 里看不出来。</p><p class="sub">⚠️ 上表「分/元」的口径：分母是券面价（到店支付价），不是商品市价。 MCP 不提供原价，因此本 Skill 不计算&quot;真实折扣率&quot;——宁可不算，也不编造。 它的用途是横向比较&quot;同样 1 元券面价，哪件吃得积分最少&quot;。</p><p class="sub">在 WorkBuddy 中：左侧【专家·技能·连接器】→【连接器】→【自定义连接器】→【配置 MCP】。</p><p class="sub">复制 mcp-config.example.json，把 ${MCDMCPTOKEN} 换成你自己的 Token：</p><p class="sub">⚠️ Bearer 前缀必须有，且后面有一个空格。 实测不带前缀会返回 403 校验鉴权authToken必填。 Token 获取：登录 open.mcd.cn → 手机号验证 → 控制台 → 激活 → 复制。</p><p class="sub">功能 用到的工具 说明 :--:--------- F1 积分账本 query-my-account 可用 / 累计 / 已用 / 已过期 / 冻结 / 本月·下月将过期，账目自洽校验 F2 商城去伪 mall-points-products 逐类目查询并按 spuId 合并，剔除假上架与现金商品 F3 性价比榜 rankproducts.py 从商品名</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yurenpai--mc-points-steward.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/polaris-smart--mcd-agent-gourmet.html">
+  <span class="name"><span class="owner">polaris-smart/</span>mcd-agent-gourmet</span>
+  <p>麦当劳 MCP 多 agent 协作点餐 Skill · McDonald&#x27;s China MCP multi-agent ordering · 营养师+预算师+口味师分工+owner 审批链 · M-CODE 参赛作品</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 106</span><span>Python</span></span>
+</a><a class="card" href="/s/zhutoumeme--mcd-git.html">
+  <span class="name"><span class="owner">zhutoumeme/</span>mcd-git</span>
+  <p>用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。</p>
+  <span class="meta"><span>⭐ 78</span><span>Python</span></span>
+</a><a class="card" href="/s/yzg1226--mcd-party-officer.html">
+  <span class="name"><span class="owner">yzg1226/</span>mcd-party-officer</span>
+  <p>🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函</p>
+  <span class="meta"><span>⭐ 208</span><span>Python</span></span>
+</a><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model m</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
