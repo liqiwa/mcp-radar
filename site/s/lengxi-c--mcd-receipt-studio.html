@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lengxi-c/mcd-receipt-studio — MCP Server | MCP Radar</title>
+<meta name="description" content="麦当劳 MCP 驱动的手账向文创小票生成器 —— 用真实订单明细，做一张可编辑、可装饰、可下载打印的麦门票根。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/lengxi-c--mcd-receipt-studio.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="lengxi-c/mcd-receipt-studio — MCP Server | MCP Radar">
+<meta property="og:description" content="麦当劳 MCP 驱动的手账向文创小票生成器 —— 用真实订单明细，做一张可编辑、可装饰、可下载打印的麦门票根。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "lengxi-c/mcd-receipt-studio", "description": "麦当劳 MCP 驱动的手账向文创小票生成器 —— 用真实订单明细，做一张可编辑、可装饰、可下载打印的麦门票根。", "codeRepository": "https://github.com/lengxi-c/mcd-receipt-studio", "programmingLanguage": "HTML", "url": "https://mcp.liqiwa.com/s/lengxi-c--mcd-receipt-studio.html", "dateCreated": "2026-10-13"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">lengxi-c/</span>mcd-receipt-studio</h1>
+<p class="sub">麦当劳 MCP 驱动的手账向文创小票生成器 —— 用真实订单明细，做一张可编辑、可装饰、可下载打印的麦门票根。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/html.html"><span class="lang-dot" style="--lang:#e34c26"></span><b>HTML</b></a>
+  <div class="chip">momentum <b>▲ 50.0</b></div>
+  <div class="chip">created <b>2026-10-13</b></div>
+  <div class="chip">on radar since <b>2026-10-14</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">receipts</span><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/lengxi-c/mcd-receipt-studio" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://lengxi-c.github.io/mcd-receipt-studio/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-receipt-studio</h2><p class="sub">MaiMen Diary — a McDonald&#x27;s MCP powered receipt studio.</p><p class="sub">一句话，WorkBuddy 通过麦当劳 MCP 拉出你的真实订单明细，在三栏工作台里挑一条数据， 做一张可编辑、可装饰、可下载打印的手账向创意小票。</p><p class="sub">先看效果 · 在线体验 · 能做出哪些小票 · 怎么用 · MCP 怎么接的 · 参赛材料</p><p class="sub">⚠️ 本项目为麦当劳程序员节创意开发大赛参赛作品，由参赛者独立开发，非麦当劳官方产品。 生成的小票为创意虚构产物，仅用于个人手账与文创创作，不可用作任何真实消费凭证。</p><p class="sub">💡 想用它做自己的小票？ 两条路先分清： 只想看看效果 → 直接开在线体验（内置示例数据，零安装零 Token）； 想用自己的真实订单 → 需要先接一次麦当劳 MCP，见快速开始（约 1 分钟）。</p><p class="sub">打开就是自己的麦门档案 —— 数据在交付前就已全部内嵌，页面是静态快照（产物里的 fetch / XHR 出现 0 次）， 双击即用、不需要 Token、不需要联网、不需要装任何东西。</p><p class="sub">三张成品（均由仓库根目录的 index.html 直接生成，示例数据、门店为虚构）：</p><p class="sub">品项 / 单价 / 优惠合计 / 取餐码 / 我的备注 累计与已过期积分、能换几个巨无霸 门店足迹 / 常点 TOP / 饭点分布 / 跨度天数</p><p class="sub">视觉目前为结构占位级：版式层次、栏位、装饰槽都是真的，美术正式版式仍在接入中。 这也意味着二次开发成本很低 —— 换一套 template.html + template.css 就是一套全新小票（见模板开发）。</p><p class="sub">小票 数据来源 情绪钩子 --------- 历史点单小票 · 明细版 order-list → query-order 展示品项、数量、真实行金额；有套餐详情时再展开，取餐码和我自己写的订单备注按数据展示。缺少明细时降级为整单金额版式并明示 积分存折 query-my-account 累计积分 ≈ 能换几个巨无霸；已过期积分单独成行 麦门履历（趣味统计） 纯计算 门店足迹 / 最贵一单 / 常点 TOP / 饭点分布 / 时间跨度</p><p class="sub">当前只保留三类常用数据源。活动、联名周边、战利品已于 2026-10-14 从工作台和正式构建入口退役； 旧模板与维护说明归档在 archive/retired-data-sources/（仅本地留档，不随仓库发布），不参与 CLI、工作台与正式构建。</p><p class="sub">常见做法 麦门日记 --------- 数据 用户自己整理订单 MCP 直接拉，零导入；query-order 交付前逐单拉齐，打开即是完整档案 明细 只给整单金额 query-order 拿到单项原价 + 优惠明细 + 取餐码 + 我的订单备注 编辑 只能改文字 栏位开关 / 换纸色 / 换纸形 / 贴装饰 / 增删明细行 / 插文案</p><p class="sub">人群 用途 ------ 手账 / 拼贴 / 文创爱好者 快速获得可打印、可装饰的小票素材，贴进本子 麦门粉丝 记录&quot;我吃过的那些顿&quot;，晒图有梗 想纪念一顿饭的普通人 &quot;第一次带娃吃麦麦&quot;&quot;考完试那顿&quot;</p><p class="sub">⚠️ 先分清两条路，别走岔了 —— 这两条用的不是同一份数据： - 只想看看它长什么样 → 走「看演示」：读仓库内置的示例订单（虚构门店），30 秒上手，什么都不用装 - 想生成属于自己的小票 → 走「正式使用」：需要先接一次麦当劳 MCP，之后才读得到你自己吃过的那些顿</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/lengxi-c--mcd-receipt-studio.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/junxchan54-maker--mcd-cn-assistant.html">
+  <span class="name"><span class="owner">junxchan54-maker/</span>mcd-cn-assistant</span>
+  <p>🍟 麦当劳中国官方 MCP 智能助手技能：把 35 个原子工具编排成 4 条业务流 —— 活动推送 · 联名关注 · 最优惠点餐 · 多人群点聚合账单。算价用 calculate-price 真算，下单必二次确认。｜McDonald&#x27;s China MCP agent skill: campaigns, collab watch, best-value ordering, group bill s</p>
+  <span class="meta"><span>⭐ 25</span><span></span></span>
+</a><a class="card" href="/s/MarkWang90--mcd-memory-can.html">
+  <span class="name"><span class="owner">MarkWang90/</span>mcd-memory-can</span>
+  <p>麦当劳 MCP 订单可视化 · WorkBuddy 开发的九幕长卷生成器 —— 调用麦当劳中国官方 MCP 只读接口 order-list，把历史订单做成《重庆森林》质感的九幕图文长卷（1080×1440 竖图 / 长图 / PDF）</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Nothingsssss--maimai-restaurant-huiyan.html">
+  <span class="name"><span class="owner">Nothingsssss/</span>maimai-restaurant-huiyan</span>
+  <p>麦麦餐厅-慧眼识人 | 麦当劳 2026 年 1024 程序员创意开发大赛参赛项目：基于麦当劳 MCP 真实餐品数据的出餐配餐与优惠推荐练习游戏（单文件 HTML，双击即玩）</p>
+  <span class="meta"><span>⭐ 13</span><span>HTML</span></span>
+</a><a class="card" href="/s/zouweivivian723-stack--mcd-fortune-ordering.html">
+  <span class="name"><span class="owner">zouweivivian723-stack/</span>mcd-fortune-ordering</span>
+  <p>麦门抽签 - 麦当劳运势抽签式点餐 Skill | McDonalds Fortune-Telling Ordering</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 161</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

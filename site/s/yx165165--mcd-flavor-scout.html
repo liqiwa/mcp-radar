@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yx165165/mcd-flavor-scout — MCP Server | MCP Radar</title>
+<meta name="description" content="麦当劳 MCP 没给「口味」这个维度，我给 119 款餐品手工标了一份（每款附配料依据、54% 可溯源至官方公示文件）。说「想吃甜的、要酥脆的、不要牛肉」就能找餐品，顺手把营养和优惠券算到最省。零 Token 打开即玩。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yx165165--mcd-flavor-scout.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yx165165/mcd-flavor-scout — MCP Server | MCP Radar">
+<meta property="og:description" content="麦当劳 MCP 没给「口味」这个维度，我给 119 款餐品手工标了一份（每款附配料依据、54% 可溯源至官方公示文件）。说「想吃甜的、要酥脆的、不要牛肉」就能找餐品，顺手把营养和优惠券算到最省。零 Token 打开即玩。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yx165165/mcd-flavor-scout", "description": "麦当劳 MCP 没给「口味」这个维度，我给 119 款餐品手工标了一份（每款附配料依据、54% 可溯源至官方公示文件）。说「想吃甜的、要酥脆的、不要牛肉」就能找餐品，顺手把营养和优惠券算到最省。零 Token 打开即玩。", "codeRepository": "https://github.com/yx165165/mcd-flavor-scout", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yx165165--mcd-flavor-scout.html", "dateCreated": "2026-10-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yx165165/</span>mcd-flavor-scout</h1>
+<p class="sub">麦当劳 MCP 没给「口味」这个维度，我给 119 款餐品手工标了一份（每款附配料依据、54% 可溯源至官方公示文件）。说「想吃甜的、要酥脆的、不要牛肉」就能找餐品，顺手把营养和优惠券算到最省。零 Token 打开即玩。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>7</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 17.5</b></div>
+  <div class="chip">created <b>2026-10-10</b></div>
+  <div class="chip">on radar since <b>2026-10-14</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">allergen</span><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/nutrition.html">nutrition</a><a class="topic" href="/topic/python.html">python</a><span class="topic">recommendation-system</span><a class="topic" href="/topic/skill.html">skill</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/yx165165/mcd-flavor-scout" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://yx165165.github.io/mcd-flavor-scout/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-flavor-scout</h2><p class="sub">你上次吃的那个挺好吃？告诉它；或者直接说「我想吃点甜的、要酥脆的」——它从 119 款餐品的口味图谱里找你爱吃的，再帮你凑好营养、把券用到最划算、最后只给你一句话的点餐结果。</p><p class="sub">麦当劳点餐相关的工具，大多在解「这一单怎么最省」。但点餐决策的真正起点不是价格，是「我今天想吃什么味」。</p><p class="sub">官方的 MCP 提供了菜单、营养、价格、优惠券——唯独没有提供「口味」这个维度。query-meals 返回的是分类和餐品编码，不告诉你「巨无霸是咸鲜带点酸甜、口感多汁」。</p><p class="sub">1. 建了一份 119 款餐品的口味图谱（六维口味 + 口感 + 温度），每一款都附配料依据、可逐条溯源，其中 51 款可直接对应麦当劳中国官方公示文件； 2. 把「口味」变成可计算的向量，于是「推荐类似的」「按口味描述找」「从历史订单学偏好」这三种需求，都能用同一套相似度机制解决。</p><p class="sub">功能 入口 :--:------ ① 口味推荐（主功能） recommend ② 营养配餐 plan 内置 ③ 最优优惠 plan 内置 ④ 简洁点餐 simple ⑤ 两款口味对比 compare ⑥ 可视化（口味星图 / 雷达对比） 在线演示页 ⑦ 过敏原参考（基于配料推导） allergen</p><p class="sub">入口 C 的做法值得说明：它把历史订单里每款餐品的口味向量按时间加权平均（越近的订单权重越高），得出你的口味重心；同时按各维度的方差调整权重——你在某维度上点的越稳定，说明越挑，该维度权重越高。</p><p class="sub">💡 想先看看跑起来什么样？直接打开在线演示， 它就是这套算法的浏览器版镜像（同一份数据、同一套评分公式）。</p><p class="sub">把热量、蛋白质、脂肪、钠纳入硬约束。数据缺失时如实显示「无」，绝不用 0 或估计值填充。</p><p class="sub">优惠券与组合联合搜索。因为满减券有整单门槛，先挑最便宜的单品再看能不能用券，会漏掉「多花 3 元凑到门槛、反而实付更少」的解。</p><p class="sub">它会自动从这句话里解析出口味（辣）、品类（汉堡）、预算（30 元），并锁定汉堡类——否则「最省」会把主食换成更便宜的小食，点出来不像一餐。</p><p class="sub">输出：口味推荐候选池 → 在池内求解「最省 + 营养达标」的组合 → 给出实付、省了多少、营养明细与逐项达标判定。</p><p class="sub">选两款餐品，看口味差在哪。这比看两个数字有用——一眼就知道「换个什么能更甜但不更辣」。</p><p class="sub">- 口味星图：把 119 款餐品全部画在一张散点图上，横纵轴可切换任意两个口味维度 （默认「甜 × 咸」）。点任意一个点就能拿它当推荐基准。一屏看完所有餐品的口味分布。 - 雷达图对比：两款餐品的六维口味雷达并排显示 + 差异表。</p><p class="sub">中国大陆麦当劳未公开过敏原一览表。 我们核实过：可查到的官方过敏原矩阵 全部来自境外市场（英国、新西兰、澳大利亚、日本）或第三方平台， 配方与国内不完全一致，不能直接套用。</p><p class="sub">判定 含义 ------ 🔴 含 配料描述里明确写出了含该过敏原的食材（如「芝士」「鸡蛋」「裹粉」） 🟡 可能含 配料里有含义模糊的复合酱料（如「巨无霸酱」「沙拉酱」）。国内酱料配方不公开，可能含蛋/芥末/大豆/芝麻 ⚪ 未发现 有配料描述，逐项核对后未提及该过敏原 ❔ 无数据 该餐品没有配料描述，无法判断</p><p class="sub">⚪ 和 ❔ 都不等于「不含」。 这是本模块最重要的设计约束—— 「核对过、没提到」与「根本没数据」是两件完全不同的事，绝不能用同一个符号糊过去。</p><p class="sub">1. 复合酱料一律判「可能含」，不判「含」也不判「未发现」。 「巨无霸酱」这类复合调味料，国内配方不公开，可能含蛋、芥末、大豆、芝麻。 判「未发现」是漏报（危险），判「含」是过度警示（不准），所以判「可能含」并说明原因。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yx165165--mcd-flavor-scout.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 161</span><span>Python</span></span>
+</a><a class="card" href="/s/Mercury-vivis--mcd-benefits-butler.html">
+  <span class="name"><span class="owner">Mercury-vivis/</span>mcd-benefits-butler</span>
+  <p>基于麦当劳官方 mcd-mcp-server 的 MCP 客户端与 WorkBuddy 技能：扫描历史订单中仍来得及用餐评价的权益机会，盘点积分兑换，聚合当月活动。</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/SteveLaiTVT--mcd-1024-skill.html">
+  <span class="name"><span class="owner">SteveLaiTVT/</span>mcd-1024-skill</span>
+  <p>麦麦饱饱盘：官方套餐核价、圆盘选餐、DeepSeek 双 Agent 个性推荐与用餐热力图｜麦当劳创意开发大赛参赛作品（非官方）</p>
+  <span class="meta"><span>⭐ 6</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/zouweivivian723-stack--mcd-fortune-ordering.html">
+  <span class="name"><span class="owner">zouweivivian723-stack/</span>mcd-fortune-ordering</span>
+  <p>麦门抽签 - 麦当劳运势抽签式点餐 Skill | McDonalds Fortune-Telling Ordering</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/succbua--mcd-commute-butler.html">
+  <span class="name"><span class="owner">succbua/</span>mcd-commute-butler</span>
+  <p>通勤路上的麦当劳点单管家｜基于麦当劳 MCP：按到达时段过滤餐品、按到期紧迫度调度优惠券，输出可直接执行的预约订单方案</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
