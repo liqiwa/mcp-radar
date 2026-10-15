@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-14</b></div>
   <div class="chip">star trend <b>7 → 10</b> since 2026-09-14</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/android.html">android</a><span class="topic">apk</span><span class="topic">dex</span><a class="topic" href="/topic/llm.html">llm</a><span class="topic">lsposed</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">repl</span><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><span class="topic">smali</span><a class="topic" href="/topic/static-analysis.html">static-analysis</a><span class="topic">xposed</span></div>
+<div class="topics"><a class="topic" href="/topic/android.html">android</a><a class="topic" href="/topic/apk.html">apk</a><span class="topic">dex</span><a class="topic" href="/topic/llm.html">llm</a><span class="topic">lsposed</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">repl</span><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><span class="topic">smali</span><a class="topic" href="/topic/static-analysis.html">static-analysis</a><span class="topic">xposed</span></div>
 <a class="btn" href="https://github.com/wlmosv-png/apk-index" rel="noopener">View on GitHub ↗</a>
 <h2>About apk-index</h2><p class="sub">apk-index —— Android 逆向 / Xposed 模块开发用的 APK 索引 MCP Server</p><p class="sub">静态索引 APK / split APK / AAR / 裸 dex / vdex / compact-dex，给 Agent 提供 「查类、查成员、查签名、查字符串、查交叉引用、生成 hook 起手块」的只读能力。 纯 Python 3 标准库（zipfile / sqlite3 / struct / json / hashlib），stdio 上说 MCP JSON-RPC 2.0。</p><p class="sub">运行要求 - Python = 3.10，无第三方依赖 - 可选：JDK 的 javac（AAR fixture）与 javap（.class 交叉校验）；缺省时用内置 tools/classwrite.py 兜底 - 只读挂载：索引写 APKINDEXCACHE（默认 ~/.cache/apk-index），永不写源文件</p><p class="sub">- HTTP：客户端 initialize 后回传 MCP-Session-Id 请求头 → 每个客户端一个 owner；不带头的老客户端归 default（兼容）。 - stdio：每个进程随机 owner（可用环境变量 APKINDEXOWNER 固定）。 - CLI：APKINDEXOWNER 或 cli。</p><p class="sub">隔离语义：sessionList 只显示本客户端的会话；unload 只解除自己的引用， 索引文件全局共享（同一包只建一次索引，多客户端 load 命中缓存）， 最后一个引用者释放时才删文件。跨进程写索引有文件锁（.lock）， 两个客户端同时索引同一新包不会互相踩。</p><p class="sub">APKINDEXALLOWEDROOTS（冒号分隔）是路径白名单，越界一律 INVALIDPATH —— 防止越权读宿主隐私文件。</p><p class="sub">23 个工具 分类 工具 一句话 --------- 装载 loadApk APK(+split 目录) → 会话；返回指纹 / manifest 摘要 / 组件 / 加固探测 装载 loadAar classes.jar + R.txt + consumer-rules.pro + jni/\/.so，可 mergeInto 并进 App 会话 装载 loadDex 裸 classes.dex / vdex / compact-dex，可追加进已有会话 会话 sessionList / stats / unload 忘了 sessionId 先 list；stats 看体量；unload 删登记（keepFiles 可选） 查询 searchClasses exact / prefix / regex，scope=appliball，packageFilter 查询 listMembers 类内方法与字段，include 走 namePattern 查询 getSignature 一个类或成员 → smali / reflector / java / helper-ktx 四形态 + hook 起手块 + 注解（含 visibility） 查询 searchByString 常量字符串反查方法（contains/exact/regex，按命中数聚合排序） 查询 findImplementations 接口实现 / 父类子类，含传递继承链 查询 xref callers / callees，depth 控制跳数 代码 decompile outline（骨架）/ smali / java，maxLines 截断 生成 matchSignature 只给结构条件（参数个数/类型/返回值/引用字符串）→ 候选成员 + 可粘 DSL 生成 diffSessions 两版本差分：exact-structure / s</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -108,10 +108,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">lm060719/</span>reconbridge</span>
   <p>通用逆向分析 KernelSU 模块：手机侧只做原子能力，智能全在 PC 侧（Claude Code + MCP）。仅限授权安全研究与教育用途。</p>
   <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/maximilianfeix--hexvero.html">
+  <span class="name"><span class="owner">maximilianfeix/</span>hexvero</span>
+  <p>The first look at a binary or app bundle: static, execution-free analysis with evidence. CLI, 15-tool MCP server and local web UI, Node only.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/2akouwu--reverify.html">
   <span class="name"><span class="owner">2akouwu/</span>reverify</span>
   <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
   <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/LSPosed--dexsql-release.html">
+  <span class="name"><span class="owner">LSPosed/</span>dexsql-release</span>
+  <p>SQL for Android apk and dex files</p>
+  <span class="meta"><span>⭐ 83</span><span>Python</span></span>
 </a><a class="card" href="/s/frangelbarrera--code-review-agent-mcp.html">
   <span class="name"><span class="owner">frangelbarrera/</span>code-review-agent-mcp</span>
   <p>AI code review agent MCP server. Reviews code like a kernel maintainer: blunt, technical, no sugarcoating. Detects bugs + OWASP Top 10 security vulnerabilities. 4 harshness levels. Anti-RLHF.</p>
@@ -120,14 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">cnlnn/</span>droidasc-mcp</span>
   <p>Safe, structured MCP server for the Droid ASC Android decompiler</p>
   <span class="meta"><span>⭐ 4</span><span>Python</span></span>
-</a><a class="card" href="/s/MohammadHijjawi97--since-cutoff.html">
-  <span class="name"><span class="owner">MohammadHijjawi97/</span>since-cutoff</span>
-  <p>Find which APIs of your pinned Python dependencies changed after your coding model&#x27;s training cutoff, and give the agent short AGENTS.md / CLAUDE.md notes from a static API diff. No model calls, no AP</p>
-  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
-</a><a class="card" href="/s/coffeecoproject--layermap.html">
-  <span class="name"><span class="owner">coffeecoproject/</span>layermap</span>
-  <p>LayerMap MCP: a layered map of your codebase for coding agents: callers, callees and the impact of a change, for TypeScript, JavaScript, Go, Python and Java. MCP server, CLI, and plugins for Claude Co</p>
-  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
 </a>
 
 

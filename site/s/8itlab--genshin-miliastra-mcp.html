@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8itlab/genshin-miliastra-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="原神千星奇域 MCP 服务器：让 Claude、Cursor 等 AI 替你搭关卡、写节点图、自动试玩 | Unofficial MCP server for Genshin Impact&#x27;s Miliastra Wonderland (UGC) editor: AI builds scenes,  — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/8itlab--genshin-miliastra-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="8itlab/genshin-miliastra-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="原神千星奇域 MCP 服务器：让 Claude、Cursor 等 AI 替你搭关卡、写节点图、自动试玩 | Unofficial MCP server for Genshin Impact&#x27;s Miliastra Wonderland (UGC) editor: AI builds scenes,  — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "8itlab/genshin-miliastra-mcp", "description": "原神千星奇域 MCP 服务器：让 Claude、Cursor 等 AI 替你搭关卡、写节点图、自动试玩 | Unofficial MCP server for Genshin Impact's Miliastra Wonderland (UGC) editor: AI builds scenes, node graphs and playtests levels", "codeRepository": "https://github.com/8itlab/genshin-miliastra-mcp", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/8itlab--genshin-miliastra-mcp.html", "dateCreated": "2026-10-13"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">8itlab/</span>genshin-miliastra-mcp</h1>
+<p class="sub">原神千星奇域 MCP 服务器：让 Claude、Cursor 等 AI 替你搭关卡、写节点图、自动试玩 | Unofficial MCP server for Genshin Impact&#x27;s Miliastra Wonderland (UGC) editor: AI builds scenes, node graphs and playtests levels</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">created <b>2026-10-13</b></div>
+  <div class="chip">on radar since <b>2026-10-15</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/game-development.html">game-development</a><span class="topic">genshin</span><span class="topic">genshin-impact</span><span class="topic">genshin-ts</span><span class="topic">level-editor</span><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">miliastra</span><span class="topic">miliastra-wonderland</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">node-graph</span><a class="topic" href="/topic/typescript.html">typescript</a><span class="topic">ugc</span><a class="topic" href="/topic/windows.html">windows</a><span class="topic">yuanshen</span></div>
+<a class="btn" href="https://github.com/8itlab/genshin-miliastra-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About genshin-miliastra-mcp</h2><p class="sub">genshin-miliastra-mcp · 原神千星奇域游戏制作 MCP 服务器</p><p class="sub">让 AI 替你做千星奇域的关卡。 Miliastra Wonderland MCP Server for Genshin Impact UGC · English</p><p class="sub">给支持 MCP（Model Context Protocol）的 AI 用的《原神》千星奇域创作工具。你在自己的电脑上开着千星奇域的编辑器（千星沙箱），Claude、Cursor、Codex 这类 AI 接上这套工具替你搭关卡：搜物件摆场景、设关卡、写节点图（TypeScript，用 Genshin-TS 0.2.2 编译）、自动试玩并拿回日志和截图。</p><p class="sub">上面三局是三个没参与过开发的 AI 各自只拿到这套工具、从空白地图做出来并按脚本打通的（经过和它们卡在哪）。</p><p class="sub">AI 自己进游戏试玩。 下面这段是工具录的：一局用客户端 Lua 写的翻牌配对（examples/pairs），工具把它写进存档、打开游戏、照脚本点暂停、继续、翻完十二张牌，一直打到游戏自己的胜利画面，再把日志和画面拿回来对照。没有人碰鼠标。</p><p class="sub">- 搭场景：2468 种官方物件的图鉴，按名字搜、看缩略图，一次导入一百个物件；锁定视角、出生点、复苏点、昼夜和灯光。 - 做机关和怪：元件、碰撞触发器、按 F 交互、移动平台、弹跳垫、力场、隐形墙、投射物和命中检测、会自己找敌人打的复杂造物、技能、道具、商店、货币；NPC 头顶的对话气泡、名字、血条。</p><p class="sub">- 做界面：进度条（横条、竖条、圆环）、图片（约 1600 张平台自带的图）、计时器、按钮、卡牌选择器（三选一）。</p><p class="sub">- 写客户端 Lua（游戏 7.1 的新能力）：会动、能收鼠标和按键的界面，甚至整局 2D 小游戏；脚本的打印和节点图的打印一起从试玩里拿回来。</p><p class="sub">- 写规则：节点图用 TypeScript 写，一次编译几十张图写进存档；自带节点文档、特效（3195 条）、音效（1997 条）、音乐（188 条）的中文目录。 - 自己试玩：按脚本按键、点鼠标、把玩家放到指定位置，截图、连拍、录音、录像，读回日志；AI 靠这个知道做出来的东西在游戏里到底对不对。 - 发布前的准备：出封面、截图、标题和简介。发布本身由你在游戏里点。 - 离线知识库：官方综合指南、教程、48 份官方教学存档的拆解，加上一份实测出来的平台规则，AI 设计玩法前先查。</p><p class="sub">千星奇域里的物件、特效、音效、图片，在存档和节点图里都是靠编号引用的。编号在编辑器里看得到，但本地数据里没有现成的表可查。这个仓库把它们整理成了图鉴，大部分是从编辑器里一样一样读出来、拍下来的，AI 按中文名字就能查到编号、看到长相再挑：</p><p class="sub">图鉴 数量 内容 文件 ------------ 物件 2468 种，其中 2398 种有缩略图 编号、名字、分组、尺寸（名单和尺寸来自 qianxing-format-docs，CC BY 4.0）；缩略图是摆进编辑器里逐个实拍的 src/scene/asset-catalog.json、src/scene/thumbs/.jpg 特效 3195 条（限时 1986、循环 1209） 编号、名字、每条在资产库里的小图；87 个循环特效另有挂在角色身上的实拍 src/scene/media/effects.json、fx-thumbs.、src/scene/fx/ 音效 1997 条 编号、名字、分类；其中 73 条录下来量过时长和响度 src/scene/media/sounds.json 背景音乐 188 首 编号、名字、分类 src/scene/media/music.json 界面图片 1590 张，15 类 图标、底板、分隔线、技能、道具、造物头像等；图库逐页的照片，每张图下面标着编号 src/sce</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/8itlab--genshin-miliastra-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/sv-number--mcp-server.html">
+  <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
+  <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
+  <span class="meta"><span>⭐ 598</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--yelp-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>yelp-mcp</span>
+  <p>MCP server for Yelp: business search, place details and the full review feed as JSON. Hosted, no Yelp Fusion key. 1,000 free credits every month.</p>
+  <span class="meta"><span>⭐ 16</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--glassdoor-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>glassdoor-mcp</span>
+  <p>MCP server for Glassdoor: search job listings by keyword and location, read one posting in full with the employer rating and the salary figure with its provenance. 1,000 free credits every month.</p>
+  <span class="meta"><span>⭐ 16</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--facebook-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>facebook-mcp</span>
+  <p>MCP server for Facebook: a public page or profile by handle with likes, followers, contact details and the post feed with reactions. No Meta developer app. 1,000 free credits every month.</p>
+  <span class="meta"><span>⭐ 16</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--bing-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>bing-mcp</span>
+  <p>MCP server for Bing search: organic results, the ad block and the Copilot answer, with geo, market and language targeting. No Azure subscription. 1,000 free credits every month.</p>
+  <span class="meta"><span>⭐ 15</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/HasData--yellowpages-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>yellowpages-mcp</span>
+  <p>MCP server for Yellow Pages: search local businesses by keyword and location, read one listing in full with services, brands and payment methods. 1,000 free credits every month.</p>
+  <span class="meta"><span>⭐ 15</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
