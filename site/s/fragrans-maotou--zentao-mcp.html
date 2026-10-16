@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fragrans-maotou/zentao-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="ZenTao MCP Server — Model Context Protocol tools for ZenTao (禅道) — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/fragrans-maotou--zentao-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="fragrans-maotou/zentao-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="ZenTao MCP Server — Model Context Protocol tools for ZenTao (禅道) — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "fragrans-maotou/zentao-mcp", "description": "ZenTao MCP Server — Model Context Protocol tools for ZenTao (禅道)", "codeRepository": "https://github.com/fragrans-maotou/zentao-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/fragrans-maotou--zentao-mcp.html", "dateCreated": "2026-10-12"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">fragrans-maotou/</span>zentao-mcp</h1>
+<p class="sub">ZenTao MCP Server — Model Context Protocol tools for ZenTao (禅道)</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 15.3</b></div>
+  <div class="chip">created <b>2026-10-12</b></div>
+  <div class="chip">on radar since <b>2026-10-16</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/fragrans-maotou/zentao-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About zentao-mcp</h2><p class="sub">基于 Model Context Protocol (MCP) 构建的禅道项目管理工具集服务，采用按领域分层的模块化架构，支持 AI 助手（如 Antigravity、Claude 等）直接通过标准协议调用禅道 API。</p><p class="sub">本服务用 npx 从 GitHub 拉取并启动，使用前需要本机已安装 Node.js（≥ 18） 和 Git。安装这两个软件、以及拉取本公开仓库，都不需要 GitHub 账号，也不用登录。</p><p class="sub">1. 打开 https://nodejs.org/，下载 LTS 安装包（Windows 选 .msi）。 2. 一路下一步安装，保持勾选 Add to PATH。 3. 安装完成后重新打开终端或 MCP 客户端，执行：</p><p class="sub">1. 打开 https://git-scm.com/download/win，下载并安装 Git for Windows。 2. 安装选项保持默认即可（会自动加入 PATH）。 3. 不需要注册或登录 GitHub。本仓库是公开的，npx git+https://... 只是匿名拉取，不会要账号密码。若安装后弹出 GitHub 登录窗口，关掉即可。 4. 重新打开终端后执行：</p><p class="sub">环境变量说明： - ZENTAOBASE: 禅道访问根地址，例如 http://your-zentao-host/zentao（必填） - ZENTAOACCOUNT: 禅道登录账号（配置后，所有工具均支持自动静默登录） - ZENTAOPASSWORD: 禅道登录密码</p><p class="sub">保存配置后重启 MCP 客户端。首次启动时 npx 会从 GitHub 拉取仓库并安装依赖，之后走本地缓存。</p><p class="sub">当前未发布到 npm，所以仓库里会带上编译后的 dist/；改完源码后请先 npm run build，再把生成的 JS 一起提交。仓库更新后，使用方需重启 MCP，或清一次 npx 缓存后再启动。</p><p class="sub">login (登录获取 Token) - 说明：通过禅道账号与密码登录，自动将获取的 Token 存入当前会话，后续所有接口请求将自动在 Header 中携带 Token: 。 - 参数： - account (string, 必填)：禅道用户名/账号 - password (string, 必填)：密码 - 底层接口：POST {ZENTAOBASE}/api.php/v1/tokens</p><p class="sub">listproducts (查询产品列表) - 说明：获取当前账号有权限的产品列表与产品 ID，辅助创建或筛选需求时选择 product 参数。 - 参数： - page (number, 可选, 默认 1)：页码 - limit (number, 可选, 默认 20)：每页数量 - 底层接口：GET {ZENTAOBASE}/api.php/v1/products</p><p class="sub">getproduct (获取产品详情) - 说明：根据产品 ID 获取单个产品的详细信息。 - 参数： - productid (number, 必填)：产品 ID - 底层接口：GET {ZENTAOBASE}/api.php/v1/products/{productid}</p><p class="sub">createstory (创建需求) - 说明：在禅道指定产品下创建新需求（Story）。 - 参数： - product (number, 必填)：所属产品 ID（可先使用 listproducts 查询） - title (string, 必填)：需求名称/标题 - spec (string, 可选)：需求详细描述 - verify (string, 可选)：验收标准 - pri (number, 可选, 默认 3)：优先级 1~4 - category (string, 可选, 默认 feature)：需求类型（如 feature</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/fragrans-maotou--zentao-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/XiaoDuoYa--codex-with-chatgpt.html">
+  <span class="name"><span class="owner">XiaoDuoYa/</span>codex-with-chatgpt</span>
+  <p>ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.</p>
+  <span class="meta"><span>⭐ 2301</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/shinthink--blitzstrike.html">
+  <span class="name"><span class="owner">shinthink/</span>blitzstrike</span>
+  <p>⚡ Blitz Strike — a universal MCP penetration-testing toolbelt. Structured methodology: reconnaissance &amp; attack-surface mapping, source-to-sink analysis, and live validation. 57 escalation chains, 130-</p>
+  <span class="meta"><span>⭐ 634</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/halofyai--halofy.html">
+  <span class="name"><span class="owner">halofyai/</span>halofy</span>
+  <p>Halofy is the open access and governance layer for AI agents across your organization. Identity, policy, provenance, audit, and signed erasure.</p>
+  <span class="meta"><span>⭐ 440</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/CaptureGrubEnchant--SolidWorks.html">
+  <span class="name"><span class="owner">CaptureGrubEnchant/</span>SolidWorks</span>
+  <p>SolidWorks MCP Server connects an AI assistant to a running SolidWorks instance. Sketch, extrude, fillet, export STEP/STL, generate macros.</p>
+  <span class="meta"><span>⭐ 385</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/arielshad--3d-asset-server.html">
+  <span class="name"><span class="owner">arielshad/</span>3d-asset-server</span>
+  <p>3d assets api and mcp</p>
+  <span class="meta"><span>⭐ 276</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

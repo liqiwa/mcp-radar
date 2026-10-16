@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>liuqingping01/mcd-order-lab — MCP Server | MCP Radar</title>
+<meta name="description" content="麦麦怎么买最划算 · 输入你想吃的，告诉你买套餐还是单点更省，顺带把能用的券和活动摆出来（基于麦当劳官方 MCP 实时数据） — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/liuqingping01--mcd-order-lab.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="liuqingping01/mcd-order-lab — MCP Server | MCP Radar">
+<meta property="og:description" content="麦麦怎么买最划算 · 输入你想吃的，告诉你买套餐还是单点更省，顺带把能用的券和活动摆出来（基于麦当劳官方 MCP 实时数据） — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "liuqingping01/mcd-order-lab", "description": "麦麦怎么买最划算 · 输入你想吃的，告诉你买套餐还是单点更省，顺带把能用的券和活动摆出来（基于麦当劳官方 MCP 实时数据）", "codeRepository": "https://github.com/liuqingping01/mcd-order-lab", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/liuqingping01--mcd-order-lab.html", "dateCreated": "2026-10-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">liuqingping01/</span>mcd-order-lab</h1>
+<p class="sub">麦麦怎么买最划算 · 输入你想吃的，告诉你买套餐还是单点更省，顺带把能用的券和活动摆出来（基于麦当劳官方 MCP 实时数据）</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 5.0</b></div>
+  <div class="chip">created <b>2026-10-10</b></div>
+  <div class="chip">on radar since <b>2026-10-16</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/nodejs.html">nodejs</a></div>
+<a class="btn" href="https://github.com/liuqingping01/mcd-order-lab" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/liuqingping01/mcd-order-lab" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-order-lab</h2><p class="sub">输入你想吃的东西，告诉你买套餐还是单点更省，顺带把能用的券和活动摆出来，确认后直接下单。</p><p class="sub">基于麦当劳官方 MCP 实时数据 · 1024程序员节 · 麦当劳程序员创意开发大赛 参赛作品</p><p class="sub">https://mcd-order-lab.app.workbuddy.host/</p><p class="sub">线上实例已接好麦当劳官方 MCP，跑的是完整链路：实时菜单 → 官方算价 → 套餐 vs 单点对比 → 购物车相似方案 → 二次确认下单。</p><p class="sub">演示实例使用作者个人的 MCP Token，可能随时下线；要长期用请 clone 到本地跑（见下方「快速开始」）。 若提示「周边门店都已打烊」，是因为麦当劳 MCP 在门店非营业时间不返回菜单，换一个位置关键词即可。</p><p class="sub">手机端同样可用（触控目标 44px 级热区、底部弹出抽屉、输入框防 iOS 缩放）</p><p class="sub">麦当劳 App 里单品、套餐、优惠券、活动铺满一屏，真正难的不是&quot;选什么&quot;，而是：</p><p class="sub">官方渠道不会回答这个问题。它只列商品，不替你算&quot;多花的钱换回了什么&quot;。 本项目把麦当劳 MCP 开放的菜单、套餐组成、算价、券、活动编排成一条链路，直接给出结论。</p><p class="sub">套餐里有些组成项根本无法单点（实测「可乐中杯」「麦乐鸡4块」官方算价返回 productList: []）， 这类项不计入金额，只标注「套餐专属 · 无法单点」。因此净收益是保守下界，实际只会更划算。</p><p class="sub">商品卡片右上角点「+」加入购物车，右上角 🛒 打开抽屉可增减数量。 点「看看怎么买更省」，系统会扫描门店全部套餐，回答：这几样全买单品划算，还是换套餐划算？</p><p class="sub">套餐里多出来的东西（含无法单点的套餐专属品）视为&quot;白送&quot;，不计入抵扣， 因此省下的钱是保守下界。</p><p class="sub">购物车 全单点 换成套餐 结果 ------:---:--- 巨无霸 + 薯条 ¥41.0 巨无霸三件套 ¥37.5 省 ¥3.5，还多一杯可乐 巨无霸 ×3 ¥79.5 三件套 + 2 个单点 ¥90.5 不划算，判定&quot;无更省方案&quot;</p><p class="sub">- 唯一主入口：「我想吃…」可直接输入（支持模糊叫法），也可点下方大分类挑 - 右上角小图标：优惠券 / 活动，带数量徽章，点击右侧抽屉展开 - 有优惠的单品单独标注：商品卡左上角标「省 ¥X」，并划掉原价 - 活动默认只显示标题，点击才展开完整内容与配图，不长篇占屏 - 结算区：金额随选中的方案联动，可勾选「同时领取 N 张优惠券」</p><p class="sub">来源 域名 覆盖 --------- 商品 / 套餐图 menu-img.mcd.cn 128/128 活动图 cms-cdn.mcd.cn 26/26 券图 available-coupons 的 couponImage 7/7</p><p class="sub">query-meals 的 data.meals[code].image 就有图片字段，无需额外请求。 前端统一 loading=&quot;lazy&quot; + 加载失败隐藏，并校验 URL 协议为 http(s) 后才写入 img.src。</p><p class="sub">- 一句话出结论：填「巨无霸」→ 直接告诉你买三件套还是单点，多花多少、多得什么、净赚多少 - 方案对比可切换：单点与每个套餐各一张卡并排，点哪个看哪个的细节，不把信息全堆在一屏 - 价格以官方为准：全部取自 MCP calculate-price，不自造价格规则；菜单展示价与官方价冲突时显式提示差额，不静默给结论 - 扫描全量套餐：门店全部 56 个套餐类商品逐一比对组成，不是只挑几个推荐位 - 排序懂人情：不只看净收益——多人餐净收益绝对值往往最高，但偏离&quot;我就想吃一个堡&quot;。单人份、加价小的优先，净收益最高的作为「加价升级」备选另行展示 - 券与活动顺带带上：官方 App 本来就有的能力，这里只是搬到决策现场，不作为卖点 - 热量只在最后附一行：买麦当劳的人不会因为几十千卡改主意，所以营养不参与决策，仅</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/liuqingping01--mcd-order-lab.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/07liu--maimen-butler.html">
+  <span class="name"><span class="owner">07liu/</span>maimen-butler</span>
+  <p>麦门全能管家：基于麦当劳中国官方 MCP 的一站式助手——自动领券、权威比价、点餐推荐、每日巡检、巨无霸指数。2026 麦当劳程序员节创意开发大赛参赛作品。</p>
+  <span class="meta"><span>⭐ 15</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/ucsandman--declick.html">
+  <span class="name"><span class="owner">ucsandman/</span>declick</span>
+  <p>Compile an API, an MCP server, a database or a web page into a CLI your agent can run. Ten engines, one output contract, 4.1x less context than raw MCP.</p>
+  <span class="meta"><span>⭐ 17</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/tianyupaipai-cmd--netease-music-mcp.html">
+  <span class="name"><span class="owner">tianyupaipai-cmd/</span>netease-music-mcp</span>
+  <p>跨平台、隐私优先的网易云音乐 MCP：搜索、歌词、歌单与设备适配器</p>
+  <span class="meta"><span>⭐ 8</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/viRomulus-gif--browser-integration-mcp.html">
+  <span class="name"><span class="owner">viRomulus-gif/</span>browser-integration-mcp</span>
+  <p>MCP server for Claude Desktop: a shared, isolated browser agent behind a token-guarded local broker. Chrome/Edge/Vivaldi via CDP on a private pipe. Windows.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Parv17k--tasktracker.html">
+  <span class="name"><span class="owner">Parv17k/</span>tasktracker</span>
+  <p>The local-first task board for you and your AI agents. Claude &amp; Cursor work on it over MCP, the built-in assistant asks before changing anything, and it all stays on your machine.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Jasonin2099--mcd-team-feast.html">
+  <span class="name"><span class="owner">Jasonin2099/</span>mcd-team-feast</span>
+  <p>🍔 麦麦拼单：1024 程序员节团餐/下午茶拼单神器｜基于麦当劳 MCP，多人拼单 → 自动挑最优券 → 人均分账 → git log / PR / 小票风账单卡。CLI + 网页 + MCP Server + Agent Skill，零依赖 npx 即用 · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

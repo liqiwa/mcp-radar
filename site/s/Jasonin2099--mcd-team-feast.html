@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jasonin2099/mcd-team-feast — MCP Server | MCP Radar</title>
+<meta name="description" content="🍔 麦麦拼单：1024 程序员节团餐/下午茶拼单神器｜基于麦当劳 MCP，多人拼单 → 自动挑最优券 → 人均分账 → git log / PR / 小票风账单卡。CLI + 网页 + MCP Server + Agent Skill，零依赖 npx 即用 · 麦当劳程序员创意开发大赛参赛作品 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Jasonin2099--mcd-team-feast.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Jasonin2099/mcd-team-feast — MCP Server | MCP Radar">
+<meta property="og:description" content="🍔 麦麦拼单：1024 程序员节团餐/下午茶拼单神器｜基于麦当劳 MCP，多人拼单 → 自动挑最优券 → 人均分账 → git log / PR / 小票风账单卡。CLI + 网页 + MCP Server + Agent Skill，零依赖 npx 即用 · 麦当劳程序员创意开发大赛参赛作品 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Jasonin2099/mcd-team-feast", "description": "🍔 麦麦拼单：1024 程序员节团餐/下午茶拼单神器｜基于麦当劳 MCP，多人拼单 → 自动挑最优券 → 人均分账 → git log / PR / 小票风账单卡。CLI + 网页 + MCP Server + Agent Skill，零依赖 npx 即用 · 麦当劳程序员创意开发大赛参赛作品", "codeRepository": "https://github.com/Jasonin2099/mcd-team-feast", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Jasonin2099--mcd-team-feast.html", "dateCreated": "2026-10-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Jasonin2099/</span>mcd-team-feast</h1>
+<p class="sub">🍔 麦麦拼单：1024 程序员节团餐/下午茶拼单神器｜基于麦当劳 MCP，多人拼单 → 自动挑最优券 → 人均分账 → git log / PR / 小票风账单卡。CLI + 网页 + MCP Server + Agent Skill，零依赖 npx 即用 · 麦当劳程序员创意开发大赛参赛作品</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-10-16</b></div>
+  <div class="chip">on radar since <b>2026-10-16</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/1024.html">1024</a><a class="topic" href="/topic/agent-skill.html">agent-skill</a><span class="topic">bill-split</span><a class="topic" href="/topic/claude-skill.html">claude-skill</a><a class="topic" href="/topic/cli.html">cli</a><span class="topic">coupon-optimizer</span><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcdonalds-mcp.html">mcdonalds-mcp</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/nodejs.html">nodejs</a><a class="topic" href="/topic/skill.html">skill</a><span class="topic">team-lunch</span><span class="topic">team-order</span></div>
+<a class="btn" href="https://github.com/Jasonin2099/mcd-team-feast" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://jasonin2099.github.io/mcd-team-feast/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About mcd-team-feast</h2><p class="sub">开团 → 实时同步 → 确认锁单。发一个链接，全组各点各的；它帮你挑最省的券、算好每人转多少，再出一张 git log 风账单卡。</p><p class="sub">示例（真实麦当劳 MCP 计价）：5 人早餐拼单，原价 ¥139.50 → 实付 ¥125.30，人均 ¥25.06。</p><p class="sub">↑ 三个浏览器并排录制：团长开团 → 两位成员打开链接加入 → 各点各的实时同步 → 团长锁单 → 最终分账（演示数据）</p><p class="sub">① 开团 ② 实时同步 ③ 确认锁单 --------- 填个团名，点「开启实时同步」，得到房间链接和二维码 成员填昵称加入；谁在线、谁选好了、谁还在选，所有人实时可见；团长看汇总和每人小计，可设截止倒计时 团长一键锁单，成员只读并看到最终分账；需要改可以解锁</p><p class="sub">- 断网、切后台会自动重连；同步服务连不上时自动退回链接模式（数据全在链接里），界面上始终标明当前模式。 - 服务器只存昵称和点单，房间 24 小时自动删除。服务端零依赖，源码在 server/，可以自己部署。</p><p class="sub">--------- ⚡ 实时同步在线状态、选好了、截止倒计时、锁单 🎟 自动挑最优券枚举券组合逐一调 calculate-price，取实付最低 🧮 公平分账按原价占比分摊优惠，精确到分，总额守恒 🧾 三种账单卡git log / GitHub PR / 小票，字体内嵌，导出处处一致 🌐 网页即用中/英/日，深浅色跟随系统，微信长按保存 📋 一键收款消息“@小李 转 老王 ¥24.90”，复制即发 🤖 MCP Server + Skill一句话让 Agent 帮你拼单 🔍 feast blame钱包担当、热量担当（list-nutrition-foods） 🛡 绝不误下单下单要确认码；MCP Server 不暴露下单工具</p><p class="sub">↑ 接入真实麦当劳 MCP，在上海福州路餐厅实时计价生成（成员为化名，仅计价未下单）</p><p class="sub">git 提交记录 pr 合并请求 receipt 小票 :---::---::---:</p><p class="sub">✍️ 梗签名：每张卡片底部有一句程序员梗（按时段、人数、省钱比例、热量自动挑选），可 🎲 换一句、从列表选或自己写；CLI 用 --sign random / --sign &#x27;文案&#x27;。卡角附项目短链和二维码。</p><p class="sub">- 从不自动下单：网页只做计价和分账；CLI 下单必须带 checkout 生成的确认码；MCP Server 根本没有下单工具。 - Token 只在你本机：麦当劳 MCP Token 只从本机环境变量读取，不上传、不进仓库，网页版完全不需要 Token。 - 只存昵称：实时房间只存团名、昵称和点了什么，不要手机号、不要登录；24 小时自动删除。 - 可离线：不想用服务器就用链接模式，团的数据只在链接里。 - 开源可审计：零依赖，前端、CLI、同步服务都在这个仓库。</p><p class="sub">网页：打开 jasonin2099.github.io/mcd-team-feast → 开团 → 开启实时同步 → 把链接发到群里。</p><p class="sub">1. 到 麦当劳开放平台 登录并获取 MCP Token； 2. 设置环境变量（切勿提交到仓库）：</p><p class="sub">命令 说明 ------ demo 一键演示：开团 → 5 人点餐 → 自动用券 → 分账 → 账单卡 stores [关键词] [--city 城市] 查询门店 new --store [--title] [--by] 开团并缓存菜单 menu / list 看菜单 / 看当前团 pick [数量] / drop 报名点餐 / 删除某人的选择 checkout [--theme git\pr\receipt\all] [--out 目录] 结算并生成账单卡 blame / diff 程序员彩蛋：git blame 排行 / 拼单 diff order --confirm 真正下单（必须确认） m</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Jasonin2099--mcd-team-feast.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 222</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Zafer-Liu--mcd-event-radar.html">
+  <span class="name"><span class="owner">Zafer-Liu/</span>mcd-event-radar</span>
+  <p>麦当劳 MCP Agent Skill：查「附近有什么麦麦活动」，生成卡通活动地图——门店位置取自官方经纬度，只展示已核实可预约场次 🍟</p>
+  <span class="meta"><span>⭐ 73</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/SteveLaiTVT--mcd-1024-skill.html">
+  <span class="name"><span class="owner">SteveLaiTVT/</span>mcd-1024-skill</span>
+  <p>麦麦饱饱盘：官方套餐核价、圆盘选餐、DeepSeek 双 Agent 个性推荐与用餐热力图｜麦当劳创意开发大赛参赛作品（非官方）</p>
+  <span class="meta"><span>⭐ 6</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/succbua--mcd-commute-butler.html">
+  <span class="name"><span class="owner">succbua/</span>mcd-commute-butler</span>
+  <p>通勤路上的麦当劳点单管家｜基于麦当劳 MCP：按到达时段过滤餐品、按到期紧迫度调度优惠券，输出可直接执行的预约订单方案</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/lvzuojing--mcd-wrapped.html">
+  <span class="name"><span class="owner">lvzuojing/</span>mcd-wrapped</span>
+  <p>M-CODE WRAPPED · 麦当劳数据全景报告 + 个人年报 + 方言播报</p>
+  <span class="meta"><span>⭐ 146</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
