@@ -97,14 +97,22 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-10-12</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">calorie-counter</span><a class="topic" href="/topic/health.html">health</a><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">meal-planner</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/nutrition.html">nutrition</a><a class="topic" href="/topic/python.html">python</a></div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">calorie-counter</span><a class="topic" href="/topic/health.html">health</a><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/meal-planner.html">meal-planner</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/nutrition.html">nutrition</a><a class="topic" href="/topic/python.html">python</a></div>
 <a class="btn" href="https://github.com/Donglaiye/mcd-calorie-architect" rel="noopener">View on GitHub ↗</a>
 <h2>About mcd-calorie-architect</h2><p class="sub">🍟 麦门卡路里精算师（McDonald&#x27;s Calorie Architect）</p><p class="sub">输入「热量预算 + 想吃什么」，AI 用麦当劳官方 MCP 的真实营养数据，算出在热量、蛋白质、预算三重约束下的最优配餐， 再告诉你这顿吃完要跑几公里。</p><p class="sub">基于 麦当劳中国官方 MCP 服务 开发的参赛 Skill —— 2026 麦当劳程序员创意开发大赛。</p><p class="sub">⭐ 本仓库正在参加 2026 麦当劳程序员创意开发大赛，比赛排名唯一依据就是 GitHub Star 数。 如果这个配餐求解器的思路对你有用，麻烦点一下页面右上角的 Star —— 这是支持它的唯一方式，也是决定它排名的那一票。 看完感兴趣的话，Issue 区欢迎聊约束求解和营养数据的对齐问题。</p><p class="sub">「吃麦当劳」和「控卡健身」一直是两件打架的事。大家讨论得最多的是怎么点最省钱， 但另一批人真正的问题是：怎么点才不胖。</p><p class="sub">官方 MCP 里有一个 list-nutrition-foods（餐品营养信息列表），官方描述写着 「需要帮助用户搭配指定热量套餐时使用此工具」——零参数调用，一次性给出 160 条常见品的完整营养明细 （能量 / 蛋白 / 脂肪 / 碳水 / 钠 / 钙）。</p><p class="sub">所以差别不在「要不要算热量」，而在怎么算：让模型凭印象给一个热量数字是免费的， 但那个数字不可复算。这里把真实营养数据作为输入，在本地做一道带约束的组合优化—— 结果可复算、可验证，并用 20 项自测兜底。</p><p class="sub">和其他配餐 Skill 的区别：第一约束是热量和蛋白质，价格是第二约束，钠始终跟着输出；三者的取舍会被显式算出来，而不是被藏起来。</p><p class="sub">模式 你说 它做 --------- 🧮 卡路里配餐 &quot;午餐 600 大卡怎么吃&quot; &quot;今天练腿，蛋白要 40g&quot; 拉真实营养数据 → 约束求解 → Top3 方案（热量/蛋白/脂肪/碳水/钠/价格全列出） 🔥 运动换算 &quot;这顿要跑几公里&quot; 翻译成跑步/快走/骑车/游泳/跳绳的分钟数、公里数、步数 💰 双目标 &quot;600 大卡以内，最好别超 35 块&quot; 热量与预算同时约束 🛒 确认下单 &quot;就按方案 2 下单&quot; 复核价格 → 明细确认 → 确认后才下单 ☀️ 每日轻食播报 &quot;麦麦轻食早报&quot;（可挂定时任务） 今日活动 + 低卡推荐 + 积分提醒</p><p class="sub">前往 open.mcd.cn/mcp → 手机号登录 → 右上角「控制台」→「激活」→ 复制 Token。</p><p class="sub">左侧边栏【专家·技能·连接器】→【连接器】→ 右上角【自定义连接器】→【配置MCP】，填入：</p><p class="sub">⚠️ 把 YOURMCPTOKEN 换成你的真实 Token，保存并启用。 其他客户端（Cursor / Cherry Studio / Trae / VSCode 等）配置方式相同。</p><p class="sub">把本仓库的 SKILL.md、scripts/、references/ 复制到你的技能目录：</p><p class="sub">- WorkBuddy：~/.workbuddy/skills/mcd-calorie-architect/ - 其他 Agent：放入对应 skills 目录即可（SKILL.md 为通用格式，不绑定框架）</p><p class="sub">已用真实 MCP Token 打通营养 + 门店 + 菜单 + 价格全链路，拿到官方 160 条营养数据、 83 条真实价格，跑通端到端约束求解。</p><p class="sub">场景：减脂午餐，600 kcal 以内，蛋白 ≥ 30g，必含堡，≤ ¥40，最多 3 件</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Donglaiye--mcd-calorie-architect.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/693696817--mcd-roundtable.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/polaris-smart--mcd-agent-gourmet.html">
+  <span class="name"><span class="owner">polaris-smart/</span>mcd-agent-gourmet</span>
+  <p>把菜单价换成官方当次核价：一句话说清预算和口味，给你一个答案 + 可复制的点单卡，并算清比另一种点法省多少钱（示例：单品直选 ¥48.50 vs 三件套 ¥36.50，省 ¥12.00/24.7%）。只读 MCP、零依赖 Python、免 Token 网页体验。</p>
+  <span class="meta"><span>⭐ 37</span><span>Python</span></span>
+</a><a class="card" href="/s/adexbn--walk-kcal.html">
+  <span class="name"><span class="owner">adexbn/</span>walk-kcal</span>
+  <p>你今天还能吃多少卡，取决于你愿意走多远 —— 用步行距离换卡路里额度的吃饭决策。麦当劳官方营养值 × 周边餐厅，算你这顿还吃得下什么。</p>
+  <span class="meta"><span>⭐ 14</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
   <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
   <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
@@ -120,14 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">janetom645-coder/</span>mcd-buddy</span>
   <p>麦门四重奏 McQuartet · 一个 Skill 装四个玩法：修行录 / 团餐指挥官 / 隐藏菜单实验室 / 每日运势签。基于麦当劳中国官方 MCP，187 个测试全绿，离线演示可一键复现。</p>
   <span class="meta"><span>⭐ 33</span><span>Python</span></span>
-</a><a class="card" href="/s/yfw17562-cyber--mcd-what-to-eat.html">
-  <span class="name"><span class="owner">yfw17562-cyber/</span>mcd-what-to-eat</span>
-  <p>🍔 麦门运势抽签点餐 Skill——先摇今日运势（大吉到平六级签等+签诗+宜忌），再随机搭配一整套麦当劳套餐；门店/价格/热量全部来自官方 MCP 实时数据。2026 麦当劳程序员创意开发大赛参赛作品 · 使用 WorkBuddy 开发</p>
-  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
-</a><a class="card" href="/s/yx165165--mcd-flavor-scout.html">
-  <span class="name"><span class="owner">yx165165/</span>mcd-flavor-scout</span>
-  <p>麦当劳 MCP 没给「口味」这个维度，我给 119 款餐品手工标了一份（每款附配料依据、54% 可溯源至官方公示文件）。说「想吃甜的、要酥脆的、不要牛肉」就能找餐品，顺手把营养和优惠券算到最省。零 Token 打开即玩。</p>
-  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
 </a>
 
 

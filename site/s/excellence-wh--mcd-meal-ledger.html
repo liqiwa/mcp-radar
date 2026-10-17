@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>excellence-wh/mcd-meal-ledger — MCP Server | MCP Radar</title>
+<meta name="description" content="麦门账本 · 把麦当劳消费记录变成一份带审计结论的个人年报。基于麦当劳 MCP 的创意 Skill，纯 Python 零依赖。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/excellence-wh--mcd-meal-ledger.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="excellence-wh/mcd-meal-ledger — MCP Server | MCP Radar">
+<meta property="og:description" content="麦门账本 · 把麦当劳消费记录变成一份带审计结论的个人年报。基于麦当劳 MCP 的创意 Skill，纯 Python 零依赖。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "excellence-wh/mcd-meal-ledger", "description": "麦门账本 · 把麦当劳消费记录变成一份带审计结论的个人年报。基于麦当劳 MCP 的创意 Skill，纯 Python 零依赖。", "codeRepository": "https://github.com/excellence-wh/mcd-meal-ledger", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/excellence-wh--mcd-meal-ledger.html", "dateCreated": "2026-10-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">excellence-wh/</span>mcd-meal-ledger</h1>
+<p class="sub">麦门账本 · 把麦当劳消费记录变成一份带审计结论的个人年报。基于麦当劳 MCP 的创意 Skill，纯 Python 零依赖。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-10-16</b></div>
+  <div class="chip">on radar since <b>2026-10-17</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/mcd-mcp.html">mcd-mcp</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a><a class="topic" href="/topic/zero-dependency.html">zero-dependency</a></div>
+<a class="btn" href="https://github.com/excellence-wh/mcd-meal-ledger" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-meal-ledger</h2><p class="sub">只是想看踩坑记录？ 我用真实凭证跑通麦当劳 MCP 时踩了 7 个坑，其中 5 个不报错但结果全错 （菜单接口是两层结构、营养接口返回的不是 JSON、核价单位是「分」……）。 完整排查过程见 MCPINTEGRATION.md 第五节。</p><p class="sub">普通统计会告诉你的 麦门账本多告诉你的 --------- 1. 钱的账 你在麦当劳花了 ¥4,177 123 单 / 覆盖 98 天 / 平均客单价 ¥33.96 / 整体折扣率 17.3% 2. 画像 无 ⏳ 资深麦门老友、🔥 连击王、🍦 甜品治愈系 —— 每个标签都附数据依据 3. 审计 无 26 单按原价结的，按你自己的折扣水平本可省约 ¥241.38（估算） 4. 积分的账 「你有 46.5 积分」 同样花积分，换「18.8 元鸡腿堡两件套」每分 0.376 元，换「21.9 元可乐组合」只有 0.027 元 —— 差 13.7 倍 5. 往前看 无 说一句「巨无霸+薯条+可乐」，当场算怎么点最省，并让麦当劳官方核一次价；为了凑满减加购到底划不划算 6. 算到一年 无 从你的真实订单认出固定习惯，算出照这样点一年大约白花多少钱</p><p class="sub">打开 docs/demo.html 即可看到完整年报（离线样例数据，无需 Token）。</p><p class="sub">年报包含：核心数字看板 → 麦门人格（带证据）→ 消费节奏图表（内联 SVG）→ 常点榜单 → 套餐拆解榜 → 你实际吃成什么样（营养）→ 照你这样点一年大概花多少 → 券的实话 → 积分的账（换什么最划算）→ 你在哪些门店点过 → 账单审计（含优惠利用率评级）。</p><p class="sub">产物是自包含 HTML：内联样式 + 内联 SVG，零外部资源， 可以直接双击打开、直接截图分享，不会在别人手机上碎掉。</p><p class="sub">打开 docs/demo.html，你会看到一份基于 123 笔脱敏样例订单生成的完整年报。</p><p class="sub">1. 领取 MCP Token → 到 open.mcd.cn/mcp 手机号登录， 点右上角「控制台」→「激活」，一键复制 Token（免费）。</p><p class="sub">当场比价 + 官方核价：说清楚想吃什么，它会算怎么点最省，判断凑单划不划算， 最后让麦当劳自己算一遍价 —— 不是我们估的。</p><p class="sub">参数 说明 ------ --offline 使用内置脱敏样例，不需要 Token --out PATH HTML 输出路径（默认 docs/demo.html） --markdown 在终端打印文字简报 --json-out PATH 同时导出中间结果 JSON --ics-out PATH 把近期活动导成 .ics 日历（可导入手机） --wish &quot;巨无霸:1,薯条&quot; 当场比价 + 凑单判断 + 官方核价 --fit-calories / --fit-protein / --fit-budget 营养搭配的热量 / 蛋白质 / 价格约束 --pages N / --page-size N 历史订单拉取尝试次数与每页条数（默认 3 × 200） --store CODE 指定门店编码（影响门店券与菜单查询） --personas N / --top N 展示的人格标签数 / 常点榜单条数 --no-enrich / --enrich-limit N 跳过逐单补全 / 补全上限（默认 200） --bind-coupons 调用一键领券（⚠️ 会真实写入账户，默认关闭） -v 把每次 MCP 调用打印到 stderr（不污染管道输出）</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/excellence-wh--mcd-meal-ledger.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/yurenpai--mc-points-steward.html">
+  <span class="name"><span class="owner">yurenpai/</span>mc-points-steward</span>
+  <p>麦当劳积分资产管家：剔假上架 · 性价比排序 · 抽奖参谋</p>
+  <span class="meta"><span>⭐ 20</span><span>Python</span></span>
+</a><a class="card" href="/s/MarkWang90--mcd-memory-can.html">
+  <span class="name"><span class="owner">MarkWang90/</span>mcd-memory-can</span>
+  <p>麦当劳 MCP 订单可视化 · WorkBuddy 开发的九幕长卷生成器 —— 调用麦当劳中国官方 MCP 只读接口 order-list，把历史订单做成《重庆森林》质感的九幕图文长卷（1080×1440 竖图 / 长图 / PDF）</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/zhutoumeme--mcd-git.html">
+  <span class="name"><span class="owner">zhutoumeme/</span>mcd-git</span>
+  <p>用 git 命令点麦当劳：add 放购物车，rebase 凑最省，push 确认后才下单；card 生成 1024 吃麦贡献图（3D 汉堡天际线 / 年度小票）。基于麦当劳 MCP Server，附 --demo 无 Token 试玩和 Agent Skill。非官方参赛作品。</p>
+  <span class="meta"><span>⭐ 83</span><span>Python</span></span>
+</a><a class="card" href="/s/polaris-smart--mcd-agent-gourmet.html">
+  <span class="name"><span class="owner">polaris-smart/</span>mcd-agent-gourmet</span>
+  <p>把菜单价换成官方当次核价：一句话说清预算和口味，给你一个答案 + 可复制的点单卡，并算清比另一种点法省多少钱（示例：单品直选 ¥48.50 vs 三件套 ¥36.50，省 ¥12.00/24.7%）。只读 MCP、零依赖 Python、免 Token 网页体验。</p>
+  <span class="meta"><span>⭐ 37</span><span>Python</span></span>
+</a><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 33</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

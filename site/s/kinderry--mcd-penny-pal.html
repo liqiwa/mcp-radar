@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kinderry/mcd-penny-pal — MCP Server | MCP Radar</title>
+<meta name="description" content="麦小省 · mcd-penny-pal 一个会主动找你的麦当劳省钱搭子 券快过期它会着急，帮你省到钱它会邀功。 基于麦当劳中国官方 MCP（mcp.mcd.cn）· 只调只读接口算钱 · 零 Token 就能跑通全链路 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/kinderry--mcd-penny-pal.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="kinderry/mcd-penny-pal — MCP Server | MCP Radar">
+<meta property="og:description" content="麦小省 · mcd-penny-pal 一个会主动找你的麦当劳省钱搭子 券快过期它会着急，帮你省到钱它会邀功。 基于麦当劳中国官方 MCP（mcp.mcd.cn）· 只调只读接口算钱 · 零 Token 就能跑通全链路 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "kinderry/mcd-penny-pal", "description": "麦小省 · mcd-penny-pal 一个会主动找你的麦当劳省钱搭子 券快过期它会着急，帮你省到钱它会邀功。 基于麦当劳中国官方 MCP（mcp.mcd.cn）· 只调只读接口算钱 · 零 Token 就能跑通全链路", "codeRepository": "https://github.com/kinderry/mcd-penny-pal", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/kinderry--mcd-penny-pal.html", "dateCreated": "2026-10-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">kinderry/</span>mcd-penny-pal</h1>
+<p class="sub">麦小省 · mcd-penny-pal 一个会主动找你的麦当劳省钱搭子 券快过期它会着急，帮你省到钱它会邀功。 基于麦当劳中国官方 MCP（mcp.mcd.cn）· 只调只读接口算钱 · 零 Token 就能跑通全链路</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-16</b></div>
+  <div class="chip">on radar since <b>2026-10-17</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/cli.html">cli</a><span class="topic">coupons</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/kinderry/mcd-penny-pal" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-penny-pal</h2><p class="sub">基于麦当劳中国官方 MCP（mcp.mcd.cn）· 只调只读接口算钱 · 零 Token 就能跑通全链路</p><p class="sub">券包只会乖乖写一句「中薯条买一送一」。它不会说：这张真能省 ¥13.5 哦。 它更不会说：旁边那张「王牌小食拼」看着更香，券面印着 ¥15.9，其实只能省 ¥6.1。</p><p class="sub">只要 Python 3.11+ 标准库。没有任何第三方依赖，不用联网，也不用麦当劳账号。</p><p class="sub">上面这几条命令读的是 fixtures/demo/ —— 2026-10-16 对 mcp.mcd.cn 的真实返回， 只脱敏了账号 ID、收货地址、手机号这些个人信息，券码、门店、价格一个字符都没动。 所以离线跑出来的结果，跟你自己连上账号跑是逐字一致的。</p><p class="sub">券池 接口 特点 --------- 麦麦省待领券 available-coupons → auto-bind-coupons 领取机会，没有有效期 我的券包 query-my-coupons 唯一带真实有效期的来源 当前门店专属券 query-store-coupons 唯一带 couponId / couponCode 的来源 门店定位 query-nearby-stores 用 beType + searchType，不是 address</p><p class="sub">- 临期预警只能以券包为数据源 —— 另外两路都给不出有效期 - 「已领取」不能再提示「可以领」 —— 领完券后可领池的 status 会全部翻转 - 同名券不能按名字去重 —— 实测有两张「巧克力味厚松饼猪柳蛋套餐」，一张 10-17 到期、一张 10-18，去重键必须带上到期时刻</p><p class="sub">券 原价 实付 真实省下 券面标注 --------------- 中薯条买一送一 ¥27.0 ¥13.5 ¥13.5 ¥13.5 9.9元中杯冰美式 ¥19.0 ¥9.9 ¥9.1 ¥9.9 王牌小食拼 ¥22.0 ¥15.9 ¥6.1 ¥15.9 ⚠️</p><p class="sub">看最后一行：券面标注 ¥15.9，实际只省 ¥6.1。谁按券面价排序，谁就会给你推错券。</p><p class="sub">create-order 下单 → query-order 追踪 → cancel-order 反悔。 下单是不可逆动作，门店、餐品、金额必须复述一遍让你确认过，才敢执行。</p><p class="sub">order-list 还原真实消费 + query-my-account 看积分（积分是另一种有保质期的钱）。 整单退款不计入消费；样本不足 3 笔时只报单数，不报客单价。</p><p class="sub">说句实话：这次实测账号的 order-list 返回 data: {}，没有可读的历史订单， 所以 M4 只完成了积分侧，消费统计暂时没法用真实数据验证。</p><p class="sub">这不是写在文档里的口号，是有断言守着的（tools/testcard.py / testvaluation.py）：</p><p class="sub">铁律 落地方式 ------ 绝不估算价格 所有金额必须来自 calculate-price / query-meals 返回。简报里每个数字都要能在输入里找到出处，测试会往简报里塞一个 ¥999.9 验证能否被抓出来 券必须从四路查全 四路合并去重，命名规范化后按「券名 + 到期时刻」匹配 券的价值要能反查 门店券里没有的券，价值记 0 并标注「无法估价」。部分可估时绝不说「这 N 张值多少」 不诱导消费 凑单反而更贵时主动说破，哪怕这意味着这一单不花钱</p><p class="sub">- 只讲能核到价的券 —— 门店券里没有对应条目的券，卡片上一个数字都不给 - 大数字只算最紧急那一组 —— 把「今天到期」和「T-3 内到期」混着算，会出现「今天到期 2 张」配「4 条清单」的错位</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/kinderry--mcd-penny-pal.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/chenxinghang-a--mcd-strategist.html">
+  <span class="name"><span class="owner">chenxinghang-a/</span>mcd-strategist</span>
+  <p>麦门军师 —— 基于麦当劳 MCP 的点餐决策 Skill：自动领券、智能比价、营养把关、一句话点餐（麦当劳程序员创意开发大赛参赛作品）</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 222</span><span>Python</span></span>
+</a><a class="card" href="/s/polaris-smart--mcd-agent-gourmet.html">
+  <span class="name"><span class="owner">polaris-smart/</span>mcd-agent-gourmet</span>
+  <p>把菜单价换成官方当次核价：一句话说清预算和口味，给你一个答案 + 可复制的点单卡，并算清比另一种点法省多少钱（示例：单品直选 ¥48.50 vs 三件套 ¥36.50，省 ¥12.00/24.7%）。只读 MCP、零依赖 Python、免 Token 网页体验。</p>
+  <span class="meta"><span>⭐ 37</span><span>Python</span></span>
+</a><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 33</span><span>Python</span></span>
+</a><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model m</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
