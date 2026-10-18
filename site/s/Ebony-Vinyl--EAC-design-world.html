@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebony-Vinyl/EAC-design-world — MCP Server | MCP Radar</title>
+<meta name="description" content="DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Ebony-Vinyl--EAC-design-world.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Ebony-Vinyl/EAC-design-world — MCP Server | MCP Radar">
+<meta property="og:description" content="DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Ebony-Vinyl/EAC-design-world", "description": "DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出", "codeRepository": "https://github.com/Ebony-Vinyl/EAC-design-world", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Ebony-Vinyl--EAC-design-world.html", "dateCreated": "2026-10-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Ebony-Vinyl/</span>EAC-design-world</h1>
+<p class="sub">DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出</p>
+<div class="chips">
+  <div class="chip">⭐ <b>32</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 322.0</b></div>
+  <div class="chip">created <b>2026-10-17</b></div>
+  <div class="chip">on radar since <b>2026-10-18</b></div>
+  
+</div>
+<div class="topics"><span class="topic">ai-design</span><a class="topic" href="/topic/ai-video.html">ai-video</a><a class="topic" href="/topic/content-creation.html">content-creation</a><span class="topic">cordis-plugin</span><a class="topic" href="/topic/deepseek.html">deepseek</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><span class="topic">design-studio</span><a class="topic" href="/topic/design-systems.html">design-systems</a><a class="topic" href="/topic/design-tools.html">design-tools</a><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/ffmpeg.html">ffmpeg</a><span class="topic">html-to-video</span><a class="topic" href="/topic/local-first.html">local-first</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/motion-graphics.html">motion-graphics</a><a class="topic" href="/topic/subtitles.html">subtitles</a><a class="topic" href="/topic/video-editing.html">video-editing</a><a class="topic" href="/topic/video-editor.html">video-editor</a><span class="topic">video-production</span></div>
+<a class="btn" href="https://github.com/Ebony-Vinyl/EAC-design-world" rel="noopener">View on GitHub ↗</a>
+<h2>About EAC-design-world</h2><p class="sub">把模板、素材、剪辑和设计工程连在一起，让 AI 与你共同完成一件可预览、可修订、可导出的作品。</p><p class="sub">EAC design world 为 DeepSeek Harness 提供原生创作模式、模板选择和右侧作品画布，同时拥有可独立运行的本地工作台。视频录制、配音、配乐、字幕、编码与检查产生真实文件；网站、幻灯片、SVG 和文档保留源文件及版本历史。</p><p class="sub">当前版本为 v0.4.0 开发预览版。本版新增 150 个 Shotcraft 镜头、动态选片与项目素材导入，重做模板预览播放器并优化状态轮询，详见 发布说明。保留插件维护、签名更新与回滚、草稿恢复和隔离预览。Windows 上的录屏、语音、转录和渲染流程已执行测试；其他平台的桌面录制与本地语音未实现。模板数量代表可检索内容，不代表每个模板均可离线直接渲染。</p><p class="sub">以下两条宣传片均为 deepseek harness + EAC design world + deepseek v4.1 flash（非 1017）一轮出的结果</p><p class="sub">https://github.com/user-attachments/assets/3f6641e0-e803-48cf-b61a-2baa57f2c088</p><p class="sub">https://github.com/user-attachments/assets/ca081273-1061-4656-a1b7-41d50af0aec7</p><p class="sub">开始使用 创作能力 开发与来源 :--- :--- :--- 下载与安装环境要求快速开始 功能一览设计内容库AI 与 MCP 设计与架构开发与验证许可证与致谢</p><p class="sub">你想完成的工作 插件提供的能力 --- --- 从对话开始创作 正常、剪辑、Design 三种模式；模板区独立铺开，选择状态不覆盖正文；重复点击或标签上的 × 可取消 找到合适的视觉风格 152 套设计体系与 517 个 OpenDesign 模板条目，另有原有 17 个视频选项；按类型搜索、分类和分页 浏览与挑选动效镜头 Shotcraft 本地快照含 150 个镜头、10 类动效、59 个精选；可见视频预览、选片单、名单复制与下载、导入项目素材 录下真实产品 Edge 网页操作录制；Windows 桌面录制；原素材不被改写 编排实际镜头 多轨时间线，调整开始时间、素材入点、时长、音量和轨道；带修订号保存 处理语音与字幕 本地语音转录、去停顿初稿、SRT、时间线字幕与 ASS 烧录；转录需自行准备本地模型 完成声音与编码 Windows SAPI 旁白、本地确定性器乐、源音轨混音、H.264 输出与技术检查 制作图形动效 renderAt(t) / seek(t)、CSS 动画和 GSAP 时间线的确定性驱动与抽帧审查；可选接入 Motion Web 交互案例和 Onetake 函数库 创建网站和演示稿 HTML、SVG、Markdown 编辑、隔离预览、不可变修订与源文件下载 检查与导出作品 Harness 原生右侧作品画布、HTML 幻灯片分页、PDF / PNG / PPTX 整页图像导出 维护插件 顶部导航中的独立维护中心：运行/安装版本、签名更新、本地更新、备份回滚、宿主热重载、公告与已读记录</p><p class="sub">内容 数量 --- ---: 设计体系 152 模板条目 517 创作技能 169 基础组件 13 场景 14</p><p class="sub">517 个模板条目包含 188 个示例、115 个设计模板、63 个视频模板、45 个图片模板、58 个视频提示词和 48 个图片提示词。部分来自同一视觉主题的不同上游目录，保留独立条目与来源。205 项需要外部生成服务；模板中的素材占位符或 HyperFrames 子合成依赖会单独标示。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Ebony-Vinyl--EAC-design-world.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/czcdr--dsh-plugin-rea.html">
+  <span class="name"><span class="owner">czcdr/</span>dsh-plugin-rea</span>
+  <p>第三方适配插件：把上游 REA（github.com/morluto/rea）的 MCP 服务接入 DeepSeek Harness，提供 mcp__rea__* 工具。2.x 会自动准备 Node、REA CLI、JDK 与 Ghidra 并把那一行接好；逆向分析能力全部由上游 REA 提供。</p>
+  <span class="meta"><span>⭐ 14</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/pazz11--Jnpz.html">
+  <span class="name"><span class="owner">pazz11/</span>Jnpz</span>
+  <p>改配置+重启才能加 MCP？DeepSeek Harness (DSH) 插件「技能配置」解决：设置页粘贴 JSON 即连 MCP 服务器、热加载免重启；上传 zip/.skill 自动识别 SKILL.md，创建/编辑/启停技能，即点即用</p>
+  <span class="meta"><span>⭐ 11</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/FavioVazquez--showtime.html">
+  <span class="name"><span class="owner">FavioVazquez/</span>showtime</span>
+  <p>A local video studio for your coding agent. Describe a video in one sentence: your agent directs, your machine renders. Claude Code, Codex, Cursor, Devin and more. No API keys, no uploads.</p>
+  <span class="meta"><span>⭐ 55</span><span>Python</span></span>
+</a><a class="card" href="/s/PerryLink--jevcore.html">
+  <span class="name"><span class="owner">PerryLink/</span>jevcore</span>
+  <p>TypeSafe Jev for DeepSeek Harness, the Model Context Protocol, and plain Node: typed judgments instead of prose, offline by default.</p>
+  <span class="meta"><span>⭐ 38</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/naman-sharma12345--kimo.html">
+  <span class="name"><span class="owner">naman-sharma12345/</span>kimo</span>
+  <p>MCP-first AI video editor in Rust/C++. Every operation is an AI-callable tool.</p>
+  <span class="meta"><span>⭐ 10</span><span>Rust</span></span>
+</a><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

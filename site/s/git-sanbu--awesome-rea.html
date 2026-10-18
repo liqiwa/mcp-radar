@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>git-sanbu/awesome-rea — MCP Server | MCP Radar</title>
+<meta name="description" content="Curated REA (Reverse Engineer Anything / rea-agents) use cases, examples &amp; AI reverse engineering case studies with primary sources. REA 实践案例与用法：游戏移植、 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/git-sanbu--awesome-rea.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="git-sanbu/awesome-rea — MCP Server | MCP Radar">
+<meta property="og:description" content="Curated REA (Reverse Engineer Anything / rea-agents) use cases, examples &amp; AI reverse engineering case studies with primary sources. REA 实践案例与用法：游戏移植、 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "git-sanbu/awesome-rea", "description": "Curated REA (Reverse Engineer Anything / rea-agents) use cases, examples & AI reverse engineering case studies with primary sources. REA 实践案例与用法：游戏移植、应用分析、硬件兼容与工具评测。", "codeRepository": "https://github.com/git-sanbu/awesome-rea", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/git-sanbu--awesome-rea.html", "dateCreated": "2026-10-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">git-sanbu/</span>awesome-rea</h1>
+<p class="sub">Curated REA (Reverse Engineer Anything / rea-agents) use cases, examples &amp; AI reverse engineering case studies with primary sources. REA 实践案例与用法：游戏移植、应用分析、硬件兼容与工具评测。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 32.0</b></div>
+  <div class="chip">created <b>2026-10-16</b></div>
+  <div class="chip">on radar since <b>2026-10-18</b></div>
+  
+</div>
+<div class="topics"><span class="topic">ai-reverse-engineering</span><a class="topic" href="/topic/android.html">android</a><a class="topic" href="/topic/awesome-list.html">awesome-list</a><span class="topic">case-studies</span><a class="topic" href="/topic/chinese.html">chinese</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/electron.html">electron</a><span class="topic">examples</span><span class="topic">game-preservation</span><a class="topic" href="/topic/ghidra.html">ghidra</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/rea.html">rea</a><a class="topic" href="/topic/rea-agents.html">rea-agents</a><span class="topic">reverse-engineer-anything</span><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><span class="topic">use-cases</span></div>
+<a class="btn" href="https://github.com/git-sanbu/awesome-rea" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://awesome-rea-e7l.pages.dev/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About awesome-rea</h2><p class="sub">Awesome REA — Reverse Engineer Anything 实践案例与用法</p><p class="sub">Real-world REA use cases, examples and AI-assisted reverse engineering case studies.</p><p class="sub">收录网上公开的 REA — Reverse Engineer Anything 实践：研究了什么、REA 具体帮了什么、最后做出了什么，以及哪些地方仍未验证。</p><p class="sub">这是独立社区案例集。首批 21 个案例均附公开原始来源，其中 5 个来自官方 Showcase，16 个来自社区项目。最后核对：2026-10-16。</p><p class="sub">这里的“已收录”表示已阅读来源并找到明确的 REA 使用说明。成果和测试数字按原作者报告转述，本仓库未独立复跑，不代表完整兼容或生产可用。</p><p class="sub">想找具体软件？打开 可搜索案例目录，输入 Ghostty、PowerToys、Electron、游戏移植 或 录屏。也可以按案例类别筛选。</p><p class="sub">- 想把老游戏搬到新平台： 看 Desktop Games、Snowball War。 - 想理解一个小功能并自己实现： 看 PowerToys 取色器、Aegis 验证码、Ghostty 终端外壳。 - 想做独立桌面应用： 看 Paper 无限画布、录屏工具、会计账本。 - 想研究协议或平台兼容： 看 声卡 DSP、Linux VR 串流。 - 想先判断 REA 靠不靠谱： 看 源码对照、Windows 对照评测、REA 分析自己。 - 想直接动手练习： 看 Electron 最小实践、CTF 检查器。</p><p class="sub">每个详情页都包含：目标问题 → REA 的作用 → 公开成果 → 局限 → 原始来源。官方案例中的历史重建成果与新 REA 检查分别注明。</p><p class="sub">案例 用 REA 干什么 成果与状态 --- --- --- DX-Ball：恢复声音左右声道计算 画面中的位置怎样转换成音效声像？ 来源记录：该函数通过 3,205 个原始 x86 差分用例，历史编译器重编译后的完整 63 字节匹配。 Notion：追踪 Electron 富文本剪贴板桥 网页编辑器如何通过桌面端写入富文本剪贴板？ 公开案例展示了 renderer → preload → IPC → main 的源码级解释，以及独立模块探针中的富文本标记与 Markdown 表格处理。 TH04：恢复 PC-98 弹幕环形角度算法 环形弹幕如何均匀展开，并叠加瞄准玩家的方向？ 案例给出 REA 新检查结果，并引用历史 Turbo C++ 检查：包含该辅助函数的 2,139 字节范围匹配。 Aegis：从 Android APK 找出动态验证码算法 每 30 秒变化的六位登录码是怎么计算的？ 官方页面报告：提取方法与独立实现对照 133 个用例，并核对 RFC 6238 的六个 SHA-1 参考样例。 DownUnderCTF：从二进制恢复 flag 检查方程 没有符号和源码，如何找出输入校验逻辑？ 官方记录了正确候选输出 Correct! / exit 0、错误候选输出 Incorrect! / exit 255；求解后再对照主办方源码与 metadata。</p><p class="sub">案例 用 REA 干什么 成果与状态 --- --- --- Desktop Games：把砸桌面小游戏移植到 macOS 和浏览器 怎样理解 Peter 解释器和程序树，并移植交互与资源？ 公开仓库包含 Swift macOS 版、浏览器版、反编译程序树及资源处理脚本。 Ski or Die：用 Rust 重建 Snowball War 怎样从旧 DOS 程序恢复投掷、碰撞、刷怪与计分规则？ 作者公开了 Rust + SDL2 可玩重建、行为规格、逆向笔记与资产提取工具。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/git-sanbu--awesome-rea.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/sulaimwn--REA-For-Web.html">
+  <span class="name"><span class="owner">sulaimwn/</span>REA-For-Web</span>
+  <p>REA for the web - explore apps, visualize their architecture, and ask AI how they work. </p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/valorisa--Reverse-Engineer-Anything.html">
+  <span class="name"><span class="owner">valorisa/</span>Reverse-Engineer-Anything</span>
+  <p>Guide pédagogique non officiel en français sur REA (Reverse Engineer Anything) : analyser des applications et des binaires avec un agent de code via MCP et CLI, Hopper ou Ghidra, preuves à l&#x27;appui. In</p>
+  <span class="meta"><span>⭐ 23</span><span></span></span>
+</a><a class="card" href="/s/lm060719--reconbridge.html">
+  <span class="name"><span class="owner">lm060719/</span>reconbridge</span>
+  <p>通用逆向分析 KernelSU 模块：手机侧只做原子能力，智能全在 PC 侧（Claude Code + MCP）。仅限授权安全研究与教育用途。</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/VoltAgent--official-mcp-servers.html">
+  <span class="name"><span class="owner">VoltAgent/</span>official-mcp-servers</span>
+  <p>A curated directory of 280+ official MCP servers from the companies behind the products. No unofficial forks, no abandoned projects.</p>
+  <span class="meta"><span>⭐ 195</span><span></span></span>
+</a><a class="card" href="/s/0xsline--OpenChatCut.html">
+  <span class="name"><span class="owner">0xsline/</span>OpenChatCut</span>
+  <p>Local-first conversational AI video editor with a professional multi-track timeline, Agent Skills, MCP integration, and Remotion-powered rendering.</p>
+  <span class="meta"><span>⭐ 130</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/liyupi--memecub.html">
+  <span class="name"><span class="owner">liyupi/</span>memecub</span>
+  <p>Meme search &amp; auto meme placement for AI agents. Remote MCP server, Agent Skill, CLI and REST API that let Claude Code, Cursor and Codex find reaction memes, GIFs and Chinese 表情包 by feeling and insert</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

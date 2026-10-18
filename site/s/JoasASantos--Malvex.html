@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JoasASantos/Malvex — MCP Server | MCP Radar</title>
+<meta name="description" content="AI-driven malware analysis framework with 30+ integrated tools, web REPL, and MCP server — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/JoasASantos--Malvex.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="JoasASantos/Malvex — MCP Server | MCP Radar">
+<meta property="og:description" content="AI-driven malware analysis framework with 30+ integrated tools, web REPL, and MCP server — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "JoasASantos/Malvex", "description": "AI-driven malware analysis framework with 30+ integrated tools, web REPL, and MCP server", "codeRepository": "https://github.com/JoasASantos/Malvex", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/JoasASantos--Malvex.html", "dateCreated": "2026-10-14"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">JoasASantos/</span>Malvex</h1>
+<p class="sub">AI-driven malware analysis framework with 30+ integrated tools, web REPL, and MCP server</p>
+<div class="chips">
+  <div class="chip">⭐ <b>9</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
+  <div class="chip">momentum <b>▲ 36.0</b></div>
+  <div class="chip">created <b>2026-10-14</b></div>
+  <div class="chip">on radar since <b>2026-10-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai.html">ai</a><a class="topic" href="/topic/cybersecurity.html">cybersecurity</a><span class="topic">dynamic-analysis</span><a class="topic" href="/topic/incident-response.html">incident-response</a><span class="topic">malware</span><a class="topic" href="/topic/malware-analysis.html">malware-analysis</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">repl</span><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><a class="topic" href="/topic/rust.html">rust</a><a class="topic" href="/topic/security-tools.html">security-tools</a><a class="topic" href="/topic/static-analysis.html">static-analysis</a><span class="topic">threat-intelligence</span><span class="topic">yara</span></div>
+<a class="btn" href="https://github.com/JoasASantos/Malvex" rel="noopener">View on GitHub ↗</a>
+<h2>About Malvex</h2><p class="sub">Reverse engineer malware with agents, from packed droppers down to memory-resident payloads.</p><p class="sub">Malvex is a local-first orchestration harness that connects AI agents to 126 reverse-engineering and malware-analysis tools through MCP (Model Context Protocol). Point it at a binary, a memory dump, a document, or a packet capture. Malvex triages the sample, fans out parallel agents over IDA, Ghidra, radare2, Frida, volatility3, YARA, and dozens of other backends, and returns evidence-grounded findings — IOCs, MITRE ATT&amp;CK mappings, detection rules, and attack-chain graphs — without uploading anything.</p><p class="sub">Analysis runs locally. Results include the evidence and limitations behind each conclusion.</p><p class="sub">Important rule: LLM output is not evidence. The model may propose hypotheses, likely function names, algorithm matches, or ATT&amp;CK mappings. Malvex treats those as analyst leads until they are tied to static or runtime evidence.</p><p class="sub">Target What Malvex recovers Backends --------- Native binaries (PE, ELF, Mach-O, FAT) Pseudocode, call graphs, xrefs, imports, strings, resources, compiler/packer ID IDA, Ghidra, radare2, rizin, Binary Ninja, Cutter, otool, readelf, objdump, nm, lief Packed / obfuscated OEP recovery, unpacked payload, decoded strings, API hash resolution, de-virtualized control flow UPX, DIE, PEiD, capa, FLOSS, unicorn, angr, VMProtect/Themida stub analysis Memory dumps Injected regions, hollowed processes, decrypted config, loaded modules, handle tables, process trees volatility3, rekall, custom RWX scanners Documents (Office, PDF, RTF, HTA) Macros, embedded objects, exploit payload</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/JoasASantos--Malvex.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/VibRev--ida-headless-mcp.html">
+  <span class="name"><span class="owner">VibRev/</span>ida-headless-mcp</span>
+  <p>Rust-native, multi-session headless IDA Pro MCP server with isolated workers and stdio or Streamable HTTP transports.</p>
+  <span class="meta"><span>⭐ 14</span><span>Rust</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/ronitgupta138--rev-core.html">
+  <span class="name"><span class="owner">ronitgupta138/</span>rev-core</span>
+  <p>⚡ Autonomous reverse engineering engine &amp; Model Context Protocol (MCP) server for binaries and applications in Systems Rust</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+</a><a class="card" href="/s/ronitgupta138--Rev-Core.html">
+  <span class="name"><span class="owner">ronitgupta138/</span>Rev-Core</span>
+  <p>⚡ Autonomous reverse engineering engine &amp; Model Context Protocol (MCP) server for binaries and applications in Systems Rust</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+</a><a class="card" href="/s/wlmosv-png--apk-index.html">
+  <span class="name"><span class="owner">wlmosv-png/</span>apk-index</span>
+  <p>零依赖的本地 APK/AAR/DEX 结构索引 + MCP Server。17 个工具，为 Xposed 模块开发提供静态反查。</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/PNWcoastie--REA-Argonaut.html">
+  <span class="name"><span class="owner">PNWcoastie/</span>REA-Argonaut</span>
+  <p>Zero-G Reverse Engineering Anything &amp; Verified Safe Rust Reconstruction for Gemini 4 Argon + Google Antigravity 2.0 (4-Mount Recon Kits, Whole-Subgraph Extraction, 10,000-Vector Differential Parity Re</p>
+  <span class="meta"><span>⭐ 9</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

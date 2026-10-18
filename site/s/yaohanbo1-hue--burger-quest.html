@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yaohanbo1-hue/burger-quest — MCP Server | MCP Radar</title>
+<meta name="description" content="Burger Quest 麦门异世界 — 基于麦当劳中国官方 MCP Server 的游戏化点餐规划 Skill（麦当劳程序员创意开发大赛参赛作品，非官方） — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yaohanbo1-hue--burger-quest.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yaohanbo1-hue/burger-quest — MCP Server | MCP Radar">
+<meta property="og:description" content="Burger Quest 麦门异世界 — 基于麦当劳中国官方 MCP Server 的游戏化点餐规划 Skill（麦当劳程序员创意开发大赛参赛作品，非官方） — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yaohanbo1-hue/burger-quest", "description": "Burger Quest 麦门异世界 — 基于麦当劳中国官方 MCP Server 的游戏化点餐规划 Skill（麦当劳程序员创意开发大赛参赛作品，非官方）", "codeRepository": "https://github.com/yaohanbo1-hue/burger-quest", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yaohanbo1-hue--burger-quest.html", "dateCreated": "2026-10-13"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yaohanbo1-hue/</span>burger-quest</h1>
+<p class="sub">Burger Quest 麦门异世界 — 基于麦当劳中国官方 MCP Server 的游戏化点餐规划 Skill（麦当劳程序员创意开发大赛参赛作品，非官方）</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-10-13</b></div>
+  <div class="chip">on radar since <b>2026-10-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/chatbot.html">chatbot</a><a class="topic" href="/topic/game.html">game</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><span class="topic">rpg</span><a class="topic" href="/topic/skill.html">skill</a></div>
+<a class="btn" href="https://github.com/yaohanbo1-hue/burger-quest" rel="noopener">View on GitHub ↗</a>
+<h2>About burger-quest</h2><p class="sub">输入预算、心情、口味和用餐偏好，RPG 游戏主持人替你从麦当劳中国官方 MCP Server 的真实菜单里，组出一份不超预算的点餐方案，并生成一张可以分享的任务成就卡。</p><p class="sub">非麦当劳官方项目 —— 本项目为「麦当劳程序员创意开发大赛」参赛作品，由参赛者独立开发。餐品信息、价格及供应状态以麦当劳官方渠道的实时结果为准。</p><p class="sub">痛点：「今天吃什么」每天都在发生，但预算、口味、营养、优惠券四个约束同时成立的最优解，人脑算不动——问通用 AI，它不知道麦当劳此刻卖什么、多少钱、你有哪张券。</p><p class="sub">方案：把点餐变成一场 RPG 冒险。说一句话（预算/口味/人数/用餐方式），游戏主持人调用麦当劳中国官方 MCP Server 拉取真实菜单与权威价格，给出最多 3 个可比较方案 + 一张可分享成就卡。</p><p class="sub">- 官方 MCP 全链路：10 个在用只读工具（7 个常规主链路 + 1 个餐品详情回退 + 2 个第一阶段扩展：活动日历/可领券；代码 TOOLSUSED 注册表为权威，并非每次任务全调）走官方 Streamable HTTP + 官方 mcp SDK；分工具超时、有限退避、429 降速、401 不重试、连续失败断路（重试/熔断细节有专项测试）； - 不编造铁律：总价只认 calculate-price 权威返回；菜单价缺失的餐品直接出局；缺 Token 明确失败（退出码 2），绝不回退演示数据； - 工程完成度：657 个测试、覆盖率 91.44%、mypy 0 error、bandit 0 finding、pip-audit 0 漏洞——四道质量门禁（覆盖率 ≥85% / mypy 零 error / bandit 零 finding / pip-audit 零漏洞）；当前最新提交的 CI 通过 7/7 个 job：Linux ×4（Python 3.10/3.11/3.12/3.13：全量测试 + 覆盖率门禁 + wheel 打包自检 + 空白检查）、Quality gates ×1（密钥扫描 / skill 文档一致性 / mypy / bandit / pip-audit / 离线演示可复现性）、Windows ×2（Python 3.11/3.12：全量测试 + PowerShell 脚本解析 + 无 Token 路径行为 + CLI 入口与离线演示）； - 安全边界：本地 Web 界面 Host 白名单 + Origin 同源校验（挡 DNS rebinding 与跨站代打，Origin: null 一律拒绝）；Token 不落审计/日志/卡片/进度存档任何一处。</p><p class="sub">深读：MCP 集成与联调实测 → MCPINTEGRATION.md；架构与数据流 → §8；质量门禁 → §6。</p><p class="sub">「麦门异世界」是一个游戏化点餐规划 Skill：把「今天吃什么」变成一场 RPG 冒险。</p><p class="sub">- 你（冒险者）说出预算、口味、心情、人数、用餐方式； - AI（游戏主持人）调用麦当劳中国官方 MCP Server 查询真实可售菜单、真实价格、真实优惠券和营养数据； - 主持人生成任务书：任务名称、故事背景、推荐装备（真实餐品）、选择理由、总价与剩余预算； - 一键生成分享成就卡（HTML / Markdown）。</p><p class="sub">↑ 实际运行生成的成就卡（DEMO 数据；真实 MCP 模式带 LIVE 徽章）。查看 HTML · Markdown · 更多卡片</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yaohanbo1-hue--burger-quest.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/polaris-smart--mcd-agent-gourmet.html">
+  <span class="name"><span class="owner">polaris-smart/</span>mcd-agent-gourmet</span>
+  <p>把菜单价换成官方当次核价：一句话说清预算和口味，给你一个答案 + 可复制的点单卡，并算清比另一种点法省多少钱（示例：单品直选 ¥48.50 vs 三件套 ¥36.50，省 ¥12.00/24.7%）。只读 MCP、零依赖 Python、免 Token 网页体验。</p>
+  <span class="meta"><span>⭐ 37</span><span>Python</span></span>
+</a><a class="card" href="/s/yfw17562-cyber--mcd-what-to-eat.html">
+  <span class="name"><span class="owner">yfw17562-cyber/</span>mcd-what-to-eat</span>
+  <p>🍔 麦门运势抽签点餐 Skill——先摇今日运势（大吉到平六级签等+签诗+宜忌），再随机搭配一整套麦当劳套餐；门店/价格/热量全部来自官方 MCP 实时数据。2026 麦当劳程序员创意开发大赛参赛作品 · 使用 WorkBuddy 开发</p>
+  <span class="meta"><span>⭐ 19</span><span>Python</span></span>
+</a><a class="card" href="/s/zouweivivian723-stack--mcd-fortune-ordering.html">
+  <span class="name"><span class="owner">zouweivivian723-stack/</span>mcd-fortune-ordering</span>
+  <p>麦门抽签 - 麦当劳运势抽签式点餐 Skill | McDonalds Fortune-Telling Ordering</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 33</span><span>Python</span></span>
+</a><a class="card" href="/s/janetom645-coder--mcd-buddy.html">
+  <span class="name"><span class="owner">janetom645-coder/</span>mcd-buddy</span>
+  <p>麦门四重奏 McQuartet · 一个 Skill 装四个玩法：修行录 / 团餐指挥官 / 隐藏菜单实验室 / 每日运势签。基于麦当劳中国官方 MCP，187 个测试全绿，离线演示可一键复现。</p>
+  <span class="meta"><span>⭐ 33</span><span>Python</span></span>
+</a><a class="card" href="/s/mytt-10566--mcd-points-vault.html">
+  <span class="name"><span class="owner">mytt-10566/</span>mcd-points-vault</span>
+  <p>把你的麦当劳积分和优惠券当成一份资产来管：折算人民币现值、排出最优兑换出口、量化过期风险，并给出可执行的兑换路径。</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

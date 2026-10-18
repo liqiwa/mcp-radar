@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>appthin/dsh-rea-agents — MCP Server | MCP Radar</title>
+<meta name="description" content="DeepSeek Harness的REA插件。Pinned-version REA for DeepSeek Harness: installs rea-agents locally, starts its MCP server from that pinned copy, and upgrades — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/appthin--dsh-rea-agents.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="appthin/dsh-rea-agents — MCP Server | MCP Radar">
+<meta property="og:description" content="DeepSeek Harness的REA插件。Pinned-version REA for DeepSeek Harness: installs rea-agents locally, starts its MCP server from that pinned copy, and upgrades — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "appthin/dsh-rea-agents", "description": "DeepSeek Harness的REA插件。Pinned-version REA for DeepSeek Harness: installs rea-agents locally, starts its MCP server from that pinned copy, and upgrades only when you press Update.", "codeRepository": "https://github.com/appthin/dsh-rea-agents", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/appthin--dsh-rea-agents.html", "dateCreated": "2026-10-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">appthin/</span>dsh-rea-agents</h1>
+<p class="sub">DeepSeek Harness的REA插件。Pinned-version REA for DeepSeek Harness: installs rea-agents locally, starts its MCP server from that pinned copy, and upgrades only when you press Update.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-17</b></div>
+  <div class="chip">on radar since <b>2026-10-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/dsh-plugins.html">dsh-plugins</a><a class="topic" href="/topic/rea.html">rea</a><span class="topic">rea-agent</span><a class="topic" href="/topic/rea-agents.html">rea-agents</a></div>
+<a class="btn" href="https://github.com/appthin/dsh-rea-agents" rel="noopener">View on GitHub ↗</a>
+<h2>About dsh-rea-agents</h2><p class="sub">把 REA（rea-agents）固定在一个确切版本的 DeepSeek Harness 插件： 从配置档里那份副本启动它的 MCP 服务（207 个逆向分析工具），只有你在插件卡片上按下「更新」，版本才会前进。</p><p class="sub">为什么要固定版本，而不是沿用 npx -y rea-agents@latest？</p><p class="sub">- 跨会话结果无法对比。 静默升级可能改变工具的参数结构、Evidence 处理方式或默认值，而你这侧没有任何记录说明它发生过。 - 被投毒的版本会立即生效。 没有审查环节，也没有可回退的版本号。 - 「昨天还好好的」无法证伪。 你分不清是目标变了，还是工具变了。</p><p class="sub">对一个专门产出「你要据此推理的证据」的工具来说，随时拉最新版是错误的默认值。本插件把它反过来： 启动时读磁盘上那份固定副本，新版本只在你看到版本号并主动点击之后才会到来。</p><p class="sub">插件 → dsh-rea-agents：版本、安装状态与操作按钮，就长在插件自己的卡片上。</p><p class="sub">检测最新版本：走配置档自己的 registry（pnpm view），不另开网络通道。</p><p class="sub">版本要求： DSH = 0.1.6-alpha.1 且 = 22.19.0；rea-agents 自己声明 ^22.19.0 ^24.11.0 =26.0.0，不匹配时页面会在安装前给出提示。</p><p class="sub">Desktop 的 profile 由 Electron 应用独占管理。 dsh plugin --profile desktop … 会被 CLI 直接拒绝（error: profile &quot;desktop&quot; is managed exclusively by the Electron application）， 这是 DSH 的硬性约束，不是本插件的问题。Desktop 请在应用内安装。</p><p class="sub">装完重启 dsh（或等待 profile 热重载），在 插件 → dsh-rea-agents 的卡片上就能看到控件。</p><p class="sub">插件只负责把 REA 装好、盯住版本、开好 MCP 连接。安装 REA 本体需要在卡片上再点一次「安装」， 它会写入依赖、执行 pnpm add rea-agents@ --save-exact，并记录固定了什么。</p><p class="sub">打开 dsh，进入 插件 → dsh-rea-agents，卡片上应出现「REA 版本」区块。没有出现时的排查顺序：</p><p class="sub">1. 确认装进了正在使用的 profile（dsh plugin --profile web ls 查看清单）； 2. 重启一次 dsh —— 浏览器半边的模块表在启动时构建； 3. 打开 http://127.0.0.1:/rea-agents/diagnose，按输出判断卡在哪一步（见下节）； 4. 仍无法解决时，附上 /diagnose 输出提交 issue。</p><p class="sub">卡片上有版本号，只说明插件在跑，不说明 MCP 这条链路通了。想确认工具真的可用，把下面这句交给 DSH 里的助手：</p><p class="sub">列出你的 mcprea 工具，调用 mcpreabinarysession，参数为空 {}，看看返回什么。</p><p class="sub">助手能列出一批 mcprea 开头的工具，并且 binarysession 返回一份会话信息 （而不是「没有这个工具」），就说明 REA 的工具已经注册到模型侧了。</p><p class="sub">卸载插件不会删除已装的 rea-agents；想一并清掉，先在卡片上点「卸载REA」，再移除插件。 分析引擎与本插件无关，任何时候都不会被删除。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/appthin--dsh-rea-agents.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/czcdr--dsh-plugin-rea.html">
+  <span class="name"><span class="owner">czcdr/</span>dsh-plugin-rea</span>
+  <p>第三方适配插件：把上游 REA（github.com/morluto/rea）的 MCP 服务接入 DeepSeek Harness，提供 mcp__rea__* 工具。2.x 会自动准备 Node、REA CLI、JDK 与 Ghidra 并把那一行接好；逆向分析能力全部由上游 REA 提供。</p>
+  <span class="meta"><span>⭐ 14</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/git-sanbu--awesome-rea.html">
+  <span class="name"><span class="owner">git-sanbu/</span>awesome-rea</span>
+  <p>Curated REA (Reverse Engineer Anything / rea-agents) use cases, examples &amp; AI reverse engineering case studies with primary sources. REA 实践案例与用法：游戏移植、应用分析、硬件兼容与工具评测。</p>
+  <span class="meta"><span>⭐ 6</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/xxxyz--DeepSeekHarness-MCP-Manager.html">
+  <span class="name"><span class="owner">xxxyz/</span>DeepSeekHarness-MCP-Manager</span>
+  <p>DSH durable MCP server manager plugin — Settings UI + HTTP API + mcp_manager_* model tools, cross-platform installers</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Guyao146--dsh-better-model-thinking-control.html">
+  <span class="name"><span class="owner">Guyao146/</span>dsh-better-model-thinking-control</span>
+  <p>DSH 插件：为 OpenAI 兼容中转站按模型管理思考强度，并自动识别公开能力</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/appthin--dsh-mcp-manager-plus.html">
+  <span class="name"><span class="owner">appthin/</span>dsh-mcp-manager-plus</span>
+  <p>MCP 服务器管理插件：在 DeepSeek Harness 设置界面的左侧边栏新增「MCP 管理」页面。MCP Server Management Plugin: A new &quot;MCP Management&quot; page has been added to the left sidebar of the DeepSeek Harness settings interface, allowing y</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/dushudou--dsh-rea.html">
+  <span class="name"><span class="owner">dushudou/</span>dsh-rea</span>
+  <p>DeepSeek Harness (DSH) bundle that registers the REA (Reverse Engineer Anything) MCP server as mcp__rea__* tools — third-party adapter</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

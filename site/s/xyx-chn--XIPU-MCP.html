@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xyx-chn/XIPU-MCP — MCP Server | MCP Radar</title>
+<meta name="description" content="A mcp server for agents to access learningmall, including auto login — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/xyx-chn--XIPU-MCP.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="xyx-chn/XIPU-MCP — MCP Server | MCP Radar">
+<meta property="og:description" content="A mcp server for agents to access learningmall, including auto login — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "xyx-chn/XIPU-MCP", "description": "A mcp server for agents to access learningmall, including auto login", "codeRepository": "https://github.com/xyx-chn/XIPU-MCP", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/xyx-chn--XIPU-MCP.html", "dateCreated": "2026-10-14"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">xyx-chn/</span>XIPU-MCP</h1>
+<p class="sub">A mcp server for agents to access learningmall, including auto login</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-10-14</b></div>
+  <div class="chip">on radar since <b>2026-10-18</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/xyx-chn/XIPU-MCP" rel="noopener">View on GitHub ↗</a>
+<h2>About XIPU-MCP</h2><p class="sub">连接西交利物浦大学 Learning Mall Core（Moodle）的本机 macOS App。AI 通过标准 MCP stdio 查询课程、下载附件和查看截止时间。</p><p class="sub">请按照 https://github.com/xyx-chn/XIPU-MCP/blob/main/skills.md，在这台 Mac 上编译安装 XIPU MCP，并接入你当前使用的 MCP 客户端。</p><p class="sub">skills.md 包含完整执行步骤；标准 SKILL.md 可作为支持 Skill 的客户端入口。需要 Apple Silicon Mac、macOS 13+。脚本自动准备经过校验的 Node／npm，不需要预先安装 Node 或 Homebrew；网络需能访问 GitHub、Node 官方站和 npm。</p><p class="sub">需要 DDL 桌面小组件时，在请求中加上“同时启用 DDL 桌面小组件”。小组件需要 macOS 14+ 和完整 Xcode；由接收者的 AI 在本机从源码编译并临时签名，不需要 Developer ID 证书、Apple Team ID 或公证凭据。</p><p class="sub">要同时安装小组件，将最后一条安装命令换成（macOS 14+，先安装并打开完整 Xcode）：</p><p class="sub">可选择 codex、claude-desktop、cursor 或 config-only。默认安装到 ~/Applications/XIPU MCP.app，无需 sudo；类型检查、测试和 MCP 初始化通过后完成部署。只修改所选客户端的 xipu-mcp 条目，保留其他设置，变更前创建私有备份。config-only 只导出 dist/mcp-config.json，其他客户端还需按其官方方法注册。</p><p class="sub">首次使用请本人在 App 中配置学校账户及可选邮箱，再点击“连接学校”；不要在 AI 对话中发送密码或授权码。AI 不需要你的账号就能编译安装。客户端可能需要重载 MCP 或重启才能加载工具。</p><p class="sub">若学校登录会话发生循环跳转，App 会重建本机学校会话并重新打开登录页，保留已配置的账户与密码。页面加载失败时，登录窗口会显示错误提示和“重新加载”入口；无需清除全部凭据。</p><p class="sub">1. 按上方源码部署方法安装 Apple Silicon（M 系列 Mac）的 ARM App，打开 ~/Applications/XIPU MCP.app。 2. 在“账户与邮箱”填写学校账户。希望自动取码时，再配置邮箱服务器、认证信息、收码地址及筛选规则。 3. 保存设置，测试邮箱连接，点击“连接学校”。自动流程未完成时会打开学校原始登录窗口，供人工操作。 4. 安装器会配置所选 MCP 客户端；也可在“AI 接入”生成配置，复制到支持 stdio 的客户端。安装后的 App 内置 Node，日常使用不依赖开发目录。</p><p class="sub">关闭主窗口后，App 继续运行本机桥接和下载任务；通过应用菜单退出才会停止后台服务。MCP 客户端可以自动启动已安装的 App。</p><p class="sub">课程列表优先展示名称以三个大写英文字母和三个数字开头的正式课程，例如 COS305、EEE335；消息发布页保留在后面。课件同时支持 Moodle 嵌入式预览和直接文件重定向，网页／视频以可打开的链接展示。</p><p class="sub">当前以源码部署为分发方式，接收者在自己的 Mac 编译安装。测试范围见 TESTING.md；邮箱验证码全链路和另一台 Mac 验收仍待完成。个人账户的联调记录不公开上传。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/xyx-chn--XIPU-MCP.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/XiaoDuoYa--codex-with-chatgpt.html">
+  <span class="name"><span class="owner">XiaoDuoYa/</span>codex-with-chatgpt</span>
+  <p>ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.</p>
+  <span class="meta"><span>⭐ 2301</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/shinthink--blitzstrike.html">
+  <span class="name"><span class="owner">shinthink/</span>blitzstrike</span>
+  <p>⚡ Blitz Strike — a universal MCP penetration-testing toolbelt. Structured methodology: reconnaissance &amp; attack-surface mapping, source-to-sink analysis, and live validation. 57 escalation chains, 130-</p>
+  <span class="meta"><span>⭐ 634</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/halofyai--halofy.html">
+  <span class="name"><span class="owner">halofyai/</span>halofy</span>
+  <p>Halofy is the open access and governance layer for AI agents across your organization. Identity, policy, provenance, audit, and signed erasure.</p>
+  <span class="meta"><span>⭐ 440</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/CaptureGrubEnchant--SolidWorks.html">
+  <span class="name"><span class="owner">CaptureGrubEnchant/</span>SolidWorks</span>
+  <p>SolidWorks MCP Server connects an AI assistant to a running SolidWorks instance. Sketch, extrude, fillet, export STEP/STL, generate macros.</p>
+  <span class="meta"><span>⭐ 385</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/arielshad--3d-asset-server.html">
+  <span class="name"><span class="owner">arielshad/</span>3d-asset-server</span>
+  <p>3d assets api and mcp</p>
+  <span class="meta"><span>⭐ 276</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

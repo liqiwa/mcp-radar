@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>stkoecn/im-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Fast, local, read-only MCP Server for WeChat (4.x/3.x) &amp; DingTalk (7.x V2/V3) chat history with FTS5 search — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/stkoecn--im-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="stkoecn/im-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Fast, local, read-only MCP Server for WeChat (4.x/3.x) &amp; DingTalk (7.x V2/V3) chat history with FTS5 search — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "stkoecn/im-mcp", "description": "Fast, local, read-only MCP Server for WeChat (4.x/3.x) & DingTalk (7.x V2/V3) chat history with FTS5 search", "codeRepository": "https://github.com/stkoecn/im-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/stkoecn--im-mcp.html", "dateCreated": "2026-10-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">stkoecn/</span>im-mcp</h1>
+<p class="sub">Fast, local, read-only MCP Server for WeChat (4.x/3.x) &amp; DingTalk (7.x V2/V3) chat history with FTS5 search</p>
+<div class="chips">
+  <div class="chip">⭐ <b>23</b> stars</div>
+  <div class="chip">⑂ <b>13</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 256.0</b></div>
+  <div class="chip">created <b>2026-10-17</b></div>
+  <div class="chip">on radar since <b>2026-10-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/claude-desktop.html">claude-desktop</a><a class="topic" href="/topic/cursor.html">cursor</a><span class="topic">dingtalk</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/wechat.html">wechat</a></div>
+<a class="btn" href="https://github.com/stkoecn/im-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/stkoecn/im-mcp" rel="noopener nofollow">Homepage ↗</a>
+<h2>About im-mcp</h2><p class="sub">im-mcp (本地绿泡泡 &amp; DuangDuang AI 检索 MCP Server)</p><p class="sub">基于 Model Context Protocol (MCP) 规范构建的本地 IM（绿泡泡 &amp; DuangDuang）聊天记录与通讯录检索服务。 极简、只读、完全离线本地运行，让 Claude Desktop、Cursor、Cline、Pi 等 AI Agent 能够安全、高速地检索与总结你的工作沟通、群聊记录和知识库。</p><p class="sub">注：原底层参考项目以 Git Submodule 形式统一归档在 reference/ 目录下（reference/wechat-local-viewer 与 reference/dingwave-V3）。</p><p class="sub">- ⚡ 超低延迟：直接基于本地解密 SQLite 数据库，毫秒级响应。 - 🔒 纯本地与只读：所有数据均在本地，绝不上云；以只读方式运行，不破坏原始数据。 - 📦 按需安装（Optional Dependencies）：一个仓库，两套独立入口；支持只装绿泡泡、只装DuangDuang或全量安装。 - 💬 丰富格式解析： - 绿泡泡：支持普通文本、引用消息、富文本卡片、小程序、传输文件（PDF/Excel/Word等）。 - DuangDuang：支持多表分片聚合（tbmsg000~tbmsg127）、联系人实名映射、Markdown卡片、协同日程通知、文件附件提取。</p><p class="sub">平台 支持版本范围 实测验证版本 架构与平台 解密 / 同步原理 --------------- 绿泡泡 (WeChat) 绿泡泡 4.x 全系列(兼容 3.9.x) 4.1.15.13 (Windows 最新版)4.1.35.15 (macOS ARM64 最新版)4.1.15 (270115) (macOS x8664 实测验证)4.1.11.x 等 Windows x64macOS (Apple Silicon &amp; Intel) Windows: 运行时扫描 Weixin.exe Config.Cipher 动态提取 Salt 密钥；macOS: 原生 CommonCrypto (CCCrypt) 零额外依赖解密，支持 passphrase PBKDF2 派生；离线 HMAC 校验并解密 WCDB SQLite DuangDuang (DingTalk) DuangDuang 7.x 全系列(涵盖 V2 与 V3) 7.6.0.x (最新版)7.5.x / 7.0.x Windows x64 / macOS 纯离线读取用户目录 userconfig，通过 PBKDF2-HMAC-SHA1 + MD5 推导 AES-128 密钥并合并 WAL 事务</p><p class="sub">工具名称 说明 适用场景 --------- searchwechatmessages 全文检索聊天消息（支持限定人/群、offset 分页） “找一下群里谁发过关于‘某某需求’的讨论” getsessionhistory 获取指定会话的最近对话（时间正序，可限定天数） “总结一下这个项目群最近 50 条消息都在聊什么” getmessagesbydate 按指定日期拉取全量或限定会话记录（支持 offset 分页） “帮我汇总 2026-10-16 那天所有沟通做日报” getmessagesbyrange 按自定义时间范围（支持跨天与任意时段、offset 分页）拉取记录 “拉一下上周三到周五这个群聊了什么”</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/stkoecn--im-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/aminmadaniofficial--bale-mcp-server.html">
+  <span class="name"><span class="owner">aminmadaniofficial/</span>bale-mcp-server</span>
+  <p>Production-grade Model Context Protocol (MCP) server for Bale Messenger with 32 tools for LLMs (Claude, Cursor, Antigravity) to interact with user accounts.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/00200200--usagetrim.html">
+  <span class="name"><span class="owner">00200200/</span>usagetrim</span>
+  <p>Keep the signal. Cut the noise. Local CLI + MCP — fold verbose tool output for Claude Code, Codex, Cursor &amp; Desktop.</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a><a class="card" href="/s/Alpha-Park--awesome-ai-agent-skills.html">
+  <span class="name"><span class="owner">Alpha-Park/</span>awesome-ai-agent-skills</span>
+  <p>Categorized index of 718 public GenPark AI agent skills, with tested Python packages and MCP integrations.</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/Alpha-Park--genpark-jev-typed-state-action-router-mcp.html">
+  <span class="name"><span class="owner">Alpha-Park/</span>genpark-jev-typed-state-action-router-mcp</span>
+  <p>Native Model Context Protocol (MCP) server providing typed state-action schema arbitration, deterministic action dispatch, and token-saving pre-escalation filters.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-meta-muse-episodic-memory-graph-mcp.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-meta-muse-episodic-memory-graph-mcp</span>
+  <p>Native Model Context Protocol (MCP) server fusing Meta ambient multimodal perception with Muse continuous episodic memory streams and Ebbinghaus recency decay.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/alphaparkinc--genpark-jev-typed-state-action-router-mcp.html">
+  <span class="name"><span class="owner">alphaparkinc/</span>genpark-jev-typed-state-action-router-mcp</span>
+  <p>Native Model Context Protocol (MCP) server providing typed state-action schema arbitration, deterministic action dispatch, and token-saving pre-escalation filters.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
