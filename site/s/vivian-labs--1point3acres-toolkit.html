@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-25</b></div>
   <div class="chip">star trend <b>10 → 11</b> since 2026-09-25</div>
 </div>
-<div class="topics"><span class="topic">1point3acres</span><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/browser-automation.html">browser-automation</a><span class="topic">checkin</span><span class="topic">chrome</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><span class="topic">daily-checkin</span><span class="topic">interview</span><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/python.html">python</a><span class="topic">seleniumbase</span><a class="topic" href="/topic/windows.html">windows</a></div>
+<div class="topics"><span class="topic">1point3acres</span><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/browser-automation.html">browser-automation</a><span class="topic">checkin</span><a class="topic" href="/topic/chrome.html">chrome</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><span class="topic">daily-checkin</span><span class="topic">interview</span><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/python.html">python</a><span class="topic">seleniumbase</span><a class="topic" href="/topic/windows.html">windows</a></div>
 <a class="btn" href="https://github.com/vivian-labs/1point3acres-toolkit" rel="noopener">View on GitHub ↗</a>
 <h2>About 1point3acres-toolkit</h2><p class="sub">它每天做什么 · 怎么工作 · 安全与隐私 · 快速开始 · 常见问题 · 给开发者</p><p class="sub">每天自动帮你完成一亩三分地（1point3acres）的 签到 和 每日答题，每天稳拿 2 个大米，连续签到不断档，你什么都不用做。它不是把账号交给某个服务器代跑，而是在你电脑上开一个专用的 Chrome，用你自己的登录，像人一样点按钮，点完还会去积分页确认大米真的到账。</p><p class="sub">支持 macOS 和 Windows，只需要装好 Chrome 和 Python 3.12。签到答题之外，它还能采集面经、离线搜索、发帖回复，并能接给 Claude Code、Codex 这类 AI 助手用。这些是附加功能，不装不影响签到答题。</p><p class="sub">[!NOTE] 本文讲「它是怎么做的」；具体命令、参数和排错步骤都在 使用说明。</p><p class="sub">你想 看这里 :--:-- 先看效果 它每天替你做什么 看懂原理 三分钟总览 · 自动签到 · 自动答题 · 怎么算真的成功 · 出错了怎么自救 · 每天什么时候跑 放心用 安全与隐私：你的数据在哪 动手 快速开始 · 其他功能 · 常见问题 · 更新 改代码 技术栈 · 代码结构 · 测试与 CI</p><p class="sub">打开「我的积分」，每天都有两条 +1 大米的记录：一条「签到奖励」，一条「每日答题」。</p><p class="sub">这两张图就是工具每天的全部目标。它不会做别的事：不发帖、不回复、不点赞。签到时会随机选一个心情、配一句「说说」，让签到像真人；不想要可以关掉，见 自动签到。</p><p class="sub">一句话：你的电脑每 10 分钟醒来问一次「今天签了吗」，没签就开一个专用的 Chrome，用你自己的登录，像人一样点按钮，点完再去积分页确认大米真的到账。</p><p class="sub">1. 到点了，系统叫醒它。 用的是电脑自带的定时任务功能，每 10 分钟叫醒一次。 2. 先看看今天做过没。 只翻本机的记录，不开浏览器：还没到你设定的时间？今天两项都已经到账了？是的话直接退出。绝大多数时候都停在这一步，所以每 10 分钟跑一次也不费资源。 3. 打开专用 Chrome。 和你平时用的浏览器互不干扰，见下一小节。 4. 自动签到。 打开签到页，选一个心情，点「提交签到」。细节见 自动签到。 5. 自动答题。 读出今天的题目和选项，和题库比对，命中就点对应选项、点「提交答案」。细节见 自动答题。 6. 确认大米真的到账。 打开积分页，看到当天的「签到奖励 +1」和「每日答题 +1」，而且是你账号名下的。细节见 怎么算真的成功。 7. 记在本机。 这次做了什么、结果如何，写进你电脑上的记录，以后可以离线查。 8. 报告结果。 结论只有三种：圆满完成、需要看一眼、失败。</p><p class="sub">工具不会动你平时用的浏览器。它用电脑上已经装好的 Chrome 程序，但给它一套独立的设置和登录状态，里面只有这个论坛的登录。跑完就关，不常驻后台。</p><p class="sub">三个配套的保险：同一时刻只有一个任务能用它；一次运行最多 15 分钟，超时就强制关掉；它只允许打开论坛自己的网址，别的地址在代码里直接拒绝。</p><p class="sub">1. 打开签到页。 打开前先确认登录还在不在，不在就自动恢复（见下面「登录是怎么自动恢复的」）。 2. 选心情。 签到页要求选一个心情。默认随机抽一个，并配一句「说说」，让签到看起来像真人；不想要可以关掉，关掉后每天固定选「没心情」、什么都不写（见下面「关于今日心情 / 说说」）。 3. 点「提交签到」。 只点一次。按钮还没就绪（页面没加载完）就先退出，留给下一轮再来，不会硬点。 4. 等网站回应。 点完按钮不算数。工具会盯着网络请求，等到网站真的回应了才往下走，最多等 45 秒。快超时时会自动再试一次人机验证。 5. 确认大米到账。 打开积分页，看当天有没有一条「签到奖励」、大米 +1、属于你账号的记录。有，这一项才算成功。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/vivian-labs--1point3acres-toolkit.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/klarluft--gitwarren-app.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/dejohq--dejo-mcp.html">
+  <span class="name"><span class="owner">dejohq/</span>dejo-mcp</span>
+  <p>A browser your AI agent remembers. Learn a site once, replay it in one call, zero model calls.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/klarluft--gitwarren-app.html">
   <span class="name"><span class="owner">klarluft/</span>gitwarren-app</span>
   <p>A cross-platform desktop app for doing local code reviews of your own git repositories. Single user, single machine, no server, no account.</p>
   <span class="meta"><span>⭐ 11</span><span>TypeScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">krmisystems/</span>fantasy-football-manager</span>
   <p>ESPN draft and lineup tools for Codex and other MCP clients, with browser sign-in, approval modes, per-team limits, and server monitoring.</p>
   <span class="meta"><span>⭐ 84</span><span>Python</span></span>
-</a><a class="card" href="/s/Riccardo8888--agent-link.html">
-  <span class="name"><span class="owner">Riccardo8888/</span>agent-link</span>
-  <p>An end-to-end encrypted channel between coding agents, anywhere</p>
-  <span class="meta"><span>⭐ 55</span><span>Python</span></span>
 </a>
 
 
