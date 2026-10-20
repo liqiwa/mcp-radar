@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BJ1919810/dsh-rea — MCP Server | MCP Radar</title>
+<meta name="description" content="One DSH plugin switch for REA: the REA MCP server (207 reverse-engineering tools) and REA&#x27;s three workflow skills, enabled and disabled together. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/BJ1919810--dsh-rea.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="BJ1919810/dsh-rea — MCP Server | MCP Radar">
+<meta property="og:description" content="One DSH plugin switch for REA: the REA MCP server (207 reverse-engineering tools) and REA&#x27;s three workflow skills, enabled and disabled together. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "BJ1919810/dsh-rea", "description": "One DSH plugin switch for REA: the REA MCP server (207 reverse-engineering tools) and REA's three workflow skills, enabled and disabled together.", "codeRepository": "https://github.com/BJ1919810/dsh-rea", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/BJ1919810--dsh-rea.html", "dateCreated": "2026-10-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">BJ1919810/</span>dsh-rea</h1>
+<p class="sub">One DSH plugin switch for REA: the REA MCP server (207 reverse-engineering tools) and REA&#x27;s three workflow skills, enabled and disabled together.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 15.3</b></div>
+  <div class="chip">created <b>2026-10-16</b></div>
+  <div class="chip">on radar since <b>2026-10-20</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><span class="topic">apktool</span><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/ghidra.html">ghidra</a><a class="topic" href="/topic/jadx.html">jadx</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/rea.html">rea</a><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a></div>
+<a class="btn" href="https://github.com/BJ1919810/dsh-rea" rel="noopener">View on GitHub ↗</a>
+<h2>About dsh-rea</h2><p class="sub">技能来自 morluto/rea（MIT）。本仓库只是把它包装成 DSH 插件。</p><p class="sub">- REA MCP 服务 —— 207 个逆向分析工具（Ghidra / IDA / jadx / apktool / frida / adb / pcap / 固件 / 浏览器 / Electron / 托管代码 …） - REA 的三个工作流技能 —— reverse-engineer-anything（含 6 篇 references）、rea-tool-design、rea-changelog-update</p><p class="sub">--profile desktop 是 GUI 用的 profile；TUI 用户改成 --profile tui。 装完在插件页会出现 dsh-rea 这一项，那个开关就是总开关。</p><p class="sub">方式一用的是 pnpm 的 github: spec，作者未实测 DSH 的供应链策略是否放行； 装不上就用方式二。已实测的只有：Windows x64 + DSH Desktop + REA 6.5.0 + 方式二。</p><p class="sub">本插件不安装任何引擎（和 REA 本身一样）。REA 只是适配层，引擎缺了对应工具就会报 providerunavailable。常用组合：</p><p class="sub">用途 需要自备 ------ 原生 PE/ELF 静态分析 Ghidra 12.1.x + JDK 21+（或自备 IDA，见 REA 文档） APK 资源 / DEX apktool、jadx-headless-mcp 0.7.1 的 -all.jar 真机 / 模拟器 Android platform-tools（adb）</p><p class="sub">本插件不写死任何路径。REA 的 MCP 服务继承 DSH 进程的环境，所以先把变量设成用户/系统环境变量，再启动 DSH：</p><p class="sub">不设也能装上：插件会正常安装、MCP 服务也能启动，只是对应工具会以 capabilityunavailable 失败，并在提示里点名该设哪个变量（实测：未设 REAAPKTOOLCOMMAND 时，inspectapktoolclient 直接返回「apktool launcher was not found … Set REAAPKTOOLCOMMAND to an absolute apktool launcher」）。 设完变量需要重启 DSH（它只在启动时读环境）。</p><p class="sub">启动器用一条表达式按平台自动选形态（Windows 上 npx 是 npx.cmd，必须经 cmd.exe）：</p><p class="sub">表达式在 bundle patch 里被求值已实测（Windows x64 → 正确取 cmd.exe 分支，207 工具全部可用）； 非 Windows 那条 npx 分支没有在 macOS/Linux 上跑过。不想用表达式就把这两行换成字面量（见 cordis.patch.yml 注释）。</p><p class="sub">如果你以前跑过 rea setup --client dsh，REA 已经往 home patch ~/.dsh/cordis.patch.yml 写过一份它自己的 rea-mcp。那会和本插件的条目撞 id，而且它不受本插件开关控制。 用本插件前请删掉 home patch 里那份，并把该文件恢复成 []：</p><p class="sub">⚠️ home patch 不能留空文件或纯注释（DSH 启动会失败），停用该层必须写 []。</p><p class="sub">技能文件的权威来源是 morluto/rea 的 .agents/skills：</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/BJ1919810--dsh-rea.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/czcdr--dsh-plugin-rea.html">
+  <span class="name"><span class="owner">czcdr/</span>dsh-plugin-rea</span>
+  <p>第三方适配插件：把上游 REA（github.com/morluto/rea）的 MCP 服务接入 DeepSeek Harness，提供 mcp__rea__* 工具。2.x 会自动准备 Node、REA CLI、JDK 与 Ghidra 并把那一行接好；逆向分析能力全部由上游 REA 提供。</p>
+  <span class="meta"><span>⭐ 14</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/dushudou--dsh-rea.html">
+  <span class="name"><span class="owner">dushudou/</span>dsh-rea</span>
+  <p>DeepSeek Harness (DSH) bundle that registers the REA (Reverse Engineer Anything) MCP server as mcp__rea__* tools — third-party adapter</p>
+  <span class="meta"><span>⭐ 6</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/sjh9714--dsh-movein.html">
+  <span class="name"><span class="owner">sjh9714/</span>dsh-movein</span>
+  <p>Migrate your whole Claude Code or Codex setup into DeepSeek Harness (DSH) with one command. Import skills, slash commands, MCP servers, hooks, subagents, permission rules. 一键迁移导入 Claude Code 配置，从 Clau</p>
+  <span class="meta"><span>⭐ 7</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/noteflowai--dsh-skills-anywhere.html">
+  <span class="name"><span class="owner">noteflowai/</span>dsh-skills-anywhere</span>
+  <p>Reuse Agent Skills across DeepSeek Harness and MCP. Check local SKILL.md files in the browser or CI, with parser diagnostics, file hashes and clear exit codes. Try the Hugging Face playground.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/sulaimwn--REA-For-Web.html">
+  <span class="name"><span class="owner">sulaimwn/</span>REA-For-Web</span>
+  <p>REA for the web - explore apps, visualize their architecture, and ask AI how they work. </p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

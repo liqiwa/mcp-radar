@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-10</b></div>
   
 </div>
-<div class="topics"><span class="topic">agent-communication</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/azure.html">azure</a><span class="topic">azure-storage</span><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/csharp.html">csharp</a><a class="topic" href="/topic/dotnet.html">dotnet</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a></div>
+<div class="topics"><a class="topic" href="/topic/agent-communication.html">agent-communication</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/azure.html">azure</a><span class="topic">azure-storage</span><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/csharp.html">csharp</a><a class="topic" href="/topic/dotnet.html">dotnet</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a></div>
 <a class="btn" href="https://github.com/smollini/AgentQueueMcp" rel="noopener">View on GitHub ↗</a>
 <h2>About AgentQueueMcp</h2><p class="sub">Firewall-friendly messaging for AI agents. One Azure Storage account becomes an addressed, multi-agent message bus — pull-only, zero inbound ports, zero servers to host, costs pennies.</p><p class="sub">You have AI agents on machines you cannot open ports on — dev boxes at different customers, VMs in different networks, laptops behind NAT. They need to delegate work to each other and talk back. Web hooks, tunnels and hosted brokers are all non-starters in locked-down environments. The move: don&#x27;t connect the machines at all. Every agent polls its own inbox queue over outbound HTTPS; an envelope contract gives you addressing, replies and multi-turn conversations. This repo is that idea as a production-ready MCP (Model Context Protocol) server in C / .NET 8 — usable from Claude Code or any MCP client.</p><p class="sub">Every agent has a name and its own inbox queue (inbox-, created automatically). Messages are addressed envelopes, so N agents can talk to each other and replies always know where to go:</p><p class="sub">Multi-turn conversations are supported: a worker can send a question back mid-task, the orchestrator answers with info in the same conversationId, then the result arrives — all through the same two tools.</p><p class="sub">Built on the official ModelContextProtocol C SDK and Azure.Storage.Queues.</p><p class="sub">Then, in Claude Code on the orchestrator machine:</p><p class="sub">&quot;Send a task to worker-a: analyse X and report back.&quot; → sendtask</p><p class="sub">&quot;Check the inbox.&quot; → getmessages → work → sendresult → ackmessage</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/smollini--AgentQueueMcp.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/peopleworks--XAFLogicExplainer.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/Agent-Tong--Crossroad-A2A.html">
+  <span class="name"><span class="owner">Agent-Tong/</span>Crossroad-A2A</span>
+  <p>Crossroad A2A: agent-to-agent mail so ChatGPT, Claude, Gemini, Codex and Grok agents work as one team across machines and SaaS apps. Open source, v0.1 beta.</p>
+  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
+</a><a class="card" href="/s/peopleworks--XAFLogicExplainer.html">
   <span class="name"><span class="owner">peopleworks/</span>XAFLogicExplainer</span>
   <p>Teach your AI coding agent what your DevExpress XAF application actually does. Roslyn-based extraction of entities, controllers, business rules and Model Editor customizations.</p>
   <span class="meta"><span>⭐ 4</span><span>C#</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">azimov777/</span>casefile</span>
   <p>The task tracker your AI agents keep for each other: every task carries a case file, so the next agent picks up where the last one stopped. MCP server + live board. Self-hosted, one-line install.</p>
   <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/leluong141996-dev--Agent-Brain-Hub.html">
-  <span class="name"><span class="owner">leluong141996-dev/</span>Agent-Brain-Hub</span>
-  <p>Shared, brain-inspired memory for AI agents: 13 brain regions with awake/sleep loops, a live visualizer, agents connected via REST/SDK/MCP, governance &amp; audit, and business-value metrics. Works with C</p>
-  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
 </a>
 
 

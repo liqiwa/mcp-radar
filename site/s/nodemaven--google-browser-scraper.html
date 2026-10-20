@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-10-07</b></div>
   
 </div>
-<div class="topics"><span class="topic">google-scraper</span><span class="topic">google-search</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/serp.html">serp</a><a class="topic" href="/topic/web-scraping.html">web-scraping</a></div>
+<div class="topics"><span class="topic">google-scraper</span><a class="topic" href="/topic/google-search.html">google-search</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/serp.html">serp</a><a class="topic" href="/topic/web-scraping.html">web-scraping</a></div>
 <a class="btn" href="https://github.com/nodemaven/google-browser-scraper" rel="noopener">View on GitHub ↗</a>
 <h2>About google-browser-scraper</h2><p class="sub">Google Search results from a real browser, through your own sticky proxy.</p><p class="sub">Plain HTTP is no longer a reliable way to scrape Google: it often expects a browser that runs JavaScript, and a fresh browser on a fresh proxy exit can be refused quickly. This tool takes a browser path instead. It warms a sticky proxy session with ordinary browsing, types the query into Google&#x27;s search box, checks whether Google served results or refused, and writes one JSON record per results page. Captchas, blocks and failures are reported as such, never as &quot;no results&quot;.</p><p class="sub">You need a residential proxy with sticky sessions. Put {session} where your provider expects a session id in the username:</p><p class="sub">Success is a results.jsonl with one JSON object per results page:</p><p class="sub">The first query takes a few minutes, because a new exit is warmed up first, and the warm-up costs noticeably more traffic than a search. Later queries on the same exit take seconds. A summary of pages served and traffic used is printed at the end of every run.</p><p class="sub">With NodeMaven, the session id is handled for you and the credentials come from the environment:</p><p class="sub">To try it without a proxy, use your own connection:</p><p class="sub">Google then sees one address for every query, so it starts answering with captchas sooner than it would across a pool of exits. Those pages come back as captcha in pageverdict, not as empty results.</p><p class="sub">The schema is intentionally SerpApi-like: organicresults, ads, relatedquestions, relatedsearches, pagination and searchmetadata, so simple consumers can often switch with minimal mapping. Knowledge panels, shopping, images and other special </p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/nodemaven--google-browser-scraper.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/HasData--bing-mcp.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/RayenMlayeh--gsearch.html">
+  <span class="name"><span class="owner">RayenMlayeh/</span>gsearch</span>
+  <p>Real Google Search for AI agents, over MCP. Self-hosted, no API key. Real URLs, AI Overview and People also ask as typed JSON. Uses a real Firefox (Camoufox) on your IP or any proxy.</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/HasData--bing-mcp.html">
   <span class="name"><span class="owner">HasData/</span>bing-mcp</span>
   <p>MCP server for Bing search: organic results, the ad block and the Copilot answer, with geo, market and language targeting. No Azure subscription. 1,000 free credits every month.</p>
   <span class="meta"><span>⭐ 15</span><span>JavaScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">maximilianfeix/</span>proxy-scraper</span>
   <p>Free proxies that actually work: 700+ sources, every hit verified (honeypots, injected scripts, TLS), a live list every hour, a rotating proxy server and an MCP server for AI agents.</p>
   <span class="meta"><span>⭐ 32</span><span>Python</span></span>
-</a><a class="card" href="/s/SanggonBoy--PyreCrawl.html">
-  <span class="name"><span class="owner">SanggonBoy/</span>PyreCrawl</span>
-  <p>Web browsing superpowers for AI agents - one MCP server to scrape, crawl, extract, map, search, batch, research &amp; monitor the web. Self-hosted, no API keys. Free Firecrawl alternative.</p>
-  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
 </a>
 
 

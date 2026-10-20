@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoderKuo/dsh-mcp-console — MCP Server | MCP Radar</title>
+<meta name="description" content="Manage the MCP servers of a DeepSeek Harness profile: status, switch, edit, export; add from the official MCP Registry, by hand, or with AI; find loca — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/CoderKuo--dsh-mcp-console.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="CoderKuo/dsh-mcp-console — MCP Server | MCP Radar">
+<meta property="og:description" content="Manage the MCP servers of a DeepSeek Harness profile: status, switch, edit, export; add from the official MCP Registry, by hand, or with AI; find loca — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "CoderKuo/dsh-mcp-console", "description": "Manage the MCP servers of a DeepSeek Harness profile: status, switch, edit, export; add from the official MCP Registry, by hand, or with AI; find local software to connect", "codeRepository": "https://github.com/CoderKuo/dsh-mcp-console", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/CoderKuo--dsh-mcp-console.html", "dateCreated": "2026-10-14"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">CoderKuo/</span>dsh-mcp-console</h1>
+<p class="sub">Manage the MCP servers of a DeepSeek Harness profile: status, switch, edit, export; add from the official MCP Registry, by hand, or with AI; find local software to connect</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 6.0</b></div>
+  <div class="chip">created <b>2026-10-14</b></div>
+  <div class="chip">on radar since <b>2026-10-20</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a></div>
+<a class="btn" href="https://github.com/CoderKuo/dsh-mcp-console" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://www.npmjs.com/package/dsh-mcp-console" rel="noopener nofollow">Homepage ↗</a>
+<h2>About dsh-mcp-console</h2><p class="sub">在 DeepSeek Harness 里集中管理 MCP 服务器：看状态、一键启停、让 AI 安装或手动添加、自动发现本机可接入的软件。</p><p class="sub">能力 说明 --- --- MCP 列表 侧栏新增「MCP」入口，列出当前 profile 配置的全部 MCP 服务器：名称、连接状态、传输方式、启动命令或地址、环境变量名、提供的工具、开源地址 启用 / 禁用 每个服务器一个开关，通过 DSH 官方插件管理器写入 profile 并立即生效，不用重启 删除 AI 安装或导入的服务器可以一键删除：通过官方插件管理器卸载插件包，并清理它在 mcp-bundles 目录里的配置文件（目录外的文件一律不碰） 一键导入 扫描到的其他客户端（Claude Desktop、Claude Code、Cursor、VS Code、Windsurf、Codex）里的 MCP，可以直接导入，不经过 AI 实时刷新 服务器连上、断开、启停时页面自动更新，不靠定时轮询 AI 快捷添加 填 MCP 服务器的来源（代码仓库、npm/PyPI 包名、Docker 镜像、README 里的启动命令或任意网页链接，可加补充说明），插件在默认工作区开一个新会话，让 AI 查清运行方式、安装、写好配置并接入，全程每一步安装都会先征求你同意 手动添加 已经知道怎么运行时直接填：本地命令（如 npx -y 包名、uvx 包名、docker run -i --rm 镜像）或远程服务地址，不经过 AI；添加前先在本机测试连接；密钥可以只写「读取哪个环境变量」，不保存明文；只支持 SSE 或需要 OAuth 登录的服务可以通过 mcp-remote 桥接 搜索 MCP 目录 从官方 MCP 目录搜索，选中后自动填好手动添加的表单（命令、环境变量、请求头） 编辑 / 导出 插件生成或 AI 安装的服务器可以用表单编辑；全部服务器可以导出成其他客户端通用的 mcpServers JSON（不含密钥） 选择供应商和模型 AI 快捷添加和联网分析都可以像模型选择器一样选供应商和模型，只对这次打开的会话生效，不改动你的默认模型 发现本机可接入的服务 扫描本机已安装的应用、后台服务、监听端口、Docker 容器，以及 Claude Desktop / Claude Code / Cursor / VS Code / Windsurf / Codex 里已经配置的 MCP；确认后交给 AI 联网检索哪些有 MCP 服务器，再问你要接入哪些 不泄露密钥 页面只显示环境变量和请求头的名字，参数里像密钥的值会被打码；扫描清单不含文件路径</p><p class="sub">安装后侧栏会出现「MCP」入口。新版本发布后 24 小时内按包名安装会被 DSH 的包管理器拒绝，可以改填 GitHub Release 的安装包地址：</p><p class="sub">DSH 的 MCP 客户端（@deepseek-ai/dsh-mcp-client）不对外提供连接状态，插件按能观察到的信息判断：</p><p class="sub">状态 含义 --- --- 已连接 正在运行，并且已经注册了 mcp 工具 连接中 正在启动，或已运行但还没有工具（也可能首次连接失败、或服务器本身不提供工具，详见 DSH 日志） 失败 加载失败（服务器配置了 failOnStartupError: true 时才会出现） 已禁用 在 profile 里被关掉了</p><p class="sub">开关调用 DSH 官方插件管理器的 setPluginEnabled，它会在 profile 的 cordis.patch.yml 里写 disabled: true/false 并立即生效。由插件包内置、或在别的配置层定义的服务器不能在这里切换，开关会显示原因。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/CoderKuo--dsh-mcp-console.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/vibeinging--dsh-work.html">
+  <span class="name"><span class="owner">vibeinging/</span>dsh-work</span>
+  <p>Local-first AI workbench for DSH Plugins, combining Agent sessions, project files, data analysis, web research, MCP, and Office artifacts in an Electron desktop app.</p>
+  <span class="meta"><span>⭐ 26</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/pazz11--Jnpz.html">
+  <span class="name"><span class="owner">pazz11/</span>Jnpz</span>
+  <p>改配置+重启才能加 MCP？DeepSeek Harness (DSH) 插件「技能配置」解决：设置页粘贴 JSON 即连 MCP 服务器、热加载免重启；上传 zip/.skill 自动识别 SKILL.md，创建/编辑/启停技能，即点即用</p>
+  <span class="meta"><span>⭐ 11</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/jiezeng2004-design--dsh-chatgpt-bridge.html">
+  <span class="name"><span class="owner">jiezeng2004-design/</span>dsh-chatgpt-bridge</span>
+  <p>MCP bridge that lets ChatGPT create, view, continue, and control DeepSeek Harness (DSH) agent sessions.</p>
+  <span class="meta"><span>⭐ 9</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/hyqhyq3--dsh-mcp-manager.html">
+  <span class="name"><span class="owner">hyqhyq3/</span>dsh-mcp-manager</span>
+  <p>MCP server manager plugin for DeepSeek Harness: Settings → MCP page, OAuth (PKCE + dynamic client registration) or static-token auth, tools registered as mcp__&lt;name&gt;__*</p>
+  <span class="meta"><span>⭐ 9</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/mrpulor-gh--dsh-nuphus-mcp.html">
+  <span class="name"><span class="owner">mrpulor-gh/</span>dsh-nuphus-mcp</span>
+  <p>DeepSeek Harness (DSH) plugin: mount the nuphus-mcp desktop automation MCP server as native tools (mcp__nuphus-mcp__*).</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

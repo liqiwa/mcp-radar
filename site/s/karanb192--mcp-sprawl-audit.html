@@ -92,14 +92,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>5</b> stars</div>
   <div class="chip">⑂ <b>4</b> forks</div>
   <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
-  <div class="chip">momentum <b>▲ 24.7</b></div>
+  <div class="chip">momentum <b>▲ 20.5</b></div>
   <div class="chip">created <b>2026-10-15</b></div>
   <div class="chip">on radar since <b>2026-10-19</b></div>
   
 </div>
 <div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex-cli.html">codex-cli</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/grok.html">grok</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a></div>
 <a class="btn" href="https://github.com/karanb192/mcp-sprawl-audit" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://karanbansal.in/blog/mcp-sprawl/" rel="noopener nofollow">Homepage ↗</a>
-
+<h2>About mcp-sprawl-audit</h2><p class="sub">Every Claude Code, Codex or Grok session starts its own copy of each local MCP server in its config. With many sessions open, that adds up to hundreds of processes and gigabytes of memory, most of it waiting for a tool call that never comes.</p><p class="sub">This is an agent skill and a single Python script that measures that on your machine and writes a plan. It is read-only: it changes no config and touches no process. It reads the names of env vars and headers, never their values. From a command line it prints only a package name or a script&#x27;s file name, and from a URL only the scheme and host, because the rest can carry keys.</p><p class="sub">Why this exists tells the story of 57 agent sessions running 646 MCP server processes on one laptop, and how sharing three servers over localhost took them from 19.5 GB to 301 MB.</p><p class="sub">Or install it as a skill, so any session can run it:</p><p class="sub">Or run the script yourself. It needs only Python (3.11+ to read Codex and Grok TOML).</p><p class="sub">- Running agent sessions per agent, and every local MCP server copy they hold: processes, resident memory, idle npx or uvx launchers. - How often each server was actually called, from each agent&#x27;s own session logs. - One action per server: share (serve one copy over HTTP on 127.0.0.1), use-hosted, keep, per-project, remove?, plugin (bundled, only its author can change it), check (unknown: the agent looks it up) or ok. - Flags: servers holding a credential, versions not pinned to an exact release, and one server configured under two names (which may be two accounts, so it never assumes one copy can serve both).</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/karanb192--mcp-sprawl-audit.html)</pre>
