@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-23</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/cli.html">cli</a><a class="topic" href="/topic/dashboard.html">dashboard</a><a class="topic" href="/topic/devops.html">devops</a><span class="topic">devops-tools</span><span class="topic">incident-management</span><a class="topic" href="/topic/incident-response.html">incident-response</a><span class="topic">kubernetes</span><a class="topic" href="/topic/llm-agent.html">llm-agent</a><span class="topic">log-analysis</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/observability.html">observability</a><span class="topic">platform-engineering</span><a class="topic" href="/topic/sre.html">sre</a></div>
+<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/cli.html">cli</a><a class="topic" href="/topic/dashboard.html">dashboard</a><a class="topic" href="/topic/devops.html">devops</a><span class="topic">devops-tools</span><span class="topic">incident-management</span><a class="topic" href="/topic/incident-response.html">incident-response</a><a class="topic" href="/topic/kubernetes.html">kubernetes</a><a class="topic" href="/topic/llm-agent.html">llm-agent</a><span class="topic">log-analysis</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/observability.html">observability</a><a class="topic" href="/topic/platform-engineering.html">platform-engineering</a><a class="topic" href="/topic/sre.html">sre</a></div>
 <a class="btn" href="https://github.com/Nouman-Amjad/Cairn" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://www.npmjs.com/package/@nouman-amjad/cairn" rel="noopener nofollow">Homepage ↗</a>
 <h2>About Cairn</h2><p class="sub">An agentic incident-analysis copilot. Ask &quot;why did checkout latency spike at 3am?&quot; in plain English; Cairn queries the observability stack, correlates against the deploy timeline, retrieves the relevant runbook, and proposes a root cause with evidence — and can execute a remediation, behind a human approval gate.</p><p class="sub">This repository implements docs/architecture.md.</p><p class="sub">The companion npm package (npx @nouman-amjad/cairn dashboard) serves a live local dashboard over any project — no build step, no dependencies, no network.</p><p class="sub">The four commitments, and where they live in the code</p><p class="sub">Commitment Where it is enforced ------ Tools are the product. Every capability is an MCP tool; the agent has no privileged path to any backend. services/cairn-mcp-, packages/cairn-mcp-kit Inference is a routed resource. A cost-and-sensitivity router splits work between a local 8B and a frontier model. routing.py Write actions are never autonomous. A durable approval state machine with idempotency keys and an append-only audit log. service.py The eval harness is a first-class service. 30 scenarios with ground-truth causes and 7 gated metrics. services/cairn-eval</p><p class="sub">cairn-deploy and cairn-infra are vendored here for review. In production they are separate repositories with separate lifecycles — see ADR-013.</p><p class="sub">No GPU and no API key are needed for any of the above. make eval runs in heuristic mode, which exercises the whole pipeline — loop, tool capping, persistence, the seven metrics, the gate — with a scripted stand-in instead of a model. See the caveats.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -116,6 +116,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Resetnak/</span>cooldeck</span>
   <p>Keyboard-first terminal dashboard for Coolify: deployments, live logs across your whole fleet, and an MCP server for your agent</p>
   <span class="meta"><span>⭐ 9</span><span>Go</span></span>
+</a><a class="card" href="/s/kubeamber--kubeamber.html">
+  <span class="name"><span class="owner">kubeamber/</span>kubeamber</span>
+  <p>Traffic lights for AI agents on Kubernetes: risk-scored, human-approved changes at the API server</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
 </a><a class="card" href="/s/ashuio--livewall.html">
   <span class="name"><span class="owner">ashuio/</span>livewall</span>
   <p>A live status board your AI agent writes while it works. Send a JSON board spec over MCP, HTTP or the CLI; a browser renders it live over SSE.</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
   <p>runs anywhere. uses anything</p>
   <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/tomtomsatnav--agent-orchestration-standard.html">
-  <span class="name"><span class="owner">tomtomsatnav/</span>agent-orchestration-standard</span>
-  <p>A live, local-first dashboard for Claude Code sessions: project graph of agents, tokens, tool feed, replay, alerts. Plugin + terminal UI + MCP server. Includes the AOS-1 agent orchestration spec.</p>
-  <span class="meta"><span>⭐ 71</span><span>JavaScript</span></span>
 </a>
 
 

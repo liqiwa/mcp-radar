@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dogakocak/boss-katana-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Say the tone, the knobs turn themselves: an MCP server + agent skill that sets BOSS KATANA Gen 3 tones from Claude Code, Codex CLI or Gemini CLI, live — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/dogakocak--boss-katana-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="dogakocak/boss-katana-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Say the tone, the knobs turn themselves: an MCP server + agent skill that sets BOSS KATANA Gen 3 tones from Claude Code, Codex CLI or Gemini CLI, live — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "dogakocak/boss-katana-mcp", "description": "Say the tone, the knobs turn themselves: an MCP server + agent skill that sets BOSS KATANA Gen 3 tones from Claude Code, Codex CLI or Gemini CLI, live in BOSS TONE STUDIO", "codeRepository": "https://github.com/dogakocak/boss-katana-mcp", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/dogakocak--boss-katana-mcp.html", "dateCreated": "2026-10-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">dogakocak/</span>boss-katana-mcp</h1>
+<p class="sub">Say the tone, the knobs turn themselves: an MCP server + agent skill that sets BOSS KATANA Gen 3 tones from Claude Code, Codex CLI or Gemini CLI, live in BOSS TONE STUDIO</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>2</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 64.0</b></div>
+  <div class="chip">created <b>2026-10-22</b></div>
+  <div class="chip">on radar since <b>2026-10-23</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><span class="topic">boss-katana</span><span class="topic">boss-tone-studio</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex-cli.html">codex-cli</a><a class="topic" href="/topic/gemini-cli.html">gemini-cli</a><span class="topic">guitar</span><span class="topic">guitar-amp</span><span class="topic">katana</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/midi.html">midi</a></div>
+<a class="btn" href="https://github.com/dogakocak/boss-katana-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About boss-katana-mcp</h2><p class="sub">Say the tone. The knobs turn themselves.</p><p class="sub">Talk to your BOSS KATANA Gen 3 from Claude Code, Codex CLI or Gemini CLI. Describe a tone and the knobs in BOSS TONE STUDIO move live, as if you had turned them yourself.</p><p class="sub">&quot;write blues tones with long sustain and delay&quot;</p><p class="sub">You need: Windows 10/11 · a KATANA Gen 3 on USB · BOSS TONE STUDIO for KATANA Gen 3 (tested 1.1.0) · Node.js 24+ · Claude Code, Codex CLI or Gemini CLI.</p><p class="sub">2. Open BOSS TONE STUDIO&#x27;s debug port (current user, no admin; read Security first)</p><p class="sub">Codex asks before every tool call; add defaulttoolsapprovalmode = &quot;approve&quot; under [mcpservers.katana] in config.toml to skip that.</p><p class="sub">4. Link the skill (a junction stays in sync with the repo)</p><p class="sub">Restart your CLI, switch on the amp and ask for a tone. The agent opens BOSS TONE STUDIO and connects the amp itself.</p><p class="sub">[!NOTE] Changes are live edits of the current patch. Press WRITE in BOSS TONE STUDIO or on the amp to keep them.</p><p class="sub">The MCP server attaches to BOSS TONE STUDIO&#x27;s WebView2 page and calls the app&#x27;s own code, so the app stays the only program talking to the amp. The katana-tone skill tells the agent how to turn a description into those changes.</p><p class="sub">Tool What it does --- --- katanastatus App reachable? amp connected? patch name, active variation of each effect katanalaunch Starts BOSS TONE STUDIO with the debug port and connects the amp katanaconnect Reconnects an open BOSS TONE STUDIO to the amp katanaget Reads the tone as friendly keys (amp.gain, booster.type, …) katanaset Sets one or more parameters at once katanalistparams Lists a section&#x27;s keys, ranges and option names</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/dogakocak--boss-katana-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/noteflowai--dsh-skills-anywhere.html">
+  <span class="name"><span class="owner">noteflowai/</span>dsh-skills-anywhere</span>
+  <p>Reuse Agent Skills across DeepSeek Harness and MCP. Check local SKILL.md files in the browser or CI, with parser diagnostics, file hashes and clear exit codes. Try the Hugging Face playground.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/yumaheymans--carejobs-mcp.html">
+  <span class="name"><span class="owner">yumaheymans/</span>carejobs-mcp</span>
+  <p>Free, hosted, read-only MCP server for US healthcare jobs and posted pay (CareJobs.Now). Endpoint: https://carejobs.now/api/mcp</p>
+  <span class="meta"><span>⭐ 3</span><span></span></span>
+</a><a class="card" href="/s/liyupi--memecub.html">
+  <span class="name"><span class="owner">liyupi/</span>memecub</span>
+  <p>Meme search &amp; auto meme placement for AI agents. Remote MCP server, Agent Skill, CLI and REST API that let Claude Code, Cursor and Codex find reaction memes, GIFs and Chinese 表情包 by feeling and insert</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/nikuscs--agents-mail.html">
+  <span class="name"><span class="owner">nikuscs/</span>agents-mail</span>
+  <p>📬 A self-hosted mailbox for AI agents on Cloudflare Workers. Receive, search, wait for, send, reply and forward email over MCP or REST, behind one token.</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Winterrks--telepathy.html">
+  <span class="name"><span class="owner">Winterrks/</span>telepathy</span>
+  <p>Allow your coding agents to self discover and collaborate with eachother (Claude Code, Codex, open code and other 9 supported)</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/woosal1337--ade.html">
+  <span class="name"><span class="owner">woosal1337/</span>ade</span>
+  <p>Plan, apply, and revert one agent development environment (MCP servers, skills, instructions, settings, plugins, and config files) across 10 coding agents. CLI and TypeScript SDK.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>infycat/McpNet — MCP Server | MCP Radar</title>
+<meta name="description" content="McpNet — 基於 SunnyNet 的網絡抓包與 MCP 工具，支援 HTTP/HTTPS、WebSocket、TCP/UDP、本地插件解碼及多語言多風格介面。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/infycat--McpNet.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="infycat/McpNet — MCP Server | MCP Radar">
+<meta property="og:description" content="McpNet — 基於 SunnyNet 的網絡抓包與 MCP 工具，支援 HTTP/HTTPS、WebSocket、TCP/UDP、本地插件解碼及多語言多風格介面。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "infycat/McpNet", "description": "McpNet — 基於 SunnyNet 的網絡抓包與 MCP 工具，支援 HTTP/HTTPS、WebSocket、TCP/UDP、本地插件解碼及多語言多風格介面。", "codeRepository": "https://github.com/infycat/McpNet", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/infycat--McpNet.html", "dateCreated": "2026-10-19"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">infycat/</span>McpNet</h1>
+<p class="sub">McpNet — 基於 SunnyNet 的網絡抓包與 MCP 工具，支援 HTTP/HTTPS、WebSocket、TCP/UDP、本地插件解碼及多語言多風格介面。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 16.7</b></div>
+  <div class="chip">created <b>2026-10-19</b></div>
+  <div class="chip">on radar since <b>2026-10-23</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-client.html">mcp-client</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><span class="topic">net</span><span class="topic">sunnynet</span></div>
+<a class="btn" href="https://github.com/infycat/McpNet" rel="noopener">View on GitHub ↗</a>
+<h2>About McpNet</h2><p class="sub">Windows 桌面網路分析與協定除錯工具，整合封包檢視、規則處理、插件擴充與本機 MCP 服務。</p><p class="sub">最新穩定版 平台 直接下載 全部版本 ------------ v1.1.2 · 啟動相容性修正（恢復穩定初始化、補強日誌） Windows x64 下載 McpNet-v1.1.2-windows-x64.exe 全部版本</p><p class="sub">下載成品請使用上表的 EXE 連結；GitHub 頁面上的 Source code ZIP/TAR.GZ 是原始碼，不是安裝程式。首次使用前請查看下方的系統需求及安全提醒。</p><p class="sub">McpNet 由 Go/Wails 桌面後端、Vue 3 介面與 McpNet 網路核心組成。它可檢視和處理 HTTP(S)、WebSocket、TCP、UDP 流量，並提供規則、腳本、使用者插件及本機 MCP 整合。程式啟動不會自動開始全系統攔截：流量監聽與系統代理由使用者分別控制。</p><p class="sub">新版採用方形透明底圖示，將「Net」字樣直接融入封包路徑與 MCP 連接節點；青綠漸層為主色，搭配白色連接點、黃色訊號段與深色描邊，讓網路抓包與 MCP 元素更清晰易辨。build/appicon.png 是預覽來源，Windows/Wails 使用的 .ico 資源同步更新為同一設計。</p><p class="sub">類別 功能 ------ 流量分析 HTTP/HTTPS 請求與回應、WebSocket 訊息、TCP/UDP 連線與資料檢視 規則與處理 Hosts、轉送／替換、請求與回應處理、憑證及腳本設定 擴充能力 Yaegi Go 插件、腳本範本、協定內容處理 hook MCP 整合 本機 HTTP MCP、狀態查詢、監聽控制、系統代理及 UI 命令工具 桌面介面 Windows、Wails v2、Vue 3、WebView2；繁體中文、簡體中文與英文</p><p class="sub">以下產品截圖用來直觀展示主要功能：進程攔截與附近應用清單、程式設定、多色系主題、本機 Go 插件編輯，以及 MCP 服務設定。</p><p class="sub">協定／介面 支援功能 條件與限制 --------- HTTP 請求／回應檢視、規則處理、插件 hook、內容編輯 流量須經過已啟用的監聽路徑 HTTPS / TLS TLS/HTTPS 處理、憑證管理 解密取決於 CA 信任、憑證釘選及應用程式行為 WebSocket 連線與訊息檢視、訊息 hook、編解碼處理 取決於代理路徑及啟用的規則／插件 TCP 連線與資料事件、轉送及腳本處理 取決於 Windows 驅動或代理設定 UDP 收送事件與插件 hook 擷取可能需要驅動、程序設定或代理 MCP JSON-RPC、工具呼叫、SSE、健康檢查 預設僅綁定 127.0.0.1:2026</p><p class="sub">MCP 端點：http://127.0.0.1:2026/mcp；健康檢查：http://127.0.0.1:2026/health。支援 initialize、ping、tools/list、tools/call，並提供狀態查詢、監聽啟停、系統代理、UI 命令及說明工具。mcpnetlistcaptures 可列出捕獲會話，mcpnetgetcapture 與 mcpnetgetmessages 可讀取詳情和訊息；URL 查詢值、使用者資訊與片段會遮蔽。封包標頭與本文預設不回傳，需明確傳 includebody=true（本文 Base64，每段最多 64 KiB）。查詢不會自行開啟監聽；本機其他程式也可能連線至 loopback MCP。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/infycat--McpNet.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/SysikNagibator--AiPC.html">
+  <span class="name"><span class="owner">SysikNagibator/</span>AiPC</span>
+  <p>Give the agent &quot;this&quot; and he gets a real PC.</p>
+  <span class="meta"><span>⭐ 29</span><span>Python</span></span>
+</a><a class="card" href="/s/Dragkob--MCPhantom.html">
+  <span class="name"><span class="owner">Dragkob/</span>MCPhantom</span>
+  <p>MCPhantom is a local web dashboard for MCP endpoint recon. Discover resources, templates, tools, and prompts, then interact with them from a security console.</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/anhnv02--file-mcp.html">
+  <span class="name"><span class="owner">anhnv02/</span>file-mcp</span>
+  <p>FileMCP is a native macOS app that gives ChatGPT controlled access to a local workspace through MCP</p>
+  <span class="meta"><span>⭐ 6</span><span>Swift</span></span>
+</a><a class="card" href="/s/cumakurt--SonarQubeCE-setup.html">
+  <span class="name"><span class="owner">cumakurt/</span>SonarQubeCE-setup</span>
+  <p>SonarQube Community Build (universal setup)</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/qfoldit--UNITY-TOOLBELT.html">
+  <span class="name"><span class="owner">qfoldit/</span>UNITY-TOOLBELT</span>
+  <p>102 composite editor-automation tools for Unity, exposed to AI agents through Unity&#x27;s own official MCP bridge.</p>
+  <span class="meta"><span>⭐ 5</span><span>C#</span></span>
+</a><a class="card" href="/s/qfoldit--UNIGINE-TOOLBELT.html">
+  <span class="name"><span class="owner">qfoldit/</span>UNIGINE-TOOLBELT</span>
+  <p>80 composite editor-automation tools for UNIGINE 2, exposed to AI agents via a companion MCP bridge that sits alongside UNIGINE&#x27;s own official MCPBridge Plugin.</p>
+  <span class="meta"><span>⭐ 5</span><span>C#</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

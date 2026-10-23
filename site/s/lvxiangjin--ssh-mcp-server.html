@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lvxiangjin/ssh-mcp-server — MCP Server | MCP Radar</title>
+<meta name="description" content="AI 的 SSH 网关：让 ZCode/Claude Code/Codex 等 AI 客户端通过 MCP 安全地执行远程命令与传输文件 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/lvxiangjin--ssh-mcp-server.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="lvxiangjin/ssh-mcp-server — MCP Server | MCP Radar">
+<meta property="og:description" content="AI 的 SSH 网关：让 ZCode/Claude Code/Codex 等 AI 客户端通过 MCP 安全地执行远程命令与传输文件 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "lvxiangjin/ssh-mcp-server", "description": "AI 的 SSH 网关：让 ZCode/Claude Code/Codex 等 AI 客户端通过 MCP 安全地执行远程命令与传输文件", "codeRepository": "https://github.com/lvxiangjin/ssh-mcp-server", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/lvxiangjin--ssh-mcp-server.html", "dateCreated": "2026-10-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">lvxiangjin/</span>ssh-mcp-server</h1>
+<p class="sub">AI 的 SSH 网关：让 ZCode/Claude Code/Codex 等 AI 客户端通过 MCP 安全地执行远程命令与传输文件</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-22</b></div>
+  <div class="chip">on radar since <b>2026-10-23</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/ai-tools.html">ai-tools</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/devops.html">devops</a><a class="topic" href="/topic/gateway.html">gateway</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">remote-execution</span><a class="topic" href="/topic/security.html">security</a><a class="topic" href="/topic/ssh.html">ssh</a></div>
+<a class="btn" href="https://github.com/lvxiangjin/ssh-mcp-server" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/lvxiangjin/ssh-mcp-server" rel="noopener nofollow">Homepage ↗</a>
+<h2>About ssh-mcp-server</h2><p class="sub">让 ZCode / Claude Code / Codex 等任何 MCP 客户端安全地登上你的服务器执行命令、传文件、跑任务—— 而服务器的 22 端口，从头到尾不需要对 AI（或互联网）开放。</p><p class="sub">- 🚪 AI 与服务器物理隔离——AI 只认识网关的 443 端口；目标机 22 端口防火墙只对网关放行，AI 所在的网络被攻破也摸不到服务器 - 🧰 六个 MCP 工具 + 两个 GB 级流式端点——执行命令、后台任务、上传下载一个端口全搞定，3GiB 文件恒定内存直达 - 🔐 为&quot;AI 会犯错&quot;设计的安全模型——命令黑名单硬拦、高危命令二次确认、敏感路径双拦、防爆破双维计数、全员审计，详见安全设计</p><p class="sub">手动 SSH / Xshell 传统堡垒机(JumpServer / 商用堡垒机) ssh-mcp-server ------------ 为谁设计 人类敲键盘 人类运维的会话审计 AI Agent 自主执行 AI 怎么用 ❌ 无法接入 😩 Web UI/交互式会话，AI 难驱动 ✅ MCP 原生协议，配置一次，对话即运维 部署重量 — 数据库 + 容器编排 + 多组件 一个可执行文件 + 一个 config.json 服务器暴露面 22 对用户网络开放 协议网关，较重 22 只对网关放行，公网仅 443 一个口 危险命令拦截 无 会话录像（事后追责） 事前拦截：黑名单 + 高危二次确认 权限模型 账号即权限 4A 集中管控 Token 服务器白名单 × OS 低权限账号，双层限制 凭据轮换 手动改密码 静态或 AD/LDAP HMAC 按天自动轮换，每人独立 secret 文件传输 scp 手动 闪传/网盘中转 3GiB 流式直传，md5 校验，恒定内存 成本 — 企业级授权 / 硬件 开源免费</p><p class="sub">一句话：堡垒机管的是&quot;人干了什么&quot;，ssh-mcp-server 管的是&quot;AI 能干什么、不能干什么&quot;。它不替代堡垒机——很多团队把它部署在堡垒机之后，作为 AI 专属的那一层。</p><p class="sub">工具 干什么 ------ listservers 列出该 Token 有权访问的服务器（白名单外的看不见也不存在） runcommand 执行 shell 命令，返回 stdout/stderr/退出码；支持 cwd、background 后台执行、confirm 高危复核 checkjob 查询后台任务状态/退出码/输出尾部（状态落目标机，网关重启不丢，7 天自动清理） killjob 终止后台任务（防 PID 复用误杀） uploadfile SFTP 上传（≤5MB，自动建父目录、原子覆盖、返回 md5） downloadfile SFTP 下载（自动识别文本/二进制，附 md5 校验）</p><p class="sub">- POST /upload：GB 级文件流式上传，默认上限 3GiB 可调更大，恒定内存，返回远端 md5 - GET /download：不限大小流式下载，响应头 X-Md5 / X-File-Size 先行供校验</p><p class="sub">其他内建能力：执行超时、输出截断（保头 60% + 尾 40%，防撑爆 AI 上下文）、SSH 并发上限、连接失败自动重试。</p><p class="sub">任何支持 MCP 的客户端都能接：ZCode、Claude Code、Codex、Cursor、Cline…… 配置一次，之后所有运维都是&quot;说人话&quot;。</p><p class="sub">「看下 web1、web2 的磁盘占用，超 80% 的把 /var/log 下 7 天前的日志清了」</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/lvxiangjin--ssh-mcp-server.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/nikships--droid-codex-computer-use.html">
+  <span class="name"><span class="owner">nikships/</span>droid-codex-computer-use</span>
+  <p>🖱️ Let Factory Droid control your Mac with the Codex app&#x27;s Computer Use tool. One-command install, no approval forms, works with any Codex install path.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Matthew0822--MCPBastion.html">
+  <span class="name"><span class="owner">Matthew0822/</span>MCPBastion</span>
+  <p>Zero-trust security gateway between AI agents and MCP servers: scoped capabilities, redaction, rate and cost limits, and verifiable session logs.</p>
+  <span class="meta"><span>⭐ 20</span><span>Rust</span></span>
+</a><a class="card" href="/s/wahyunuriman999--Muse-Skill-Hub.html">
+  <span class="name"><span class="owner">wahyunuriman999/</span>Muse-Skill-Hub</span>
+  <p>Open-source, LLM-agnostic capability runtime for AI agents — 97 skills as typed, permission-enforced MCP tools. Final certification: 23/23 gates PASS.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/bestdeejay-design--agent-skills.html">
+  <span class="name"><span class="owner">bestdeejay-design/</span>agent-skills</span>
+  <p>Agent Skills - 29 skills for AI agents (Sisyphus, opencode): frontend-perfection (Lighthouse audit), secret-scanner, security-review, version-bumper, commit-lint, coverage-analyzer, api-contract-testi</p>
+  <span class="meta"><span>⭐ 6</span><span>Python</span></span>
+</a><a class="card" href="/s/fengyincheng--ShellBridge.html">
+  <span class="name"><span class="owner">fengyincheng/</span>ShellBridge</span>
+  <p>Give ChatGPT fast, safe, and auditable visibility into your VPS through MCP.</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/JUSICK--Argos-mcp-guardrail.html">
+  <span class="name"><span class="owner">JUSICK/</span>Argos-mcp-guardrail</span>
+  <p>A lightweight, sub-millisecond security shim that prevents AI agents from accessing sensitive files (.env, SSH keys) and executing destructive commands via MCP.</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

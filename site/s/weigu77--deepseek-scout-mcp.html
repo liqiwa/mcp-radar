@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>weigu77/deepseek-scout-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Based on the FastMCP server, encapsulate the Search and Fetch capabilities of DeepSeek. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/weigu77--deepseek-scout-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="weigu77/deepseek-scout-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Based on the FastMCP server, encapsulate the Search and Fetch capabilities of DeepSeek. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "weigu77/deepseek-scout-mcp", "description": "Based on the FastMCP server, encapsulate the Search and Fetch capabilities of DeepSeek.", "codeRepository": "https://github.com/weigu77/deepseek-scout-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/weigu77--deepseek-scout-mcp.html", "dateCreated": "2026-10-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">weigu77/</span>deepseek-scout-mcp</h1>
+<p class="sub">Based on the FastMCP server, encapsulate the Search and Fetch capabilities of DeepSeek.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 6.0</b></div>
+  <div class="chip">created <b>2026-10-17</b></div>
+  <div class="chip">on radar since <b>2026-10-23</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/weigu77/deepseek-scout-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About deepseek-scout-mcp</h2><p class="sub">把 DeepSeek 的网页搜索与网页抓取接口 封装成 MCP 工具，让任何支持 MCP 的客户端（Claude Desktop、Cursor、魔搭社区等）直接获得联网搜索与网页抓取能力。</p><p class="sub">底层是 DeepSeek 自研搜索引擎 —— 长期为 DeepSeek 网页端与 API 端提供搜索能力，每天稳定处理全球数亿次搜索请求。</p><p class="sub">- 覆盖广：AI 原生通用搜索引擎，索引全球千亿级网页，支持多语言搜索 - 质量高：实时返回高相关、高权威、高时效的结果；每条结果自带 rerankscore（0～3）、authority（0～4）和发布时间，便于二次筛选 - 抗污染：对 SEO 作弊、GEO 操纵与低质 AIGC 有专门的识别过滤机制，更倾向权威可信来源 - 接入成本低：以 stdio 方式运行，进程由客户端拉起、不占端口；API Key 走环境变量 DEEPSEEKAPIKEY，不写进代码；两个工具直连 DeepSeek，无中间状态与缓存，Search 与 Fetch 均为只读请求</p><p class="sub">把这段 JSON 放进客户端的 MCP 配置即可，uvx 会自动拉取并运行最新发布版。API Key 在 platform.deepseek.com/apikeys 创建。</p><p class="sub">参数 类型 必填 默认 说明 --- --- --- --- --- query string 是 — 搜索词，1～128 个字符，不能全为空白，支持下方搜索语法 count integer 否 10 返回结果条数，1～50 oriquestion string 否 null 触发本次搜索的用户原始问题，有助于理解搜索意图 localization string 否 &quot;&quot; 用于优先返回本地化搜索结果的 IP 地址 needcontent boolean 否 false 是否在 content 中返回网页正文</p><p class="sub">字段 类型 说明 --- --- --- rerankscore number 排序分数，0～3，≥1.5 为优质结果 title string 标题 url string 结果链接 snippet string 短摘要（约 100～200 字符），适合前端展示 summary string 长摘要（约 600～800 字符），适合喂给模型 content string 网页正文，needcontent 为 false 时为空字符串 sitename string \ null 站点名称 siteicon string \ null 站点图标 URL date string \ null 发布时间，UTC 的 RFC 3339 格式 authority integer 网页权威性，0～4（-1 表示未知），≥3 为极权威结果</p><p class="sub">参数 类型 必填 说明 --- --- --- --- url string 是 网页地址，长度 ≤ 8192，必须为含 host 的 HTTP/HTTPS URL，且不携带用户名或密码</p><p class="sub">返回 title（缺失时为空字符串）与 content（Markdown 正文）。抓取结果受目标站点可用性与访问策略影响。</p><p class="sub">query 中的操作符会原样传给 DeepSeek 搜索引擎，可在一条 query 中组合使用。</p><p class="sub">操作符 示例 说明 --- --- --- site: DeepSeek site:github.com 限定站点；多个站点用空格分隔并以 OR 连接，如 DeepSeek site:github.com OR site:huggingface.co -site: DeepSeek -site:example.com 排除站点，多个用空格分隔 - DeepSeek -广告 排除含指定关键词的网页，多个用空格分隔 -&quot;...&quot; DeepSeek -&quot;rel</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/weigu77--deepseek-scout-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/zhuyansen--new-term-radar.html">
+  <span class="name"><span class="owner">zhuyansen/</span>new-term-radar</span>
+  <p>Daily radar for new AI terms: names of new models, products and repos, caught on X, Hugging Face, GitHub and sitemaps before keyword tools list them.</p>
+  <span class="meta"><span>⭐ 1089</span><span>Python</span></span>
+</a><a class="card" href="/s/LiCinCan--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">LiCinCan/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 953</span><span>Python</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/cranebeaker--coop-anything.html">
+  <span class="name"><span class="owner">cranebeaker/</span>coop-anything</span>
+  <p>Co-op Anything: point your AI agent at any single-player game and play it with friends (online and/or splitscreen!). MCP server and playbook to let you reverse engineer, fix, test, ship and share what</p>
+  <span class="meta"><span>⭐ 806</span><span>Python</span></span>
+</a><a class="card" href="/s/anujasid--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">anujasid/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 679</span><span>Python</span></span>
+</a><a class="card" href="/s/kanaworksai-hue--audio-studio-mcp.html">
+  <span class="name"><span class="owner">kanaworksai-hue/</span>audio-studio-mcp</span>
+  <p>Local AI BGM and sound effects for Claude Code and any MCP client. Stable Audio 3 on Apple Silicon (MLX) and Windows NVIDIA GPUs (PyTorch). No cloud, no API key.</p>
+  <span class="meta"><span>⭐ 447</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
