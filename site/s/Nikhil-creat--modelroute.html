@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil-creat/modelroute — MCP Server | MCP Radar</title>
+<meta name="description" content="Agentic LLM router that sends each request to a LoRA-tuned small model or a larger one by confidence, cutting cost and latency without losing quality. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Nikhil-creat--modelroute.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Nikhil-creat/modelroute — MCP Server | MCP Radar">
+<meta property="og:description" content="Agentic LLM router that sends each request to a LoRA-tuned small model or a larger one by confidence, cutting cost and latency without losing quality. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Nikhil-creat/modelroute", "description": "Agentic LLM router that sends each request to a LoRA-tuned small model or a larger one by confidence, cutting cost and latency without losing quality. LangGraph, RAG, CNN, Groq and Gemini, with PII an", "codeRepository": "https://github.com/Nikhil-creat/modelroute", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/Nikhil-creat--modelroute.html", "dateCreated": "2026-10-21"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Nikhil-creat/</span>modelroute</h1>
+<p class="sub">Agentic LLM router that sends each request to a LoRA-tuned small model or a larger one by confidence, cutting cost and latency without losing quality. LangGraph, RAG, CNN, Groq and Gemini, with PII an</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-10-21</b></div>
+  <div class="chip">on radar since <b>2026-10-24</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><span class="topic">ananthacharysriramoju</span><span class="topic">cnn</span><a class="topic" href="/topic/fastapi.html">fastapi</a><span class="topic">fine-tuning</span><a class="topic" href="/topic/gemini.html">gemini</a><a class="topic" href="/topic/groq.html">groq</a><a class="topic" href="/topic/langgraph.html">langgraph</a><span class="topic">llm-router</span><a class="topic" href="/topic/llmops.html">llmops</a><span class="topic">lora</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">model-routing</span><span class="topic">nikhilcharysriramoju</span><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><a class="topic" href="/topic/pytorch.html">pytorch</a><a class="topic" href="/topic/qdrant.html">qdrant</a><span class="topic">qlora</span><a class="topic" href="/topic/rag.html">rag</a><a class="topic" href="/topic/semantic-cache.html">semantic-cache</a></div>
+<a class="btn" href="https://github.com/Nikhil-creat/modelroute" rel="noopener">View on GitHub ↗</a>
+<h2>About modelroute</h2><p class="sub">ModelRoute: Smaller Models. Bigger Impact. AI Project 5 by Nikhil Chary Sriramoju (GitHub · LinkedIn)</p><p class="sub">A working LLM routing system. A trained classifier predicts whether a support request needs a large model; easy requests go to a small, cheap model and hard ones to a larger one. Answers are grounded with RAG, near-duplicates are cached, PII and prompt injection are guarded, weak answers escalate, and every request is logged so cost, latency and fallback rate are measured, not guessed.</p><p class="sub">Quick start (about 2 minutes, no API keys needed)</p><p class="sub">Open http://localhost:8000 for the site wired to the live API, or /docs for the OpenAPI page. For real answers, copy .env.example to .env, add free Groq and Gemini keys and drop LLMMODE=mock. Without keys the responses are labelled provider: mock (extractive answers from the knowledge base).</p><p class="sub">How a request flows guard (injection block, PII redaction) → semantic cache → RAG (TF-IDF over kb/) → router (p(small is enough) vs per-mode threshold) → LLM (Groq 8B or Gemini, with failover and circuit breaker) → judge (weak answer escalates to the large model) → human review queue for uncertain cases → SQLite log. Each response includes a trace of these steps.</p><p class="sub">API Endpoint Purpose ------ POST /route {text, mode: fastcostquality, visualcomplexity?} returns answer, model, provider, cost, trace GET /stats Real request count, cost saving vs always-large, latency, fallback and cache rates GET /review, POST /feedback Human-in-the-loop queue and ratings GET /health, GET /config Status, modes and prices</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Nikhil-creat--modelroute.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Nikhil-creat--cloudpulse-ai.html">
+  <span class="name"><span class="owner">Nikhil-creat/</span>cloudpulse-ai</span>
+  <p>Agentic multi-cloud FinOps, security auto-remediation and AI observability platform. FastAPI + LangGraph agent swarm, corrective RAG (Qdrant), PyTorch CNN anomaly detection, Groq + Gemini LLM gateway,</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/SujalXplores--Agent-K.html">
+  <span class="name"><span class="owner">SujalXplores/</span>Agent-K</span>
+  <p>Code-enforced incident-response agent that investigates SigNoz alerts, publishes evidence-backed root-cause claims, and gates every action behind a safety policy. Built for Agents of SigNoz hackathon.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/java-ai-in-action--framework-compare.html">
+  <span class="name"><span class="owner">java-ai-in-action/</span>framework-compare</span>
+  <p>Spring AI vs LangChain4j vs SAA 三框架同台对比（配套篇2）</p>
+  <span class="meta"><span>⭐ 4</span><span>Java</span></span>
+</a><a class="card" href="/s/lindixu6-hash--awesome-agentic-engineering.html">
+  <span class="name"><span class="owner">lindixu6-hash/</span>awesome-agentic-engineering</span>
+  <p>Executable AI agent readiness gate: GitHub Action, prompt injection evals, LangGraph traces, risk profiles, and bilingual EN/中文 docs.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/graygnatconsole--mcp-audit-tool.html">
+  <span class="name"><span class="owner">graygnatconsole/</span>mcp-audit-tool</span>
+  <p>🛡️ Security audit CLI for Model Context Protocol (MCP) servers — scan AI agent configs for tool poisoning, rug pulls, hardcoded secrets, command injection &amp; supply-chain risks. Pure Python, SARIF + CI</p>
+  <span class="meta"><span>⭐ 42</span><span>Python</span></span>
+</a><a class="card" href="/s/dolev31--lasagna.html">
+  <span class="name"><span class="owner">dolev31/</span>lasagna</span>
+  <p>Swap one RAG pipeline stage, hold the rest fixed, and measure whether the gain survives composition. The framework behind &quot;Retrieval Augmented Generation Compositionality&quot;: 450 configurations, eight b</p>
+  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-10-20</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><span class="topic">apktool</span><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/ghidra.html">ghidra</a><a class="topic" href="/topic/jadx.html">jadx</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/rea.html">rea</a><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a></div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/apktool.html">apktool</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/ghidra.html">ghidra</a><a class="topic" href="/topic/jadx.html">jadx</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/rea.html">rea</a><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a></div>
 <a class="btn" href="https://github.com/BJ1919810/dsh-rea" rel="noopener">View on GitHub ↗</a>
 <h2>About dsh-rea</h2><p class="sub">技能来自 morluto/rea（MIT）。本仓库只是把它包装成 DSH 插件。</p><p class="sub">- REA MCP 服务 —— 207 个逆向分析工具（Ghidra / IDA / jadx / apktool / frida / adb / pcap / 固件 / 浏览器 / Electron / 托管代码 …） - REA 的三个工作流技能 —— reverse-engineer-anything（含 6 篇 references）、rea-tool-design、rea-changelog-update</p><p class="sub">--profile desktop 是 GUI 用的 profile；TUI 用户改成 --profile tui。 装完在插件页会出现 dsh-rea 这一项，那个开关就是总开关。</p><p class="sub">方式一用的是 pnpm 的 github: spec，作者未实测 DSH 的供应链策略是否放行； 装不上就用方式二。已实测的只有：Windows x64 + DSH Desktop + REA 6.5.0 + 方式二。</p><p class="sub">本插件不安装任何引擎（和 REA 本身一样）。REA 只是适配层，引擎缺了对应工具就会报 providerunavailable。常用组合：</p><p class="sub">用途 需要自备 ------ 原生 PE/ELF 静态分析 Ghidra 12.1.x + JDK 21+（或自备 IDA，见 REA 文档） APK 资源 / DEX apktool、jadx-headless-mcp 0.7.1 的 -all.jar 真机 / 模拟器 Android platform-tools（adb）</p><p class="sub">本插件不写死任何路径。REA 的 MCP 服务继承 DSH 进程的环境，所以先把变量设成用户/系统环境变量，再启动 DSH：</p><p class="sub">不设也能装上：插件会正常安装、MCP 服务也能启动，只是对应工具会以 capabilityunavailable 失败，并在提示里点名该设哪个变量（实测：未设 REAAPKTOOLCOMMAND 时，inspectapktoolclient 直接返回「apktool launcher was not found … Set REAAPKTOOLCOMMAND to an absolute apktool launcher」）。 设完变量需要重启 DSH（它只在启动时读环境）。</p><p class="sub">启动器用一条表达式按平台自动选形态（Windows 上 npx 是 npx.cmd，必须经 cmd.exe）：</p><p class="sub">表达式在 bundle patch 里被求值已实测（Windows x64 → 正确取 cmd.exe 分支，207 工具全部可用）； 非 Windows 那条 npx 分支没有在 macOS/Linux 上跑过。不想用表达式就把这两行换成字面量（见 cordis.patch.yml 注释）。</p><p class="sub">如果你以前跑过 rea setup --client dsh，REA 已经往 home patch ~/.dsh/cordis.patch.yml 写过一份它自己的 rea-mcp。那会和本插件的条目撞 id，而且它不受本插件开关控制。 用本插件前请删掉 home patch 里那份，并把该文件恢复成 []：</p><p class="sub">⚠️ home patch 不能留空文件或纯注释（DSH 启动会失败），停用该层必须写 []。</p><p class="sub">技能文件的权威来源是 morluto/rea 的 .agents/skills：</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -120,14 +120,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">sjh9714/</span>dsh-movein</span>
   <p>Migrate your whole Claude Code or Codex setup into DeepSeek Harness (DSH) with one command. Import skills, slash commands, MCP servers, hooks, subagents, permission rules. 一键迁移导入 Claude Code 配置，从 Clau</p>
   <span class="meta"><span>⭐ 7</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/samalyxx--appunpack.html">
+  <span class="name"><span class="owner">samalyxx/</span>appunpack</span>
+  <p>Local Android APK decompiler and reverse-engineering CLI. Recover Java/resources with JADX, inspect splits, and connect AI agents via MCP.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
 </a><a class="card" href="/s/noteflowai--dsh-skills-anywhere.html">
   <span class="name"><span class="owner">noteflowai/</span>dsh-skills-anywhere</span>
   <p>Reuse Agent Skills across DeepSeek Harness and MCP. Check local SKILL.md files in the browser or CI, with parser diagnostics, file hashes and clear exit codes. Try the Hugging Face playground.</p>
   <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/sulaimwn--REA-For-Web.html">
-  <span class="name"><span class="owner">sulaimwn/</span>REA-For-Web</span>
-  <p>REA for the web - explore apps, visualize their architecture, and ask AI how they work. </p>
-  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a>
 
 

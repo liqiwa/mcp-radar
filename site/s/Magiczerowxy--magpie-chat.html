@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magiczerowxy/magpie-chat — MCP Server | MCP Radar</title>
+<meta name="description" content="A chat page inside magpie&#x27;s window: use magpie&#x27;s own models, MCP servers, instructions and skills — with images, files and LaTeX. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Magiczerowxy--magpie-chat.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Magiczerowxy/magpie-chat — MCP Server | MCP Radar">
+<meta property="og:description" content="A chat page inside magpie&#x27;s window: use magpie&#x27;s own models, MCP servers, instructions and skills — with images, files and LaTeX. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Magiczerowxy/magpie-chat", "description": "A chat page inside magpie's window: use magpie's own models, MCP servers, instructions and skills — with images, files and LaTeX.", "codeRepository": "https://github.com/Magiczerowxy/magpie-chat", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Magiczerowxy--magpie-chat.html", "dateCreated": "2026-10-24"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Magiczerowxy/</span>magpie-chat</h1>
+<p class="sub">A chat page inside magpie&#x27;s window: use magpie&#x27;s own models, MCP servers, instructions and skills — with images, files and LaTeX.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-10-24</b></div>
+  <div class="chip">on radar since <b>2026-10-24</b></div>
+  
+</div>
+<div class="topics"><span class="topic">chat</span><span class="topic">magpie</span><span class="topic">magpie-page</span><span class="topic">magpie-plugin</span><span class="topic">opencode-plugin</span></div>
+<a class="btn" href="https://github.com/Magiczerowxy/magpie-chat" rel="noopener">View on GitHub ↗</a>
+<h2>About magpie-chat</h2><p class="sub">在 magpie 窗口里加一个「对话」页面。 用 magpie 已经接好的模型、指令、技能和 MCP 服务器聊天，不用再开一个 Agent。</p><p class="sub">A chat page inside magpie&#x27;s window. Talk with magpie&#x27;s own models, instructions, skills and MCP servers — no second agent needed.</p><p class="sub">- 一个页面。装好后侧栏「插件」分组里出现「对话」。 - 用 magpie 的模型。模型列表来自网关 /v1/models，切换即时生效；有推理档位的模型会给出对应的思考强度选项。 - 用 magpie 的配置。右侧栏里勾选 ~/.config/magpie/library/ 的指令与技能（拼进 system prompt）、勾选 MCP 服务器（工具以 toolcalls 真正执行）。 - 多模态。左下角「+」选图片或文件，也可以直接把文件拖进页面，或粘贴剪贴板里的图片。图片以 imageurl 交给模型，气泡里显示缩略图、点开看大图。 - 流式输出。思考过程边收边展开，输出结束后自动收起；正文逐字出现。 - 公式。$…$、$$…$$、\(…\)、\[…\] 由本地 KaTeX 渲染，随包打包，不连 CDN。 - 对话留存。存在 magpie 配置目录的 magpie-chat/conversations/；每条可以置顶或删除。 - 和 magpie 同一个样子。配色与字体取自 magpie 自己的设计令牌，切换主题时对话页跟着变。 - 可调布局。右侧栏「布局」里两个滑条：会话区宽度（100% 即铺满，最窄 560px）、输入框宽度；左右两侧栏都能拖拽调宽、也都能收起。 - 代码折叠。一条消息里有多段代码时只展开最后一段，其余收起。</p><p class="sub">或者在应用里：插件 → 发现 → 非官方插件 · GitHub，搜索 magpie-chat 后点「安装」。</p><p class="sub">这个插件不注册供应商、不需要登录、不保存任何凭据。它复用 magpie 自己已经配好的模型和额度，请求全部由 magpie 的网关发出，所以用量统计与故障切换和 Agent 一致。</p><p class="sub">magpie 的插件页面跑在 sandbox=&quot;allow-scripts&quot; 的框架里：没有网络权限、不能内嵌框架、不能用存储，唯一允许的联网动作是把自身导航到别处。所以这个插件是两层的：</p><p class="sub">1. page/index.html 是 magpie 托管的「带路页」，读窗口主题后 location.replace 到本地服务。 2. index.mjs 作为 OpenCode v1 插件被 magpie 的 Bun 宿主加载，加载时启动那个本地服务（127.0.0.1:3477）。 3. lib/server.mjs 提供 /api/ 并把聊天请求转发给 magpie 网关；chat/ 是真正的界面。</p><p class="sub">服务只监听回环地址，并拒绝非同源请求（只接受 opaque 的 Origin: null 与自身 origin），任意网页都无法借它消耗额度。</p><p class="sub">- MCP 实现了 Streamable HTTP 与 stdio，不含旧版 GET SSE 长连接与断线重连。 - 图片以 base64 内联发送，单图上限 24MB；对话很长时请求体也会变大。 - 供应商图标：magpie 的内置图标编在它自己的二进制里，取不到时服务端会画一个首字母 SVG。 - 工具调用最多 8 轮。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Magiczerowxy--magpie-chat.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Chatway-app--chatway-mcp-server.html">
+  <span class="name"><span class="owner">Chatway-app/</span>chatway-mcp-server</span>
+  <p>Official Chatway Live Chat MCP server. Connect ChatGPT, Claude, and other AI agents to manage customer support conversations. Chatway offers an AI chatbot, website live chat, WhatsApp, Messenger, Inst</p>
+  <span class="meta"><span>⭐ 10</span><span></span></span>
+</a><a class="card" href="/s/Winterrks--telepathy.html">
+  <span class="name"><span class="owner">Winterrks/</span>telepathy</span>
+  <p>Allow your coding agents to self discover and collaborate with eachother (Claude Code, Codex, open code and other 9 supported)</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/cinderline--northcinder.html">
+  <span class="name"><span class="owner">cinderline/</span>northcinder</span>
+  <p>Open-source MCP server for comparing products and asking the buyer before purchase.</p>
+  <span class="meta"><span>⭐ 1205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/marclou--mailcheap.html">
+  <span class="name"><span class="owner">marclou/</span>mailcheap</span>
+  <p>Newsletters where you pay for the emails you send, not for dormant subscribers, at a fraction of the price of beehiiv and the like. Open source: self-host it, or use mailcheap.ai.</p>
+  <span class="meta"><span>⭐ 1078</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/sv-number--mcp-server.html">
+  <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
+  <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
+  <span class="meta"><span>⭐ 598</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

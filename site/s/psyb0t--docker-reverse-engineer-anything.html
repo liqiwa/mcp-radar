@@ -92,19 +92,23 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>3</b> stars</div>
   <div class="chip">⑂ <b>1</b> forks</div>
   <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
-  <div class="chip">momentum <b>▲ 9.5</b></div>
+  <div class="chip">momentum <b>▲ 8.0</b></div>
   <div class="chip">created <b>2026-10-18</b></div>
   <div class="chip">on radar since <b>2026-10-23</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/adb.html">adb</a><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/android.html">android</a><a class="topic" href="/topic/apk.html">apk</a><span class="topic">apktool</span><a class="topic" href="/topic/decompiler.html">decompiler</a><a class="topic" href="/topic/docker.html">docker</a><a class="topic" href="/topic/docker-image.html">docker-image</a><a class="topic" href="/topic/ghidra.html">ghidra</a><a class="topic" href="/topic/jadx.html">jadx</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/static-analysis.html">static-analysis</a></div>
+<div class="topics"><a class="topic" href="/topic/adb.html">adb</a><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/android.html">android</a><a class="topic" href="/topic/apk.html">apk</a><a class="topic" href="/topic/apktool.html">apktool</a><a class="topic" href="/topic/decompiler.html">decompiler</a><a class="topic" href="/topic/docker.html">docker</a><a class="topic" href="/topic/docker-image.html">docker-image</a><a class="topic" href="/topic/ghidra.html">ghidra</a><a class="topic" href="/topic/jadx.html">jadx</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/static-analysis.html">static-analysis</a></div>
 <a class="btn" href="https://github.com/psyb0t/docker-reverse-engineer-anything" rel="noopener">View on GitHub ↗</a>
 <h2>About docker-reverse-engineer-anything</h2><p class="sub">REA (Reverse Engineer Anything) in a Docker image, with everything it needs to tear apart Android APKs already inside, and a Streamable HTTP MCP endpoint in front of it.</p><p class="sub">REA is morluto&#x27;s MCP server and CLI that lets an AI agent inspect software it has no source for: decompile APKs, trace references, read resources, poke at devices over adb, dig through Electron bundles, .NET assemblies, Go and Rust binaries. Upstream ships it as the rea-agents npm package that talks MCP over stdio and expects you to install a JDK, JADX and Apktool yourself. This image does that part for you.</p><p class="sub">This is an unofficial packaging. REA itself lives at morluto/rea and is MIT-licensed. Bugs in REA&#x27;s tools go there; bugs in the image or the HTTP bridge go here.</p><p class="sub">- What&#x27;s in the image - Quick start - Ways to run it - Opt-in tools - Configuration - Security - Agent integrations - Versions and updates - Development - License</p><p class="sub">Piece Version Why ------------------ --------- ----------------------------------------------------------------- REA (rea-agents) 6.4.0 The analysis engine, 170 MCP tools OpenJDK 21 (full) Debian 13 REA compiles its JADX bridge with jdk.compiler; a JRE won&#x27;t do jadx-headless-mcp 0.7.1 The exact JADX bridge jar REA pins, checked against REA&#x27;s SHA-256 Apktool 3.0.3 Resource and string decoding adb 34.0.5 Device tools; the version REA verified Node.js 24 Runs REA and the bridge</p><p class="sub">APK analysis needs no extra setup: inspectandroidpackage, searchandroidclasses, inspectandroidclass, inspectandroidmethod, traceandroidreferences and decodeandroidresources work out of the box, and so do REA&#x27;</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/psyb0t--docker-reverse-engineer-anything.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/alexmi256--rea-agent-docker.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/samalyxx--appunpack.html">
+  <span class="name"><span class="owner">samalyxx/</span>appunpack</span>
+  <p>Local Android APK decompiler and reverse-engineering CLI. Recover Java/resources with JADX, inspect splits, and connect AI agents via MCP.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/alexmi256--rea-agent-docker.html">
   <span class="name"><span class="owner">alexmi256/</span>rea-agent-docker</span>
   <p>REA (Reverse Engineer Anything) in Docker: one image per analysis engine (Ghidra / Hopper / IDA) with a full reverse-engineering toolchain, MCP-ready for Hermes and other agents.</p>
   <span class="meta"><span>⭐ 4</span><span>Shell</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">valorisa/</span>Reverse-Engineer-Anything</span>
   <p>Guide pédagogique non officiel en français sur REA (Reverse Engineer Anything) : analyser des applications et des binaires avec un agent de code via MCP et CLI, Hopper ou Ghidra, preuves à l&#x27;appui. In</p>
   <span class="meta"><span>⭐ 23</span><span></span></span>
-</a><a class="card" href="/s/wlmosv-png--apk-index.html">
-  <span class="name"><span class="owner">wlmosv-png/</span>apk-index</span>
-  <p>零依赖的本地 APK/AAR/DEX 结构索引 + MCP Server。17 个工具，为 Xposed 模块开发提供静态反查。</p>
-  <span class="meta"><span>⭐ 10</span><span>Python</span></span>
 </a>
 
 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRFXN5C/mcd-mcp-kit — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP integration health check and measured pitfalls for McDonald&#x27;s China MCP Server — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/CRFXN5C--mcd-mcp-kit.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="CRFXN5C/mcd-mcp-kit — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP integration health check and measured pitfalls for McDonald&#x27;s China MCP Server — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "CRFXN5C/mcd-mcp-kit", "description": "MCP integration health check and measured pitfalls for McDonald's China MCP Server", "codeRepository": "https://github.com/CRFXN5C/mcd-mcp-kit", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/CRFXN5C--mcd-mcp-kit.html", "dateCreated": "2026-10-23"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">CRFXN5C/</span>mcd-mcp-kit</h1>
+<p class="sub">MCP integration health check and measured pitfalls for McDonald&#x27;s China MCP Server</p>
+<div class="chips">
+  <div class="chip">⭐ <b>11</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 110.0</b></div>
+  <div class="chip">created <b>2026-10-23</b></div>
+  <div class="chip">on radar since <b>2026-10-24</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/CRFXN5C/mcd-mcp-kit" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-mcp-kit</h2><p class="sub">麦当劳中国 MCP Server 的接入体检工具包 —— 30 秒确认你的接入到底通没通，以及为什么&quot;看起来通了&quot;其实是错的。</p><p class="sub">你可能以为 实际是 ------ 文档列了 33 个工具 tools/list 返回 35 个，多出的两个文档没写 鉴权失败会统一返回 401 两种状态码、两种 body：无 Token → 403 + 业务信封 code=0001；错 Token → 401 + 纯文本（不是 JSON） 照文档写 query-partystore-date 正确名字是 query-party-store-date，照抄调用必失败（返 JSON-RPC error，不是 404） 算价返回 0 元 = 商品不可售 是字段名传错了（code vs productCode），接口不报错 价格 5900 = 5900 元 单位是分，= 59 元 query-my-coupons 能判断这单能用哪张券 不能，它不做门店校验；要用 query-store-coupons</p><p class="sub">doctor.py 把这些一次性检查完，并给出一份可直接粘贴进 issue 的报告。</p><p class="sub">python doctor.py --probe-auth 的实际输出（2026-10-23）：</p><p class="sub">断网、拒连、DNS 失败这类情况不会抛 traceback —— 已经收集到的结果照常打印， 失败项给出最近一次错误原文，退出码 2。</p><p class="sub">命令 作用 ------ python doctor.py 接入体检（只读，无副作用） python doctor.py --probe-auth 额外探测「无 Token / 错 Token」的真实状态码与 body 形态 python doctor.py --json 机器可读输出，便于接 CI</p><p class="sub">doctor.py 退出码：0 = 全部通过（可能有 WARN）；2 = 存在问题（有 FAIL）。 参数写错时 argparse 也返回 2，若要在 CI 里区分，请用 --json 读 ok 字段。</p><p class="sub">服务端会把「字段说明 + 原始响应」拼在同一段文本里返回，--json-only 只保留后者，方便接管道或 jq。 mcdmcp.py 已内置两种非标准错误形态的处理，退出码：0 正常 / 1 用法错 / 2 鉴权或协议失败。</p><p class="sub">完整版见 PITFALLS.md，每条都带「现象 / 原因 / 正确做法 / 复现方式」。</p><p class="sub">坑 ------ 1 工具数 33 vs 35（query-promotions、query-survey-coupon 文档没写） 2 文档工具名拼错：query-partystore- → query-party-store- 3 鉴权失败状态码有两种：无 Token 403 + 业务信封、错 Token 401 + 纯文本（没有统一错误结构） 4 calculate-price 字段名传错 → 静默 0 元（但 0 元不一定是传错，别只归因这一条） 5 金额单位是分 6 特调 modification 必须整组传（selectedKey / unselectedKey） 7 query-store-coupons ≠ query-my-coupons（后者不校验门店） 8 到店自取（beType=1）不能传 beCode 9 积分兑换多商品必须串行排队下单 10 order-list 只有最近 10 单 11 主题派对商品可能在「品鉴会」类目（1625），不在主题类派对 12 抽奖有独立频控，且不要自动重试 13 list-nutrition-foods 的 data 是字符串（内含 [160]{字段列表}: + CSV 行），不是数组</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/CRFXN5C--mcd-mcp-kit.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/zhuyansen--new-term-radar.html">
+  <span class="name"><span class="owner">zhuyansen/</span>new-term-radar</span>
+  <p>Daily radar for new AI terms: names of new models, products and repos, caught on X, Hugging Face, GitHub and sitemaps before keyword tools list them.</p>
+  <span class="meta"><span>⭐ 1089</span><span>Python</span></span>
+</a><a class="card" href="/s/LiCinCan--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">LiCinCan/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 953</span><span>Python</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/cranebeaker--coop-anything.html">
+  <span class="name"><span class="owner">cranebeaker/</span>coop-anything</span>
+  <p>Co-op Anything: point your AI agent at any single-player game and play it with friends (online and/or splitscreen!). MCP server and playbook to let you reverse engineer, fix, test, ship and share what</p>
+  <span class="meta"><span>⭐ 806</span><span>Python</span></span>
+</a><a class="card" href="/s/anujasid--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">anujasid/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 679</span><span>Python</span></span>
+</a><a class="card" href="/s/kanaworksai-hue--audio-studio-mcp.html">
+  <span class="name"><span class="owner">kanaworksai-hue/</span>audio-studio-mcp</span>
+  <p>Local AI BGM and sound effects for Claude Code and any MCP client. Stable Audio 3 on Apple Silicon (MLX) and Windows NVIDIA GPUs (PyTorch). No cloud, no API key.</p>
+  <span class="meta"><span>⭐ 465</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

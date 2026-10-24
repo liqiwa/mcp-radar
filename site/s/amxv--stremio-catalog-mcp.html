@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>amxv/stremio-catalog-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="MCP server to let your agent send movies and TV show recommendations straight to Stremio as dynamic catalog rows. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/amxv--stremio-catalog-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="amxv/stremio-catalog-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="MCP server to let your agent send movies and TV show recommendations straight to Stremio as dynamic catalog rows. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "amxv/stremio-catalog-mcp", "description": "MCP server to let your agent send movies and TV show recommendations straight to Stremio as dynamic catalog rows.", "codeRepository": "https://github.com/amxv/stremio-catalog-mcp", "programmingLanguage": "Go", "url": "https://mcp.liqiwa.com/s/amxv--stremio-catalog-mcp.html", "dateCreated": "2026-10-23"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">amxv/</span>stremio-catalog-mcp</h1>
+<p class="sub">MCP server to let your agent send movies and TV show recommendations straight to Stremio as dynamic catalog rows.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/go.html"><span class="lang-dot" style="--lang:#00ADD8"></span><b>Go</b></a>
+  <div class="chip">momentum <b>▲ 32.0</b></div>
+  <div class="chip">created <b>2026-10-23</b></div>
+  <div class="chip">on radar since <b>2026-10-24</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/go.html">go</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">redis</span><a class="topic" href="/topic/self-hosted.html">self-hosted</a><span class="topic">stremio</span><a class="topic" href="/topic/vercel.html">vercel</a></div>
+<a class="btn" href="https://github.com/amxv/stremio-catalog-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://stremio-catalog-mcp.ashray.xyz/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About stremio-catalog-mcp</h2><p class="sub">Your AI recommends. Stremio plays. This lightweight Model Context Protocol server lets ChatGPT or another MCP assistant publish movie and TV recommendations directly to named rows on your Stremio home screen.</p><p class="sub">Website · Quickstart · Self-hosting guide · MCP tools</p><p class="sub">Ask your assistant to find something to watch, then send the results to Stremio. It can create, rename, reorder, refresh, clear, and delete catalog rows, and add or remove individual titles. Existing Cinemeta metadata and streaming add-ons keep working; this service supplies catalogs only, never streams or its own recommendations.</p><p class="sub">Fork or clone this repository and give your coding agent this instruction:</p><p class="sub">Self-host this Stremio Catalog MCP for me. Follow the agent-led Quickstart. Deploy the Go API to my Vercel account, use a Free Upstash Redis database or an existing compatible Redis REST URL/token, securely connect my Stremio account, verify the endpoints, and copy the full authenticated MCP URL to my clipboard. Ask me only for required sign-ins, secret approvals, and the final ChatGPT plugin step. Do not print credentials or enable paid services.</p><p class="sub">The included Go helper automates most of the provisioning:</p><p class="sub">The helper guides you through secure credentials, provisions Free Redis, configures and deploys Vercel, and copies the MCP URL without printing its secret. Agents can use protected --upstash-email-file, --upstash-key-file, and --stremio-key-file arguments with --yes after human approval. Run go run ./cmd/setup --copy-url to copy your saved URL again.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/amxv--stremio-catalog-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Resetnak--cooldeck.html">
+  <span class="name"><span class="owner">Resetnak/</span>cooldeck</span>
+  <p>Keyboard-first terminal dashboard for Coolify: deployments, live logs across your whole fleet, and an MCP server for your agent</p>
+  <span class="meta"><span>⭐ 9</span><span>Go</span></span>
+</a><a class="card" href="/s/YigitCittan--mongorescue.html">
+  <span class="name"><span class="owner">YigitCittan/</span>mongorescue</span>
+  <p>Self-hosted MongoDB backup and disaster recovery: streaming mongodump to disk or S3, safe-clone restores, encryption, alerts, web dashboard and MCP server. Single Go binary.</p>
+  <span class="meta"><span>⭐ 6</span><span>Go</span></span>
+</a><a class="card" href="/s/soma-intelligence--open-health-sync.html">
+  <span class="name"><span class="owner">soma-intelligence/</span>open-health-sync</span>
+  <p>Self-hosted, open-source API for wearable and health data, in Go. Syncs Apple Health, Health Connect, Oura, WHOOP, Withings, Strava, Fitbit, Dexcom and more into one model, served over REST, FHIR R4, </p>
+  <span class="meta"><span>⭐ 6</span><span>Go</span></span>
+</a><a class="card" href="/s/bestnite--engram.html">
+  <span class="name"><span class="owner">bestnite/</span>engram</span>
+  <p>Self-hosted, multi-user spaced-repetition (SRS) service: FSRS v6 scheduling, 10 card types, Markdown/TeX, REST API and built-in MCP server. Written in Go.</p>
+  <span class="meta"><span>⭐ 5</span><span>Go</span></span>
+</a><a class="card" href="/s/hsuanshao--AgentMemory.html">
+  <span class="name"><span class="owner">hsuanshao/</span>AgentMemory</span>
+  <p>Self-hosted memory service for AI agents that work in teams, written in Rust: layered L0→L3 memory, async LLM distillation, hybrid BM25 + vector recall, and department/team/member isolation. SQLite or</p>
+  <span class="meta"><span>⭐ 36</span><span>Rust</span></span>
+</a><a class="card" href="/s/ozandikici--GPTmail.html">
+  <span class="name"><span class="owner">ozandikici/</span>GPTmail</span>
+  <p>A private email workspace and OAuth-protected MCP server for ChatGPT. Connect compatible inboxes and control each AI action. Self-hosted, MIT licensed.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
