@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>offzen/dsh-gitea-search — MCP Server | MCP Radar</title>
+<meta name="description" content="dsh-plugin — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/offzen--dsh-gitea-search.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="offzen/dsh-gitea-search — MCP Server | MCP Radar">
+<meta property="og:description" content="dsh-plugin — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "offzen/dsh-gitea-search", "description": "dsh-plugin", "codeRepository": "https://github.com/offzen/dsh-gitea-search", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/offzen--dsh-gitea-search.html", "dateCreated": "2026-10-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">offzen/</span>dsh-gitea-search</h1>
+<p class="sub">dsh-plugin</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 26.0</b></div>
+  <div class="chip">created <b>2026-10-22</b></div>
+  <div class="chip">on radar since <b>2026-10-25</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/code-search.html">code-search</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/deepseek-harness-plugin.html">deepseek-harness-plugin</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><span class="topic">dsh-plugin-market</span><a class="topic" href="/topic/dsh-plugins.html">dsh-plugins</a><a class="topic" href="/topic/fts5.html">fts5</a><a class="topic" href="/topic/full-text-search.html">full-text-search</a><span class="topic">git-grep</span><span class="topic">gitea</span><span class="topic">gitea-mirror</span><span class="topic">jieba</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-client.html">mcp-client</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/session-search.html">session-search</a></div>
+<a class="btn" href="https://github.com/offzen/dsh-gitea-search" rel="noopener">View on GitHub ↗</a>
+<h2>About dsh-gitea-search</h2><p class="sub">DeepSeek Harness (DSH) 高性能 Gitea 代码与文档全文检索 MCP 插件。</p><p class="sub">- 毫秒级文档与历史会话检索：基于 SQLite FTS5 引擎与 Jieba 中文分词，支持 BM25 智能加权与类型软分区（doc, session, config, script），完整索引用户提问与助手回复正文。 - 极速代码搜索与智能多词回退：支持全分支内容、文件路径、提交信息的毫秒级 git grep 检索；当多词短语字面量连写 0 命中时，自动回退为「同行多词 AND」检索（--and）。 - 低开销增量索引：内置 headcommit 变更门控，未发生提交的仓库自动跳过遍历，日常增量扫描耗时压至 1 秒级。 - 安全四层护栏与行窗口：严格防范单行溢出（2000B）、总体缓冲区溢出（128KB）、默认返回 5 条命中、readgiteafile 默认 400 行窗口与 UTF-8 字符跨块截断乱码（U+FFFD）。 - 多主体自适应：支持按 Token 自适应探测可访问仓库，或显式指定多租户 GITEAOWNERS 白名单。 - 细粒度会话归档：配套 session-export-incremental.py 会话增量导出工具（支持 v1~v4，完整提取用户消息与助手文本块并跳过思维链，基于 os.scandir(followsymlinks=False) 防软链环死循环），单会话独立文件，精准追踪历史故障排查记录。</p><p class="sub">- 耗时与磁盘 I/O 自动监测与阈值判定：内置 IoTracker 与 evaluateperfbudget（采集墙钟耗时、CPU 时间、/proc/self/io 的 rchar/wchar/readbytes/writebytes/syscr/syscw），落盘 state/perf-metrics.jsonl 并自动判定 OK / WARN / CRITICAL。 - 宿主 DSH 会话存储代数预检与无损迁移（零修改 DSH 官方代码）：提供 scripts/dsh-session-health.mjs（--check / --fix）与 gts --doctor，在安装期与运行期主动识别旧版（32MB 自动在线 walcheckpoint(TRUNCATE)）及 nodemodules/.pnpm 软链环风险，防止 historicalCorpusRevision 冷迁移风暴。</p><p class="sub">在 DSH 的 profile patch（cordis.patch.yml）中插入一条 @deepseek-ai/dsh-mcp-client 条目。</p><p class="sub">⚠️ 配置格式（实测，勿凭记忆写） cordis.patch.yml 的顶层必须是 YAML 数组，每项是一个 loader patch。 dsh-mcp-client 的 config 是单个 MCP 实例的扁平配置，按 transport 字段区分 stdio / streamable-http（serverName + command + args …），没有 servers 这一层。 写成顶层 mcpServers: 或 plugins: → servers: 映射都会在启动时被拒： overlay ... must be a top-level YAML array of loader patch entries。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/offzen--dsh-gitea-search.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/hxlog--dsh-mcp-tools.html">
+  <span class="name"><span class="owner">hxlog/</span>dsh-mcp-tools</span>
+  <p>DeepSeek Harness 的 MCP 工具管理器：设置页内添加 HTTP/stdio MCP 服务器、配请求头、测连通性、逐工具开关（停用的工具不进模型）。MCP manager for DSH: add servers, custom headers, connectivity test, per-tool toggles.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/noteflowai--dsh-skills-anywhere.html">
+  <span class="name"><span class="owner">noteflowai/</span>dsh-skills-anywhere</span>
+  <p>Reuse Agent Skills across DeepSeek Harness and MCP. Check local SKILL.md files in the browser or CI, with parser diagnostics, file hashes and clear exit codes. Try the Hugging Face playground.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/jumpifequal--mcp-calibre.html">
+  <span class="name"><span class="owner">jumpifequal/</span>mcp-calibre</span>
+  <p>Read-only MCP server for Calibre: metadata, BM25 full-text search over EPUB/PDF/MOBI/LIT, chapter/page reading, highlights. Direct SQLite (works with Calibre open), incremental FTS5 index, stdio + Str</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 151</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/PerryLink--jevcore.html">
+  <span class="name"><span class="owner">PerryLink/</span>jevcore</span>
+  <p>TypeSafe Jev for DeepSeek Harness, the Model Context Protocol, and plain Node: typed judgments instead of prose, offline by default.</p>
+  <span class="meta"><span>⭐ 38</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/JialaoLiu--dsh-baton.html">
+  <span class="name"><span class="owner">JialaoLiu/</span>dsh-baton</span>
+  <p>Pass the baton from Claude Code or Codex to a local DeepSeek Harness. An MCP server that hands off tasks and brings the result back.</p>
+  <span class="meta"><span>⭐ 15</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

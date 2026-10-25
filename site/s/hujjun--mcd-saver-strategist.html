@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-10-10</b></div>
   <div class="chip">star trend <b>29 → 222</b> since 2026-10-10</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">coupon-optimizer</span><span class="topic">coupons</span><span class="topic">deterministic-optimization</span><span class="topic">fast-food</span><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcdonalds-mcp.html">mcdonalds-mcp</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">money-saving</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a><a class="topic" href="/topic/workbuddy-skill.html">workbuddy-skill</a></div>
+<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">coupon-optimizer</span><a class="topic" href="/topic/coupons.html">coupons</a><span class="topic">deterministic-optimization</span><span class="topic">fast-food</span><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcdonalds-mcp.html">mcdonalds-mcp</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">money-saving</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a><a class="topic" href="/topic/workbuddy-skill.html">workbuddy-skill</a></div>
 <a class="btn" href="https://github.com/hujjun/mcd-saver-strategist" rel="noopener">View on GitHub ↗</a>
 <h2>About mcd-saver-strategist</h2><p class="sub">基于 麦当劳中国 MCP（McDonald&#x27;s China MCP） 开发的省钱点餐 Skill / AI 智能体技能： 把「菜单 × 优惠券 × 叠加规则」的组合优化交给确定性算法， 让每一顿麦麦都点得明明白白、省得清清楚楚。 又名：麦门省钱精算师 / 麦当劳省钱点餐助手 / MCD Saver Strategist。</p><p class="sub">用户说&quot;我想吃巨无霸套餐，怎么最便宜&quot;，它拉取门店菜单和所有可用优惠券， 用算法穷举出总价最低的合规组合，并帮你下单。</p><p class="sub">示例：巨无霸 + 中薯条 + 可乐，直选 ¥47.00； 用「1+1 随心配」组合后 ¥21.90，省 ¥25.10（53%）。</p><p class="sub">🎮 在线试算（无需登录）： —— 优化算法的前端完整复刻，选好想吃的、拖动预算和热量上限，实时算出最优组合，打开即玩。 （若链接打不开，说明 GitHub Pages 尚未开启：仓库 Settings → Pages → Branch 选 main + /docs → Save，约 1 分钟生效。）</p><p class="sub">🔎 静态示例：docs/demo.html · 🖼️ 原理图：images/how-it-works.png · 🎬 宣传动画：images/promo.mp4</p><p class="sub">- 菜单几十项、优惠券动辄十几张、叠加规则各不相同； - 用券还要考虑「为凑满减而加购是否划算」； - 用户懒得算，大模型也容易算错（价格、折扣、叠加口算不可靠）。</p><p class="sub">本 Skill 的核心洞察是：取数交给 MCP，算术交给代码，表达交给 Agent。</p><p class="sub">角色 职责 ------ 麦当劳 MCP 实时菜单、价格、优惠券、营养、门店、下单 scripts/optimizer.py 确定性组合优化，输出总价最低的 Top-N 方案 WorkBuddy Agent 理解需求、归一化数据、讲解方案、确认后下单</p><p class="sub">（Windows 为 %USERPROFILE%\.workbuddy\skills\；MCP Token 配置见下文「安装」。）</p><p class="sub">前往麦当劳 MCP 开放平台 https://open.mcd.cn/mcp ，手机号登录后在「控制台」激活并复制 Token。</p><p class="sub">在 WorkBuddy 左侧边栏【专家·技能·连接器】→【连接器】→ 右上角【自定义连接器】→【配置 MCP】中， 填入 mcp-config.example.json 的内容， 并把 ${MCDMCPTOKEN} 替换为你的真实 Token（或用环境变量注入），保存后【启用】。</p><p class="sub">把 skills/mcd-saver-strategist/ 整个目录复制到 WorkBuddy 的用户技能目录：</p><p class="sub">（Windows 为 %USERPROFILE%\.workbuddy\skills\）</p><p class="sub">精算师：拉菜单 + 四路券池 → 优化 → 「1+1 随心配 ¥12.9 覆盖巨无霸和中薯条，另外单点可乐 ¥9， 合计 ¥21.90，比直选省 ¥25.10」。</p><p class="sub">精算师：以 budget=30 求解，返回在预算内的最优搭配，并列出各方案到手价与热量。</p><p class="sub">精算师：引入 list-nutrition-foods，以 maxcalories=800 求解， 给出低卡又省钱的组合（如板烧鸡腿堡 + 麦咖啡 + 圆筒）。</p><p class="sub">精算师：delivery-query-addresses → delivery-query-stores → 后续流程同上， 下单前用 calculate-price 核价（含配送费）。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -124,10 +124,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">yzg1226/</span>mcd-party-officer</span>
   <p>🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函</p>
   <span class="meta"><span>⭐ 243</span><span>Python</span></span>
-</a><a class="card" href="/s/yurenpai--mc-points-steward.html">
-  <span class="name"><span class="owner">yurenpai/</span>mc-points-steward</span>
-  <p>麦当劳积分资产管家：剔假上架 · 性价比排序 · 抽奖参谋</p>
-  <span class="meta"><span>⭐ 20</span><span>Python</span></span>
+</a><a class="card" href="/s/wahaha-potato--mcd-coupon-xray.html">
+  <span class="name"><span class="owner">wahaha-potato/</span>mcd-coupon-xray</span>
+  <p>麦麦省的券谁都能领，但领了不等于楼下那家店认。一键领全后逐家门店校验哪张券真的能核销，并算出券后实付，直接回答「去哪家店、用哪张券、省多少钱」。基于麦当劳 MCP。</p>
+  <span class="meta"><span>⭐ 103</span><span>Python</span></span>
 </a>
 
 

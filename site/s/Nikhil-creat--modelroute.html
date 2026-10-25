@@ -92,12 +92,12 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>3</b> stars</div>
   <div class="chip">⑂ <b>0</b> forks</div>
   <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
-  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">momentum <b>▲ 7.5</b></div>
   <div class="chip">created <b>2026-10-21</b></div>
   <div class="chip">on radar since <b>2026-10-24</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><span class="topic">ananthacharysriramoju</span><span class="topic">cnn</span><a class="topic" href="/topic/fastapi.html">fastapi</a><span class="topic">fine-tuning</span><a class="topic" href="/topic/gemini.html">gemini</a><a class="topic" href="/topic/groq.html">groq</a><a class="topic" href="/topic/langgraph.html">langgraph</a><span class="topic">llm-router</span><a class="topic" href="/topic/llmops.html">llmops</a><span class="topic">lora</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">model-routing</span><span class="topic">nikhilcharysriramoju</span><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><a class="topic" href="/topic/pytorch.html">pytorch</a><a class="topic" href="/topic/qdrant.html">qdrant</a><span class="topic">qlora</span><a class="topic" href="/topic/rag.html">rag</a><a class="topic" href="/topic/semantic-cache.html">semantic-cache</a></div>
+<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/ananthacharysriramoju.html">ananthacharysriramoju</a><span class="topic">cnn</span><a class="topic" href="/topic/fastapi.html">fastapi</a><span class="topic">fine-tuning</span><a class="topic" href="/topic/gemini.html">gemini</a><a class="topic" href="/topic/groq.html">groq</a><a class="topic" href="/topic/langgraph.html">langgraph</a><span class="topic">llm-router</span><a class="topic" href="/topic/llmops.html">llmops</a><span class="topic">lora</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">model-routing</span><a class="topic" href="/topic/nikhilcharysriramoju.html">nikhilcharysriramoju</a><a class="topic" href="/topic/prompt-injection.html">prompt-injection</a><a class="topic" href="/topic/pytorch.html">pytorch</a><a class="topic" href="/topic/qdrant.html">qdrant</a><span class="topic">qlora</span><a class="topic" href="/topic/rag.html">rag</a><a class="topic" href="/topic/semantic-cache.html">semantic-cache</a></div>
 <a class="btn" href="https://github.com/Nikhil-creat/modelroute" rel="noopener">View on GitHub ↗</a>
 <h2>About modelroute</h2><p class="sub">ModelRoute: Smaller Models. Bigger Impact. AI Project 5 by Nikhil Chary Sriramoju (GitHub · LinkedIn)</p><p class="sub">A working LLM routing system. A trained classifier predicts whether a support request needs a large model; easy requests go to a small, cheap model and hard ones to a larger one. Answers are grounded with RAG, near-duplicates are cached, PII and prompt injection are guarded, weak answers escalate, and every request is logged so cost, latency and fallback rate are measured, not guessed.</p><p class="sub">Quick start (about 2 minutes, no API keys needed)</p><p class="sub">Open http://localhost:8000 for the site wired to the live API, or /docs for the OpenAPI page. For real answers, copy .env.example to .env, add free Groq and Gemini keys and drop LLMMODE=mock. Without keys the responses are labelled provider: mock (extractive answers from the knowledge base).</p><p class="sub">How a request flows guard (injection block, PII redaction) → semantic cache → RAG (TF-IDF over kb/) → router (p(small is enough) vs per-mode threshold) → LLM (Groq 8B or Gemini, with failover and circuit breaker) → judge (weak answer escalates to the large model) → human review queue for uncertain cases → SQLite log. Each response includes a trace of these steps.</p><p class="sub">API Endpoint Purpose ------ POST /route {text, mode: fastcostquality, visualcomplexity?} returns answer, model, provider, cost, trace GET /stats Real request count, cost saving vs always-large, latency, fallback and cache rates GET /review, POST /feedback Human-in-the-loop queue and ratings GET /health, GET /config Status, modes and prices</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -108,6 +108,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Nikhil-creat/</span>cloudpulse-ai</span>
   <p>Agentic multi-cloud FinOps, security auto-remediation and AI observability platform. FastAPI + LangGraph agent swarm, corrective RAG (Qdrant), PyTorch CNN anomaly detection, Groq + Gemini LLM gateway,</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Nikhil-creat--deepoptima.html">
+  <span class="name"><span class="owner">Nikhil-creat/</span>deepoptima</span>
+  <p>Autonomous neural architecture search (NAS) platform: NSGA-II evolution of CNN/ViT designs, distributed GPU worker mesh, agentic Groq + Gemini swarm, MCP server, Wasm sandbox, mTLS. FastAPI + PyTorch </p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/SujalXplores--Agent-K.html">
   <span class="name"><span class="owner">SujalXplores/</span>Agent-K</span>
   <p>Code-enforced incident-response agent that investigates SigNoz alerts, publishes evidence-backed root-cause claims, and gates every action behind a safety policy. Built for Agents of SigNoz hackathon.</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">graygnatconsole/</span>mcp-audit-tool</span>
   <p>🛡️ Security audit CLI for Model Context Protocol (MCP) servers — scan AI agent configs for tool poisoning, rug pulls, hardcoded secrets, command injection &amp; supply-chain risks. Pure Python, SARIF + CI</p>
   <span class="meta"><span>⭐ 42</span><span>Python</span></span>
-</a><a class="card" href="/s/dolev31--lasagna.html">
-  <span class="name"><span class="owner">dolev31/</span>lasagna</span>
-  <p>Swap one RAG pipeline stage, hold the rest fixed, and measure whether the gain survives composition. The framework behind &quot;Retrieval Augmented Generation Compositionality&quot;: 450 configurations, eight b</p>
-  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
 </a>
 
 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GMBOXMOD/rw-modding-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Rusted Warfare MCP server for modding. Read-only tools: key lookup, source search, reference get, linter, actions explain — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/GMBOXMOD--rw-modding-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="GMBOXMOD/rw-modding-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Rusted Warfare MCP server for modding. Read-only tools: key lookup, source search, reference get, linter, actions explain — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "GMBOXMOD/rw-modding-mcp", "description": "Rusted Warfare MCP server for modding. Read-only tools: key lookup, source search, reference get, linter, actions explain", "codeRepository": "https://github.com/GMBOXMOD/rw-modding-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/GMBOXMOD--rw-modding-mcp.html", "dateCreated": "2026-10-21"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">GMBOXMOD/</span>rw-modding-mcp</h1>
+<p class="sub">Rusted Warfare MCP server for modding. Read-only tools: key lookup, source search, reference get, linter, actions explain</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 7.5</b></div>
+  <div class="chip">created <b>2026-10-21</b></div>
+  <div class="chip">on radar since <b>2026-10-25</b></div>
+  
+</div>
+<div class="topics"><span class="topic">luke</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/modding.html">modding</a><a class="topic" href="/topic/python.html">python</a><span class="topic">rusted-warfare</span></div>
+<a class="btn" href="https://github.com/GMBOXMOD/rw-modding-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About rw-modding-mcp</h2><p class="sub">仓库 https://github.com/GMBOXMOD/rw-modding-mcp，变更见 CHANGELOG.md。</p><p class="sub">工具 作用 ------ lookupkey 按节查键，默认短释义与例子，保留来源、资料冲突和约束；完整资料按需取 searchsource 批量搜 Java 源码，带有限上下文、分页、空结果诊断和内容预算 getref 按主题和名称查事件、函数、枚举、内存类型与规则；无参数保留完整速查表 lint 静态检查文件或目录；支持批量 paths，未改动的文件复用上次结论 explainactions 画 事件/autoTrigger/按钮 → 动作 → alsoTriggerAction 的调用图，标 repeat、条件、memory 读写</p><p class="sub">查多个键用 lookupkey(keys=[...])，检查多个文件用 lint(paths=[...])。 批量查询能减少模型往返，精简输出能减少进入上下文的资料量；实际费用取决于客户端、模型和缓存。 本地 lint 缓存只节省检查时间，不是模型的提示词缓存。MCP 也不能限制客户端的 Bash、子 agent 或模型请求预算。</p><p class="sub">- lookupkey 默认 detail=&quot;brief&quot;：每个节最多一条短释义/例子，最多展示三个节。 长说明标 truncated，过长的例子用 exampleomitted 标明省略，不返回半段配置；未展示的节标 entriesomitted。 约束、资料冲突和重要说明保留。 section 接受 action、[actionbtn] 或 M 等节名/章节字母。 sectionmatch=false 表示资料没有确认指定节的用法，不等于该键在引擎里绝对不可用。 一次最多 32 个不同的键，重复输入只查一次；count 是去重后的数量，requestedcount 是输入数量。 - 返回形状变化：默认模式不再返回原始 csv / cn 数组，改用 entries；依赖原始字段的程序 请显式传 detail=&quot;full&quot;。旧的位置参数保留，完整模式保留原有原始资料字段。 - searchsource 默认 10 条匹配、前后各 2 行（contextlines 可设 0–5）。 patterns 一次最多 8 个不同的查询，同一行匹配多个词只返回一次，计数见 bypattern。 mode=&quot;literal&quot; 按原文匹配，找 %{ 就直接传 %{，不要写 %\{。 正则使用 mode=&quot;regex&quot;；旧的 regex=True 仍可用，但不能与 mode=&quot;literal&quot; 冲突。 pathfilter 是路径子串而非 glob。空结果看 reason / hints，不会擅自改模式或扩大范围。 - 搜索的 maxchars 默认 8000，范围 1000–20000，限制 matches 的紧凑 JSON 字符数， 不包含结果元数据，也不是 token 数。数量或字符预算达到上限时，用 nextoffset 作为下次的 offset。 超长匹配行/上下文会标明截短；分页只在进程内源码索引不变时稳定，重新反编译后需重启服务。 - getref() 无参数仍返回完整速查表。常用主题：events、functions、enums、memory、 sections、rules、mustpair、hardconstraints。name 按名称筛选，需同时指定 topic。 这轮只查询已有资料；没有新增教程模板，也不把“名称收录”当作运行时语义已验证。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/GMBOXMOD--rw-modding-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/LiCinCan--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">LiCinCan/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 953</span><span>Python</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/anujasid--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">anujasid/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 679</span><span>Python</span></span>
+</a><a class="card" href="/s/yzg1226--mcd-party-officer.html">
+  <span class="name"><span class="owner">yzg1226/</span>mcd-party-officer</span>
+  <p>🍟 麦当劳门店派对成团调度 Skill — 把派对从「策划」推进到「办得成」：成团概率雷达 / 包场vs拼团 / 择日黄历 / 儿童营养指数 / 招募卡与邀请函</p>
+  <span class="meta"><span>⭐ 243</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 222</span><span>Python</span></span>
+</a><a class="card" href="/s/hirotomasato--yowes.html">
+  <span class="name"><span class="owner">hirotomasato/</span>yowes</span>
+  <p>Generate realistic teacher documents (ID cards, licenses, letters) for 13 countries via MCP.</p>
+  <span class="meta"><span>⭐ 174</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

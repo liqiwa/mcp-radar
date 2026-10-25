@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xiaozhangup/Oh-My-McDonald — MCP Server | MCP Radar</title>
+<meta name="description" content="基于麦当劳官方 MCP 的对话式 AI Skill，支持餐品推荐、门店比价、优惠查询、营养计算和探索记录，并通过 Python 生成体素风格分享图片。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/xiaozhangup--Oh-My-McDonald.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="xiaozhangup/Oh-My-McDonald — MCP Server | MCP Radar">
+<meta property="og:description" content="基于麦当劳官方 MCP 的对话式 AI Skill，支持餐品推荐、门店比价、优惠查询、营养计算和探索记录，并通过 Python 生成体素风格分享图片。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "xiaozhangup/Oh-My-McDonald", "description": "基于麦当劳官方 MCP 的对话式 AI Skill，支持餐品推荐、门店比价、优惠查询、营养计算和探索记录，并通过 Python 生成体素风格分享图片。", "codeRepository": "https://github.com/xiaozhangup/Oh-My-McDonald", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/xiaozhangup--Oh-My-McDonald.html", "dateCreated": "2026-10-24"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">xiaozhangup/</span>Oh-My-McDonald</h1>
+<p class="sub">基于麦当劳官方 MCP 的对话式 AI Skill，支持餐品推荐、门店比价、优惠查询、营养计算和探索记录，并通过 Python 生成体素风格分享图片。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>80</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 800.0</b></div>
+  <div class="chip">created <b>2026-10-24</b></div>
+  <div class="chip">on radar since <b>2026-10-25</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/ai-skill.html">ai-skill</a><a class="topic" href="/topic/coupons.html">coupons</a><a class="topic" href="/topic/data-visualization.html">data-visualization</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcdonalds-mcp.html">mcdonalds-mcp</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/nutrition.html">nutrition</a><a class="topic" href="/topic/python.html">python</a><span class="topic">voxel</span></div>
+<a class="btn" href="https://github.com/xiaozhangup/Oh-My-McDonald" rel="noopener">View on GitHub ↗</a>
+<h2>About Oh-My-McDonald</h2><p class="sub">https://github.com/user-attachments/assets/e0bc2d36-26e1-42b6-9329-985fb6f0117f</p><p class="sub">Oh-My-McDonald 是一个基于麦当劳官方 MCP 的对话驱动 AI Skill。</p><p class="sub">你可以直接告诉 AI 今天想吃什么、预算多少、有什么不想吃的，也可以查询门店价格、优惠券、活动和餐品营养。吃过的餐品和去过的门店经过确认后，还能保存成自己的探索记录。</p><p class="sub">项目使用 Python 本地脚本处理数据和生成图片，将查询结果整理成四种体素风格的 PNG 场景。不需要网页界面，也不依赖图片生成 API。</p><p class="sub">餐品图鉴使用演示记录，图片中保留了演示标识。其余预览基于 2026 年 10 月 24 日的真实 MCP 查询快照，并非实时数据。发布图片仅展示必要的餐品名称、门店名称、价格、营养数据和优惠标题。</p><p class="sub">项目通过麦当劳官方 MCP 获取餐品、门店、价格、优惠和营养信息，由 AI 理解用户的自然语言需求，再交给 Python 脚本完成查询辅助、数据处理、记录保存和图片渲染。</p><p class="sub">- 今天想吃麦当劳，预算 35 元，不要辣的，有什么推荐？ - 帮我从符合条件的餐品里随机挑一个。 - 这份套餐在附近三家门店分别多少钱？ - 我现在有哪些可用券？最近有没有活动？ - 这顿饭的能量和蛋白质分别是多少？ - 我刚刚吃过这个汉堡，帮我记下来。 - 把我吃过的餐品生成一张图鉴。</p><p class="sub">1. 将分散的餐品、门店和优惠信息放到同一次对话中查询。 2. 让用户可以按照自己的实际需求选择餐品，并保存经过确认的探索记录。 3. 将原本以文字和数字呈现的信息转换成更直观、方便分享的图片。</p><p class="sub">- 经常吃麦当劳，想了解不同餐品和优惠信息的人。 - 想根据预算、口味和排除条件决定今天吃什么的人。 - 想比较不同门店同款商品价格的人。 - 想记录自己吃过哪些餐品、去过哪些门店的人。 - 对 MCP、AI Skill、本地图像生成感兴趣的开发者。</p><p class="sub">- 设置用餐预算。 - 排除不想吃的餐品或类型。 - 从符合条件的真实候选中随机选择。 - 单次抽选最多使用 6 个候选餐品组合。</p><p class="sub">- 查询附近门店。 - 查看指定商品的详细信息。 - 对最多 3 家选定门店进行价格比较。 - 按当前测试方案计算价格。 - 将比较结果生成体素街道图片。</p><p class="sub">- 查询用户优惠券信息。 - 查看活动日历。 - 按日期统计可用券和活动数量。 - 标出优惠券到期日期。 - 展示近期到期的优惠券和已发布的活动。</p><p class="sub">首页重点展示今日有效券、最近到期的优惠券和近期活动；完整明细放在续页中，避免所有信息挤在同一张图片里。</p><p class="sub">日历按本人券包的有效日期统计。券的适用时段、门店和商品条件按 MCP 返回的信息处理。</p><p class="sub">- 本餐食物放在同一餐盘中。 - 营养数据以小票形式展示。 - 蔬菜、水果和奶类等补充搭配单独摆放。</p><p class="sub">- 已吃过且确认保存的餐品会点亮。 - 尚未确认记录的餐品保持灰色。 - 可以统计已点亮的餐品数量。 - 可以记录和统计探店数量。 - 演示记录与真实记录明确区分。</p><p class="sub">目前包含 43 个粗体素模型，使用 Python 构建整数几何，按 8 px/格 的规则进行渲染。</p><p class="sub">场景 展示内容 --- --- 餐品图鉴 分区展馆、转弯步道、餐品展台和点亮状态 优惠日历 整月优惠街区、今日信息、到期提醒和活动告示栏 门店比价 体素街道、门店建筑和对应的价格标牌 营养餐桌 套餐餐盘、营养小票和餐外搭配参考</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/xiaozhangup--Oh-My-McDonald.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/693696817--mcd-roundtable.html">
+  <span class="name"><span class="owner">693696817/</span>mcd-roundtable</span>
+  <p>麦门圆桌（mcd-roundtable）｜五个 AI 人格辩论，逼出最优麦当劳订单。基于麦当劳 MCP（mcd-mcp / Model Context Protocol）的多智能体点餐决策 Skill：菜单、券、营养、价格全部来自官方接口，金额只认 calculate-price，绝不估算。凑单最省 / 优惠券最大化 / 营养配餐 / 一键下单。Multi-agent McDonald&#x27;s MCP</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/hujjun--mcd-saver-strategist.html">
+  <span class="name"><span class="owner">hujjun/</span>mcd-saver-strategist</span>
+  <p>麦当劳省钱点餐助手（麦门精算师）｜麦当劳优惠券组合优化 Skill：拉取麦当劳菜单与全部可用优惠券，算出最省的点餐组合，巨无霸套餐 ¥47 → ¥21.9（省 53%）。McDonalds MCP（麦当劳 MCP）coupon optimizer · McDonalds China MCP Server · Agent Skill for WorkBuddy · 麦当劳程序员创意开发大赛参赛作品</p>
+  <span class="meta"><span>⭐ 222</span><span>Python</span></span>
+</a><a class="card" href="/s/polaris-smart--mcd-agent-gourmet.html">
+  <span class="name"><span class="owner">polaris-smart/</span>mcd-agent-gourmet</span>
+  <p>把菜单价换成官方当次核价：一句话说清预算和口味，给你一个答案 + 可复制的点单卡，并算清比另一种点法省多少钱（示例：单品直选 ¥48.50 vs 三件套 ¥36.50，省 ¥12.00/24.7%）。只读 MCP、零依赖 Python、免 Token 网页体验。</p>
+  <span class="meta"><span>⭐ 37</span><span>Python</span></span>
+</a><a class="card" href="/s/Lemon177777--mcd-omni-assistant.html">
+  <span class="name"><span class="owner">Lemon177777/</span>mcd-omni-assistant</span>
+  <p>麦当劳 MCP 全能助手 | 全覆盖 35 个工具 · 7 大工作流 · 14 条防错铁律 | 领券 / 点餐 / 外送 / 派对预约 / 积分到期止损，附零依赖 CLI 通道</p>
+  <span class="meta"><span>⭐ 33</span><span>Python</span></span>
+</a><a class="card" href="/s/Donglaiye--mcd-calorie-architect.html">
+  <span class="name"><span class="owner">Donglaiye/</span>mcd-calorie-architect</span>
+  <p>麦门卡路里精算师 - 基于麦当劳 MCP 真实营养数据的热量约束配餐Skill</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/adexbn--walk-kcal.html">
+  <span class="name"><span class="owner">adexbn/</span>walk-kcal</span>
+  <p>你今天还能吃多少卡，取决于你愿意走多远 —— 用步行距离换卡路里额度的吃饭决策。麦当劳官方营养值 × 周边餐厅，算你这顿还吃得下什么。</p>
+  <span class="meta"><span>⭐ 160</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
