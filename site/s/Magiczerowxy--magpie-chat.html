@@ -92,12 +92,12 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">⭐ <b>18</b> stars</div>
   <div class="chip">⑂ <b>1</b> forks</div>
   <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
-  <div class="chip">momentum <b>▲ 182.0</b></div>
+  <div class="chip">momentum <b>▲ 92.0</b></div>
   <div class="chip">created <b>2026-10-24</b></div>
   <div class="chip">on radar since <b>2026-10-24</b></div>
   <div class="chip">star trend <b>4 → 18</b> since 2026-10-24</div>
 </div>
-<div class="topics"><span class="topic">chat</span><span class="topic">magpie</span><span class="topic">magpie-page</span><span class="topic">magpie-plugin</span><span class="topic">opencode-plugin</span></div>
+<div class="topics"><span class="topic">chat</span><span class="topic">magpie</span><span class="topic">magpie-page</span><span class="topic">magpie-plugin</span><a class="topic" href="/topic/opencode-plugin.html">opencode-plugin</a></div>
 <a class="btn" href="https://github.com/Magiczerowxy/magpie-chat" rel="noopener">View on GitHub ↗</a>
 <h2>About magpie-chat</h2><p class="sub">在 magpie 窗口里加一个「对话」页面。 用 magpie 已经接好的模型、指令、技能和 MCP 服务器聊天，不用再开一个 Agent。</p><p class="sub">A chat page inside magpie&#x27;s window. Talk with magpie&#x27;s own models, instructions, skills and MCP servers — no second agent needed.</p><p class="sub">- 一个页面。装好后侧栏「插件」分组里出现「对话」。 - 用 magpie 的模型。模型列表来自网关 /v1/models，切换即时生效；有推理档位的模型会给出对应的思考强度选项。 - 用 magpie 的配置。右侧栏里勾选 ~/.config/magpie/library/ 的指令与技能（拼进 system prompt）、勾选 MCP 服务器（工具以 toolcalls 真正执行）。 - 多模态。左下角「+」选图片或文件，也可以直接把文件拖进页面，或粘贴剪贴板里的图片。图片以 imageurl 交给模型，气泡里显示缩略图、点开看大图。 - 流式输出。思考过程边收边展开，输出结束后自动收起；正文逐字出现。 - 公式。$…$、$$…$$、\(…\)、\[…\] 由本地 KaTeX 渲染，随包打包，不连 CDN。 - 对话留存。存在 magpie 配置目录的 magpie-chat/conversations/；每条可以置顶或删除。 - 和 magpie 同一个样子。配色与字体取自 magpie 自己的设计令牌，切换主题时对话页跟着变。 - 可调布局。右侧栏「布局」里两个滑条：会话区宽度（100% 即铺满，最窄 560px）、输入框宽度；左右两侧栏都能拖拽调宽、也都能收起。 - 代码折叠。一条消息里有多段代码时只展开最后一段，其余收起。</p><p class="sub">或者在应用里：插件 → 发现 → 非官方插件 · GitHub，搜索 magpie-chat 后点「安装」。</p><p class="sub">这个插件不注册供应商、不需要登录、不保存任何凭据。它复用 magpie 自己已经配好的模型和额度，请求全部由 magpie 的网关发出，所以用量统计与故障切换和 Agent 一致。</p><p class="sub">magpie 的插件页面跑在 sandbox=&quot;allow-scripts&quot; 的框架里：没有网络权限、不能内嵌框架、不能用存储，唯一允许的联网动作是把自身导航到别处。所以这个插件是两层的：</p><p class="sub">1. page/index.html 是 magpie 托管的「带路页」，读窗口主题后 location.replace 到本地服务。 2. index.mjs 作为 OpenCode v1 插件被 magpie 的 Bun 宿主加载，加载时启动那个本地服务（127.0.0.1:3477）。 3. lib/server.mjs 提供 /api/ 并把聊天请求转发给 magpie 网关；chat/ 是真正的界面。</p><p class="sub">服务只监听回环地址，并拒绝非同源请求（只接受 opaque 的 Origin: null 与自身 origin），任意网页都无法借它消耗额度。</p><p class="sub">- MCP 实现了 Streamable HTTP 与 stdio，不含旧版 GET SSE 长连接与断线重连。 - 图片以 base64 内联发送，单图上限 24MB；对话很长时请求体也会变大。 - 供应商图标：magpie 的内置图标编在它自己的二进制里，取不到时服务端会画一个首字母 SVG。 - 工具调用最多 8 轮。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -112,6 +112,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Winterrks/</span>telepathy</span>
   <p>Allow your coding agents to self discover and collaborate with eachother (Claude Code, Codex, open code and other 9 supported)</p>
   <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/n5za--osint-mcp.html">
+  <span class="name"><span class="owner">n5za/</span>osint-mcp</span>
+  <p>86-tool OSINT MCP server with private evidence graphs, image analysis, reverse search, and person dossiers.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
 </a><a class="card" href="/s/cinderline--northcinder.html">
   <span class="name"><span class="owner">cinderline/</span>northcinder</span>
   <p>Open-source MCP server for comparing products and asking the buyer before purchase.</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
   <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
   <span class="meta"><span>⭐ 598</span><span>JavaScript</span></span>
-</a><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
-  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
-  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
-  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
 </a>
 
 

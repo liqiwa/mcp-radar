@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil-creat/cloudpuls — MCP Server | MCP Radar</title>
+<meta name="description" content="AI workspace on Cloudflare Workers: build and publish apps from a prompt, generate and edit images, research with sources, compare Groq and Gemini wit — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Nikhil-creat--cloudpuls.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Nikhil-creat/cloudpuls — MCP Server | MCP Radar">
+<meta property="og:description" content="AI workspace on Cloudflare Workers: build and publish apps from a prompt, generate and edit images, research with sources, compare Groq and Gemini wit — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Nikhil-creat/cloudpuls", "description": "AI workspace on Cloudflare Workers: build and publish apps from a prompt, generate and edit images, research with sources, compare Groq and Gemini with live streaming, end-to-end encrypted sync, tasks", "codeRepository": "https://github.com/Nikhil-creat/cloudpuls", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Nikhil-creat--cloudpuls.html", "dateCreated": "2026-10-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Nikhil-creat/</span>cloudpuls</h1>
+<p class="sub">AI workspace on Cloudflare Workers: build and publish apps from a prompt, generate and edit images, research with sources, compare Groq and Gemini with live streaming, end-to-end encrypted sync, tasks</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-10-22</b></div>
+  <div class="chip">on radar since <b>2026-10-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ananthacharysriramoju.html">ananthacharysriramoju</a><a class="topic" href="/topic/chatbot.html">chatbot</a><span class="topic">cloudpulse-ai</span><a class="topic" href="/topic/fastapi.html">fastapi</a><a class="topic" href="/topic/gemini.html">gemini</a><a class="topic" href="/topic/groq.html">groq</a><a class="topic" href="/topic/nextjs.html">nextjs</a><a class="topic" href="/topic/nikhilcharysriramoju.html">nikhilcharysriramoju</a><span class="topic">pytroch</span><a class="topic" href="/topic/rag.html">rag</a></div>
+<a class="btn" href="https://github.com/Nikhil-creat/cloudpuls" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://cloudpuls.23641a05k6.workers.dev/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About cloudpuls</h2><p class="sub">Agentic multi-cloud FinOps, security auto-remediation and AI observability. MCP-native, with corrective RAG, a CNN anomaly detector, an LLM firewall and a human-approved agent swarm.</p><p class="sub">Live site (after you deploy): https://nikhil-creat.github.io/cloudpulse-ai/</p><p class="sub">CloudPulse Studio (new) Open studio.html: build apps from a prompt, generate and edit images, research with sources, track tasks, automate workflows, and run an agent that uses all of them. See docs/STUDIO.md.</p><p class="sub">Deploy live (Vercel, Cloudflare Pages or Render) See docs/HOSTINGOPTIONS.md, docs/VERCELDEPLOY.md and docs/CLOUDFLAREDEPLOY.md.</p><p class="sub">Vercel See docs/VERCELDEPLOY.md. Import the repo with Root Directory site, add GROQAPIKEY and GEMINIAPIKEY, deploy. The assistant then works for every visitor with keys kept server-side.</p><p class="sub">What&#x27;s new in v2.2 Serverless LLM proxy, strict CSP, credentials section, live GitHub activity, command palette (Ctrl K), voice in and out, offline service worker, login lockout, audit-chain verification, AI alert explanations and weekly executive report.</p><p class="sub">What&#x27;s new in v2 - Agentic AI: LangGraph swarm with a policy-as-code critic and one self-correction pass; conversation memory in Redis. - Corrective RAG: Qdrant retrieval, relevance grading, query rewrite and retry, seeded runbook knowledge base, offline recall eval. - CNN: PyTorch heatmap classifier plus a training script; the site shows layer-1 feature maps. - Security: LLM firewall (injection and secret redaction), indirect-injection fencing, TOTP MFA, rate limits, nginx edge, hash-chained audit log, STRIDE model. - FinOps: EWMA forecast, robust</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Nikhil-creat--cloudpuls.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Nikhil-creat--cloudpulse-ai.html">
+  <span class="name"><span class="owner">Nikhil-creat/</span>cloudpulse-ai</span>
+  <p>Agentic multi-cloud FinOps, security auto-remediation and AI observability platform. FastAPI + LangGraph agent swarm, corrective RAG (Qdrant), PyTorch CNN anomaly detection, Groq + Gemini LLM gateway,</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Nikhil-creat--modelroute.html">
+  <span class="name"><span class="owner">Nikhil-creat/</span>modelroute</span>
+  <p>Agentic LLM router that sends each request to a LoRA-tuned small model or a larger one by confidence, cutting cost and latency without losing quality. LangGraph, RAG, CNN, Groq and Gemini, with PII an</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Nikhil-creat--deepoptima.html">
+  <span class="name"><span class="owner">Nikhil-creat/</span>deepoptima</span>
+  <p>Autonomous neural architecture search (NAS) platform: NSGA-II evolution of CNN/ViT designs, distributed GPU worker mesh, agentic Groq + Gemini swarm, MCP server, Wasm sandbox, mTLS. FastAPI + PyTorch </p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/SujalXplores--Agent-K.html">
+  <span class="name"><span class="owner">SujalXplores/</span>Agent-K</span>
+  <p>Code-enforced incident-response agent that investigates SigNoz alerts, publishes evidence-backed root-cause claims, and gates every action behind a safety policy. Built for Agents of SigNoz hackathon.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/leluong141996-dev--Agent-Brain-Hub.html">
+  <span class="name"><span class="owner">leluong141996-dev/</span>Agent-Brain-Hub</span>
+  <p>Shared, brain-inspired memory for AI agents: 13 brain regions with awake/sleep loops, a live visualizer, agents connected via REST/SDK/MCP, governance &amp; audit, and business-value metrics. Works with C</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Cashara-io--eunomia.html">
+  <span class="name"><span class="owner">Cashara-io/</span>eunomia</span>
+  <p>Self-hosted shared memory for AI agents: vaults of people, facts and decisions your agents recall over MCP or REST, with semantic, keyword and graph search.</p>
+  <span class="meta"><span>⭐ 12</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

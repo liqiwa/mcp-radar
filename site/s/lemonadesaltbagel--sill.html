@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lemonadesaltbagel/sill — MCP Server | MCP Radar</title>
+<meta name="description" content="Native Windows Bash built for AI coding agents. No Git, MSYS2, or WSL needed. One-command install that auto-configures Claude Code, Codex, opencode an — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/lemonadesaltbagel--sill.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="lemonadesaltbagel/sill — MCP Server | MCP Radar">
+<meta property="og:description" content="Native Windows Bash built for AI coding agents. No Git, MSYS2, or WSL needed. One-command install that auto-configures Claude Code, Codex, opencode an — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "lemonadesaltbagel/sill", "description": "Native Windows Bash built for AI coding agents. No Git, MSYS2, or WSL needed. One-command install that auto-configures Claude Code, Codex, opencode and more, with 70%+ fewer failed tool calls.", "codeRepository": "https://github.com/lemonadesaltbagel/sill", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/lemonadesaltbagel--sill.html", "dateCreated": "2026-10-23"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">lemonadesaltbagel/</span>sill</h1>
+<p class="sub">Native Windows Bash built for AI coding agents. No Git, MSYS2, or WSL needed. One-command install that auto-configures Claude Code, Codex, opencode and more, with 70%+ fewer failed tool calls.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>22</b> stars</div>
+  <div class="chip">⑂ <b>5</b> forks</div>
+  <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
+  <div class="chip">momentum <b>▲ 120.0</b></div>
+  <div class="chip">created <b>2026-10-23</b></div>
+  <div class="chip">on radar since <b>2026-10-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/bash.html">bash</a><span class="topic">bash-interpreter</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/coding-agents.html">coding-agents</a><span class="topic">command-line</span><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">open-code</span><a class="topic" href="/topic/rust.html">rust</a><span class="topic">shell</span><a class="topic" href="/topic/windows.html">windows</a><span class="topic">windows-native</span></div>
+<a class="btn" href="https://github.com/lemonadesaltbagel/sill" rel="noopener">View on GitHub ↗</a>
+<h2>About sill</h2><p class="sub">Bash for coding agents on native Windows. sill is a drop-in bash.exe: a Bash interpreter (a fork of brush) with a Windows adapter built for the way agents run commands. It needs no Git, MSYS2 or WSL. Point Claude Code, opencode or Codex at it, or add it to Codex CLI or Gemini CLI as an MCP server, and the agent&#x27;s shell commands behave the way the model expects from Linux, on Windows&#x27; own programs and files.</p><p class="sub">An agent on Windows loses most of its failed commands at the boundary between the shell and Windows, not in its own reasoning:</p><p class="sub">- Arguments: and quotes get re-expanded or mangled on their way to .exe and .bat programs. - Paths: /c/... and C:\... forms get mixed up. - Encoding: non-English text turns to mojibake. - Console windows: one flashes up per command. - Background servers: they hold the harness&#x27;s output pipe until it times out. - Missing tools: make, rg, ps, lsof aren&#x27;t there.</p><p class="sub">sill takes each of these on directly, with a test for each.</p><p class="sub">All measured on Windows 11 with the Git Bash that ships with Git for Windows as the comparison.</p><p class="sub">Conformance suite (sill-bash-tests): 56 cases, run through bash.exe -c and through the MCP server (56/56 both ways) covering what agents rely on, each with the reason it matters. Areas: arguments to native programs, paths, encoding, line endings, processes, size limits, ! scripts, tools, errors.</p><p class="sub">sill Git Bash --------- GitHub&#x27;s windows-2025 runner (en-US) 56/56 43/56 A Chinese-locale laptop (code page 936) 56/56 39/56</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/lemonadesaltbagel--sill.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Graphicle-AI--graphicle.html">
+  <span class="name"><span class="owner">Graphicle-AI/</span>graphicle</span>
+  <p>Code graph and memory for your coding agents, in one Rust program. For Claude Code, Codex, Cursor and any MCP client.</p>
+  <span class="meta"><span>⭐ 325</span><span>Rust</span></span>
+</a><a class="card" href="/s/jimoto-no-llm--rustdsh.html">
+  <span class="name"><span class="owner">jimoto-no-llm/</span>rustdsh</span>
+  <p>Fast Rust launcher for DeepSeek Harness, with clear Claude Code/Codex migration, model setup and lightweight local tools</p>
+  <span class="meta"><span>⭐ 67</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/larstalian--tincan.html">
+  <span class="name"><span class="owner">larstalian/</span>tincan</span>
+  <p>tincan multiplayer: your agents, talking to your teammates&#x27; agents. Peer to peer, no server.</p>
+  <span class="meta"><span>⭐ 12</span><span>Rust</span></span>
+</a><a class="card" href="/s/Kaseban--baton.html">
+  <span class="name"><span class="owner">Kaseban/</span>baton</span>
+  <p>Convert AI coding sessions between Claude Code, Codex, OpenCode, Zed, Aider, Gemini CLI, Cursor, Cline &amp; more — lossless, round-trip tested. MCP server + CLI.</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+</a><a class="card" href="/s/NiazMorshed2007--jev-review.html">
+  <span class="name"><span class="owner">NiazMorshed2007/</span>jev-review</span>
+  <p>Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.</p>
+  <span class="meta"><span>⭐ 209</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Umair--stalemap.html">
+  <span class="name"><span class="owner">Umair/</span>stalemap</span>
+  <p>Tell your coding agent which dependencies changed after its training cutoff. Diffs types and changelogs, writes a short block into AGENTS.md / CLAUDE.md.</p>
+  <span class="meta"><span>⭐ 103</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

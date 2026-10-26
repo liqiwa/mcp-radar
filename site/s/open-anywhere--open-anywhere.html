@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>open-anywhere/open-anywhere — MCP Server | MCP Radar</title>
+<meta name="description" content="说出你的需要，让应用在身边的屏幕上诞生——云端编码 Agent 当场生成 Web 应用，投到电视或投影上，并用语音继续操作。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/open-anywhere--open-anywhere.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="open-anywhere/open-anywhere — MCP Server | MCP Radar">
+<meta property="og:description" content="说出你的需要，让应用在身边的屏幕上诞生——云端编码 Agent 当场生成 Web 应用，投到电视或投影上，并用语音继续操作。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "open-anywhere/open-anywhere", "description": "说出你的需要，让应用在身边的屏幕上诞生——云端编码 Agent 当场生成 Web 应用，投到电视或投影上，并用语音继续操作。", "codeRepository": "https://github.com/open-anywhere/open-anywhere", "programmingLanguage": "Go", "url": "https://mcp.liqiwa.com/s/open-anywhere--open-anywhere.html", "dateCreated": "2026-10-23"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">open-anywhere/</span>open-anywhere</h1>
+<p class="sub">说出你的需要，让应用在身边的屏幕上诞生——云端编码 Agent 当场生成 Web 应用，投到电视或投影上，并用语音继续操作。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>9</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/go.html"><span class="lang-dot" style="--lang:#00ADD8"></span><b>Go</b></a>
+  <div class="chip">momentum <b>▲ 45.0</b></div>
+  <div class="chip">created <b>2026-10-23</b></div>
+  <div class="chip">on radar since <b>2026-10-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/code-generation.html">code-generation</a><span class="topic">dlna</span><span class="topic">generative-apps</span><a class="topic" href="/topic/go.html">go</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">on-demand</span><span class="topic">party-games</span><span class="topic">projector</span><span class="topic">second-screen</span><span class="topic">smart-tv</span><a class="topic" href="/topic/voice-assistant.html">voice-assistant</a></div>
+<a class="btn" href="https://github.com/open-anywhere/open-anywhere" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://www.bilibili.com/video/BV1AznU6YELm/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About open-anywhere</h2><p class="sub">Open Anywhere 让人用一句话描述此刻的需要，由云端编码 Agent 当场生成一个可运行的 Web 应用，投到身边的屏幕上，并继续用语音操作它：</p><p class="sub">我们有三个人，想比较一下每个人的知识储备量，请你做个电影知识竞赛 App，你来主持，放到电视上。</p><p class="sub">应用不在菜单里，是被当场写出来的；玩法不在代码里，是被当场理解并驱动的。有块屏幕，就能开场。</p><p class="sub">参赛议题：灵矽应用 —— 通过 DLNA 把画面投到电视上，并通过语音控制 code agent 进行编程开发（AirPlay 为后续扩展）。</p><p class="sub">现场 你说 屏幕上长出来什么 --- --- --- 家庭知识竞赛 “一家三口，十道自然知识题，你出题、你记分。” 题目、抢答顺序和三人的比分；一家人一起上桌，不用留一个人全程操作 做饭 “今晚做糖醋排骨，把步骤和计时放到屏幕上。” 分步菜谱、火候提醒和倒计时；手上沾着油，说一句“下一步”就翻页 陪伴 “把你自己放到电视上，陪我们聊会儿天。” 智能体以形象出现在屏幕上，随对话做出表情和动作，声音变成一个在场的角色 大富翁 “我们四个想玩大富翁，棋盘上电视，你来当银行。” 棋盘、骰子、地契和资产表；掷骰子、买地、结算都由它接手 科普读物 “给孩子做一本讲恐龙灭绝的书，能一页页翻。” 图文分页、语音翻页，读到哪儿都能停下来问一句“为什么”</p><p class="sub">这些应用没有一款是提前开发的，也不需要进菜单。场景不在代码里，在你那句话里。 想玩什么、想学什么、想做什么，甚至只是想聊会儿天，说出来就行。</p><p class="sub">灵矽没有屏幕，但中国有 4.39 亿台电视。只靠预设技能，语音硬件最终都会变成一台会说话的故事机；能当场写应用、投到身边的电视上，它就从玩具变成了现场的活动服务——每一块电视，都可以是灵矽的屏幕。</p><p class="sub">太具体、太短、太不值钱。但这样的场合每天都在发生：民宿今晚要接待客人，轰趴馆这周要办活动，他们本来就在为“这一场”付钱。我们按场定价：朋友局 199 元一场，商家单场 399 元、包年 3,999 元，多带来 2–3 场活动就回本。</p><p class="sub">成品在出厂时就做完了，用户几天就能摸到边界，新鲜感过去就放进抽屉。产能是“你需要什么，它当场生产什么”：每遇到一个新场合，它就重新长出一个应用——在孩子房间是亲子问答，在客厅是三人竞赛，在店里是活动大屏。它可能一个月才用一次，但可以在客厅待五年。</p><p class="sub">生成只是第一步：画面要上屏，几个人要一起玩，语音还要能继续操作——开始、下一题、查比分。四个人、四个当场生成的应用、一场之内全部玩完，中途还切换过。付费与复购尚未验证。</p><p class="sub">商业规划见商业计划书：市场机会、成品与产能的商业模型、七个年龄段需求地图、定价体系、第一周闭环、单元经济与三年目标。市场背景、产品定位与收费模式的完整论证见商业策略。</p><p class="sub">你说一句话：几个人、什么主题、投到哪块屏。系统听懂它，把它变成一个能跑的应用，再把画面送到电视上——说话 → 听懂 → 生成应用 → 上屏 → 继续用语音操作。</p><p class="sub">这一步 由谁完成 做什么 --- --- --- 听懂 灵矽（语音入口） 识别场景、人数、主题与屏幕，决定调哪个工具 编排 控制面 校验请求、调度构建、转发操作 写代码 AgentAPI 在隔离环境里生成应用并自测 上屏 Render 启动应用、采集画面、送出媒体流</p><p class="sub">生成的应用把每个操作都声明成 OpenAPI，控制面提供稳定的 MCP 工具，所以语音不只能创建它，还能在运行时操作它：开始、下一题、查比分，都是一次业务调用。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/open-anywhere--open-anywhere.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/MuhittinYilmazer--akana.html">
+  <span class="name"><span class="owner">MuhittinYilmazer/</span>akana</span>
+  <p>Self-hosted, local-first AI assistant server: swappable LLM providers, review-gated memory, an encrypted vault, and wake-word voice. No accounts, no telemetry.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/VictorCV-DAM--ha-nexus-mcp.html">
+  <span class="name"><span class="owner">VictorCV-DAM/</span>ha-nexus-mcp</span>
+  <p>The Click &amp; Install Agentic MCP Client for Home Assistant.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/axisvela--praxo-core.html">
+  <span class="name"><span class="owner">axisvela/</span>praxo-core</span>
+  <p>MIT-licensed agent framework for the AxisVela ecosystem: governed agent loop, model/tool/memory/event primitives, plugins, sandboxing, and policy.</p>
+  <span class="meta"><span>⭐ 11</span><span>Go</span></span>
+</a><a class="card" href="/s/magna-nz--tallybook.html">
+  <span class="name"><span class="owner">magna-nz/</span>tallybook</span>
+  <p>Prices your Claude Code and Codex sessions from the transcripts on disk, shows what each agent cost over any period, and tells you in plain English what would have been cheaper. CLI, Browser UI and MC</p>
+  <span class="meta"><span>⭐ 5</span><span>Go</span></span>
+</a><a class="card" href="/s/sainitish1609--mcp-guard.html">
+  <span class="name"><span class="owner">sainitish1609/</span>mcp-guard</span>
+  <p>🛡️ Ultra-fast local security firewall, secret sanitizer, and context token compressor for Claude Code, Cursor, and MCP AI agents.</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
+  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
+  <p>runs anywhere. uses anything</p>
+  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

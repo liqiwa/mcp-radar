@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qingyebenye-tech/mcd-yearly — MCP Server | MCP Radar</title>
+<meta name="description" content="基于麦当劳官方 MCP 的总结 Skill，呈现今年消费次数、金额、断食记录，并提供下一次使用提醒与每日宜吃指数。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/qingyebenye-tech--mcd-yearly.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="qingyebenye-tech/mcd-yearly — MCP Server | MCP Radar">
+<meta property="og:description" content="基于麦当劳官方 MCP 的总结 Skill，呈现今年消费次数、金额、断食记录，并提供下一次使用提醒与每日宜吃指数。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "qingyebenye-tech/mcd-yearly", "description": "基于麦当劳官方 MCP 的总结 Skill，呈现今年消费次数、金额、断食记录，并提供下一次使用提醒与每日宜吃指数。", "codeRepository": "https://github.com/qingyebenye-tech/mcd-yearly", "programmingLanguage": "Unknown", "url": "https://mcp.liqiwa.com/s/qingyebenye-tech--mcd-yearly.html", "dateCreated": "2026-10-25"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">qingyebenye-tech/</span>mcd-yearly</h1>
+<p class="sub">基于麦当劳官方 MCP 的总结 Skill，呈现今年消费次数、金额、断食记录，并提供下一次使用提醒与每日宜吃指数。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>9</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  
+  <div class="chip">momentum <b>▲ 90.0</b></div>
+  <div class="chip">created <b>2026-10-25</b></div>
+  <div class="chip">on radar since <b>2026-10-26</b></div>
+  
+</div>
+<div class="topics"><span class="topic">annual-report</span><a class="topic" href="/topic/mcd.html">mcd</a><a class="topic" href="/topic/mcdonalds.html">mcdonalds</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/skill.html">skill</a><a class="topic" href="/topic/workbuddy.html">workbuddy</a></div>
+<a class="btn" href="https://github.com/qingyebenye-tech/mcd-yearly" rel="noopener">View on GitHub ↗</a>
+<h2>About mcd-yearly</h2><p class="sub">47 次巨无霸、¥1,286、连续 23 天的断食——这些数字你自己都记不清，但 AI 记得。</p><p class="sub">麦当劳官方 MCP 开放了真实的订单、积分、优惠券、活动数据。与其让这些数据躺在后台，不如把它变成一份有仪式感的年度账单：你今年吃了多少次、花了多少钱、最爱哪一口、断了几天，一目了然。</p><p class="sub">这个 Skill 做的事情很简单：把你的真实订单，翻译成一份值得截图发出去的年度报告。</p><p class="sub">模块 说明 :---:--- 📊 年度总结 累计次数、总花费、最爱餐品、消费高峰月份、最常下单的星期几、最长连续、最长断食 🔔 断食关怀 距离上次吃麦门超过 7 天自动提醒，14 天以上红色警告 🌤️ 今日宜吃指数 综合断食天数、今日活动、临期优惠券、个人化星期偏好，算出 0-100 的宜吃分 🍔 一键推荐下单 告诉你今天宜吃什么，可直接查价、创建订单 ⏰ 下一次使用提醒 基于历史消费频率推算你的&quot;该来了&quot;时间窗口</p><p class="sub">指数 称号 解读 :---:------ 90-100 麦门至尊信徒 今天不吃麦当劳，功德会掉 70-89 麦门忠实信徒 虔诚度在线，稳住 50-69 麦门摇摆路人 可吃可不吃，看心情 30-49 麦门叛逃者 该回来吃吃了 0-29 麦门逆子 快去吃个汉堡赎罪</p><p class="sub">维度 权重 口径 :---::---:--- 近期活跃度 30% 距上次订单天数：≤3 天 100 / 4-7 天 70 / 8-14 天 40 / 15-30 天 20 / 更久 0 消费贡献 25% 本年消费额 ÷ ¥1,000 积分虔诚度 25% 累计积分 ÷ 2,000 券包厚度 20% 手上券数 × 20</p><p class="sub">积分维度用的是 query-my-account 返回的累计积分，不是可用余额——余额会被兑换、抽奖、过期消耗，一个常年吃但刚换完券的人余额可能接近 0，用余额会把最虔诚的用户判成叛逃者。</p><p class="sub">「今日宜吃指数」的星期维度不是按通用规则给分，而是基于你自己的历史订单节奏算出来的：</p><p class="sub">调用 order-list 拉取你历史订单 → 统计每个星期几的下单次数 → 算出今天的「星期偏好分」：</p><p class="sub">举例：你历史订单里周五 12 单、周六 15 单（最高）、周三只有 1 单—— - 今天是周五 → 12 ÷ 15 × 100 = 80 分（撞上你的吃麦节奏） - 今天是周六 → 15 ÷ 15 × 100 = 100 分（你的主战场，满分） - 今天是周三 → 1 ÷ 15 × 100 ≈ 7 分（不是你的吃麦日）</p><p class="sub">为什么这么设计：每个人吃麦当劳的节奏都不一样。有人天天周五金币套餐，有人周末才出门。比起「周六就是高分」的通用规则，让分数随你的真实节奏浮动，才能在「今天就是你平时吃的日子」时给出更有说服力的推荐。</p><p class="sub">数据不足时（历史订单 也可以直接用环境变量注入，避免 Token 落盘：export MCDMCPTOKEN=yourtokenhere</p><p class="sub">把 SKILL.md 作为系统提示词 / Skill 文件加载到 AI 客户端，然后直接问：</p><p class="sub">- 「看看我的麦门年度总结」 - 「我今年吃了多少次麦当劳」 - 「今天宜吃麦当劳吗」</p><p class="sub">详细图文步骤见 workbuddy.md（WorkBuddy 专项）或 MCPINTEGRATION.md。</p><p class="sub">所有数字均来自麦当劳 MCP 真实返回，不编造、不虚构。工具调用失败时自动降级使用已有数据，不中断流程。</p><p class="sub">- 🍟 麦门信徒 —— 想知道今年到底在麦当劳花了多少钱 - 📊 数据爱好者 —— 喜欢网易云/Apple Music 年度报告那种仪式感 - 💸 精打细算的人 —— 想知道自己的优惠券有没有浪费、断食是不是太久 - 🤖 AI Agent 开发者 —— 想学怎么把 MCP 能力包装成有人味的产品</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/qingyebenye-tech--mcd-yearly.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/polaris-smart--mcd-agent-gourmet.html">
+  <span class="name"><span class="owner">polaris-smart/</span>mcd-agent-gourmet</span>
+  <p>把菜单价换成官方当次核价：一句话说清预算和口味，给你一个答案 + 可复制的点单卡，并算清比另一种点法省多少钱（示例：单品直选 ¥48.50 vs 三件套 ¥36.50，省 ¥12.00/24.7%）。只读 MCP、零依赖 Python、免 Token 网页体验。</p>
+  <span class="meta"><span>⭐ 37</span><span>Python</span></span>
+</a><a class="card" href="/s/junxchan54-maker--mcd-cn-assistant.html">
+  <span class="name"><span class="owner">junxchan54-maker/</span>mcd-cn-assistant</span>
+  <p>🍟 麦当劳中国官方 MCP 智能助手技能：把 35 个原子工具编排成 4 条业务流 —— 活动推送 · 联名关注 · 最优惠点餐 · 多人群点聚合账单。算价用 calculate-price 真算，下单必二次确认。｜McDonald&#x27;s China MCP agent skill: campaigns, collab watch, best-value ordering, group bill s</p>
+  <span class="meta"><span>⭐ 38</span><span></span></span>
+</a><a class="card" href="/s/yfw17562-cyber--mcd-what-to-eat.html">
+  <span class="name"><span class="owner">yfw17562-cyber/</span>mcd-what-to-eat</span>
+  <p>🍔 麦门运势抽签点餐 Skill——先摇今日运势（大吉到平六级签等+签诗+宜忌），再随机搭配一整套麦当劳套餐；门店/价格/热量全部来自官方 MCP 实时数据。2026 麦当劳程序员创意开发大赛参赛作品 · 使用 WorkBuddy 开发</p>
+  <span class="meta"><span>⭐ 22</span><span>Python</span></span>
+</a><a class="card" href="/s/lengxi-c--mcd-receipt-studio.html">
+  <span class="name"><span class="owner">lengxi-c/</span>mcd-receipt-studio</span>
+  <p>麦当劳 MCP 驱动的手账向文创小票生成器 —— 用真实订单明细，做一张可编辑、可装饰、可下载打印的麦门票根。</p>
+  <span class="meta"><span>⭐ 20</span><span>HTML</span></span>
+</a><a class="card" href="/s/mytt-10566--mcd-points-vault.html">
+  <span class="name"><span class="owner">mytt-10566/</span>mcd-points-vault</span>
+  <p>把你的麦当劳积分和优惠券当成一份资产来管：折算人民币现值、排出最优兑换出口、量化过期风险，并给出可执行的兑换路径。</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a><a class="card" href="/s/MarkWang90--mcd-memory-can.html">
+  <span class="name"><span class="owner">MarkWang90/</span>mcd-memory-can</span>
+  <p>麦当劳 MCP 订单可视化 · WorkBuddy 开发的九幕长卷生成器 —— 调用麦当劳中国官方 MCP 只读接口 order-list，把历史订单做成《重庆森林》质感的九幕图文长卷（1080×1440 竖图 / 长图 / PDF）</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
