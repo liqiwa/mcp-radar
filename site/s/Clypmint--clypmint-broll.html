@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clypmint/clypmint-broll — MCP Server | MCP Radar</title>
+<meta name="description" content="B-roll of anything for any agent: real photos and footage of what your script names, checked by a vision model, with the rights. MCP server, REST API, — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Clypmint--clypmint-broll.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Clypmint/clypmint-broll — MCP Server | MCP Radar">
+<meta property="og:description" content="B-roll of anything for any agent: real photos and footage of what your script names, checked by a vision model, with the rights. MCP server, REST API, — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Clypmint/clypmint-broll", "description": "B-roll of anything for any agent: real photos and footage of what your script names, checked by a vision model, with the rights. MCP server, REST API, CLI, plugins for Claude Code and Codex, and B-Rol", "codeRepository": "https://github.com/Clypmint/clypmint-broll", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Clypmint--clypmint-broll.html", "dateCreated": "2026-10-24"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Clypmint/</span>clypmint-broll</h1>
+<p class="sub">B-roll of anything for any agent: real photos and footage of what your script names, checked by a vision model, with the rights. MCP server, REST API, CLI, plugins for Claude Code and Codex, and B-Rol</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-10-24</b></div>
+  <div class="chip">on radar since <b>2026-10-27</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agents.html">agents</a><a class="topic" href="/topic/ai-video.html">ai-video</a><a class="topic" href="/topic/api.html">api</a><span class="topic">b-roll</span><a class="topic" href="/topic/benchmark.html">benchmark</a><span class="topic">broll</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/claude-code-plugin.html">claude-code-plugin</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/codex-plugin.html">codex-plugin</a><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">stock-footage</span><a class="topic" href="/topic/video-editing.html">video-editing</a></div>
+<a class="btn" href="https://github.com/Clypmint/clypmint-broll" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://clypmint.com/broll" rel="noopener nofollow">Homepage ↗</a>
+<h2>About clypmint-broll</h2><p class="sub">Clypmint B-Roll (b-roll of anything, for any agent)</p><p class="sub">A b-roll library your agent searches in plain words. Give it one API key and it gets the real shot: the person, company, product, place or event your script names. One search covers Wikimedia Commons, NASA, the Internet Archive, the Library of Congress, Openverse, and the subject&#x27;s own site and YouTube channel. Web mode adds the open web, down to the exact moment inside a YouTube video. A vision model checks every shot, and every shot comes with its rights. Priced per search, from 2 cents, with no stock subscription.</p><p class="sub">Ask for the shot, not the source. You don&#x27;t need to know which archive has the Apollo 11 launch, or which minute of the keynote shows the first iPhone. Send the line from your script and get the shot.</p><p class="sub">Built by Clypmint for its AI video editor, and open to every agent and every video app. Live at clypmint.com/broll.</p><p class="sub">Your first 100 searches are free. Then $0.02 a licensed search, $0.06 a web search, half price through Nov 2. Get a key · Try it in the browser (no key) · Docs · Benchmark</p><p class="sub">Video agents are good at scripts and voices and bad at pictures. Stock shows a CEO; your script names the CEO. Image search gives you links with no license. And an agent can&#x27;t watch a video to find the four seconds it needs.</p><p class="sub">1. Plan. Your agent sends the subject, the line it plays over, and its own search words. The line decides which &quot;Apple&quot; you mean. 2. Find. We look up what the name means on Wikidata, then search every source at once. 3. Check. A vision model scores every shot against what it must show. Wrong person, wate</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Clypmint--clypmint-broll.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/devsolux--storytold.html">
+  <span class="name"><span class="owner">devsolux/</span>storytold</span>
+  <p>Claude Code &amp; Codex plugin for the open-source ArtCraft Craft App Suite: one craft Skill drives 13 local, headless Craft MCP apps (photo, vector, video, RAW, PDF, layout, sheets, docs, slides, CAD, au</p>
+  <span class="meta"><span>⭐ 9</span><span>Python</span></span>
+</a><a class="card" href="/s/osaxyz--sepiace.html">
+  <span class="name"><span class="owner">osaxyz/</span>sepiace</span>
+  <p>Long-term memory for coding agents. The sepiace plugin for Claude Code and Codex.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Global-AI-Group-Inc--content-generation-skills.html">
+  <span class="name"><span class="owner">Global-AI-Group-Inc/</span>content-generation-skills</span>
+  <p>Mira AI content generation skills: genre playbooks and prompting knowledge for AI agents that generate video and images through the Mira MCP server</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/nimbalyst--nimbalyst-wiki.html">
+  <span class="name"><span class="owner">nimbalyst/</span>nimbalyst-wiki</span>
+  <p>A local wiki your agents write for you. Nimbalyst Wiki plugin for Claude Code and Codex: capture decisions, track typed pages, read and edit in your browser.</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Umair--stalemap.html">
+  <span class="name"><span class="owner">Umair/</span>stalemap</span>
+  <p>Tell your coding agent which dependencies changed after its training cutoff. Diffs types and changelogs, writes a short block into AGENTS.md / CLAUDE.md.</p>
+  <span class="meta"><span>⭐ 103</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/FavioVazquez--showtime.html">
+  <span class="name"><span class="owner">FavioVazquez/</span>showtime</span>
+  <p>A local video studio for your coding agent. Describe a video in one sentence: your agent directs, your machine renders. Claude Code, Codex, Cursor, Devin and more. No API keys, no uploads.</p>
+  <span class="meta"><span>⭐ 55</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
