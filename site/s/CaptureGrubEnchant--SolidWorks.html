@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-30</b></div>
   <div class="chip">star trend <b>376 → 385</b> since 2026-09-30</div>
 </div>
-<div class="topics"><span class="topic">3d-modelling</span><span class="topic">3d-modelling-software</span><a class="topic" href="/topic/3d-rendering.html">3d-rendering</a><span class="topic">3d-rendering-software</span><span class="topic">3d-rendering-tools</span><span class="topic">3dexperience</span><span class="topic">3dprinting</span><span class="topic">cad-tools</span><span class="topic">solidworks</span><span class="topic">solidworks-addin</span><span class="topic">solidworks-ai</span><span class="topic">solidworks-automation</span><span class="topic">solidworks-free</span><span class="topic">solidworks-tutorial</span><span class="topic">solidworksapi</span><span class="topic">solidworksmacro</span></div>
+<div class="topics"><span class="topic">3d-modelling</span><span class="topic">3d-modelling-software</span><a class="topic" href="/topic/3d-rendering.html">3d-rendering</a><span class="topic">3d-rendering-software</span><span class="topic">3d-rendering-tools</span><span class="topic">3dexperience</span><span class="topic">3dprinting</span><span class="topic">cad-tools</span><a class="topic" href="/topic/solidworks.html">solidworks</a><span class="topic">solidworks-addin</span><span class="topic">solidworks-ai</span><span class="topic">solidworks-automation</span><span class="topic">solidworks-free</span><span class="topic">solidworks-tutorial</span><span class="topic">solidworksapi</span><span class="topic">solidworksmacro</span></div>
 <a class="btn" href="https://github.com/CaptureGrubEnchant/SolidWorks" rel="noopener">View on GitHub ↗</a>
 <h2>About SolidWorks</h2><p class="sub">Repository: SolidWorks MCP Server (SolidworksMCP-TS) · Node.js MCP + COM / VBA</p><p class="sub">Alpha / Experimental. Architecture is in place and basic operations (sketch planes, simple extrusions) have been demonstrated. Most tools have not been validated against a live SolidWorks instance. Expect COM quirks. Test reports are welcome.</p><p class="sub">SolidWorks APIs such as FeatureExtrusion3 take 20+ parameters. Node.js COM bridges often fail past 12.</p><p class="sub">- ≤ 12 params → direct winax COM - 13+ params → generated VBA macro - Failure → automatic fallback with context</p><p class="sub">Never pass null into COM. Use undefined. Prefer feature-tree walk over SelectByID2.</p><p class="sub">Direct COM when it is safe Simple sketch and document calls go through winax with no extra hop. Fast path for planes, lines, circles, and short feature calls.</p><p class="sub">VBA when COM chokes A complexity analyzer counts parameters. Long SolidWorks signatures become a one-shot VBA macro SolidWorks executes itself.</p><p class="sub">Feature tree over name picking FeatureByPositionReverse() + GetTypeName2() finds sketches more reliably than SelectByID2.</p><p class="sub">Stdio stays clean Logging is Winston only. console. corrupts JSON-RPC on stdio and breaks the MCP client.</p><p class="sub">1. Extract the archive. 2. Confirm Node.js 20+ is installed. 3. In the project folder:</p><p class="sub">winax must compile locally on each Windows machine. A global npm install will not work.</p><p class="sub">Run Windows PowerShell or PowerShell 7 as Administrator.</p><p class="sub">Register the type library if SolidWorks is not visible to COM:</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -111,10 +111,14 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/soheil-mp--solidworks-mcp.html">
   <span class="name"><span class="owner">soheil-mp/</span>solidworks-mcp</span>
   <p>MCP server that lets AI agents drive SOLIDWORKS: parts, sketches, features, assemblies, drawings, export and simulation, with every change verified (C#, .NET 10, official COM API)</p>
-  <span class="meta"><span>⭐ 6</span><span>C#</span></span>
+  <span class="meta"><span>⭐ 7</span><span>C#</span></span>
 </a><a class="card" href="/s/lfoletti--keyshot-mcp.html">
   <span class="name"><span class="owner">lfoletti/</span>keyshot-mcp</span>
   <p>Prototype MCP server: control KeyShot Studio from Claude Code (scene, cameras, materials from a CMF sheet, renders)</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/27painter--dsh-sw-cad.html">
+  <span class="name"><span class="owner">27painter/</span>dsh-sw-cad</span>
+  <p>DSH/Codex × SolidWorks &amp; AutoCAD · on-demand skills + MCP servers for real CAD automation (Windows, COM)</p>
   <span class="meta"><span>⭐ 3</span><span>Python</span></span>
 </a><a class="card" href="/s/XiaoDuoYa--codex-with-chatgpt.html">
   <span class="name"><span class="owner">XiaoDuoYa/</span>codex-with-chatgpt</span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">shinthink/</span>blitzstrike</span>
   <p>⚡ Blitz Strike — a universal MCP penetration-testing toolbelt. Structured methodology: reconnaissance &amp; attack-surface mapping, source-to-sink analysis, and live validation. 57 escalation chains, 130-</p>
   <span class="meta"><span>⭐ 634</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/0xwilliamortiz--openclaude-improved.html">
-  <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
-  <p>runs anywhere. uses anything</p>
-  <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
 </a>
 
 
