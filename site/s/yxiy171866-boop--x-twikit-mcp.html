@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yxiy171866-boop/x-twikit-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="一个基于 twikit 实现的 X (Twitter) MCP 服务端，轻量级工具。支持AI调用X平台功能，包含发推、回复评论、读取推文回复、私信收发、抓取用户主页详细信息、查看推文互动数据、推文搜索、点赞、转推、删推等多项工具。适用于 Claude Desktop、Cursor 等支持 MCP 协 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yxiy171866-boop--x-twikit-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yxiy171866-boop/x-twikit-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="一个基于 twikit 实现的 X (Twitter) MCP 服务端，轻量级工具。支持AI调用X平台功能，包含发推、回复评论、读取推文回复、私信收发、抓取用户主页详细信息、查看推文互动数据、推文搜索、点赞、转推、删推等多项工具。适用于 Claude Desktop、Cursor 等支持 MCP 协 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yxiy171866-boop/x-twikit-mcp", "description": "一个基于 twikit 实现的 X (Twitter) MCP 服务端，轻量级工具。支持AI调用X平台功能，包含发推、回复评论、读取推文回复、私信收发、抓取用户主页详细信息、查看推文互动数据、推文搜索、点赞、转推、删推等多项工具。适用于 Claude Desktop、Cursor 等支持 MCP 协议的客户端。", "codeRepository": "https://github.com/yxiy171866-boop/x-twikit-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yxiy171866-boop--x-twikit-mcp.html", "dateCreated": "2026-10-28"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yxiy171866-boop/</span>x-twikit-mcp</h1>
+<p class="sub">一个基于 twikit 实现的 X (Twitter) MCP 服务端，轻量级工具。支持AI调用X平台功能，包含发推、回复评论、读取推文回复、私信收发、抓取用户主页详细信息、查看推文互动数据、推文搜索、点赞、转推、删推等多项工具。适用于 Claude Desktop、Cursor 等支持 MCP 协议的客户端。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>16</b> stars</div>
+  <div class="chip">⑂ <b>2</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 164.0</b></div>
+  <div class="chip">created <b>2026-10-28</b></div>
+  <div class="chip">on radar since <b>2026-10-29</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">twikit</span><span class="topic">twitter</span></div>
+<a class="btn" href="https://github.com/yxiy171866-boop/x-twikit-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About x-twikit-mcp</h2><p class="sub">本项目是基于 twikit 实现的 Model Context Protocol (MCP) 服务，专门为 AI 助手、大语言模型及各类 AI Agent 提供与 X (Twitter) 交互的能力。通过本服务，AI 能够自主调用工具完成状态感知、发推（含图片）、读写评论、收发私信、关注互动、趋势发现以及重点账号追踪等全流程操作。</p><p class="sub">服务通过普通账号的浏览器 Cookie（authtoken 与 ct0）与 X 官方 Web 端通信。所有工具统一采用结构化 JSON 响应，确保状态判定与字段解析的稳定性。</p><p class="sub">工具名称 功能描述 参数 :--- :--- :--- posttweet 发布新推文（支持带本地图片/媒体） text（推文文字）, mediapaths（可选，图片文件路径或路径列表） replytweet 回复指定推文或评论（支持带图片） tweetid（目标推文 ID）, text（回复文字）, mediapaths（可选） quotetweet 引用转发推文（Quote Tweet） tweetid（目标推文 ID）, text（评论文字）, mediapaths（可选） deletetweet 删除自己发布的推文 tweetid（推文 ID） favoritetweet 点赞指定推文 tweetid（推文 ID） unfavoritetweet 取消对推文的点赞 tweetid（推文 ID） retweet 转发/转推指定推文 tweetid（推文 ID） unretweet 取消对推文的转推 tweetid（原推文 ID） bookmarktweet 收藏指定推文到书签 tweetid（推文 ID） unbookmarktweet 从书签中移除指定推文 tweetid（推文 ID） getbookmarks 查看当前账号保存的书签推文列表 count（获取数量，默认 10，最大 40）</p><p class="sub">工具名称 功能描述 参数 :--- :--- :--- gettweetbyid 获取单条推文详情与全面统计（点赞、收藏、转推、回复、浏览量） tweetid（推文 ID） gettweetreplies 获取指定推文下方的评论与回复列表（定制 GraphQL 线程解析） tweetid（推文 ID）, count（获取数量，默认 10，最大 50） gettweetquotes 获取引用转发该推文的推文列表 tweetid（推文 ID）, count（获取数量，默认 10，最大 20） searchtweets 高级推文搜索（支持关键词、作者、时间范围及互动量门槛） query（关键词）, count（默认 10）, fromuser（可选作者）, sincedate（起始日期 YYYY-MM-DD）, untildate（截止日期）, minfaves（最低点赞数）, minretweets（最低转推数）, minreplies（最低回复数）</p><p class="sub">工具名称 功能描述 参数 :--- :--- :--- getuserinfo 获取指定用户的个人资料及粉丝、关注数等统计 username（用户名，可带或不带 @） getusertweets 获取指定用户最近发布的推文列表 username（用户名）, count（获取数量，默认 5，最大 20） getuserfollowers 获取指定用户的粉丝（关注者）列表 username（用户名或用户 ID）, count（默认 20，最大 50） getuserfollowing 获取指定用户正在关注的用户列表 username（用户名或用户 ID）, count（默认 20，最大 50） followuser 关注指定用户 username（用户名或用户 ID） unfollowuser 取消</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yxiy171866-boop--x-twikit-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/SysikNagibator--AiPC.html">
+  <span class="name"><span class="owner">SysikNagibator/</span>AiPC</span>
+  <p>Give the agent &quot;this&quot; and he gets a real PC.</p>
+  <span class="meta"><span>⭐ 29</span><span>Python</span></span>
+</a><a class="card" href="/s/kenb38291-tech--fastmcp-sqlite.html">
+  <span class="name"><span class="owner">kenb38291-tech/</span>fastmcp-sqlite</span>
+  <p>Production-grade, token-optimized FastMCP SQLite Server with sub-millisecond O(1) schema discovery, opcode execution watchdog, and fuzzy self-healing.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/junxchan54-maker--mcd-cn-assistant.html">
+  <span class="name"><span class="owner">junxchan54-maker/</span>mcd-cn-assistant</span>
+  <p>🍟 麦当劳中国官方 MCP 智能助手技能：把 35 个原子工具编排成 4 条业务流 —— 活动推送 · 联名关注 · 最优惠点餐 · 多人群点聚合账单。算价用 calculate-price 真算，下单必二次确认。｜McDonald&#x27;s China MCP agent skill: campaigns, collab watch, best-value ordering, group bill s</p>
+  <span class="meta"><span>⭐ 38</span><span></span></span>
+</a><a class="card" href="/s/skp-kz--bilem.ai.html">
+  <span class="name"><span class="owner">skp-kz/</span>bilem.ai</span>
+  <p>Персональный агент для вашей 1С — WhatsApp и MCP. Open-source расширение 1С (bilem.cfe) и MCP-сервер для Claude, ChatGPT, Cursor, OpenClaw, Hermes. 🇰🇿 Kazakhstan</p>
+  <span class="meta"><span>⭐ 6</span><span></span></span>
+</a><a class="card" href="/s/ZoeLinUTS--MagicTeX-mcp.html">
+  <span class="name"><span class="owner">ZoeLinUTS/</span>MagicTeX-mcp</span>
+  <p>MagicTeX — a LaTeX editor for AI agents (Claude Code): live PDF preview, PDF comments that drive edits, Visual (WYSIWYG) mode, and git-tracked history. No local TeX install.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/dhavanikgithub--chartbrew-mcp.html">
+  <span class="name"><span class="owner">dhavanikgithub/</span>chartbrew-mcp</span>
+  <p>Chartbrew + AI agents. MCP server exposing Chartbrew&#x27;s documented API: teams, connections, datasets, dashboards, charts, live queries, and secure embedding. TypeScript · stdio · restricted/unrestricte</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
