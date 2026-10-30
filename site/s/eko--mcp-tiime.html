@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eko/mcp-tiime — MCP Server | MCP Radar</title>
+<meta name="description" content="Tiime.fr MCP Server — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/eko--mcp-tiime.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="eko/mcp-tiime — MCP Server | MCP Radar">
+<meta property="og:description" content="Tiime.fr MCP Server — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "eko/mcp-tiime", "description": "Tiime.fr MCP Server", "codeRepository": "https://github.com/eko/mcp-tiime", "programmingLanguage": "Go", "url": "https://mcp.liqiwa.com/s/eko--mcp-tiime.html", "dateCreated": "2026-10-27"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">eko/</span>mcp-tiime</h1>
+<p class="sub">Tiime.fr MCP Server</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/go.html"><span class="lang-dot" style="--lang:#00ADD8"></span><b>Go</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-10-27</b></div>
+  <div class="chip">on radar since <b>2026-10-30</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">tiime</span></div>
+<a class="btn" href="https://github.com/eko/mcp-tiime" rel="noopener">View on GitHub ↗</a>
+<h2>About mcp-tiime</h2><p class="sub">A Go MCP server to drive Tiime from Claude or any MCP agent: invoicing, banking, receipts, expense reports, VAT and exchanges with the accounting firm. 92 tools, MFA login included. Accounting firms using Tiime Expert can switch to an experimental expert mode (43 tools across their portfolio).</p><p class="sub">⚠️ Tiime does not publish an API. This server uses the internal API of the apps.tiime.fr web application (chronos-api.tiime-apps.com/v1). Routes and formats were extracted from the web application code and checked against a real account, but nothing is guaranteed: Tiime may change them without notice. This project is not affiliated with Tiime.</p><p class="sub">- Installation - Quick start - Example requests - Tools - Accounting firms (expert mode) - Write safety - Authentication and MFA - Configuration - Behaviors to know - Development - Contributing - License</p><p class="sub">Download mcp-tiime.mcpb from the latest release and double-click it: Claude Desktop installs the extension and asks for your Tiime email and password. It works on macOS and Windows, in chats and in Cowork. See the Claude Desktop extension guide.</p><p class="sub">Each release ships binaries for Linux, macOS and Windows (amd64 and arm64), with a checksums.txt file.</p><p class="sub">A multi-arch image (linux/amd64, linux/arm64) is published on GitHub Container Registry. The session cache and downloads live in /data, so keep it in a volume:</p><p class="sub">uploaddocument reads files from the container: mount the folder that holds your receipts (for instance -v &quot;$HOME/Documents:$HOME/Documents:ro&quot;) and pass absolute paths. Mount a host folder on /data/downloads to get the downloaded PDFs on yo</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/eko--mcp-tiime.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/okf-memory--okf-agent-memory.html">
+  <span class="name"><span class="owner">okf-memory/</span>okf-agent-memory</span>
+  <p>Git-native persistent memory for AI coding agents. Implements Google OKF v0.2 with sub-300µs in-memory BM25 search, embedded MCP server, and progressive disclosure. Slashes token bloat by 80% with zer</p>
+  <span class="meta"><span>⭐ 553</span><span>Go</span></span>
+</a><a class="card" href="/s/vshulcz--deja-vu.html">
+  <span class="name"><span class="owner">vshulcz/</span>deja-vu</span>
+  <p>Your agents already solved this. deja finds it — retroactive search and MCP recall over the session logs your coding agents already wrote. Cross-agent, SSH-portable, one zero-dep binary, fully local.</p>
+  <span class="meta"><span>⭐ 391</span><span>Go</span></span>
+</a><a class="card" href="/s/Shaitrish--37studio.html">
+  <span class="name"><span class="owner">Shaitrish/</span>37studio</span>
+  <p>Open-source AI alternative to Buffer and Opus Clip: Claude Code makes on-brand videos, posts them to 9 platforms and drafts replies. Self-hosted, your own keys.</p>
+  <span class="meta"><span>⭐ 107</span><span>Go</span></span>
+</a><a class="card" href="/s/kad-xyz--spbstu-mcp.html">
+  <span class="name"><span class="owner">kad-xyz/</span>spbstu-mcp</span>
+  <p>MCP server for SPbPU (Polytech) students: dl.spbstu.ru Moodle, university mail and openedu.ru for Claude</p>
+  <span class="meta"><span>⭐ 22</span><span>Go</span></span>
+</a><a class="card" href="/s/olucurious--watchtower.html">
+  <span class="name"><span class="owner">olucurious/</span>watchtower</span>
+  <p>Self-hosted error tracking. A drop-in for Sentry and AppSignal SDKs: one Go binary and Postgres, with Slack, Linear, email and an MCP server for coding agents.</p>
+  <span class="meta"><span>⭐ 18</span><span>Go</span></span>
+</a><a class="card" href="/s/KnifeLemon--Droidline.html">
+  <span class="name"><span class="owner">KnifeLemon/</span>Droidline</span>
+  <p>Android automation from code. Test your apps on real phones, script the tasks you repeat, run a shelf of phones, or let an AI agent use one, from Python, Node.js, the CLI, HTTP or Appium clients. No A</p>
+  <span class="meta"><span>⭐ 18</span><span>Go</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

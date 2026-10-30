@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheernox/cedr — MCP Server | MCP Radar</title>
+<meta name="description" content="Developer tools for humans and agents: route work to the right AI coding agent, merge multi-vendor reviews into one gate, and pin the skills and MCP s — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Sheernox--cedr.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Sheernox/cedr — MCP Server | MCP Radar">
+<meta property="og:description" content="Developer tools for humans and agents: route work to the right AI coding agent, merge multi-vendor reviews into one gate, and pin the skills and MCP s — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Sheernox/cedr", "description": "Developer tools for humans and agents: route work to the right AI coding agent, merge multi-vendor reviews into one gate, and pin the skills and MCP servers agents load.", "codeRepository": "https://github.com/Sheernox/cedr", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/Sheernox--cedr.html", "dateCreated": "2026-10-29"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Sheernox/</span>cedr</h1>
+<p class="sub">Developer tools for humans and agents: route work to the right AI coding agent, merge multi-vendor reviews into one gate, and pin the skills and MCP servers agents load.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>49</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
+  <div class="chip">momentum <b>▲ 490.0</b></div>
+  <div class="chip">created <b>2026-10-29</b></div>
+  <div class="chip">on radar since <b>2026-10-30</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cli.html">cli</a><a class="topic" href="/topic/code-review.html">code-review</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/rust.html">rust</a></div>
+<a class="btn" href="https://github.com/Sheernox/cedr" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://cedr.dev" rel="noopener nofollow">Homepage ↗</a>
+<h2>About cedr</h2><p class="sub">cedr is the command line tool behind cedr.dev. It picks which AI coding agent, model and effort should take each kind of work, merges reviews from several vendors into one pass or block decision, and pins the skills and MCP servers your agents load. It works with Claude Code, Codex, Cursor and Gemini, and any agent that speaks MCP can call it directly.</p><p class="sub">[!NOTE] cedr is in preview. Commands and file formats may still change before 1.0.</p><p class="sub">Picks the agent, model and effort for each kind of work from your routes.toml. Equally suited work goes to the plan with the most room left, and plans near their limits are skipped. Starts one reviewer per vendor, merges their reports, groups findings that point at the same place and decides the gate. Any P0 or P1 blocks; too few reports is never a silent pass. Lints your agent setup, pins every skill and MCP server in .cedr/guard.lock, and fails CI when a server&#x27;s tools, descriptions or network hosts change after you pinned it.</p><p class="sub">Download the archive for your platform from the latest release, unpack it and put cedr on your PATH.</p><p class="sub">Platform Archive --- --- Linux x8664 cedr-x8664-unknown-linux-gnu.tar.gz Linux ARM64 cedr-aarch64-unknown-linux-gnu.tar.gz macOS, Apple silicon cedr-aarch64-apple-darwin.tar.gz macOS, Intel cedr-x8664-apple-darwin.tar.gz Windows x8664 cedr-x8664-pc-windows-msvc.zip</p><p class="sub">Linux builds need glibc 2.34 or newer (Ubuntu 22.04, Debian 12, RHEL 9 or later). Every release lists SHA-256 checksums in SHA256SUMS and carries signed build provenance you can check with gh attestation verify --repo Sheernox/cedr.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Sheernox--cedr.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Kaseban--baton.html">
+  <span class="name"><span class="owner">Kaseban/</span>baton</span>
+  <p>Convert AI coding sessions between Claude Code, Codex, OpenCode, Zed, Aider, Gemini CLI, Cursor, Cline &amp; more — lossless, round-trip tested. MCP server + CLI.</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+</a><a class="card" href="/s/jimoto-no-llm--rustdsh.html">
+  <span class="name"><span class="owner">jimoto-no-llm/</span>rustdsh</span>
+  <p>Fast Rust launcher for DeepSeek Harness, with clear Claude Code/Codex migration, model setup and lightweight local tools</p>
+  <span class="meta"><span>⭐ 67</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/mahingbun-dev--FarAgent.html">
+  <span class="name"><span class="owner">mahingbun-dev/</span>FarAgent</span>
+  <p>Run Claude Code, Codex, Grok &amp; Pi on machines far from you — native TUI over plain SSH. Nothing installed on the server, API keys stay remote, sessions survive the laptop closing.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Graphicle-AI--graphicle.html">
+  <span class="name"><span class="owner">Graphicle-AI/</span>graphicle</span>
+  <p>Code graph and memory for your coding agents, in one Rust program. For Claude Code, Codex, Cursor and any MCP client.</p>
+  <span class="meta"><span>⭐ 325</span><span>Rust</span></span>
+</a><a class="card" href="/s/emanuele-em--kanzo.html">
+  <span class="name"><span class="owner">emanuele-em/</span>kanzo</span>
+  <p>Self-hosted kanban for humans and agents. One 4 MB binary, starts in 2 ms, zero setup.</p>
+  <span class="meta"><span>⭐ 188</span><span>Rust</span></span>
+</a><a class="card" href="/s/lemonadesaltbagel--sill.html">
+  <span class="name"><span class="owner">lemonadesaltbagel/</span>sill</span>
+  <p>Native Windows Bash for AI coding agents. Run Claude Code, Codex, opencode &amp; Gemini CLI without Git Bash, MSYS2 or WSL. Built in Rust, with MCP support.</p>
+  <span class="meta"><span>⭐ 67</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
