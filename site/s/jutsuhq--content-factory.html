@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jutsuhq/content-factory — MCP Server | MCP Radar</title>
+<meta name="description" content="Open-source AI faceless video generator for TikTok, YouTube Shorts and Reels. A free, local alternative to Higgsfield Content Factory: script to finis — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/jutsuhq--content-factory.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="jutsuhq/content-factory — MCP Server | MCP Radar">
+<meta property="og:description" content="Open-source AI faceless video generator for TikTok, YouTube Shorts and Reels. A free, local alternative to Higgsfield Content Factory: script to finis — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "jutsuhq/content-factory", "description": "Open-source AI faceless video generator for TikTok, YouTube Shorts and Reels. A free, local alternative to Higgsfield Content Factory: script to finished video with AI frames, motion, voiceover, subti", "codeRepository": "https://github.com/jutsuhq/content-factory", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/jutsuhq--content-factory.html", "dateCreated": "2026-10-27"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">jutsuhq/</span>content-factory</h1>
+<p class="sub">Open-source AI faceless video generator for TikTok, YouTube Shorts and Reels. A free, local alternative to Higgsfield Content Factory: script to finished video with AI frames, motion, voiceover, subti</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 7.5</b></div>
+  <div class="chip">created <b>2026-10-27</b></div>
+  <div class="chip">on radar since <b>2026-10-31</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-video.html">ai-video</a><span class="topic">ai-video-generator</span><a class="topic" href="/topic/claude.html">claude</a><span class="topic">content-factory</span><span class="topic">faceless-video</span><span class="topic">faceless-youtube</span><span class="topic">higgsfield-alternative</span><span class="topic">instagram-reels</span><span class="topic">kokoro-tts</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">open-source-alternative</span><a class="topic" href="/topic/remotion.html">remotion</a><span class="topic">short-video</span><span class="topic">shorts-generator</span><a class="topic" href="/topic/tauri.html">tauri</a><a class="topic" href="/topic/text-to-video.html">text-to-video</a><a class="topic" href="/topic/tiktok.html">tiktok</a><span class="topic">video-automation</span><a class="topic" href="/topic/youtube-shorts.html">youtube-shorts</a></div>
+<a class="btn" href="https://github.com/jutsuhq/content-factory" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://jutsustudio.com/content-factory/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About content-factory</h2><p class="sub">Open-source AI faceless video generator for TikTok, YouTube Shorts and Instagram Reels. A free, local alternative to Higgsfield Content Factory: write a What if script, or let Claude write it, and get a finished vertical video with AI frames, motion, voiceover, word-by-word subtitles and music, made on your own Mac. Free and open source: no subscription, no credits, no watermark. By Jutsu Studio, open-source Mac tools for AI video.</p><p class="sub">Quick start &amp;nbsp;·&amp;nbsp; How it works &amp;nbsp;·&amp;nbsp; vs Higgsfield &amp;nbsp;·&amp;nbsp; vs MoneyPrinterTurbo &amp;nbsp;·&amp;nbsp; Claude and MCP &amp;nbsp;·&amp;nbsp; FAQ &amp;nbsp;·&amp;nbsp; Architecture &amp;nbsp;·&amp;nbsp; Contributing</p><p class="sub">What if every human vanished today? 57 s · AI frames · Low-poly City8 beats, a source for every fact. Script</p><p class="sub">What if the Sun went out? 31 s · Drawn · gouacheEvery scene is SVG code, no image generated. Script</p><p class="sub">What if you fell into Jupiter? 53 s · AI frames · Space EpicCuts between a wide shot and punch-ins on the diver. Script</p><p class="sub">Claude wrote each script and handed it to the engine over MCP; the scripts are in formats/what-if/examples/. The engine did the rest: frames, depth parallax, transitions, narration, word-by-word subtitles, CC0 music ducked under the voice, and a quality check.</p><p class="sub">Faceless short-video channels run on formats: the same structure, a new topic every day. Content Factory turns a format into a pipeline you own.</p><p class="sub">- No video model. Motion comes from a handful of AI stills: depth parallax, frame interpolation, layers and camera moves. A one-minute video needs only eight images. - Formats are data. A format is a folder with a scrip</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/jutsuhq--content-factory.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/orylite--lindyson-ai.html">
+  <span class="name"><span class="owner">orylite/</span>lindyson-ai</span>
+  <p>AI video &amp; image generation workspace for e-commerce teams, built on Volcengine Seedance / Seedream, with MCP for ChatGPT &amp; Codex · 面向电商团队的 AI 视频与图片生成工作台</p>
+  <span class="meta"><span>⭐ 33</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Anil-matcha--seedance-2.5-mcp.html">
+  <span class="name"><span class="owner">Anil-matcha/</span>seedance-2.5-mcp</span>
+  <p>Seedance 2.5 Preview MCP server powered by MuAPI.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/hydope--shortsmash.html">
+  <span class="name"><span class="owner">hydope/</span>shortsmash</span>
+  <p>⚒️ Prompt in, finished short out. AI video studio with eyes: CLIP-verified footage, neural voice, karaoke captions, 50-language dubbing, trend harvesting, official publishing APIs.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/OneInterface--stormy-cookbook.html">
+  <span class="name"><span class="owner">OneInterface/</span>stormy-cookbook</span>
+  <p>Open-source cookbook for the Stormy Social Data API and MCP server (Model Context Protocol) — one REST API for the TikTok API, YouTube API, Instagram API, LinkedIn API, X (Twitter) API and Reddit API.</p>
+  <span class="meta"><span>⭐ 72</span><span></span></span>
+</a><a class="card" href="/s/Cripacx--mediagen.html">
+  <span class="name"><span class="owner">Cripacx/</span>mediagen</span>
+  <p>AI image and video generation skill for Claude Code and other coding agents — Gemini, OpenAI and Kie AI behind one CLI and MCP server, with EU AI Act content marking.</p>
+  <span class="meta"><span>⭐ 56</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/HasData--tiktok-mcp.html">
+  <span class="name"><span class="owner">HasData/</span>tiktok-mcp</span>
+  <p>TikTok MCP server by HasData: public profiles, videos, comments and keyword search as JSON, over streamable HTTP.</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
