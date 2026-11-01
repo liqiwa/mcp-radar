@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yufeng-liang/coolapk-mcp-pro — MCP Server | MCP Radar</title>
+<meta name="description" content="酷安MCP Server(只读型)——让 AI 助手检索酷安帖子/话题/用户，搜集各种玩机资源等（基于 Lniosy/coolapk-mcp 与 zjy2968466837 增强版） — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/yufeng-liang--coolapk-mcp-pro.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="yufeng-liang/coolapk-mcp-pro — MCP Server | MCP Radar">
+<meta property="og:description" content="酷安MCP Server(只读型)——让 AI 助手检索酷安帖子/话题/用户，搜集各种玩机资源等（基于 Lniosy/coolapk-mcp 与 zjy2968466837 增强版） — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "yufeng-liang/coolapk-mcp-pro", "description": "酷安MCP Server(只读型)——让 AI 助手检索酷安帖子/话题/用户，搜集各种玩机资源等（基于 Lniosy/coolapk-mcp 与 zjy2968466837 增强版）", "codeRepository": "https://github.com/yufeng-liang/coolapk-mcp-pro", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/yufeng-liang--coolapk-mcp-pro.html", "dateCreated": "2026-10-31"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">yufeng-liang/</span>coolapk-mcp-pro</h1>
+<p class="sub">酷安MCP Server(只读型)——让 AI 助手检索酷安帖子/话题/用户，搜集各种玩机资源等（基于 Lniosy/coolapk-mcp 与 zjy2968466837 增强版）</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-10-31</b></div>
+  <div class="chip">on radar since <b>2026-11-01</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/yufeng-liang/coolapk-mcp-pro" rel="noopener">View on GitHub ↗</a>
+<h2>About coolapk-mcp-pro</h2><p class="sub">纯只读的酷安社区资料检索 MCP Server——让 Claude Desktop / Cursor / dsh 等 AI 助手直接检索酷安帖子、话题与用户资料。</p><p class="sub">声明：本项目基于 Lniosy/coolapk-mcp（经 zjy2968466837/coolapk-mcp 增强后平铺引入）二次增强，详见 NOTICE.md。感谢两位上游作者。登录态复用的「酷安桌面端」同样是第三方社区项目，声明见下节。</p><p class="sub">登录态复用酷安第三方桌面端（见下方准备清单）、失效检测与重登、风控回落、图片读取。Python 3.10+（实测 3.14）+ FastMCP。</p><p class="sub">仅用于学习与测试，请勿滥用酷安官方接口。本服务不提供任何写操作（点赞 / 回复 / 关注 / 发帖）。</p><p class="sub">- 13 个只读工具：搜索、帖子详情、话题、用户资料、用户动态、首页动态、图片读取、登录状态、搜索联想词、URL 透传、作者画像、作者深挖聚合、图片外链中转 - 风控回落：帖子详情接口被验证码拦截时自动改从作者动态列表取全文（fetchsource 字段标注来源），回复走独立接口 - 请求节制：全局限速（相邻请求 ≥1.2 s）、GET 按 TTL 缓存、瞬态错误指数退避重试、验证码端点负缓存冷却 - 搜索净化：严格关键词过滤 + 去重 + 疑似广告标记，滤掉酷安搜索混入的不相关结果 - 登录态增强（0.2.0）：auto 模式直接复用酷安第三方桌面端的登录态（官方没有桌面端，此为社区项目），失效时结构化 authexpired 报错，支持 login --web / --sms / --cookie / --adb 重登</p><p class="sub">酷安官方只有手机 App，没有桌面端。本 MCP 的登录态能力依赖社区维护的第三方桌面客户端，需要自行准备：</p><p class="sub">你的情况 需要准备 - - 路径一（推荐）：安装桌面端 ① 下载并安装酷安第三方桌面端（Windows / macOS / Linux / Android / iOS 均有安装包；原项目 daimiaopeng/coolapk-desktop 已归档，由社区组织接续维护）→ ② 打开桌面端完成登录（官方授权页扫码或短信）→ ③ 没了，auto 模式自动复用其登录态 路径二：不装桌面端 ① 一个酷安安卓 APK（任意渠道版本，改名 coolapk.apk 放到 ~/.coolapk-mcp/，用于提取签名 blob）→ ② 用下文短信登录或 Cookie 导入建立登录态</p><p class="sub">说明：桌面端登录解决的是登录态（accounts.json），签名 blob 仍需安卓 APK（见下节前置）——桌面端的 exe/dmg 安装包提不了 blob。已装桌面端的用户可以顺手把手机上的酷安 APK 也放进来，两步就绪。</p><p class="sub">前置：token V3 签名需要设备指纹 blob（~/.coolapk-mcp/authblob.bin），仓库不携带该二进制，登录命令本身不会生成 blob。获取方式任选其一： 1. 把酷安 APK 改名为 coolapk.apk 放到 ~/.coolapk-mcp/，客户端启动后自动提取 blob 并缓存； 2. 从已有可用环境把 authblob.bin 复制到 ~/.coolapk-mcp/。</p><p class="sub">方式 命令 说明 - - - auto 模式（默认） 无需操作 优先读酷安第三方桌面端 %APPDATA%\com.coolapk.desktop\accounts.json 中 lastLoginUid 对应账户的完整 Cookie（含 SESSID），无效时回落 ~/.coolapk-mcp/config.json 的原生三键 token；设备码优先复用 accounts.json 的 deviceCode 网页登录 .venv\Scripts\coola</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/yufeng-liang--coolapk-mcp-pro.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/zhuyansen--new-term-radar.html">
+  <span class="name"><span class="owner">zhuyansen/</span>new-term-radar</span>
+  <p>Daily radar for new AI terms: names of new models, products and repos, caught on X, Hugging Face, GitHub and sitemaps before keyword tools list them.</p>
+  <span class="meta"><span>⭐ 1089</span><span>Python</span></span>
+</a><a class="card" href="/s/LiCinCan--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">LiCinCan/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 953</span><span>Python</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/cranebeaker--coop-anything.html">
+  <span class="name"><span class="owner">cranebeaker/</span>coop-anything</span>
+  <p>Co-op Anything: point your AI agent at any single-player game and play it with friends (online and/or splitscreen!). MCP server and playbook to let you reverse engineer, fix, test, ship and share what</p>
+  <span class="meta"><span>⭐ 806</span><span>Python</span></span>
+</a><a class="card" href="/s/anujasid--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">anujasid/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 679</span><span>Python</span></span>
+</a><a class="card" href="/s/kanaworksai-hue--audio-studio-mcp.html">
+  <span class="name"><span class="owner">kanaworksai-hue/</span>audio-studio-mcp</span>
+  <p>Local AI BGM and sound effects for Claude Code and any MCP client. Stable Audio 3 on Apple Silicon (MLX) and Windows NVIDIA GPUs (PyTorch). No cloud, no API key.</p>
+  <span class="meta"><span>⭐ 465</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-25</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/anthropic.html">anthropic</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">claude-code-hooks</span><a class="topic" href="/topic/claude-code-plugin.html">claude-code-plugin</a><a class="topic" href="/topic/claude-code-plugins.html">claude-code-plugins</a><a class="topic" href="/topic/claude-code-skills.html">claude-code-skills</a><a class="topic" href="/topic/coding-agent.html">coding-agent</a><a class="topic" href="/topic/local-llm.html">local-llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">pi-agent</span><a class="topic" href="/topic/pi-coding-agent.html">pi-coding-agent</a><a class="topic" href="/topic/subagents.html">subagents</a></div>
+<div class="topics"><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/anthropic.html">anthropic</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/claude-code-hooks.html">claude-code-hooks</a><a class="topic" href="/topic/claude-code-plugin.html">claude-code-plugin</a><a class="topic" href="/topic/claude-code-plugins.html">claude-code-plugins</a><a class="topic" href="/topic/claude-code-skills.html">claude-code-skills</a><a class="topic" href="/topic/coding-agent.html">coding-agent</a><a class="topic" href="/topic/local-llm.html">local-llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">pi-agent</span><a class="topic" href="/topic/pi-coding-agent.html">pi-coding-agent</a><a class="topic" href="/topic/subagents.html">subagents</a></div>
 <a class="btn" href="https://github.com/LarryStanley/pi-delegate" rel="noopener">View on GitHub ↗</a>
 <h2>About pi-delegate</h2><p class="sub">Call a local pi agent from inside Claude Code: Claude writes the task book and judges the result, pi writes the source and the tests.</p><p class="sub">Claude reads the code and writes the contract; pidispatch hands the writing to pi. The rows under the status line are this window&#x27;s dispatches, one per row, and they disappear when the last one finishes.</p><p class="sub">Why a plugin rather than a written rule: with the rule in place, roughly 80% of the characters committed to this repo were still typed by the main model. In strict mode a PreToolUse hook denies Claude&#x27;s own Write and Edit on existing product source and tells it to dispatch instead.</p><p class="sub">Dispatches go to whatever provider and model your pi is already pointed at; this plugin pins nothing.</p><p class="sub">That rail has a hole, and it is deliberate: the hook matches Write and Edit only, so the same edit made through Bash (sed -i, a heredoc) is never intercepted. It blocks editing a file yourself out of habit, not a deliberate workaround.</p><p class="sub">Run both inside Claude Code: the first registers this repository as a plugin marketplace, the second installs the plugin from it. If the install summary says Run /reload-plugins to activate., run that too. Requires Node ≥ 22 and a pi installation that is already set up; dependencies are installed automatically from the committed lockfile, so there is nothing to npm install yourself.</p><p class="sub">Runs a working copy instead of the published version. A --plugin-dir copy takes precedence over the installed one for that session, so you can test changes without uninstalling.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/LarryStanley--pi-delegate.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/KernelLord--pickysteve.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/muaaz9329--cheap-ag.html">
+  <span class="name"><span class="owner">muaaz9329/</span>cheap-ag</span>
+  <p>50x your Claude usage with cheap-ag. Opus plans, a dirt-cheap model writes every line, and tests decide what ships. Your $20 plan stops hitting limits. One MCP server for Claude Code.</p>
+  <span class="meta"><span>⭐ 168</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/KernelLord--pickysteve.html">
   <span class="name"><span class="owner">KernelLord/</span>pickysteve</span>
   <p>Skill router and context picker for Claude Code, Cursor, and Aider. Auto-picks the right skill for every prompt, with prompt-injection filtering for MCP.</p>
   <span class="meta"><span>⭐ 6</span><span>Python</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">0xwilliamortiz/</span>openclaude-improved</span>
   <p>runs anywhere. uses anything</p>
   <span class="meta"><span>⭐ 563</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/alexpilotto--uxon-ai.html">
-  <span class="name"><span class="owner">alexpilotto/</span>uxon-ai</span>
-  <p>MCP server and Claude skills for PPC landing pages, A/B experiments, and first-party conversion tracking. Build Google Ads and Meta pages, run cross-domain experiments, and pull CRO reports via the UX</p>
-  <span class="meta"><span>⭐ 23</span><span></span></span>
 </a>
 
 

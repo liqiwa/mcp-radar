@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-19</b></div>
   
 </div>
-<div class="topics"><span class="topic">hmi</span><span class="topic">ladder-logic</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">openness</span><a class="topic" href="/topic/plc.html">plc</a><span class="topic">siemens</span><span class="topic">tia-portal</span><span class="topic">tia-portal-v17</span></div>
+<div class="topics"><span class="topic">hmi</span><a class="topic" href="/topic/ladder-logic.html">ladder-logic</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">openness</span><a class="topic" href="/topic/plc.html">plc</a><a class="topic" href="/topic/siemens.html">siemens</a><a class="topic" href="/topic/tia-portal.html">tia-portal</a><span class="topic">tia-portal-v17</span></div>
 <a class="btn" href="https://github.com/caoyixian06/TiaMcpServer" rel="noopener">View on GitHub ↗</a>
 <h2>About TiaMcpServer</h2><p class="sub">TIA-MCP Copilot V4.3.0 — 西门子博途 V17 MCP 服务器（TIA Portal V17 MCP Server）</p><p class="sub">基于 C / .NET Framework 4.8 / 西门子博途 V17（TIA Portal V17 Openness）的 MCP stdio 服务器，带中文 WinForms 控制中心。</p><p class="sub">作者：曹义贤 · 邮箱 3165352549@qq.com · GitHub @caoyixian06</p><p class="sub">- 工程需求会话、需求冻结、计划生成/批准和阶段状态机作为可选能力保留，不再阻断普通工程工具调用。 - serverpolicy.json 当前关闭 engineering workflow，因此 createproject、硬件、PLC、HMI 和离线编程工具无需先完成阶段推进即可调用。 - 关闭工程工作流不等于关闭安全边界：工具风险分类、参数 Schema、控制端锁、在线授权、TIA 工程状态检查、审计以及删除/重置确认仍然生效。 - LAD、HMI、验证和部署规范仍可按主题小包加载；它们不再作为普通工具调用的强制前置步骤。 - Safe / Assist / Auto 三态 ExecutionPolicy 仍然有效；当前默认配置为 Auto，但 Unknown 风险工具和未接入安全分发器的复合工具仍会被拒绝。 - Tool 调用仍统一经过 Schema - RiskCheck - Permission - Read/Write Lock - Audit - Execute。 - 在线写入、下载、上传、CPU 控制等仍必须进入 SafeOnlineExecutor 授权范围。 - 删除/重置类 Tool 仍支持 dryRun，正式执行必须显式二次确认。 - 长任务仍返回 jobid，支持 getjobstatus、listjobs、canceljob；需要立即拿到结果时传 wait=true。</p><p class="sub">必须在安装 TIA Portal、对应 Openness 和 .NET Framework 4.8 开发环境的 Windows 电脑上构建：</p><p class="sub">底层脚本为 scripts\构建V4.3.ps1，会扫描环境变量、注册表和本地盘符，并根据工程扩展名选择 TIA 版本。</p><p class="sub">该脚本检查 JSON/XML、C 分隔符、版本一致性、全部静态注册 Tool 的风险覆盖、工程工作流锚点、9 个按需规范包、统一安全链及 WinForms DPI 设置。它不能替代 C 编译、TIA Openness 实机连接和 PLC 下载测试。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/caoyixian06--TiaMcpServer.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/Arienax--gxworks-agent.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/Wayan123--multi-plc-agent.html">
+  <span class="name"><span class="owner">Wayan123/</span>multi-plc-agent</span>
+  <p>One MCP server for AI-written ladder logic in 9 PLC tools: Mitsubishi GX Works2, Siemens TIA Portal, Omron CX-Programmer and Sysmac Studio, CODESYS, Schneider Machine Expert - Basic, Delta WPLSoft, Ou</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Arienax--gxworks-agent.html">
   <span class="name"><span class="owner">Arienax/</span>gxworks-agent</span>
   <p>三菱 PLC 编程与工程助手。  MCP server and AI workbench for Mitsubishi PLC programming with GX Works2. Generate Ladder and Structured Text, edit native FBD, and review versioned projects with CPU-aware RAG and d</p>
   <span class="meta"><span>⭐ 8</span><span>Python</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">OutSystems/</span>outsystems11-mcp</span>
   <p>Skills that let Claude Code, GitHub Copilot, Cursor, Kiro and other coding agents work with OutSystems 11 apps via the Service Studio MCP server.</p>
   <span class="meta"><span>⭐ 6</span><span>C#</span></span>
-</a><a class="card" href="/s/keithadler--leanstudio.html">
-  <span class="name"><span class="owner">keithadler/</span>leanstudio</span>
-  <p>A native desktop IDE for Lean 4 on macOS, Windows and Linux. Every proof re-checked by Tenet, an independent Lean 4 kernel. An MCP server for AI assistants, with Git and GitHub built in.</p>
-  <span class="meta"><span>⭐ 5</span><span>C#</span></span>
 </a>
 
 
