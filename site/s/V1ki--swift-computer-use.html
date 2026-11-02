@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1ki/swift-computer-use — MCP Server | MCP Radar</title>
+<meta name="description" content="A from-scratch Swift reimplementation of macOS computer-use tooling (Codex Computer Use reverse-engineering + drop-in @oai/sky-compatible JS bridge +  — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/V1ki--swift-computer-use.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="V1ki/swift-computer-use — MCP Server | MCP Radar">
+<meta property="og:description" content="A from-scratch Swift reimplementation of macOS computer-use tooling (Codex Computer Use reverse-engineering + drop-in @oai/sky-compatible JS bridge +  — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "V1ki/swift-computer-use", "description": "A from-scratch Swift reimplementation of macOS computer-use tooling (Codex Computer Use reverse-engineering + drop-in @oai/sky-compatible JS bridge + MCP server)", "codeRepository": "https://github.com/V1ki/swift-computer-use", "programmingLanguage": "Swift", "url": "https://mcp.liqiwa.com/s/V1ki--swift-computer-use.html", "dateCreated": "2026-10-29"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">V1ki/</span>swift-computer-use</h1>
+<p class="sub">A from-scratch Swift reimplementation of macOS computer-use tooling (Codex Computer Use reverse-engineering + drop-in @oai/sky-compatible JS bridge + MCP server)</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/swift.html"><span class="lang-dot" style="--lang:#F05138"></span><b>Swift</b></a>
+  <div class="chip">momentum <b>▲ 7.5</b></div>
+  <div class="chip">created <b>2026-10-29</b></div>
+  <div class="chip">on radar since <b>2026-11-02</b></div>
+  
+</div>
+<div class="topics"><span class="topic">accessibility-api</span><a class="topic" href="/topic/computer-use.html">computer-use</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><span class="topic">screen-capture</span><a class="topic" href="/topic/swift.html">swift</a></div>
+<a class="btn" href="https://github.com/V1ki/swift-computer-use" rel="noopener">View on GitHub ↗</a>
+<h2>About swift-computer-use</h2><p class="sub">A from-scratch Swift 6 reimplementation of macOS computer-use tooling, built from a clean-room reverse-engineering study of the Codex Computer Use.app service — with a drop-in @oai/sky-compatible JS bridge and an MCP server.</p><p class="sub">中文简介：本项目对一个 macOS 上的 Computer Use 后台服务做了完整逆向（App 结构 / IPC 协议 / 权限与锁屏安全模型 / AX·截图·输入引擎），然后用 Swift 6 从零重写了一套功能等价的实现： 常驻服务 + cua 命令行 + MCP server + 与 @oai/sky 同形的 JS 客户端。 与 OpenAI 无任何关系，不包含其代码，不包含任何私有 API 调用。</p><p class="sub">组件 说明 ------ CUAService LSUIElement 后台服务：AFUNIX socket、JSON-RPC 2.0（4B LE 长度前缀）、按会话授权 App、权限门 CUAEngine 无障碍树抓取（AXUIElement）+ 元素索引表、常驻 ScreenCaptureKit 窗口流（系统共享预览）、CGEventPostToPid 后台输入、应用与窗口枚举 PiP 预览 服务内 AppKit 浮窗（320×220 HUD）+ 菜单栏状态项，实时显示受控窗口、可拖动/停止共享/自动淡出 cua 命令行：ping/apps/windows/state/click/press-key/type/scroll/set-value/drag/paste/select-text/action/screenshot/doctor/session/call cua mcp stdio MCP server，16 个工具（含 findtext / clicktext） @swiftcua/sky Node 客户端：sky.listapps()、sky.getappstate() … 与原 @oai/sky 同形，另有 findtext/clicktext swiftcua-mcp Node MCP server，提供 cuarepl 风格 js / jsreset / turnended 工具</p><p class="sub">1. 打开「系统设置 → 隐私与安全性 → 屏幕录制」，添加/勾选 SwiftCUA.app 2. 打开「系统设置 → 隐私与安全性 → 辅助功能」，添加/勾选 SwiftCUA.app 3. launchctl kickstart -k gui/$(id -u)/dev.v1ki.swiftcua.service</p><p class="sub">助手：./scripts/open-permissions.sh 会直接打开这两个设置面板（授权仍需手点）。</p><p class="sub">签名身份：scripts/build-app.sh 会自动挑选钥匙串里的第一个 Apple Development 身份； 也可用 CUASIGNIDENTITY=&quot;Apple Development: ...&quot; make app 指定。 用固定身份签名，TCC 授权才能在重编译后保留；ad-hoc 签名每次重建都会被系统当成新 App。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/V1ki--swift-computer-use.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/btahir--reelbird.html">
+  <span class="name"><span class="owner">btahir/</span>reelbird</span>
+  <p>Free, open-source screen recorder for macOS. A share link the moment you stop, then auto-zoom, smooth cursor and captions under the same link. Native Swift, your own S3/R2 bucket, CLI and MCP server. </p>
+  <span class="meta"><span>⭐ 40</span><span>Swift</span></span>
+</a><a class="card" href="/s/ostapondo--Plonk.html">
+  <span class="name"><span class="owner">ostapondo/</span>Plonk</span>
+  <p>A macOS window manager with snap zones you draw yourself and workspaces that reopen your apps on the right monitor — plus on-device OCR, keep-awake, screenshot annotation, pointer tools, a shortcut gu</p>
+  <span class="meta"><span>⭐ 7</span><span>Swift</span></span>
+</a><a class="card" href="/s/MarlonJD--apple-debug-mcp.html">
+  <span class="name"><span class="owner">MarlonJD/</span>apple-debug-mcp</span>
+  <p>Local, capability-aware MCP server for authorized AI-assisted macOS and iOS debugging, Simulator/device workflows, Apple binary analysis, profiling, and reproducible evidence.</p>
+  <span class="meta"><span>⭐ 6</span><span>Swift</span></span>
+</a><a class="card" href="/s/gignit--leap-mcp.html">
+  <span class="name"><span class="owner">gignit/</span>leap-mcp</span>
+  <p>Leap gives any AI agent x-ray vision into desktop apps (native accessibility and screenshots) along with full mouse and keyboard control. It works in the background without taking over your screen, us</p>
+  <span class="meta"><span>⭐ 3</span><span>Swift</span></span>
+</a><a class="card" href="/s/haplollc--Vesalius.html">
+  <span class="name"><span class="owner">haplollc/</span>Vesalius</span>
+  <p>A map of your codebase for Claude Code: an on-device code graph with an MCP server, a CLI, a Mac app and a VS Code extension.</p>
+  <span class="meta"><span>⭐ 79</span><span>Swift</span></span>
+</a><a class="card" href="/s/dongnguyenvie--BashCut.html">
+  <span class="name"><span class="owner">dongnguyenvie/</span>BashCut</span>
+  <p>Native macOS video editor that coding agents can drive: everything the UI does, Claude Code and Codex can do through the bashcut CLI or MCP server. Layered timeline, captions, voiceover, plugins.</p>
+  <span class="meta"><span>⭐ 55</span><span>Swift</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
