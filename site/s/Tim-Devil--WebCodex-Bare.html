@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tim-Devil/WebCodex-Bare — MCP Server | MCP Radar</title>
+<meta name="description" content="A minimal local MCP server for ChatGPT, inspired by WebCodex. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Tim-Devil--WebCodex-Bare.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Tim-Devil/WebCodex-Bare — MCP Server | MCP Radar">
+<meta property="og:description" content="A minimal local MCP server for ChatGPT, inspired by WebCodex. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Tim-Devil/WebCodex-Bare", "description": "A minimal local MCP server for ChatGPT, inspired by WebCodex.", "codeRepository": "https://github.com/Tim-Devil/WebCodex-Bare", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/Tim-Devil--WebCodex-Bare.html", "dateCreated": "2026-11-03"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Tim-Devil/</span>WebCodex-Bare</h1>
+<p class="sub">A minimal local MCP server for ChatGPT, inspired by WebCodex.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-11-03</b></div>
+  <div class="chip">on radar since <b>2026-11-03</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/Tim-Devil/WebCodex-Bare" rel="noopener">View on GitHub ↗</a>
+<h2>About WebCodex-Bare</h2><p class="sub">提醒：本工具以自用为主，因此测试可能有不及时的地方。有bug可以走issue或者PR，看到就会修（</p><p class="sub">原则：我不太喜欢给小工具加太多包装。我喜欢即开即关：用的时候点一下启动，用完点一下关闭。配置写清楚，出了问题能从日志里找到原因，这样就够了。</p><p class="sub">这个项目把本机文件、Git 和命令执行接到 MCP，让 ChatGPT 能操作指定的工作区。服务用 Python 写，隧道使用 OpenAI 官方的 tunnel-client。日常入口就是 start.pyw 和 stop.pyw。</p><p class="sub">首先直接下载整个项目。直接源码运行。（有时间我会release一个zip，但没有本质区别）</p><p class="sub">准备 Python 3.12 或更新版本。使用 Git 工具时，系统还需要安装 Git，并加入 PATH。安装过程会访问 PyPI 和 GitHub。</p><p class="sub">安装程序会创建标准 .venv，安装 requirements.txt 中的依赖，并下载官方隧道客户端。下载内容按官方 SHA256SUMS.txt 校验，许可证和来源记录保存在 bin//。环境、依赖缓存、下载临时文件和运行日志都放在项目目录里。</p><p class="sub">Windows 已完成实际验证。Linux 提供了启动脚本、文件锁和进程组处理，实际运行仍待验证。支持的 CPU 架构为 x8664 和 ARM64；本机验证使用 Windows x8664。</p><p class="sub">1. 登录 OpenAI Platform 隧道设置，选择要使用的组织，创建隧道，复制完整的 tunnel... ID。 2. 在隧道设置中关联准备用来连接的 ChatGPT 工作区。 3. 打开同一组织的 API keys 页面，创建用于 tunnel-client 运行的 API key。</p><p class="sub">创建隧道需要组织级 Tunnels Read + Manage 权限，运行隧道和在 ChatGPT 中选择隧道需要 Tunnels Read + Use。页面提示 Tunnels access required 时，请组织所有者或 RBAC 管理员授予相应权限。具体要求见 OpenAI 官方隧道说明。</p><p class="sub">凭证以明文保存在本机的 secrets.yaml 中。本工具默认你的机器和账户环境是安全的。机器存在安全风险时，请谨慎使用。</p><p class="sub">保存凭证后，先启动程序：Windows 双击 start.pyw，Linux 执行 ./start，等待本地服务和隧道就绪。</p><p class="sub">在 ChatGPT Plugins 中选择 Add custom MCP server，连接方式选 Tunnel，填写 secrets.yaml 中的隧道 ID，认证选 No authentication。本地隧道客户端会为服务注入运行令牌。连接后调用 listprojects，应能看到配置中的项目。添加权限由账户和工作区设置控制，入口说明见 OpenAI 官方连接指南。</p><p class="sub">本地 MCP 地址默认是 http://127.0.0.1:8765/mcp，采用 Bearer 认证。直接连接本地服务时，令牌取自 runtime/instance.yaml，每次启动重新生成。</p><p class="sub">Windows 双击 start.pyw。启动程序会等待本地服务和隧道就绪，成功后退出。重复点击会检查并复用正在运行的实例。启动失败会弹窗，具体原因写入 runtime/。</p><p class="sub">用完双击 stop.pyw。停止程序会等待服务退出，并结束服务管理的任务、子进程和隧道连接。项目文件和日志会保留。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Tim-Devil--WebCodex-Bare.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/zhuyansen--new-term-radar.html">
+  <span class="name"><span class="owner">zhuyansen/</span>new-term-radar</span>
+  <p>Daily radar for new AI terms: names of new models, products and repos, caught on X, Hugging Face, GitHub and sitemaps before keyword tools list them.</p>
+  <span class="meta"><span>⭐ 1089</span><span>Python</span></span>
+</a><a class="card" href="/s/LiCinCan--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">LiCinCan/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 953</span><span>Python</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a><a class="card" href="/s/cranebeaker--coop-anything.html">
+  <span class="name"><span class="owner">cranebeaker/</span>coop-anything</span>
+  <p>Co-op Anything: point your AI agent at any single-player game and play it with friends (online and/or splitscreen!). MCP server and playbook to let you reverse engineer, fix, test, ship and share what</p>
+  <span class="meta"><span>⭐ 806</span><span>Python</span></span>
+</a><a class="card" href="/s/anujasid--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">anujasid/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
+  <span class="meta"><span>⭐ 679</span><span>Python</span></span>
+</a><a class="card" href="/s/kanaworksai-hue--audio-studio-mcp.html">
+  <span class="name"><span class="owner">kanaworksai-hue/</span>audio-studio-mcp</span>
+  <p>Local AI BGM and sound effects for Claude Code and any MCP client. Stable Audio 3 on Apple Silicon (MLX) and Windows NVIDIA GPUs (PyTorch). No cloud, no API key.</p>
+  <span class="meta"><span>⭐ 465</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

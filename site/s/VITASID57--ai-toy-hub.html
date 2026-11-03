@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VITASID57/ai-toy-hub — MCP Server | MCP Radar</title>
+<meta name="description" content="让你家 AI 真的碰到你：自托管的多品牌蓝牙玩具中枢，MCP 接入，手机中继，遥控面板，写字和声音都能化成震动。18+ · 禁止商用 · Let your AI companion touch you. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/VITASID57--ai-toy-hub.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="VITASID57/ai-toy-hub — MCP Server | MCP Radar">
+<meta property="og:description" content="让你家 AI 真的碰到你：自托管的多品牌蓝牙玩具中枢，MCP 接入，手机中继，遥控面板，写字和声音都能化成震动。18+ · 禁止商用 · Let your AI companion touch you. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "VITASID57/ai-toy-hub", "description": "让你家 AI 真的碰到你：自托管的多品牌蓝牙玩具中枢，MCP 接入，手机中继，遥控面板，写字和声音都能化成震动。18+ · 禁止商用 · Let your AI companion touch you.", "codeRepository": "https://github.com/VITASID57/ai-toy-hub", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/VITASID57--ai-toy-hub.html", "dateCreated": "2026-11-02"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">VITASID57/</span>ai-toy-hub</h1>
+<p class="sub">让你家 AI 真的碰到你：自托管的多品牌蓝牙玩具中枢，MCP 接入，手机中继，遥控面板，写字和声音都能化成震动。18+ · 禁止商用 · Let your AI companion touch you.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>13</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 136.0</b></div>
+  <div class="chip">created <b>2026-11-02</b></div>
+  <div class="chip">on radar since <b>2026-11-03</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-companion.html">ai-companion</a><span class="topic">buttplug</span><a class="topic" href="/topic/elevenlabs.html">elevenlabs</a><span class="topic">lovense</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">nsfw</span><span class="topic">web-bluetooth</span></div>
+<a class="btn" href="https://github.com/VITASID57/ai-toy-hub" rel="noopener">View on GitHub ↗</a>
+<h2>About ai-toy-hub</h2><p class="sub">https://x.com/QloveDudu/status/2116960662567997854</p><p class="sub">https://x.com/QloveDudu/status/2116979147662934423</p><p class="sub">让你家 AI 伴侣真的能碰到你：它可以调节玩具强度、放节奏、在画布上一笔一笔写字（玩具跟着笔走）、用自己的声音说话（玩具跟着声音起伏），还能听见你的反应。</p><p class="sub">这是一个空白框架，没有任何预设的名字、人设和关系。懒的话部署完直接用，勤快的话随便二改，把它变成你们自己的东西。</p><p class="sub">完全不懂技术？ 把 给小机子的上手提示词 发给你家能操作电脑的小机子，它会带着你做完。</p><p class="sub">当前状态：早期版本。这份代码只跑过自动测试，没有连接真实玩具和各家客户端做过回归。遇到问题，可以把报错和这个仓库一起交给你家小机子。</p><p class="sub">功能 说明 --- --- 遥控面板 强度滑杆和表盘、6 种节奏、持续时长、永远够得着的「全部停下」 写字画画 AI 写汉字（真实笔顺）、画形状或自由笔画，玩具跟着笔压和笔速走，画布实时同步 用声音操控 AI 用 ElevenLabs 说话，玩具跟着音量起伏（可选） 听见你 手机本地识别喘息、笑、水声等声音，只上报标签和音量；按住说话会转成文字（可选） 反馈按钮 「再重一点」「别停」等，AI 能读到并回应 心动回放 喜欢的一段存下来，声音和震动都能重播 三套主题 深海丝绒、液态铬糖、夜光机芯，都带可单独开关的呼吸光、界面震动等效果</p><p class="sub">能。中枢只要跑在一台开着的设备上就行。如果你的 AI 在云端（官方 App、网页版），中枢还需要一个公网 HTTPS 地址，因为它们连不到你家里的设备；AI 就跑在同一台电脑上的话，连地址都不用。</p><p class="sub">路线 适合谁 代价 --- --- --- 云服务器 想不开电脑、随时能玩 要买服务器和域名，最省心 只在一台电脑上 AI 跑在这台电脑上（如 Claude Code），玩具也连这台电脑 免费、不用隧道，但官方 App 和手机连不上；电脑要开着 电脑 + 隧道 想用官方 App，又没有服务器 电脑要一直开着，隧道要配置 安卓手机 + Termux + 隧道 没有电脑也没有服务器 手机同时当服务器和中继，最折腾、最费电，容易被系统杀后台，作者没有试过</p><p class="sub">隧道的坑：Cloudflare 的免费快速隧道（trycloudflare.com）不支持 SSE，而中继和面板靠 SSE 接收指令，所以不能用。可以用绑定自己域名的 Cloudflare 命名隧道，或者 Tailscale Funnel 这类方案。这些隧道方案作者都没有实测过，地址也可能随重启变化，变了要重新配置。</p><p class="sub">客户端 怎么接 --- --- 官方 App 和网页版（Claude、ChatGPT 等） 在自定义连接器里填地址。是否开放、哪个套餐能用，以各家当前规则为准 Claude Code、Codex 等本地 Agent 把地址写进它的 MCP 配置，也可以用 Authorization 请求头 TG 机器人、微信机器人、自建前端 如果背后的 Agent 或框架支持 MCP，填同一个地址。不支持的话，代码直接发 HTTP 请求也行（见下）</p><p class="sub">地址支持的是 HTTP POST 形式的 MCP，不支持只认旧式 SSE 传输的客户端。</p><p class="sub">连接方式 玩具 实测情况 --- --- --- 中继页直连蓝牙 Lovense 有实机测试，但不是所有型号都测过 中继页直连蓝牙 啵啵贝 SOSEXY 按公开协议实现，没有实物实测 经 Intiface Central Buttplug.io 支持的几百款玩具 Lovense 有实机测试。其他玩具要 Intiface 能识别，而且支持强度控制（Buttplug 的 ScalarCmd），只支持旋转或行程命令的暂时控制不了</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/VITASID57--ai-toy-hub.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/lu7899112-source--express-tracker.html">
+  <span class="name"><span class="owner">lu7899112-source/</span>express-tracker</span>
+  <p>让你的 AI 帮你盯快递：MCP 服务 + 可嵌入后端库。作者：星迟</p>
+  <span class="meta"><span>⭐ 8</span><span>Python</span></span>
+</a><a class="card" href="/s/cinderline--northcinder.html">
+  <span class="name"><span class="owner">cinderline/</span>northcinder</span>
+  <p>Open-source MCP server for comparing products and asking the buyer before purchase.</p>
+  <span class="meta"><span>⭐ 1205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/marclou--mailcheap.html">
+  <span class="name"><span class="owner">marclou/</span>mailcheap</span>
+  <p>Newsletters where you pay for the emails you send, not for dormant subscribers, at a fraction of the price of beehiiv and the like. Open source: self-host it, or use mailcheap.ai.</p>
+  <span class="meta"><span>⭐ 1078</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/sv-number--mcp-server.html">
+  <span class="name"><span class="owner">sv-number/</span>mcp-server</span>
+  <p>MCP server for AI agents that need a phone number: order a private number in 200+ countries, read the SMS verification code, hand it back. The widest country coverage in the category, and you can chec</p>
+  <span class="meta"><span>⭐ 598</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/livetennisapi--livetennisapi-mcp.html">
+  <span class="name"><span class="owner">livetennisapi/</span>livetennisapi-mcp</span>
+  <p>MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability</p>
+  <span class="meta"><span>⭐ 205</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/boyuchengz--canvas-mcp.html">
+  <span class="name"><span class="owner">boyuchengz/</span>canvas-mcp</span>
+  <p>Read-only MCP server that connects Claude, ChatGPT and other AI assistants to Canvas LMS.</p>
+  <span class="meta"><span>⭐ 119</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

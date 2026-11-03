@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-30</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">ntobjectmanager</span><a class="topic" href="/topic/offensive-security.html">offensive-security</a><span class="topic">rpc</span><span class="topic">security-research</span><span class="topic">vulnerability-research</span><a class="topic" href="/topic/windows.html">windows</a><span class="topic">windows-internals</span></div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">ntobjectmanager</span><a class="topic" href="/topic/offensive-security.html">offensive-security</a><span class="topic">rpc</span><a class="topic" href="/topic/security-research.html">security-research</a><span class="topic">vulnerability-research</span><a class="topic" href="/topic/windows.html">windows</a><span class="topic">windows-internals</span></div>
 <a class="btn" href="https://github.com/lupingQAQ/ntobjmanager-mcp" rel="noopener">View on GitHub ↗</a>
 <h2>About ntobjmanager-mcp</h2><p class="sub">Stateful Windows RPC Research MCP — 2024–2026 CVE methodologies as one-click tools</p><p class="sub">A Model Context Protocol server that gives an AI agent live, stateful access to Windows RPC attack-surface research, built on James Forshaw&#x27;s NtObjectManager (NtCoreLib).</p><p class="sub">Three things a generic PowerShell MCP cannot do — and the reason this exists:</p><p class="sub">1. Stateful RPC connections — a persistent PowerShell engine keeps parsed RpcServer objects and connected RPC clients alive across tool calls: rpcconnect once, rpccall many times (auth handshakes, context-handle chains, session variables survive). 2. CVE methodology as fixed tools — the standard hunting workflows from 2024–2026 public research are one-click, not prompt-engineering. 3. Stateful execution inside a lab VM — the same one-engine principle applied in the guest: rpcvmexec keeps variables and connected RPC clients alive across calls through a single persistent guest runspace, never a fresh shell per call (the vmrun fallback is reported as stateful: false).</p><p class="sub">Tool Purpose --------------- rpcparse(file, symbolpath?) Parse a PE for RPC servers, cache (keys fileN) rpcstate() Cached servers + live sessions rpcgetinterface(key) Procedures, NDR params, context handles, strictness rpcqueryendpoints(ifid?, searchbinding?, findalpcport?) EPM query (local or remote) rpcrunningservers(pid?/service?) Live process/service enumeration rpcconnect(session, key, binding?, auth?) Generate + connect client (stateful) rpcmethods(session) Signatures with opnum mapping rpccall(session, method, argsjson, storeas?) Reflection invoke; {&quot;var&quot;} passes stored object</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -124,10 +124,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">kemalcalak/</span>design-editor</span>
   <p>Local-first, AI-native vector design editor in Rust. AI agents design on a live canvas over MCP, or through the built-in chat with your own model API.</p>
   <span class="meta"><span>⭐ 15</span><span>Rust</span></span>
-</a><a class="card" href="/s/sgateway--s-gw.html">
-  <span class="name"><span class="owner">sgateway/</span>s-gw</span>
-  <p>Local credential control for AI coding agents.</p>
-  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/protonspy--harness-for-rea.html">
+  <span class="name"><span class="owner">protonspy/</span>harness-for-rea</span>
+  <p>Desktop app and terminal UI for deep analysis of software you own: an orchestrator plans, a sandboxed Claude Code specialist reverse engineers in Docker, with REA and Cheat Engine over MCP.</p>
+  <span class="meta"><span>⭐ 10</span><span>TypeScript</span></span>
 </a>
 
 
