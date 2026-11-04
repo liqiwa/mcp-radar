@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xtermium/xtermium — MCP Server | MCP Radar</title>
+<meta name="description" content="Terminal and session manager for Windows, Linux and Mac: SSH, SFTP, RDP, VNC, telnet, serial, WinRM, BMC consoles and tunnels in tabs and split panes. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/xtermium--xtermium.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="xtermium/xtermium — MCP Server | MCP Radar">
+<meta property="og:description" content="Terminal and session manager for Windows, Linux and Mac: SSH, SFTP, RDP, VNC, telnet, serial, WinRM, BMC consoles and tunnels in tabs and split panes. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "xtermium/xtermium", "description": "Terminal and session manager for Windows, Linux and Mac: SSH, SFTP, RDP, VNC, telnet, serial, WinRM, BMC consoles and tunnels in tabs and split panes. Encrypted on disk, with an MCP server and CLI so ", "codeRepository": "https://github.com/xtermium/xtermium", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/xtermium--xtermium.html", "dateCreated": "2026-10-31"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">xtermium/</span>xtermium</h1>
+<p class="sub">Terminal and session manager for Windows, Linux and Mac: SSH, SFTP, RDP, VNC, telnet, serial, WinRM, BMC consoles and tunnels in tabs and split panes. Encrypted on disk, with an MCP server and CLI so </p>
+<div class="chips">
+  <div class="chip">⭐ <b>10</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
+  <div class="chip">momentum <b>▲ 35.3</b></div>
+  <div class="chip">created <b>2026-10-31</b></div>
+  <div class="chip">on radar since <b>2026-11-04</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">bmc</span><span class="topic">ikvm</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">post-quantum</span><a class="topic" href="/topic/rdp.html">rdp</a><span class="topic">rdp-client</span><a class="topic" href="/topic/rust.html">rust</a><span class="topic">serial</span><span class="topic">session-manager</span><a class="topic" href="/topic/sftp.html">sftp</a><a class="topic" href="/topic/ssh.html">ssh</a><a class="topic" href="/topic/ssh-client.html">ssh-client</a><a class="topic" href="/topic/tauri.html">tauri</a><span class="topic">telnet</span><a class="topic" href="/topic/terminal.html">terminal</a><a class="topic" href="/topic/terminal-emulator.html">terminal-emulator</a><span class="topic">vnc-client</span><span class="topic">winrm</span></div>
+<a class="btn" href="https://github.com/xtermium/xtermium" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://xtermium.com" rel="noopener nofollow">Homepage ↗</a>
+<h2>About xtermium</h2><p class="sub">xtermium is a terminal with a session manager. Your SSH, RDP, VNC, telnet, serial, WinRM, website and BMC sessions live in one sidebar and open side by side, in one window.</p><p class="sub">Homepage · Docs · Screens · Download · Source</p><p class="sub">- One window, not ten programs. SSH here, RDP there, a VNC viewer, telnet for the switch, a browser for the console page: xtermium opens them all as tabs and split panes, and types into many at once. - Your logins stay locked. Everything on disk is encrypted with a key in your OS keychain. A recovery passphrase brings it back on a new computer. - An agent can use it too. AI assistants and scripts open sessions, run commands and read the output through the same tools you use, without ever seeing a password.</p><p class="sub">Windows (x64). One command fetches the latest release and installs it:</p><p class="sub">Or with Scoop, which keeps your data in Scoop&#x27;s persist folder across updates:</p><p class="sub">Or download from the latest release: the installer (.exe), the .msi for managed deployment, or the portable .zip that needs no install.</p><p class="sub">Linux (x64). The script installs the .deb where apt is, the .rpm where dnf, yum or zypper is, and the AppImage anywhere else:</p><p class="sub">Or download the .deb (Debian, Ubuntu), the .rpm (Fedora, RHEL, openSUSE) or the .AppImage (any distribution, no install) from the latest release.</p><p class="sub">macOS (Apple silicon and Intel). The same script installs the universal app into Applications:</p><p class="sub">Or download the .dmg from the latest release and drag xtermium into Applications.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/xtermium--xtermium.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/liangyou09--lyshell.html">
+  <span class="name"><span class="owner">liangyou09/</span>lyshell</span>
+  <p>AI-native terminal &amp; SSH client — built-in DeepSeek Harness to launch agents in TUI or embedded Web UI, plus SFTP, serial/Telnet and MCP server.</p>
+  <span class="meta"><span>⭐ 3</span><span></span></span>
+</a><a class="card" href="/s/omaekumiko2-create--kru.html">
+  <span class="name"><span class="owner">omaekumiko2-create/</span>kru</span>
+  <p>Local-first MCP password and credential manager for AI agents. Use passwords, API keys, SSH identities, and TOTP without exposing hidden plaintext to the model.</p>
+  <span class="meta"><span>⭐ 88</span><span>Rust</span></span>
+</a><a class="card" href="/s/ZeroDayEvil--ai-security-tool.html">
+  <span class="name"><span class="owner">ZeroDayEvil/</span>ai-security-tool</span>
+  <p>🛡️ Free open-source AI-powered security terminal &amp; vulnerability scanner (CVE, SBOM). Supports SSH, SFTP, RDP, VNC, Serial, and 12+ autonomous AI agents (DeepSeek, OpenAI) for automated security workf</p>
+  <span class="meta"><span>⭐ 17</span><span>HTML</span></span>
+</a><a class="card" href="/s/mahingbun-dev--FarAgent.html">
+  <span class="name"><span class="owner">mahingbun-dev/</span>FarAgent</span>
+  <p>Run Claude Code, Codex, Grok &amp; Pi on machines far from you — native TUI over plain SSH. Nothing installed on the server, API keys stay remote, sessions survive the laptop closing.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/pierlink--Pierlink.html">
+  <span class="name"><span class="owner">pierlink/</span>Pierlink</span>
+  <p>Windows workbench for remote development across many servers: terminals, file sync and AI (MCP) access · Windows 多服务器远程开发工作台</p>
+  <span class="meta"><span>⭐ 21</span><span>Rust</span></span>
+</a><a class="card" href="/s/CogFlux--farhand.html">
+  <span class="name"><span class="owner">CogFlux/</span>farhand</span>
+  <p>Remote hands for coding agents: an MCP server that runs OpenCode / Claude Code / Codex work on a remote host over SSH, keeps credentials and the local machine closed, and audits everything</p>
+  <span class="meta"><span>⭐ 12</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

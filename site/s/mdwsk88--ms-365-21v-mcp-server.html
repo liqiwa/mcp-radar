@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-13</b></div>
   <div class="chip">star trend <b>36 → 41</b> since 2026-08-13</div>
 </div>
-<div class="topics"><span class="topic">21vianet</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">microsoft-365</span><span class="topic">microsoft-graph</span><a class="topic" href="/topic/oauth2.html">oauth2</a></div>
+<div class="topics"><span class="topic">21vianet</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/microsoft-365.html">microsoft-365</a><a class="topic" href="/topic/microsoft-graph.html">microsoft-graph</a><a class="topic" href="/topic/oauth2.html">oauth2</a></div>
 <a class="btn" href="https://github.com/mdwsk88/ms-365-21v-mcp-server" rel="noopener">View on GitHub ↗</a>
 <h2>About ms-365-21v-mcp-server</h2><p class="sub">面向 Microsoft 365 operated by 21Vianet（世纪互联）的远程 MCP 服务。它通过标准 Streamable HTTP 和 OAuth 2.1，让支持 MCP 的 AI 客户端以当前登录用户的身份访问 Microsoft Graph 中国区。</p><p class="sub">项目目前实现 150 个工具，覆盖邮件、日历、OneDrive、SharePoint、Teams、联系人、组织用户、Microsoft Search 和智能聚合。所有业务调用都使用 Delegated permissions，不使用后台应用身份冒充用户。</p><p class="sub">本项目不是 Microsoft 或 21Vianet 官方产品。生产使用前，请由租户管理员和安全团队审核 Entra 权限、Conditional Access、用户分配和数据合规要求。</p><p class="sub">- 为 21V 环境设计：使用中国区 Entra、Microsoft Graph endpoint 和 delegated permission。 - 通用 OAuth 2.1 接入：内置 OAuth bridge，客户端只需连接一个 HTTPS MCP 地址，不必原生适配 21V 的 OAuth 差异。 - 按用户授权：可以用 Entra App Roles 控制每个用户可见和可调用的工具模块，工具列表与实际执行使用同一套校验。 - 中文请求快路径：常用工具可直接暴露；长尾工具可按中文意图动态搜索，兼顾调用速度和上下文大小。 - 可审计的写操作：邮件、Teams 消息和高风险写操作支持确认策略、一次性批准和脱敏审计。 - 开箱即用的智能聚合：提供邮件摘要和日程冲突分析，减少 Agent 自己组合多次 Graph 请求的成本。</p><p class="sub">本项目不绑定某一个 AI 客户端。以下客户端已经完成远程 Streamable HTTP 连接、OAuth 登录触发、工具发现和实际工具调用验证：</p><p class="sub">客户端 接入方式 验证状态 --------- WorkBuddy 远程 MCP URL + OAuth 2.1 已验证 Qoder Work 远程 MCP URL + OAuth 2.1 已验证 Codex HTTP MCP 配置 + OAuth 2.1 已验证 Dify MCP 工具集成 + OAuth 2.1 已验证</p><p class="sub">1. MCP Streamable HTTP transport。 2. OAuth 2.1 protected resource metadata 和 authorization server discovery。 3. 通过浏览器完成授权并接收 OAuth callback。 4. 在后续 MCP 请求中携带 Bearer token。</p><p class="sub">不同客户端的配置界面可能把连接类型显示为 streamable-http、http 或“远程 MCP”，但填写的都是同一个 /mcp endpoint。客户端能够打开登录页不代表租户一定会放行登录；最终结果仍受 Entra Conditional Access、MFA、设备合规和用户分配策略控制。</p><p class="sub">模块 示例能力 ------ 邮件 查询、搜索、附件、草稿、发送、回复、转发、移动和删除 日历 日程查询、忙闲分析、重复日程、创建、更新和取消 OneDrive 浏览、搜索、上传、下载、移动、分享、权限和版本 SharePoint 站点、列表、列表项、文档库、分享和版本 Teams 团队、频道、聊天和消息，实际范围取决于租户权限 联系人与用户 联系人管理、当前用户和组织用户基础资料 Microsoft Search 跨邮件、日历、文件、SharePoint 和 Teams 搜索 智能聚合 邮件摘要、日程冲突分析</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/mdwsk88--ms-365-21v-mcp-server.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/abluva--mcp-remote.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/nathandsouza911--keyless-agents.html">
+  <span class="name"><span class="owner">nathandsouza911/</span>keyless-agents</span>
+  <p>Let AI agents work in your Microsoft 365 tenant without giving them your keys. Beta (v0.1): credential-less MCP gateway, policy-enforcing Graph broker, tamper-evident audit.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/abluva--mcp-remote.html">
   <span class="name"><span class="owner">abluva/</span>mcp-remote</span>
   <p>The bridge for remote MCP — seamless OAuth, resilient auth recovery, production-grade reliability</p>
   <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">vaneavasco/</span>brainstem-mcp</span>
   <p>Single-user, self-hosted MCP server that gives Claude read/write access to your Obsidian vault — Docker + Cloudflare tunnel, OAuth 2.1, one-command start</p>
   <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/OtherworldMail--Tower-Events-resp-At-Sunrise.html">
-  <span class="name"><span class="owner">OtherworldMail/</span>Tower-Events-resp-At-Sunrise</span>
-  <p>Rediscover seasonal Tower and Farm events in Destiny 2. Built on Sunrise 0.3.2.0.</p>
-  <span class="meta"><span>⭐ 94</span><span>HTML</span></span>
 </a>
 
 

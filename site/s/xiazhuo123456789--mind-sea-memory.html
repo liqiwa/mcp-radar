@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xiazhuo123456789/mind-sea-memory — MCP Server | MCP Radar</title>
+<meta name="description" content="记忆星海 Mind Sea — 给任何 AI 机器人的跨会话长期记忆层（零依赖 Node · 3D 记忆星海可视化 · MCP 一键接入 DSH · 防自污染/纠错降权/永久规则/到期提醒） — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/xiazhuo123456789--mind-sea-memory.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="xiazhuo123456789/mind-sea-memory — MCP Server | MCP Radar">
+<meta property="og:description" content="记忆星海 Mind Sea — 给任何 AI 机器人的跨会话长期记忆层（零依赖 Node · 3D 记忆星海可视化 · MCP 一键接入 DSH · 防自污染/纠错降权/永久规则/到期提醒） — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "xiazhuo123456789/mind-sea-memory", "description": "记忆星海 Mind Sea — 给任何 AI 机器人的跨会话长期记忆层（零依赖 Node · 3D 记忆星海可视化 · MCP 一键接入 DSH · 防自污染/纠错降权/永久规则/到期提醒）", "codeRepository": "https://github.com/xiazhuo123456789/mind-sea-memory", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/xiazhuo123456789--mind-sea-memory.html", "dateCreated": "2026-10-31"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">xiazhuo123456789/</span>mind-sea-memory</h1>
+<p class="sub">记忆星海 Mind Sea — 给任何 AI 机器人的跨会话长期记忆层（零依赖 Node · 3D 记忆星海可视化 · MCP 一键接入 DSH · 防自污染/纠错降权/永久规则/到期提醒）</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 7.5</b></div>
+  <div class="chip">created <b>2026-10-31</b></div>
+  <div class="chip">on radar since <b>2026-11-04</b></div>
+  
+</div>
+<div class="topics"><span class="topic">3d-visualization</span><a class="topic" href="/topic/agent-memory.html">agent-memory</a><a class="topic" href="/topic/ai-assistant.html">ai-assistant</a><a class="topic" href="/topic/chatbot.html">chatbot</a><span class="topic">chatbot-memory</span><a class="topic" href="/topic/deepseek.html">deepseek</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/knowledge-graph.html">knowledge-graph</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/llm-agent.html">llm-agent</a><a class="topic" href="/topic/long-term-memory.html">long-term-memory</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">memory-layer</span><a class="topic" href="/topic/memory-management.html">memory-management</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/nodejs.html">nodejs</a><span class="topic">onebot</span><span class="topic">qq-bot</span><a class="topic" href="/topic/rag.html">rag</a></div>
+<a class="btn" href="https://github.com/xiazhuo123456789/mind-sea-memory" rel="noopener">View on GitHub ↗</a>
+<h2>About mind-sea-memory</h2><p class="sub">记忆星海：给任何 AI 机器人的跨会话长期记忆 + 3D 记忆星海可视化。不绑定某一款机器人——SnowLuma / NapCat / qq-bridge / SurfCore / DSH / AstrBot，能发 HTTP 就能接。</p><p class="sub">v1.2.0：五路混合召回 + 2 跳图扩散 + 双时间线 + 分层遗忘（频率感知 / 干扰加速 / 情绪巩固）+ 规则自动冲突检测 + 永久规则层 + 承诺自动认领与闭环（中文时间解析）+ 开机包 /boot + 反思洞察 + 证据链溯源 + 时间窗口召回 + 违规巡查。核心机制见 docs/FEATURES.md，完整接口见 docs/INTEGRATION.md。</p><p class="sub">给 AI QQ 机器人一副跨会话的长期记忆。 零依赖 · 单文件部署 · 自带&quot;大脑&quot;可视化面板。</p><p class="sub">她不再隔一天就忘了你。她记得你不吃香菜、记得约好周五开黑、记得她上周读《三体》—— 而且群里绝不知道你们私聊说过什么。</p><p class="sub">现状 装上本引擎 --- --- 隔一天就失忆 跨会话记住长期事实、约定、偏好 上下文越滚越长，越来越贵 每轮只注入 ≤1400 字节的相关记忆，成本恒定 群里随口说出私聊的秘密 owner + visibility 双重隔离，隐私红线写进引擎 &quot;最近/怎么样&quot;这类虚词干扰检索 停用词 + IDF 加权，问&quot;团子最近怎么样&quot;就命中团子</p><p class="sub">与链路无关：只要求&quot;客户端能把请求发给我&quot;，不管你用 SnowLuma / NapCat / Lagrange， 不管桥接是 qq-bridge 还是 SurfCore。</p><p class="sub">- 完整部署手册：docs/DEPLOY.md - 丢给 AI 让它帮你装：docs/AIDEPLOYPROMPT.md（整段复制给任意 AI 即可） - 接口与接入：docs/INTEGRATION.md</p><p class="sub">接入（OpenAI 兼容代理）：在 config.json 里填 upstream（你的 DeepSeek Key）， 然后把客户端的 baseurl 改成 http://127.0.0.1:8790/v1。之后每一轮对话：</p><p class="sub">1. 自动检索相关记忆，注入 system prompt 2. 转发给真正的模型 3. 自动把值得记的内容写回记忆库</p><p class="sub">请求必须带 user（如 &quot;qq:10001&quot;），群聊另带 x-channel: group 与 x-group: 群号。 不带 user 会返回 400——这是为了不让所有人的记忆混在一起。</p><p class="sub">- 力导向实时图：记忆按类型着色（事件/事实/偏好/关系/技能/元记忆），实体按提及次数变大 - 拖拽节点、滚轮缩放、点节点看她记得的原文 - 顶栏 KPI：记忆数 / 实体 / 关系 / 被想起次数 / 已遗忘 - 一键夜巡：衰减 → 归档 → 合并 → 清除，当场报数字</p><p class="sub">1. 被想起 = 续命：命中的记忆刷新 lasthit，半衰期重新计算（间隔重复效应） 2. 性格底色永不淘汰：pin 的记忆（称呼/账号/约定）不参与衰减；夜间整理跳过 3. 隐私优先：visibility=private 的记忆在任何群聊场合都召不回——这条在引擎里，不靠提示词</p><p class="sub">kind 含义 例 --- --- --- episode 发生了什么 周五晚九点约好开黑 fact 事实 养了只叫团子的橘猫 preference 偏好 不吃香菜 relation 关系 小美是老王的妹妹 skill 学会的做法 他说困了就该劝睡觉 digest 元记忆 【昨日三件事】…（夜巡产物，永不衰减）</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/xiazhuo123456789--mind-sea-memory.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/leluong141996-dev--Agent-Brain-Hub.html">
+  <span class="name"><span class="owner">leluong141996-dev/</span>Agent-Brain-Hub</span>
+  <p>Shared, brain-inspired memory for AI agents: 13 brain regions with awake/sleep loops, a live visualizer, agents connected via REST/SDK/MCP, governance &amp; audit, and business-value metrics. Works with C</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/pinganbbOvO--ai-companion-kit.html">
+  <span class="name"><span class="owner">pinganbbOvO/</span>ai-companion-kit</span>
+  <p>给你的 AI 一副身体，和一点人味 —— 会记事、会看场合的 QQ 陪聊 + 能控制安卓手机的 MCP</p>
+  <span class="meta"><span>⭐ 7</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Dominic789654--awesome-deepseek-harness.html">
+  <span class="name"><span class="owner">Dominic789654/</span>awesome-deepseek-harness</span>
+  <p>A curated list of plugins, skills, MCP servers, patch/profile layers, orchestrators &amp; UIs for DeepSeek Harness (DSH). Visualization · PPT · Coding · Agents · Loops (auto-research) and more. #dsh</p>
+  <span class="meta"><span>⭐ 151</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/PerryLink--jevcore.html">
+  <span class="name"><span class="owner">PerryLink/</span>jevcore</span>
+  <p>TypeSafe Jev for DeepSeek Harness, the Model Context Protocol, and plain Node: typed judgments instead of prose, offline by default.</p>
+  <span class="meta"><span>⭐ 38</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/hsuanshao--AgentMemory.html">
+  <span class="name"><span class="owner">hsuanshao/</span>AgentMemory</span>
+  <p>Self-hosted memory service for AI agents that work in teams, written in Rust: layered L0→L3 memory, async LLM distillation, hybrid BM25 + vector recall, and department/team/member isolation. SQLite or</p>
+  <span class="meta"><span>⭐ 36</span><span>Rust</span></span>
+</a><a class="card" href="/s/sandbaseai--deepseek-harness-handbook.html">
+  <span class="name"><span class="owner">sandbaseai/</span>deepseek-harness-handbook</span>
+  <p>Independent, source-backed handbook for DeepSeek AI&#x27;s official DeepSeek Harness (dsh): agents, plugins, security, troubleshooting, and runbooks.</p>
+  <span class="meta"><span>⭐ 29</span><span>HTML</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
