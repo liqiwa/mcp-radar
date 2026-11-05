@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iDiagoValeta/mouseketool — MCP Server | MCP Radar</title>
+<meta name="description" content="Before you build it, check it exists. An MCP server and Agent Skill that search GitHub for projects that already cover your idea, read their code and  — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/iDiagoValeta--mouseketool.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="iDiagoValeta/mouseketool — MCP Server | MCP Radar">
+<meta property="og:description" content="Before you build it, check it exists. An MCP server and Agent Skill that search GitHub for projects that already cover your idea, read their code and  — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "iDiagoValeta/mouseketool", "description": "Before you build it, check it exists. An MCP server and Agent Skill that search GitHub for projects that already cover your idea, read their code and give a verdict: reuse, adapt, use as a base or bui", "codeRepository": "https://github.com/iDiagoValeta/mouseketool", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/iDiagoValeta--mouseketool.html", "dateCreated": "2026-11-03"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">iDiagoValeta/</span>mouseketool</h1>
+<p class="sub">Before you build it, check it exists. An MCP server and Agent Skill that search GitHub for projects that already cover your idea, read their code and give a verdict: reuse, adapt, use as a base or bui</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-11-03</b></div>
+  <div class="chip">on radar since <b>2026-11-05</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">build-vs-buy</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/claude-code-plugin.html">claude-code-plugin</a><span class="topic">code-reuse</span><a class="topic" href="/topic/coding-agents.html">coding-agents</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><span class="topic">github-search</span><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">open-source-discovery</span><a class="topic" href="/topic/opencode.html">opencode</a><a class="topic" href="/topic/typescript.html">typescript</a></div>
+<a class="btn" href="https://github.com/iDiagoValeta/mouseketool" rel="noopener">View on GitHub ↗</a>
+<h2>About mouseketool</h2><p class="sub">Before you build something new, find out whether it already exists.</p><p class="sub">When you tell your coding agent you want to build a new tool, app or library, mouseketool searches GitHub for projects that already do it. It checks them for real: their health, their license, and the code behind each README&#x27;s claims. Then it answers with a verdict against your requirements: reuse, adapt, use as a base, or build from scratch.</p><p class="sub">- An MCP server does the mechanical work and makes no judgment: - many GitHub searches in one call; - repository inspection: README, files, activity, releases, issues, contributors and license, plus plain health signals; - file reads. - An Agent Skill teaches your agent the method: 1. separate the must-haves from the nice-to-haves; 2. search from several angles; 3. inspect the mature candidates; 4. confirm in the code what the verdict relies on; 5. answer verdict first, with pros and cons per candidate.</p><p class="sub">The skill triggers by itself when you want a new reusable tool to exist, and stays silent on small tasks such as a one-off script, a fix or a new flag. mouseketool has no LLM of its own: your agent&#x27;s model does the judging.</p><p class="sub">You need Node 24 or later, pnpm, and a GitHub token: either GITHUBTOKEN, or being logged in with gh auth login.</p><p class="sub">Claude Code. The repository is a plugin:</p><p class="sub">opencode. 1. Copy skills/mouseketool/ into a skills directory, such as .opencode/skills/ or ~/.config/opencode/skills/. 2. Add the server to opencode.json, as in opencode.example.json, with the absolute path to dist/server.mjs.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/iDiagoValeta--mouseketool.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Umair--stalemap.html">
+  <span class="name"><span class="owner">Umair/</span>stalemap</span>
+  <p>Tell your coding agent which dependencies changed after its training cutoff. Diffs types and changelogs, writes a short block into AGENTS.md / CLAUDE.md.</p>
+  <span class="meta"><span>⭐ 103</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/osaxyz--sepiace.html">
+  <span class="name"><span class="owner">osaxyz/</span>sepiace</span>
+  <p>Long-term memory for coding agents. The sepiace plugin for Claude Code and Codex.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/MohammadHijjawi97--since-cutoff.html">
+  <span class="name"><span class="owner">MohammadHijjawi97/</span>since-cutoff</span>
+  <p>Find which APIs of your pinned Python dependencies changed after your coding model&#x27;s training cutoff, and give the agent short AGENTS.md / CLAUDE.md notes from a static API diff. No model calls, no AP</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/NiazMorshed2007--jev-review.html">
+  <span class="name"><span class="owner">NiazMorshed2007/</span>jev-review</span>
+  <p>Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.</p>
+  <span class="meta"><span>⭐ 209</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/minkaworks--mcptocodemode.html">
+  <span class="name"><span class="owner">minkaworks/</span>mcptocodemode</span>
+  <p>Stop flooding your agent&#x27;s prompt with MCP tools: MCPtoCodeMode puts every MCP server behind 3 tools and a sandbox, for Codex, Claude Code, Cursor, Grok, OpenCode, Pi, or any MCP client.</p>
+  <span class="meta"><span>⭐ 9</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/rashedInt32--jev-mcp.html">
+  <span class="name"><span class="owner">rashedInt32/</span>jev-mcp</span>
+  <p>MCP server exposing TypeSafe Jev as typed, calibrated judgment tools: classify, score, check, batched ask. Ships as a Claude Code plugin.</p>
+  <span class="meta"><span>⭐ 7</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
