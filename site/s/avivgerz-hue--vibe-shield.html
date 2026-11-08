@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>avivgerz-hue/vibe-shield — MCP Server | MCP Radar</title>
+<meta name="description" content="60-rule static security scanner, MCP server &amp; skill poisoning auditor for AI-generated codebases (Claude Code, Codex, Cursor). — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/avivgerz-hue--vibe-shield.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="avivgerz-hue/vibe-shield — MCP Server | MCP Radar">
+<meta property="og:description" content="60-rule static security scanner, MCP server &amp; skill poisoning auditor for AI-generated codebases (Claude Code, Codex, Cursor). — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "avivgerz-hue/vibe-shield", "description": "60-rule static security scanner, MCP server & skill poisoning auditor for AI-generated codebases (Claude Code, Codex, Cursor).", "codeRepository": "https://github.com/avivgerz-hue/vibe-shield", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/avivgerz-hue--vibe-shield.html", "dateCreated": "2026-11-07"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">avivgerz-hue/</span>vibe-shield</h1>
+<p class="sub">60-rule static security scanner, MCP server &amp; skill poisoning auditor for AI-generated codebases (Claude Code, Codex, Cursor).</p>
+<div class="chips">
+  <div class="chip">⭐ <b>7</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 72.0</b></div>
+  <div class="chip">created <b>2026-11-07</b></div>
+  <div class="chip">on radar since <b>2026-11-08</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/claude-code-plugin.html">claude-code-plugin</a><a class="topic" href="/topic/claude-skills.html">claude-skills</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/codex-skill.html">codex-skill</a><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/design.html">design</a><a class="topic" href="/topic/design-systems.html">design-systems</a><a class="topic" href="/topic/mcp.html">mcp</a></div>
+<a class="btn" href="https://github.com/avivgerz-hue/vibe-shield" rel="noopener">View on GitHub ↗</a>
+<h2>About vibe-shield</h2><p class="sub">Your agent ships fast. It also ships NEXTPUBLICSUPABASESERVICEROLEKEY, a DELETE route with no session check, and a CREATE TABLE with no Row Level Security — because it was optimising for &quot;it works&quot;.</p><p class="sub">vibe-shield is a static security scanner built for that failure mode, plus an Agent Skill that makes Claude Code, Codex, Cursor and Windsurf audit before they say &quot;done&quot;.</p><p class="sub">This is the shape of code an agent writes when you ask for &quot;a delete endpoint&quot;:</p><p class="sub">It works. It also has three critical vulnerabilities — no authentication, SQL injection, and an IDOR that lets the caller choose whose data they delete. Nothing in a normal review loop catches all three, and the agent reported the task as complete.</p><p class="sub">npx github:avivgerz-hue/vibe-shield scan catches all three in 17 milliseconds:</p><p class="sub">Then hand the fix list to the agent that wrote the bug:</p><p class="sub">That file contains, for every finding: the severity, the CWE id and link, the exact file:line, the vulnerable snippet, the ordered remediation steps, the target code shape, and a verification command. It is written for a machine to execute and a human to audit.</p><p class="sub">Why GitHub and not npx vibe-shield? The name vibe-shield on the npm registry belongs to a different project with no connection to this one. Running npx vibe-shield installs their package, not this repository&#x27;s. Install from GitHub — the compiled CLI is committed, so it needs no TypeScript and starts in milliseconds. A scoped npm release (@vibefoundry/vibe-shield) may follow.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/avivgerz-hue--vibe-shield.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Appllama--appllama-skills.html">
+  <span class="name"><span class="owner">Appllama/</span>appllama-skills</span>
+  <p>A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens.</p>
+  <span class="meta"><span>⭐ 5</span><span></span></span>
+</a><a class="card" href="/s/KRISH-exe-29--ai-agent-skill-router.html">
+  <span class="name"><span class="owner">KRISH-exe-29/</span>ai-agent-skill-router</span>
+  <p>AI agent skill router + skill manager: auto-pick the right skills, subagents, plugins and MCP servers for every task in Claude Code, Codex, Cursor, Gemini CLI, Copilot and Antigravity, and audit dupli</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/noteflowai--dsh-skills-anywhere.html">
+  <span class="name"><span class="owner">noteflowai/</span>dsh-skills-anywhere</span>
+  <p>Reuse Agent Skills across DeepSeek Harness and MCP. Check local SKILL.md files in the browser or CI, with parser diagnostics, file hashes and clear exit codes. Try the Hugging Face playground.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/liyupi--memecub.html">
+  <span class="name"><span class="owner">liyupi/</span>memecub</span>
+  <p>Meme search &amp; auto meme placement for AI agents. Remote MCP server, Agent Skill, CLI and REST API that let Claude Code, Cursor and Codex find reaction memes, GIFs and Chinese 表情包 by feeling and insert</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/avivgerz-hue--unslop.html">
+  <span class="name"><span class="owner">avivgerz-hue/</span>unslop</span>
+  <p>Studio-grade UI design systems, Design DNA extractor &amp; Anti-Slop MCP server for AI coding agents (Claude Code, Codex, Cursor, Windsurf).</p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/osaxyz--sepiace.html">
+  <span class="name"><span class="owner">osaxyz/</span>sepiace</span>
+  <p>Long-term memory for coding agents. The sepiace plugin for Claude Code and Codex.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

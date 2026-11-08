@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>haikuotianko/doubao-image-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="把豆包网页版生图封装成本地 MCP 服务：无需 API Key，支持扫码登录、多账号排队、多图全量返回 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/haikuotianko--doubao-image-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="haikuotianko/doubao-image-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="把豆包网页版生图封装成本地 MCP 服务：无需 API Key，支持扫码登录、多账号排队、多图全量返回 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "haikuotianko/doubao-image-mcp", "description": "把豆包网页版生图封装成本地 MCP 服务：无需 API Key，支持扫码登录、多账号排队、多图全量返回", "codeRepository": "https://github.com/haikuotianko/doubao-image-mcp", "programmingLanguage": "Go", "url": "https://mcp.liqiwa.com/s/haikuotianko--doubao-image-mcp.html", "dateCreated": "2026-11-06"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">haikuotianko/</span>doubao-image-mcp</h1>
+<p class="sub">把豆包网页版生图封装成本地 MCP 服务：无需 API Key，支持扫码登录、多账号排队、多图全量返回</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/go.html"><span class="lang-dot" style="--lang:#00ADD8"></span><b>Go</b></a>
+  <div class="chip">momentum <b>▲ 17.0</b></div>
+  <div class="chip">created <b>2026-11-06</b></div>
+  <div class="chip">on radar since <b>2026-11-08</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-image-generation.html">ai-image-generation</a><a class="topic" href="/topic/desktop-app.html">desktop-app</a><span class="topic">doubao</span><a class="topic" href="/topic/golang.html">golang</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">seedream</span><a class="topic" href="/topic/text-to-image.html">text-to-image</a><span class="topic">wails</span><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/haikuotianko/doubao-image-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://haikuotianko.github.io/doubao-image-mcp/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About doubao-image-mcp</h2><p class="sub">把豆包网页版（doubao.com）的生图能力封装成本地 MCP 服务：不需要官方 API Key，用你自己的网页登录态直接调用，Seedream 4.0 / 4.5 / 5.0 全系可用。附带一个桌面端（Wails + WebView2），负责扫码登录、多账号管理、测试生图与排障。</p><p class="sub">Local MCP server that exposes Doubao&#x27;s web image generation as tools for Claude Desktop / Cursor / any MCP client — no API key, just your own web session.</p><p class="sub">- 它能做什么 - 环境要求 - 下载 - 版本与更新检查 - 安装 - 首次使用 - 接入 MCP 客户端 - 工具参考 - 多账号与自动排队 - 数据位置 - 排障 - 已知限制 - 跨平台说明 - 开发</p><p class="sub">工具 作用 --- --- doubaoimage 文生图 / 图生图。一次生成几张就返回几张：本地文件路径 + CDN 链接 + 尺寸 doubaologin 直接从 AI 客户端弹窗扫码：没有账号或登录态失效时调它，不用切到 GUI doubaomodels 列出可用模型、32 种风格 key、8 种比例 doubaoping 检查当前账号登录态是否有效（也能发现 IP 风控） doubaoaccounts 账号池：列出 / 切换默认 / 启用 / 停用 / 删除，输出带昵称与忙碌状态</p><p class="sub">doubaologin 的关键点：stdio 模式下 MCP 进程同样跑在你的桌面会话里，所以它能直接开一个 WebView2 扫码窗口（最多等 3 分钟，扫完自动保存账号并校验）。已经有可用账号时不会打扰你，直接返回「无需登录」。mac / Linux 因为没有内置浏览器，会提示改用 -set-session。</p><p class="sub">- 无水印直链：从 SSE 里挑 imageraw / dwm3 模板地址（手工改后缀会 400，签名覆盖整个 path，只能用服务端给的）。 - 多图全量：服务端一次可能给 1~4 张，全部返回；结构化解析漏掉的图会从原文按图补回。 - 比例修正：服务端经常忽略请求比例，默认用虚化背景补齐到目标比例（偏差 3% 内不动）。 - 双通道降级：新端点 /chat/completion 失败自动降级到旧的 samantha 通道。</p><p class="sub">- Windows 10 / 11：完整支持（GUI + 扫码登录），x64 / x86 / ARM64 都有预编译包。 - macOS / Linux：有预编译命令行版（MCP 功能完整），但没有 GUI、没有内置扫码登录，登录用 -set-session 手动导入（见安装 → 方式三）。想要 GUI 就在该平台上自己 wails build。 - Microsoft Edge WebView2 Runtime：仅 Windows 的扫码窗口需要；Win11 自带，Win10 若缺失程序会明确提示。 - 一个豆包账号（免费账号就能用 Seedream 5.0 Flash）。</p><p class="sub">平台 资产 形态 --- --- --- Windows x64（64 位） …-windows-x64.zip GUI 完整版 Windows x86（32 位） …-windows-x86.zip GUI 完整版（老机器） Windows ARM64 …-windows-arm64.zip GUI 完整版 macOS Apple Silicon …-macos-arm64-cli.zip 命令行版 macOS Intel …-macos-x64-cli.zip 命令行版 Linux x64 …-linux-x64-cli.zip 命令行版 L</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/haikuotianko--doubao-image-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/arxdsilva--vault.html">
+  <span class="name"><span class="owner">arxdsilva/</span>vault</span>
+  <p>A minimal, keyboard-first file manager that replaces Finder and Explorer. Search-first navigation, instant preview, OS-trash-only deletes. Go + Wails.</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a><a class="card" href="/s/utabk--marrow.html">
+  <span class="name"><span class="owner">utabk/</span>marrow</span>
+  <p>Marrow (formerly REA Studio) is a desktop GUI for REA, the reverse engineering MCP: a classic code browser (listing, decompiler, function graph) and all 229 REA tools in one app for macOS, Windows and</p>
+  <span class="meta"><span>⭐ 13</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/nettanvirdev--inertia.html">
+  <span class="name"><span class="owner">nettanvirdev/</span>inertia</span>
+  <p>inertia-ai: a desktop workspace for AI agents. Chat, built-in tools, MCP and OpenAPI integrations, Docker/Daytona sandboxes with a live desktop, routines and memory. Bring your own model and keys.</p>
+  <span class="meta"><span>⭐ 7</span><span>Rust</span></span>
+</a><a class="card" href="/s/yuriiss--X-Forge-Factory.html">
+  <span class="name"><span class="owner">yuriiss/</span>X-Forge-Factory</span>
+  <p>Self-hosted operator console for Magnific / Freepik AI. REST + MCP, 48 image models, 52 video models, credit-safe job engine</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/wakeup595626-cmyk--mcphelm.html">
+  <span class="name"><span class="owner">wakeup595626-cmyk/</span>mcphelm</span>
+  <p>Open-source control center for the OpenAI Secure MCP Tunnel: register local MCP servers (stdio/HTTP), run and supervise the official tunnel-client, and connect ChatGPT / Codex through a desktop app, l</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/PiyushAnand2006--EmberLing.html">
+  <span class="name"><span class="owner">PiyushAnand2006/</span>EmberLing</span>
+  <p>Desktop AI agent rebuilt by reverse-engineering Grok Bot 0.75.8 — iMessage-style chat, 19 agent tools, MCP servers, bots with LAN publishing, automations, voice mode, memories, mermaid/chart blocks. R</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
