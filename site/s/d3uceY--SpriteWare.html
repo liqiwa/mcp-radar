@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>d3uceY/SpriteWare — MCP Server | MCP Radar</title>
+<meta name="description" content="SpriteWare runs an MCP server that lets an agent open a sprite, draw pixels, read the result back and export it in most image formats including sprite — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/d3uceY--SpriteWare.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="d3uceY/SpriteWare — MCP Server | MCP Radar">
+<meta property="og:description" content="SpriteWare runs an MCP server that lets an agent open a sprite, draw pixels, read the result back and export it in most image formats including sprite — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "d3uceY/SpriteWare", "description": "SpriteWare runs an MCP server that lets an agent open a sprite, draw pixels, read the result back and export it in most image formats including sprite sheets", "codeRepository": "https://github.com/d3uceY/SpriteWare", "programmingLanguage": "Go", "url": "https://mcp.liqiwa.com/s/d3uceY--SpriteWare.html", "dateCreated": "2026-11-04"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">d3uceY/</span>SpriteWare</h1>
+<p class="sub">SpriteWare runs an MCP server that lets an agent open a sprite, draw pixels, read the result back and export it in most image formats including sprite sheets</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/go.html"><span class="lang-dot" style="--lang:#00ADD8"></span><b>Go</b></a>
+  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">created <b>2026-11-04</b></div>
+  <div class="chip">on radar since <b>2026-11-09</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/agentic-ai.html">agentic-ai</a><a class="topic" href="/topic/agents.html">agents</a><a class="topic" href="/topic/aseprite.html">aseprite</a><span class="topic">aseprite-mcp</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/pixel-art.html">pixel-art</a><span class="topic">pixel-art-maker</span><span class="topic">pixelart</span></div>
+<a class="btn" href="https://github.com/d3uceY/SpriteWare" rel="noopener">View on GitHub ↗</a>
+<h2>About SpriteWare</h2><p class="sub">Pixel-art tooling an AI agent can actually use</p><p class="sub">SpriteWare runs an MCP server that lets an agent open a sprite, draw pixels, read the result back and export a PNG. It drives Aseprite for the agent: the window you have open, or a hidden Aseprite when none is.</p><p class="sub">I built the mascot sprite animations by hand. The other sprite assets in the app are AI, just to show what the MCP can do.</p><p class="sub">Platform File :-:------ Windows installer SpriteWare-windows-amd64-installer.exe Windows portable SpriteWare-windows-amd64.exe macOS (Apple Silicon and Intel) SpriteWare-macos-universal.dmg Linux binary SpriteWare-linux-amd64 Linux package SpriteWare-linux-amd64.deb</p><p class="sub">The builds are unsigned. Windows: SmartScreen → More info → Run anyway. macOS: right-click the app click Open. Linux binary: chmod +x it first. For Mac, you may need to allow apps from unidentified developers in System Preferences then Security &amp; Privacy.</p><p class="sub">Aseprite 1.3+ is required. First launch asks for its executable. The Server screen starts the MCP server and writes the entry into your assistant&#x27;s config (Claude Desktop and Claude Code, VS Code, Zed, Cursor, Windsurf, Cline, Gemini CLI, Codex, OpenCode, Kiro). I have not tested them all to check if the intalls work correctly but if there are any issues, please make an issue on GitHub.</p><p class="sub">No compiler needed: buy it on aseprite.org, Steam or Humble Bundle. A free trial is on aseprite.org.</p><p class="sub">Its source is free to build yourself if you would rather not buy it (i did buy it, lol. Just follow the intructions or get LibreSprite). Follow INSTALL.md:</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/d3uceY--SpriteWare.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/z3oya--rttsh.html">
+  <span class="name"><span class="owner">z3oya/</span>rttsh</span>
+  <p>A host-side, scriptable command-line terminal for Segger-RTT; Also the AI-ready command line for embedded validation.</p>
+  <span class="meta"><span>⭐ 3</span><span>C#</span></span>
+</a><a class="card" href="/s/enowdev--succubus.html">
+  <span class="name"><span class="owner">enowdev/</span>succubus</span>
+  <p>Cross-agent coordination for AI coding agents. One daemon, one database — so multiple agents in one repo can see each other&#x27;s plan, tasks, and file claims.</p>
+  <span class="meta"><span>⭐ 15</span><span>Go</span></span>
+</a><a class="card" href="/s/Naveen-chava--metabase-mcp.html">
+  <span class="name"><span class="owner">Naveen-chava/</span>metabase-mcp</span>
+  <p>Metabase MCP server for AI Agents. Authenticate with a browser session cookie, no API key required.</p>
+  <span class="meta"><span>⭐ 5</span><span>Go</span></span>
+</a><a class="card" href="/s/Smitner-Studio--facet.html">
+  <span class="name"><span class="owner">Smitner-Studio/</span>facet</span>
+  <p>Render agent-written Markdown as a live local page, and send the human&#x27;s click back to the agent as typed data. Human-in-the-loop approval gates for coding agents.</p>
+  <span class="meta"><span>⭐ 4</span><span>Go</span></span>
+</a><a class="card" href="/s/aliengiraffe--rhizome.html">
+  <span class="name"><span class="owner">aliengiraffe/</span>rhizome</span>
+  <p>Rhizome lets Claude Code, Codex, and OpenCode sessions discover each other, follow selected work, and exchange messages through MCP. Use it to coordinate parallel tasks on your laptop or connect your </p>
+  <span class="meta"><span>⭐ 4</span><span>Go</span></span>
+</a><a class="card" href="/s/otal-labs--nexul.html">
+  <span class="name"><span class="owner">otal-labs/</span>nexul</span>
+  <p>Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

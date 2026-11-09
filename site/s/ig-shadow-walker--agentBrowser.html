@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-08-12</b></div>
   <div class="chip">star trend <b>3 → 4</b> since 2026-08-12</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/browser-automation.html">browser-automation</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cli-tool.html">cli-tool</a><span class="topic">devtools-protocol</span><span class="topic">headless-browser</span><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/playwright.html">playwright</a></div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/browser-automation.html">browser-automation</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cli-tool.html">cli-tool</a><span class="topic">devtools-protocol</span><a class="topic" href="/topic/headless-browser.html">headless-browser</a><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/playwright.html">playwright</a></div>
 <a class="btn" href="https://github.com/ig-shadow-walker/agentBrowser" rel="noopener">View on GitHub ↗</a>
 <h2>About agentBrowser</h2><p class="sub">A headless browser your coding agent can actually finish a job in.</p><p class="sub">Claude Code and Codex get a real Chromium they drive from the outside — with none of the restrictions browsers place on in-page automation. So they can log into your internal tools, fill the forms, upload the file, and be done.</p><p class="sub">We wanted Claude to do a genuinely boring job: log into our internal admin tool, find a record, and attach a document. It got about 80% of the way and then stopped dead — every single time, at the same step.</p><p class="sub">Browsers require a real human gesture before opening a file picker. That&#x27;s not a bug or an oversight; it&#x27;s a deliberate anti-abuse protection, and it&#x27;s absolute. An agent working through a browser extension or injected JavaScript cannot attach a file to . No amount of cleverness gets around it, because the whole point of the restriction is that no amount of cleverness should.</p><p class="sub">Which meant our agent could do the interesting 80% and then hand the task back to a human for the tedious 20%. Worse than useless — it created work.</p><p class="sub">The fix turned out to be a change of vantage point. The restriction applies to code running inside the page. Drive Chromium from outside, over the DevTools Protocol, and setting a file on an input is an ordinary operation — no gesture required, because there&#x27;s no page-level JavaScript asking for one.</p><p class="sub">That outside-the-page control comes from Playwright, which is what makes the whole thing possible. agentBrowser is the layer on top: an interface an agent can reason about, credentials it never gets to see, and a single binary you can hand to someone.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -116,6 +116,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">pairbrowse/</span>pairbrowse</span>
   <p>Multiplayer browser sessions for developers and AI coding agents</p>
   <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/OMD-123--browser-verified-skill.html">
+  <span class="name"><span class="owner">OMD-123/</span>browser-verified-skill</span>
+  <p>Browser automation with evidence. An Agent Skill that lets an AI agent drive a real browser while every action passes a policy gate, every run leaves an auditable artifact, and the run compiles into a</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
 </a><a class="card" href="/s/exzade--EXZA-Remote.html">
   <span class="name"><span class="owner">exzade/</span>EXZA-Remote</span>
   <p>Secure AI-powered remote computer access for ChatGPT, Claude and compatible MCP clients.</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">junxchan54-maker/</span>mcd-cn-assistant</span>
   <p>🍟 麦当劳中国官方 MCP 智能助手技能：把 35 个原子工具编排成 4 条业务流 —— 活动推送 · 联名关注 · 最优惠点餐 · 多人群点聚合账单。算价用 calculate-price 真算，下单必二次确认。｜McDonald&#x27;s China MCP agent skill: campaigns, collab watch, best-value ordering, group bill s</p>
   <span class="meta"><span>⭐ 38</span><span></span></span>
-</a><a class="card" href="/s/Derrors--iphone-control.html">
-  <span class="name"><span class="owner">Derrors/</span>iphone-control</span>
-  <p>Control a real USB-connected iPhone from Linux (no Mac, no paid developer account) and expose it to AI agents as MCP tools</p>
-  <span class="meta"><span>⭐ 32</span><span>Rust</span></span>
 </a>
 
 

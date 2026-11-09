@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mattwells/ffxiai — MCP Server | MCP Radar</title>
+<meta name="description" content="A Windower 4 addon for Final Fantasy XI that lets your AI assistant see your game. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/mattwells--ffxiai.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="mattwells/ffxiai — MCP Server | MCP Radar">
+<meta property="og:description" content="A Windower 4 addon for Final Fantasy XI that lets your AI assistant see your game. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "mattwells/ffxiai", "description": "A Windower 4 addon for Final Fantasy XI that lets your AI assistant see your game.", "codeRepository": "https://github.com/mattwells/ffxiai", "programmingLanguage": "Lua", "url": "https://mcp.liqiwa.com/s/mattwells--ffxiai.html", "dateCreated": "2026-11-06"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">mattwells/</span>ffxiai</h1>
+<p class="sub">A Windower 4 addon for Final Fantasy XI that lets your AI assistant see your game.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/lua.html"><span class="lang-dot" style="--lang:#8b949e"></span><b>Lua</b></a>
+  <div class="chip">momentum <b>▲ 17.0</b></div>
+  <div class="chip">created <b>2026-11-06</b></div>
+  <div class="chip">on radar since <b>2026-11-09</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-assistants.html">ai-assistants</a><a class="topic" href="/topic/chatgpt.html">chatgpt</a><a class="topic" href="/topic/claude.html">claude</a><span class="topic">ffxi</span><span class="topic">ffxi-addon</span><span class="topic">final-fantasy-xi</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/model-context-protocol-server.html">model-context-protocol-server</a><span class="topic">windower</span><span class="topic">windower-addon</span><span class="topic">windower-addons</span><span class="topic">windower4</span></div>
+<a class="btn" href="https://github.com/mattwells/ffxiai" rel="noopener">View on GitHub ↗</a>
+<h2>About ffxiai</h2><p class="sub">A Windower 4 addon for Final Fantasy XI that lets your AI assistant see your game. Ask things like:</p><p class="sub">- &quot;What&#x27;s in my Mog Safe? Do I have any Hi-Potions anywhere?&quot; - &quot;Who in my party is low on MP?&quot; - &quot;What am I wearing, and what augments are on it?&quot; - &quot;How long until Convert is back up?&quot; - &quot;What did my linkshell just say?&quot;</p><p class="sub">It is read-only: it reads what your game client already knows, and it never sends anything to the game server unless you turn on requests.</p><p class="sub">Technically it&#x27;s an MCP server (Model Context Protocol, the standard way AI apps connect to tools), so it works with Claude, ChatGPT and other MCP apps.</p><p class="sub">1. Put this folder in Windower/addons/ so the files are at Windower/addons/ffxiai/ffxiai.lua. 2. In game: //lua load ffxiai. To load it every time, add lua load ffxiai to Windower/scripts/init.txt.</p><p class="sub">If you play several characters at once, load it on each of them. They all work together, and the AI can see every one.</p><p class="sub">This only works with an AI app installed on the PC that&#x27;s running the game. The web versions, such as claude.ai or chatgpt.com in a browser, and the phone apps can&#x27;t reach it.</p><p class="sub">1. Download FFXI-AI.mcpb. It&#x27;s also in the addon folder if you downloaded the whole addon. 2. In the Claude app, open Settings → Desktop app, scroll to the bottom, and click Manage next to Extensions. Drag the file onto that page. (Or click Advanced settings → Install Extension… there and pick the file.) Click Install when Claude asks. 3. Start the game with FFXI-AI loaded, then ask Claude about your characters.</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/mattwells--ffxiai.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/AstraxOf--web-mcp-bridge.html">
+  <span class="name"><span class="owner">AstraxOf/</span>web-mcp-bridge</span>
+  <p>Browser extension &amp; Python WebSocket bridge to connect web-based AI interfaces with local Model Context Protocol (MCP) servers.</p>
+  <span class="meta"><span>⭐ 9</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/gogoymh--auto-ontology-mcp.html">
+  <span class="name"><span class="owner">gogoymh/</span>auto-ontology-mcp</span>
+  <p>NVIDIA Auto Ontology&#x27;s semantic layer and a personal knowledge base as an MCP server for Claude, ChatGPT and other MCP clients. No LLM API key needed.</p>
+  <span class="meta"><span>⭐ 238</span><span>Python</span></span>
+</a><a class="card" href="/s/boyuchengz--canvas-mcp.html">
+  <span class="name"><span class="owner">boyuchengz/</span>canvas-mcp</span>
+  <p>Read-only MCP server that connects Claude, ChatGPT and other AI assistants to Canvas LMS.</p>
+  <span class="meta"><span>⭐ 119</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/arcmira--mcp.html">
+  <span class="name"><span class="owner">arcmira/</span>mcp</span>
+  <p>YouTube transcript search for your AI. Find who said what with timestamps, mentions, sponsors, and recommendations. Remote MCP and agent skills.</p>
+  <span class="meta"><span>⭐ 84</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/exzade--EXZA-Remote.html">
+  <span class="name"><span class="owner">exzade/</span>EXZA-Remote</span>
+  <p>Secure AI-powered remote computer access for ChatGPT, Claude and compatible MCP clients.</p>
+  <span class="meta"><span>⭐ 82</span><span></span></span>
+</a><a class="card" href="/s/Amio242--mcp-memory-server.html">
+  <span class="name"><span class="owner">Amio242/</span>mcp-memory-server</span>
+  <p>Persistent Shared Memory Server for AI Agents via MCP</p>
+  <span class="meta"><span>⭐ 58</span><span>HTML</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
