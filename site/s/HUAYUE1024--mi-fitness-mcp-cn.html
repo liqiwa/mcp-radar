@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-06</b></div>
   
 </div>
-<div class="topics"><span class="topic">health-data</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">mi-fitness</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/rest-api.html">rest-api</a><span class="topic">xiaomi</span></div>
+<div class="topics"><a class="topic" href="/topic/health-data.html">health-data</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">mi-fitness</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/rest-api.html">rest-api</a><span class="topic">xiaomi</span></div>
 <a class="btn" href="https://github.com/HUAYUE1024/mi-fitness-mcp-cn" rel="noopener">View on GitHub ↗</a>
 <h2>About mi-fitness-mcp-cn</h2><p class="sub">小米运动健康（Mi Fitness）数据的本地一站式解决方案：MCP Server + REST API + 可视化 Web 仪表盘。把你自己账号里的健康数据同步到本地 SQLite，供 AI 客户端、其他程序或浏览器直接查询分析。</p><p class="sub">Local-first Mi Fitness (Xiaomi health) data hub: sync your own health data to a local SQLite database, exposed via MCP, REST API, and a web dashboard.</p><p class="sub">- 🇨🇳 中国区云端适配（--region cn），同时支持 ru/de/sg/us 等国际区 - 📦 三种接入方式：MCP Server（AI 客户端）、REST API（任意程序）、Web 仪表盘（浏览器） - 💤 全量健康指标：每日活动、逐分钟心率、睡眠分期（深睡/浅睡/REM/小睡）、运动记录、身体成分、血氧（SpO₂）、压力、异常心跳 - 🔄 增量同步引擎：7 天分块拉取 + 断点续传游标 + UPSERT 幂等入库，重复同步不产生脏数据 - 🔑 API Key 体系：用小米凭据换取 mifsk Key（类大模型平台风格），支持多账号隔离、用量统计、按前缀吊销 - 📱 扫码登录：逆向小米官方扫码流程，手机 App 扫码即可授权，告别浏览器 F12 抓 Cookie - 🖥️ 现代化 Web 仪表盘（Flask）：数据图表走势、实时响应检视、cURL 一键生成、深浅主题 - 🔒 本地优先：数据、凭据、配置全部留在本机（SQLite + 系统 keyring），不上传任何第三方服务</p><p class="sub">⚠️ 非小米官方项目。全部云端接口为逆向所得，仅用于读取和分析你自己的健康数据，请遵守小米用户协议。接口可能因小米改版而失效。</p><p class="sub">类型 内容 CLI --type API 端点 ------------ 每日活动 步数、距离、活动卡路里 dailyactivity /api/summary 心率 逐分钟采样 + 静息心率 heartrate /api/heart-rate 睡眠 时长、入睡/清醒、分段（深睡/浅睡/REM） sleep /api/sleep 运动 类型、时长、距离、卡路里、心率、配速 workouts /api/workouts 身体成分 体重、BMI、体脂、肌肉量等（需体脂秤） bodymeasurements /api/body-measurements 血氧 SpO₂ 采样 spo2 /api/spo2 压力 压力分数 + 等级 stress /api/stress 异常心跳 事件起止与时长 abnormalheartbeat /api/abnormal-heart-beat</p><p class="sub">要求 Python ≥ 3.11。Linux 无系统 keyring 时可 pip install keyrings.alt（可能明文存储凭据）。</p><p class="sub">浏览器打开 http://127.0.0.1:8322/ → 点击「扫码登录」→ 用小米账号 / 米家 App 扫码确认 → 自动换取并注入 API Key。</p><p class="sub">浏览器登录 account.xiaomi.com，从 Cookie 获取 userId 与 passToken：</p><p class="sub">MCP 工具（14 个）：getconnectionstatus · syncdata · getsyncstatus · getprofile · getdailysummary · querymetricseries · queryheartrate · querybodymeasurements · querysleep · queryworkouts · queryspo2 · querystress </p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -115,7 +115,11 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 </a><a class="card" href="/s/Ahaduzzamankhan--aicrawl.html">
   <span class="name"><span class="owner">Ahaduzzamankhan/</span>aicrawl</span>
   <p>AI-native web crawler and structured data extraction engine - one Rust binary with CLI, embedded dashboard, REST API and MCP server for AI agents.</p>
-  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+  <span class="meta"><span>⭐ 5</span><span>Rust</span></span>
+</a><a class="card" href="/s/GeiserX--OwnHealth.html">
+  <span class="name"><span class="owner">GeiserX/</span>OwnHealth</span>
+  <p>The health data layer you own: labs, records, wearables and genome in one self-hosted store, with a web dashboard and an MCP server for your own agent.</p>
+  <span class="meta"><span>⭐ 3</span><span>Rust</span></span>
 </a><a class="card" href="/s/LiCinCan--blender-ai-mcp-addon.html">
   <span class="name"><span class="owner">LiCinCan/</span>blender-ai-mcp-addon</span>
   <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">anujasid/</span>blender-ai-mcp-addon</span>
   <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with OpenAI, ChatGPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon and plugin, copilot for 3D, bpy</p>
   <span class="meta"><span>⭐ 679</span><span>Python</span></span>
-</a><a class="card" href="/s/HerdBuilderEstimate--roblox-studio-mcp.html">
-  <span class="name"><span class="owner">HerdBuilderEstimate/</span>roblox-studio-mcp</span>
-  <p>Model Context Protocol server for Roblox Studio. Connect AI assistants (Claude, Cursor) to read object trees, edit scripts, and run playtests safely. Open-source and lightweight</p>
-  <span class="meta"><span>⭐ 428</span><span>Python</span></span>
 </a>
 
 

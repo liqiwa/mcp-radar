@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>shangyunqiang1/DSH_Eplan — MCP Server | MCP Radar</title>
+<meta name="description" content="DeepSeek Harness bundle for EPLAN Electric P8: a bundled eplan-mcp server that drives the running EPLAN instance, offline SQLite documentation indexes — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/shangyunqiang1--DSH_Eplan.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="shangyunqiang1/DSH_Eplan — MCP Server | MCP Radar">
+<meta property="og:description" content="DeepSeek Harness bundle for EPLAN Electric P8: a bundled eplan-mcp server that drives the running EPLAN instance, offline SQLite documentation indexes — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "shangyunqiang1/DSH_Eplan", "description": "DeepSeek Harness bundle for EPLAN Electric P8: a bundled eplan-mcp server that drives the running EPLAN instance, offline SQLite documentation indexes, a settings page, and five agent skills.", "codeRepository": "https://github.com/shangyunqiang1/DSH_Eplan", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/shangyunqiang1--DSH_Eplan.html", "dateCreated": "2026-11-04"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">shangyunqiang1/</span>DSH_Eplan</h1>
+<p class="sub">DeepSeek Harness bundle for EPLAN Electric P8: a bundled eplan-mcp server that drives the running EPLAN instance, offline SQLite documentation indexes, a settings page, and five agent skills.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 5.0</b></div>
+  <div class="chip">created <b>2026-11-04</b></div>
+  <div class="chip">on radar since <b>2026-11-10</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a></div>
+<a class="btn" href="https://github.com/shangyunqiang1/DSH_Eplan" rel="noopener">View on GitHub ↗</a>
+<h2>About DSH_Eplan</h2><p class="sub">把 Bochica 的 EPLAN 能力移植成 DeepSeek Harness 插件（bundle）： 在本机直接操控 EPLAN Electric P8 2025，并离线查阅 2025 / 2026 / 2027 / EEC Pro 文档，附带 5 个技能。</p><p class="sub">1. 新增 EPLAN P8 2025 的版本精确离线文档索引（API 参考 + 平台帮助两部分）。 Bochica 的托管文档只覆盖 2026 / 2027 / EEC Pro（rag2025.covaga.xyz 不存在），EPLANSkills 也写明「P8 2025 的接口应结合本机核对」。 本插件一方面解析本机安装的 Eplan.EplApi.u.xml（12 个程序集、36,493 个成员）生成 API 索引，另一方面 一次性爬取官方帮助站的 Plattform/2025 用户手册（2,691 页：对话框、设置、命令、概念、提示信息）——两者 都是版本精确、全程离线、每条结果带官方帮助页 URL。 2. 全部文档本地化（五套索引）。 2026 / 2027 / EEC Pro 原本依赖 Canary E-cad 的云托管 RAG 服务（查询会离开 本机）；本插件改为一次性爬取官方帮助站 www.eplan.help，写入本地 SQLite（data\eplan2026-help.sqlite 等）， 之后所有检索都在本机完成，不再联网。同时补上了原方案完全没有的 2025 平台用户手册（2,691 页）。</p><p class="sub">API 参考 ≠ 用户手册：eplan2025 只有 .NET 类型/成员（写脚本、做插件用），eplan2025guide 才是「这个对话框 在哪、这个选项什么意思、这个流程怎么走」的手册内容。提问时先分清是哪一类；查不到通常说明用错了服务，而不是 文档缺失。</p><p class="sub">MCP 服务器 工具前缀 说明 --- --- --- eplan mcpeplan 本地 EPLAN 自动化。eplan-mcp v1.3.0（上游 tag，commit 77a78f63；与 Bochica 同源），discovery 模式发布 15 个工具（12 个连接/动作目录核心 + 3 个发现元工具，含 eplanlistdialogs / eplanclickdialogbutton 用于 EPLAN 被弹窗卡住时）；约 236 个隐藏类型化工具（full 模式共 248 个）通过 eplantoolscall 调用，约 1150 个原始 action 通过 eplanactionrun 调用。每个工具带 MCP 注解与 canary-ecad/eplan 安全事实。通过 Remote Client 驱动正在运行的 EPLAN。 eplan2025 mcpeplan2025 EPLAN P8 2025.0.3 的 .NET API 离线参考（36,493 个成员，全文检索 + 按成员/类型查看，带 Source URL）。纯本地。 eplan2025guide mcpeplan2025guide P8 2025 平台用户手册离线索引（2,691 页：对话框/Settings、命令调用路径、工艺流程、提示信息；search / get / stats）。纯本地。 eplan2026 mcpeplan2026 本地爬取的 P8 2026 API 参考 + 平台帮助（SQLite FTS5，category 区分 API/User Guide）。纯本地。 eplan2027 mcpeplan2027 本地爬取的 P8 2027 API 参考 + 平台帮助，支持按页读取。纯本地。 eecpro mcpeecpro 本地爬取的 EEC Pro 2026 帮助（参考公式、EEC CAD/PLC/脚本、管</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/shangyunqiang1--DSH_Eplan.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/vibeinging--deepseek-harness-desktop-app.html">
+  <span class="name"><span class="owner">vibeinging/</span>deepseek-harness-desktop-app</span>
+  <p>DeepSeek Harness Desktop App: a local AI desktop workspace for DSH Sessions, projects, files, web research, plugins, and Office artifacts.</p>
+  <span class="meta"><span>⭐ 487</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Ebony-Vinyl--EAC-design-world.html">
+  <span class="name"><span class="owner">Ebony-Vinyl/</span>EAC-design-world</span>
+  <p>DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出</p>
+  <span class="meta"><span>⭐ 126</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/vibeinging--dsh-work.html">
+  <span class="name"><span class="owner">vibeinging/</span>dsh-work</span>
+  <p>Local-first AI workbench for DSH Plugins, combining Agent sessions, project files, data analysis, web research, MCP, and Office artifacts in an Electron desktop app.</p>
+  <span class="meta"><span>⭐ 26</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/JialaoLiu--dsh-baton.html">
+  <span class="name"><span class="owner">JialaoLiu/</span>dsh-baton</span>
+  <p>Pass the baton from Claude Code or Codex to a local DeepSeek Harness. An MCP server that hands off tasks and brings the result back.</p>
+  <span class="meta"><span>⭐ 15</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/czcdr--dsh-plugin-rea.html">
+  <span class="name"><span class="owner">czcdr/</span>dsh-plugin-rea</span>
+  <p>第三方适配插件：把上游 REA（github.com/morluto/rea）的 MCP 服务接入 DeepSeek Harness，提供 mcp__rea__* 工具。2.x 会自动准备 Node、REA CLI、JDK 与 Ghidra 并把那一行接好；逆向分析能力全部由上游 REA 提供。</p>
+  <span class="meta"><span>⭐ 14</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/gxpppp--dsh-search-mcp.html">
+  <span class="name"><span class="owner">gxpppp/</span>dsh-search-mcp</span>
+  <p>Replace dsh&#x27;s built-in web search with search MCP servers (Tavily/Brave/Exa/Perplexity/DuckDuckGo/custom), configured from the web Settings page. Disables the built-in DeepSeek search provider while e</p>
+  <span class="meta"><span>⭐ 11</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
