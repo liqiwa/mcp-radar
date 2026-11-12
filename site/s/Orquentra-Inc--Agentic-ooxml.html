@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-10-31</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/docx.html">docx</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">office</span><a class="topic" href="/topic/ooxml.html">ooxml</a><span class="topic">pptx</span><a class="topic" href="/topic/rust.html">rust</a><span class="topic">xlsx</span></div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/docx.html">docx</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">office</span><a class="topic" href="/topic/ooxml.html">ooxml</a><a class="topic" href="/topic/pptx.html">pptx</a><a class="topic" href="/topic/rust.html">rust</a><span class="topic">xlsx</span></div>
 <a class="btn" href="https://github.com/Orquentra-Inc/Agentic-ooxml" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://orquentra-inc.github.io/Agentic-ooxml/" rel="noopener nofollow">Homepage ↗</a>
 <h2>About Agentic-ooxml</h2><p class="sub">Let an agent edit the board deck. Know when a number moved.</p><p class="sub">Who a deck is for, where each figure came from and what must not change are stored inside the .pptx, .docx or .xlsx itself. The next edit starts with that context, and a number that moved gets flagged instead of silently trusted. See it on the project site, with a live demo of a stale number being caught.</p><p class="sub">Linux and macOS, no Rust needed; it installs agentic-ooxml and agentic-ooxml-mcp into ~/.local/bin after checking the release checksum. Windows, Cargo and Claude Code routes are under Install.</p><p class="sub">- The file notices when a number moves. Edit the workbook cell a slide quotes and the deck&#x27;s source reports stale (externalclaimchanged), though the deck was never touched. Real output: examples/demo-output.txt. - Your original is safe by default. Through MCP, writes are off unless AGENTICOOXMLALLOWWRITE=1, produce a sibling .ao-proposed copy, and stay inside AGENTICOOXMLROOTS. Native package entries are copied byte for byte. - Every edit is reviewable, and it stays local. diff and validate show what changed and whether the package is sound; the core, CLI and MCP crates have no network dependency. Open source (MIT).</p><p class="sub">Agentic OOXML stores the context an agent needs to edit an Office file correctly, such as who it is for, how it should look, and where its numbers came from, as standard OOXML custom XML parts. A Rust library and command line read and write those parts, and report when a sourced number has changed since someone checked it. It never copies the document&#x27;s own structure, so there is no second copy to drift. It d</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Orquentra-Inc--Agentic-ooxml.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/Graphicle-AI--graphicle.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/aryehlev--PeerHarness.html">
+  <span class="name"><span class="owner">aryehlev/</span>PeerHarness</span>
+  <p>Your team votes on how its AI coding agents behave. Correct Claude Code once, and PeerHarness turns it into a one-sentence rule (an Agent Skill) that a majority of your team votes in for every member&#x27;</p>
+  <span class="meta"><span>⭐ 29</span><span>Rust</span></span>
+</a><a class="card" href="/s/Graphicle-AI--graphicle.html">
   <span class="name"><span class="owner">Graphicle-AI/</span>graphicle</span>
   <p>Code graph and memory for your coding agents, in one Rust program. For Claude Code, Codex, Cursor and any MCP client.</p>
   <span class="meta"><span>⭐ 325</span><span>Rust</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Sheernox/</span>cedr</span>
   <p>Developer tools for humans and agents: route work to the right AI coding agent, merge multi-vendor reviews into one gate, pin the skills and MCP servers agents load, compile one setup for every agent,</p>
   <span class="meta"><span>⭐ 65</span><span>Rust</span></span>
-</a><a class="card" href="/s/hsuanshao--AgentMemory.html">
-  <span class="name"><span class="owner">hsuanshao/</span>AgentMemory</span>
-  <p>Self-hosted memory service for AI agents that work in teams, written in Rust: layered L0→L3 memory, async LLM distillation, hybrid BM25 + vector recall, and department/team/member isolation. SQLite or</p>
-  <span class="meta"><span>⭐ 36</span><span>Rust</span></span>
 </a>
 
 

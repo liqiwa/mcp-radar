@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyric679/wechat-local-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="让 Claude Code 读取本机微信聊天记录：内存取密钥 -&gt; SQLCipher 解密 -&gt; MCP 工具。支持语音转写、图片解密、文件定位、转发集录。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Lyric679--wechat-local-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Lyric679/wechat-local-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="让 Claude Code 读取本机微信聊天记录：内存取密钥 -&gt; SQLCipher 解密 -&gt; MCP 工具。支持语音转写、图片解密、文件定位、转发集录。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Lyric679/wechat-local-mcp", "description": "让 Claude Code 读取本机微信聊天记录：内存取密钥 -> SQLCipher 解密 -> MCP 工具。支持语音转写、图片解密、文件定位、转发集录。", "codeRepository": "https://github.com/Lyric679/wechat-local-mcp", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/Lyric679--wechat-local-mcp.html", "dateCreated": "2026-11-10"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Lyric679/</span>wechat-local-mcp</h1>
+<p class="sub">让 Claude Code 读取本机微信聊天记录：内存取密钥 -&gt; SQLCipher 解密 -&gt; MCP 工具。支持语音转写、图片解密、文件定位、转发集录。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 17.0</b></div>
+  <div class="chip">created <b>2026-11-10</b></div>
+  <div class="chip">on radar since <b>2026-11-12</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">sqlcipher</span><a class="topic" href="/topic/wechat.html">wechat</a><span class="topic">wechat-mcp</span><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/Lyric679/wechat-local-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About wechat-local-mcp</h2><p class="sub">让 Claude Code 直接读你电脑上自己的微信聊天记录。 只在本机读写，不联网、不上传、不注入微信进程。</p><p class="sub">一句话：微信把库加密了，密钥只在运行中的微信进程内存里；本工具把密钥读出来、把库解开、再通过 MCP 协议交给 Claude。</p><p class="sub">工具 干什么 典型用法 --------- listrecentchats 最近有消息的会话，按活跃时间倒序 「我最近跟谁聊得多？」 readchat 看某个人 / 某个群的聊天记录 「看看我和导师这周的对话」 searchchats 全库搜关键词（压缩存的消息也会解开再搜） 「我在哪提过这个项目？」 voicetranscripts 只取某个会话的语音转写，按时间正序，带 epoch 「把这段对话里我说的话补回来」 refreshdata 重新取密钥并解密，看新消息前要刷一次 「刷新一下」 clearcache 删掉本工具生成的明文缓存 「把缓存清了」</p><p class="sub">readchat 的 who 参数支持备注名 / 昵称 / 群名 / wxid，并且支持片段模糊匹配；匹配到多个时会列出候选让你选。</p><p class="sub">voicetranscripts 是给「和别的微信索引搭配用」准备的：别人把语音统一存成 [语音]， 这个工具只挑语音出来、只解析 packedinfodata，比重读整个会话便宜得多。 返回里每条都带 epoch（秒级时间戳），可以直接和别的库的 createtime 对上。</p><p class="sub">先说结论：如果你只是想要一个能用的产品，本项目不是最优选。GitHub 上已经有做得更全的同类项目。</p><p class="sub">项目 ★ 平台 路线 和本项目的区别 ------:--------- stkoecn/im-mcp 83 Windows + macOS 同样是「读进程内存取密钥 → 解密本地库」，29 个工具，有 FTS5 全文索引 功能全面得多，还支持钉钉。想直接用就选它 bojieli/greenbubbles 423 仅 macOS Rust + Swift，读本地库 Windows 上用不了 lich0821/WeChatFerry 6.8k 仅 Windows 注入 DLL 进微信进程，能收发消息 是机器人框架，不是历史阅读器；绑定特定微信版本；注入有账号风险 JettChenT/wechat-mcp 47 — — 2025-01 之后没再更新，属于微信 3.x 时代</p><p class="sub">im-mcp 的 29 个工具和整篇功能列表里，检索「语音 / voice / 转写 / SILK / audio」全部 0 命中。 而语音在微信里占比极高——本项目实测一个账号 23,718 条语音。不处理等于整段对话是空的。</p><p class="sub">本项目从 packedinfodata 的 protobuf（字段 5 → 2）里取出微信自己做的转写配在消息里， 秒数从 voicelength 取。取不到时明确告诉你「没有转写」，而不是丢一个 [语音] 就完事。</p><p class="sub">证据等级：检索过对方 README，也读过对方 adapters/media.py、parser.py、tools/keytool.py 的源码。 源码里「语音」只作为消息类型标签出现（34: &quot;语音&quot;、17: &quot;实时语音&quot;）， 没有 packedinfodata、没有转写提取、没有音频解码。这一条是可以核实的。</p><p class="sub">7 个文件 1,739 行 Python，没有框架、没有构建步骤、没有子模块。 想搞明白「微信的库到底是怎么加密的、Claude 是怎么拿到聊天记录的」，从这个仓库读进去比读一个大项目快得多。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Lyric679--wechat-local-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Shugar86--vids-studio.html">
+  <span class="name"><span class="owner">Shugar86/</span>vids-studio</span>
+  <p>Editable Google Vids videos and series with Codex &amp; Claude Code. Skills, local MCP bridge, Chrome extensions and a shared monitor · RU/EN</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/lfoletti--keyshot-mcp.html">
+  <span class="name"><span class="owner">lfoletti/</span>keyshot-mcp</span>
+  <p>Prototype MCP server: control KeyShot Studio from Claude Code (scene, cameras, materials from a CMF sheet, renders)</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/eddyhhlure1Eddy--win-cu.html">
+  <span class="name"><span class="owner">eddyhhlure1Eddy/</span>win-cu</span>
+  <p>WinCU / Windows Computer Use / Computer Action / Windows MCP: an MCP server that lets AI models operate a Windows PC with screenshots, mouse, keyboard, clipboard, window control and UI Automation. Wor</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/exzade--EXZA-Remote.html">
+  <span class="name"><span class="owner">exzade/</span>EXZA-Remote</span>
+  <p>Secure AI-powered remote computer access for ChatGPT, Claude and compatible MCP clients.</p>
+  <span class="meta"><span>⭐ 82</span><span></span></span>
+</a><a class="card" href="/s/lemonadesaltbagel--sill.html">
+  <span class="name"><span class="owner">lemonadesaltbagel/</span>sill</span>
+  <p>Native Windows Bash for AI coding agents. Run Claude Code, Codex, opencode &amp; Gemini CLI without Git Bash, MSYS2 or WSL. Built in Rust, with MCP support.</p>
+  <span class="meta"><span>⭐ 67</span><span>Rust</span></span>
+</a><a class="card" href="/s/kemalcalak--design-editor.html">
+  <span class="name"><span class="owner">kemalcalak/</span>design-editor</span>
+  <p>Local-first, AI-native vector design editor in Rust. AI agents design on a live canvas over MCP, or through the built-in chat with your own model API.</p>
+  <span class="meta"><span>⭐ 15</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
