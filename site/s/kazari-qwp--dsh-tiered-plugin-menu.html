@@ -89,16 +89,16 @@ padding:9px 18px;font-size:14px;cursor:pointer}
 <h1><span class="owner">kazari-qwp/</span>dsh-tiered-plugin-menu</h1>
 <p class="sub">按客户端、工作区和会话分层配置 DSH 插件、MCP 与 Skill，支持独立开关、不同配置、逐级继承和插件实例隔离。</p>
 <div class="chips">
-  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⭐ <b>7</b> stars</div>
   <div class="chip">⑂ <b>0</b> forks</div>
   <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
-  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">momentum <b>▲ 17.5</b></div>
   <div class="chip">created <b>2026-11-08</b></div>
   <div class="chip">on radar since <b>2026-11-12</b></div>
-  
+  <div class="chip">star trend <b>6 → 7</b> since 2026-11-12</div>
 </div>
 <div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/deepseek-harness.html">deepseek-harness</a><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">plugin-manager</span><a class="topic" href="/topic/typescript.html">typescript</a></div>
-<a class="btn" href="https://github.com/kazari-qwp/dsh-tiered-plugin-menu" rel="noopener">View on GitHub ↗</a>
+<a class="btn" href="https://github.com/kazari-qwp/dsh-tiered-plugin-menu" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://kazari-qwp.github.io/dsh-tiered-plugin-menu/" rel="noopener nofollow">Homepage ↗</a>
 <h2>About dsh-tiered-plugin-menu</h2><p class="sub">让每个工作区、每个会话都能独立开关 DSH 插件、MCP 和 Skill，并使用各自不同的配置。</p><p class="sub">比如，只在写代码的工作区启用某个插件，在其他工作区关闭；同一个插件，在会话 A 使用配置 A，在会话 B 使用配置 B。直接从侧栏的小插件按钮打开菜单，在「设置」中使用原插件的配置界面。</p><p class="sub">配置按 客户端 → 父工作区 → 子工作区 → 会话 逐级继承，支持任意深度的工作区树。没有单独设置时沿用上级，需要时在工作区或单个会话里覆盖。</p><p class="sub">同一套核心支持桌面/Web、dsh-TUI 和 dsh-go。各包独立版本、独立发布；兼容的核心修复只需发布核心包，无须同步发布三个界面。</p><p class="sub">包 职责 --- --- dsh-tiered-plugin-core 分级继承、插件实例、依赖、MCP 与 Skill；由界面自动依赖 dsh-tiered-plugin-menu 原桌面/Web 菜单，保留原包名和配置路径 dsh-tiered-plugin-tui 终端侧栏面板；使用 TUI 宿主 React 与对话框 dsh-tiered-plugin-go dsh-go 原生菜单，并按会话转发其他原生插件的界面注册</p><p class="sub">挂在同一 DSH 宿主的界面共用一份核心和实例。 关闭其中一个不会影响其他界面或后台任务；最后一个持有者退出才释放核心。分别启动的 DSH 进程各有自己的运行实例，不能仅靠共用文件夹实现内存共享。</p><p class="sub">三端都提供插件 / MCP / Skill、本级 / 下级默认、继承 / 启用 / 关闭和配置编辑。桌面继续复用插件原设置页；TUI 逐字段编辑，手机使用 JSON 表单。详见 TUI、dsh-go 和 架构与验证。已验证隔离虚拟机中的实际 TUI/Web，以及连接虚拟机后端的 Android 官方 APK；包括界面操作和完整冷启动，见 测试截图与范围。</p><p class="sub">TUI 0.1.0 需要在 TUI 实际使用的同一个 DSH profile 中执行下面两条命令，先核心、后界面。把 换成你的 profile 名称（不要原样输入尖括号）：</p><p class="sub">随后完全退出并重新启动 TUI 和它的 DSH 后端，在侧栏面板选择器中打开「分级配置」。这里的“启用核心 bundle”就是第一条 dsh plugin add：它既安装包，也将核心入口加入该 profile。只执行 npm install，或只添加 TUI 包，虽然会下载核心依赖，却不会启用核心入口。</p><p class="sub">如果已手动配置 profile，请保留其他 bundle，并确保 dsh.profile.bundles 包含 dsh-tiered-plugin-core 和 dsh-tiered-plugin-tui，核心排在 TUI 之前。Web 的原安装命令不变，无须额外执行上述核心安装步骤。详见 TUI 使用说明。</p><p class="sub">- 客户端插件：图中「工作区」总标题右侧的插头图标，设置整个客户端的默认插件与配置。 - 工作区插件：鼠标悬停在工作区名称这一行，点击出现的插头图标。 - 会话插件：鼠标悬停在会话名称这一行，点击出现的插头图标。 - 会话标签页：打开会话顶部的「分级配置」，直接调整当前会话的「本级 / 下级」插件、MCP 和 Skill 设置。进入子代理或孙代理时，配置对象跟随当前显示的会话，沿父代理逐层继承。标签页使用 DSH 官方插槽，可与 Context 等插件的标签页并列使用。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
