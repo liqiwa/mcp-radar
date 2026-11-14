@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-10-08</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/agent-orchestration.html">agent-orchestration</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/codex-cli.html">codex-cli</a><a class="topic" href="/topic/codex-mcp.html">codex-mcp</a><a class="topic" href="/topic/coding-agents.html">coding-agents</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/git-worktree.html">git-worktree</a><a class="topic" href="/topic/llm-agents.html">llm-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a><a class="topic" href="/topic/openai-codex.html">openai-codex</a><span class="topic">parallel-agents</span><span class="topic">worktree</span></div>
+<div class="topics"><a class="topic" href="/topic/agent-orchestration.html">agent-orchestration</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/codex-cli.html">codex-cli</a><a class="topic" href="/topic/codex-mcp.html">codex-mcp</a><a class="topic" href="/topic/coding-agents.html">coding-agents</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/git-worktree.html">git-worktree</a><a class="topic" href="/topic/llm-agents.html">llm-agents</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/multi-agent.html">multi-agent</a><a class="topic" href="/topic/openai-codex.html">openai-codex</a><a class="topic" href="/topic/parallel-agents.html">parallel-agents</a><span class="topic">worktree</span></div>
 <a class="btn" href="https://github.com/zriyox/codex-supervisor-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://codex-supervisor.zriyo.com" rel="noopener nofollow">Homepage ↗</a>
 <h2>About codex-supervisor-mcp</h2><p class="sub">官网 codex-supervisor.zriyo.com · 给模型读的 llms.txt</p><p class="sub">让几个 agent 同时改一个仓库，结果是互相覆盖、没人说得清谁改了什么，主线程的上下文还被 worker 的输出塞满。</p><p class="sub">codex-supervisor-mcp 是一个 Codex MCP server，把「派单」和「记账」从模型上下文里拿出来放到磁盘上：一个主线程（Claude Code、Codex 或任何 MCP 客户端）同时指挥多个 Codex CLI worker，一个 worker 一个 Git worktree，状态落盘到 SQLite，附一个网页看板。</p><p class="sub">30 秒真跑：createcodexworker ×3，三个 worker 各自 worktree 并行，主线程收 3 份 diff 合成一次 commit。</p><p class="sub">问题 做法 ------ 几个 worker 互相踩文件 一个 worker 一个 Git worktree，ownedPaths 在派单前查冲突 worker 的过程塞爆主线程上下文 事件写 data/runs/.jsonl，读的时候有 limit / maxChars / kinds 三道闸 主线程读一次状态就顶满 getorchestrationoverview 把全部 worker 压进 7000 字节 进程重启后不知道谁还在跑 supervisor.sqlite 一行一个 work，带 threadid 换个会话接不上之前的 worker resumecodexworker 走 codex exec resume ，接的是同一个 Codex 会话 分不清「跑失败」和「进程没了」 状态机把 failed 和 lost 分开 看不见一批活现在到哪了 codex-supervisor-web 开一个看板，按 session 看每路 worker 在干什么</p><p class="sub">worker 跑的是 codex exec，model 透传：主线程留在 Claude，worker 可以挂 DeepSeek 或任何 Codex 配了 provider 的模型，账单分开算。</p><p class="sub">前置：Node.js 22.13.0 以上，codex CLI 在 PATH 里。macOS、Linux、Windows 都行。</p><p class="sub">postinstall 装 skill、注册 MCP。claude mcp list 里没看到（npx、pnpm、--ignore-scripts 不跑 postinstall）就手动补：</p><p class="sub">重启 Claude Code / Codex。以后不用再手动更，见「更新」。只要 skill 不要 MCP：npx skills add zriyox/codex-supervisor-mcp。</p><p class="sub">把这三个模块的单测补齐，用 codex-supervisor 分三路并行跑，session 叫「补单测」。</p><p class="sub">打开 http://127.0.0.1:7877。状态目录按 SUPERVISORHOME、最近的 .mcp.json、~/.codex-supervisor 的顺序找；端口用 SUPERVISORWEBPORT 改。看板只看，不派单不取消。</p><p class="sub">能连 MCP 的都能当主线程，这里只是我的用法。我开两个 Claude Code 会话，一个只管文档，一个只管派活：一个会话又写详设又盯 worker，上下文两小时就满。</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/zriyox--codex-supervisor-mcp.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/azimov777--casefile.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/merlinh0--agent-bridge.html">
+  <span class="name"><span class="owner">merlinh0/</span>agent-bridge</span>
+  <p>MCP server to orchestrate parallel AI coding agents (omp, Claude Code, any model) in Tern terminal tabs and git worktrees, from Claude Desktop or Claude Code.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/azimov777--casefile.html">
   <span class="name"><span class="owner">azimov777/</span>casefile</span>
   <p>The task tracker your AI agents keep for each other: every task carries a case file, so the next agent picks up where the last one stopped. MCP server + live board. Self-hosted, one-line install.</p>
   <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">Vuk97/</span>codex-remote-pro</span>
   <p>ChatGPT &lt;-&gt; Codex bridge: local coding agents ask ChatGPT for advice, and ChatGPT can inspect or steer your running Codex sessions. No API key.</p>
   <span class="meta"><span>⭐ 12</span><span>Python</span></span>
-</a><a class="card" href="/s/luckeyfaraday--frontier-orchestrator.html">
-  <span class="name"><span class="owner">luckeyfaraday/</span>frontier-orchestrator</span>
-  <p>Multi-agent orchestration for Claude Code: MCP server + skill that keeps Claude as lead engineer while delegating backend work to OpenAI Codex and frontend/design work to Kimi</p>
-  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
 </a>
 
 

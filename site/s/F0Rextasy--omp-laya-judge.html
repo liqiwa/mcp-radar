@@ -97,7 +97,7 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-09-24</b></div>
   <div class="chip">star trend <b>4 → 5</b> since 2026-09-24</div>
 </div>
-<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/local-llm.html">local-llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><span class="topic">oh-my-pi</span></div>
+<div class="topics"><a class="topic" href="/topic/agent-skills.html">agent-skills</a><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/local-llm.html">local-llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/oh-my-pi.html">oh-my-pi</a></div>
 <a class="btn" href="https://github.com/F0Rextasy/omp-laya-judge" rel="noopener">View on GitHub ↗</a>
 <h2>About omp-laya-judge</h2><p class="sub">Local System-1 judge for oh-my-pi, powered by laya. Typed decisions (choice/bool/score) in ~1s on CPU, 0 LLM tokens burned, nothing leaves the machine.</p><p class="sub">Measured head-to-head on the same classification questions (real model via omp -p vs this plugin on CPU, no GPU):</p><p class="sub">LLM judge() laya-judge --------- latency / question ~18s (16–25s sampled) ~0.35s (0.2–0.5s) tokens / question ~700 0 accuracy (12-case bench) n/a (reference) 8/12, misses escalate chance (2–3 vs 0), not a checkpoint coronation.</p><p class="sub">Grounded quiz (python demo/quiz.py): 6/8, mean 282ms, 0 tokens — both misses came in under 0.2 confidence, exactly the cases the escalate rule covers.</p><p class="sub">Snake (python demo/snake.py): score 12, 300 moves, alive, 12 shield interventions, ~0.9s/move on CPU, 0 tokens. Watch every decision in the browser: open web/snake.html (canvas replay with live probability bars, play/pause/speed/scrub); quiz at web-quiz.html. Recipe (from laya-mlx): a deterministic planner describes each direction over a tiny state (Safe route: yes. Food reachable: a safety shield executes the best SAFE move. Short parallel criteria are the whole trick — greedy end-to-end choice without the planner scores 0 (see demo/snake.py header for the measured failure modes). Honest calibration: per-move confidences on game states run at noise level (0.005-0.05; the quiz gets 0.2-1.0 on text) — navigation is planner + shield with laya ranking, the same division of labor as laya-mlx. The maze variant (demo/maze.py) is a documented negative: corridors trap the noise walk (1 crumb/200 steps).</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
@@ -124,10 +124,10 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">qybaihe/</span>hash-design</span>
   <p>Let a true-random hash pick the design direction, not the model. MCP server + Agent Skill + CLI + TypeScript library mapping hashes onto 40 real-world design genres.</p>
   <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/osaxyz--sepiace.html">
-  <span class="name"><span class="owner">osaxyz/</span>sepiace</span>
-  <p>Long-term memory for coding agents. The sepiace plugin for Claude Code and Codex.</p>
-  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/merlinh0--agent-bridge.html">
+  <span class="name"><span class="owner">merlinh0/</span>agent-bridge</span>
+  <p>MCP server to orchestrate parallel AI coding agents (omp, Claude Code, any model) in Tern terminal tabs and git worktrees, from Claude Desktop or Claude Code.</p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
 </a>
 
 
