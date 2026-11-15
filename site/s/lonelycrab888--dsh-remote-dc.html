@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lonelycrab888/dsh-remote-dc — MCP Server | MCP Radar</title>
+<meta name="description" content="Access files, search logs, and run commands on paired machines from DeepSeek Harness using Desktop Commander’s official Remote MCP. No public IP, inbo — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/lonelycrab888--dsh-remote-dc.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="lonelycrab888/dsh-remote-dc — MCP Server | MCP Radar">
+<meta property="og:description" content="Access files, search logs, and run commands on paired machines from DeepSeek Harness using Desktop Commander’s official Remote MCP. No public IP, inbo — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "lonelycrab888/dsh-remote-dc", "description": "Access files, search logs, and run commands on paired machines from DeepSeek Harness using Desktop Commander’s official Remote MCP. No public IP, inbound ports, or SSH required.", "codeRepository": "https://github.com/lonelycrab888/dsh-remote-dc", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/lonelycrab888--dsh-remote-dc.html", "dateCreated": "2026-11-14"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">lonelycrab888/</span>dsh-remote-dc</h1>
+<p class="sub">Access files, search logs, and run commands on paired machines from DeepSeek Harness using Desktop Commander’s official Remote MCP. No public IP, inbound ports, or SSH required.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-11-14</b></div>
+  <div class="chip">on radar since <b>2026-11-15</b></div>
+  
+</div>
+<div class="topics"><span class="topic">desktop-commander</span><a class="topic" href="/topic/dsh.html">dsh</a><a class="topic" href="/topic/dsh-plugin.html">dsh-plugin</a><a class="topic" href="/topic/dsh-plugin-market.html">dsh-plugin-market</a><a class="topic" href="/topic/dsh-plugins.html">dsh-plugins</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a></div>
+<a class="btn" href="https://github.com/lonelycrab888/dsh-remote-dc" rel="noopener">View on GitHub ↗</a>
+<h2>About dsh-remote-dc</h2><p class="sub">Remote DC for dsh 是面向 DeepSeek Harness 的 Desktop Commander 非官方社区集成。</p><p class="sub">在校外也想看实验日志，或想在家确认公司服务器上的构建结果？在有权使用的目标机器上运行 Desktop Commander 代理，再从 DeepSeek Harness 登录同一个账户。设备能够出站连接官方服务时，你就能在 dsh 对话里找文件、读日志、编辑文档或操作终端。账户模式无需在目标机器上配置公网 IP、开放入站端口或安装 SSH 服务。</p><p class="sub">兼容 dsh 0.2.2-rc.1 及以上。使用独立 CLI 时，宿主需要 Node.js 24.9 或以上。</p><p class="sub">桌面端打开 插件 → 安装已有插件，输入 dsh-remote-dc@0.1.1。Web profile 也可以用命令安装。</p><p class="sub">也可从 GitHub v0.1.1 Release 下载安装包，在包所在目录运行以下命令。</p><p class="sub">1. 打开 设置 → Remote DC for dsh → 连接账户 → 打开授权页面。在运行 dsh 的电脑上，用浏览器完成 Desktop Commander 登录与授权。 2. 在目标设备运行下方命令。用同一个 Desktop Commander 账户核对配对码，并让设备代理保持运行。</p><p class="sub">3. 回到设置页刷新设备列表。在对话里试一句「用 Remote DC for dsh 查看实验服务器上 /home/me/experiments 目录的最新日志。」</p><p class="sub">设置页的 管理与配对设备 会打开官方控制台，可查看设备状态、添加设备或撤销访问。如果设备处于离线状态，检查目标机器上的代理进程和出站网络。官方配对指南</p><p class="sub">- 文件、搜索、终端、设备管理、账户和调用记录等能力由官方 MCP 向当前账户公布。插件按原始 schema 动态注册这些工具，例如 mcpremotedesktopcommanderlistdevices，并将选择设备所需的 deviceId 等参数照常传给服务。工具可用性随上游账户和设备权限变化。 - OAuth grant 保存在 dsh 宿主的凭据存储中，跨重启恢复。设置页仅显示连接状态、已加载工具数和上游返回的设备信息。访问令牌失效时，插件尝试刷新。需要用户授权时，设置页显示重新连接入口。 - 断开连接 删除 dsh 中的授权凭据并卸载该账户的工具。要在 Desktop Commander 侧撤销授权或配对，请使用其官方控制台。 - Codex 插件 的宿主工具审核与权限界面由 OpenAI 提供。dsh 接入同一官方服务，并使用 dsh 自身的工具与权限界面。</p><p class="sub">1. 在每台被访问的电脑上安装 Desktop Commander，远端需要 Node.js 22.12+。上游独立升级，本版本使用 0.3.3 验证。</p><p class="sub">2. 在运行 dsh 的电脑上，为远端配置一个 OpenSSH 主机别名。以下配置中的主机名、账号和密钥路径按实际情况填写。先通过可信渠道确认服务器的主机密钥并保存到 knownhosts。</p><p class="sub">若命令在非交互会话中找不到 Node.js，配置远端的非交互 PATH，或将 executable 指向使用 Node.js 绝对路径的启动脚本。SSH 密钥使用系统配置或由 ssh-agent 解锁。只访问本机时无需此步骤。</p><p class="sub">3. 按上文安装插件。默认安装时设备列表为空。将 设备配置示例 另存为 rdc.patch.yml，填写设备并把相应的 enabled 改为 true。初次运行可以使用临时 overlay。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/lonelycrab888--dsh-remote-dc.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/offzen--dsh-gitea-search.html">
+  <span class="name"><span class="owner">offzen/</span>dsh-gitea-search</span>
+  <p>dsh-plugin</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/LeoLourson--MathPaperLib.html">
+  <span class="name"><span class="owner">LeoLourson/</span>MathPaperLib</span>
+  <p>MathPaperLib keeps the papers you work with in one folder and gives an AI agent tools to find papers, download them, read them page by page and search their full texts. The tools run as an MCP server,</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/Ebony-Vinyl--EAC-design-world.html">
+  <span class="name"><span class="owner">Ebony-Vinyl/</span>EAC-design-world</span>
+  <p>DeepSeek Harness 本地视频制作与设计插件：多轨剪辑、模板与设计体系、原生预览画布和真实文件导出</p>
+  <span class="meta"><span>⭐ 126</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/czcdr--dsh-plugin-rea.html">
+  <span class="name"><span class="owner">czcdr/</span>dsh-plugin-rea</span>
+  <p>第三方适配插件：把上游 REA（github.com/morluto/rea）的 MCP 服务接入 DeepSeek Harness，提供 mcp__rea__* 工具。2.x 会自动准备 Node、REA CLI、JDK 与 Ghidra 并把那一行接好；逆向分析能力全部由上游 REA 提供。</p>
+  <span class="meta"><span>⭐ 14</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/pazz11--Jnpz.html">
+  <span class="name"><span class="owner">pazz11/</span>Jnpz</span>
+  <p>改配置+重启才能加 MCP？DeepSeek Harness (DSH) 插件「技能配置」解决：设置页粘贴 JSON 即连 MCP 服务器、热加载免重启；上传 zip/.skill 自动识别 SKILL.md，创建/编辑/启停技能，即点即用</p>
+  <span class="meta"><span>⭐ 11</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/duhu2000--dsh-mcp-connector.html">
+  <span class="name"><span class="owner">duhu2000/</span>dsh-mcp-connector</span>
+  <p>DeepSeek Harness 通用 MCP连接器、连接管理与扩展市场：连接 MCP Server，发现工具与 Prompt，扩展 AI 技能；支持 OAuth/PKCE、API Key、JSON 导入。由企查查（Qichacha/QCC）团队发起维护。General-purpose MCP connector, connection manager, plugin, extension and</p>
+  <span class="meta"><span>⭐ 5</span><span>JavaScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
