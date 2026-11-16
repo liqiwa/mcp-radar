@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackBuddle/twin-modeling-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="Local MCP server that checks, simulates and draws 3D twin models of machines from words or photos. No PLC needed. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/BlackBuddle--twin-modeling-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="BlackBuddle/twin-modeling-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="Local MCP server that checks, simulates and draws 3D twin models of machines from words or photos. No PLC needed. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "BlackBuddle/twin-modeling-mcp", "description": "Local MCP server that checks, simulates and draws 3D twin models of machines from words or photos. No PLC needed.", "codeRepository": "https://github.com/BlackBuddle/twin-modeling-mcp", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/BlackBuddle--twin-modeling-mcp.html", "dateCreated": "2026-11-14"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">BlackBuddle/</span>twin-modeling-mcp</h1>
+<p class="sub">Local MCP server that checks, simulates and draws 3D twin models of machines from words or photos. No PLC needed.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-11-14</b></div>
+  <div class="chip">on radar since <b>2026-11-16</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/BlackBuddle/twin-modeling-mcp" rel="noopener">View on GitHub ↗</a>
+<h2>About twin-modeling-mcp</h2><p class="sub">기계를 말이나 사진으로 설명하면 움직이는 3D 트윈 모델로 만들고 검사하고 시뮬레이션하는 MCP 서버</p><p class="sub">로컬 3D 화면의 픽앤플레이스 예시: modelsim 한 사이클(4.2 s)을 1×로 재생한 모습입니다.</p><p class="sub">기계에 대한 설명이나 사진을 트윈 모델로 바꿔 주는 도구입니다. 트윈 모델은 기계를 프레임, 관절, 구동기, 센서, 이름 붙은 신호(핀)로 적은 작은 JSON입니다. twin-modeling-mcp는 이 모델을 검사하고 시뮬레이션해서 브라우저의 3D 화면에 그려 주는 로컬 MCP 서버입니다. PLC도 클라우드 서비스도 필요 없습니다.</p><p class="sub">모델은 Claude 같은 AI 클라이언트가 함께 들어 있는 스킬을 보고 설계합니다. 서버는 설계를 하지 않습니다. 클라이언트가 보낸 모델을 검사하고 시뮬레이션하고 저장하고 그릴 뿐입니다.</p><p class="sub">- 실행 파일 하나, 프로세스 하나입니다. MCP 서버는 표준 입출력으로 말하고, 3D 화면은 127.0.0.1에서만 듣습니다. - 도구는 다섯 개입니다: modelcatalog, modeldraft, modelget, modelsim, modelrender. - Rust 코드가 쓰는 외부 크레이트는 serdejson 하나입니다. - 라이선스는 AGPL-3.0-or-later입니다.</p><p class="sub">폴더마다 sheet.md, model.json, sim.json, 그림이 있습니다. 모든 모델은 이 서버로 초안을 만들고 확정하고 시뮬레이션했습니다(modeldraft 경고 없음, modelsim 알람 없음).</p><p class="sub">예시 설비는 설계 예시라서 치수와 시간, 속도는 예시를 위해 정한 추정값이고(각 시트 7번에 guess나 user로 표시) 카탈로그 값이 아니며 어느 모델도 실제 설비와 같다고 주장하지 않습니다.</p><p class="sub">움직이는 그림은 모두 그 모델의 마지막 modelsim 실행을 3D 화면에서 1×로, 100 ms씩 걸으며 재생한 것입니다.</p><p class="sub">로드리스 X 실린더, 가이드 Z 실린더, 흡착 패드를 단 갠트리와 공급 컨베이어, 지그, 밸브 매니폴드. 장치 14개. 시뮬레이션: 집기 960 ms, 놓기 2600 ms, 복귀 3740 ms. 폴더: examples/pick-and-place</p><p class="sub">서보 모터, 커플링, 리드 10 mm 볼나사, 레일 두 줄 위의 캐리지, 케이블 체인, 원점·리밋 스위치. 장치 5개. 시뮬레이션: 목표 300, 150, 0 mm, busy는 1500, 2600, 3600 ms에 꺼짐. 폴더: examples/ball-screw-axis</p><p class="sub">기어드 모터가 달린 캠 인덱서 위의 다이얼, 부품이 든 지그 8개, 기둥에 단 압입 실린더, 부품 센서. 장치 8개. 시뮬레이션: 인포지션 640, 2340, 4040 ms, 압입 1050, 2750, 4450 ms. 폴더: examples/index-table</p><p class="sub">받침대 위 6축 로봇(프리셋 robot6r), 흡착 툴, 지그 테이블, 배출 벨트, 펜스. 장치 11개. 시뮬레이션: 집기 2900 ms, 벨트에 놓기 4950 ms, 원점 6400 ms. 폴더: examples/robot-arm</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/BlackBuddle--twin-modeling-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Graphicle-AI--graphicle.html">
+  <span class="name"><span class="owner">Graphicle-AI/</span>graphicle</span>
+  <p>Code graph and memory for your coding agents, in one Rust program. For Claude Code, Codex, Cursor and any MCP client.</p>
+  <span class="meta"><span>⭐ 325</span><span>Rust</span></span>
+</a><a class="card" href="/s/JordyZomer--lemmalog.html">
+  <span class="name"><span class="owner">JordyZomer/</span>lemmalog</span>
+  <p>A Datalog engine for LLM agent memory: stratified rules, provenance-tracked facts, incremental derivation, and an MCP server that lets your harness use it as a shared brain.</p>
+  <span class="meta"><span>⭐ 253</span><span>Rust</span></span>
+</a><a class="card" href="/s/emanuele-em--kanzo.html">
+  <span class="name"><span class="owner">emanuele-em/</span>kanzo</span>
+  <p>Self-hosted kanban for humans and agents. One 4 MB binary, starts in 2 ms, zero setup.</p>
+  <span class="meta"><span>⭐ 198</span><span>Rust</span></span>
+</a><a class="card" href="/s/fzn0x--idx.html">
+  <span class="name"><span class="owner">fzn0x/</span>idx</span>
+  <p>Analyze the Indonesian stock market (IDX/IHSG) from web terminal, CLI, or any AI agents via MCP server. IHSG Prices, Fundamentals, and Screening. Free and No API keys required. Changelog: https://gith</p>
+  <span class="meta"><span>⭐ 177</span><span>Rust</span></span>
+</a><a class="card" href="/s/mrpulor-gh--nuphus-mcp.html">
+  <span class="name"><span class="owner">mrpulor-gh/</span>nuphus-mcp</span>
+  <p>Desktop automation MCP server — computer use for any AI agent: control screen, windows, mouse/keyboard, and Chrome via Model Context Protocol (stdio)</p>
+  <span class="meta"><span>⭐ 152</span><span>Rust</span></span>
+</a><a class="card" href="/s/Fazmin--cve-intel.html">
+  <span class="name"><span class="owner">Fazmin/</span>cve-intel</span>
+  <p>Local security intelligence for CVE triage - 39 data sources and 36 tools, risk scores and an MCP server for AI agents, all in native Rust. Private by default.</p>
+  <span class="meta"><span>⭐ 94</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
