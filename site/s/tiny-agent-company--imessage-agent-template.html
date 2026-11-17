@@ -97,14 +97,18 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-07-11</b></div>
   
 </div>
-<div class="topics"><span class="topic">agentcard</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude.html">claude</a><span class="topic">imessage</span><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">photon</span><span class="topic">virtual-cards</span></div>
+<div class="topics"><span class="topic">agentcard</span><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/imessage.html">imessage</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">photon</span><span class="topic">virtual-cards</span></div>
 <a class="btn" href="https://github.com/tiny-agent-company/imessage-agent-template" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://docs.agentcard.sh/companies/use-cases/messaging-agents" rel="noopener nofollow">Homepage ↗</a>
 <h2>About imessage-agent-template</h2><p class="sub">Build an iMessage agent that can actually buy things.</p><p class="sub">Text a phone number, and an AI agent replies: it chats, it shops, and it pays with a virtual card it creates on the spot. This template is the working skeleton of that product, the same architecture behind Agentcard&#x27;s own iMessage line, reduced to the parts you need and nothing else.</p><p class="sub">1. Photon provides the iMessage phone number and the spectrum-ts SDK (a persistent stream, so this runs anywhere, no public URL needed). 2. Agentcard provides money: each sender signs in as their own consumer Agentcard account by SMS code, and your agent drives every tool the Agentcard MCP server advertises with that user&#x27;s OAuth token. Cards your agent creates are isolated to your app and that user, funded from their own wallet. 3. Anthropic provides the brain: a Claude tool-use loop that binds whatever tools the MCP server advertises and picks per message.</p><p class="sub">The relay itself stays thin on purpose. Shopping intelligence (carts, checkout confirmation, merchant connections) lives server-side behind the buy tool; identity and compliance (KYC, funding) live in Agentcard. What this repo owns is the conversation: transport, sign-in, the tool loop, and the safety rails around it.</p><p class="sub">Fill .env in three stages, testing as you go:</p><p class="sub">1. The pipe. Create a Photon project, put PHOTONPROJECTID + PHOTONPROJECTSECRET in .env, and text your line. The relay echoes back: the pipe works.</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/tiny-agent-company--imessage-agent-template.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/muaaz9329--cheap-ag.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/project-nomos--imsg-mcp.html">
+  <span class="name"><span class="owner">project-nomos/</span>imsg-mcp</span>
+  <p>Let your AI assistant read your iMessage/SMS and send the replies you approve. An MCP server and agent plugin for Claude, ChatGPT, Codex and Cursor, built for proactive agents like Claude Duet and dot</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/muaaz9329--cheap-ag.html">
   <span class="name"><span class="owner">muaaz9329/</span>cheap-ag</span>
   <p>50x your usage with cheap-ag. Opus/Astra plans, a dirt-cheap model writes every line, and tests decide what ships. Your $20 plan stops hitting limits. One MCP server for Claude Code &amp; Codex.</p>
   <span class="meta"><span>⭐ 240</span><span>TypeScript</span></span>
@@ -124,10 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">joaquimmj/</span>deskstack</span>
   <p>Your AI deal team inside Claude: built, tied out to the filings, reviewed. Free data, US + Europe.</p>
   <span class="meta"><span>⭐ 51</span><span>TypeScript</span></span>
-</a><a class="card" href="/s/Akxan--google-seo-mcp.html">
-  <span class="name"><span class="owner">Akxan/</span>google-seo-mcp</span>
-  <p>SEO &amp; GEO MCP server for Claude, Codex, Cursor and any MCP client: Search Console, GA4, PageSpeed, Core Web Vitals, structured data, llms.txt, AI crawler checks, WordPress (Yoast, WP-CLI over SSH), Gi</p>
-  <span class="meta"><span>⭐ 36</span><span>TypeScript</span></span>
 </a>
 
 

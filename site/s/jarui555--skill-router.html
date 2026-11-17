@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jarui555/skill-router — MCP Server | MCP Radar</title>
+<meta name="description" content="给你的 AI 装个经验包：659 个专业方法论 + 922 条实战踩坑记录，AI 卡住时会自动翻。不用 GPU、不用向量库、不联网，本地 1.5ms。支持 Claude Code / Codex / Cursor · 极跃Ai交流群 606140489 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/jarui555--skill-router.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="jarui555/skill-router — MCP Server | MCP Radar">
+<meta property="og:description" content="给你的 AI 装个经验包：659 个专业方法论 + 922 条实战踩坑记录，AI 卡住时会自动翻。不用 GPU、不用向量库、不联网，本地 1.5ms。支持 Claude Code / Codex / Cursor · 极跃Ai交流群 606140489 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "jarui555/skill-router", "description": "给你的 AI 装个经验包：659 个专业方法论 + 922 条实战踩坑记录，AI 卡住时会自动翻。不用 GPU、不用向量库、不联网，本地 1.5ms。支持 Claude Code / Codex / Cursor · 极跃Ai交流群 606140489", "codeRepository": "https://github.com/jarui555/skill-router", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/jarui555--skill-router.html", "dateCreated": "2026-11-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">jarui555/</span>skill-router</h1>
+<p class="sub">给你的 AI 装个经验包：659 个专业方法论 + 922 条实战踩坑记录，AI 卡住时会自动翻。不用 GPU、不用向量库、不联网，本地 1.5ms。支持 Claude Code / Codex / Cursor · 极跃Ai交流群 606140489</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-11-16</b></div>
+  <div class="chip">on radar since <b>2026-11-17</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/llm-tools.html">llm-tools</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/pentest.html">pentest</a><a class="topic" href="/topic/reverse-engineering.html">reverse-engineering</a><a class="topic" href="/topic/security-tools.html">security-tools</a><a class="topic" href="/topic/skill-management.html">skill-management</a></div>
+<a class="btn" href="https://github.com/jarui555/skill-router" rel="noopener">View on GitHub ↗</a>
+<h2>About skill-router</h2><p class="sub">「Hex-Rays 的伪代码在 VMP 上不可信」 「trace 里 LOAD/STORE 的 inputs[0] 是随机化标记不是地址，地址在 inputs[1]」 「改 SELinux 没用，别浪费时间」</p><p class="sub">你让它干什么 没有它 有它 :--- :--- :--- 脱 VMP 壳 从零推，试十几种方法 第一步就去查，直接看别人卡在哪 拿下某个站 想到哪打到哪 先跑「打点决策」，按优先级排，不浪费时间 破卡密 直接写 keygen，写三天 先判类型（本地 / 签名 / 硬件 / 云端），判错立刻止损 挖 SRC 每个点试三个 payload，全是「疑似」 按「暴露面 × 技术栈年龄 × 功能复杂度」排序 AI 卡住了 一直换参数，越试越远 连续 2 次同类尝试自动插经验；3 次强制换方法</p><p class="sub">MCP 是 AI 客户端（Claude Code / Codex / Cursor / Cline）的扩展协议。 装上去之后 AI 多了 15 个工具可以调用：查方法论、查踩坑记录、规划作战链、检查当前做法是否撞上禁令。</p><p class="sub">常见误解 实际 :--- :--- 要显卡 / 要跑模型 不需要。里面没有任何 AI 模型，就是词表匹配 要下载几十 GB 1.6 MB，一个 Python 脚本 + 两个 JSON 要联网才能用 装完之后全程离线，只有第一次同步索引需要网络 要 Docker / 数据库 都不要。pip install mcp 就够了 是个能聊天的 AI 不是。它是插件，得配合 Claude Code / Codex / Cursor 用</p><p class="sub">它是什么：一个 Python 脚本 + 两个 JSON 文件，python install.py 一条命令装完， Windows / macOS / Linux 通用，Python 3.10+ 即可。</p><p class="sub">适合 不适合 :--- :--- 用 Claude Code / Codex / Cursor 干活的人 只用网页版 ChatGPT 的（网页版装不了插件） 做逆向、渗透、CTF、安全研究 完全不碰这些领域的（装了也用不上） 被 AI「反复犯同一个错」烦过 想要一个能直接对话的 AI（这是插件不是模型） 想给团队沉淀经验的新人 期待开箱即用的成品工具（它给方法论，不给一键脚本）</p><p class="sub">就这一条。脚本干三件事：装依赖 → 跑自检 → 把该贴进客户端的配置直接打印出来（路径已填好）， 复制粘贴就能用，不用自己拼路径。</p><p class="sub">Python 3.10+。mcp 1.x 和 2.x 都支持，代码里做了双版本适配。</p><p class="sub">Windows 把 python 换成 python.exe 的绝对路径，路径分隔符用 / 或转义后的 \\。</p><p class="sub">全通会打印 ✓ 全部通过 8 / 8。它会验依赖、工具注册、索引、经验库、检索延迟。</p><p class="sub">走 ungh.cc + jsDelivr + raw，不消耗 GitHub API 配额，不需要 token。 配了 GITHUBTOKEN 只是让 enrich（补描述）快一些。</p><p class="sub">工具 用途 :--- :--- skillplan(task) 任务 → 阶段链，每步带加载建议与 token 估算 skillsearch(query) 关键词/现象检索 skillhint(signal) 卡住时的重检索，连续 2 次同类自动插经验 skillload(repo, name, mode) 加载正文，lite 目录视图 / full 全文 / part=N 分段 skillcmd(repo, name) 只抽命令 + 行号（250 tokens vs 3630） skillmeta(name) 边界：什么时候用 / 前置 / 禁止条款 skillfit(current, observed) 自检「正在做的事是否撞上该 sk</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/jarui555--skill-router.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/dansugc--reverse-engineer-marketing.html">
+  <span class="name"><span class="owner">dansugc/</span>reverse-engineer-marketing</span>
+  <p>Paste a link, get the whole marketing machine behind it: paid ads, organic social, SEO, Reddit, founders, funnel — evidence-cited. CLI, MCP server and a local web app that uses your Claude Code or Cod</p>
+  <span class="meta"><span>⭐ 30</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/minkaworks--mcptocodemode.html">
+  <span class="name"><span class="owner">minkaworks/</span>mcptocodemode</span>
+  <p>Stop flooding your agent&#x27;s prompt with MCP tools: MCPtoCodeMode puts every MCP server behind 3 tools and a sandbox, for Codex, Claude Code, Cursor, Grok, OpenCode, Pi, or any MCP client.</p>
+  <span class="meta"><span>⭐ 9</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/liyupi--memecub.html">
+  <span class="name"><span class="owner">liyupi/</span>memecub</span>
+  <p>Meme search &amp; auto meme placement for AI agents. Remote MCP server, Agent Skill, CLI and REST API that let Claude Code, Cursor and Codex find reaction memes, GIFs and Chinese 表情包 by feeling and insert</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/jarvis-intelligence--jarvis-index.html">
+  <span class="name"><span class="owner">jarvis-intelligence/</span>jarvis-index</span>
+  <p>Public distribution surface for jarvis — local-first code intelligence MCP server (SCIP navigation + Zoekt search). Installer, Claude Code / Codex / Cursor plugins, and prebuilt binaries.</p>
+  <span class="meta"><span>⭐ 4</span><span>HTML</span></span>
+</a><a class="card" href="/s/kemal-arslan--sidedoor.html">
+  <span class="name"><span class="owner">kemal-arslan/</span>sidedoor</span>
+  <p>Give your AI agent a side door into any web app you use: browse the app, Sidedoor records its API and serves it as an MCP server for Claude, Codex and Cursor.</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/2akouwu--reverify.html">
+  <span class="name"><span class="owner">2akouwu/</span>reverify</span>
+  <p>Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is </p>
+  <span class="meta"><span>⭐ 927</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

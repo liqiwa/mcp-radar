@@ -97,17 +97,29 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <div class="chip">on radar since <b>2026-11-08</b></div>
   
 </div>
-<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><span class="topic">disk-cleanup</span><a class="topic" href="/topic/disk-space.html">disk-space</a><span class="topic">disk-usage</span><span class="topic">gpui</span><a class="topic" href="/topic/homebrew.html">homebrew</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/rust.html">rust</a></div>
+<div class="topics"><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/disk-cleanup.html">disk-cleanup</a><a class="topic" href="/topic/disk-space.html">disk-space</a><span class="topic">disk-usage</span><a class="topic" href="/topic/gpui.html">gpui</a><a class="topic" href="/topic/homebrew.html">homebrew</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/rust.html">rust</a></div>
 <a class="btn" href="https://github.com/discky-app/discky" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://discky.xyz" rel="noopener nofollow">Homepage ↗</a>
 <h2>About discky</h2><p class="sub">Find what is eating your Mac&#x27;s disk and clear it safely, by hand or through an AI agent.</p><p class="sub">Discky is three parts: a Rust scanner and rule engine that says what each big thing on your disk is and whether it is safe to remove, a desktop app (Discky.app), and an MCP server (discky-mcp) so an AI agent can do the same work in a chat.</p><p class="sub">A Mac fills up with things nobody remembers creating: package-manager caches, downloaded AI models, Xcode data, nodemodules and target folders in old projects, files left behind by apps you deleted, VM disk images.</p><p class="sub">Two of these got much worse lately. Apps quietly download AI models you never see: a transcription app, an editor&#x27;s completion feature or a chat client pulls a few gigabytes into its own corner of ~/Library or ~/.cache, and no Finder window ever shows them. And AI coding agents build constantly: every project they touch grows a target, a nodemodules, a virtual environment, a Docker image, plus the download and build caches behind them. That is tens of gigabytes nobody asked for, spread over so many places that nobody can keep track of them by hand.</p><p class="sub">Most disk tools show sizes that do not add up: a sparse disk image is reported at its claimed size, cloned and hard-linked files are counted twice, and iCloud files that live only in the cloud (dataless) are shown as if they took space.</p><p class="sub">- Honest bytes. Every size is bytes allocated on disk. Discky tracks the claimed (logical) size separately, flags sparse files, and knows which blocks are shared by APFS clones and hard links, so &quot;frees if deleted&quot; is what removing an item really frees. Datal</p><p class="sub"><i>From the project README.</i></p>
 <h2>Maintaining this server?</h2>
 <p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
 <pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/discky-app--discky.html)</pre>
 <button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
-<h2>Related MCP servers</h2><a class="card" href="/s/LukeHawkins--turbofig.html">
+<h2>Related MCP servers</h2><a class="card" href="/s/JsonLee12138--Ruum.html">
+  <span class="name"><span class="owner">JsonLee12138/</span>Ruum</span>
+  <p>Fast cross-platform disk space analyzer &amp; treemap explorer built in Rust with GPUI. Scan local &amp; SSH disks, monitor free space with an AI watchdog, and safely clean files via GUI or MCP.</p>
+  <span class="meta"><span>⭐ 8</span><span>Rust</span></span>
+</a><a class="card" href="/s/morajabi--poo.html">
+  <span class="name"><span class="owner">morajabi/</span>poo</span>
+  <p>Find and safely free the disk space your dev work eats: builds, caches, simulators and agent worktrees. macOS menu bar app, CLI and MCP server.</p>
+  <span class="meta"><span>⭐ 64</span><span>Rust</span></span>
+</a><a class="card" href="/s/LukeHawkins--turbofig.html">
   <span class="name"><span class="owner">LukeHawkins/</span>turbofig</span>
   <p>Let AI drive Figma. Instant, lightweight and free: no paid Figma seat, no quota, no Figma token. Open source, for macOS.</p>
   <span class="meta"><span>⭐ 3</span><span>Rust</span></span>
+</a><a class="card" href="/s/HMAKT99--Agasthy.html">
+  <span class="name"><span class="owner">HMAKT99/</span>Agasthy</span>
+  <p>One intelligence layer for your developer machine. Every repo, runtime, package and AI tool in a live knowledge graph. Track coding agents (Claude Code, Codex, Cursor), token spend, MCP servers and pr</p>
+  <span class="meta"><span>⭐ 6</span><span>Rust</span></span>
 </a><a class="card" href="/s/menot-you--n-memory.html">
   <span class="name"><span class="owner">menot-you/</span>n-memory</span>
   <p>Memory your agent can trust — every answer carries its source; when it doesn&#x27;t know, it says so. Hermetic, local, MCP.</p>
@@ -116,18 +128,6 @@ padding:9px 18px;font-size:14px;cursor:pointer}
   <span class="name"><span class="owner">exzade/</span>EXZA-Remote</span>
   <p>Secure AI-powered remote computer access for ChatGPT, Claude and compatible MCP clients.</p>
   <span class="meta"><span>⭐ 82</span><span></span></span>
-</a><a class="card" href="/s/Graphicle-AI--graphicle.html">
-  <span class="name"><span class="owner">Graphicle-AI/</span>graphicle</span>
-  <p>Code graph and memory for your coding agents, in one Rust program. For Claude Code, Codex, Cursor and any MCP client.</p>
-  <span class="meta"><span>⭐ 325</span><span>Rust</span></span>
-</a><a class="card" href="/s/mrpulor-gh--nuphus-mcp.html">
-  <span class="name"><span class="owner">mrpulor-gh/</span>nuphus-mcp</span>
-  <p>Desktop automation MCP server — computer use for any AI agent: control screen, windows, mouse/keyboard, and Chrome via Model Context Protocol (stdio)</p>
-  <span class="meta"><span>⭐ 152</span><span>Rust</span></span>
-</a><a class="card" href="/s/aryehlev--PeerHarness.html">
-  <span class="name"><span class="owner">aryehlev/</span>PeerHarness</span>
-  <p>Your team votes on how its AI coding agents behave. Correct Claude Code once, and PeerHarness turns it into a one-sentence rule (an Agent Skill) that a majority of your team votes in for every member&#x27;</p>
-  <span class="meta"><span>⭐ 33</span><span>Rust</span></span>
 </a>
 
 

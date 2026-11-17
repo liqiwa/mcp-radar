@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cherobin/speclok — MCP Server | MCP Radar</title>
+<meta name="description" content="spec-as-annotation for Java: your spec lives in the code as @Spec/@AC Lombok annotations and the compiler enforces it. Generates docs, blocks out-of-s — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Cherobin--speclok.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Cherobin/speclok — MCP Server | MCP Radar">
+<meta property="og:description" content="spec-as-annotation for Java: your spec lives in the code as @Spec/@AC Lombok annotations and the compiler enforces it. Generates docs, blocks out-of-s — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Cherobin/speclok", "description": "spec-as-annotation for Java: your spec lives in the code as @Spec/@AC Lombok annotations and the compiler enforces it. Generates docs, blocks out-of-scope edits, and refuses to finish until each crite", "codeRepository": "https://github.com/Cherobin/speclok", "programmingLanguage": "Java", "url": "https://mcp.liqiwa.com/s/Cherobin--speclok.html", "dateCreated": "2026-11-12"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Cherobin/</span>speclok</h1>
+<p class="sub">spec-as-annotation for Java: your spec lives in the code as @Spec/@AC Lombok annotations and the compiler enforces it. Generates docs, blocks out-of-scope edits, and refuses to finish until each crite</p>
+<div class="chips">
+  <div class="chip">⭐ <b>11</b> stars</div>
+  <div class="chip">⑂ <b>4</b> forks</div>
+  <a class="chip" href="/lang/java.html"><span class="lang-dot" style="--lang:#b07219"></span><b>Java</b></a>
+  <div class="chip">momentum <b>▲ 35.5</b></div>
+  <div class="chip">created <b>2026-11-12</b></div>
+  <div class="chip">on radar since <b>2026-11-17</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">annotation-processor</span><a class="topic" href="/topic/code-generation.html">code-generation</a><span class="topic">compiler</span><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/java.html">java</a><a class="topic" href="/topic/jvm.html">jvm</a><span class="topic">lombok</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/spec-driven-development.html">spec-driven-development</a></div>
+<a class="btn" href="https://github.com/Cherobin/speclok" rel="noopener">View on GitHub ↗</a>
+<h2>About speclok</h2><p class="sub">spec-as-annotation for Java. Your spec lives in the code, and the compiler enforces it. Just as javac rejects a bad @Override, speclok makes it reject an incomplete @Spec.</p><p class="sub">speclok is a tiny, dependency-free annotation library and CLI for Java. It turns the specification of a piece of code into an annotation that sits on the class and method it governs. From that single source of truth, speclok:</p><p class="sub">1. generates the documentation, the per-task briefing and the task index, 2. enforces the contract at compile time (an incomplete spec is a compile error), and 3. serves the whole thing to an AI coding agent through hooks and an MCP server.</p><p class="sub">No separate spec files. No .md/.yaml to drift. The spec is versioned with the code, in the same commit, because it is the code.</p><p class="sub">Write an incomplete @Spec (empty objective, no @AC, an @AC missing then) and your IDE underlines it in red - a standard compile error, anchored at the exact line:</p><p class="sub">You have a large, old codebase with little or no documentation. Nobody holds the whole thing in their head, the rules for what-can-change-where live in people&#x27;s memory, and letting an AI agent loose in there is a risk. speclok is for exactly that: it turns the guardrail from tribal knowledge into a rule the compiler enforces.</p><p class="sub">- No docs, and no time to write them. You do not stop to document the repo. The spec accretes where the work happens: each time you touch a method, you annotate that method. The hot paths get specified over months, with no documentation project - and because the spec is an annotation on the code, it cannot silently lie. - Guardrails t</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Cherobin--speclok.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/coffeecoproject--layermap.html">
+  <span class="name"><span class="owner">coffeecoproject/</span>layermap</span>
+  <p>LayerMap MCP: a layered map of your codebase for coding agents: callers, callees and the impact of a change, for TypeScript, JavaScript, Go, Python and Java. MCP server, CLI, and plugins for Claude Co</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Morningstar202604--AgentSeed.html">
+  <span class="name"><span class="owner">Morningstar202604/</span>AgentSeed</span>
+  <p>Anti-hallucination guardrails for AI coding agents - hybrid Skill + MCP server (6 tools) that verifies code before it is marked done. Works with Claude Code, Cursor, VS Code, Copilot.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/TikyParkinson--mcp-agent-guardrails-spring-boot-starter.html">
+  <span class="name"><span class="owner">TikyParkinson/</span>mcp-agent-guardrails-spring-boot-starter</span>
+  <p>Security &amp; governance guardrails for MCP agents in Java — audit trail, agent-to-tool authorization, prompt-injection detection and rate limiting as a zero-config Spring Boot starter.</p>
+  <span class="meta"><span>⭐ 4</span><span>Java</span></span>
+</a><a class="card" href="/s/okf-memory--okf-agent-memory.html">
+  <span class="name"><span class="owner">okf-memory/</span>okf-agent-memory</span>
+  <p>Git-native persistent memory for AI coding agents. Implements Google OKF v0.2 with sub-300µs in-memory BM25 search, embedded MCP server, and progressive disclosure. Slashes token bloat by 80% with zer</p>
+  <span class="meta"><span>⭐ 553</span><span>Go</span></span>
+</a><a class="card" href="/s/Graphicle-AI--graphicle.html">
+  <span class="name"><span class="owner">Graphicle-AI/</span>graphicle</span>
+  <p>Code graph and memory for your coding agents, in one Rust program. For Claude Code, Codex, Cursor and any MCP client.</p>
+  <span class="meta"><span>⭐ 325</span><span>Rust</span></span>
+</a><a class="card" href="/s/NiazMorshed2007--jev-review.html">
+  <span class="name"><span class="owner">NiazMorshed2007/</span>jev-review</span>
+  <p>Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.</p>
+  <span class="meta"><span>⭐ 209</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
