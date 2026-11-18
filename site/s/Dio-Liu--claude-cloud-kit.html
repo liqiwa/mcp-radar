@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dio-Liu/claude-cloud-kit — MCP Server | MCP Radar</title>
+<meta name="description" content="Run Claude Code on your own cloud server (AWS) and let it work on your local Windows/Mac via DevSpace + Cloudflare Tunnel. Docs in Chinese. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Dio-Liu--claude-cloud-kit.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Dio-Liu/claude-cloud-kit — MCP Server | MCP Radar">
+<meta property="og:description" content="Run Claude Code on your own cloud server (AWS) and let it work on your local Windows/Mac via DevSpace + Cloudflare Tunnel. Docs in Chinese. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Dio-Liu/claude-cloud-kit", "description": "Run Claude Code on your own cloud server (AWS) and let it work on your local Windows/Mac via DevSpace + Cloudflare Tunnel. Docs in Chinese.", "codeRepository": "https://github.com/Dio-Liu/claude-cloud-kit", "programmingLanguage": "PowerShell", "url": "https://mcp.liqiwa.com/s/Dio-Liu--claude-cloud-kit.html", "dateCreated": "2026-11-13"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Dio-Liu/</span>claude-cloud-kit</h1>
+<p class="sub">Run Claude Code on your own cloud server (AWS) and let it work on your local Windows/Mac via DevSpace + Cloudflare Tunnel. Docs in Chinese.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/powershell.html"><span class="lang-dot" style="--lang:#8b949e"></span><b>PowerShell</b></a>
+  <div class="chip">momentum <b>▲ 6.0</b></div>
+  <div class="chip">created <b>2026-11-13</b></div>
+  <div class="chip">on radar since <b>2026-11-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/aws.html">aws</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cloudflare-tunnel.html">cloudflare-tunnel</a><span class="topic">devspace</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/remote-development.html">remote-development</a></div>
+<a class="btn" href="https://github.com/Dio-Liu/claude-cloud-kit" rel="noopener">View on GitHub ↗</a>
+<h2>About claude-cloud-kit</h2><p class="sub">让 Claude Code 跑在你自己的云服务器上，同时能操作你本地 Windows 或 Mac 电脑上的项目。</p><p class="sub">- 云上的 Claude 通过 DevSpace 读写你电脑上的项目、运行命令，用起来和本地差不多。 - SSH 断了自动重连，tmux 里的会话不丢；手机上也能接着用。 - 一台服务器可以同时连多台电脑（家里、公司、Windows 和 Mac），各用一个名字，互不影响。 - 可选：远程桌面、在 Windows Terminal 里直接粘贴截图。</p><p class="sub">- Claude 账号（Pro 即可） - AWS 账号（需要信用卡；新用户有赠送额度，最小规格的服务器够用） - （可选）一个域名和 Cloudflare 账号：不准备也能用。默认先用临时隧道（免费、不用注册，但每次电脑重启地址会变，启动脚本会自动处理）；想长期稳定使用再换成固定域名（首年不到 20 元） - Windows 10/11 或 macOS 电脑（Mac 版暂不含截图粘贴，并且还没在真实的 Mac 上完整跑过，遇到问题欢迎提 Issue）</p><p class="sub">提示：请遵守 Anthropic 和 AWS 的服务条款，账号的使用风险由你自己承担。</p><p class="sub">需要你本人操作的步骤（注册、网页后台、输入密码）它会停下来告诉你。想自己装也可以直接照着 SETUP-FOR-AI.md 做。</p><p class="sub">- 上篇：从零搭建 AWS 云服务器：注册、免费额度、创建服务器、SSH、Claude Code、远程桌面、费用 - 下篇：让云上的 Claude Code 操作本地电脑：DevSpace、Cloudflare 隧道和 Access、授权</p><p class="sub">路径 作用 ------ kit.config.example.json 配置模板，复制为 kit.config.json 后填写 docs/ 上下两篇详细教程（手动版） server/ 服务器端：初始化（bootstrap.sh）、接入 DevSpace（setup-devspace-mcp.sh） windows/connect/ 连接服务器：ssh-cloud.cmd、rdp-cloud.cmd、截图粘贴 image-paste.ahk windows/devspace/ 本地 DevSpace：安装、启动（start-devspace.cmd）、授权服务器 mac/ Mac 版：connect/（ssh-cloud、rdp-cloud、钥匙串保存 AWS 密钥）、devspace/（登录自启的 DevSpace）、tests/</p><p class="sub">本地状态和日志：Windows 在 %LOCALAPPDATA%\ClaudeCloudKit\（AWS 密钥也加密保存在这里），Mac 在 ~/Library/Application Support/ClaudeCloudKit/（AWS 密钥存在钥匙串）。</p><p class="sub">本地这一端用的是 DevSpace（@waishnav/devspace），隧道用的是 Cloudflare 的 cloudflared。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Dio-Liu--claude-cloud-kit.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/pierlink--Pierlink.html">
+  <span class="name"><span class="owner">pierlink/</span>Pierlink</span>
+  <p>Windows workbench for remote development across many servers: terminals, file sync and AI (MCP) access · Windows 多服务器远程开发工作台</p>
+  <span class="meta"><span>⭐ 21</span><span>Rust</span></span>
+</a><a class="card" href="/s/CogFlux--farhand.html">
+  <span class="name"><span class="owner">CogFlux/</span>farhand</span>
+  <p>Remote hands for coding agents: an MCP server that runs OpenCode / Claude Code / Codex work on a remote host over SSH, keeps credentials and the local machine closed, and audits everything</p>
+  <span class="meta"><span>⭐ 12</span><span>Rust</span></span>
+</a><a class="card" href="/s/hengfengliya--localvps.html">
+  <span class="name"><span class="owner">hengfengliya/</span>localvps</span>
+  <p>Turn your computer into a server for AI agents — remote MCP with built-in Cloudflare tunnel, permissions and a dashboard. 把你的电脑变成一台给 AI 用的服务器</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/windevase--nubis.html">
+  <span class="name"><span class="owner">windevase/</span>nubis</span>
+  <p>Windows SSH / RDP / SFTP remote client with cloud server import (AWS, Tencent, GCP, Azure, OCI) and an embedded Claude Code panel</p>
+  <span class="meta"><span>⭐ 4</span><span>C#</span></span>
+</a><a class="card" href="/s/winebarrel--awsmcproxy.html">
+  <span class="name"><span class="owner">winebarrel/</span>awsmcproxy</span>
+  <p>A multi-profile proxy for the AWS MCP Server: opens one SigV4-signed connection per AWS profile and adds a profile argument to every tool, so a single client connection can reach multiple AWS accounts</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a><a class="card" href="/s/HarjjotSinghh--locum.html">
+  <span class="name"><span class="owner">HarjjotSinghh/</span>locum</span>
+  <p>Delegate Grok Bot coding work to your own local Claude Code / Codex CLIs via a custom MCP connector</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

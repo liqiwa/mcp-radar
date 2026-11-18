@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ooyyh/webegg — MCP Server | MCP Radar</title>
+<meta name="description" content="Wails + Go + React 本地 AI 控制面：为 Gemini 提供 26 项真实编程工具、本地会话、审批与浏览器后台桥接。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/ooyyh--webegg.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="ooyyh/webegg — MCP Server | MCP Radar">
+<meta property="og:description" content="Wails + Go + React 本地 AI 控制面：为 Gemini 提供 26 项真实编程工具、本地会话、审批与浏览器后台桥接。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "ooyyh/webegg", "description": "Wails + Go + React 本地 AI 控制面：为 Gemini 提供 26 项真实编程工具、本地会话、审批与浏览器后台桥接。", "codeRepository": "https://github.com/ooyyh/webegg", "programmingLanguage": "Go", "url": "https://mcp.liqiwa.com/s/ooyyh--webegg.html", "dateCreated": "2026-11-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">ooyyh/</span>webegg</h1>
+<p class="sub">Wails + Go + React 本地 AI 控制面：为 Gemini 提供 26 项真实编程工具、本地会话、审批与浏览器后台桥接。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/go.html"><span class="lang-dot" style="--lang:#00ADD8"></span><b>Go</b></a>
+  <div class="chip">momentum <b>▲ 42.0</b></div>
+  <div class="chip">created <b>2026-11-17</b></div>
+  <div class="chip">on radar since <b>2026-11-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agent.html">ai-agent</a><span class="topic">approval-workflow</span><a class="topic" href="/topic/automation.html">automation</a><a class="topic" href="/topic/browser-extension.html">browser-extension</a><a class="topic" href="/topic/chrome-extension.html">chrome-extension</a><span class="topic">code-assistant</span><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/gemini.html">gemini</a><a class="topic" href="/topic/golang.html">golang</a><a class="topic" href="/topic/local-ai.html">local-ai</a><a class="topic" href="/topic/local-first.html">local-first</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/privacy.html">privacy</a><a class="topic" href="/topic/react.html">react</a><a class="topic" href="/topic/typescript.html">typescript</a><a class="topic" href="/topic/wails.html">wails</a><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/ooyyh/webegg" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://github.com/ooyyh/webegg/releases/latest" rel="noopener nofollow">Homepage ↗</a>
+<h2>About webegg</h2><p class="sub">WebEgg 是一个 Wails + Go + React + Manifest V3 的本地 AI 控制面。它通过浏览器插件驱动 Gemini 网页端，在本地执行真实的文件、目录、搜索、Git、Shell 和后台进程工具，并把对话与工具结果全部渲染在桌面端。</p><p class="sub">不注入 Gemini 页面 UI，不依赖第三方 API Key。浏览器只是网页 AI 传输适配器，聊天与项目数据留在本机。</p><p class="sub">- 本地 AI 聊天工作区：每个项目独立会话，支持多会话、归档、复活和本地历史。 - 自动浏览器控制：新建会话后自动创建 Gemini 网页对话并注入工具优先协议。 - 26 项真实编程工具：文件、目录、搜索、Git、Shell、后台进程和项目脚本。 - 全自动 / 需批准：读取自动，写入、删除、Shell 和进程可按策略请求本地批准。 - 结构化工具结果：Markdown、代码块、文件内容、目录表格、终端输出和 Git diff。 - 真实数据可视化：最近 7 天消息/工具调用趋势与工具能力分布。 - 可靠重连：扩展 alarms 保活、标签页唤醒、内容脚本自动重注入和任务租约恢复。 - 极简黑白主题：桌面、插件设置弹窗共享日间/夜间主题。</p><p class="sub">- Windows 10/11 x64 - Chrome、Edge 或其他 Chromium 浏览器 - 一个可以正常登录的 Gemini 网页账号</p><p class="sub">建议保持 Gemini 标签页打开。可以切到后台或最小化浏览器，但不要关闭网页。</p><p class="sub">- 推荐：WebEgg-windows-amd64.zip - 或单文件：WebEgg.exe</p><p class="sub">解压后运行 WebEgg.exe。如果 Windows SmartScreen 提示未知发布者，请确认文件来自本仓库 Release 后选择继续运行。</p><p class="sub">1. 打开 chrome://extensions/（Edge 为 edge://extensions/）。 2. 开启右上角「开发者模式」。 3. 点击「加载已解压的扩展程序」。 4. 选择 Release 包中的 extension 目录，或源码仓库的 extension/ 目录。 5. 将 WebEgg Monochrome 固定到浏览器工具栏。</p><p class="sub">1. 在 WebEgg 桌面端打开「项目」。 2. 点击「添加项目」，选择一个本地代码目录。 3. 项目会以目录授权方式登记，不会自动修改文件。 4. 根据信任程度选择： - 需批准：写入、删除、Shell、后台进程需桌面确认。 - 全自动：工具自动执行，适合完全信任的项目。</p><p class="sub">1. 打开「连接」。 2. 点击「生成令牌」。 3. 立即复制 we... 令牌。明文只显示一次。 4. 打开浏览器中的 WebEgg 扩展弹窗。 5. 填写： - MCP 地址：http://127.0.0.1:8787/mcp - 连接令牌：刚才生成的 we... 6. 点击「保存并检测连接」。 7. 打开 Gemini 页面并刷新一次。</p><p class="sub">1. 回到桌面端默认的「对话」工作区。 2. 在顶部选择项目和会话。 3. 点击 + 新建会话。 4. WebEgg 会自动： - 新建本地会话 - 驱动 Gemini 新建网页对话 - 注入工具协议 - 执行项目环境初始化 5. 看到「适配器在线」后，在底部输入任务。</p><p class="sub">- 参数和结果默认收束。 - 点击卡片标题展开。 - 文件读取显示路径、行数和哈希。 - 命令显示退出码、stdout、stderr 和耗时。 - 目录显示条目表格。 - 可使用「渲染 / 原文」切换结构化展示与原始 JSON。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/ooyyh--webegg.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/KaichenCurry--TabNexus.html">
+  <span class="name"><span class="owner">KaichenCurry/</span>TabNexus</span>
+  <p>Turn tab overload into a local-first workspace with intent-first AI organization and Agent collaboration through MCP.</p>
+  <span class="meta"><span>⭐ 28</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/nettanvirdev--inertia.html">
+  <span class="name"><span class="owner">nettanvirdev/</span>inertia</span>
+  <p>inertia-ai: a desktop workspace for AI agents. Chat, built-in tools, MCP and OpenAPI integrations, Docker/Daytona sandboxes with a live desktop, routines and memory. Bring your own model and keys.</p>
+  <span class="meta"><span>⭐ 7</span><span>Rust</span></span>
+</a><a class="card" href="/s/NotNull92--workforge-mcp.html">
+  <span class="name"><span class="owner">NotNull92/</span>workforge-mcp</span>
+  <p>WorkForge is a Windows MCP gateway that lets ChatGPT inspect files, resume Git work, make SHA-guarded edits, read images, and run supervised PowerShell jobs.</p>
+  <span class="meta"><span>⭐ 6</span><span>PowerShell</span></span>
+</a><a class="card" href="/s/PiyushAnand2006--EmberLing.html">
+  <span class="name"><span class="owner">PiyushAnand2006/</span>EmberLing</span>
+  <p>Desktop AI agent rebuilt by reverse-engineering Grok Bot 0.75.8 — iMessage-style chat, 19 agent tools, MCP servers, bots with LAN publishing, automations, voice mode, memories, mermaid/chart blocks. R</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/mcptoai--MCPtoAI.html">
+  <span class="name"><span class="owner">mcptoai/</span>MCPtoAI</span>
+  <p>Connect AI models to your own computer and MCP tools — with device-side control.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/arxdsilva--vault.html">
+  <span class="name"><span class="owner">arxdsilva/</span>vault</span>
+  <p>A minimal, keyboard-first file manager that replaces Finder and Explorer. Search-first navigation, instant preview, OS-trash-only deletes. Go + Wails.</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

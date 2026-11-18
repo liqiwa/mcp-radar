@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hackclub/orchard — MCP Server | MCP Radar</title>
+<meta name="description" content="Open-source, self-hosted Deployment Platform. Deploy from Git to your own server with one command. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/hackclub--orchard.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="hackclub/orchard — MCP Server | MCP Radar">
+<meta property="og:description" content="Open-source, self-hosted Deployment Platform. Deploy from Git to your own server with one command. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "hackclub/orchard", "description": "Open-source, self-hosted Deployment Platform. Deploy from Git to your own server with one command.", "codeRepository": "https://github.com/hackclub/orchard", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/hackclub--orchard.html", "dateCreated": "2026-11-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">hackclub/</span>orchard</h1>
+<p class="sub">Open-source, self-hosted Deployment Platform. Deploy from Git to your own server with one command.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>41</b> stars</div>
+  <div class="chip">⑂ <b>2</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 414.0</b></div>
+  <div class="chip">created <b>2026-11-17</b></div>
+  <div class="chip">on radar since <b>2026-11-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/deployment.html">deployment</a><a class="topic" href="/topic/docker.html">docker</a><span class="topic">hackclub</span><a class="topic" href="/topic/homelab.html">homelab</a><a class="topic" href="/topic/kubernetes.html">kubernetes</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/paas.html">paas</a><span class="topic">paas-devops</span><a class="topic" href="/topic/postgresql.html">postgresql</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/selfhosted.html">selfhosted</a></div>
+<a class="btn" href="https://github.com/hackclub/orchard" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://orchard.hackclub.com" rel="noopener nofollow">Homepage ↗</a>
+<h2>About orchard</h2><p class="sub">Turn a Linux server into a private hosting platform.</p><p class="sub">Hack Club Orchard is an open-source, self-hosted platform as a service (PaaS). Connect a repository from GitHub, GitLab, Gitea or another Git host, and Orchard builds it and runs it behind HTTPS, with a Postgres database that has point-in-time restore from S3-compatible storage, logs, metrics and rollbacks. Use the dashboard, the CLI, or your AI agent through the MCP server.</p><p class="sub">Orchard runs on Kubernetes, but you do not have to touch Kubernetes. One command turns a single Linux server into a k3s cluster with everything Orchard needs, which suits a home lab, a side project, a small team, or a trial. For production, run the Helm chart on a multi-node cluster such as Talos Linux, with components you operate, such as Harbor for the registry. Hack Club runs Orchard this way, on six Talos Linux nodes. Choose how to run Orchard explains the difference.</p><p class="sub">Orchard is free and licensed under AGPL-3.0 (the graft SDK for extensions is MIT). Hack Club runs its own apps on it. What is Orchard · Features · FAQ · Compare</p><p class="sub">Please follow the install guide. It covers every step in detail.</p><p class="sub">For the command alone, you need a Linux server with systemd, an IPv4 address and 20 GB of free disk. Orchard runs on 2 GiB of RAM, and 8 GiB is recommended. On a smaller server, the installer trims Orchard to leave memory for your apps.</p><p class="sub">[!IMPORTANT] Deployments are network isolated from each other and from the platform by default (on the Helm chart, your CNI must enforce NetworkPolicy), but they share the host kernel unless you install gVisor or Kata and s</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/hackclub--orchard.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/stanislav-petryashov--monido.html">
+  <span class="name"><span class="owner">stanislav-petryashov/</span>monido</span>
+  <p>Track your net worth and cash flow, on your own or as a family. Self-hosted, entered by hand, no bank connections. Optional AI advisor via Claude.</p>
+  <span class="meta"><span>⭐ 14</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/backmeupplz--tugport.html">
+  <span class="name"><span class="owner">backmeupplz/</span>tugport</span>
+  <p>Self-hosted deploy platform in one Rust binary: push-to-deploy from GitHub and Forgejo, projects, logs, server charts and scoped API keys for AI agents.</p>
+  <span class="meta"><span>⭐ 4</span><span>Rust</span></span>
+</a><a class="card" href="/s/otal-labs--nexul.html">
+  <span class="name"><span class="owner">otal-labs/</span>nexul</span>
+  <p>Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a><a class="card" href="/s/emersonjds--santi.html">
+  <span class="name"><span class="owner">emersonjds/</span>santi</span>
+  <p>santi — free, open-source, self-hosted project management and issue tracker for agile teams. Scrum and Kanban boards, backlog, sprint planning, epics, drag and drop, CSV import, REST API, CLI and MCP </p>
+  <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/synectus--OpenGMB.html">
+  <span class="name"><span class="owner">synectus/</span>OpenGMB</span>
+  <p>Open-source Google Business Profile manager: reviews, posts, profile edits and rank tracking for every location, with approval rules before anything goes live and an MCP server for AI agents. Self-hos</p>
+  <span class="meta"><span>⭐ 9</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/dungnguyenv--pinwall.html">
+  <span class="name"><span class="owner">dungnguyenv/</span>pinwall</span>
+  <p>Self-hosted artifact server for AI agents: Claude Code, Cursor and Codex publish HTML pages over MCP, you review them with pinned comments, versions and share links, and the agent reads your feedback </p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

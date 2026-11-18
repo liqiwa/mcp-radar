@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>openfabriq/openfabriq — MCP Server | MCP Radar</title>
+<meta name="description" content="Your AI software factory, as code: agents that triage, implement, review and fix your GitHub repository, described in readable files and run with Clau — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/openfabriq--openfabriq.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="openfabriq/openfabriq — MCP Server | MCP Radar">
+<meta property="og:description" content="Your AI software factory, as code: agents that triage, implement, review and fix your GitHub repository, described in readable files and run with Clau — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "openfabriq/openfabriq", "description": "Your AI software factory, as code: agents that triage, implement, review and fix your GitHub repository, described in readable files and run with Claude Code on your machine or your team's server.", "codeRepository": "https://github.com/openfabriq/openfabriq", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/openfabriq--openfabriq.html", "dateCreated": "2026-11-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">openfabriq/</span>openfabriq</h1>
+<p class="sub">Your AI software factory, as code: agents that triage, implement, review and fix your GitHub repository, described in readable files and run with Claude Code on your machine or your team&#x27;s server.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 66.0</b></div>
+  <div class="chip">created <b>2026-11-16</b></div>
+  <div class="chip">on radar since <b>2026-11-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/claude-code-plugin.html">claude-code-plugin</a><span class="topic">claude-plugins</span><a class="topic" href="/topic/devtools.html">devtools</a><span class="topic">github-automation</span><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><span class="topic">software-factory</span></div>
+<a class="btn" href="https://github.com/openfabriq/openfabriq" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://openfabriq.dev" rel="noopener nofollow">Homepage ↗</a>
+<h2>About openfabriq</h2><p class="sub">Your AI software factory, as code. AI agents that triage, implement, review and fix your GitHub repository, described in readable files and run on your machine or your team&#x27;s server.</p><p class="sub">https://github.com/user-attachments/assets/495cb83b-c666-4ce6-a7ce-a97feb6db24c</p><p class="sub">openfabriq in 85 seconds. Voice by elevenlabs.io · Music: The Warm Minimal by Pumpupthemind (Pixabay)</p><p class="sub">Quickstart · Documentation · Templates · Contributing</p><p class="sub">openfabriq runs a team of Claude agents on your GitHub repository: they triage issues, implement them and review pull requests. You describe them in an openfabriq/ folder of the repository, and the engine runs them on your machine or your team&#x27;s server. Agents never hold GitHub credentials, and a person merges.</p><p class="sub">You need macOS or Linux, with Claude Code and the GitHub CLI logged in.</p><p class="sub">Label an issue ready-for-agent and watch the run appear. Later, openfabriq plan shows what a change to the folder would do, security first, and openfabriq apply applies it. On Linux, openfabriq doctor lists the sandbox packages to install.</p><p class="sub">This repository runs its own factory: see its openfabriq/ folder and the pull requests it opened.</p><p class="sub">The board in the studio: every issue and pull request the factory touches, the agent on it, what it cost, and what needs you.</p><p class="sub">agents/implementer/agent.md says who does the work:</p><p class="sub">automations/implement-ready-issues/automation.md says when, who, and what may reach GitHub:</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/openfabriq--openfabriq.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/hsuanshao--AgentMemory.html">
+  <span class="name"><span class="owner">hsuanshao/</span>AgentMemory</span>
+  <p>Self-hosted memory service for AI agents that work in teams, written in Rust: layered L0→L3 memory, async LLM distillation, hybrid BM25 + vector recall, and department/team/member isolation. SQLite or</p>
+  <span class="meta"><span>⭐ 36</span><span>Rust</span></span>
+</a><a class="card" href="/s/batrapulkit--squidbrake.html">
+  <span class="name"><span class="owner">batrapulkit/</span>squidbrake</span>
+  <p>Brakes for your AI agents: every tool call is checked against your rules, held for human approval when risky, and recorded in a tamper-evident audit trail. Works with Claude Code and any MCP app.</p>
+  <span class="meta"><span>⭐ 12</span><span>Python</span></span>
+</a><a class="card" href="/s/muaaz9329--cheap-ag.html">
+  <span class="name"><span class="owner">muaaz9329/</span>cheap-ag</span>
+  <p>50x your usage with cheap-ag. Opus/Astra plans, a dirt-cheap model writes every line, and tests decide what ships. Your $20 plan stops hitting limits. One MCP server for Claude Code &amp; Codex.</p>
+  <span class="meta"><span>⭐ 240</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Umair--stalemap.html">
+  <span class="name"><span class="owner">Umair/</span>stalemap</span>
+  <p>Tell your coding agent which dependencies changed after its training cutoff. Diffs types and changelogs, writes a short block into AGENTS.md / CLAUDE.md.</p>
+  <span class="meta"><span>⭐ 103</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/214140846--browser-hands.html">
+  <span class="name"><span class="owner">214140846/</span>browser-hands</span>
+  <p>Give your AI agent hands in your own browser: Chrome extension + local MCP server. Logged-in, parallel, low CPU.</p>
+  <span class="meta"><span>⭐ 27</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Andsu-dev--runelay.html">
+  <span class="name"><span class="owner">Andsu-dev/</span>runelay</span>
+  <p>runelay: open-source, self-hosted MCP gateway. One MCP endpoint for every account, skill and memory your agents use (Claude Code, Codex, Cursor).</p>
+  <span class="meta"><span>⭐ 20</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

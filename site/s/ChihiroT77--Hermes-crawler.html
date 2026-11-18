@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChihiroT77/Hermes-crawler — MCP Server | MCP Radar</title>
+<meta name="description" content="把 MediaCrawler 封装成 AI agent 可调用的爬虫（MCP）。支持B站/抖音/微博/知乎内容与评论采集，可导出 Excel等格式。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/ChihiroT77--Hermes-crawler.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="ChihiroT77/Hermes-crawler — MCP Server | MCP Radar">
+<meta property="og:description" content="把 MediaCrawler 封装成 AI agent 可调用的爬虫（MCP）。支持B站/抖音/微博/知乎内容与评论采集，可导出 Excel等格式。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "ChihiroT77/Hermes-crawler", "description": "把 MediaCrawler 封装成 AI agent 可调用的爬虫（MCP）。支持B站/抖音/微博/知乎内容与评论采集，可导出 Excel等格式。", "codeRepository": "https://github.com/ChihiroT77/Hermes-crawler", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/ChihiroT77--Hermes-crawler.html", "dateCreated": "2026-11-16"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">ChihiroT77/</span>Hermes-crawler</h1>
+<p class="sub">把 MediaCrawler 封装成 AI agent 可调用的爬虫（MCP）。支持B站/抖音/微博/知乎内容与评论采集，可导出 Excel等格式。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 30.0</b></div>
+  <div class="chip">created <b>2026-11-16</b></div>
+  <div class="chip">on radar since <b>2026-11-18</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/bilibili.html">bilibili</a><a class="topic" href="/topic/crawler.html">crawler</a><a class="topic" href="/topic/data-collection.html">data-collection</a><a class="topic" href="/topic/douyin.html">douyin</a><a class="topic" href="/topic/mcp.html">mcp</a><span class="topic">mediacrawler</span><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/web-scraping.html">web-scraping</a><span class="topic">weibo</span><a class="topic" href="/topic/windows.html">windows</a><a class="topic" href="/topic/xiaohongshu.html">xiaohongshu</a></div>
+<a class="btn" href="https://github.com/ChihiroT77/Hermes-crawler" rel="noopener">View on GitHub ↗</a>
+<h2>About Hermes-crawler</h2><p class="sub">一句话：装好之后，你只要对 AI 说「帮我抓 B 站 10 条人工智能视频的评论」，它自己就去干了。</p><p class="sub">你不需要懂代码，不需要记命令。它把 MediaCrawler 这个专业爬虫包了一层「翻译壳」，让 AI 能听懂你的话、自己跑完、把结果存成 Excel。</p><p class="sub">支持 MCP 协议 —— Claude Desktop、Cursor、Trae、dsh 这类 AI 客户端都能接上。</p><p class="sub">MediaCrawler 本身很能打，但它是给程序员用的：要配环境、要背十几个参数、要自己盯进度、失败了还看不出原因。</p><p class="sub">原来的麻烦 Hermes-crawler 的做法 ------ 参数十几个，记不住 十个工具，每个都有中文说明，AI 自己会挑 跑起来没反馈，不知道死了没 让 AI 一次等到跑完，直接拿结果 失败了不知道为什么 返回里直接写清楚失败原因（没登录 / 被限流 / 参数错） 数据是一堆 jsonl，不会用 一条命令导成排版好的 Excel，双击就能看 任务跑一半断了 能接着跑，重复的自动跳过 两个任务撞车把浏览器搞坏 启动前先检查，冲突直接拦住</p><p class="sub">1. 打开 2. 点右上角绿色的 Code 按钮 → Download ZIP 3. 下载完右键解压（千万别直接在压缩包里双击，会装不上） 4. 进解压出来的文件夹，双击 一键安装.bat 5. 等它自己跑完。中途可能要你点一两次确认，按提示来就行</p><p class="sub">不需要装 Git，也不需要自己去下 MediaCrawler。 安装包里自带一份打好补丁的源码（vendor/mediacrawler-ded4273.zip），全程不联网下载源码。</p><p class="sub">把仓库里的 installforai.md 连同整个文件夹交给你的 AI，然后说：</p><p class="sub">请读一下这个目录里的 installforai.md，然后按里面写的把 Hermes-crawler 装好并接通。</p><p class="sub">AI 读的是那份几百字的指引，不是整个项目。它知道先干什么、怎么判断成功、失败了怎么办。</p><p class="sub">项目 要求 说明 --------- 系统 Windows 10/11 进程检测用了 PowerShell，Mac/Linux 没适配 Python 3.11 以上（推荐 3.12） 去 下，安装时必须勾上 &quot;Add python.exe to PATH&quot;（这一步漏了后面全跑不起来） 浏览器 Edge 或 Chrome Windows 自带 Edge 就行，不用另装 Git 可以不装 用「双击安装」方式完全不需要它 磁盘 约 1.5 GB 源码 + Python 环境 + 浏览器内核</p><p class="sub">装之前建议先自查一件事：按 Win → 输入 powershell → 回车，在黑窗口里敲 python --version 并回车。 如果显示的版本是 3.11 或更高，就说明 Python 装好了。如果提示「不是内部或外部命令」，说明没装或没勾 PATH。</p><p class="sub">有两种用法。只想让 AI 帮你干活，直接看「用法二」；想自己跑一次看看效果，看「用法一」。</p><p class="sub">这里要打开「命令行」。不会开的照这个做：按 Win 键 → 输入 powershell → 回车，就出来一个黑窗口。然后把下面的命令复制粘贴进去，按回车。</p><p class="sub">会弹出浏览器窗口显示二维码，用手机 B 站 App 扫一下，扫完窗口自动关，以后不用再扫。</p><p class="sub">注意：命令要在安装目录里执行。如果提示找不到文件，先 cd 到安装目录（默认是 %USERPROFILE%\MediaCrawler）。</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/ChihiroT77--Hermes-crawler.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/JiamingShi-JsPhys--web-forager.html">
+  <span class="name"><span class="owner">JiamingShi-JsPhys/</span>web-forager</span>
+  <p>Clean-room, robots-aware web information gathering toolkit for agents and analysts. Search 360/Bing/Sogou, read Bilibili, Zhihu, Xiaohongshu, Weibo and other public sites as Markdown, and browse with </p>
+  <span class="meta"><span>⭐ 4</span><span>Python</span></span>
+</a><a class="card" href="/s/pinkpixel-dev--pulpie-mcp.html">
+  <span class="name"><span class="owner">pinkpixel-dev/</span>pulpie-mcp</span>
+  <p>MCP server that turns web pages into clean Markdown, keeping tables, code blocks, and images intact. Agents can fetch pages, save docs to your project or a global library, and crawl whole doc sites.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/RayenMlayeh--jevcrawl.html">
+  <span class="name"><span class="owner">RayenMlayeh/</span>jevcrawl</span>
+  <p>MCP server and CLI that crawls websites for AI agents: finds the answer page 2x more often than Crawl4AI, 10x cheaper per answer than letting Claude crawl.</p>
+  <span class="meta"><span>⭐ 74</span><span>Python</span></span>
+</a><a class="card" href="/s/biaobiao2233--coding-tools-mcp-workbench.html">
+  <span class="name"><span class="owner">biaobiao2233/</span>coding-tools-mcp-workbench</span>
+  <p>面向可信个人开发机的 MCP 编程运行时：Agent Transport、Windows Workbench、证据优先的项目连续性 | Personal-workstation MCP coding runtime</p>
+  <span class="meta"><span>⭐ 17</span><span>Python</span></span>
+</a><a class="card" href="/s/SanggonBoy--PyreCrawl.html">
+  <span class="name"><span class="owner">SanggonBoy/</span>PyreCrawl</span>
+  <p>Web browsing superpowers for AI agents - one MCP server to scrape, crawl, extract, map, search, batch, research &amp; monitor the web. Self-hosted, no API keys. Free Firecrawl alternative.</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/tiliondev--waystone.html">
+  <span class="name"><span class="owner">tiliondev/</span>waystone</span>
+  <p>Browser action recorder for automation: record a task once, replay it, or hand the folder to an agent</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
