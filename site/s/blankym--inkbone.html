@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>blankym/inkbone — MCP Server | MCP Radar</title>
+<meta name="description" content="写中文长篇小说的零依赖工程套件：Agent Skill + MCP 三件套 + 活账本 + 安全拆书 + 整书浏览器体检 + VS Code 实时扩展。Zero-dep Chinese long-form fiction suite: Skill, full MCP server, living l — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/blankym--inkbone.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="blankym/inkbone — MCP Server | MCP Radar">
+<meta property="og:description" content="写中文长篇小说的零依赖工程套件：Agent Skill + MCP 三件套 + 活账本 + 安全拆书 + 整书浏览器体检 + VS Code 实时扩展。Zero-dep Chinese long-form fiction suite: Skill, full MCP server, living l — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "blankym/inkbone", "description": "写中文长篇小说的零依赖工程套件：Agent Skill + MCP 三件套 + 活账本 + 安全拆书 + 整书浏览器体检 + VS Code 实时扩展。Zero-dep Chinese long-form fiction suite: Skill, full MCP server, living ledger, Browser Doctor & VS Code linter.", "codeRepository": "https://github.com/blankym/inkbone", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/blankym--inkbone.html", "dateCreated": "2026-11-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">blankym/</span>inkbone</h1>
+<p class="sub">写中文长篇小说的零依赖工程套件：Agent Skill + MCP 三件套 + 活账本 + 安全拆书 + 整书浏览器体检 + VS Code 实时扩展。Zero-dep Chinese long-form fiction suite: Skill, full MCP server, living ledger, Browser Doctor &amp; VS Code linter.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 17.0</b></div>
+  <div class="chip">created <b>2026-11-17</b></div>
+  <div class="chip">on radar since <b>2026-11-19</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/agent.html">agent</a><a class="topic" href="/topic/agent-skill.html">agent-skill</a><a class="topic" href="/topic/ai-writing.html">ai-writing</a><span class="topic">chinese-fiction</span><span class="topic">chinese-novel</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cli.html">cli</a><a class="topic" href="/topic/cursor.html">cursor</a><span class="topic">fiction-writing</span><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/nodejs.html">nodejs</a><span class="topic">traditional-chinese</span><a class="topic" href="/topic/vscode-extension.html">vscode-extension</a><span class="topic">web-novel</span><span class="topic">writing-assistant</span></div>
+<a class="btn" href="https://github.com/blankym/inkbone" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://blankym.github.io/inkbone/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About inkbone</h2><p class="sub">English · 在线试跑台 / 整书体检 · npm 包 · 社区讨论 · 9 个题材包 · 简繁自动识别 · MCP 三件套 · VS Code 实时扩展 · 66 项测试</p><p class="sub">不管你是只在网页里用 DeepSeek / Claude 写连载的作者，还是在 Claude Code / Cursor 里全流程跑 Agent 的重度用户，v2.0 都有一条零废话的上手路径：</p><p class="sub">你平常用什么写小说？ 直接怎么开始 你能立刻拿到什么 :--- :--- :--- 网页端 DeepSeek / Claude / Gemini / 豆包（不想装任何环境） 打开 在线试跑台 &amp; 整书体检 拖入单章或整个 chapters/ 文件夹（纯浏览器本地运行，正文绝不上传）→ 词级高亮 + 跨章回声榜 + 一键复制精准改稿 Prompt + 起点/番茄/七猫/晋江纯净 .txt 导出 Claude Code / Codex / Antigravity / OpenCode npx skills add blankym/inkbone 8 阶段完整写作工作流 + 活账本防剧透 + 本地自动质检 + 9 份题材剧本卡 Claude Desktop / Cursor / Windsurf（MCP） 配一段 npx -y inkbone mcp 一个配置拿齐 9 Tools + 8 Prompts + 11 Resources，连 Skill 都免装 VS Code / Cursor 实时写手 &amp; 终端 CLI npx inkbone audit ch01.md 或启用 VS Code 扩展 零克隆整书体检 / 安全拆书定风格 / 边写边划波浪线（中文小说 ESLint）</p><p class="sub">- 前面埋的伏笔写到第 40 章自己忘了，或者把第 60 章才揭的底提前漏在旁白里，甚至第 12 章已经阵亡的配角在第 38 章又走出来说话； - 仙侠文里突然冒出“降维打击”“寅时十刻”，每章必来一遍“瞳孔骤缩”“嘴角露出一丝苦笑”； - 上一句主语是配角，下一句省了主语直接写动作，读者读成配角动的手； - 让模型自己审稿，它张口就编一段原文里找不到的引文，顺手劝你“多加五感描写和形容词”，结果越改 AI 味越重。</p><p class="sub">靠把 Prompt 越写越长管不住这些毛病——模型自己写完就忘了。InkBone 把“会忘事的生成”与“不会忘事的硬检查”拆开：写前由脚本编排防剧透上下文与分阶段节拍，写完由零依赖本地引擎按词表、台账、历法与主语链逐行卡死。</p><p class="sub">Tab 1 单章体检支持本地 .md/.txt 拖入、简繁自动识别（含港台網文繁體規則）、原文词级 高亮、段落节奏心电图，以及一键复制精准改稿 Prompt（直接粘回任意网页大模型只改命中行，不破坏原节奏）。</p><p class="sub">Tab 4 整书体检（Browser Doctor）支持一次选入整个 chapters/ 文件夹：自动按中/数字章号排序，测出每章跨章回声率与全书高频套话 Top 10，一键下载自动挖掘好人物名单的 ledger.json，并一键导出起点 / 番茄 / 七猫 / 晋江纯净投稿 .txt。</p><p class="sub">维度 常见纯 Prompt 写作提示词 InkBone v2.0 :--- :--- :--- 去 AI 味与语域检查 靠大模型自我约束，几千字后必然漂移 确定性代码引擎逐行扫描，支持简繁自动识别、9 个题材包与项目级自定义规则 长篇防吃书与防剧透 把大纲全塞进上下文，越长越容易提前漏底 活账本闭环（packet + settle + check-ledger）：未到 revealChapter 自动 [REDACTED]，已退场/阵亡角色再出场直接预警 AI 审读可靠性 容易编造原文里没有的句子，越权乱改文风 verify-review 硬核验：原文找不到逐字引文</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/blankym--inkbone.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/ucsandman--declick.html">
+  <span class="name"><span class="owner">ucsandman/</span>declick</span>
+  <p>Compile an API, an MCP server, a database or a web page into a CLI your agent can run. Ten engines, one output contract, 4.1x less context than raw MCP.</p>
+  <span class="meta"><span>⭐ 17</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Secra-Solutions--Conector.html">
+  <span class="name"><span class="owner">Secra-Solutions/</span>Conector</span>
+  <p>Self-hosted MCP gateway: connect 1,178 apps once and use them from Claude, Codex, Cursor, Gemini CLI, Copilot and 42 more AI agents. Talk with us at https://secra.es</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/clouatre-labs--decisions-judge-mcp.html">
+  <span class="name"><span class="owner">clouatre-labs/</span>decisions-judge-mcp</span>
+  <p>Typed decisions for AI agents as an MCP tool: yes/no probability (noul), choice, and score in one fast request. Backed by the TypeSafe System One model.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/mcptc--mcp-tc.html">
+  <span class="name"><span class="owner">mcptc/</span>mcp-tc</span>
+  <p>Command line for mcp.tc, the MCP server directory: search servers, add them to Claude Code, Cursor, VS Code and other clients with each vendor&#x27;s own URL, and build and check your own.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Cripacx--mediagen.html">
+  <span class="name"><span class="owner">Cripacx/</span>mediagen</span>
+  <p>AI image and video generation skill for Claude Code and other coding agents — Gemini, OpenAI and Kie AI behind one CLI and MCP server, with EU AI Act content marking.</p>
+  <span class="meta"><span>⭐ 56</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/00200200--usagetrim.html">
+  <span class="name"><span class="owner">00200200/</span>usagetrim</span>
+  <p>Keep the signal. Cut the noise. Local CLI + MCP — fold verbose tool output for Claude Code, Codex, Cursor &amp; Desktop.</p>
+  <span class="meta"><span>⭐ 11</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
