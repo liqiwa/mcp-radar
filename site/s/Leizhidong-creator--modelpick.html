@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leizhidong-creator/modelpick — MCP Server | MCP Radar</title>
+<meta name="description" content="The model router for AI agents — pick the best model at every node and price it in cost per solved task. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Leizhidong-creator--modelpick.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Leizhidong-creator/modelpick — MCP Server | MCP Radar">
+<meta property="og:description" content="The model router for AI agents — pick the best model at every node and price it in cost per solved task. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Leizhidong-creator/modelpick", "description": "The model router for AI agents — pick the best model at every node and price it in cost per solved task.", "codeRepository": "https://github.com/Leizhidong-creator/modelpick", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/Leizhidong-creator--modelpick.html", "dateCreated": "2026-11-19"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Leizhidong-creator/</span>modelpick</h1>
+<p class="sub">The model router for AI agents — pick the best model at every node and price it in cost per solved task.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 46.0</b></div>
+  <div class="chip">created <b>2026-11-19</b></div>
+  <div class="chip">on radar since <b>2026-11-20</b></div>
+  
+</div>
+<div class="topics"><span class="topic">3d-generation</span><a class="topic" href="/topic/agents.html">agents</a><a class="topic" href="/topic/ai.html">ai</a><a class="topic" href="/topic/benchmark.html">benchmark</a><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/codex.html">codex</a><a class="topic" href="/topic/coding-agents.html">coding-agents</a><a class="topic" href="/topic/cost-optimization.html">cost-optimization</a><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/deepseek.html">deepseek</a><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/image-generation.html">image-generation</a><a class="topic" href="/topic/llm.html">llm</a><a class="topic" href="/topic/llmops.html">llmops</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/model-routing.html">model-routing</a><a class="topic" href="/topic/open-source.html">open-source</a><a class="topic" href="/topic/video-generation.html">video-generation</a></div>
+<a class="btn" href="https://github.com/Leizhidong-creator/modelpick" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://leizhidong-creator.github.io/modelpick/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About modelpick</h2><p class="sub">The model router for AI agents — with cost per solved task. Coding, image, video, 3D, and audio. One CLI, one MCP server, every agent.</p><p class="sub">Website · intro video (93s) · How value is defined · Ecosystem</p><p class="sub">Your agent can write code, call tools, and ship a feature. Then it picks one model for everything — a frontier model to classify a support ticket, to generate a barrel prop, to draft a thumbnail.</p><p class="sub">The result is predictable: 60–95% of the spend goes to work that did not need a frontier model, and the hard nodes still fail because the model was chosen for the wrong modality.</p><p class="sub">ModelPick is a router and cost calculator, not another gateway. Before each node, it answers three questions in one call:</p><p class="sub">1. Which model? Ranked for this exact task, with hard capability filters (context, text-in-image, rigging, clip length, open weights). 2. What will it really cost? Cost per solved task — list price × expected attempts, not $/M tokens. 3. How do I connect it? The env var, key URL, docs, and API model id.</p><p class="sub">▶ Watch the intro video with English + 中文 captions · direct MP4 · script &amp;amp; storyboard · English + 中文 captions</p><p class="sub">Three things are broken in model selection today:</p><p class="sub">1. Token prices hide the real bill. A model that is 10× cheaper per token but needs 1.8× the attempts and 2× the output tokens is not 10× cheaper. ModelPick computes the denominator that matters: dollars per usable output.</p><p class="sub">2. A coding agent defaults to one model, even for creative nodes. A 3D pipeline is not a text problem. Text-in-image is not image generation. A 30-second video is not a 5-second clip. ModelPick models 20 </p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Leizhidong-creator--modelpick.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/Umair--stalemap.html">
+  <span class="name"><span class="owner">Umair/</span>stalemap</span>
+  <p>Tell your coding agent which dependencies changed after its training cutoff. Diffs types and changelogs, writes a short block into AGENTS.md / CLAUDE.md.</p>
+  <span class="meta"><span>⭐ 103</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/pranee54--AgentDoctor.html">
+  <span class="name"><span class="owner">pranee54/</span>AgentDoctor</span>
+  <p>Local CLI that audits coding-agent configuration for security, instructions, context, and MCP — no API key or code upload by default.</p>
+  <span class="meta"><span>⭐ 10</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/devanshranjan10--landmines.html">
+  <span class="name"><span class="owner">devanshranjan10/</span>landmines</span>
+  <p>Known open bugs in your exact dependency versions, put where your coding agent reads them (AGENTS.md/CLAUDE.md, pre-edit hook for 20 agents, MCP).</p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/wimo-dev--turno.html">
+  <span class="name"><span class="owner">wimo-dev/</span>turno</span>
+  <p>Switch accounts in your coding agents and keep the conversation, the MCP sign-ins and the browser session.</p>
+  <span class="meta"><span>⭐ 7</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/magna-nz--tallybook.html">
+  <span class="name"><span class="owner">magna-nz/</span>tallybook</span>
+  <p>Prices your Claude Code and Codex sessions from the transcripts on disk, shows what each agent cost over any period, and tells you in plain English what would have been cheaper. CLI, Browser UI and MC</p>
+  <span class="meta"><span>⭐ 5</span><span>Go</span></span>
+</a><a class="card" href="/s/webmcpx--webmcpx.html">
+  <span class="name"><span class="owner">webmcpx/</span>webmcpx</span>
+  <p>Make your site agent-ready: one script tag gives every page WebMCP tools; one MCP server gives your agent WebMCP on every site. Linter, site scanner, and a public benchmark: up to 62× fewer tokens (be</p>
+  <span class="meta"><span>⭐ 5</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

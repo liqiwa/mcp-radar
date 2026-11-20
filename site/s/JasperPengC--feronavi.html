@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JasperPengC/feronavi — MCP Server | MCP Radar</title>
+<meta name="description" content="为人和 Agent 而生的开源项目协作平台。 从需求到交付，连接团队、知识与执行。  完整 MCP Server · 内置 RAG · 业务流程闭环 · 自托管 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/JasperPengC--feronavi.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="JasperPengC/feronavi — MCP Server | MCP Radar">
+<meta property="og:description" content="为人和 Agent 而生的开源项目协作平台。 从需求到交付，连接团队、知识与执行。  完整 MCP Server · 内置 RAG · 业务流程闭环 · 自托管 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "JasperPengC/feronavi", "description": "为人和 Agent 而生的开源项目协作平台。 从需求到交付，连接团队、知识与执行。  完整 MCP Server · 内置 RAG · 业务流程闭环 · 自托管", "codeRepository": "https://github.com/JasperPengC/feronavi", "programmingLanguage": "TypeScript", "url": "https://mcp.liqiwa.com/s/JasperPengC--feronavi.html", "dateCreated": "2026-11-17"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">JasperPengC/</span>feronavi</h1>
+<p class="sub">为人和 Agent 而生的开源项目协作平台。 从需求到交付，连接团队、知识与执行。  完整 MCP Server · 内置 RAG · 业务流程闭环 · 自托管</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/typescript.html"><span class="lang-dot" style="--lang:#3178c6"></span><b>TypeScript</b></a>
+  <div class="chip">momentum <b>▲ 20.0</b></div>
+  <div class="chip">created <b>2026-11-17</b></div>
+  <div class="chip">on radar since <b>2026-11-20</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><a class="topic" href="/topic/collaboration.html">collaboration</a><a class="topic" href="/topic/docker.html">docker</a><a class="topic" href="/topic/knowledge-management.html">knowledge-management</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/open-source.html">open-source</a><a class="topic" href="/topic/project-management.html">project-management</a><a class="topic" href="/topic/rag.html">rag</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/typescript.html">typescript</a><a class="topic" href="/topic/workflow-automation.html">workflow-automation</a></div>
+<a class="btn" href="https://github.com/JasperPengC/feronavi" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://feronavi.com" rel="noopener nofollow">Homepage ↗</a>
+<h2>About feronavi</h2><p class="sub">Feronavi 项目协作，进入 Agent 时代。 为人和 Agent 而生的开源项目协作平台。从需求到交付，连接团队、知识与执行。 完整 MCP Server · 内置 RAG · 业务流程闭环 · 自托管</p><p class="sub">开始部署 · 产品亮点 · MCP 接入 · RAG 助手 · 更多界面 · 文档导航 · 问题反馈</p><p class="sub">一项需求背后，有计划、讨论、方案，也有一次次推动它向前的行动。Feronavi 把它们连成完整的工作流：团队在平台里协作，Agent 通过 MCP 参与执行，内置 RAG 为对话提供项目知识与来源依据。</p><p class="sub">核心能力 带来的改变 --- --- 完整 MCP Server 把业务能力交给 Agent，从发现上下文、执行操作到核验结果，走完业务流程 内置 RAG 助手 让项目知识进入对话，跨项目检索、结合业务分析，答案附有来源 贯穿交付的协作 需求、工作项、文档、迭代与版本相互关联，进展和决策都有迹可循 自主部署与接入 源码开放，数据、身份体系、模型供应商与集成由团队管理</p><p class="sub">从理解任务，到执行操作，再到确认结果。 Feronavi 为 Agent 提供可完成业务闭环的标准入口，让项目协作成为智能体可以实际参与的工作。</p><p class="sub">检查本次迭代的未完成事项，梳理发布风险。先给我调整建议，确认后更新指派和状态，整理发布文档，最后核对执行结果。</p><p class="sub">环节 Agent 可以做什么 --- --- 理解上下文 发现业务工具，读取项目、成员、字段与工作流，明确任务范围 推进业务 创建和更新工作项、推进状态、维护文档、管理迭代与版本 核验结果 写入后重新读取业务数据，确认持久化结果，处理版本冲突与安全重试</p><p class="sub">服务器提供 MCP 工具、资源和提示词，支持 Streamable HTTP 与 stdio。Codex、Claude Desktop、Cursor、VS Code 等支持 MCP 的客户端均可按协议接入，按任务动态发现所需能力。</p><p class="sub">平台界面、内置助手与 MCP 共用业务服务和权限规则。账号权限、令牌范围、幂等写入和操作审计贯穿执行过程；登录、2FA 等身份验证通过专门入口完成。</p><p class="sub">让积累下来的文档，成为此刻用得上的答案。 独立助手支持跨项目对话，也可以聚焦指定项目；检索项目文档，查询实时业务信息，把知识依据与当前进展带入同一次对话。</p><p class="sub">这个需求当时为什么这样设计？结合方案文档和当前迭代，帮我整理本次上线的风险，并注明依据。</p><p class="sub">- 答案有出处：引用可回到原文，检索范围遵循项目权限和文档访问规则。 - 对话够顺手：流式输出、Markdown、Mermaid 图表，多会话按账号保存在服务端。 - 分析能落地：查询分析直接执行，业务修改先展示操作内容，确认后执行并核验结果。</p><p class="sub">知识问答同时提供 MCP 工具与 OpenAPI 3.1 描述的公共 API，内置助手和外部 Agent 可以使用同一套检索与业务能力。配置自己的兼容模型与嵌入供应商后，即可使用。</p><p class="sub">从个人今天要做的事，到团队下一次要交付的版本，Feronavi 提供相互连接的工作视角。</p><p class="sub">工作环节 平台能力 --- --- 收集与拆解 想法、需求、任务、缺陷、子任务，保留讨论与附件 计划与推进 里程碑、迭代、版本；看板、表格、日历与时间线 沉淀与交接 项目文档、目录、版本历史、权限与回滚 规则与协作 自定义工作流、审批、自动化、SLA 与站内通知 洞察与统筹 个人工作台、燃尽图、累积流、项目集与审计记录</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/JasperPengC--feronavi.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/herry2059--project-os-for-codex.html">
+  <span class="name"><span class="owner">herry2059/</span>project-os-for-codex</span>
+  <p>Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.</p>
+  <span class="meta"><span>⭐ 104</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/emersonjds--santi.html">
+  <span class="name"><span class="owner">emersonjds/</span>santi</span>
+  <p>santi — free, open-source, self-hosted project management and issue tracker for agile teams. Scrum and Kanban boards, backlog, sprint planning, epics, drag and drop, CSV import, REST API, CLI and MCP </p>
+  <span class="meta"><span>⭐ 15</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/otal-labs--nexul.html">
+  <span class="name"><span class="owner">otal-labs/</span>nexul</span>
+  <p>Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.</p>
+  <span class="meta"><span>⭐ 3</span><span>Go</span></span>
+</a><a class="card" href="/s/synectus--OpenGMB.html">
+  <span class="name"><span class="owner">synectus/</span>OpenGMB</span>
+  <p>Open-source Google Business Profile manager: reviews, posts, profile edits and rank tracking for every location, with approval rules before anything goes live and an MCP server for AI agents. Self-hos</p>
+  <span class="meta"><span>⭐ 9</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/dungnguyenv--pinwall.html">
+  <span class="name"><span class="owner">dungnguyenv/</span>pinwall</span>
+  <p>Self-hosted artifact server for AI agents: Claude Code, Cursor and Codex publish HTML pages over MCP, you review them with pinned comments, versions and share links, and the agent reads your feedback </p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/louvain-ai--louvain-engine.html">
+  <span class="name"><span class="owner">louvain-ai/</span>louvain-engine</span>
+  <p>Permission-aware retrieval for enterprise AI. Hybrid search over your company&#x27;s documents for agents and RAG, with a permission check in every query, from one command.</p>
+  <span class="meta"><span>⭐ 6</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
