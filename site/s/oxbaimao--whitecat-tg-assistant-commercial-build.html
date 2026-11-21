@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>oxbaimao/whitecat-tg-assistant-commercial-build — MCP Server | MCP Radar</title>
+<meta name="description" content="专业 Telegram 自动化营销系统：多账号管理、高精度多群成员采集、关键词监控获客、私信群发（语音/圆形视频）、AI炒群、频道克隆搬运与养号防封。原生支持 MCP 协议，无缝接入 Claude / Cursor / Antigravity 猫管家遥控。 — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/oxbaimao--whitecat-tg-assistant-commercial-build.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="oxbaimao/whitecat-tg-assistant-commercial-build — MCP Server | MCP Radar">
+<meta property="og:description" content="专业 Telegram 自动化营销系统：多账号管理、高精度多群成员采集、关键词监控获客、私信群发（语音/圆形视频）、AI炒群、频道克隆搬运与养号防封。原生支持 MCP 协议，无缝接入 Claude / Cursor / Antigravity 猫管家遥控。 — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "oxbaimao/whitecat-tg-assistant-commercial-build", "description": "专业 Telegram 自动化营销系统：多账号管理、高精度多群成员采集、关键词监控获客、私信群发（语音/圆形视频）、AI炒群、频道克隆搬运与养号防封。原生支持 MCP 协议，无缝接入 Claude / Cursor / Antigravity 猫管家遥控。", "codeRepository": "https://github.com/oxbaimao/whitecat-tg-assistant-commercial-build", "programmingLanguage": "Unknown", "url": "https://mcp.liqiwa.com/s/oxbaimao--whitecat-tg-assistant-commercial-build.html", "dateCreated": "2026-11-19"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">oxbaimao/</span>whitecat-tg-assistant-commercial-build</h1>
+<p class="sub">专业 Telegram 自动化营销系统：多账号管理、高精度多群成员采集、关键词监控获客、私信群发（语音/圆形视频）、AI炒群、频道克隆搬运与养号防封。原生支持 MCP 协议，无缝接入 Claude / Cursor / Antigravity 猫管家遥控。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>27</b> stars</div>
+  <div class="chip">⑂ <b>3</b> forks</div>
+  
+  <div class="chip">momentum <b>▲ 141.0</b></div>
+  <div class="chip">created <b>2026-11-19</b></div>
+  <div class="chip">on radar since <b>2026-11-21</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/claude-mcp.html">claude-mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">telegram-bot-ai-assistant</span><span class="topic">telegram-chinese</span><span class="topic">telegram-marketing-automation</span></div>
+<a class="btn" href="https://github.com/oxbaimao/whitecat-tg-assistant-commercial-build" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://tg.web3baimao.com" rel="noopener nofollow">Homepage ↗</a>
+<h2>About whitecat-tg-assistant-commercial-build</h2><p class="sub">官方网站 · 使用文档 · 客服 @oxbaimao · 手机端 Bot @wchjbot</p><p class="sub">WhiteCat 是一个跑在你自己电脑上的 Telegram 获客工具：找客户、联系客户、运营社群，全部用自己的账号完成，数据不上传。</p><p class="sub">6.0 新增 猫管家：对它说一句话，它就调用软件里的工具去做；还能用你自己的 Telegram 机器人在手机上遥控。需要真实发送或加群的动作，一律先弹确认，你点头才执行。</p><p class="sub">请只从官网或本页的 Release 下载，并核对 SHA-256。两处是同一批文件，校验码相同。</p><p class="sub">系统 类型 官网直链（推荐） GitHub 镜像 SHA-256 :--- :--- :--- :--- :--- Windows x64 安装版（自带自动更新） Setup.exe Release 6ced723d8a21a107e9c2ea6cbd2ad097922d6de503b681586654d6e1ece5c552 Windows x64 便携版（解压即用） Portable.zip Release ff144181c1afc98864435f416c81051ac27368fb90b137e675315c05a6eebe24 macOS Apple 芯片（M1–M4） dmg 安装版 arm64.dmg Release 080ba4ac382c0004c87b6dd54a5310fc94fb6e2b8ef8c69ae698ca9bef4a878d macOS Apple 芯片（M1–M4） 便携版 arm64 Portable.zip Release c4281e831d2e5cb49631c03333a6a9b9f39015015dab1548f60a9715a0af6069 macOS Intel（6.0.0，本次未更新） dmg 安装版 x64.dmg — 2f8b9afda3e9b9d79ce85e5d6be99068a9b513e16b7ae127fbbbb719187330e6 macOS Intel（6.0.0，本次未更新） 便携版 x64 Portable.zip — 73956ee7e8cff9389fd1f06a9edd686aca0e1c6a7c8eac0bd6fbd6b11f826264 Linux x8664 便携版（tar.gz） Portable.tar.gz Release ece20a51eb3226f80ecec34d2e56c87736b7b4ac167d4282b199522f06f8ef78</p><p class="sub">安装提示：Windows 首次运行若提示「已保护你的电脑」，点「更多信息 → 仍要运行」；macOS 若被拦截，到「系统设置 → 隐私与安全性」点「仍要打开」。安装包目前未做代码签名。 需要正式卡密或商务咨询，请联系 @oxbaimao。</p><p class="sub">方向 能力 :--- :--- AI 猫管家（6.0 新） 用自然语言下达需求，由 62 项软件工具真实执行；动作先出确认卡，可选「询问 / 计划 / 自动 / 完全放开」；接你自己的模型服务；支持拖入文件与截图；多会话、可随时停止并给出真实报告 Telegram 机器人（6.0 新） 用你自己的机器人在手机上对话、批准动作；一次性配对码，只认你本人；关键动作点两次才执行；手机号打码，验证码和密码不进对话 AI 与智能体接入 62 项标准 MCP 工具，可接 Claude、Cursor、Antigravity 等；有副作用的动作默认先预览；AI 打开网页并核实结果、文字转语音 账号 登录 / 导入（session、tdata、压缩包）、状态检测、SpamBot 申诉、代理绑定、批量改资料、养号 找客户 多群成员采集、关键词监控与线索转发、目标分类筛选、安全检测、间</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/oxbaimao--whitecat-tg-assistant-commercial-build.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/frangelbarrera--code-review-agent-mcp.html">
+  <span class="name"><span class="owner">frangelbarrera/</span>code-review-agent-mcp</span>
+  <p>AI code review agent MCP server. Reviews code like a kernel maintainer: blunt, technical, no sugarcoating. Detects bugs + OWASP Top 10 security vulnerabilities. 4 harshness levels. Anti-RLHF.</p>
+  <span class="meta"><span>⭐ 5</span><span>Python</span></span>
+</a><a class="card" href="/s/Morningstar202604--AgentSeed.html">
+  <span class="name"><span class="owner">Morningstar202604/</span>AgentSeed</span>
+  <p>Anti-hallucination guardrails for AI coding agents - hybrid Skill + MCP server (6 tools) that verifies code before it is marked done. Works with Claude Code, Cursor, VS Code, Copilot.</p>
+  <span class="meta"><span>⭐ 3</span><span>Python</span></span>
+</a><a class="card" href="/s/davarion-tech--agentic-browser.html">
+  <span class="name"><span class="owner">davarion-tech/</span>agentic-browser</span>
+  <p>Give any AI agent your real Chrome: token-cheap text perception, a visible cursor, MCP + HTTP API. Optional chat watcher.</p>
+  <span class="meta"><span>⭐ 3</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/hitkeeen--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">hitkeeen/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripti</p>
+  <span class="meta"><span>⭐ 2369</span><span></span></span>
+</a><a class="card" href="/s/bookwjitchieni1986--blender-ai-mcp-addon.html">
+  <span class="name"><span class="owner">bookwjitchieni1986/</span>blender-ai-mcp-addon</span>
+  <p>AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripti</p>
+  <span class="meta"><span>⭐ 1898</span><span></span></span>
+</a><a class="card" href="/s/duty1g--x64dbg-mcp-server.html">
+  <span class="name"><span class="owner">duty1g/</span>x64dbg-mcp-server</span>
+  <p>x64dbg-MCP Server is a native MCP (Model Context Protocol) plugin for x64dbg that exposes the debugger&#x27;s full functionality over HTTP. Connect any MCP-compatible AI assistant and control x64dbg progra</p>
+  <span class="meta"><span>⭐ 1636</span><span>Zig</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
