@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thatgfsj/codeidx — MCP Server | MCP Radar</title>
+<meta name="description" content="Global on-demand code indexing MCP server in Rust: AST RepoMap + hybrid search (FTS5+vector) + on-demand LSP bridge — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Thatgfsj--codeidx.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Thatgfsj/codeidx — MCP Server | MCP Radar">
+<meta property="og:description" content="Global on-demand code indexing MCP server in Rust: AST RepoMap + hybrid search (FTS5+vector) + on-demand LSP bridge — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Thatgfsj/codeidx", "description": "Global on-demand code indexing MCP server in Rust: AST RepoMap + hybrid search (FTS5+vector) + on-demand LSP bridge", "codeRepository": "https://github.com/Thatgfsj/codeidx", "programmingLanguage": "Rust", "url": "https://mcp.liqiwa.com/s/Thatgfsj--codeidx.html", "dateCreated": "2026-11-20"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Thatgfsj/</span>codeidx</h1>
+<p class="sub">Global on-demand code indexing MCP server in Rust: AST RepoMap + hybrid search (FTS5+vector) + on-demand LSP bridge</p>
+<div class="chips">
+  <div class="chip">⭐ <b>5</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/rust.html"><span class="lang-dot" style="--lang:#dea584"></span><b>Rust</b></a>
+  <div class="chip">momentum <b>▲ 50.0</b></div>
+  <div class="chip">created <b>2026-11-20</b></div>
+  <div class="chip">on radar since <b>2026-11-22</b></div>
+  
+</div>
+
+<a class="btn" href="https://github.com/Thatgfsj/codeidx" rel="noopener">View on GitHub ↗</a>
+<h2>About codeidx</h2><p class="sub">Codeidx 用 Rust 为项目建立索引。你可以找出跨文件的相关符号、读取实现片段，或借助本机语言服务器查询定义和引用。MCP 服务和终端界面使用同一套引擎，各自维护索引。</p><p class="sub">能力 用途 ------ 代码结构 用 RepoMap 看仓库里的关键符号，用文件大纲查看声明和行号 关键词和语义搜索 挂载后即可按关键词搜索。启用向量索引后可做语义搜索或混合排序 定义和引用 查询源码位置时按需启动本机语言服务器 按需索引 挂载时在内存中建索引，默认监听改动，卸载时释放项目索引</p><p class="sub">需要 Rust stable 与本机 C 编译、链接工具链。源码构建可能下载 ONNX Runtime。Windows 使用 Rust MSVC 工具链、C++ Build Tools 和 Windows SDK 10.0.19041 或更新版本。</p><p class="sub">可执行文件位于 target/release/，Windows 文件带 .exe 后缀。MCP 和终端界面运行时无需 Python 或 Node.js。语言服务器按需单独安装。</p><p class="sub">在支持 stdio 的 MCP 客户端中添加以下配置。配置位置与键名以客户端文档为准。将 command 换成构建产物的绝对路径。Windows 的路径可写作 C:/path/to/codeidx-mcp.exe。</p><p class="sub">先用 mountproject 挂载项目的绝对路径。已挂载随仓示例项目后，给 searchcode 传入下列参数即可查到示例函数。</p><p class="sub">结果按文件分组，保留全局排名、行范围、分数和代码片段。正文位于 content[0].text，格式可选 compact（默认）、json 或 md。tools/list 一次返回全部 11 个工具。挂载后可直接调用任意查询工具。</p><p class="sub">查询目标 工具 ------ 项目生命周期 mountproject、unmountproject、listmountedprojects、syncproject 仓库与文件结构 getrepomap、getfileoutline 找代码与读取实现 searchcode、readsymbol 定义、引用和类型信息 lspdefinition、lspreferences、lsphover</p><p class="sub">path 为项目根目录的绝对路径，filepath 为项目内相对路径。LSP 行号从 1 开始，列号使用 UTF-16 代码单元计数，从 0 开始。stdio 使用逐行 JSON-RPC，日志走 stderr。详见架构与协议。</p><p class="sub">Windows PowerShell 中运行 .\target\release\codeidx-tui.exe。输入项目路径并按 Enter 挂载。用 F1 至 F5 切换仓库概览、搜索、文件大纲、LSP 和项目列表。在搜索页输入关键词并按 Enter，再用方向键选中符号，按 Enter 查看源码。按 ? 查看按键。</p><p class="sub">在同一匿名仓库中关闭向量索引，单次挂载用时 399 ms，索引了 187 个文件、4,821 个符号。表中只统计 MCP 正文，以 o200kbase 实际分词。</p><p class="sub">场景 旧版 当前紧凑格式 本地去重原型 ------:---:---: RepoMap，两版均返回 3,847 个符号 47,076 24,360（省 48.3%） — 单文件大纲，两版均返回 47 个符号 923 723（省 21.7%） — 7 次关键词搜索，共 160 条命中 8,312 7,572（省 8.9%） 7,231（再省 4.5%）</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Thatgfsj--codeidx.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/erkamyaman--rust-anything.html">
+  <span class="name"><span class="owner">erkamyaman/</span>rust-anything</span>
+  <p>Rewrite your whole app in Rust, one piece at a time, checked against the original&#x27;s recorded behavior at every step. CLIs, HTTP servers and libraries in TypeScript, Python, C, Go, Ruby and Java.</p>
+  <span class="meta"><span>⭐ 7634</span><span>Rust</span></span>
+</a><a class="card" href="/s/EL4CTEO--fast-anything.html">
+  <span class="name"><span class="owner">EL4CTEO/</span>fast-anything</span>
+  <p>Don&#x27;t rewrite it in Rust. Rewrite the 5% that&#x27;s slow: profile Python, Node or Ruby apps, port the hot functions with your coding agent, prove they behave the same.</p>
+  <span class="meta"><span>⭐ 495</span><span>Rust</span></span>
+</a><a class="card" href="/s/Graphicle-AI--graphicle.html">
+  <span class="name"><span class="owner">Graphicle-AI/</span>graphicle</span>
+  <p>Code graph and memory for your coding agents, in one Rust program. For Claude Code, Codex, Cursor and any MCP client.</p>
+  <span class="meta"><span>⭐ 325</span><span>Rust</span></span>
+</a><a class="card" href="/s/JordyZomer--lemmalog.html">
+  <span class="name"><span class="owner">JordyZomer/</span>lemmalog</span>
+  <p>A Datalog engine for LLM agent memory: stratified rules, provenance-tracked facts, incremental derivation, and an MCP server that lets your harness use it as a shared brain.</p>
+  <span class="meta"><span>⭐ 253</span><span>Rust</span></span>
+</a><a class="card" href="/s/emanuele-em--kanzo.html">
+  <span class="name"><span class="owner">emanuele-em/</span>kanzo</span>
+  <p>Self-hosted kanban for humans and agents. One 4 MB binary, starts in 2 ms, zero setup.</p>
+  <span class="meta"><span>⭐ 198</span><span>Rust</span></span>
+</a><a class="card" href="/s/fzn0x--idx.html">
+  <span class="name"><span class="owner">fzn0x/</span>idx</span>
+  <p>Analyze the Indonesian stock market (IDX/IHSG) from web terminal, CLI, or any AI agents via MCP server. IHSG Prices, Fundamentals, and Screening. Free and No API keys required. Changelog: https://gith</p>
+  <span class="meta"><span>⭐ 177</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
