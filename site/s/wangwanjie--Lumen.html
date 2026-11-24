@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wangwanjie/Lumen — MCP Server | MCP Radar</title>
+<meta name="description" content="Lumen：免费的 iOS / macOS 界面调试器，内置 MCP 与 CLI，Claude Code / Codex / Cursor 一行接入｜Free iOS &amp; macOS UI debugger with built-in MCP server for AI agents — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/wangwanjie--Lumen.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="wangwanjie/Lumen — MCP Server | MCP Radar">
+<meta property="og:description" content="Lumen：免费的 iOS / macOS 界面调试器，内置 MCP 与 CLI，Claude Code / Codex / Cursor 一行接入｜Free iOS &amp; macOS UI debugger with built-in MCP server for AI agents — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "wangwanjie/Lumen", "description": "Lumen：免费的 iOS / macOS 界面调试器，内置 MCP 与 CLI，Claude Code / Codex / Cursor 一行接入｜Free iOS & macOS UI debugger with built-in MCP server for AI agents", "codeRepository": "https://github.com/wangwanjie/Lumen", "programmingLanguage": "HTML", "url": "https://mcp.liqiwa.com/s/wangwanjie--Lumen.html", "dateCreated": "2026-11-19"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">wangwanjie/</span>Lumen</h1>
+<p class="sub">Lumen：免费的 iOS / macOS 界面调试器，内置 MCP 与 CLI，Claude Code / Codex / Cursor 一行接入｜Free iOS &amp; macOS UI debugger with built-in MCP server for AI agents</p>
+<div class="chips">
+  <div class="chip">⭐ <b>6</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/html.html"><span class="lang-dot" style="--lang:#e34c26"></span><b>HTML</b></a>
+  <div class="chip">momentum <b>▲ 17.0</b></div>
+  <div class="chip">created <b>2026-11-19</b></div>
+  <div class="chip">on radar since <b>2026-11-24</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-tools.html">ai-tools</a><a class="topic" href="/topic/appkit.html">appkit</a><a class="topic" href="/topic/claude-code.html">claude-code</a><span class="topic">debugging-tool</span><a class="topic" href="/topic/developer-tools.html">developer-tools</a><a class="topic" href="/topic/ios.html">ios</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/swiftui.html">swiftui</a><span class="topic">ui-debugger</span><span class="topic">uikit</span><span class="topic">view-hierarchy</span><a class="topic" href="/topic/xcode.html">xcode</a></div>
+<a class="btn" href="https://github.com/wangwanjie/Lumen" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://lumen.vanjay.cn" rel="noopener nofollow">Homepage ↗</a>
+<h2>About Lumen</h2><p class="sub">iOS / macOS 界面调试工具：3D 分层查看界面层级，并提供命令行与 MCP 接口，让脚本、CI 与 AI 助手也能读取界面。</p><p class="sub">https://github.com/user-attachments/assets/145638f3-5af4-4100-ad07-fdfa3a7fb970</p><p class="sub">一行命令后，Claude Code、Codex、ChatGPT 桌面 App、Cursor 等 AI 助手就能读取运行中 App 的层级、截图、审计、改属性、定位源码。模拟器、USB 真机、任意 Mac 应用、未加壳的第三方 ipa 都能直接调试，UIKit、SwiftUI、AppKit 全支持。</p><p class="sub">Lumen 用来查看运行中 App 的视图层级，并把同一套能力开放给命令行与 AI 助手，支持 macOS AppKit 程序与零改动注入。</p><p class="sub">能力 说明 ------ 2D / 3D 层级画布 Metal 渲染，平面与分层 3D 视图切换（透视投影，3D 分层跟随大纲的展开与折叠），可调层间距（⌘[ / ⌘]）、相机复位，显示隐藏节点与边框线；间距测量分关闭、父视图边距、锁定两节点三档；按 layer.mask 裁剪，不画被遮罩挡住的内容；搜索结果在画布上着色、其余淡化；无内容图层可选透明、只描边框或淡色底板；“定位”后目标图层闪烁高亮；还原 iOS 26 / 27 标签栏的液态玻璃底板与选中镜片，以及网页、Metal、视频、Lottie、SwiftUI 列表图标与 foregroundStyle 着色、OpenGL 绘制的窗口（如 Qt 5 App）、Electron / Chromium 网页等图层的内容；液态玻璃按真实的模糊半径还原；3D 下展开 / 折叠时层栈以中间为基准对称伸缩，各层平滑移到新深度；画布控件是可停靠在上 / 下 / 左 / 右边缘的悬浮胶囊（左右时竖排，拖动或右键切换位置）、底部路径栏（从根到所选节点，逐段可点）与缩放百分比；状态栏显示加载阶段、纹理进度与耗时 层级大纲 树形大纲与画布联动选中，悬停行时画布同步高亮；按类名、文本等过滤，搜索结果可继续下钻；键入类名或控制器名前缀直接定位；层级深度预设（⌥⌘1…⌥⌘5）按窗口与 ViewController 展开；聚焦模式只看某个节点的子树（Esc 退出）；按 App 记住展开状态；顶层列出 UIWindowScene 与 Layout Guide；层级很深时缩进自动收窄，深层节点也能看全；可在设置中调整字号、行高与层级引导竖线 屏蔽的类 在设置中维护要屏蔽的类，画布不渲染命中的节点及其子树，大纲灰显标识，可临时显示、重新屏蔽或一键屏蔽此类 SwiftUI 在宿主视图之下给出 SwiftUI 的逻辑视图树：Text 的文字、Button / Toggle / TextField 等控件、修饰符链与参数、调试数据中的属性值（含 @State），可按文本查找；集成 LumenServer 或注入后自动开启。逻辑节点渐进加载：首次读取慢的宿主先显示平台层级，空闲时在后台逐个补读并自动推送，iOS“设置”这类大型 App 首屏从约 26 秒缩短到 0.4 秒 属性检查器 几何读数卡（父视图与所选节点的尺寸、四边边距、原点与窗口坐标）；按类分组的属性、继承链（悬停显示所在的 framework）、所属 ViewController、实例变量名及其持有者、accessibilityIdentifier；contentMode、textAlignment 等枚举显示名称并可下拉修改；控件的“事件处理”栏列出 target-action 与 UIAction 运行时改属性 在检查器中直接修改可编辑属性（数值拖动微调、取色、文本等），值为 nil 的颜色与文本同样可改；大纲与画布的右键菜单可直接</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/wangwanjie--Lumen.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/lcandy2--sim-agentation.html">
+  <span class="name"><span class="owner">lcandy2/</span>sim-agentation</span>
+  <p>Annotate a running iOS simulator in your browser, and hand the notes to your coding agent.</p>
+  <span class="meta"><span>⭐ 45</span><span>Swift</span></span>
+</a><a class="card" href="/s/morajabi--poo.html">
+  <span class="name"><span class="owner">morajabi/</span>poo</span>
+  <p>Find and safely free the disk space your dev work eats: builds, caches, simulators and agent worktrees. macOS menu bar app, CLI and MCP server.</p>
+  <span class="meta"><span>⭐ 82</span><span>Rust</span></span>
+</a><a class="card" href="/s/exzade--EXZA-Remote.html">
+  <span class="name"><span class="owner">exzade/</span>EXZA-Remote</span>
+  <p>Secure AI-powered remote computer access for ChatGPT, Claude and compatible MCP clients.</p>
+  <span class="meta"><span>⭐ 82</span><span></span></span>
+</a><a class="card" href="/s/ateymoori--oh-my-android.html">
+  <span class="name"><span class="owner">ateymoori/</span>oh-my-android</span>
+  <p>Android emulator &amp; ADB GUI for Mac: dark mode, font size, RTL, TalkBack, network, GPS, Layout Inspector in dp. Built-in MCP server lets Claude Code, Codex and Cursor drive the emulator.</p>
+  <span class="meta"><span>⭐ 32</span><span>Swift</span></span>
+</a><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
+</a><a class="card" href="/s/MarlonJD--apple-debug-mcp.html">
+  <span class="name"><span class="owner">MarlonJD/</span>apple-debug-mcp</span>
+  <p>Local, capability-aware MCP server for authorized AI-assisted macOS and iOS debugging, Simulator/device workflows, Apple binary analysis, profiling, and reproducible evidence.</p>
+  <span class="meta"><span>⭐ 6</span><span>Swift</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
