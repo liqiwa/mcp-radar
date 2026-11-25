@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cloudsssA/ClouDrift_ROOM — MCP Server | MCP Radar</title>
+<meta name="description" content="☁️ClouDrift 云隙 - 本地优先、iOS 灵感驱动的 AI 虚拟陪伴读书室｜内置简易小手机通讯、全局轻量记忆、共享书架与桌宠，支持独立运行 &amp; 标准 MCP 三协议外接。Local-first AI companion co-study room with MCP support. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/cloudsssA--ClouDrift_ROOM.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="cloudsssA/ClouDrift_ROOM — MCP Server | MCP Radar">
+<meta property="og:description" content="☁️ClouDrift 云隙 - 本地优先、iOS 灵感驱动的 AI 虚拟陪伴读书室｜内置简易小手机通讯、全局轻量记忆、共享书架与桌宠，支持独立运行 &amp; 标准 MCP 三协议外接。Local-first AI companion co-study room with MCP support. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "cloudsssA/ClouDrift_ROOM", "description": "☁️ClouDrift 云隙 - 本地优先、iOS 灵感驱动的 AI 虚拟陪伴读书室｜内置简易小手机通讯、全局轻量记忆、共享书架与桌宠，支持独立运行 & 标准 MCP 三协议外接。Local-first AI companion co-study room with MCP support.", "codeRepository": "https://github.com/cloudsssA/ClouDrift_ROOM", "programmingLanguage": "JavaScript", "url": "https://mcp.liqiwa.com/s/cloudsssA--ClouDrift_ROOM.html", "dateCreated": "2026-11-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">cloudsssA/</span>ClouDrift_ROOM</h1>
+<p class="sub">☁️ClouDrift 云隙 - 本地优先、iOS 灵感驱动的 AI 虚拟陪伴读书室｜内置简易小手机通讯、全局轻量记忆、共享书架与桌宠，支持独立运行 &amp; 标准 MCP 三协议外接。Local-first AI companion co-study room with MCP support.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/javascript.html"><span class="lang-dot" style="--lang:#f1e05a"></span><b>JavaScript</b></a>
+  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">created <b>2026-11-22</b></div>
+  <div class="chip">on radar since <b>2026-11-25</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-companion.html">ai-companion</a><span class="topic">ai-companion-systems</span><span class="topic">ai-companions</span><span class="topic">ai-companionship</span><a class="topic" href="/topic/local-first.html">local-first</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/mcp-tools.html">mcp-tools</a><a class="topic" href="/topic/nodejs.html">nodejs</a><span class="topic">pomodoro</span><a class="topic" href="/topic/sqlite.html">sqlite</a></div>
+<a class="btn" href="https://github.com/cloudsssA/ClouDrift_ROOM" rel="noopener">View on GitHub ↗</a>
+<h2>About ClouDrift_ROOM</h2><p class="sub">✨ 最新动态 (v1.1.1)：重磅上线 🏡 2D 像素家园 &amp; 痛墙/透明立牌 DIY、🎨 极简单行顶栏 &amp; 独立「美化」面板（横竖双壁纸 2.5K 自适配 + 聊天背景自由拖放缩放）、☁️ 全站 SSOT 双端实时云同步（桌宠/天气/番茄钟/战绩/相框/角色隔空联动） 与多项防重/防打扰深度精修！详细改动请移步 👉 更新日志 CHANGELOG.md</p><p class="sub">⚡ 开工于2026.11.21，历时不到 16 小时爆肝打造出初版，后续持续更新中！ 一个本地优先（Local-First）、iOS 美学灵感驱动的 AI 虚拟陪伴读书室——既可开箱独立畅玩，也内置零依赖标准 MCP Server，支持把整座自习室无缝外接给你已有的任意 AI 陪伴大脑。融合 番茄钟深度专注 + 内置拟人化小手机 + 一角色一库物理隔离记忆 + 2D 像素家园痛房 + 共享阅读器 + 本地音频波形剪辑台 + 跨次元像素桌宠 + MCP 外部桥接，让屏幕两端的陪伴真正拥有“呼吸感”与“生活感”。</p><p class="sub">在这里，TA 不是冷冰冰的问答对话框，而是隔着云端与你跨屏连线的「自习室搭子」——能看见你书桌上的相框、天气、饮品和待办，能陪你一起读 PDF 文献并在页边偷偷写批注，会在你切屏摸鱼时谴责留言，甚至会在你请求切歌时严厉驳回✨</p><p class="sub">1. 🔌 独立运行 × 标准 MCP 三协议外接（双栖玩法！） 独立模式开箱即用：填入任意兼容 OpenAI 格式的 API（支持自由调节 Temperature、Top-P、话题发散/去复读惩罚、Max Tokens，自动解除 BLOCKNONE 限制），本地启动即可直接和 TA 开启连线陪伴。 零依赖标准 MCP Server 外接：不想割裂原本在其他框架里养了很久的角色？一键切换 MCP 模式，内置标准 JSON-RPC 2.0 桥接层，原生支持 Streamable HTTP（/mcp）、Legacy SSE（/mcp/sse） 与 本地 Stdio（mcp-stdio.js） 三种接入方式——完美兼容 AstrBot、Cherry Studio、Claude Desktop、Cursor 等外部框架，把整座自习室变成 TA 的「书桌感官与互动身体」！</p><p class="sub">2. 🧠 全局记忆共通 × 内置小手机深度陪伴 打破功能孤岛的「真·全局共通记忆」：自习室里发生的一切——线上通讯唠嗑、切歌申请、书页划线、便利贴留言、专注放弃、摸鱼抓包、桌宠互动——全都汇总在同一条角色时间轴里！ 💡 举个例子：上一秒你在留声机申请切歌被 TA 狠心驳回，下一秒点开「✉️ 通讯」小手机去撒娇求情，把 TA 哄开心了再回来切歌，说不定就能成功放行～ 专为长线陪伴打造的「轻量记忆系统」：不同角色记忆物理隔离 + 满值批量抛弃 + 不断更新的动态备忘录 + 多模态单轮直通 缓存，长情不失忆，拒绝烧 Token。</p><p class="sub">3. 🎨 高自由度桌面美学（iOS 视觉基因） - 极简无遮挡单行顶栏：采用清爽的「左二右二」单行布局——左侧仅留陪伴角色头像胶囊（点开弹出小名片切换角色/单人模式）与防挤压桌宠胶囊，右侧常驻「✉️ 通讯」与「☰ 菜单」毛玻璃下拉抽屉，把更多画面空间还给心爱的壁纸。 - 独立「🎨 美化」面板 × 跨端差异化审美：壁纸、时钟特效与配色从系统设置中优雅独立；支持上传 💻 电脑横屏 + 📱 手机竖屏 2.5K 双壁纸并随画幅自动无缝切换，而配色方案、时钟字体/质感与去黑影开关则各设备本机独立（轻松实现电脑帅气暗黑、手机甜美奶油互不打架！）。 - 细腻通透的仿 iOS 质感：居中的番茄钟提供仿 iOS 液态玻璃数字特效（浅色纯底自动切换为冰晶银透玻璃，告别黑泥投影与白底隐身）；支持 4 种几何形状的自定义桌面相框（移动端流畅左右滑动）；接入全球实时天气动画（下雨 / 天晴 / 下雪 /</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/cloudsssA--ClouDrift_ROOM.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/mohamed-ashraf-elsaed--aletheia-mem.html">
+  <span class="name"><span class="owner">mohamed-ashraf-elsaed/</span>aletheia-mem</span>
+  <p>Free, local memory and rules hub for AI coding tools: persistent memory for Claude Code, Codex, Cursor and Gemini CLI. One SQLite store over MCP, REST and CLI. Rules sync to CLAUDE.md and AGENTS.md. c</p>
+  <span class="meta"><span>⭐ 9</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/rikamalov--kanban-agent-mcp.html">
+  <span class="name"><span class="owner">rikamalov/</span>kanban-agent-mcp</span>
+  <p>Self-hosted kanban board for AI agents: Node stdlib backend, vanilla JS frontend, built-in MCP server, optional PostgreSQL</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/Parv17k--tasktracker.html">
+  <span class="name"><span class="owner">Parv17k/</span>tasktracker</span>
+  <p>The local-first task board for you and your AI agents. Claude &amp; Cursor work on it over MCP, the built-in assistant asks before changing anything, and it all stays on your machine.</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/akshatinnovate-png--Saathi-Alexa.html">
+  <span class="name"><span class="owner">akshatinnovate-png/</span>Saathi-Alexa</span>
+  <p>AWS Dev tools: Saathi (साथी, &quot;companion&quot;): an Alexa+ MCP server that helps elders living with memory loss, disability or a language gap stay connected to the families who love them. Multilingual check</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/emanuele-em--kanzo.html">
+  <span class="name"><span class="owner">emanuele-em/</span>kanzo</span>
+  <p>Self-hosted kanban for humans and agents. One 4 MB binary, starts in 2 ms, zero setup.</p>
+  <span class="meta"><span>⭐ 198</span><span>Rust</span></span>
+</a><a class="card" href="/s/dheerajponnaganti--thenwise.html">
+  <span class="name"><span class="owner">dheerajponnaganti/</span>thenwise</span>
+  <p>Thenwise: a local memory of your past Claude Code work, searchable by date and link.</p>
+  <span class="meta"><span>⭐ 29</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
