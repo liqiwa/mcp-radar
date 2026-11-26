@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>datawatongchal/korea-data-mcp — MCP Server | MCP Radar</title>
+<meta name="description" content="AI가 한국 공공데이터를 조회하는 원격 MCP 커넥터 — 조달·부동산·상권·땅·기업·공시·수출입·창업지원. 설치·가입 없이 무료. Remote MCP server for Korean public data. — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/datawatongchal--korea-data-mcp.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="datawatongchal/korea-data-mcp — MCP Server | MCP Radar">
+<meta property="og:description" content="AI가 한국 공공데이터를 조회하는 원격 MCP 커넥터 — 조달·부동산·상권·땅·기업·공시·수출입·창업지원. 설치·가입 없이 무료. Remote MCP server for Korean public data. — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "datawatongchal/korea-data-mcp", "description": "AI가 한국 공공데이터를 조회하는 원격 MCP 커넥터 — 조달·부동산·상권·땅·기업·공시·수출입·창업지원. 설치·가입 없이 무료. Remote MCP server for Korean public data.", "codeRepository": "https://github.com/datawatongchal/korea-data-mcp", "programmingLanguage": "Unknown", "url": "https://mcp.liqiwa.com/s/datawatongchal--korea-data-mcp.html", "dateCreated": "2026-11-24"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">datawatongchal/</span>korea-data-mcp</h1>
+<p class="sub">AI가 한국 공공데이터를 조회하는 원격 MCP 커넥터 — 조달·부동산·상권·땅·기업·공시·수출입·창업지원. 설치·가입 없이 무료. Remote MCP server for Korean public data.</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  
+  <div class="chip">momentum <b>▲ 15.0</b></div>
+  <div class="chip">created <b>2026-11-24</b></div>
+  <div class="chip">on radar since <b>2026-11-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/chatgpt.html">chatgpt</a><a class="topic" href="/topic/claude.html">claude</a><a class="topic" href="/topic/korea.html">korea</a><a class="topic" href="/topic/korean.html">korean</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/model-context-protocol.html">model-context-protocol</a><a class="topic" href="/topic/open-data.html">open-data</a><span class="topic">procurement</span><a class="topic" href="/topic/public-data.html">public-data</a><a class="topic" href="/topic/real-estate.html">real-estate</a><a class="topic" href="/topic/remote-mcp.html">remote-mcp</a></div>
+<a class="btn" href="https://github.com/datawatongchal/korea-data-mcp" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://datawatongchal.com/mcp/docs" rel="noopener nofollow">Homepage ↗</a>
+<h2>About korea-data-mcp</h2><p class="sub">AI가 한국 공공데이터를 직접 조회할 수 있게 해 주는 원격 MCP 커넥터입니다. 공공조달, 국방조달, 상권, 부동산 실거래, 땅, 공시지가, 기업, 공시, 수출입, 창업지원을 다룹니다.</p><p class="sub">- 설치가 없습니다. Streamable HTTP 방식의 원격 서버입니다. - 가입도 API 키도 없습니다. 주소만 넣으면 바로 물어볼 수 있습니다. - 읽기 전용입니다. 모든 도구는 조회만 합니다. - 무료로 공개 운영합니다.</p><p class="sub">이 저장소는 소개 문서만 담고 있습니다. 서버 소스 코드는 없으며, 공공데이터를 재배포하지도 않습니다. 커넥터는 공공기관이 공개한 자료를 정리해 조회하게 해 주는 서비스이고, 답마다 출처를 밝힙니다.</p><p class="sub">Claude (claude.ai / Claude 데스크톱) 설정 → 커넥터 → 사용자 지정 커넥터 추가 → 이름과 위 주소를 입력합니다. 인증 화면은 없습니다.</p><p class="sub">ChatGPT 웹(chatgpt.com)에서만 추가할 수 있고, 모바일 앱에서는 추가할 수 없습니다. 아래는 2026년 11월 OpenAI 안내 기준이며, 메뉴 이름은 영문 화면 기준입니다.</p><p class="sub">1. chatgpt.com/plugins(Plugins)로 갑니다. 2. 더하기(+) 버튼 → Add custom MCP server를 누릅니다. 3. 이름을 적고(설명은 선택), Connection의 서버 주소 칸에 https://datawatongchal.com/mcp 를 넣습니다. 4. 인증은 No authentication을 고릅니다. 5. 안내문을 읽고 I understand and want to continue에 표시한 뒤 Create as a plugin을 누릅니다. 6. 새 대화에서 입력창에 @를 치고 방금 만든 플러그인을 고른 다음 질문합니다.</p><p class="sub">OpenAI 안내에 따르면 사용자 지정 MCP 서버 연결은 Business·Enterprise·Edu 요금제에서 지원하고(워크스페이스에서는 관리자 권한이 필요할 수 있습니다), Pro는 읽기 전용 도구를 연결할 수 있습니다. 이 커넥터의 도구는 모두 읽기 전용입니다. 요금제와 메뉴는 바뀔 수 있으니 OpenAI 도움말을 함께 확인하세요.</p><p class="sub">그 밖의 클라이언트 Streamable HTTP 원격 MCP 서버를 지원하는 클라이언트라면 주소만 넣으면 됩니다. 설정 문법은 각 클라이언트 문서를 확인하세요.</p><p class="sub">도구가 불리지 않으면 커넥터 설정에서 도구 목록을 새로 고친 뒤 새 대화를 시작하세요.</p><p class="sub">통합 1개와 분야별 10개입니다. 도구 이름의 앞머리가 분야를 나타냅니다.</p><p class="sub">분야 주소 도구 수 다루는 것 ------------ 데이터와통찰(통합) https://datawatongchal.com/mcp 44 아래 전부를 커넥터 하나로. 분야가 늘면 저절로 더해집니다. 조달 https://datawatongchal.com/mcp/g2b 8 나라장터: 발주계획 → 사전규격 → 입찰공고 → 낙찰 → 계약 국방조달 https://datawatongchal.com/mcp/d2b 3 방위사업청 국방전자조달(나라장터와 별개) 상권 https://datawatongchal.com/mcp/store 4 영업 중인 가게 약 270만 곳, 행정동·업종별 부동산 https://datawatongchal.com/mcp/realest</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/datawatongchal--korea-data-mcp.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/arcmira--mcp.html">
+  <span class="name"><span class="owner">arcmira/</span>mcp</span>
+  <p>YouTube transcript search for your AI. Find who said what with timestamps, mentions, sponsors, and recommendations. Remote MCP and agent skills.</p>
+  <span class="meta"><span>⭐ 84</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/ContentWriterco--rozklad-mcp.html">
+  <span class="name"><span class="owner">ContentWriterco/</span>rozklad-mcp</span>
+  <p>🚆 Rozkład jazdy PKP, PKS i komunikacji miejskiej dla AI – serwer MCP: wyszukiwarka połączeń z przesiadkami, odjazdy, opóźnienia na żywo, ceny biletów. Polish train &amp; bus timetables for Claude, ChatGPT</p>
+  <span class="meta"><span>⭐ 34</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/enhancv--mcp-server.html">
+  <span class="name"><span class="owner">enhancv/</span>mcp-server</span>
+  <p>Enhancv&#x27;s official remote MCP server: let Claude, ChatGPT, Cursor and other AI apps edit your resumes, write cover letters, search jobs and track applications.</p>
+  <span class="meta"><span>⭐ 12</span><span></span></span>
+</a><a class="card" href="/s/magmonte--elden-mcp.html">
+  <span class="name"><span class="owner">magmonte/</span>elden-mcp</span>
+  <p>Elden V1.0 — Conector MCP de Direito e jurisprudência brasileira (58,8% no benchmark cego). 20M+ acórdãos (STF, STJ, TJs, TRFs, DJEN) e Planalto para ChatGPT, Claude e Gemini.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/Kaiserunix--gemini-bastion-mcp.html">
+  <span class="name"><span class="owner">Kaiserunix/</span>gemini-bastion-mcp</span>
+  <p>Self-hosted Remote MCP Server &amp; OAuth 2.1 Gateway for Web Gemini (gemini.google.com), Claude.ai &amp; ChatGPT — 10 sandboxed coding/DevOps tools, 1 approval gate, Codex SDK, Cloudflare ops, Google/GitHub </p>
+  <span class="meta"><span>⭐ 4</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/OlegNickeshin--telegram-business-mcp.html">
+  <span class="name"><span class="owner">OlegNickeshin/</span>telegram-business-mcp</span>
+  <p>Give AI agents access to an authorized Telegram archive via the official Telegram Business API: search conversations, read files and voice transcripts, and optionally reply. Self-hosted remote MCP; no</p>
+  <span class="meta"><span>⭐ 3</span><span>TypeScript</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

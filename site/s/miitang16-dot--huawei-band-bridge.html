@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>miitang16-dot/huawei-band-bridge — MCP Server | MCP Radar</title>
+<meta name="description" content="手环桥 · Let AI read your Huawei band directly over BLE — no Huawei Health, no Huawei ID, no cloud. MCP server on your phone. (AGPL-3.0, based on Gadgetb — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/miitang16-dot--huawei-band-bridge.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="miitang16-dot/huawei-band-bridge — MCP Server | MCP Radar">
+<meta property="og:description" content="手环桥 · Let AI read your Huawei band directly over BLE — no Huawei Health, no Huawei ID, no cloud. MCP server on your phone. (AGPL-3.0, based on Gadgetb — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "miitang16-dot/huawei-band-bridge", "description": "手环桥 · Let AI read your Huawei band directly over BLE — no Huawei Health, no Huawei ID, no cloud. MCP server on your phone. (AGPL-3.0, based on Gadgetbridge)", "codeRepository": "https://github.com/miitang16-dot/huawei-band-bridge", "programmingLanguage": "Java", "url": "https://mcp.liqiwa.com/s/miitang16-dot--huawei-band-bridge.html", "dateCreated": "2026-11-22"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">miitang16-dot/</span>huawei-band-bridge</h1>
+<p class="sub">手环桥 · Let AI read your Huawei band directly over BLE — no Huawei Health, no Huawei ID, no cloud. MCP server on your phone. (AGPL-3.0, based on Gadgetbridge)</p>
+<div class="chips">
+  <div class="chip">⭐ <b>3</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/java.html"><span class="lang-dot" style="--lang:#b07219"></span><b>Java</b></a>
+  <div class="chip">momentum <b>▲ 10.0</b></div>
+  <div class="chip">created <b>2026-11-22</b></div>
+  <div class="chip">on radar since <b>2026-11-26</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/android.html">android</a><span class="topic">ble</span><span class="topic">gadgetbridge</span><span class="topic">huawei</span><span class="topic">huawei-band</span><a class="topic" href="/topic/mcp-server.html">mcp-server</a></div>
+<a class="btn" href="https://github.com/miitang16-dot/huawei-band-bridge" rel="noopener">View on GitHub ↗</a>
+<h2>About huawei-band-bridge</h2><p class="sub">让 AI 直接读你的华为手环。不用华为运动健康，不用华为账号，数据不上任何云。 Let your AI read your Huawei band directly: no Huawei Health app, no Huawei ID, no cloud.（English）</p><p class="sub">🧪 测试版（当前 0.1.13）。协议核心在一台 HUAWEI Band 10 上跑通了，App 和 MCP 服务还在逐项上真机验证。 下面每一项都标了证据等级，没在真机上验过的不会写成「已验证」。</p><p class="sub">0.1.1 的真机截图（HUAWEI Band 10 + HarmonyOS 手机），那次心跳直播的 lag 估计是 0 ms。0.1.4 起换了新界面，新截图之后补上。</p><p class="sub">1. 一个 Android App：用蓝牙直接跟华为手环说华为自己的私有协议（含 HiChain 认证），把心率 / 血氧 / 步数 / 科学睡眠 / 压力 / 情绪存在手机本机； 2. 手机上同时开一个 MCP 服务（7 个工具），让 Claude、Cursor 等 AI 客户端查你的数据； 3. 还能反过来把天气送进手环、让手环音乐页控制手机播放器。</p><p class="sub">不需要华为账号，也不用华为运动健康 —— 相反，手环要先跟华为运动健康解绑才能让第三方 App 连。</p><p class="sub">设备 / 环境 状态 ------ HUAWEI Band 10（Nora-B19FP）+ HarmonyOS 7 手机 已实测：认证、初始化、分钟数据、TruSleep、压力、情绪、逐拍心率 HUAWEI Band 7（Leia-B29，固件 2.0.0.68） 用户反馈，部分可用：能连、能同步心率 / 血氧 / 步数，表盘正常；0.1.12 后侧边键基本不再弹引导页（刚重新绑定后一小段时间会弹）。睡眠走基础睡眠（0.1.13 起，没有快速眼动 / 睡眠分）。手环上的压力页和手动开始运动还待确认 其它 Band 型号（Band 9 / 11 等） 未验证。命令表是连上后探测的，理论上可适配，但差异要逐型号摸 其它固件版本（同型号） 未验证。华为更新固件可能改协议 Honor Watch 5（PAKE / STS） 部分移植：算法在 HiChainPakeUtils，AuthFlow 还没接上调度 手机系统 只支持 Android 8.0+（含 HarmonyOS 的 Android 兼容层）；iOS 不支持 被别的 App 当库嵌入（比如 Capacitor 插件） 未验证：bandcore 按「可复用库」写，但本仓库只演示 app/ 这一个壳</p><p class="sub">证据等级：[VERIFIED] 真机验证过 · [IMPLEMENTED] 已实现、未充分验证 · [INFERRED] 源码/协议推断 · [UNSUPPORTED] 已确认不支持。长文与实验记录见 docs/reverse-engineering.md。</p><p class="sub">数据 / 能力 粒度 证据 --------- 心率 / 血氧 / 步数 / 静息心率 每分钟一格（手环记录粒度，不是 App 拉取粒度） [VERIFIED] 科学睡眠 TruSleep 每分钟阶段：深睡 / 浅睡 / 快速眼动 / 清醒 + 睡眠分 [VERIFIED] 压力 手环自测（要先在 App 里静坐校准 1 分钟） [VERIFIED] 情绪 手环自测的原始值（愉悦度 / 激活度 / 状态码） [VERIFIED] 手环自带的情绪页 需要华为运动健康 + 华为云算法 [UNSUPPORTED] 逐拍心率（心跳直播） 一拍一个值（≈1 秒），走 0x19 RRI 流 [VERIFIED]，但「实时性」措辞见下 实时心率（0x07/0x1C） — [UNSUPPORTED]：Band 10 命令表里没有，Gadgetbridge 也</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/miitang16-dot--huawei-band-bridge.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/ghorbelhamdi--buddy-android.html">
+  <span class="name"><span class="owner">ghorbelhamdi/</span>buddy-android</span>
+  <p>A floating chat bubble that lets Claude Code, Codex or OpenCode use your Android phone. Runs inside the app on your own subscription or free models. No adb, no PC, no root.</p>
+  <span class="meta"><span>⭐ 27</span><span>Java</span></span>
+</a><a class="card" href="/s/0xdad0--jadx-mcp.html">
+  <span class="name"><span class="owner">0xdad0/</span>jadx-mcp</span>
+  <p>MCP (Model Context Protocol) server as a jadx-gui plugin. Lets an AI client (Claude Code, Claude Desktop, or any MCP client) analyze the app currently loaded in jadx-gui.</p>
+  <span class="meta"><span>⭐ 11</span><span>Java</span></span>
+</a><a class="card" href="/s/LSPosed--dexsql-release.html">
+  <span class="name"><span class="owner">LSPosed/</span>dexsql-release</span>
+  <p>SQL for Android apk and dex files</p>
+  <span class="meta"><span>⭐ 199</span><span>Python</span></span>
+</a><a class="card" href="/s/mutonby--agentring.html">
+  <span class="name"><span class="owner">mutonby/</span>agentring</span>
+  <p>Let your AI agents call your phone over VoIP, and call them back. Your phone rings like a real call, even locked; a voice AI talks it through and returns the transcript. Self-hosted, open source, no p</p>
+  <span class="meta"><span>⭐ 81</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/kilolonion--agent-vscreen.html">
+  <span class="name"><span class="owner">kilolonion/</span>agent-vscreen</span>
+  <p>A background virtual screen for any Android AI agent: it operates apps on an invisible display while you keep using your phone. CLI / MCP / HTTP, Shizuku, no root. 给任何手机 agent 用的后台副屏。</p>
+  <span class="meta"><span>⭐ 63</span><span>Kotlin</span></span>
+</a><a class="card" href="/s/hridaya423--phonedriver.html">
+  <span class="name"><span class="owner">hridaya423/</span>phonedriver</span>
+  <p>Open-source MCP server and CLI that lets AI agents like Claude Code see and control Android and iOS phones.</p>
+  <span class="meta"><span>⭐ 48</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
