@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Violiate/Omnipush — MCP Server | MCP Radar</title>
+<meta name="description" content="开源通用推送中枢：微信/飞书/钉钉/Bark/TG 22渠道、闲置邮箱转微信(AI总结)、免公网收件、免代码盯网页显卡、Claude Code/Cursor 手机遥控与MCP安全锁 | Self-hosted push hub, NAT-free ChatOps, IMAP-to-IM, activ — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/Violiate--Omnipush.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="Violiate/Omnipush — MCP Server | MCP Radar">
+<meta property="og:description" content="开源通用推送中枢：微信/飞书/钉钉/Bark/TG 22渠道、闲置邮箱转微信(AI总结)、免公网收件、免代码盯网页显卡、Claude Code/Cursor 手机遥控与MCP安全锁 | Self-hosted push hub, NAT-free ChatOps, IMAP-to-IM, activ — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Violiate/Omnipush", "description": "开源通用推送中枢：微信/飞书/钉钉/Bark/TG 22渠道、闲置邮箱转微信(AI总结)、免公网收件、免代码盯网页显卡、Claude Code/Cursor 手机遥控与MCP安全锁 | Self-hosted push hub, NAT-free ChatOps, IMAP-to-IM, active watchers & MCP Guard Proxy", "codeRepository": "https://github.com/Violiate/Omnipush", "programmingLanguage": "Python", "url": "https://mcp.liqiwa.com/s/Violiate--Omnipush.html", "dateCreated": "2026-11-27"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">Violiate/</span>Omnipush</h1>
+<p class="sub">开源通用推送中枢：微信/飞书/钉钉/Bark/TG 22渠道、闲置邮箱转微信(AI总结)、免公网收件、免代码盯网页显卡、Claude Code/Cursor 手机遥控与MCP安全锁 | Self-hosted push hub, NAT-free ChatOps, IMAP-to-IM, active watchers &amp; MCP Guard Proxy</p>
+<div class="chips">
+  <div class="chip">⭐ <b>7</b> stars</div>
+  <div class="chip">⑂ <b>1</b> forks</div>
+  <a class="chip" href="/lang/python.html"><span class="lang-dot" style="--lang:#3572A5"></span><b>Python</b></a>
+  <div class="chip">momentum <b>▲ 72.0</b></div>
+  <div class="chip">created <b>2026-11-27</b></div>
+  <div class="chip">on radar since <b>2026-11-28</b></div>
+  
+</div>
+<div class="topics"><a class="topic" href="/topic/ai-agents.html">ai-agents</a><span class="topic">bark</span><span class="topic">chatops</span><a class="topic" href="/topic/claude-code.html">claude-code</a><a class="topic" href="/topic/cursor.html">cursor</a><a class="topic" href="/topic/dingtalk.html">dingtalk</a><a class="topic" href="/topic/docker.html">docker</a><a class="topic" href="/topic/feishu.html">feishu</a><a class="topic" href="/topic/human-in-the-loop.html">human-in-the-loop</a><a class="topic" href="/topic/imap.html">imap</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><a class="topic" href="/topic/monitoring.html">monitoring</a><span class="topic">notifications</span><span class="topic">push-notifications</span><a class="topic" href="/topic/python.html">python</a><a class="topic" href="/topic/self-hosted.html">self-hosted</a><a class="topic" href="/topic/tailscale.html">tailscale</a><span class="topic">telegram-bot-ai-assistant</span><a class="topic" href="/topic/wechat.html">wechat</a></div>
+<a class="btn" href="https://github.com/Violiate/Omnipush" rel="noopener">View on GitHub ↗</a>
+<h2>About Omnipush</h2><p class="sub">开源全渠道个人消息通知中心 · 免写代码自动盯梢 · 微信/飞书回消息控机 · 给编程 AI 装上「手机遥控器」与「安全锁」</p><p class="sub">Self-Hosted Universal Push Hub · No-Code Auto Monitor · NAT-Free Mobile Control · Human-in-the-Loop AI Assistant &amp; Safety Lock</p><p class="sub">简体中文 &amp;nbsp;·&amp;nbsp; English &amp;nbsp;&amp;nbsp; 为什么用它 &amp;nbsp;·&amp;nbsp; 免公网收件与邮箱转微信 &amp;nbsp;·&amp;nbsp; 60 秒上手 &amp;nbsp;·&amp;nbsp; 界面导览 &amp;nbsp;·&amp;nbsp; 手机发中文控机 &amp;nbsp;·&amp;nbsp; 自动盯梢 &amp;nbsp;·&amp;nbsp; AI 遥控与安全锁 &amp;nbsp;·&amp;nbsp; 22 种接收方式 &amp;nbsp;·&amp;nbsp; 常见问题</p><p class="sub">一句话看懂 OmniPush： 你只需要在图形界面里把微信、钉钉、飞书、企业微信、Bark、Telegram、QQ、邮件等接收方式配好一次——从此你电脑里的软件、NAS、监控或收款平台，甚至正在后台干活的 Claude Code / Cursor / Codex / DeepSeek Harness，都能一键往你手机发消息、发图片、等你远程拍板；还能不写一行代码帮你 24 小时盯网页降价、盯显卡空闲、盯软件报错，并在出故障时让 AI 帮你看原因、等你手机点一下安全修复。</p><p class="sub">▲ 极简零 CDN 控制台（支持浅色 / 深色双主题与 Ctrl+K 全局命令面板）：实时收发动态、防重复刷屏统计、自动盯梢与待审批一览</p><p class="sub">[!TIP] 说人话、极简上手、按需开启： - 打开即用不臃肿：安装后就是一个干干净净的个人通知台。自动盯梢、手机聊天机器人、AI 看报错与自动修复、AI 安全锁、刷屏合并、超时电话再催等功能默认关闭且自动收起，需要哪项再点开哪项。 - 零门槛傻瓜式交互：给机器人发一句 “你好” 就能自动识别你本人一键绑定（不用去后台查 ID）；聊天框直接发 纯中文口语指令（状态、待办、同意、验证码 123456）；新建自动盯梢、修复命令和 AI 安全锁全部内置 一键场景模板、网址点选字段、勾选框 与 可视化键值表格，彻底告别手敲 JSON 和天书正则！ - 100% 纯本地零外部 CDN：连微信扫码二维码都是本机实时生成的，纯局域网和离线环境也能秒开。</p><p class="sub">1. 💬 不用公网 IP，在微信 / 飞书 / 钉钉里直接发中文控电脑 家里电脑、实验室工作站、群晖/飞牛 NAS 没有公网 IP？完全不需要！ - 发一句“你好”自动识别我本人，免查后台 ID：不知道去哪找飞书、钉钉、企业微信、QQ 或 Telegram 的账号编号？保存配置后，拿手机给机器人发一句 “你好”，网页立刻弹出提示条，点一下 「一键绑定我本人」 就搞定！个人微信更支持在电脑弹窗里直接扫一扫绑定。 - 直接发纯中文指令，不用背英文命令：出门在外直接给机器人发 帮助、状态、待办、最近报错、开启免打扰、关闭免打扰、同意、验证码 123456、修复 重启服务，像跟助理聊天一样掌控电脑！</p><p class="sub">2. 👀 自动盯梢（免写代码）：点选模板，24 小时帮你盯紧一切 不想为了盯点小事专门写脚本？打开新建窗口，直接点选场景模板就能开盯： - 6 个一键场景模板：🛒 盯商品降价 / 补货、📢 盯学校 / 官网新通知、🎮 实验室显卡空了叫我、🖼️ 文件夹有新图自动发手机、📄 软件出报错了通知我、📊 盯数据接口里的数字——点一下自动填好名称、频率和示例。 - 读取网址看看内容，点一下选中字段：监控数据接口或网页时，点一下 「读取网址看看内容」，网页正文当场预览；数据接口会把里面的字段变成一排可点击的小标签（</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/Violiate--Omnipush.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/RayenMlayeh--gsearch.html">
+  <span class="name"><span class="owner">RayenMlayeh/</span>gsearch</span>
+  <p>Real Google Search for AI agents, over MCP. Self-hosted, no API key. Real URLs, AI Overview and People also ask as typed JSON. Uses a real Firefox (Camoufox) on your IP or any proxy.</p>
+  <span class="meta"><span>⭐ 7</span><span>Python</span></span>
+</a><a class="card" href="/s/dungnguyenv--pinwall.html">
+  <span class="name"><span class="owner">dungnguyenv/</span>pinwall</span>
+  <p>Self-hosted artifact server for AI agents: Claude Code, Cursor and Codex publish HTML pages over MCP, you review them with pinned comments, versions and share links, and the agent reads your feedback </p>
+  <span class="meta"><span>⭐ 8</span><span>TypeScript</span></span>
+</a><a class="card" href="/s/Secra-Solutions--Conector.html">
+  <span class="name"><span class="owner">Secra-Solutions/</span>Conector</span>
+  <p>Self-hosted MCP gateway: connect 1,178 apps once and use them from Claude, Codex, Cursor, Gemini CLI, Copilot and 42 more AI agents. Talk with us at https://secra.es</p>
+  <span class="meta"><span>⭐ 4</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/aka-kika--hig-mcp.html">
+  <span class="name"><span class="owner">aka-kika/</span>hig-mcp</span>
+  <p>MCP server serving Apple Human Interface Guidelines as structured design tokens for AI coding agents — post-WWDC25 system colors, Liquid Glass constraints, SwiftUI mappings.</p>
+  <span class="meta"><span>⭐ 31</span><span>Python</span></span>
+</a><a class="card" href="/s/mrlong0129--yominpost.html">
+  <span class="name"><span class="owner">mrlong0129/</span>yominpost</span>
+  <p>Self-hosted AI social media studio: one piece of material in, platform-native posts out. Format router, self-critique, pre-publish risk gate, real OAuth publishing. Web app + CLI + MCP server + agent </p>
+  <span class="meta"><span>⭐ 26</span><span>Python</span></span>
+</a><a class="card" href="/s/jiawei686--jev-ultrafast-mcp.html">
+  <span class="name"><span class="owner">jiawei686/</span>jev-ultrafast-mcp</span>
+  <p>Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model m</p>
+  <span class="meta"><span>⭐ 18</span><span>Python</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>

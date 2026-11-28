@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>andyforfun168/KuroCatWork — MCP Server | MCP Radar</title>
+<meta name="description" content="🐱 Native macOS / Windows / Linux desktop cat for Codex &amp; Claude: live usage, task bubbles, typing sounds and playful work-mode interactions. 基于 KuroCa — stats, momentum and related MCP servers on MCP Radar.">
+<link rel="canonical" href="https://mcp.liqiwa.com/s/andyforfun168--KuroCatWork.html">
+<link rel="alternate" type="application/rss+xml" title="MCP Radar — new MCP servers" href="https://mcp.liqiwa.com/feed.xml">
+<meta property="og:title" content="andyforfun168/KuroCatWork — MCP Server | MCP Radar">
+<meta property="og:description" content="🐱 Native macOS / Windows / Linux desktop cat for Codex &amp; Claude: live usage, task bubbles, typing sounds and playful work-mode interactions. 基于 KuroCa — stats, momentum and related MCP servers on MCP Radar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mcp.liqiwa.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mcp.liqiwa.com/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<style>
+:root{--bg:#0b0f14;--bg-card:#121820;--bg-card-hover:#182130;--border:#1e2936;
+--text:#dbe4ee;--text-dim:#7d8fa3;--accent:#3ddc84;--accent-dim:rgba(61,220,132,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.top{padding:26px 0 8px;display:flex;align-items:center;gap:10px}
+header.top a{text-decoration:none;font-weight:600;font-size:18px}
+header.top .radar{color:var(--accent)}
+header.top nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+header.top nav a{color:var(--text-dim)}header.top nav a:hover{color:var(--text)}
+h1{font-size:26px;letter-spacing:-.5px;margin:26px 0 6px;word-break:break-all}
+h1 .owner{color:var(--text-dim);font-weight:400}
+.sub{color:var(--text-dim);font-size:15px;margin-bottom:18px}
+.sub a{color:var(--accent);text-decoration:none}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;font-size:13.5px;color:var(--text-dim)}
+.chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:7px 12px;text-decoration:none}
+.chip b{color:var(--text)}
+a.chip:hover{border-color:var(--accent)}
+.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--lang,#8b949e)}
+.btn{display:inline-block;background:var(--accent);color:#08130c;font-weight:600;text-decoration:none;
+border-radius:8px;padding:10px 18px;margin:10px 12px 22px 0;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.topic{background:rgba(125,143,163,.1);border-radius:999px;padding:2px 10px;font-size:12px;
+color:var(--text-dim);text-decoration:none}
+a.topic:hover{color:var(--accent)}
+h2{font-size:17px;margin:26px 0 12px}
+.card{display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);
+border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:background .12s,border-color .12s}
+.card:hover{background:var(--bg-card-hover);border-color:#2b3b4f}
+.card .name{font-weight:600;font-size:15px;word-break:break-all}
+.card .name .owner{color:var(--text-dim);font-weight:400}
+.card p{color:var(--text-dim);font-size:13.5px;margin-top:4px}
+.card .meta{display:flex;gap:12px;margin-top:8px;font-size:12.5px;color:var(--text-dim)}
+.controls{margin:18px 0}
+.controls input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;
+color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.controls input:focus{border-color:var(--accent)}
+pre.snippet{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+font-size:12.5px;overflow-x:auto;color:var(--text-dim);margin:8px 0 4px;font-family:ui-monospace,Menlo,monospace}
+.copybtn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);
+padding:4px 12px;font-size:12px;cursor:pointer;margin-bottom:18px}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.hublinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
+footer{margin:48px 0 40px;padding-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
+.subscribe{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;margin-top:44px}
+.subscribe h2{margin:0 0 4px;font-size:16px}
+.subscribe p{color:var(--text-dim);font-size:13.5px;margin-bottom:12px}
+.subscribe form{display:flex;gap:8px;flex-wrap:wrap}
+.subscribe input[type=email]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);
+border-radius:8px;color:var(--text);padding:9px 12px;font-size:14px;outline:none}
+.subscribe input[type=email]:focus{border-color:var(--accent)}
+.subscribe button{background:var(--accent);color:#08130c;font-weight:600;border:none;border-radius:8px;
+padding:9px 18px;font-size:14px;cursor:pointer}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "andyforfun168/KuroCatWork", "description": "🐱 Native macOS / Windows / Linux desktop cat for Codex & Claude: live usage, task bubbles, typing sounds and playful work-mode interactions. 基于 KuroCat 的跨平台 AI 工作桌宠。", "codeRepository": "https://github.com/andyforfun168/KuroCatWork", "programmingLanguage": "C++", "url": "https://mcp.liqiwa.com/s/andyforfun168--KuroCatWork.html", "dateCreated": "2026-11-26"}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="/">📡 MCP <span class="radar">Radar</span></a>
+  <nav><a href="/">This week</a><a href="/all.html">All servers</a>
+  <a href="/weekly/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">Data</a></nav>
+</header>
+
+<h1><span class="owner">andyforfun168/</span>KuroCatWork</h1>
+<p class="sub">🐱 Native macOS / Windows / Linux desktop cat for Codex &amp; Claude: live usage, task bubbles, typing sounds and playful work-mode interactions. 基于 KuroCat 的跨平台 AI 工作桌宠。</p>
+<div class="chips">
+  <div class="chip">⭐ <b>4</b> stars</div>
+  <div class="chip">⑂ <b>0</b> forks</div>
+  <a class="chip" href="/lang/cpp.html"><span class="lang-dot" style="--lang:#f34b7d"></span><b>C++</b></a>
+  <div class="chip">momentum <b>▲ 40.0</b></div>
+  <div class="chip">created <b>2026-11-26</b></div>
+  <div class="chip">on radar since <b>2026-11-28</b></div>
+  
+</div>
+<div class="topics"><span class="topic">bongo-cat</span><span class="topic">bongo-cat-alternative</span><a class="topic" href="/topic/cpp.html">cpp</a><a class="topic" href="/topic/desktop-companion.html">desktop-companion</a><a class="topic" href="/topic/desktop-pet.html">desktop-pet</a><span class="topic">drawing-tablet</span><span class="topic">kurocat</span><a class="topic" href="/topic/linux.html">linux</a><a class="topic" href="/topic/macos.html">macos</a><a class="topic" href="/topic/mcp.html">mcp</a><a class="topic" href="/topic/mcp-server.html">mcp-server</a><span class="topic">native-app</span><a class="topic" href="/topic/obs.html">obs</a><span class="topic">obs-overlay</span><a class="topic" href="/topic/open-source.html">open-source</a><span class="topic">streamer-tools</span><a class="topic" href="/topic/swift.html">swift</a><span class="topic">uos</span><a class="topic" href="/topic/vtuber.html">vtuber</a><a class="topic" href="/topic/windows.html">windows</a></div>
+<a class="btn" href="https://github.com/andyforfun168/KuroCatWork" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://kurocat.cc/" rel="noopener nofollow">Homepage ↗</a>
+<h2>About KuroCatWork</h2><p class="sub">陪你打字，也陪 AI 干活的原生桌面萌猫。 普通陪伴与工作模式 · Codex / Claude · 任务泡泡 · 共通皮肤</p><p class="sub">基于 KuroCat 开发，为桌面小猫加入 Codex / Claude 工作模式。</p><p class="sub">让小猫继续当主角。双击就在普通桌宠和 AI 工作小搭档之间切换，额度、任务与提醒都围绕它的键盘展开；也能听着敲击声，感知任务有没有在忙。</p><p class="sub">对比维度 🐱 KuroCatWork 常见 Electron / Web 桌宠实现 :--- :--- :--- 安装包体积 macOS 通用版约 2.1 MB、Windows x64 约 1.5 MB、Linux 便携版约 1.2 MB，包含四款皮肤与声音素材 通常需要额外打包浏览器或其他运行时，体积取决于具体实现 内存 / CPU 占用 原生 Swift / C++17 绘制；切回普通模式即停止 AI 额度与任务轮询 资源占用取决于页面、渲染进程和后台逻辑 游戏内按键捕获 macOS IOHIDManager、Windows Raw Input、Linux XInput2 / evdev，按平台授权后驱动全局键鼠动作 网页内按键事件通常受焦点限制，全局输入需额外桥接 2.5D 视觉表现 鼠标跟随转头、捕猎大圆眼、圆润团睡，以及带惯性的拎猫、键盘与鼠标 / 数位板 表现形式取决于项目，可采用贴图、骨骼或 3D 渲染 皮肤与生态 四款内置皮肤；兼容原作 2.5D 皮肤工坊 的 .kurocat / .kurokb 格式，导入后可用于工作模式 素材格式由各项目定义，跨项目使用通常需要适配 隐私安全 开源，本地处理键鼠动画；工作模式读取已连接工具的额度与任务状态，本地保存设置和任务元数据 数据处理方式与网络连接范围需查看各项目说明 普通陪伴 / AI 工作 双击小猫切换；普通模式陪你打字，工作模式才亮起键盘流光并检查 AI 任务 是否具备任务监测与模式切换，取决于项目 Codex / Claude 额度 蓝色 / 橙色额度泡泡，显示剩余用量与重置时间；支持单工具、双工具及自动识别 通常需自行接入工具账户与额度来源 任务与处理提醒 运行黄、等待紫、完成绿、失败或终止红；点击跳转对应聊天，等待时小猫抬头提醒 是否展示任务生命周期与聊天入口，取决于项目 声音与工作节奏 青轴 / 茶轴 / 红轴、气泡弹出声与拎起喵叫；敲击声的开始和暂停帮助感知任务动静，音量独立可调 音色、任务联动与音量控制取决于项目 互动与彩蛋 自主双手打字、短暂停顿思考、随机小情绪、等待催促，以及甩动约 1.2 秒的眩晕眼 互动规则与动画由各项目分别设计</p><p class="sub">体积为 v1.4.6 各平台完整下载包的近似值。Windows x64、Linux x8664 / ARM64 现提供原生工作模式安装包；兼容要求见下方平台说明。</p><p class="sub">- ⌨️ 双击，切换普通／工作模式 - 普通模式陪你打字、跟随鼠标、摸头、打瞌睡；工作模式才亮起 RGB 跑马灯，让工作状态一眼可辨。 - 小猫按下空格，气泡先像普通按键一样升起，再变成键盘下方的立体长条；方向与键盘下缘平行，缩放时文字与泡泡一起等比例变化。 - 可随时手动切回；没有运行或等待处理的任务满 30 分钟后自动回普通模式。工作模式不因闲置睡着，回普通模式后按原规则入睡。</p><p class="sub">- 🔵🟠 Codex ＋ Claude 额度，一眼看见 - 支持只显示 Codex、只显示 Claude、同时显示，或自动识别；单工具使用全宽额度条，识别到另一个工具后自动补上。 - 主填充显示短周期剩余额度，细条显示本周剩余；外圈七段连续倒计时显示距离本周重置的时间，空段保留白色轮廓。 - 悬停显示百分比、更新时间及准确倒计时。按账户实际可用的额度窗口显示；未提供的窗口显示为不可用。 - 额度约每 60 秒刷新；断网或登录失效时保留上次</p><p class="sub"><i>From the project README.</i></p>
+<h2>Maintaining this server?</h2>
+<p class="sub">Add the radar badge to your README — it shows your project was picked up by MCP Radar and links to this page:</p>
+<pre class="snippet">[![On MCP Radar](https://mcp.liqiwa.com/badge.svg)](https://mcp.liqiwa.com/s/andyforfun168--KuroCatWork.html)</pre>
+<button class="copybtn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent);this.textContent='Copied ✓'">Copy markdown</button>
+<h2>Related MCP servers</h2><a class="card" href="/s/chanke17--KuroCat.html">
+  <span class="name"><span class="owner">chanke17/</span>KuroCat</span>
+  <p>KuroCat — Free open-source native desktop cat pet &amp; OBS overlay (Bongo Cat alternative, Swift/C++, 802 KB)｜开源免费原生桌面萌猫（全平台 macOS·Win·Linux·UOS / 2.5D转头捕猎 / 数位板 / OBS透明绿幕 / 在线皮肤工坊 / 零按键上传）</p>
+  <span class="meta"><span>⭐ 791</span><span>C++</span></span>
+</a><a class="card" href="/s/UponPeak--windows-fine-tuner-resp.html">
+  <span class="name"><span class="owner">UponPeak/</span>windows-fine-tuner-resp</span>
+  <p>Top 20 Windows 11 Junk &amp; Startup Optimizer Tools 2026</p>
+  <span class="meta"><span>⭐ 94</span><span>HTML</span></span>
+</a><a class="card" href="/s/Wildange85773l--windows-fine-tuner-resp.html">
+  <span class="name"><span class="owner">Wildange85773l/</span>windows-fine-tuner-resp</span>
+  <p>Top 20 Windows 11 Junk &amp; Startup Optimizer Tools 2026</p>
+  <span class="meta"><span>⭐ 53</span><span>HTML</span></span>
+</a><a class="card" href="/s/Wlaeg--antigravity-pet.html">
+  <span class="name"><span class="owner">Wlaeg/</span>antigravity-pet</span>
+  <p>Native Windows &amp; macOS pixel-art desktop companion for Google Antigravity — 8+ pets, standalone 5-tab settings window, 11-locale i18n, live GitHub updates, 1-image custom pets &amp; zero runtime dependenc</p>
+  <span class="meta"><span>⭐ 9</span><span>HTML</span></span>
+</a><a class="card" href="/s/Undermove--meridian-browser.html">
+  <span class="name"><span class="owner">Undermove/</span>meridian-browser</span>
+  <p>Meridian — the open-source Arc browser alternative for macOS, Windows and Linux, built for AI agents (MCP server, Claude, coding-agent workbench)</p>
+  <span class="meta"><span>⭐ 8</span><span>JavaScript</span></span>
+</a><a class="card" href="/s/ege-arhan--ebb.html">
+  <span class="name"><span class="owner">ege-arhan/</span>ebb</span>
+  <p>Open-source disk cleaner for macOS, Windows &amp; Linux. Free space without deleting (clones, compression), safe cleanups with undo, honest speed-up, and an MCP server so your AI can help. CleanMyMac / Mi</p>
+  <span class="meta"><span>⭐ 3</span><span>Rust</span></span>
+</a>
+
+
+<section class="subscribe">
+  <h2>📬 Get the weekly radar in your inbox</h2>
+  <p>The top new MCP servers of the week, every Monday. No spam, unsubscribe anytime.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/mcp-radar"
+        method="post" target="_blank">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  Tracked by <a href="/">MCP Radar</a> — new &amp; trending Model Context Protocol servers, updated daily
+  · <a href="/about.html">methodology</a>
+  · <a href="/about.html#contact">contact</a>
+  · <a href="/feed.xml">RSS</a>
+  · <a href="https://github.com/liqiwa/mcp-radar" rel="noopener">open-source pipeline</a>
+</footer>
+</div>
+</body>
+</html>
